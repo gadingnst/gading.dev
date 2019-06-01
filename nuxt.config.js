@@ -1,10 +1,9 @@
 import path from 'path'
 import Contents from './contents'
 
-const routes = Contents.map(item => {
-  item = `/blog/${item.name}`
-  return item
-})
+const routes = Contents.map(item => (
+  `/blog/${item.name}`
+))
 
 const routesSitemap = routes => {
   const sitemap = []
@@ -33,14 +32,6 @@ export default {
   },
 
   router: {
-    extendRoutes(routes, resolve) {
-      routes.push(
-        {
-          path: '*',
-          redirect: `/404`
-        }
-      )
-    },
     scrollBehavior(to, from, savedPosition) {
       if (savedPosition) {
         return savedPosition
@@ -67,7 +58,7 @@ export default {
   head: {
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no, maximum-scale=1.0' },
       { name: 'theme-color', content: '#304165' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-title', content: 'Sutanlab' },
@@ -94,7 +85,7 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: 'https://sutanlab.js.org',
+    hostname: process.env.PRODUCTION_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     generate: true,
@@ -154,17 +145,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    // optimization: {
-    //   minimize: true,
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     automaticNameDelimiter: '.',
-    //     name: true,
-    //     cacheGroups: {},
-    //     minSize: 100000,
-    //     maxSize: 100000
-    //   }
-    // },
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: true,
+        cacheGroups: {},
+        minSize: 100000,
+        maxSize: 100000
+      }
+    },
 
     /*
     ** You can extend webpack config here
