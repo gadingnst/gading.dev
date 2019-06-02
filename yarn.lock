@@ -1325,17 +1325,18 @@
     "@nuxtjs/meta" "^2.6.0"
     "@nuxtjs/workbox" "^2.6.0"
 
-"@nuxtjs/sitemap@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/sitemap/-/sitemap-0.2.2.tgz#4218d5bc9e0b3291d478b0008229afdc07603769"
-  integrity sha512-M8dbqaD5/zRjooNO8iQ114uuQHficDKdvlXl1nEZBdiFUjStAIdMhzo6Rcdnf2JHo5q4bRzcJ/eBBfQRapeLSQ==
+"@nuxtjs/sitemap@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/sitemap/-/sitemap-1.2.0.tgz#6278c7a93314f1511ebb5491eb96e0f77f7d6dea"
+  integrity sha512-H51sCfe1A56qE1U3FNlWHJ3tm/ZTUPVr9Db6c8A81HzKT/rWnaJDycMlKss1xUzRkL98oubSkMazGhs4wyY/FA==
   dependencies:
     async-cache "^1.1.0"
+    consola "^2.6.1"
     fs-extra "^7.0.1"
     is-https "^1.0.0"
-    lodash "^4.17.10"
+    lodash.unionby "^4.8.0"
     minimatch "^3.0.4"
-    sitemap "^2.1.0"
+    sitemap "^2.2.0"
 
 "@nuxtjs/workbox@^2.6.0":
   version "2.6.0"
@@ -6441,6 +6442,11 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
+lodash.unionby@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/lodash.unionby/-/lodash.unionby-4.8.0.tgz#883f098ff78f564a727b7508e09cdd539734bb83"
+  integrity sha1-iD8Jj/ePVkpye3UI4JzdU5c0u4M=
+
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -9207,10 +9213,10 @@ sisteransi@^0.1.1:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-0.1.1.tgz#5431447d5f7d1675aac667ccd0b865a4994cb3ce"
   integrity sha512-PmGOd02bM9YO5ifxpw36nrNMBTptEtfRl4qUYl9SndkolplkrZZOW7PGHjrZL53QvMVj9nQ+TKqUnRsw4tJa4g==
 
-sitemap@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-2.1.0.tgz#1633cb88c196d755ad94becfb1c1bcacc6d3425a"
-  integrity sha512-AkfA7RDVCITQo+j5CpXsMJlZ/8ENO2NtgMHYIh+YMvex2Hao/oe3MQgNa03p0aWY6srCfUA1Q02OgiWCAiuccA==
+sitemap@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-2.2.0.tgz#98b8502762c5d7e8c77c9be5061dce85b326f1b0"
+  integrity sha512-9Zoi3UBhSIt5jWENDRUbzsqLMJ+Fha3P2aQ2PRghmh0FOivtHsC4FAJdkAEKHvATajd74BWp/57Yh7kz/UA53Q==
   dependencies:
     lodash "^4.17.10"
     url-join "^4.0.0"
