@@ -18,17 +18,17 @@
     "@nuxtjs/google-analytics": "2.2.0",
     "@nuxtjs/pwa": "2.6.0",
     "@nuxtjs/sitemap": "0.2.2",
-    "flatpickr": "^4.5.7",
+    "flatpickr": "4.5.7",
     "highlight.js": "9.15.6",
-    "nouislider": "^13.1.5",
+    "nouislider": "13.1.5",
     "nuxt": "2.7.1",
     "reading-time": "1.2.0",
     "vue-disqus": "3.0.5",
-    "vue-flatpickr-component": "^8.1.2",
+    "vue-flatpickr-component": "8.1.2",
     "vue-ionicons": "3.0.4",
     "vue-lazyload": "1.2.6",
-    "vue-parallaxy": "^1.1.1",
-    "vue2-transitions": "^0.3.0"
+    "vue-parallaxy": "1.1.1",
+    "vue2-transitions": "0.3.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "0.0.1",
