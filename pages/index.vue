@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#">
+                  <a href="#me">
                     <img v-lazy="'/assets/img/collections/sutan_new.jpeg'" class="rounded-circle">
                   </a>
                 </div>
@@ -36,16 +36,25 @@
               <div class="col-lg-4 order-lg-1">
                 <div class="card-profile-stats d-flex justify-content-center">
                   <div>
-                    <span class="heading">{{ github.contributions }}</span>
-                    <span class="description">Total Contributions</span>
+                    <span class="heading">
+                      <span v-if="github.ready">{{ github.contributions }}</span>
+                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                    </span>
+                    <span class="description">Contributions</span>
                   </div>
                   <div>
-                    <span class="heading">{{ github.publicRepos }}</span>
-                    <span class="description">Public Repositories</span>
+                    <span class="heading">
+                      <span v-if="github.ready">{{ github.publicRepos }}</span>
+                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                    </span>
+                    <span class="description">Repositories</span>
                   </div>
                   <div>
-                    <span class="heading">{{ github.publicGists }}</span>
-                    <span class="description">Public Gists</span>
+                    <span class="heading">
+                      <span v-if="github.ready">{{ github.publicGists }}</span>
+                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                    </span>
+                    <span class="description">Gists</span>
                   </div>
                 </div>
               </div>
@@ -91,6 +100,7 @@
 </template>
 
 <script>
+import MdHelpCircleOutlineIcon from 'vue-ionicons/dist/md-help-circle-outline.vue'
 import MdMailIcon from 'vue-ionicons/dist/md-mail.vue'
 import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
@@ -99,10 +109,16 @@ import Banner from '~/components/Base/Banner'
 
 export default {
   components: {
-    Banner, Card, Button, MdMailIcon, MdQuoteIcon
+    Banner,
+    Card,
+    Button,
+    MdMailIcon,
+    MdQuoteIcon,
+    MdHelpCircleOutlineIcon
   },
   data: () => ({
     github: {
+      ready: false,
       contributions: 0,
       publicRepos: 0,
       publicGists: 0
@@ -121,6 +137,7 @@ export default {
           return contributions
         })
     ]).then(result => {
+      this.github.ready = true
       this.github.publicRepos = result[0].public_repos
       this.github.publicGists = result[0].public_gists
       this.github.contributions = result[1]

@@ -141,17 +141,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    // optimization: {
-    //   minimize: true,
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     automaticNameDelimiter: '.',
-    //     name: true,
-    //     cacheGroups: {},
-    //     minSize: 100000,
-    //     maxSize: 100000
-    //   }
-    // },
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: true,
+        cacheGroups: {},
+        minSize: 100000,
+        maxSize: 100000
+      }
+    },
 
     /*
     ** You can extend webpack config here
