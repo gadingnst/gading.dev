@@ -53,7 +53,7 @@ export default {
     socials: [
       { icon: 'logo-octocat-icon', link: 'https://github.com/sutanlab', class: 'btn-github' },
       { icon: 'logo-linkedin-icon', link: 'https://www.linkedin.com/in/sutan-nasution', class: 'btn-linkedin' },
-      { icon: 'logo-instagram-icon', link: 'https://www.instagram.com/sutan_gnst', class: 'btn-instagram' },
+      { icon: 'logo-instagram-icon', link: 'https://www.instagram.com/gadingnst', class: 'btn-instagram' },
       { icon: 'logo-facebook-icon', link: 'https://www.facebook.com/sgnzst', class: 'btn-facebook' },
       { icon: 'logo-twitter-icon', link: 'https://www.twitter.com/sutan_gnst', class: 'btn-twitter' }
     ]

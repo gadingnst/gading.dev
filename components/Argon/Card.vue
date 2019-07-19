@@ -29,23 +29,28 @@ export default {
   props: {
     type: {
       type: String,
-      description: 'Card type'
+      description: 'Card type',
+      default: ''
     },
     gradient: {
       type: String,
-      description: 'Card background gradient type (warning,danger etc)'
+      description: 'Card background gradient type (warning,danger etc)',
+      default: ''
     },
     hover: {
       type: Boolean,
-      description: 'Whether card should move on hover'
+      description: 'Whether card should move on hover',
+      default: false
     },
     shadow: {
       type: Boolean,
-      description: 'Whether card has shadow'
+      description: 'Whether card has shadow',
+      default: false
     },
     shadowSize: {
       type: String,
-      description: 'Card shadow size'
+      description: 'Card shadow size',
+      default: ''
     },
     noBody: {
       type: Boolean,
@@ -54,15 +59,18 @@ export default {
     },
     bodyClasses: {
       type: [String, Object, Array],
-      description: 'Card body css classes'
+      description: 'Card body css classes',
+      default: ''
     },
     headerClasses: {
       type: [String, Object, Array],
-      description: 'Card header css classes'
+      description: 'Card header css classes',
+      default: ''
     },
     footerClasses: {
       type: [String, Object, Array],
-      description: 'Card footer css classes'
+      description: 'Card footer css classes',
+      default: ''
     }
   }
 }
