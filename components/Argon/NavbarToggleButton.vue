@@ -7,6 +7,7 @@
     :aria-controls="target"
     :aria-expanded="toggled"
     aria-label="Toggle navigation"
+    aria-hidden="true"
   >
     <span class="navbar-toggler-icon" />
   </button>
