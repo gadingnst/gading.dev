@@ -93,7 +93,7 @@ export default {
   */
   loading: {
     continuous: true,
-    height: '3.5px',
+    height: '2.5px',
     color: '#11CDEF'
   },
 
@@ -113,12 +113,14 @@ export default {
     '~/assets/style/ionicons.scss',
     '~/assets/style/global.scss'
   ],
+
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     { src: '@/plugins/index', ssr: false }
   ],
+
   /*
   ** Nuxt.js modules
   */

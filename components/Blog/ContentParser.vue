@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$content-width: 60rem;
+$content-width: 55rem;
 $syntax-color: lightblue;
 $syntax-bg: #282c34;
 
@@ -97,6 +97,10 @@ p, h1, h2, h3, h4, h5, h6, ul, ol, iframe, table {
   &:after {
     clear: both;
   }
+}
+
+p {
+  font-size: 1.1175rem;
 }
 
 blockquote {

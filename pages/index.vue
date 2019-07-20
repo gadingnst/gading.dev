@@ -2,11 +2,11 @@
   <div class="profile-page">
     <Banner>
       <div class="text-center">
-        <h1 class="text-white text-smooth text-shadow" style="font-weight: 400">
-          Sutan Nasution.
+        <h1 class="text-white text-smooth text-shadow">
+          <b>Sutan Nasution.</b>
         </h1>
         <h5 class="text-white text-smooth text-shadow">
-          A Man who turns a cup of coffee into beautiful codes.
+          A Man who turns a cup of coffee into beautiful codes.”
         </h5>
       </div>
     </Banner>

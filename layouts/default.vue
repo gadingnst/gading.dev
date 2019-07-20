@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <FadeTransition>
+    <FadeTransition :duration="750">
       <Nuxt />
     </FadeTransition>
     <Footer />
