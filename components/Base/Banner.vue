@@ -7,7 +7,7 @@
     </figure>
     <no-ssr>
       <Parallax :style="`min-height: ${height}`" :speed-factor="speed" breakpoint="(min-width: 0px)">
-        <img :src="image" :alt="alt">
+        <img v-lazy="image" :alt="alt">
       </Parallax>
     </no-ssr>
   </div>
