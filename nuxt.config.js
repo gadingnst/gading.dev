@@ -78,6 +78,7 @@ export default {
 
   generate: {
     // generate config
+    routes
   },
 
   sitemap: {
