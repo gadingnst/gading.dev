@@ -29,7 +29,7 @@
                       <span>
                         {{ formatPostDate(content.date) }}
                       </span>
-                      &nbsp;-&nbsp;
+                      &nbsp;•&nbsp;
                       <span>
                         {{ content.readingtime }}
                       </span>
