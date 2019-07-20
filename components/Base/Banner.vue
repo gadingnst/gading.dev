@@ -1,7 +1,7 @@
 <template>
   <div id="banner" :style="`height: ${height}`">
     <figure :style="`background-color: rgba(0, 0, 0, ${overlay})`">
-      <div class="d-flex align-items-center px-3">
+      <div class="d-flex align-items-center justify-content-center px-3 mx-auto">
         <slot />
       </div>
     </figure>
@@ -27,6 +27,7 @@ export default {
     },
     height: {
       type: String,
+      description: 'Min: 450px',
       default: '100vh'
     },
     overlay: {
@@ -48,7 +49,7 @@ export default {
 <style lang="scss" scoped>
   #banner {
     position: relative;
-    z-index: -1;
+    z-index: 0;
     width: 100%;
     top: 0;
     img {

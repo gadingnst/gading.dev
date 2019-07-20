@@ -22,6 +22,11 @@ export default {
     AUTHOR: process.env.AUTHOR
   },
 
+  server: {
+    host: '0.0.0.0',
+    port: 3000
+  },
+
   /*
   ** Headers of the page
   */
@@ -72,7 +77,7 @@ export default {
   },
 
   generate: {
-    routes
+    // generate config
   },
 
   sitemap: {
@@ -80,7 +85,6 @@ export default {
     hostname: process.env.PRODUCTION_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
-    generate: true,
     routes: routesSitemap(routes)
   },
 
@@ -141,17 +145,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    optimization: {
-      minimize: true,
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.',
-        name: true,
-        cacheGroups: {},
-        minSize: 100000,
-        maxSize: 100000
-      }
-    },
+    // optimization: {
+    //   minimize: true,
+    //   splitChunks: {
+    //     chunks: 'all',
+    //     automaticNameDelimiter: '.',
+    //     name: true,
+    //     cacheGroups: {},
+    //     minSize: 100000,
+    //     maxSize: 100000
+    //   }
+    // },
 
     /*
     ** You can extend webpack config here

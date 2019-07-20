@@ -1,6 +1,15 @@
 <template>
   <div class="profile-page">
-    <Banner />
+    <Banner>
+      <div class="text-center">
+        <h1 class="text-white text-smooth text-shadow" style="font-weight: 400">
+          Sutan Nasution.
+        </h1>
+        <h5 class="text-white text-smooth text-shadow">
+          A Man who turns a cup of coffee into beautiful codes.
+        </h5>
+      </div>
+    </Banner>
     <section class="section section-skew">
       <div class="container">
         <Card shadow class="card-profile" no-body>
@@ -65,15 +74,12 @@
                 <span class="font-weight-light">&nbsp;20</span>
               </h3>
               <div class="h6 font-weight-300">
-                <i class="ni location_pin mr-2" />
                 Palembang, Indonesia
               </div>
               <div class="h6 mt-4">
-                <i class="ni business_briefcase-24 mr-2" />
                 Software Engineer
               </div>
               <div>
-                <i class="ni education_hat mr-2" />
                 State of Polytechnic Sriwijaya
               </div>
             </div>
