@@ -1,37 +1,43 @@
 <template>
-  <v-layout row wrap class="comments default lighten-2 white--text pb-3 pt-1">
-    <v-container class="text-xs-center">
-      <h2 class="text--white mb-3">
-        {{ !disqusLoaded ? 'Loading Comments..' : 'Comments' }}
-      </h2>
-      <v-divider />
-      <v-progress-circular
-        v-if="!disqusLoaded"
+  <div class="row comments pb-3 justify-content-center">
+    <div class="col-lg-10 order-lg-2 text-center">
+      <h4 class="mb-1 pt-4" style="border-top: 1.5px solid rgba(0, 0, 0, 0.2)">
+        <b>{{ !disqusLoaded ? 'Loading Comments..' : 'Comments' }}</b>
+      </h4>
+      <RingLoader
+        :loading="!disqusLoaded"
         class="mt-5"
-        :size="75"
-        color="white"
-        indeterminate
+        color="#5E72E4"
+        size="100px"
       />
-      <v-flex class="mx-auto mt-4 md8 xs12">
+      <div class="mx-auto mt-3">
         <no-ssr>
           <lazy-component>
-            <vue-disqus
-              v-show="disqusLoaded"
-              :shortname="shortname"
-              :title="title"
-              :url="url"
-              :identifier="`${shortname}-${identifier}`"
-              @ready="disqusLoaded = true"
-            />
+            <FadeTransition :duration="1250">
+              <vue-disqus
+                v-show="disqusLoaded"
+                :shortname="shortname"
+                :title="title"
+                :url="url"
+                :identifier="`${shortname}-${identifier}`"
+                @ready="disqusLoaded = true"
+              />
+            </FadeTransition>
           </lazy-component>
         </no-ssr>
-      </v-flex>
-    </v-container>
-  </v-layout>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { FadeTransition } from 'vue2-transitions'
+import RingLoader from 'vue-spinner/src/RingLoader.vue'
+
 export default {
+  components: {
+    FadeTransition, RingLoader
+  },
   props: {
     shortname: {
       type: String,
@@ -55,3 +61,9 @@ export default {
   })
 }
 </script>
+
+<style>
+.v-ring {
+  margin: auto;
+}
+</style>

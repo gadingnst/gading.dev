@@ -51,7 +51,7 @@
                     </div>
                     <nuxt-link :to="`/blog/${content.slug}`">
                       <Button type="primary" class="mt-4" style="float: right">
-                        Read more
+                        Read
                       </Button>
                     </nuxt-link>
                   </div>

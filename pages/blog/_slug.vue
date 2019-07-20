@@ -26,6 +26,13 @@
         :static-render-fn="staticRenderFn"
       />
     </div>
+    <div class="container">
+      <Disqus
+        :title="`${meta.title} | ${env.author}`"
+        :url="`${env.url}/blog/${meta.slug}`"
+        :identifier="`${meta.slug}-${new Date(meta.date).getTime()}`"
+      />
+    </div>
   </div>
 </template>
 
@@ -33,10 +40,11 @@
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
 import Banner from '~/components/Base/Banner'
 import ContentParser from '~/components/Blog/ContentParser'
+import Disqus from '~/components/Blog/Disqus'
 
 export default {
   components: {
-    Banner, ContentParser
+    Banner, ContentParser, Disqus
   },
   data: () => ({
     formatPostDate,

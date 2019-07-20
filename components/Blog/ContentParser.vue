@@ -34,6 +34,17 @@ $content-width: 55rem;
 $syntax-color: lightblue;
 $syntax-bg: #282c34;
 
+code, kbd, pre, samp {
+  font-family: monospace;
+}
+
+code {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 3px;
+}
+
 pre {
   background: $syntax-bg;
   margin: 1em auto;
@@ -42,13 +53,13 @@ pre {
     background: none;
     box-shadow: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
-    font-size: 1rem;
+    font-size: 0.75rem;
     display: block;
     overflow-x: auto;
     max-width: $content-width;
     padding: 1.2em;
     margin: auto;
-    line-height: 1.3em;
+    line-height: 1.55em;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -110,7 +121,7 @@ blockquote {
   display: block;
   border-left: .313rem solid #5E72E4;
   padding: 0 1.875rem;
-  margin: 3.125rem auto;
+  margin: 2.25rem auto;
   p {
     color: rgba(0, 0, 0, 0.6);
     margin: 0;

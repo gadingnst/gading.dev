@@ -37,5 +37,3 @@ Jangan tunggu panggung untuk mulai berkarya
 Jangan tunggu mati untuk mulai berbuat kebaikan
 
 Jangan tunggu Waktu yang ga akan datang~
-
----
