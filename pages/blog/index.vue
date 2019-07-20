@@ -19,7 +19,7 @@
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
                   <img v-lazy="content.image" style="width: 100%; height: 200px; object-fit: cover" class="card-img-top">
                   <div class="px-3 pt-4">
-                    <h6 class="text-primary mb-0">
+                    <h6 class="text-primary mb-1">
                       {{ content.title }}
                       <Badge type="primary" class="text-uppercase ml-2">
                         {{ content.category }}
@@ -34,9 +34,11 @@
                         {{ content.readingtime }}
                       </span>
                     </div>
-                    <p class="description mt-3">
-                      {{ content.description }}
-                    </p>
+                    <div id="content-desc">
+                      <p class="description mt-3">
+                        {{ wrapText(content.description, 150) }}
+                      </p>
+                    </div>
                     <div>
                       <Badge
                         v-for="(tag, iTag) in content.tags"
@@ -64,7 +66,7 @@
 </template>
 
 <script>
-import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
+import { wrapText, formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
 import Card from '~/components/Argon/Card'
 import Badge from '~/components/Argon/Badge'
 import Button from '~/components/Argon/Button'
@@ -76,7 +78,8 @@ export default {
     Card, Badge, Button, Banner
   },
   data: () => ({
-    formatPostDate
+    formatPostDate,
+    wrapText
   }),
   head: () => ({
     title: `Blog | ${process.env.AUTHOR}`,
@@ -99,3 +102,11 @@ export default {
   )
 }
 </script>
+
+<style scoped>
+@media (min-width: 992px) {
+  #content-desc {
+    height: 80px;
+  }
+}
+</style>

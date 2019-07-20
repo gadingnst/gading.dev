@@ -25,16 +25,25 @@
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <Button
-                    style="background-color: #0073B1; border: none"
+                    tag="a"
+                    target="_blank"
+                    href="https://drive.google.com/file/d/1T_ZVQVGjEby3D5q17nvHF4SVVkV_rirO/view"
+                    type="info"
                     size="sm"
                     class="mr-4"
                   >
                     <no-ssr>
-                      <logo-linkedin-icon w="14px" h="14px" />
+                      <md-briefcase-icon w="14px" h="14px" />
                     </no-ssr>
-                    Connect
+                    Resume
                   </Button>
-                  <Button type="default" size="sm" class="float-right">
+                  <Button
+                    tag="a"
+                    type="primary"
+                    class="float-right"
+                    size="sm"
+                    href="mailto:sutan.gnst@gmail.com"
+                  >
                     <no-ssr>
                       <md-mail-icon w="14px" h="14px" />
                     </no-ssr>
@@ -106,6 +115,7 @@
 </template>
 
 <script>
+import MdBriefcaseIcon from 'vue-ionicons/dist/md-briefcase.vue'
 import MdHelpCircleOutlineIcon from 'vue-ionicons/dist/md-help-circle-outline.vue'
 import MdMailIcon from 'vue-ionicons/dist/md-mail.vue'
 import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
@@ -120,7 +130,8 @@ export default {
     Button,
     MdMailIcon,
     MdQuoteIcon,
-    MdHelpCircleOutlineIcon
+    MdHelpCircleOutlineIcon,
+    MdBriefcaseIcon
   },
   data: () => ({
     github: {
