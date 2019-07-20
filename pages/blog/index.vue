@@ -6,7 +6,7 @@
           Blog
         </h1>
         <h5 class="text-white text-smooth text-shadow">
-          Coding, Work, life and whatever i want
+          Coding, work, life and whatever i want.
         </h5>
       </div>
     </Banner>
