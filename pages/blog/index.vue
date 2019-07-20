@@ -17,7 +17,7 @@
             <div class="row row-grid">
               <div v-for="(content, i) in contents" :key="i" class="col-lg-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
-                  <img v-lazy="content.image" style="width: 100%; height: 200px; object-fit: cover" class="card-img-top">
+                  <img v-lazy="content.image" style="width: 100%; height: 200px; object-fit: cover" class="card-img-top" :alt="content.title">
                   <div class="px-3 pt-4">
                     <h6 class="text-primary mb-1">
                       {{ content.title }}
@@ -34,7 +34,7 @@
                         {{ content.readingtime }}
                       </span>
                     </div>
-                    <div id="content-desc">
+                    <div class="content-desc">
                       <p class="description mt-3">
                         {{ wrapText(content.description, 150) }}
                       </p>
@@ -105,7 +105,7 @@ export default {
 
 <style scoped>
 @media (min-width: 992px) {
-  #content-desc {
+  .content-desc {
     height: 80px;
   }
 }

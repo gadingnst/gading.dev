@@ -17,8 +17,8 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#me">
-                    <img v-lazy="'/assets/img/collections/sutan_new.jpeg'" class="rounded-circle">
+                  <a href="#me" aria-hidden="true">
+                    <img v-lazy="'/assets/img/collections/sutan_new.jpeg'" class="rounded-circle" alt="Sutan Nasution">
                   </a>
                 </div>
               </div>
@@ -27,6 +27,7 @@
                   <Button
                     tag="a"
                     target="_blank"
+                    rel="noreferrer"
                     href="https://drive.google.com/file/d/1T_ZVQVGjEby3D5q17nvHF4SVVkV_rirO/view"
                     type="info"
                     size="sm"
