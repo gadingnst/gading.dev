@@ -1,5 +1,8 @@
 <template>
-  <PageList :contents="contents" :total="total" />
+  <PageList
+    :contents="contents"
+    :total="total"
+  />
 </template>
 
 <script>

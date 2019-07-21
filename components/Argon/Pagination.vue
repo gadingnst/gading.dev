@@ -2,7 +2,7 @@
   <ul class="pagination" :class="[size && `pagination-${size}`, align && `justify-content-${align}`]">
     <li class="page-item prev-page" :class="{disabled: value === 1}">
       <a class="page-link" aria-label="Previous" @click="prevPage">
-        <span aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true" /></span>
+        <span aria-hidden="true"><md-arrow-dropleft-icon /></span>
       </a>
     </li>
     <li
@@ -15,15 +15,26 @@
     </li>
     <li class="page-item next-page" :class="{disabled: value === totalPages}">
       <a class="page-link" aria-label="Next" @click="nextPage">
-        <span aria-hidden="true"><i class="fa fa-angle-right" aria-hidden="true" /></span>
+        <span aria-hidden="true"><md-arrow-dropright-icon /></span>
       </a>
     </li>
   </ul>
 </template>
 
 <script>
+import MdArrowDropleftIcon from 'vue-ionicons/dist/md-arrow-dropleft.vue'
+import MdArrowDroprightIcon from 'vue-ionicons/dist/md-arrow-dropright.vue'
+
 export default {
+  components: {
+    MdArrowDropleftIcon,
+    MdArrowDroprightIcon
+  },
   props: {
+    defaultPagesToDisplay: {
+      type: Number,
+      default: 5
+    },
     pageCount: {
       type: Number,
       default: 0,
@@ -56,11 +67,6 @@ export default {
       type: String,
       default: '',
       description: 'Pagination alignment (e.g center|start|end)'
-    }
-  },
-  data() {
-    return {
-      defaultPagesToDisplay: 5
     }
   },
   computed: {

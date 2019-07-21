@@ -1,5 +1,9 @@
 <template>
-  <PageList :contents="contents" :total="total" :page="Number.parseInt(page)" />
+  <PageList
+    :contents="contents"
+    :total="total"
+    :page="Number.parseInt(page)"
+  />
 </template>
 
 <script>

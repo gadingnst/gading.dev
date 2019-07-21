@@ -60,9 +60,14 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="container mt-4">
+          <h4 class="text-center">
+            Page {{ page }} of {{ Math.ceil(total / pagination.limit) }}
+          </h4>
           <Pagination
             v-model="pg"
+            align="center"
+            class="mt-3"
             :page-count="Math.ceil(total / pagination.limit)"
             @input="onPageChange"
           />
