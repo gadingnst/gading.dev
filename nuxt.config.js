@@ -1,7 +1,7 @@
 import path from 'path'
 import Contents from './contents'
 
-const blogPaginationLimit = 2
+const blogPaginationLimit = 6
 
 function routes() {
   const routes = []
