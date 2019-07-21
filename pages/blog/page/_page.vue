@@ -20,7 +20,10 @@ export default {
       }
     })).then(res => ({
       page: params.page,
-      contents: res.reverse().slice((--params.page * process.env.BLOG_PAGINATION_LIMIT), process.env.BLOG_PAGINATION_LIMIT ** 2),
+      contents: res.reverse().slice(
+        (params.page - 1) * process.env.BLOG_PAGINATION_LIMIT,
+        params.page * process.env.BLOG_PAGINATION_LIMIT
+      ),
       total: res.length
     }))
   )
