@@ -1,9 +1,23 @@
 import path from 'path'
 import Contents from './contents'
 
-const routes = Contents.map(item => (
-  `/blog/${item.name}`
-))
+const blogPaginationLimit = 2
+
+function routes() {
+  const routes = []
+
+  // slug routes
+  for (const item of Contents) {
+    routes.push(`/blog/${item.name}`)
+  }
+
+  // pagination routes
+  for (let i = 0; i < Math.ceil(Contents.length / blogPaginationLimit); i++) {
+    routes.push(`/blog/page/${i + 1}`)
+  }
+
+  return routes
+}
 
 const routesSitemap = routes => (
   routes.map(route => ({
@@ -19,7 +33,8 @@ export default {
 
   env: {
     PRODUCTION_URL: process.env.PRODUCTION_URL,
-    AUTHOR: process.env.AUTHOR
+    AUTHOR: 'Sutan Nasution.',
+    BLOG_PAGINATION_LIMIT: blogPaginationLimit
   },
 
   server: {
@@ -78,7 +93,7 @@ export default {
 
   generate: {
     // generate config
-    routes
+    routes: routes()
   },
 
   sitemap: {
@@ -86,7 +101,7 @@ export default {
     hostname: process.env.PRODUCTION_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
-    routes: routesSitemap(routes)
+    routes: routesSitemap(routes())
   },
 
   /*

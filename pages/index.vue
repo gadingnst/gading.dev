@@ -123,6 +123,7 @@ import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
+import { metaGenerator } from '~/utils/helpers'
 
 export default {
   components: {
@@ -141,6 +142,16 @@ export default {
       publicRepos: 0,
       publicGists: 0
     }
+  }),
+  head: () => ({
+    title: `${process.env.AUTHOR}`,
+    meta: metaGenerator('portfolio', {
+      title: `Personal Homepage`,
+      description: `A Man who turns a cup of coffee into beautiful codes. - ${process.env.AUTHOR}`,
+      keywords: 'homepage, portfolio',
+      image: '/icon.png',
+      url: '/'
+    })
   }),
   mounted() {
     Promise.all([
