@@ -5,22 +5,21 @@
         <slot />
       </div>
     </figure>
-    <no-ssr>
+    <no-ssr v-if="!noParallax">
       <Parallax
-        v-if="!noParallax"
         :style="`min-height: ${height}`"
         :speed-factor="speed"
         breakpoint="(min-width: 0px)"
       >
         <img v-lazy="image" :alt="alt">
       </Parallax>
-      <img
-        v-else
-        v-lazy="'/assets/img/collections/desks/desk1.jpg'"
-        :style="`height: ${height}; object-fit: cover`"
-        :alt="alt"
-      >
     </no-ssr>
+    <img
+      v-else
+      v-lazy="image"
+      :style="`height: ${height}; object-fit: cover`"
+      :alt="alt"
+    >
   </div>
 </template>
 
