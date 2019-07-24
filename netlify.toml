@@ -2,3 +2,8 @@
   from = "https://sutanlab.netlify.com/*"
   to = "https://sutanlab.id/:splat"
   status = 301
+
+[[redirects]]
+  from = "https://sutanlab.netlify.com"
+  to = "https://sutanlab.id"
+  status = 301
