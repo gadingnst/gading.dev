@@ -1,0 +1,4 @@
+[[redirects]]
+  from = https://sutanlab.netlify.com/*
+  to = https://sutanlab.id/:splat
+  status = 301
