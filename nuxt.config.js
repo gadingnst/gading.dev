@@ -58,7 +58,7 @@ export default {
       { name: 'twitter:site', content: '@sutan_gnst' },
       { property: 'og:site_name', content: 'Sutanlab' },
       { property: 'profile:username', content: 'sutanlab' },
-      { name: 'google-site-verification', content: 'jLyr0TMCl7eKN6nXKMcBVQE7pq3XshkQCTutxZMwQW4' }
+      { name: 'google-site-verification', content: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
