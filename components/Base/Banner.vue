@@ -16,7 +16,7 @@
       </Parallax>
       <img
         v-else
-        v-lazy="image"
+        v-lazy="'/assets/img/collections/desks/desk1.jpg'"
         :style="`height: ${height}; object-fit: cover`"
         :alt="alt"
       >
