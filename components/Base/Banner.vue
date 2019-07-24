@@ -7,7 +7,8 @@
     </figure>
     <no-ssr>
       <Parallax :style="`min-height: ${height}`" :speed-factor="speed" breakpoint="(min-width: 0px)">
-        <img v-lazy="image" :alt="alt">
+        <img v-if="lazy" v-lazy="image" :alt="alt">
+        <img v-else :src="image" :alt="alt">
       </Parallax>
     </no-ssr>
   </div>
@@ -21,6 +22,10 @@ export default {
     Parallax
   },
   props: {
+    lazy: {
+      type: Boolean,
+      default: false
+    },
     speed: {
       type: Number,
       default: 0.25
