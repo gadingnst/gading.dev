@@ -158,13 +158,9 @@ export default {
       this.$axios.get('https://api.github.com/users/sutanlab')
         .then(({ data }) => data),
       this.$axios.get('https://github-contributions-api.now.sh/v1/sutanlab')
-        .then(({ data }) => {
-          let contributions = 0
-          for (const contribution of data.years) {
-            contributions += contribution.total
-          }
-          return contributions
-        })
+        .then(({ data }) => data.years
+          .reduce((acc, cur) => acc.total + cur.total)
+        )
     ]).then(result => {
       this.github.ready = true
       this.github.publicRepos = result[0].public_repos
