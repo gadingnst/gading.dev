@@ -16,7 +16,7 @@
     </no-ssr>
     <img
       v-else
-      v-lazy="image"
+      :src="image"
       :style="`height: ${height}; object-fit: cover`"
       :alt="alt"
     >
