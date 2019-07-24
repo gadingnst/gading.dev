@@ -6,10 +6,20 @@
       </div>
     </figure>
     <no-ssr>
-      <Parallax :style="`min-height: ${height}`" :speed-factor="speed" breakpoint="(min-width: 0px)">
-        <img v-if="lazy" v-lazy="image" :alt="alt">
-        <img v-else :src="image" :alt="alt">
+      <Parallax
+        v-if="!noParallax"
+        :style="`min-height: ${height}`"
+        :speed-factor="speed"
+        breakpoint="(min-width: 0px)"
+      >
+        <img v-lazy="image" :alt="alt">
       </Parallax>
+      <img
+        v-else
+        v-lazy="image"
+        :style="`height: ${height}; object-fit: cover`"
+        :alt="alt"
+      >
     </no-ssr>
   </div>
 </template>
@@ -22,7 +32,7 @@ export default {
     Parallax
   },
   props: {
-    lazy: {
+    noParallax: {
       type: Boolean,
       default: false
     },

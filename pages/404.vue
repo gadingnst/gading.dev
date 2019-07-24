@@ -1,5 +1,5 @@
 <template>
-  <Banner>
+  <Banner no-parallax>
     <div class="text-center">
       <h1 class="text-white text-smooth text-shadow">
         <b>4🙁4</b>
