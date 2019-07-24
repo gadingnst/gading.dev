@@ -19,6 +19,9 @@ import Banner from '~/components/Base/Banner'
 import Button from '~/components/Argon/Button'
 
 export default {
-  components: { Banner, Button }
+  components: { Banner, Button },
+  head: () => ({
+    title: `404 - Page Not Found | ${process.env.AUTHOR}`
+  })
 }
 </script>
