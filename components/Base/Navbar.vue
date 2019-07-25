@@ -27,7 +27,7 @@
     </div>
     <ul slot-scope="{closeMenu}" class="navbar-nav ml-lg-auto">
       <li
-        v-for="(link, i) in links"
+        v-for="(link, i) in $store.getters.menu"
         :key="i"
         class="nav-item"
         @click="closeMenu"
@@ -50,11 +50,7 @@ export default {
     BaseNav
   },
   data: () => ({
-    transparent: true,
-    links: [
-      { text: 'Home', to: '/' },
-      { text: 'Blog', to: '/blog' }
-    ]
+    transparent: true
   }),
   beforeMount() {
     window.addEventListener('scroll', this.onScroll)

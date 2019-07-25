@@ -16,8 +16,8 @@ export default {
   }),
   mutations: {
     watchRoutes(state, routeName) {
-      state.homepage.show = (state.homepage.routes.indexOf(routeName) > -1)
-      state.blogContent.show = (state.blogContent.routes.indexOf(routeName) > -1)
+      state.homepage.show = (state.homepage.routes.includes(routeName))
+      state.blogContent.show = (state.blogContent.routes.includes(routeName))
     }
   },
   getters: {

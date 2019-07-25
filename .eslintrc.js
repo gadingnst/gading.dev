@@ -14,6 +14,8 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-console': 'off',
-    'arrow-parens': 'off'
+    'arrow-parens': 'off',
+    'curly': 'off',
+    'space-before-function-paren': 'off'
   }
 }

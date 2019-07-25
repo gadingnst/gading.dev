@@ -1,7 +1,13 @@
 import path from 'path'
+import markdown from 'markdown-parse'
 import Contents from './contents'
+import { getContent } from './utils/contents'
 
-const blogPaginationLimit = 6
+const env = {
+  author: 'Sutan Nasution.',
+  productionUrl: 'https://sutanlab.id',
+  blogPaginationLimit: 6
+}
 
 function routes() {
   const routes = []
@@ -12,7 +18,7 @@ function routes() {
   }
 
   // pagination routes
-  for (let i = 0; i < Math.ceil(Contents.length / blogPaginationLimit); i++) {
+  for (let i = 0; i < Math.ceil(Contents.length / env.blogPaginationLimit); i++) {
     routes.push(`/blog/page/${i + 1}`)
   }
 
@@ -32,9 +38,9 @@ export default {
   mode: 'universal',
 
   env: {
-    PRODUCTION_URL: process.env.PRODUCTION_URL,
-    AUTHOR: 'Sutan Nasution.',
-    BLOG_PAGINATION_LIMIT: blogPaginationLimit
+    PRODUCTION_URL: env.productionUrl,
+    AUTHOR: env.author,
+    BLOG_PAGINATION_LIMIT: env.blogPaginationLimit
   },
 
   server: {
@@ -98,11 +104,52 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: process.env.PRODUCTION_URL,
+    hostname: env.productionUrl,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: routesSitemap(routes())
   },
+
+  feed: [
+    {
+      path: '/feed.xml',
+      async create(feed) {
+        feed.options = {
+          title: `Blog | ${env.author}`,
+          link: `${env.productionUrl}/feed.xml`,
+          description: 'Sutan Nasution.\'s personal blog feed'
+        }
+
+        feed.addCategory('Personal Blog')
+
+        feed.addContributor({
+          name: 'Sutan Nasution.',
+          email: 'sutan.gnst@gmail.com',
+          link: env.productionUrl
+        })
+
+        await Promise.all(Contents.map(async ({ name }) => {
+          const content = await getContent(name)
+          return new Promise((resolve, reject) => {
+            markdown(content, (err, { attributes, html }) => {
+              if (err) reject(err)
+              resolve({ ...attributes, html })
+            })
+          }).then(content => {
+            feed.addItem({
+              title: content.title,
+              id: `${content.slug}_${new Date(content.date).getTime()}`,
+              link: `${env.productionUrl}/blog/${content.slug}`,
+              description: content.description,
+              content: content.html
+            })
+          })
+        }))
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2'
+    }
+  ],
 
   /*
   ** Customize the progress-bar color
@@ -145,6 +192,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/pwa',
+    '@nuxtjs/feed',
     '@nuxtjs/sitemap',
     [
       '@nuxtjs/google-analytics',
