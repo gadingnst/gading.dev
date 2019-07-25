@@ -132,7 +132,7 @@ export default {
           const content = await getContent(name)
           return new Promise((resolve, reject) => {
             markdown(content, (err, { attributes, html }) => {
-              if (err) reject(err)
+              if (err) return reject(err)
               resolve({ ...attributes, html })
             })
           }).then(content => {
