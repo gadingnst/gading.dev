@@ -1396,7 +1396,7 @@
     consola "^2.9.0"
     eslint-loader "^2.1.2"
 
-"@nuxtjs/feed@^1.1.0":
+"@nuxtjs/feed@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/feed/-/feed-1.1.0.tgz#a4741ffff693615dd989fc8fdd3a8f6a8abc81b8"
   integrity sha512-yy44/jvL9QEJoAag+FWkwAZPGoe3VPVumXD86OUeW37j7rcfUOtwVBRSJiabtZOOHNdqSUn/9Z0L07yyubmkhQ==
@@ -6830,7 +6830,7 @@ markdown-it@^9.0.0:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-markdown-parse@^0.2.1:
+markdown-parse@0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/markdown-parse/-/markdown-parse-0.2.1.tgz#e9bcccf39d317089eadd12dd8be9fefd095e3571"
   integrity sha1-6bzM850xcInq3RLdi+n+/QleNXE=
