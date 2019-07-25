@@ -1,8 +1,8 @@
 export default {
   state: () => ({
     menu: [
-      { title: 'Home', icon: 'home', to: '/' },
-      { title: 'Blog', icon: 'chrome_reader_mode', to: '/blog' }
+      { text: 'Home', to: '/' },
+      { text: 'Blog', to: '/blog' }
     ]
   }),
   getters: {

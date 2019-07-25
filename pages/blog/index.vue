@@ -17,7 +17,6 @@ export default {
   asyncData: () => (
     Promise.all(Contents.map(async content => {
       content = await import(`~/contents/posts/${content.name}/index.md`)
-      console.log(content)
       return {
         ...content.attributes,
         readingtime: formatReadingTime(content.body)
