@@ -17,7 +17,20 @@
             <div class="row row-grid">
               <div v-for="(item, i) in portfolio" :key="i" class="col-lg-4 col-md-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
-                  <img v-lazy="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`" style="width: 100%; height: 200px; object-fit: cover" class="card-img-top" :alt="item.name">
+                  <div
+                    v-lazy-container="{
+                      selector: 'img',
+                      error: '/assets/img/placeholders/error.png',
+                      loading: '/assets/img/placeholders/loading.gif'
+                    }"
+                  >
+                    <img
+                      style="width: 100%; height: 200px; object-fit: cover"
+                      class="card-img-top"
+                      :data-src="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`"
+                      :alt="item.name"
+                    >
+                  </div>
                   <div class="px-3 pt-4">
                     <h6 class="text-primary mb-1">
                       {{ item.name }}

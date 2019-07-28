@@ -17,7 +17,20 @@
             <div class="row row-grid">
               <div v-for="(content, i) in contents" :key="i" class="col-lg-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
-                  <img v-lazy="content.image" style="width: 100%; height: 200px; object-fit: cover" class="card-img-top" :alt="content.title">
+                  <div
+                    v-lazy-container="{
+                      selector: 'img',
+                      error: '/assets/img/placeholders/error.png',
+                      loading: '/assets/img/placeholders/loading.gif'
+                    }"
+                  >
+                    <img
+                      :data-src="content.image"
+                      style="width: 100%; height: 200px; object-fit: cover"
+                      class="card-img-top"
+                      :alt="content.title"
+                    >
+                  </div>
                   <div class="px-3 pt-4">
                     <h6 class="text-primary mb-1">
                       {{ content.title }}
