@@ -38,11 +38,11 @@
   {
     "name": "Chat Socket",
     "category": "Experiment Project",
-    "description": "Simple Chat App with Gravatar API.",
+    "description": "Real-time chat app with Gravatar API.",
     "github": "https://github.com/sutanlab/chat-socket",
     "website": "https://sutanlab-chat-socket.herokuapp.com",
     "image": "/assets/img/portfolio/chat-socket.png",
-    "stacks": ["javascript", "node", "express", "gravatar-api"]
+    "stacks": ["javascript", "node", "express", "socketio", "gravatar-api"]
   },
   {
     "name": "Jekyll Starter Blog",
