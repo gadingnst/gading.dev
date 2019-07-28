@@ -3,6 +3,7 @@ export default {
     menu: [
       { text: 'Home', to: '/' },
       { text: 'Now', to: '/now' },
+      { text: 'Portfolio', to: '/portfolio' },
       { text: 'Blog', to: '/blog' }
     ]
   }),

@@ -35,7 +35,7 @@ POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQ
 CURRENT_YEARMONTH="$(date +'%Y/%m')"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
 TIME=$(date +"%T")
-RAND_NUM=$(shuf -i 0-5 -n 1)
+RAND_NUM=$(shuf -i 0-7 -n 1)
 # ----------------------------------------------------------------
 
 
@@ -46,7 +46,7 @@ RAND_NUM=$(shuf -i 0-5 -n 1)
 BINPATH=$(cd `dirname $0`; pwd)
 POSTPATH="${BINPATH}/contents/posts"
 DRAFTPATH="${BINPATH}/contents/drafts"
-POSTLIST="${BINPATH}/contents/index.js"
+POSTLIST="${BINPATH}/contents/posts/index.js"
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
     DIST_FOLDER="$POSTPATH"

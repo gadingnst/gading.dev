@@ -1,6 +1,6 @@
 import path from 'path'
 import markdown from 'markdown-parse'
-import Contents from './contents'
+import posts from './contents/posts'
 import { getContent } from './utils/contents'
 
 const env = {
@@ -13,12 +13,12 @@ function routes() {
   const routes = []
 
   // slug routes
-  for (const item of Contents) {
+  for (const item of posts) {
     routes.push(`/blog/${item.name}`)
   }
 
   // pagination routes
-  for (let i = 0; i < Math.ceil(Contents.length / env.blogPaginationLimit); i++) {
+  for (let i = 0; i < Math.ceil(posts.length / env.blogPaginationLimit); i++) {
     routes.push(`/blog/page/${i + 1}`)
   }
 
@@ -128,7 +128,7 @@ export default {
           link: env.productionUrl
         })
 
-        await Promise.all(Contents.map(async ({ name }) => {
+        await Promise.all(posts.map(async ({ name }) => {
           const content = await getContent(name)
           return new Promise((resolve, reject) => {
             markdown(content, (err, { attributes, html }) => {
@@ -211,17 +211,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    optimization: {
-      minimize: true,
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.',
-        name: true,
-        cacheGroups: {},
-        minSize: 100000,
-        maxSize: 100000
-      }
-    },
+    // optimization: {
+    //   minimize: true,
+    //   splitChunks: {
+    //     chunks: 'all',
+    //     automaticNameDelimiter: '.',
+    //     name: true,
+    //     cacheGroups: {},
+    //     minSize: 100000,
+    //     maxSize: 100000
+    //   }
+    // },
 
     /*
     ** You can extend webpack config here

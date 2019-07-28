@@ -9,14 +9,14 @@
 <script>
 import { formatReadingTime } from '~/utils/helpers'
 import PageList from '~/components/Blog/PageList'
-import Contents from '~/contents'
+import posts from '~/contents/posts'
 
 export default {
   components: {
     PageList
   },
   asyncData: ({ params }) => (
-    Promise.all(Contents.map(async content => {
+    Promise.all(posts.map(async content => {
       content = await import(`~/contents/posts/${content.name}/index.md`)
       return {
         ...content.attributes,
