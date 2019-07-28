@@ -69,7 +69,7 @@
     "github": null,
     "website": null,
     "image": "/assets/img/portfolio/it-muslim.png",
-    "stacks": ["javascript", "node", "vue", "pwa"]
+    "stacks": ["javascript", "node", "redis", "vue", "pwa"]
   },
   {
     "name": "MATUKU",
