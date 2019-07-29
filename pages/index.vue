@@ -28,7 +28,7 @@
                     tag="a"
                     target="_blank"
                     rel="noreferrer"
-                    href="https://drive.google.com/file/d/1T_ZVQVGjEby3D5q17nvHF4SVVkV_rirO/view"
+                    href="https://drive.google.com/open?id=1RvH1OwbZm-qt2D63X1yZBjMKUrMzwhUx"
                     type="info"
                     size="sm"
                     class="mr-4"
