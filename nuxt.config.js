@@ -129,12 +129,11 @@ export default {
         })
 
         await Promise.all(posts.map(({ name }) => (
-          new Promise(async (resolve, reject) => {
+          new Promise(async resolve => {
             const content = await getContent(name)
-            parse(content, (err, { attributes, html }) => {
-              if (err) reject(err)
-              else resolve({ ...attributes, html })
-            })
+            parse(content, (err, { attributes, html }) => (
+              resolve({ ...attributes, html })
+            ))
           }).then(content => {
             feed.addItem({
               title: content.title,

@@ -16,6 +16,7 @@ module.exports = {
     'no-console': 'off',
     'arrow-parens': 'off',
     'curly': 'off',
-    'space-before-function-paren': 'off'
+    'space-before-function-paren': 'off',
+    'handle-callback-err': 'off'
   }
 }
