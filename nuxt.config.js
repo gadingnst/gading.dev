@@ -132,8 +132,8 @@ export default {
           new Promise(async (resolve, reject) => {
             const content = await getContent(name)
             parse(content, (err, { attributes, html }) => {
-              if (err) return reject(err)
-              resolve({ ...attributes, html })
+              if (err) reject(err)
+              else resolve({ ...attributes, html })
             })
           }).then(content => {
             feed.addItem({
