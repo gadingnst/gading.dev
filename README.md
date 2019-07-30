@@ -44,6 +44,7 @@ $ sudo echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &&
 
 ### Special Thanks to :
 
+- [Argon Design System](https://demos.creative-tim.com/vue-argon-design-system)
 - [Marina Aisa](https://marinaaisa.com/blog/blog-using-vue-nuxt-markdown)
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/master/scripts/initpost.sh)
 
