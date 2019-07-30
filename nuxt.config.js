@@ -1,5 +1,5 @@
 import path from 'path'
-import markdown from 'markdown-parse'
+import parse from 'markdown-parse'
 import posts from './contents/posts'
 import { getContent } from './utils/contents'
 
@@ -128,10 +128,10 @@ export default {
           link: env.productionUrl
         })
 
-        await Promise.all(posts.map(async ({ name }) => {
-          const content = await getContent(name)
-          return new Promise((resolve, reject) => {
-            markdown(content, (err, { attributes, html }) => {
+        await Promise.all(posts.map(({ name }) => (
+          new Promise(async (resolve, reject) => {
+            const content = await getContent(name)
+            parse(content, (err, { attributes, html }) => {
               if (err) return reject(err)
               resolve({ ...attributes, html })
             })
@@ -144,7 +144,7 @@ export default {
               content: content.html
             })
           })
-        }))
+        )))
       },
       cacheTime: 1000 * 60 * 15,
       type: 'rss2'
