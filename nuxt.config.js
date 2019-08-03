@@ -140,7 +140,7 @@ export default {
           }).then(content => {
             feed.addItem({
               title: content.title,
-              id: `${content.slug}_${new Date(content.date).getTime()}`,
+              guid: `${content.slug}_${new Date(content.date).getTime()}`,
               link: `${env.productionUrl}/blog/${content.slug}`,
               description: content.description,
               content: content.html
