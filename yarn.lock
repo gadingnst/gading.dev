@@ -1434,6 +1434,13 @@
   resolved "https://registry.yarnpkg.com/@nuxtjs/meta/-/meta-2.6.0.tgz#cc8fd2a019fb3e2e1feaa78abefee3a6a6aed477"
   integrity sha512-DrH+kmFEEKxjtZjRi2R0hfHDni+Ba2v4a47V5TwftLeshP31no9KKc1Ae6whLB+X+caC1tv3lR5CHbFmBgLC7Q==
 
+"@nuxtjs/onesignal@^3.0.0-beta.16":
+  version "3.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/onesignal/-/onesignal-3.0.0-beta.16.tgz#88d31653c99308949c9551446746b39356a03cdc"
+  integrity sha512-wQViakFeEz21cz+WsRuJ+uKoxjmzT8w2CRr1FrzjZn8K4R4jqKWT7qP96YnxFHIR1/YErP+P22MkzNzawMNcUQ==
+  dependencies:
+    "@nuxtjs/pwa-utils" "3.0.0-beta.16"
+
 "@nuxtjs/proxy@^1.3.3":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/proxy/-/proxy-1.3.3.tgz#3de3d9f073e8e57167168100940be2a824a220e0"
@@ -1441,6 +1448,11 @@
   dependencies:
     consola "^2.5.6"
     http-proxy-middleware "^0.19.1"
+
+"@nuxtjs/pwa-utils@3.0.0-beta.16":
+  version "3.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa-utils/-/pwa-utils-3.0.0-beta.16.tgz#808ddb090f3831c5b32931ab2d08231cc55abff9"
+  integrity sha512-3sF8iAstLi/dbQ39S4Zdy/QsK5IArgJ2s/nuGxOTVuxz01m07VdMbJejzsdYbyz31mQP0w4IPFNYOCPZhcvVig==
 
 "@nuxtjs/pwa@2.6.0":
   version "2.6.0"

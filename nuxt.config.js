@@ -3,6 +3,8 @@ import parse from 'markdown-parse'
 import posts from './contents/posts'
 import { getContent } from './utils/contents'
 
+require('dotenv').config({ path: '.env' })
+
 const env = {
   author: 'Sutan Nasution.',
   productionUrl: 'https://sutanlab.id',
@@ -40,7 +42,10 @@ export default {
   env: {
     PRODUCTION_URL: env.productionUrl,
     AUTHOR: env.author,
-    BLOG_PAGINATION_LIMIT: env.blogPaginationLimit
+    BLOG_PAGINATION_LIMIT: env.blogPaginationLimit,
+    ONESIGNAL_USER_AUTH_KEY: process.env.ONESIGNAL_USER_AUTH_KEY,
+    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
+    ONESIGNAL_APP_KEY: process.env.ONESIGNAL_APP_KEY
   },
 
   server: {
@@ -190,6 +195,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/feed',
     '@nuxtjs/sitemap',
@@ -201,6 +207,16 @@ export default {
 
   axios: {
     // axios config
+  },
+
+  oneSignal: {
+    init: {
+      appId: process.env.ONESIGNAL_APP_ID,
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: false
+      }
+    }
   },
 
   /*

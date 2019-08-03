@@ -83,10 +83,12 @@ dist
 
 # Service worker
 sw.*
+OneSignalSDK*
 
 # sitemap at static
 /static/sitemap.*
 /static/feed.*
+
 
 # Mac OSX
 .DS_Store
