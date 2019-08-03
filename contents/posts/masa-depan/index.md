@@ -7,7 +7,7 @@ tags: ['life', 'future']
 category: 'Life'
 keywords: 'life, masa depan, koding, cita-cita, programming, technology, teknologi, pemrograman'
 image: '/assets/img/collections/desks/desk3.jpg'
-twitter_text: ''
+caption: 'Kenapa belajar lebih dalam tentang teknologi ? Apa alasannya ? Well, my code is my future'
 ---
 
 Kembali lagi dengan bacotan bullshitku di blog ini. Kali ini mungkin aku akan sedikit cerita-cerita kenapa alasan aku belajar lebih dalam tentang teknologi terkhususnya adalah ngoding. Ya walaupun tulisan ini ga penting, setidaknya aku menyimpan arsipku disini untuk aku baca nanti di masa depan. Syukur-syukur ada yang baca, syukur-syukur ada yang suka. Okey skip.. Baiklah, Untuk pertama kita masuk latar belakang dulu ya. <del>**udah kayak laporan akhir aja ni kampret, suntuk jadi aku ngingetnya.**</del>

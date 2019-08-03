@@ -7,7 +7,7 @@ tags: ['life', 'campus']
 category: 'Life'
 keywords: 'kampus, planning, rencana, wisuda, polsri'
 image: '/assets/img/collections/desks/desk2.jpg'
-twitter_text: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
+caption: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
 ---
 
 Alih - alih masuk bulan agustus.. Ga terasa ini udah bulan agustus ke 3 ketika aku pertama kali masuk kampus, 3 tahun terasa lebih cepat. Namun banyak sekali pengalaman yang aku dapat dikampus ini, Coding, love, friends, knowledge dan lainnya.
@@ -29,5 +29,3 @@ Jadi, untuk itu mungkin aku akan melakukan hal-hal ini:
 - Menyelesaikan proyek yang diberi dosen sampe tuntas.
 - Dan, menunggu jadwal wisuda.. hehe
 - Disamping hal-hal diatas, mungkin aku akan menyelipkan sedikit waktu untuk belajar dan meningkatkan kualitas diriku. Selain itu, ga lupa aku juga bakal membuat *quality time* bersama doi tersayang. hehe 😄
-
----

@@ -1,7 +1,7 @@
 <template>
   <div class="row comments pb-3 justify-content-center">
     <div class="col-lg-10 order-lg-2 text-center">
-      <h4 class="mb-1 pt-4" style="border-top: 1.5px solid rgba(0, 0, 0, 0.2)">
+      <h4 class="mb-1 pt-3">
         <b>{{ !disqusLoaded ? 'Loading Comments..' : 'Comments' }}</b>
       </h4>
       <RingLoader

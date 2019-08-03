@@ -26,7 +26,29 @@
         :static-render-fn="staticRenderFn"
       />
     </div>
-    <div class="container">
+    <div class="container" style="border-top: 1.5px solid rgba(0, 0, 0, 0.2)">
+      <div class="row pb-3 justify-content-center">
+        <div class="col-lg-10 order-lg-2 text-center">
+          <h3 class="mb-3 pt-4">
+            <b>Share</b>
+          </h3>
+          <Button
+            v-for="(item, i) in socialShares"
+            :key="i"
+            outline
+            rounded
+            size="lg"
+            :type="item.type"
+            :aria-label="item.label"
+            :title="item.label"
+            @click="share(item.link, item.label)"
+          >
+            <no-ssr>
+              <component :is="item.icon" w="26px" h="26px" />
+            </no-ssr>
+          </Button>
+        </div>
+      </div>
       <Disqus
         :title="`${meta.title} | ${env.author}`"
         :url="`${env.url}/blog/${meta.slug}`"
@@ -38,16 +60,19 @@
 
 <script>
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
+import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
 import ContentParser from '~/components/Blog/ContentParser'
 import Disqus from '~/components/Blog/Disqus'
 
 export default {
   components: {
-    Banner, ContentParser, Disqus
+    Button, Banner, ContentParser, Disqus
   },
   data: () => ({
     formatPostDate,
+    twitterUsername: 'sutan_gnst',
+    socialShares: [],
     env: {
       url: process.env.PRODUCTION_URL,
       author: process.env.AUTHOR
@@ -78,6 +103,34 @@ export default {
       },
       renderFn: content.vue.render,
       staticRenderFn: content.vue.staticRenderFns
+    }
+  },
+  mounted() {
+    this.$data.socialShares = [
+      {
+        icon: 'logo-facebook-icon',
+        type: 'primary',
+        label: 'Share on Facebook',
+        link: `https://www.facebook.com/sharer/sharer.php?u=${this.env.url}/blog/${this.meta.slug}`
+      },
+      {
+        icon: 'logo-twitter-icon',
+        type: 'info',
+        label: 'Share on Twitter',
+        link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.env.url}/blog/${this.meta.slug}%20via%20%40${this.twitterUsername}&hashtags=${this.meta.tags.reduce((acc, cur) => `${acc},${cur}`)}`
+      },
+      {
+        icon: 'logo-whatsapp-icon',
+        type: 'success',
+        label: 'Share on Whatsapp',
+        link: `https://${this.$store.getters.mobile.anyMobile() ? 'api' : 'web'}.whatsapp.com/send?text=%22${this.meta.caption}%22%0A%0A${this.env.url}/blog/${this.meta.slug}`
+      }
+    ]
+  },
+  methods: {
+    share(link, target) {
+      window.open(link, target, 'width=600,height=600')
+      return false
     }
   }
 }

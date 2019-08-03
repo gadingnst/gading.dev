@@ -7,7 +7,7 @@ tags: ['itpolsri', 'developer']
 category: 'Life'
 keywords: 'event, developer, itfest'
 image: '/assets/img/blog/it-fest-bersama-it-polsri/3.jpeg'
-twitter_text: ''
+caption: 'Dokumentasi ku untuk moment yang tak terlupakan bersama Tim IT POLSRI.'
 ---
 
 Saat itu, kami sedang mengikuti pelajaran Multimedia di kelas dan kebetulan masih ada dosen yang sedang mengajar disana. Tiba - tiba datanglah rombongan mahasiswa dari jurusan MI (Manajemen Informatika) untuk membagi tau bahwa dalam dekat ini akan ada festival tahunan yang selalu diselenggarakan oleh jurusan mereka. Ya, festival itu bernama `IT FEST`. Singkat cerita mereka menjelaskan event - eventnya. lalu kemudian kami tertarik dengan salah satu event mereka, yaitu Lomba `Web Programming`.

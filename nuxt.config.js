@@ -191,7 +191,6 @@ export default {
   */
   modules: [
     '@nuxtjs/eslint-module',
-    '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
@@ -202,10 +201,6 @@ export default {
       { id: 'UA-135036153-1' }
     ]
   ],
-
-  axios: {
-    // axios config
-  },
 
   oneSignal: {
     init: {

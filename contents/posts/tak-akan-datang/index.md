@@ -7,7 +7,7 @@ tags: ['life', 'time']
 category: 'Motivation'
 keywords: 'life, kehidupan, waktu, motivasi, motivation'
 image: '/assets/img/collections/desks/desk1.jpg'
-twitter_text: ''
+caption: 'My bullshit motivation.'
 ---
 
 Waktu ketika kita merasa sempurna

@@ -133,7 +133,7 @@ initpost_content() {
     echo "category: ''"
     echo "keywords: ''"
     echo "image: '/assets/img/collections/desks/desk${RAND_NUM}.jpg'"
-    echo "twitter_text: ''"
+    echo "caption: ''"
     echo "---"
 }
 
