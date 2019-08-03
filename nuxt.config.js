@@ -43,9 +43,7 @@ export default {
     PRODUCTION_URL: env.productionUrl,
     AUTHOR: env.author,
     BLOG_PAGINATION_LIMIT: env.blogPaginationLimit,
-    ONESIGNAL_USER_AUTH_KEY: process.env.ONESIGNAL_USER_AUTH_KEY,
-    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
-    ONESIGNAL_APP_KEY: process.env.ONESIGNAL_APP_KEY
+    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID
   },
 
   server: {
