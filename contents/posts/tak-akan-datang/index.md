@@ -1,7 +1,7 @@
 ---
 title: 'Tak akan datang'
 slug: 'tak-akan-datang'
-date: 2019-05-07 01:06:43
+date: 2019-05-07
 description: 'My bullshit motivation.'
 tags: ['life', 'time']
 category: 'Motivation'

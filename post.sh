@@ -34,8 +34,8 @@ POST_TITLE="${@:2:$(($#-1))}"
 POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
 CURRENT_YEARMONTH="$(date +'%Y/%m')"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
-TIME=$(date +"%T")
 RAND_NUM=$(shuf -i 0-7 -n 1)
+# TIME=$(date +"%T")
 # ----------------------------------------------------------------
 
 
@@ -127,7 +127,7 @@ initpost_content() {
     echo "---"
     echo "title: '${POST_TITLE}'"
     echo "slug: '${POST_NAME}'"
-    echo "date: ${CURRENT_DATE} ${TIME}"
+    echo "date: ${CURRENT_DATE}"
     echo "description: ''"
     echo "tags: []"
     echo "category: ''"
@@ -172,7 +172,7 @@ promote_draft() {
         e_header "Promoting draft..."
         if [ -f "${DRAFTPATH}/${FILE_NAME}" ]; then
           if mkdir -p "${POSTPATH}/${POST_NAME}" && mv "${DRAFTPATH}/${FILE_NAME}" "${POSTPATH}/${FILE_NAME}"; then
-              sed -i -e "s/date: .*/date: ${CURRENT_DATE} ${TIME}/" ${POSTPATH}/${FILE_NAME}
+              sed -i -e "s/date: .*/date: ${CURRENT_DATE}/" ${POSTPATH}/${FILE_NAME}
               rm -rf "${DRAFTPATH}/${POST_NAME}"
               truncate -s-3 "${POSTLIST}"
               echo -e ",\n\t{ name: '${POST_NAME}', date: '${CURRENT_YEARMONTH}' }\n]" >> "${POSTLIST}"

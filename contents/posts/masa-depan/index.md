@@ -1,7 +1,7 @@
 ---
 title: 'Masa Depan'
 slug: 'masa-depan'
-date: 2019-05-17 02:38:17
+date: 2019-05-17
 description: 'Kenapa belajar lebih dalam tentang teknologi ? Apa alasannya ? Well, my code is my future'
 tags: ['life', 'future']
 category: 'Life'

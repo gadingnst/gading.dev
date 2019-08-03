@@ -1,7 +1,7 @@
 ---
 title: 'IT FESTIVAL bersama IT POLSRI'
 slug: 'it-fest-bersama-it-polsri'
-date: 2018-11-22 01:54:46
+date: 2018-11-22
 description: 'Dokumentasi ku untuk moment yang tak terlupakan bersama Tim IT POLSRI.'
 tags: ['itpolsri', 'developer']
 category: 'Life'
