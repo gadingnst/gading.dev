@@ -7,7 +7,7 @@ tags: ['life', 'campus']
 category: 'Life'
 keywords: 'kampus, planning, rencana, wisuda, polsri'
 image: '/assets/img/collections/desks/desk2.jpg'
-caption: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
+caption: 'Bacotan dan rencanaku untuk bulan agustus ini, semoga bisa terselesaikan semua'
 ---
 
 Alih - alih masuk bulan agustus.. Ga terasa ini udah bulan agustus ke 3 ketika aku pertama kali masuk kampus, 3 tahun terasa lebih cepat. Namun banyak sekali pengalaman yang aku dapat dikampus ini, Coding, love, friends, knowledge dan lainnya.
