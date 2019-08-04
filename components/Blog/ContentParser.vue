@@ -31,6 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 $content-width: 55rem;
+$normal-font: 1.115rem;
 $syntax-color: lightblue;
 $syntax-bg: #282c34;
 
@@ -98,7 +99,7 @@ p, h1, h2, h3, h4, h5, h6, ul, ol, iframe, table {
   margin: 0 auto 2rem;
   font-weight: 300;
   font-style: normal;
-  font-size: 1.225rem;
+  font-size: $normal-font;
   line-height: 2;
   letter-spacing: .01rem;
   &:before {
@@ -108,10 +109,6 @@ p, h1, h2, h3, h4, h5, h6, ul, ol, iframe, table {
   &:after {
     clear: both;
   }
-}
-
-p {
-  font-size: 1.1175rem;
 }
 
 blockquote {
@@ -144,6 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, li {
+  font-size: $normal-font;
   color: #555;
   strong {
     font-weight: 600;
@@ -175,8 +173,12 @@ h4 {
   font-size: 1.425rem;
 }
 
+h5 {
+  font-size: 1.275rem;
+}
+
 h6 {
-  font-size: 1rem;
+  font-size: 1.175rem;
 }
 
 ul, ol {
