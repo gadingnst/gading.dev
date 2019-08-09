@@ -54,7 +54,7 @@
     "markdown-parse": "0.2.1",
     "node-sass": "4.12.0",
     "nodemon": "1.19.1",
-    "sass-loader": "7.1.0",
+    "sass-loader": "7.2.0",
     "vue-jest": "3.0.4"
   }
 }
