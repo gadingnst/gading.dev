@@ -28,7 +28,7 @@
                     tag="a"
                     target="_blank"
                     rel="noreferrer"
-                    href="https://drive.google.com/open?id=1z4GXu9pk8wowAJ9osWooF9PTgfYWY1_j"
+                    href="/media/my-resume.pdf"
                     type="info"
                     size="sm"
                     class="mr-4"
