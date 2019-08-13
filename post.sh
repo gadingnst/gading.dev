@@ -46,6 +46,7 @@ RAND_NUM=$(shuf -i 0-7 -n 1)
 BINPATH=$(cd `dirname $0`; pwd)
 POSTPATH="${BINPATH}/contents/posts"
 DRAFTPATH="${BINPATH}/contents/drafts"
+BLOGMEDIAPATH="${BINPATH}/static/media/blog"
 POSTLIST="${BINPATH}/contents/posts/index.js"
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
@@ -142,6 +143,7 @@ initpost_file() {
     if [ ! -f "$FILE_NAME" ]; then
         e_header "Creating template..."
         mkdir -p "${DIST_FOLDER}/${POST_NAME}"
+        mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
         initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
         truncate -s-3 "${POSTLIST}"
         echo -e ",\n\t{ name: '${POST_NAME}', date: '${CURRENT_YEARMONTH}' }\n]" >> "${POSTLIST}"
@@ -172,6 +174,7 @@ promote_draft() {
         e_header "Promoting draft..."
         if [ -f "${DRAFTPATH}/${FILE_NAME}" ]; then
           if mkdir -p "${POSTPATH}/${POST_NAME}" && mv "${DRAFTPATH}/${FILE_NAME}" "${POSTPATH}/${FILE_NAME}"; then
+              mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
               sed -i -e "s/date: .*/date: ${CURRENT_DATE}/" ${POSTPATH}/${FILE_NAME}
               rm -rf "${DRAFTPATH}/${POST_NAME}"
               truncate -s-3 "${POSTLIST}"
