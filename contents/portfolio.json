@@ -29,9 +29,9 @@
   {
     "name": "IP Stalker",
     "category": "Experiment Project",
-    "description": "Simple & Fast IP Address Stalker Application by using IP scraper in backend API",
+    "description": "Simple & Fast IP Address Stalker Application by using IP scraper in backend API with serverless service",
     "github": "https://github.com/sutanlab/ip-stalker",
-    "website": "https://sutanlab.js.org/ip-stalker",
+    "website": "https://ipstalker.sutanlab.id",
     "image": "/media/portfolio/ip-stalker.png",
     "stacks": ["javascript", "node", "express", "vue", "pwa"]
   },
