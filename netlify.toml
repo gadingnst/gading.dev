@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "https://sutanlab.netlify.com/*"
+  from = "https://gallant-kowalevski-254d11.netlify.com/*"
   to = "https://sutanlab.id/:splat"
   status = 301
