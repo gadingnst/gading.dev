@@ -21,6 +21,17 @@ export function formatReadingTime(contents) {
   return `${new Array(cups || 1).fill('☕️').join('')} ${min > 1 ? `${min} min` : `${Math.round(minutes * 60)} sec`} to read`
 }
 
+export function randomString(length = 7) {
+  const possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  let text = ''
+
+  for (let i = 0; i < length; i++) {
+    text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length))
+  }
+
+  return text
+}
+
 export const metaGenerator = (type, meta) => [
   { hid: 'title', name: 'title', content: `${meta.title} | ${process.env.AUTHOR}` },
   { hid: 'description', name: 'description', content: `${meta.description}` },
@@ -37,20 +48,3 @@ export const metaGenerator = (type, meta) => [
   { hid: 'twitter:description', name: 'twitter:description', content: meta.description },
   { hid: 'twitter:url', name: 'twitter:url', content: process.env.PRODUCTION_URL + meta.url }
 ]
-
-export function debounce(func, wait, immediate) {
-  let timeout
-  return function () {
-    const context = this
-    const args = arguments
-    const callNow = immediate && !timeout
-    const later = () => {
-      timeout = null
-      if (!immediate) func.apply(context, args)
-    }
-
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-    if (callNow) func.apply(context, args)
-  }
-}

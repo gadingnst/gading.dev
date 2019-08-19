@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { randomString } from '~/utils/string'
+import { randomString } from '~/utils/helpers'
 
 export default {
   props: {
