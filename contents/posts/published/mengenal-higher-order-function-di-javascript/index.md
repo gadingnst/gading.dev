@@ -33,7 +33,7 @@ const tahunLahir = [1998, 1999, 2000, 2001, 2002]
 const umur = []
 
 for (let i = 0; i < tahunLahir.length; i++) {
-  umur.push(2019 - tahunLahir[i])
+  umur.push(new Date().getFullYear() - tahunLahir[i])
 }
 
 alert(umur) // hasil: [21,20,19,18,17]
@@ -44,7 +44,7 @@ Berikut hasilnya:
 **Menggunakan *Array.map()***
 ```js
 const tahunLahir = [1998, 1999, 2000, 2001, 2002]
-const umur = tahunLahir.map(tahun => 2019 - tahun)
+const umur = tahunLahir.map(tahun => new Date().getFullYear() - tahun)
 
 alert(umur) // hasil: [21,20,19,18,17]
 ```

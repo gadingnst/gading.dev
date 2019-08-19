@@ -27,13 +27,13 @@ const keranjang = [
 function withoutMap() {
   const umur = []
   for (let i = 0; i < tahunLahir.length; i++) {
-    umur.push(2019 - tahunLahir[i])
+    umur.push(new Date().getFullYear() - tahunLahir[i])
   }
   alert(umur)
 }
 
 function withMap() {
-  const umur = tahunLahir.map(tahun => 2019 - tahun)
+  const umur = tahunLahir.map(tahun => new Date().getFullYear() - tahun)
   alert(umur)
 }
 
