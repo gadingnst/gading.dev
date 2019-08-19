@@ -1,9 +1,11 @@
+import fileSystem from 'fs'
 import path from 'path'
 import parse from 'markdown-parse'
-import posts from './contents/posts'
-import { getContent } from './utils/contents'
+import posts from './contents/posts/published'
 
 require('dotenv').config({ path: '.env' })
+
+const fs = fileSystem.promises
 
 const env = {
   author: 'Sutan Nasution.',
@@ -133,8 +135,8 @@ export default {
 
         await Promise.all(posts.map(({ name }) => (
           new Promise(async resolve => {
-            const content = await getContent(name)
-            parse(content, (err, { attributes, html }) => (
+            const result = await fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
+            parse(result, (err, { attributes, html }) => (
               resolve({ ...attributes, html })
             ))
           }).then(content => {

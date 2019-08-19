@@ -95,7 +95,7 @@ export default {
     }
   },
   asyncData: async ({ params }) => {
-    const content = await import(`~/contents/posts/${params.slug}/index.md`)
+    const content = await import(`~/contents/posts/published/${params.slug}/index.md`)
     return {
       meta: {
         ...content.attributes,

@@ -44,10 +44,9 @@ RAND_NUM=$(shuf -i 0-7 -n 1)
 
 # Set your destination folder
 BINPATH=$(cd `dirname $0`; pwd)
-POSTPATH="${BINPATH}/contents/posts"
-DRAFTPATH="${BINPATH}/contents/drafts"
+POSTPATH="${BINPATH}/contents/posts/published"
+DRAFTPATH="${BINPATH}/contents/posts/drafts"
 BLOGMEDIAPATH="${BINPATH}/static/media/blog"
-POSTLIST="${BINPATH}/contents/posts/index.js"
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
     DIST_FOLDER="$POSTPATH"
@@ -145,8 +144,6 @@ initpost_file() {
         mkdir -p "${DIST_FOLDER}/${POST_NAME}"
         mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
         initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
-        truncate -s-3 "${POSTLIST}"
-        echo -e ",\n\t{ name: '${POST_NAME}', date: '${CURRENT_YEARMONTH}' }\n]" >> "${POSTLIST}"
         e_success "Initial post successfully created!"
     else
         e_warning "File already exist."
@@ -177,8 +174,6 @@ promote_draft() {
               mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
               sed -i -e "s/date: .*/date: ${CURRENT_DATE}/" ${POSTPATH}/${FILE_NAME}
               rm -rf "${DRAFTPATH}/${POST_NAME}"
-              truncate -s-3 "${POSTLIST}"
-              echo -e ",\n\t{ name: '${POST_NAME}', date: '${CURRENT_YEARMONTH}' }\n]" >> "${POSTLIST}"
               e_success "Draft promoted successfully!"
           else
               e_warning "File already exists or draft promotion failed."
