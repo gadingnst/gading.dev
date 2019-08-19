@@ -1,5 +1,7 @@
 <template>
   <div>
+    <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
+    <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
     <Banner height="450px" :image="meta.image">
       <div class="text-center">
         <h4 id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">

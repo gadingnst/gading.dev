@@ -3,11 +3,13 @@ title: 'Tak akan datang'
 slug: 'tak-akan-datang'
 date: 2019-05-07
 description: 'My bullshit motivation.'
-tags: ['life', 'time']
-category: 'Motivation'
+tags: ['time', 'motivation']
+category: 'Life'
 keywords: 'life, kehidupan, waktu, motivasi, motivation'
 image: '/assets/img/collections/desks/desk1.jpg'
 caption: 'My bullshit motivation.'
+css_source: []
+js_source: []
 ---
 
 Waktu ketika kita merasa sempurna

@@ -160,7 +160,7 @@ export default {
         .then(res => res),
       window.fetch('https://github-contributions-api.now.sh/v1/sutanlab')
         .then(res => res.json())
-        .then(({ years }) => years.reduce((acc, cur) => acc.total + cur.total))
+        .then(({ years }) => years.reduce((acc, cur) => acc + cur.total, 0))
     ]).then(result => {
       this.github.ready = true
       this.github.publicRepos = result[0].public_repos

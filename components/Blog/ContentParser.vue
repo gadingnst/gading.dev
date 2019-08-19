@@ -48,7 +48,7 @@ code {
 
 pre {
   background: $syntax-bg;
-  margin: 1em auto;
+  margin: 2em auto;
   code {
     color: $syntax-color;
     background: none;
@@ -109,6 +109,10 @@ p, h1, h2, h3, h4, h5, h6, ul, ol, iframe, table {
   &:after {
     clear: both;
   }
+}
+
+em {
+  margin-right: 2.5px;
 }
 
 blockquote {

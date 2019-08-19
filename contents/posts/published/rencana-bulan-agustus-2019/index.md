@@ -3,11 +3,13 @@ title: 'Rencana bulan agustus 2019'
 slug: 'rencana-bulan-agustus-2019'
 date: 2019-08-03
 description: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
-tags: ['life', 'campus']
+tags: ['campus', 'planning']
 category: 'Life'
 keywords: 'kampus, planning, rencana, wisuda, polsri'
 image: '/assets/img/collections/desks/desk2.jpg'
 caption: 'Bacotan dan rencanaku untuk bulan agustus ini, semoga bisa terselesaikan semua'
+css_source: []
+js_source: []
 ---
 
 Alih - alih masuk bulan agustus.. Ga terasa ini udah bulan agustus ke 3 ketika aku pertama kali masuk kampus, 3 tahun terasa lebih cepat. Namun banyak sekali pengalaman yang aku dapat dikampus ini, Coding, love, friends, knowledge dan lainnya.

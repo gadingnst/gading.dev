@@ -134,6 +134,8 @@ initpost_content() {
     echo "keywords: ''"
     echo "image: '/assets/img/collections/desks/desk${RAND_NUM}.jpg'"
     echo "caption: ''"
+    echo "css_source: []"
+    echo "js_source: []"
     echo "---"
 }
 
