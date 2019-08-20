@@ -6847,7 +6847,7 @@ markdown-it-attrs@3.0.1:
   resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-3.0.1.tgz#5ce7b4405f2286190fbcf4c482aa9e3e2d55ece5"
   integrity sha512-fcpdmxdEsctDVJEunPyrirVtU/6zcTMxPxAu4Ofz51PKAa8vRMpmGQXsmXx1HTdIdUPoDonm/RhS/+jTNywj/Q==
 
-markdown-it-plugin-data-src@^1.0.0:
+markdown-it-plugin-data-src@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-plugin-data-src/-/markdown-it-plugin-data-src-1.0.0.tgz#0805d2ded03fd76ff2b3c564201508c0a08b7629"
   integrity sha512-zvna0LMu2hPqHgliaq5JJTp1OnR/rhzYorwKSeMm0YoGgI7K8o0WU+L8nX04Iwomp6AnMbnwnfGSx6CTsKDLwg==
