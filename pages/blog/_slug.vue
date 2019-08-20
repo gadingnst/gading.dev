@@ -52,9 +52,9 @@
             :title="item.label"
             @click="share(item.link, item.label)"
           >
-            <no-ssr>
+            <client-only>
               <component :is="item.icon" w="26px" h="26px" />
-            </no-ssr>
+            </client-only>
           </Button>
         </div>
       </div>

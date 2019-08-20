@@ -5,7 +5,7 @@
         <slot />
       </div>
     </figure>
-    <no-ssr v-if="!noParallax">
+    <client-only v-if="!noParallax">
       <Parallax
         :style="`min-height: ${height}`"
         :speed-factor="speed"
@@ -13,7 +13,7 @@
       >
         <img v-lazy="image" :alt="alt">
       </Parallax>
-    </no-ssr>
+    </client-only>
     <img
       v-else
       :src="image"

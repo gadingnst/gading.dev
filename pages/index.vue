@@ -33,9 +33,9 @@
                     size="sm"
                     class="mr-4"
                   >
-                    <no-ssr>
+                    <client-only>
                       <md-briefcase-icon w="14px" h="14px" />
-                    </no-ssr>
+                    </client-only>
                     Resume
                   </Button>
                   <Button
@@ -45,9 +45,9 @@
                     size="sm"
                     href="mailto:sutan.gnst@gmail.com"
                   >
-                    <no-ssr>
+                    <client-only>
                       <md-mail-icon w="14px" h="14px" />
-                    </no-ssr>
+                    </client-only>
                     Contact
                   </Button>
                 </div>
@@ -97,9 +97,9 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>
-                    <no-ssr>
+                    <client-only>
                       <md-quote-icon w="14px" h="14px" />
-                    </no-ssr>
+                    </client-only>
                     My name is Sutan Gading Fadhillah Nasution. My age is approaching 20 years. Now, i'm lives in Palembang, Indonesia. I still lives with my parents and currently studying at the State of Polytechnic Sriwijaya.
                   </p>
                   <p>

@@ -12,13 +12,11 @@ const generatePostList = async () => {
 
   result = result.filter(res => res[Object.keys(res)[0]] === true)
 
-  result = await Promise.all(result.map(async res => {
+  result = await Promise.all(result.map(res => {
     const name = Object.keys(res)[0]
-    const post = await fs.readFile(path.resolve(publishedPath, name, 'index.md'), 'utf-8')
-    return new Promise(resolve => {
-      const { attributes } = fmparse(post)
-      resolve({ name, date: attributes.date })
-    })
+    return fs.readFile(path.resolve(publishedPath, name, 'index.md'), 'utf-8')
+      .then(res => fmparse(res))
+      .then(({ attributes }) => ({ name, date: attributes.date }))
   }))
 
   result = result.sort((a, b) => (a.date.getTime() < b.date.getTime()) ? 1 : -1)

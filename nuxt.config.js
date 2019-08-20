@@ -222,17 +222,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    // optimization: {
-    //   minimize: true,
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     automaticNameDelimiter: '.',
-    //     name: true,
-    //     cacheGroups: {},
-    //     minSize: 100000,
-    //     maxSize: 100000
-    //   }
-    // },
+    optimization: {
+      minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: true,
+        cacheGroups: {},
+        minSize: 100000,
+        maxSize: 100000
+      }
+    },
 
     /*
     ** You can extend webpack config here
@@ -244,10 +244,8 @@ export default {
         include: path.resolve(__dirname, 'contents'),
         options: {
           markdown: body => {
-            const mdilazyLoadImage = require('markdown-it-lazy-image')
-            const mdiAttrs = require('markdown-it-attrs')
-            md.use(mdilazyLoadImage)
-            md.use(mdiAttrs)
+            md.use(require('markdown-it-attrs'))
+            md.use(require('markdown-it-plugin-data-src'))
             return md.render(body)
           },
           vue: {

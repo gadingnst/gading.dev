@@ -18,9 +18,9 @@
             data-toggle="tooltip"
             data-original-title="Contact me"
           >
-            <no-ssr>
+            <client-only>
               <component :is="social.icon" />
-            </no-ssr>
+            </client-only>
           </a>
         </div>
       </div>

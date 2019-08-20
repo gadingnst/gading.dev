@@ -18,9 +18,9 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>
-                    <no-ssr>
+                    <client-only>
                       <md-quote-icon w="14px" h="14px" />
-                    </no-ssr>
+                    </client-only>
                     At first, i'll be thanking to
                     <a href="https://108kb.io/blog/now/">Fariz Rizaldy</a>,
                     <a href="https://afrijaldzuhri.wordpress.com/now/">Afrijal Dzuhri</a> and

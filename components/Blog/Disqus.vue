@@ -11,7 +11,7 @@
         size="100px"
       />
       <div class="mx-auto mt-3">
-        <no-ssr>
+        <client-only>
           <lazy-component>
             <FadeTransition :duration="1250">
               <vue-disqus
@@ -24,7 +24,7 @@
               />
             </FadeTransition>
           </lazy-component>
-        </no-ssr>
+        </client-only>
       </div>
     </div>
   </div>

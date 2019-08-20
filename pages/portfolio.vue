@@ -14,19 +14,22 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="row row-grid">
+            <div
+              v-lazy-container="{
+                selector: 'img',
+                loading: '/assets/img/placeholders/loading.gif',
+                error: '/assets/img/placeholders/error.png'
+              }"
+              class="row row-grid"
+            >
               <div v-for="(item, i) in portfolio" :key="i" class="col-lg-4 col-md-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
-                  <div v-lazy-container="{ selector: 'img' }">
-                    <img
-                      style="width: 100%; height: 200px; object-fit: cover"
-                      class="card-pic card-img-top"
-                      data-error="/assets/img/placeholders/error.png"
-                      data-loading="/assets/img/placeholders/loading.gif"
-                      :data-src="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`"
-                      :alt="item.name"
-                    >
-                  </div>
+                  <img
+                    style="width: 100%; height: 200px; object-fit: cover"
+                    class="card-pic card-img-top"
+                    :data-src="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`"
+                    :alt="item.name"
+                  >
                   <div class="px-3 pt-4">
                     <h6 class="text-primary mb-1">
                       {{ item.name }}
@@ -56,9 +59,9 @@
                       style="float: right"
                       :href="item.github"
                     >
-                      <no-ssr>
+                      <client-only>
                         <logo-github-icon w="22px" h="22px" />
-                      </no-ssr>
+                      </client-only>
                     </Button>
                     <Button
                       tag="a"
@@ -67,9 +70,9 @@
                       style="float: right"
                       :href="item.website"
                     >
-                      <no-ssr>
+                      <client-only>
                         <md-globe-icon w="22px" h="22px" />
-                      </no-ssr>
+                      </client-only>
                     </Button>
                   </div>
                 </Card>

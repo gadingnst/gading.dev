@@ -1311,7 +1311,7 @@
     vue "^2.6.10"
     vue-client-only "^2.0.0"
     vue-meta "^2.2.1"
-    vue-no-ssr "^1.1.1"
+    vue-client-only "^1.1.1"
     vue-router "~3.0.7"
     vue-template-compiler "^2.6.10"
     vuex "^3.1.1"
@@ -6847,10 +6847,10 @@ markdown-it-attrs@3.0.1:
   resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-3.0.1.tgz#5ce7b4405f2286190fbcf4c482aa9e3e2d55ece5"
   integrity sha512-fcpdmxdEsctDVJEunPyrirVtU/6zcTMxPxAu4Ofz51PKAa8vRMpmGQXsmXx1HTdIdUPoDonm/RhS/+jTNywj/Q==
 
-markdown-it-lazy-image@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-it-lazy-image/-/markdown-it-lazy-image-0.0.1.tgz#11a6f7601121d1567ea6c55c4528a3d99deffaa3"
-  integrity sha512-yQzlPDDmoWBQqoR4xevK73xMoE68DtL/GaxpAwFoz3nTIu1W7aP5n89Q1xE5e0U62r5N3Bv1KIJqwweOndyF/g==
+markdown-it-plugin-data-src@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-plugin-data-src/-/markdown-it-plugin-data-src-1.0.0.tgz#0805d2ded03fd76ff2b3c564201508c0a08b7629"
+  integrity sha512-zvna0LMu2hPqHgliaq5JJTp1OnR/rhzYorwKSeMm0YoGgI7K8o0WU+L8nX04Iwomp6AnMbnwnfGSx6CTsKDLwg==
 
 markdown-it@9.1.0:
   version "9.1.0"
@@ -10792,9 +10792,9 @@ vue-meta@^2.2.1:
   dependencies:
     deepmerge "^4.0.0"
 
-vue-no-ssr@^1.1.1:
+vue-client-only@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
+  resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
 vue-parallaxy@1.1.1:

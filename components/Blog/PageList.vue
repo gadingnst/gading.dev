@@ -14,19 +14,22 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="row row-grid">
+            <div
+              v-lazy-container="{
+                selector: 'img',
+                loading: '/assets/img/placeholders/loading.gif',
+                error: '/assets/img/placeholders/error.png'
+              }"
+              class="row row-grid"
+            >
               <div v-for="(content, i) in contents" :key="i" class="col-lg-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
-                  <div v-lazy-container="{ selector: 'img' }">
-                    <img
-                      style="width: 100%; height: 200px; object-fit: cover"
-                      class="card-pic card-img-top"
-                      data-loading="/assets/img/placeholders/loading.gif"
-                      data-error="/assets/img/placeholders/error.png"
-                      :data-src="content.image"
-                      :alt="content.title"
-                    >
-                  </div>
+                  <img
+                    style="width: 100%; height: 200px; object-fit: cover"
+                    class="card-pic card-img-top"
+                    :data-src="content.image"
+                    :alt="content.title"
+                  >
                   <div class="px-3 pt-4">
                     <h6 class="text-primary mb-1">
                       {{ content.title }}
