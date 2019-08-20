@@ -21,7 +21,7 @@
     "@nuxtjs/pwa": "2.6.0",
     "@nuxtjs/sitemap": "1.2.0",
     "flatpickr": "4.6.2",
-    "highlight.js": "9.15.9",
+    "highlight.js": "9.15.10",
     "nouislider": "14.0.2",
     "nuxt": "2.8.1",
     "reading-time": "1.2.0",
