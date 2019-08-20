@@ -1,6 +1,6 @@
 const fs = require('fs').promises
 const path = require('path')
-const parse = require('markdown-parse')
+const fmparse = require('front-matter')
 
 const generatePostList = async () => {
   console.log('Generating published post lists ...')
@@ -16,9 +16,8 @@ const generatePostList = async () => {
     const name = Object.keys(res)[0]
     const post = await fs.readFile(path.resolve(publishedPath, name, 'index.md'), 'utf-8')
     return new Promise(resolve => {
-      parse(post, (err, { attributes }) => {
-        resolve({ name, date: attributes.date })
-      })
+      const { attributes } = fmparse(post)
+      resolve({ name, date: attributes.date })
     })
   }))
 

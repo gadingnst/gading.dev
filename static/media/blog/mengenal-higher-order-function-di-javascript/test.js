@@ -1,5 +1,5 @@
 /* eslint-disable */
-const tahunLahir = [1998, 1999, 2000, 2001, 2002]
+let tahunLahir = [1998, 1999, 2000, 2001, 2002]
 
 let orang = [
   { nama: 'Sutan', umur: 16 },
@@ -9,7 +9,7 @@ let orang = [
   { nama: 'Toni', umur: 24},
 ]
 
-const keranjang = [
+let keranjang = [
   {
     produk: 'Indomie Mie Goreng',
     harga: 2500

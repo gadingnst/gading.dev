@@ -1,11 +1,13 @@
 import fileSystem from 'fs'
 import path from 'path'
-import parse from 'markdown-parse'
+import fmparse from 'front-matter'
+import mdi from 'markdown-it'
 import posts from './contents/posts/published'
 
 require('dotenv').config({ path: '.env' })
 
 const fs = fileSystem.promises
+const md = mdi({ html: true, linkify: true, typographer: true })
 
 const env = {
   author: 'Sutan Nasution.',
@@ -136,9 +138,8 @@ export default {
         await Promise.all(posts.map(({ name }) => (
           new Promise(async resolve => {
             const result = await fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
-            parse(result, (err, { attributes, html }) => (
-              resolve({ ...attributes, html })
-            ))
+            const { attributes, html } = fmparse(result)
+            resolve({ ...attributes, html })
           }).then(content => {
             feed.addItem({
               title: content.title,
@@ -221,17 +222,17 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    optimization: {
-      minimize: true,
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.',
-        name: true,
-        cacheGroups: {},
-        minSize: 100000,
-        maxSize: 100000
-      }
-    },
+    // optimization: {
+    //   minimize: true,
+    //   splitChunks: {
+    //     chunks: 'all',
+    //     automaticNameDelimiter: '.',
+    //     name: true,
+    //     cacheGroups: {},
+    //     minSize: 100000,
+    //     maxSize: 100000
+    //   }
+    // },
 
     /*
     ** You can extend webpack config here
@@ -242,6 +243,13 @@ export default {
         loader: 'frontmatter-markdown-loader',
         include: path.resolve(__dirname, 'contents'),
         options: {
+          markdown: body => {
+            const mdilazyLoadImage = require('markdown-it-lazy-image')
+            const mdiAttrs = require('markdown-it-attrs')
+            md.use(mdilazyLoadImage)
+            md.use(mdiAttrs)
+            return md.render(body)
+          },
           vue: {
             root: 'posts'
           }

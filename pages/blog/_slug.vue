@@ -21,7 +21,14 @@
         </div>
       </div>
     </Banner>
-    <div class="container-fluid px-0">
+    <div
+      v-lazy-container="{
+        selector: 'img',
+        loading: '/assets/img/placeholders/loading.gif',
+        error: '/assets/img/placeholders/error.png'
+      }"
+      class="container-fluid px-0"
+    >
       <ContentParser
         class="py-4"
         :render-fn="renderFn"
