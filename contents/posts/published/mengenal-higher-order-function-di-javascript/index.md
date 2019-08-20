@@ -124,7 +124,7 @@ const keranjang = [
   },
   {
     produk: 'Sepatu Sport',
-    harga: 76500
+    harga: 75000
   }
 ]
 ```
