@@ -136,19 +136,18 @@ export default {
         })
 
         await Promise.all(posts.map(({ name }) => (
-          new Promise(async resolve => {
-            const result = await fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
-            const { attributes, html } = fmparse(result)
-            resolve({ ...attributes, html })
-          }).then(content => {
-            feed.addItem({
-              title: content.title,
-              guid: `${content.slug}_${new Date(content.date).getTime()}`,
-              link: `${env.productionUrl}/blog/${content.slug}`,
-              description: content.description,
-              content: content.html
+          fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
+            .then(result => fmparse(result))
+            .then(({ attributes, html }) => ({ ...attributes, html }))
+            .then(content => {
+              feed.addItem({
+                title: content.title,
+                guid: `${content.slug}_${new Date(content.date).getTime()}`,
+                link: `${env.productionUrl}/blog/${content.slug}`,
+                description: content.description,
+                content: content.html
+              })
             })
-          })
         )))
       },
       cacheTime: 1000 * 60 * 15,
