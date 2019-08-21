@@ -8,6 +8,20 @@
 
 - [NodeJS](https://nodejs.org/en/download/)
 
+### Features and TODOS
+- [x] Mobile friendly + offline-first with PWA Module
+- [x] Beautiful but performant
+- [x] Push notifications support
+- [x] Reading-time
+- [x] SEO Optimized
+- [x] Image optimized
+- [x] Feed RSS & Sitemap
+- [x] Comment system with disqus
+- [x] Social share (FB, Twitter, WA)
+- [x] Posts pagination
+- [ ] Sorting posts by category & tags
+- [ ] Search posts
+
 ### Build setup
 
 ``` bash
