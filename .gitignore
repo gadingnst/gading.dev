@@ -94,4 +94,4 @@ OneSignalSDK*
 .DS_Store
 
 # auto generated files
-contents/posts/published/index.js
+/contents/posts/published/index.js
