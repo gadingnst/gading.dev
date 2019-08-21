@@ -17,7 +17,7 @@
             <div
               v-lazy-container="{
                 selector: 'img',
-                loading: '/assets/img/placeholders/loading.gif',
+                loading: '/assets/img/placeholders/loading.svg',
                 error: '/assets/img/placeholders/error.png'
               }"
               class="row row-grid"
