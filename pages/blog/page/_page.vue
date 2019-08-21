@@ -16,13 +16,13 @@ export default {
     PageList
   },
   asyncData: ({ params }) => (
-    Promise.all(posts.map(async content => {
-      content = await import(`~/contents/posts/published/${content.name}/index.md`)
-      return {
-        ...content.attributes,
-        readingtime: formatReadingTime(content.body)
-      }
-    })).then(res => ({
+    Promise.all(posts.map(content => (
+      import(`~/contents/posts/published/${content.name}/index.md`)
+       .then(content => ({
+         ...content.attributes,
+         readingtime: formatReadingTime(content.body)
+       }))
+    ))).then(res => ({
       page: params.page,
       contents: res.slice(
         (params.page - 1) * process.env.BLOG_PAGINATION_LIMIT,
