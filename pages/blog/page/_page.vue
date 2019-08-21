@@ -18,10 +18,10 @@ export default {
   asyncData: ({ params }) => (
     Promise.all(posts.map(content => (
       import(`~/contents/posts/published/${content.name}/index.md`)
-       .then(content => ({
-         ...content.attributes,
-         readingtime: formatReadingTime(content.body)
-       }))
+        .then(content => ({
+          ...content.attributes,
+          readingtime: formatReadingTime(content.body)
+        }))
     ))).then(res => ({
       page: params.page,
       contents: res.slice(
