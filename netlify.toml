@@ -2,3 +2,7 @@
   from = "https://gallant-kowalevski-254d11.netlify.com/*"
   to = "https://sutanlab.id/:splat"
   status = 301
+
+[build]
+  publish = "dist"
+  command = "yarn build"
