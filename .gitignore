@@ -92,3 +92,6 @@ OneSignalSDK*
 
 # Mac OSX
 .DS_Store
+
+# auto generated files
+contents/posts/published/index.js
