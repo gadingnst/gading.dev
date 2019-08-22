@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="profile-page">
     <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
-    <Banner height="450px" :image="meta.image">
+    <Banner height="480px" :image="meta.image">
       <div class="text-center">
         <h4 id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">
           <b style="border-bottom: 2px solid white">{{ meta.title }}</b>
@@ -21,21 +21,25 @@
         </div>
       </div>
     </Banner>
-    <div
+    <section
       v-lazy-container="{
         selector: 'img',
         loading: '/assets/img/placeholders/loading.svg',
         error: '/assets/img/placeholders/error.png'
       }"
-      class="container-fluid px-0"
+      class="container-fluid"
     >
-      <ContentParser
-        class="py-4"
-        :render-fn="renderFn"
-        :static-render-fn="staticRenderFn"
-      />
-    </div>
-    <div class="container" style="border-top: 1.5px solid rgba(0, 0, 0, 0.2)">
+      <div id="content-wrap" style="margin: auto">
+        <Card shadow class="card-profile" style="margin-top: -85px" no-body>
+          <ContentParser
+            class="py-5"
+            :render-fn="renderFn"
+            :static-render-fn="staticRenderFn"
+          />
+        </Card>
+      </div>
+    </section>
+    <div class="container mt-3">
       <div class="row pb-3 justify-content-center">
         <div class="col-lg-10 order-lg-2 text-center">
           <h3 class="mb-3 pt-4">
@@ -71,12 +75,13 @@
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
+import Card from '~/components/Argon/Card'
 import ContentParser from '~/components/Blog/ContentParser'
 import Disqus from '~/components/Blog/Disqus'
 
 export default {
   components: {
-    Button, Banner, ContentParser, Disqus
+    Card, Button, Banner, ContentParser, Disqus
   },
   data: () => ({
     formatPostDate,
@@ -153,6 +158,9 @@ export default {
 @media (min-width: 768px) {
   #content-title {
     font-size: 2rem;
+  }
+  #content-wrap {
+    max-width: 960px
   }
 }
 </style>

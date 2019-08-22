@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner height="450px" image="/assets/img/collections/desks/desk4.jpg">
+    <Banner image="/assets/img/collections/desks/desk4.jpg">
       <div class="text-center">
         <h1 class="text-white text-smooth text-shadow">
           <b>Blog</b>

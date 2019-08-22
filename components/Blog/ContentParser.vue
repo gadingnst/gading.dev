@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 $content-width: 55rem;
-$normal-font: 1.115rem;
+$normal-font: 1rem;
 $syntax-color: lightblue;
 $syntax-bg: #282c34;
 
@@ -40,7 +40,7 @@ code, kbd, pre, samp {
 }
 
 code {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   padding: 5px;
   border-radius: 3px;
@@ -54,7 +54,7 @@ pre {
     background: none;
     box-shadow: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
-    font-size: 0.75rem;
+    font-size: 0.725rem;
     display: block;
     overflow-x: auto;
     max-width: $content-width;
@@ -162,27 +162,27 @@ p, li {
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 
 h2 {
-  font-size: 1.875rem;
+  font-size: 1.8rem;
 }
 
 h3 {
-  font-size: 1.625rem;
+  font-size: 1.5rem;
 }
 
 h4 {
-  font-size: 1.425rem;
+  font-size: 1.3rem;
 }
 
 h5 {
-  font-size: 1.275rem;
+  font-size: 1.2rem;
 }
 
 h6 {
-  font-size: 1.175rem;
+  font-size: 1.1rem;
 }
 
 ul, ol {
@@ -205,7 +205,6 @@ iframe {
     width: 70%;
   }
   blockquote p {
-    font-size: 1.125rem;
     line-height: 1.5;
     padding: 0;
   }
