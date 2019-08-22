@@ -32,8 +32,8 @@ export default {
 <style lang="scss" scoped>
 $content-width: 55rem;
 $normal-font: 1rem;
-$syntax-color: lightblue;
-$syntax-bg: #282c34;
+$syntax-color: #9dc7ff;
+$syntax-bg: #011627;
 
 code, kbd, pre, samp {
   font-family: monospace;
@@ -43,7 +43,7 @@ code {
   font-size: 1rem;
   font-weight: 600;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 pre {
@@ -68,6 +68,7 @@ pre {
     word-wrap: normal;
     tab-size: 2;
     hyphens: none;
+    border-radius: 0;
   }
 }
 

@@ -20,7 +20,7 @@ const generatePostList = async () => {
   }))
 
   result = result.sort((a, b) => (a.date.getTime() < b.date.getTime()) ? 1 : -1)
-  result = `export default ${JSON.stringify(result)}`
+  result = `/* eslint-disable */\n\nexport default ${JSON.stringify(result)}`
 
   fs.writeFile(path.resolve(publishedPath, 'index.js'), result)
   console.log('Done generate published post lists\n')
