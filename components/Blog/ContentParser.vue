@@ -205,6 +205,7 @@ iframe {
     width: 70%;
   }
   blockquote p {
+    font-size: 1.125rem;
     line-height: 1.5;
     padding: 0;
   }
