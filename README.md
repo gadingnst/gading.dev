@@ -8,7 +8,7 @@
 
 - [NodeJS](https://nodejs.org/en/download/)
 
-### Features and TODOS
+### Ongoing Features
 - [x] Mobile friendly + offline-first with PWA Module
 - [x] Beautiful but performant
 - [x] Push notifications support
