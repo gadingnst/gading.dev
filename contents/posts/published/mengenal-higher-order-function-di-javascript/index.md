@@ -20,7 +20,7 @@ Jika kamu mempelajari bahasa pemrograman JavaScript, kamu akan menemukan istilah
 Dalam tulisan ini, kita akan membahas beberapa *higher-order function*, antara lain yaitu: `map()`, `filter()` dan `reduce()`.
 
 #### Array.map()
-`Array.map()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi membuat *array* baru dengan memanggil fungsi callback yang disediakan sebagai argumen pada setiap elemen dalam *array*. Metode `map()` akan mengambil setiap nilai yang dikembalikan dari fungsi *callback*, lalu membuat array baru dengan menggunakan nilai-nilai yang baru.
+`Array.map()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi membuat *array* baru dengan memanggil fungsi *callback* yang disediakan sebagai argumen pada setiap elemen dalam *array*. Metode `map()` akan mengambil setiap nilai yang dikembalikan dari fungsi *callback*, lalu membuat array baru dengan menggunakan nilai-nilai yang baru.
 
 **Berikut ilustrasinya**
 ![Ilustrasi Array.map()](/media/blog/mengenal-higher-order-function-di-javascript/map.gif)
@@ -150,5 +150,63 @@ alert('Rp.' + totalHarga) // Hasil: Rp.78000
 Berikut hasilnya:
 <button onclick="withReduce()">Click here!</button>
 
+### Terus, apa keunggulannya ?
+Mungkin kamu akan bertanya - tanya apa keunggulan menggunakan *higher-order function* daripada *for-loop* tradisional seperti biasanya. Ya, dengan menggunakan *higher-order function*, kita dapat melakukan *chaining*. *Chaining* sendiri adalah sebuah teknik pemrograman yang menggunakan return dari satu fungsi sebagai argument untuk fungsi seterusnya. Belum jelas ? mari kita lihat contohnya. Anggaplah kita mempunyai data seperti ini.
+
+```js
+const siswa = [
+  {
+    nama: 'Sutan Gading',
+    nilaiTugas: 70,
+    nilaiUts: 80,
+    nilaiUas: 74
+  },
+  {
+    nama: 'Alex',
+    nilaiTugas: 30,
+    nilaiUts: 40,
+    nilaiUas: 97
+  },
+  {
+    nama: 'Si Muning',
+    nilaiTugas: 25,
+    nilaiUts: 40,
+    nilaiUas: 75
+  },
+  {
+    nama: 'Toni Stark',
+    nilaiTugas: 60,
+    nilaiUts: 70,
+    nilaiUas: 94
+  },
+  {
+    nama: 'Jay Boy',
+    nilaiTugas: 40,
+    nilaiUts: 50,
+    nilaiUas: 54
+  }
+]
+```
+
+Dari data tersebut, kita ingin memperoleh rata-rata nilai akhir dari semua siswa yang lulus (*Note: siswa yang lulus jika memperoleh nilai akhir lebih atau sama dengan dari 60*). Dengan menggunakan metode *chaining* pada *higher-order function*. Kurang lebih penyelesainnya seperti ini:
+
+```js
+const siswaLulus = siswa.map(item => ({
+  nama: item.nama,
+  nilaiAkhir: (item.nilaiTugas * 0.2) + (item.nilaiUts * 0.3) + (item.nilaiUas * 0.5)
+})).filter(item => item.nilaiAkhir >= 60)
+
+const rataNilaiLulus = siswaLulus.reduce((acc, cur) => acc + cur.nilaiAkhir, 0) / siswaLulus.length
+
+document.write('Siswa yang lulus: ', JSON.stringify(siswaLulus, null, 2))
+document.writeln('Rata-rata nilai siswa yang lulus: ', Number(rataNilaiLulus).toFixed(2))
+```
+Hasilnya bisa dilihat disini: 
+<button onclick="kasus()">Click here!</button>
+<p style="white-space: pre" id="siswa">...</p>
+<p id="ratanilai">...</p>
+
+Bagaimana ? simple dan singkat kan ? Mungkin akan lebih panjang dan bertele-tele jika kita menyelesaikan masalah di atas dengan menggunakan *for-loop* tradisional seperti biasanya. Jadi, *higher-ordere function* disini hadir untuk memudahkan dan mempersingkat penyelesaian masalah yang ada.
+
 ### Kesimpulan
-Sampai disini kita telah mengenal apa itu *higher-order function*. Singkatnya, *higher-order function* adalah fungsi yang dapat menerima fungsi sebagai argumen dan bahkan dapat mengembalikan nilai dari fungsi. *Higher-Order function* sama seperti fungsi biasa dengan kemampuan tambahan untuk menerima dan mengembalikan fungsi lainnya dengan argumen dan output yang ditentukan. Sebenarnya masih ada lagi *Higher-Order function* bawaan yang ada pada bahasa pemrograman JavaScript, seperti: find(), sort() dan lainnya. Mungkin lain kali kita akan bahas lagi. Jangan lupa share ya 😄
+Sampai disini kita telah mengenal apa itu *higher-order function*. Singkatnya, *higher-order function* adalah fungsi yang dapat menerima fungsi sebagai argumen dan bahkan dapat mengembalikan nilai dari fungsi. *Higher-Order function* sama seperti fungsi biasa dengan kemampuan tambahan untuk menerima dan mengembalikan fungsi lainnya dengan argumen dan output yang ditentukan. Sebenarnya masih ada lagi *Higher-Order function* bawaan yang ada pada bahasa pemrograman JavaScript, seperti: `find()`, `sort()` dan lainnya. Dan bahkan kita dapat membuat *higher-order function* sendiri loh! Hmm, mungkin lain kali kita akan bahas lagi. Jangan lupa share ya 😄
