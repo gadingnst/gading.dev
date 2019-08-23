@@ -93,9 +93,12 @@
                 State of Polytechnic Sriwijaya
               </div>
             </div>
-            <div class="mt-5 py-5 border-top text-center">
+            <div class="mt-5 py-4 border-top text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
+                  <h2 class="text-smooth">
+                    About
+                  </h2>
                   <p>
                     <client-only>
                       <md-quote-icon w="14px" h="14px" />
@@ -105,6 +108,21 @@
                   <p>
                     I am very interested in Programming, especially in building a website applications. Actually, I'm not very experienced in programming, but I will continue to learn and aspiring to become a Professional Developer.
                   </p>
+                </div>
+              </div>
+              <h2 class="mt-5 text-smooth">
+                Coding Activities
+              </h2>
+              <div class="row py-4">
+                <div class="col-md-6">
+                  <figure>
+                    <embed src="https://wakatime.com/share/@7a831ab0-e43a-4215-aa08-92f915bed065/6309a505-c658-470e-a5ae-266aa8684053.svg">
+                  </figure>
+                </div>
+                <div class="col-md-6">
+                  <figure>
+                    <embed src="https://wakatime.com/share/@7a831ab0-e43a-4215-aa08-92f915bed065/c584e591-eec6-4df1-81ad-e2930e1e5c6e.svg">
+                  </figure>
                 </div>
               </div>
             </div>
