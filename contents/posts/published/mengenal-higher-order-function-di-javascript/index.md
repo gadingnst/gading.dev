@@ -198,8 +198,8 @@ const siswaLulus = siswa.map(item => ({
 
 const rataNilaiLulus = siswaLulus.reduce((acc, cur) => acc + cur.nilaiAkhir, 0) / siswaLulus.length
 
-document.write('Siswa yang lulus: ', JSON.stringify(siswaLulus, null, 2))
-document.writeln('Rata-rata nilai siswa yang lulus: ', Number(rataNilaiLulus).toFixed(2))
+document.writeln('Siswa yang lulus: ', JSON.stringify(siswaLulus, null, 2))
+document.write('Rata-rata nilai siswa yang lulus: ', Number(rataNilaiLulus).toFixed(2))
 ```
 Hasilnya bisa dilihat disini: 
 <button onclick="kasus()">Click here!</button>
