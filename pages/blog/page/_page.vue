@@ -20,7 +20,7 @@ export default {
       import(`~/contents/posts/published/${content.name}/index.md`)
         .then(content => ({
           ...content.attributes,
-          readingtime: formatReadingTime(content.body)
+          readingtime: formatReadingTime(content.html)
         }))
     ))).then(res => ({
       page: params.page,

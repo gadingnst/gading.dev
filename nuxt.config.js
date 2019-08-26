@@ -2,6 +2,7 @@ import fileSystem from 'fs'
 import path from 'path'
 import fmparse from 'front-matter'
 import mdi from 'markdown-it'
+import mode from 'frontmatter-markdown-loader/mode'
 import posts from './contents/posts/published'
 
 require('dotenv').config({ path: '.env' })
@@ -242,6 +243,7 @@ export default {
         loader: 'frontmatter-markdown-loader',
         include: path.resolve(__dirname, 'contents'),
         options: {
+          mode: [mode.HTML, mode.VUE_RENDER_FUNCTIONS],
           markdown: body => {
             md.use(require('markdown-it-attrs'))
             md.use(require('markdown-it-plugin-data-src'))

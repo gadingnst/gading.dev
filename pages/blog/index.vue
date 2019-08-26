@@ -19,7 +19,7 @@ export default {
       import(`~/contents/posts/published/${content.name}/index.md`)
         .then(content => ({
           ...content.attributes,
-          readingtime: formatReadingTime(content.body)
+          readingtime: formatReadingTime(content.html)
         }))
     ))).then(res => ({
       contents: res.slice(0, process.env.BLOG_PAGINATION_LIMIT),
