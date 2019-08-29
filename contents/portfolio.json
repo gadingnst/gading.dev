@@ -22,7 +22,7 @@
     "category": "Experiment Project",
     "description": "A Progressive Task Management Application with Offline First Technology.",
     "github": "https://github.com/sutanlab/vuetask",
-    "website": "https://sutanlab.js.org/vuetask",
+    "website": "https://vuetask.sutanlab.id",
     "image": "/media/portfolio/vuetask.png",
     "stacks": ["javascript", "vue", "pwa"]
   },
