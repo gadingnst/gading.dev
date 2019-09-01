@@ -50,13 +50,14 @@ $ ./post -d {POST_TITLE} # create draft post
 $ ./post -p {POST_TITLE} # publish/promote a draft to a post
 ```
 
-#### Note: How to resolve System limit for number of file watchers reached
+### Note
 
+- How to resolve System limit for number of file watchers reached
 ```bash
 $ sudo echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
-> Integrate OneSignal Push Notifications with RSS Feed in [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed)
+- Integrate OneSignal Push Notifications with RSS Feed in [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed)
 
 ### Special Thanks to :
 
