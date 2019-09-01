@@ -169,9 +169,12 @@ export default {
     },
     onSearch() {
       this.posts = this.$store.getters.posts
-        .filter(({ title, keywords }) => (
-          title.toLowerCase().includes(this.inputSearch) || keywords.replace(',', '').includes(this.inputSearch)
-        ))
+        .filter(({ title, keywords }) => {
+          const key = this.inputSearch.toLowerCase()
+          title = title.toLowerCase()
+          keywords = keywords.toLowerCase().replace(',', '')
+          return title.includes(key) || keywords.includes(key)
+        })
     }
   }
 }
