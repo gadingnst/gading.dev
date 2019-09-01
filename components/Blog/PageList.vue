@@ -84,7 +84,7 @@
                   </div>
                 </Card>
               </div>
-              <div v-if="posts.length === 0" class="col-sm-12 my-3">
+              <div v-if="posts.length === 0 && inputSearch.length > 0" class="col-sm-12 my-3">
                 <h2>🙁 Oops, no matching posts found!</h2>
               </div>
             </div>
