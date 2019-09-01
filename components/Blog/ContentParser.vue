@@ -32,7 +32,7 @@ export default {
 <style lang="scss" scoped>
 $content-width: 55rem;
 $normal-font: 1rem;
-$syntax-color: #9dc7ff;
+$syntax-color: #b0cdf3;
 $syntax-bg: #011627;
 
 code, kbd, pre, samp {

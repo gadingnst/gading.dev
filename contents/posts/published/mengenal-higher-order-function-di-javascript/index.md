@@ -25,7 +25,7 @@ Dalam tulisan ini, kita akan membahas beberapa *higher-order function*, antara l
 **Berikut ilustrasinya**
 ![Ilustrasi Array.map()](/media/blog/mengenal-higher-order-function-di-javascript/map.gif)
 
-Untuk lebih jelasnya mari kita praktekkan saja, katakanlah kita memiliki *array* yang berisi *number* dengan nilai tahun lahir. Kita ingin membuat *array* baru yang menghitung umur dari tahun lahir tersebut dengan tahun **2019**.
+Untuk lebih jelasnya mari kita praktekkan saja, katakanlah kita memiliki *array* yang berisi *number* dengan nilai tahun lahir. Kita ingin membuat *array* baru yang menghitung umur dari tahun lahir tersebut dengan tahun sekarang.
 
 **Menggunakan *for-loop* tradisional**
 ```js
@@ -51,7 +51,7 @@ alert(umur) // hasil: [21,20,19,18,17]
 Berikut hasilnya:
 <button onclick="withMap()">Click here!</button>
 
-Bisa dilihat kode akan lebih singkat jika kita menggunakan `Array.map()`. Fungsi *callback* `tahun => 2019 - tahun` dipanggil pada setiap anggota array yang ada di *variabel* **tahunLahir**
+Bisa dilihat kode akan lebih singkat jika kita menggunakan `Array.map()`. Fungsi *callback* `tahun => new Date().getFullYear() - tahun` dipanggil pada setiap anggota array yang ada di *variabel* **tahunLahir**
 
 ### Array.filter()
 
