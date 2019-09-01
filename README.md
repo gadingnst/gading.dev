@@ -19,8 +19,8 @@
 - [x] Comment system with disqus
 - [x] Social share (FB, Twitter, WA)
 - [x] Posts pagination
+- [x] Search posts
 - [ ] Sorting posts by category & tags
-- [ ] Search posts
 
 ### Build setup
 

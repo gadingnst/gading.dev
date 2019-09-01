@@ -69,31 +69,38 @@ export default {
     },
     label: {
       type: String,
-      description: 'Input label (text before input)'
+      description: 'Input label (text before input)',
+      default: undefined
     },
     error: {
       type: String,
-      description: 'Input error (below input)'
+      description: 'Input error (below input)',
+      default: undefined
     },
     labelClasses: {
       type: String,
-      description: 'Input label css classes'
+      description: 'Input label css classes',
+      default: undefined
     },
     inputClasses: {
       type: String,
-      description: 'Input css classes'
+      description: 'Input css classes',
+      default: undefined
     },
     value: {
       type: [String, Number],
-      description: 'Input value'
+      description: 'Input value',
+      default: ''
     },
     addonRightIcon: {
       type: String,
-      description: 'Addon right icon'
+      description: 'Addon right icon',
+      default: undefined
     },
     addonLeftIcon: {
       type: String,
-      description: 'Addont left icon'
+      description: 'Addont left icon',
+      default: undefined
     }
   },
   data() {

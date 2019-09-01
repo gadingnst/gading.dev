@@ -1,14 +1,36 @@
 export default {
   state: () => ({
-    menu: [
+    posts: [],
+    searching: false
+  }),
+  mutations: {
+    setPosts(state, posts) {
+      state.posts = posts
+    },
+    setSearching(state, status) {
+      state.searching = status
+    }
+  },
+  actions: {
+    getPosts({ commit }) {
+      commit('setSearching', true)
+      window.fetch('/posts.published.json')
+        .then(res => res.json())
+        .then(result => {
+          commit('setSearching', false)
+          commit('setPosts', result)
+        })
+    }
+  },
+  getters: {
+    posts: state => state.posts,
+    searching: state => state.searching,
+    menu: () => [
       { text: 'Home', to: '/' },
       { text: 'Now', to: '/now' },
       { text: 'Portfolio', to: '/portfolio' },
       { text: 'Blog', to: '/blog' }
-    ]
-  }),
-  getters: {
-    menu: state => state.menu,
+    ],
     mobile: () => ({
       Android: () => (
         window.navigator.userAgent.match(/Android/i)

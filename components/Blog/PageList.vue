@@ -12,6 +12,21 @@
     </Banner>
     <section id="content-section" class="section section-lg py-3">
       <div class="container">
+        <div class="row justify-content-right">
+          <div class="col-sm-6" style="text-align: right">
+            <h5 v-if="this.$store.getters.searching">
+              Loading ...
+            </h5>
+          </div>
+          <div class="col-sm-6">
+            <Input
+              id="search-form"
+              v-model="inputSearch"
+              placeholder="🔍 Search ..."
+              @input="onSearch"
+            />
+          </div>
+        </div>
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div
@@ -22,7 +37,7 @@
               }"
               class="row row-grid"
             >
-              <div v-for="(content, i) in contents" :key="i" class="col-lg-6 my-3">
+              <div v-for="(content, i) in inputSearch.length > 0 ? posts : contents" :key="i" class="col-lg-6 my-3">
                 <Card class="border-0" hover shadow body-classes="pt-0 px-0">
                   <img
                     style="width: 100%; height: 200px; object-fit: cover"
@@ -72,7 +87,7 @@
             </div>
           </div>
         </div>
-        <div class="container mt-4">
+        <div v-if="inputSearch.length === 0" class="container mt-4">
           <h4 class="text-center">
             Page {{ page }} of {{ Math.ceil(total / pagination.limit) }}
           </h4>
@@ -91,6 +106,7 @@
 
 <script>
 import { wrapText, formatPostDate, metaGenerator } from '~/utils/helpers'
+import Input from '~/components/Argon/Input'
 import Pagination from '~/components/Argon/Pagination'
 import Card from '~/components/Argon/Card'
 import Badge from '~/components/Argon/Badge'
@@ -99,7 +115,7 @@ import Banner from '~/components/Base/Banner'
 
 export default {
   components: {
-    Card, Badge, Button, Banner, Pagination
+    Card, Badge, Button, Banner, Pagination, Input
   },
   props: {
     contents: {
@@ -118,6 +134,8 @@ export default {
   data: () => ({
     formatPostDate,
     wrapText,
+    inputSearch: '',
+    posts: [],
     pagination: {
       limit: process.env.BLOG_PAGINATION_LIMIT
     }
@@ -145,12 +163,25 @@ export default {
       } else {
         this.$router.push(`/blog/page/${val}`)
       }
+    },
+    onSearch() {
+      this.posts = this.$store.getters.posts
+        .filter(({ title, keywords }) => (
+          title.toLowerCase().includes(this.inputSearch) || keywords.replace(',', '').includes(this.inputSearch)
+        ))
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+#search-form {
+  border-color: #5e72e4 !important;
+  &::placeholder {
+    color: #5e72e4;
+  }
+}
+
 @media (min-width: 992px) {
   .content-desc {
     height: 80px;

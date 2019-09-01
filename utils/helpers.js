@@ -15,10 +15,9 @@ export function formatPostDate(date) {
 }
 
 export function formatReadingTime(contents) {
-  const { minutes } = readingTime(contents)
-  const min = Math.round(minutes)
+  const { minutes, text } = readingTime(contents)
   const cups = Math.round(minutes / 5)
-  return `${new Array(cups || 1).fill('☕️').join('')} ${min > 1 ? `${min} min` : `${Math.round(minutes * 60)} sec`} to read`
+  return `${new Array(cups || 1).fill('☕️').join('')} ${text}`
 }
 
 export function randomString(length = 7) {

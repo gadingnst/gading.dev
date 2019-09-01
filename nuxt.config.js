@@ -242,7 +242,7 @@ export default {
         loader: 'frontmatter-markdown-loader',
         include: path.resolve(__dirname, 'contents'),
         options: {
-          mode: [mode.HTML, mode.VUE_RENDER_FUNCTIONS],
+          mode: [mode.BODY, mode.VUE_RENDER_FUNCTIONS],
           markdown: body => {
             md.use(require('markdown-it-attrs'))
             md.use(require('markdown-it-plugin-data-src'))

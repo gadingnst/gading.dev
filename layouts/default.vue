@@ -26,6 +26,9 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('router/watchRoutes', this.$route.name)
+  },
+  mounted() {
+    this.$store.dispatch('getPosts')
   }
 }
 </script>

@@ -1,6 +1,13 @@
 const fs = require('fs').promises
 const path = require('path')
 const fmparse = require('front-matter')
+const readingTime = require('reading-time')
+
+const formatReadingTime = contents => {
+  const { minutes, text } = readingTime(contents)
+  const cups = Math.round(minutes / 5)
+  return `${new Array(cups || 1).fill('☕️').join('')} ${text}`
+}
 
 const generatePostList = async () => {
   console.log('Generating published post lists ...')
@@ -16,7 +23,7 @@ const generatePostList = async () => {
     const name = Object.keys(res)[0]
     return fs.readFile(path.resolve(publishedPath, name, 'index.md'), 'utf-8')
       .then(res => fmparse(res))
-      .then(({ attributes }) => attributes)
+      .then(({ attributes, body }) => ({ ...attributes, readingtime: formatReadingTime(body) }))
   }))
 
   result = result.sort((a, b) => (a.date.getTime() < b.date.getTime()) ? 1 : -1)

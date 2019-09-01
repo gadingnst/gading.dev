@@ -113,7 +113,7 @@ export default {
     return {
       meta: {
         ...content.attributes,
-        readingtime: formatReadingTime(content.html)
+        readingtime: formatReadingTime(content.body)
       },
       renderFn: content.vue.render,
       staticRenderFn: content.vue.staticRenderFns
