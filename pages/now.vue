@@ -39,18 +39,17 @@
                 Careers
               </h2>
               <p>
-                Working as a final semester student who will soon become a graduate with an engineering degree.
-                Also working as Software Engineer <i>with Self Employed or Freelance</i>.
+                <b><i>Unemployed.</i></b>
               </p>
               <h2 class="mt-5">
                 Activities
               </h2>
               <ul>
-                <li>Taking care of the requirements for my graduation.</li>
+                <li>Looking for decisive job opportunity.</li>
                 <li>Working on several projects to make some money.</li>
                 <li>Learning some stuff from the internet.</li>
+                <li>Coding, reading and blogging for fun.</li>
                 <li>Making quality time for my family, girlfriend and friends every weekend.</li>
-                <li>Opening social media from my phone for a little entertainment and fun.</li>
               </ul>
               <h2 class="mt-5">
                 My Stacks
@@ -62,7 +61,7 @@
                 <li><i>React</i>, but still learning about its hooks and ecosystem.</li>
               </ul>
               <p class="mt-5">
-                <i>Last updated at: July 27, 2019 22:00 from Sekip Ujung, Palembang. Indonesia</i>.
+                <i>Last updated at: September 8, 2019 19:26 from Sekip Ujung, Palembang. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
