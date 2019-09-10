@@ -40,7 +40,7 @@
     "frontmatter-markdown-loader": "2.0.0",
     "highlight.js": "9.15.10",
     "jest": "24.9.0",
-    "markdown-it": "9.1.0",
+    "markdown-it": "10.0.0",
     "markdown-it-attrs": "3.0.1",
     "markdown-it-plugin-data-src": "1.0.0",
     "node-sass": "4.12.0",
