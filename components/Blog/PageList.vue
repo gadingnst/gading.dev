@@ -38,7 +38,7 @@
               class="row row-grid"
             >
               <div v-for="(content, i) in inputSearch.length > 0 ? posts : contents" :key="i" class="col-lg-6 my-3">
-                <Card class="border-0" hover shadow body-classes="pt-0 px-0">
+                <Card class="border-0 h-100" hover shadow body-classes="pt-0 px-0" footer-classes="pt-0">
                   <img
                     style="width: 100%; height: 200px; object-fit: cover"
                     class="card-pic card-img-top"
@@ -61,11 +61,9 @@
                         {{ content.readingtime }}
                       </span>
                     </div>
-                    <div class="content-desc">
-                      <p class="description mt-3">
-                        {{ wrapText(content.description, 150) }}
-                      </p>
-                    </div>
+                    <p class="description mt-3">
+                      {{ wrapText(content.description, 150) }}
+                    </p>
                     <div>
                       <Badge
                         v-for="(tag, iTag) in content.tags"
@@ -76,12 +74,14 @@
                         #{{ tag }}
                       </Badge>
                     </div>
+                  </div>
+                  <template #footer>
                     <nuxt-link :to="`/blog/${content.slug}`">
                       <Button type="primary" class="mt-4" style="float: right">
                         Read
                       </Button>
                     </nuxt-link>
-                  </div>
+                  </template>
                 </Card>
               </div>
               <div v-if="posts.length === 0 && inputSearch.length > 0" class="col-sm-12 my-3">
@@ -185,12 +185,6 @@ export default {
   border-color: #5e72e4 !important;
   &::placeholder {
     color: #5e72e4;
-  }
-}
-
-@media (min-width: 992px) {
-  .content-desc {
-    height: 80px;
   }
 }
 </style>

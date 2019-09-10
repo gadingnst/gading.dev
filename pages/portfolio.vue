@@ -23,7 +23,7 @@
               class="row row-grid"
             >
               <div v-for="(item, i) in portfolio" :key="i" class="col-lg-4 col-md-6 my-3">
-                <Card class="border-0" hover shadow body-classes="pt-0 px-0">
+                <Card class="border-0 h-100" hover shadow body-classes="pt-0 px-0" footer-classes="pt-0">
                   <img
                     style="width: 100%; height: 200px; object-fit: cover"
                     class="card-pic card-img-top"
@@ -52,6 +52,8 @@
                         {{ stack }}
                       </Badge>
                     </div>
+                  </div>
+                  <template #footer>
                     <Button
                       tag="a"
                       type="default"
@@ -74,7 +76,7 @@
                         <md-globe-icon w="22px" h="22px" />
                       </client-only>
                     </Button>
-                  </div>
+                  </template>
                 </Card>
               </div>
             </div>
