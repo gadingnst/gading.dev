@@ -15,7 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@nuxtjs/dotenv": "1.4.0",
+    "@nuxtjs/dotenv": "1.4.1",
     "@nuxtjs/eslint-config": "1.1.2",
     "@nuxtjs/eslint-module": "1.0.0",
     "@nuxtjs/feed": "1.1.0",
