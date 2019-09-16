@@ -4,7 +4,7 @@ slug: 'mengenal-higher-order-function-di-javascript'
 date: 2019-08-19
 description: 'Mengenal higher-order function di JavaScript, seperti: map(), filter() dan reduce()'
 tags: ['javascript', 'coding', 'higherorderfunction']
-category: 'Tutorial'
+category: 'Engineering'
 keywords: 'higher-order function, fungsi, javascript, array, tutorial'
 image: '/assets/img/collections/desks/desk7.jpg'
 caption: 'Menggunakan higher-order function di JavaScript dapat mempersingkat kode dan mengubah gaya pemrograman kita'

@@ -18,6 +18,33 @@
     "stacks": ["javascript", "webpack"]
   },
   {
+    "name": "Simple Print",
+    "category": "Open Source Project",
+    "description": "Simple Javascript utility to print HTML element easier..",
+    "github": "https://github.com/sutanlab/simple-print",
+    "website": "https://sutanlab.js.org/simple-print",
+    "image": "/media/portfolio/simple-print.png",
+    "stacks": ["javascript", "webpack"]
+  },
+  {
+    "name": "Griya Kain Online Shop",
+    "category": "Business Partner Project",
+    "description": "Online Shop Griya Kain Mr. Kentang",
+    "github": null,
+    "website": null,
+    "image": "/media/portfolio/griya-kain.png",
+    "stacks": ["php", "laravel", "mysql"]
+  },
+  {
+    "name": "PPPK",
+    "category": "Intern Project",
+    "description": "Computer Repair Request Application for PT. PUSRI (Persero)",
+    "github": null,
+    "website": null,
+    "image": "/media/portfolio/pppk.png",
+    "stacks": ["php", "pdo", "mysql"]
+  },
+  {
     "name": "Vuetask",
     "category": "Experiment Project",
     "description": "A Progressive Task Management Application with Offline First Technology.",
@@ -82,8 +109,8 @@
   },
   {
     "name": "Moba La-Tansa",
-    "category": "Company Project",
-    "description": "The Moba La-Tansa Company website.",
+    "category": "Business Partner Project",
+    "description": "Website for Moba La-Tansa foundation.",
     "github": null,
     "website": "https://mobalatansa.or.id",
     "image": "/media/portfolio/mobalatansa.png",
@@ -91,8 +118,8 @@
   },
   {
     "name": "E-Log Tracking System",
-    "category": "Company Project",
-    "description": "E-Log Tracking System Project for Tanjungenim Lestari Company.",
+    "category": "Intern Project",
+    "description": "E-Log Tracking System Project for PT. Tanjungenim Lestari.",
     "github": null,
     "website": null,
     "image": "/media/portfolio/elog.png",
@@ -100,8 +127,8 @@
   },
   {
     "name": "HAR UPT",
-    "category": "Company Project",
-    "description": "HAR UPT Project for PLN Company.",
+    "category": "Intern Project",
+    "description": "HAR UPT Project for PT. PLN (Persero).",
     "github": null,
     "website": null,
     "image": "/media/portfolio/harupt.png",
@@ -109,7 +136,7 @@
   },
   {
     "name": "IFTANA",
-    "category": "Company Project",
+    "category": "Intern Project",
     "description": "IFTANA Website.",
     "github": null,
     "website": null,
