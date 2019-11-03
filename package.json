@@ -49,7 +49,7 @@
     "nuxt": "2.10.2",
     "reading-time": "1.2.0",
     "vue-disqus": "3.0.5",
-    "vue-flatpickr-component": "8.1.4",
+    "vue-flatpickr-component": "8.1.5",
     "vue-ionicons": "3.0.4",
     "vue-jest": "3.0.5",
     "vue-lazyload": "1.3.3",
