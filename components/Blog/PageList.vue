@@ -143,16 +143,6 @@ export default {
       limit: process.env.BLOG_PAGINATION_LIMIT
     }
   }),
-  head: () => ({
-    title: `Blog | ${process.env.AUTHOR}`,
-    meta: metaGenerator('blog', {
-      title: 'Blog',
-      description: 'A Journal about Sutan Nasution.',
-      keywords: 'blogs, posts, articles',
-      image: '/icon.png',
-      url: '/blog'
-    })
-  }),
   computed: {
     pg: {
       get() { return this.page },
@@ -176,7 +166,17 @@ export default {
           return title.includes(key) || keywords.includes(key)
         })
     }
-  }
+  },
+  head: () => ({
+    title: `Blog | ${process.env.AUTHOR}`,
+    meta: metaGenerator('blog', {
+      title: 'Blog',
+      description: 'A Journal about Sutan Nasution.',
+      keywords: 'blogs, posts, articles',
+      image: '/icon.png',
+      url: '/blog'
+    })
+  })
 }
 </script>
 

@@ -99,6 +99,15 @@ export default {
   components: {
     Card, Badge, Banner, Button, MdGlobeIcon
   },
+  asyncData: () => (
+    import('~/contents/portfolio')
+      .then(({ default: portfolio }) => ({
+        portfolio
+      }))
+  ),
+  data: () => ({
+    wrapText
+  }),
   head: () => ({
     title: `Portfolio | ${process.env.AUTHOR}`,
     meta: metaGenerator('portfolio', {
@@ -108,15 +117,6 @@ export default {
       image: '/icon.png',
       url: '/portfolio'
     })
-  }),
-  data: () => ({
-    wrapText
-  }),
-  asyncData: () => (
-    import('~/contents/portfolio')
-      .then(({ default: portfolio }) => ({
-        portfolio
-      }))
-  )
+  })
 }
 </script>

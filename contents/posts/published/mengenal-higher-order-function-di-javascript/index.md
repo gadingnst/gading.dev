@@ -7,7 +7,7 @@ tags: ['javascript', 'coding', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'higher-order function, fungsi, javascript, array, tutorial'
 image: '/assets/img/collections/desks/desk7.jpg'
-caption: 'Menggunakan higher-order function di JavaScript dapat mempersingkat kode dan mengubah gaya pemrograman kita'
+caption: 'Mengenal higher-order function di JavaScript, seperti: map(), filter() dan reduce()'
 css_source: []
 js_source: ['/media/blog/mengenal-higher-order-function-di-javascript/test.js']
 ---
@@ -55,7 +55,7 @@ Bisa dilihat kode akan lebih singkat jika kita menggunakan `Array.map()`. Fungsi
 
 ### Array.filter()
 
-`Array.filter()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi untuk membuat *array* baru dengan mengoperasikan fungsi *callback* pada setiap anggota dengan mem-*filter* nilai-nilai didalam *array* yang sudah ada. Adapun argumen yang ada pada *callback* `filter()` adalah: *value*, *index* dan *array*.
+`Array.filter()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi untuk membuat *array* baru dengan mengoperasikan fungsi *callback* pada setiap anggota dengan mem-*filter* nilai-nilai didalam *array* yang sudah ada. Adapun argumen yang ada pada *callback* `filter()` adalah: *value*, *index*.
 
 **Berikut ilustrasinya**
 ![Ilustrasi Array.filter()](/media/blog/mengenal-higher-order-function-di-javascript/filter.gif)

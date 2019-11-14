@@ -10,7 +10,7 @@ require('dotenv').config({ path: '.env' })
 const fs = fileSystem.promises
 const md = mdi({ html: true, linkify: true, typographer: true })
 
-const env = {
+const settings = {
   author: 'Sutan Nasution.',
   productionUrl: 'https://sutanlab.id',
   blogPaginationLimit: 6
@@ -25,7 +25,7 @@ function routes() {
   }
 
   // pagination routes
-  for (let i = 0; i < Math.ceil(posts.length / env.blogPaginationLimit); i++) {
+  for (let i = 0; i < Math.ceil(posts.length / settings.blogPaginationLimit); i++) {
     routes.push(`/blog/page/${i + 1}`)
   }
 
@@ -45,9 +45,10 @@ export default {
   mode: 'universal',
 
   env: {
-    PRODUCTION_URL: env.productionUrl,
-    AUTHOR: env.author,
-    BLOG_PAGINATION_LIMIT: env.blogPaginationLimit,
+    AUTHOR: settings.author,
+    PRODUCTION_URL: settings.productionUrl,
+    BLOG_PAGINATION_LIMIT: settings.blogPaginationLimit,
+
     ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID
   },
 
@@ -112,7 +113,7 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: env.productionUrl,
+    hostname: settings.productionUrl,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: routesSitemap(routes())
@@ -123,8 +124,8 @@ export default {
       path: '/feed.xml',
       async create(feed) {
         feed.options = {
-          title: `Blog | ${env.author}`,
-          link: `${env.productionUrl}/feed.xml`,
+          title: `Blog | ${settings.author}`,
+          link: `${settings.productionUrl}/feed.xml`,
           description: 'Sutan Nasution.\'s personal blog feed'
         }
 
@@ -133,7 +134,7 @@ export default {
         feed.addContributor({
           name: 'Sutan Nasution.',
           email: 'sutan.gnst@gmail.com',
-          link: env.productionUrl
+          link: settings.productionUrl
         })
 
         await Promise.all(posts.map(({ name }) => (
@@ -143,7 +144,7 @@ export default {
             .then(content => {
               feed.addItem({
                 title: content.title,
-                link: `${env.productionUrl}/blog/${content.slug}`,
+                link: `${settings.productionUrl}/blog/${content.slug}`,
                 description: content.description,
                 content: content.html
               })
@@ -164,12 +165,21 @@ export default {
     color: '#11CDEF'
   },
 
-  /* costumize manifest
-  **
-  */
-  manifest: {
-    name: 'Sutanlab',
-    short_name: 'Sutanlab'
+  pwa: {
+    manifest: {
+      name: 'Sutanlab',
+      short_name: 'Sutanlab'
+    }
+  },
+
+  oneSignal: {
+    init: {
+      appId: process.env.ONESIGNAL_APP_ID,
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: false
+      }
+    }
   },
 
   /*
@@ -203,16 +213,6 @@ export default {
       { id: 'UA-135036153-1' }
     ]
   ],
-
-  oneSignal: {
-    init: {
-      appId: process.env.ONESIGNAL_APP_ID,
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-        disable: false
-      }
-    }
-  },
 
   /*
   ** Build configuration

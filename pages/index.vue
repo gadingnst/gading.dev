@@ -161,16 +161,6 @@ export default {
       publicGists: 0
     }
   }),
-  head: () => ({
-    title: `${process.env.AUTHOR}`,
-    meta: metaGenerator('portfolio', {
-      title: `Personal Homepage`,
-      description: `A Man who turns a cup of coffee into beautiful codes. - ${process.env.AUTHOR}`,
-      keywords: 'homepage, portfolio',
-      image: '/icon.png',
-      url: '/'
-    })
-  }),
   mounted() {
     Promise.all([
       window.fetch('https://api.github.com/users/sutanlab')
@@ -185,6 +175,16 @@ export default {
       this.github.publicGists = result[0].public_gists
       this.github.contributions = result[1]
     })
-  }
+  },
+  head: () => ({
+    title: `${process.env.AUTHOR}`,
+    meta: metaGenerator('portfolio', {
+      title: `Personal Homepage`,
+      description: `A Man who turns a cup of coffee into beautiful codes. - ${process.env.AUTHOR}`,
+      keywords: 'homepage, portfolio',
+      image: '/icon.png',
+      url: '/'
+    })
+  })
 }
 </script>

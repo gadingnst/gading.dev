@@ -24,7 +24,9 @@ export default {
     }
   },
   render() {
-    return this.templateRender ? this.templateRender() : <div>Rendering</div>
+    return this.templateRender
+      ? this.templateRender()
+      : <div>Rendering</div>
   }
 }
 </script>
