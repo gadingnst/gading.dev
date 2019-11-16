@@ -2,7 +2,7 @@
 title: 'Mengenal higher-order function di JavaScript part 2'
 slug: 'mengenal-higher-order-function-di-javascript-part-2'
 date: 2019-11-16
-description: 'Sebagai anak fungsional, kita harus paham dan menguasai higher-order function. Agar ketika berurusan dengan array, kita tidak lagi menggunakan looping.'
+description: 'Menggunakan higher-order function dapat mempersingkat kode serta mengubah sudut pandang dan gaya pemrograman kita.'
 tags: ['javascript', 'coding', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'higher-order function, fungsi, javascript, array, tutorial, sort, find, findIndex'

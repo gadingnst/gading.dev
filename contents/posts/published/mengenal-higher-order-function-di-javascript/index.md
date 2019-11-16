@@ -7,7 +7,7 @@ tags: ['javascript', 'coding', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'higher-order function, fungsi, javascript, array, map, filter, reduce, tutorial'
 image: '/assets/img/collections/desks/desk7.jpg'
-caption: 'Menggunakan higher-order function di JavaScript dapat mempersingkat kode serta mengubah sudut pandang dan gaya pemrograman kita.'
+caption: 'Menggunakan higher-order function dapat mempersingkat kode serta mengubah sudut pandang dan gaya pemrograman kita.'
 css_source: []
 js_source: ['/media/blog/mengenal-higher-order-function-di-javascript/test.js']
 ---
