@@ -163,7 +163,7 @@ console.log(amounts)
 
 ```js
 amounts = amounts.sort((a, b) => {
-  console.log(`Log: a(${a}) > b(${b}) ? ${a > b : 1 - 1}`)
+  console.log(`Log: a(${a}) > b(${b}) ? ${a > b ? 1 : -1}`)
   return a > b ? 1 : -1
 })
 
