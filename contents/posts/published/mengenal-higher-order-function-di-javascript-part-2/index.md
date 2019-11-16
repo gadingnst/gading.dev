@@ -26,22 +26,22 @@ Untuk penggunaan `find()` sebenarnya sama persis seperti `filter()`, parameterny
 ```js
 const students = [
   {
-    id: '5dceb86102337703c854190a',
+    id: 1,
     name: 'Sutan',
     major: 'Computer Engineering'
   },
   {
-    id: '5dcecda23fec3694452e60f4',
+    id: 2,
     name: 'Rina',
     major: 'Computer Engineering'
   },
   {
-    id: '5dcecdb4ccc2fb3a1fd89498',
+    id: 3,
     name: 'Alexander',
-    major: 'Business Development'
+    major: 'Management'
   },
   {
-    id: '5dcecdbed9e56c16706ffd2e',
+    id: 4,
     name: 'Alexandra',
     major: 'Accounting'
   }
@@ -133,7 +133,7 @@ fruits = fruits.sort()
 console.log(fruits)
 ```
 <button onclick="kasus4()">Lihat Hasil</button>
-<p style="white-space: pre; font-weight: bold" id="case4-result">Hasil urut: ...</p>
+<p style="font-weight: bold" id="case4-result">Hasil urut: ...</p>
 
 Hasil diatas sudah benar, hasilnya adalah nama buah yang sudah diurutkan dari `A-Z`.
 Nah, bagaimana dengan angka? Apakah kita bisa mengurutkannya dari angka yang terkecil sampai ke yang terbesar? Mari kita coba lagi.
@@ -145,7 +145,7 @@ amounts = amounts.sort()
 console.log(amounts)
 ```
 <button onclick="kasus5()">Lihat Hasil</button>
-<p style="white-space: pre; font-weight: bold" id="case5-result">Hasil urut: ...</p>
+<p style="font-weight: bold" id="case5-result">Hasil urut: ...</p>
 
 "Loh loh, kok hasilnya gitu? yang duluan malah **1000** dan **10000** daripada **200** 😕". Yah emang gitu, karena `sort()` *default*-nya hanya mengurutkan nilai *string* jika tidak ada parameter *callback* *comparer*-nya. Jadi, dia otomatis meng-*convert* angka-angka tersebut menjadi *string* terlebih dahulu sebelum diurutkan. Ya jelas hasil urutnya jadi begitu, karena kalau didalam *string*, **100000000** aja lebih kecil daripada **2** 😆.
 
@@ -157,7 +157,7 @@ amounts = amounts.sort((a, b) => a > b ? 1 : -1)
 console.log(amounts)
 ```
 <button onclick="kasus6()">Lihat Hasil</button>
-<p style="white-space: pre; font-weight: bold" id="case6-result">Hasil urut: ...</p>
+<p style="font-weight: bold" id="case6-result">Hasil urut: ...</p>
 
 "Wah iya hasilnya bener sesuai urutan angka yang terkecil sampai ke yang terbesar. Tapi coba, apaan itu maksudnya? ga jelas banget 😕". Okay, mari kita bongkar, sebenernya didalem dia ngapain aja, wkwkw.
 
@@ -170,9 +170,9 @@ amounts = amounts.sort((a, b) => {
 console.log('Hasil urut:', amounts)
 ```
 <button onclick="kasus7()">Lihat Hasil</button>
-<p style="white-space: pre; font-weight: bold">Sebelum diurut: 1000, 100, 200, 10000, 6000, 200000</p>
-<p style="white-space: pre; font-weight: bold" id="case7-log">...</p>
-<p style="white-space: pre; font-weight: bold" id="case7-result">Hasil urut: ...</p>
+<p style="font-weight: bold">Sebelum diurut: [1000,100,200,10000,6000,200000]</p>
+<p style="font-weight: bold;" id="case7-log">...</p>
+<p style="font-weight: bold" id="case7-result">Hasil urut: ...</p>
 
 Untuk penjelasan singkatnya, anggap aja `a` dan `b` itu adalah nilai yang akan dibandingkan. Jika hasil *return*-nya `1`, berarti kita menaruh nilai `a` dikanan setelah `b`. Sebaliknya jika hasil *return*-nya `-1`, berarti kita menaruh nilai `a` dikiri sebelum `b`. Dan.. seperti itulah hasil urutan yang sebenarnya, bukan kayak yang kita coba tadi `1000 < 200` 😠.
 

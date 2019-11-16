@@ -1,21 +1,21 @@
 const users = [
   {
-    id: '5dceb86102337703c854190a',
+    id: 1,
     name: 'Sutan',
     major: 'Computer Engineering'
   },
   {
-    id: '5dcecda23fec3694452e60f4',
+    id: 2,
     name: 'Rina',
     major: 'Computer Engineering'
   },
   {
-    id: '5dcecdb4ccc2fb3a1fd89498',
+    id: 3,
     name: 'Alexander',
-    major: 'Business Development'
+    major: 'Management'
   },
   {
-    id: '5dcecdbed9e56c16706ffd2e',
+    id: 4,
     name: 'Alexandra',
     major: 'Accounting'
   }
@@ -106,9 +106,9 @@ function kasus7() {
   const log = document.getElementById('case7-log')
   log.textContent = ''
   amounts = amounts.sort((a, b) => {
-    document.getElementById('case7-log').textContent += `Log: a(${a}) > b(${b}) ? ${a > b ? 1 : -1}\n`
+    document.getElementById('case7-log').innerHTML += `Log: a(${a}) > b(${b}) ? ${a > b ? 1 : -1}<br />`
     return a > b ? 1 : -1
   })
 
-  document.getElementById('case7-result').textContent = 'Hasil urut: ' + amounts
+  document.getElementById('case7-result').textContent = 'Hasil urut: ' + JSON.stringify(amounts)
 }
