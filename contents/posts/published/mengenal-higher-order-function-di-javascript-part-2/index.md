@@ -179,7 +179,7 @@ Untuk penjelasan singkatnya, anggap aja `a` dan `b` itu adalah nilai yang akan d
 ---
 
 #### Penutup
-Nah, keuntungan yang kita dapat dengan menggunakan ***higher-order function*** ini kita tidak perlu lagi pusing-pusing untuk mikirin algoritmanya, kita juga tidak perlu berurusan dengan *looping* lagi ketika berurusan dengan *array*. Kita hanya butuh menaruh kondisi-kondisi yang mau kita *return*. Selebihnya, biarkan JavaScript yang bekerja 😆. Tapi walaupun seperti itu, setidaknya kita harus tahu sedikit apa yang sebenarnya terjadi di dalam prosesnya, supaya kita tahu apa yang harus kita *return*.
+Nah, keuntungan yang kita dapat dengan menggunakan ***higher-order function*** ini kita tidak perlu lagi pusing-pusing untuk mikirin algoritmanya, kita juga tidak perlu menggunakan *looping* lagi ketika berurusan dengan *array*. Kita hanya butuh menaruh kondisi-kondisi yang mau kita *return*. Selebihnya, biarkan JavaScript yang bekerja 😆. Tapi walaupun seperti itu, setidaknya kita harus tahu sedikit apa yang sebenarnya terjadi di dalam prosesnya, supaya kita tahu apa yang harus kita *return*.
 
 Contoh saja untuk sorting, sebenarnya algoritma sorting banyak, mulai dari *bubble*, *quick*, *insertion*, *selection* dsb. Aku tidak tahu algoritma sorting apa yang digunakan pada `sort()` ini. Aku juga tidak menjamin dengan menggunakan ***higher-order function*** ini kita mendapatkan *best performance*, tapi yang kita lihat disini bukan tingkat performanya, melainkan tingkat praktisnya atau biasa disebut *best practice*. Bisa dilihat, kode yang kita tulis dari awal sampai akhir tadi tidak ada yang panjang dan bertele-tele, semuanya singkat serta mudah dibaca dan dijelaskan.
 
