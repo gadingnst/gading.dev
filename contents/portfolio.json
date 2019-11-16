@@ -1,5 +1,23 @@
 [
   {
+    "name": "MeChat",
+    "category": "Bootcamp Project",
+    "description": "MeChat is Meet & Chat Mobile Application built with React Native integrated with Firebase, Google Map API and Netlify functions.",
+    "github": "https://github.com/sutanlab/mechat",
+    "website": "https://sutanlab.js.org/redirect/mechat-apk",
+    "image": "/media/portfolio/mechat.png",
+    "stacks": ["javascript", "react native", "firebase", "one signal"]
+  },
+  {
+    "name": "Point of Sales",
+    "category": "Bootcamp Project",
+    "description": "Point of sales is a cashier application that simplifies the checkout process. Also has a order history feature and income statistics.",
+    "github": "https://github.com/sutanlab/point-of-sales-frontend",
+    "website": "https://sutanlab.js.org/redirect/pos-web",
+    "image": "/media/portfolio/pos-web.png",
+    "stacks": ["javascript", "node", "express", "react", "mysql"]
+  },
+  {
     "name": "Expus",
     "category": "Final Term Project",
     "description": "Library Application for my final terms project based on barcode and qr code with PWA and push notification technology.",
@@ -69,7 +87,7 @@
     "github": "https://github.com/sutanlab/chat-socket",
     "website": "https://sutanlab-chat-socket.herokuapp.com",
     "image": "/media/portfolio/chat-socket.png",
-    "stacks": ["javascript", "node", "express", "socketio", "gravatar-api"]
+    "stacks": ["javascript", "node", "express", "socketio", "gravatar api"]
   },
   {
     "name": "Jekyll Starter Blog",
@@ -87,7 +105,7 @@
     "github": "https://github.com/ituslab/it-health",
     "website": "https://ituslab.github.io/it-health",
     "image": "/media/portfolio/it-health.png",
-    "stacks": ["javascript", "jquery", "google-map-api"]
+    "stacks": ["javascript", "jquery", "google map api"]
   },
   {
     "name": "It Muslim",
@@ -105,7 +123,7 @@
     "github": null,
     "website": null,
     "image": "/media/portfolio/matuku.png",
-    "stacks": ["php", "laravel", "mysql", "whatsapp-api", "twillio"]
+    "stacks": ["php", "laravel", "mysql", "whatsapp api", "twillio"]
   },
   {
     "name": "Moba La-Tansa",

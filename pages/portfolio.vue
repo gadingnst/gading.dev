@@ -25,7 +25,7 @@
               <div v-for="(item, i) in portfolio" :key="i" class="col-lg-4 col-md-6 my-3">
                 <Card class="border-0 h-100" hover shadow body-classes="pt-0 px-0" footer-classes="pt-0">
                   <img
-                    style="width: 100%; height: 200px; object-fit: cover"
+                    style="width: 100%; height: 200px; object-fit: contain"
                     class="card-pic card-img-top"
                     :data-src="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`"
                     :alt="item.name"
