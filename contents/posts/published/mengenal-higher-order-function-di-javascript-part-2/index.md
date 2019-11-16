@@ -19,7 +19,7 @@ Sesuai janji, seri **higher-order function** di JavaScript bakal ada kelanjutann
 ---
 
 #### Array.find()
-Method `find()` ini berfungsi untuk mencari sebuah nilai dalam suatu *array*. Nah disini ada perbedaan antara `find()` dan `filter()`. Jika kita sebelumnya menggunakan ***filter***, program akan melakukan proses pengulangan dan pencarian sampai *index* *array* yang terakhir. Jadi, ***filter*** ini akan mengumpulkan nilai-nilai yang didapat menjadi sebuah *array* baru. Sedangkan kalau kita menggunakan ***find***, artinya proses pengulangan dan pencarian akan stop ketika program sudah mendapatkan satu nilai saja. Masih bingung? intinya jika kalian familiar dengan SQL, anggap saja ketika kita menggunakan method ***find*** , kita menambahkan query `LIMIT 1`, nah kalau ***filter*** berarti tanpa limit.
+Method `find()` ini berfungsi untuk mencari sebuah nilai dalam suatu *array*. Nah disini ada perbedaan antara `find()` dan `filter()`. Jika kita sebelumnya menggunakan ***filter***, program akan melakukan proses pencarian sampai *index array* yang terakhir. Jadi, ***filter*** ini akan mengumpulkan nilai-nilai yang didapat menjadi sebuah *array* baru. Sedangkan kalau kita menggunakan ***find***, artinya proses pencarian akan stop ketika program sudah mendapatkan satu nilai saja. Masih bingung? intinya jika kalian familiar dengan SQL, anggap saja ketika kita menggunakan method ***find*** , kita menambahkan query `LIMIT 1`, nah kalau ***filter*** berarti tanpa limit.
 
 Untuk penggunaan `find()` sebenarnya sama persis seperti `filter()`, parameternya adalah sebuah fungsi *callback* yang memiliki argumen *value* dan *index*. Untuk melihat perbedaan ***find*** dan ***filter*** mari kita coba kasus berikut:
 
