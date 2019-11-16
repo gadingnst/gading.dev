@@ -185,6 +185,6 @@ Contohnya saja untuk sorting, sebenarnya algoritma sorting banyak, mulai dari *b
 
 ---
 
-JavaScript itu termasuk salah satu bahasa pemrograman tingkat tinggi yang menganut paham ***functional (simple, practical and cool)***, beda dengan kakaknya Java yang menganut paham ***object oriented (strict, strong and tough)***. <del>Eh btw, JavaScript dan Java gada hubungan kalee hahaha</del>. Dan sebagai anak *functional*, kita harus paham dan menguasai ***higher-order function*** dong, percuma ngaku anak *functional* tapi ketika berurusan dengan *array* aja masih pake *looping*, oops hahaha 😆😆.
+JavaScript itu termasuk salah satu bahasa pemrograman tingkat tinggi yang menganut paham ***functional (simple, practical and cool)***, beda dengan kakaknya Java yang menganut paham ***object oriented (strict, strong and tough)***. <del>Eh btw, JavaScript dan Java gada hubungan kalee hahaha</del>. Dan sebagai anak *functional*, kita harus paham dan menguasai ***higher-order function*** dong, percuma ngaku anak *functional* tapi ketika berurusan dengan *array* aja masih pake *looping*, hahaha 😆😆.
 
 Oke sip, udah mungkin sampai sini aja. Semoga apa yang aku tulis disini bisa bermanfaat buat temen-temen yang membaca. Sekian dariku, sampai jumpa lagi. Jangan lupa share ya 😊
