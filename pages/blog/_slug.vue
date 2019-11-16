@@ -3,7 +3,7 @@
     <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
     <Banner height="480px" :image="meta.image">
-      <div class="text-center">
+      <div id="banner-content" class="text-center">
         <h4 id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">
           <b style="border-bottom: 2px solid white">{{ meta.title }}</b>
         </h4>
@@ -155,11 +155,13 @@ export default {
   font-size: 0.9rem;
   font-weight: 500;
 }
+
 @media (min-width: 768px) {
   #content-title {
     font-size: 2rem;
-    margin: auto;
-    max-width: 80%;
+  }
+  #banner-content {
+    width: 85%;
   }
   #content-description {
     margin: auto;

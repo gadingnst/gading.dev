@@ -5,7 +5,7 @@ date: 2019-08-19
 description: 'Mengenal higher-order function di JavaScript, seperti: map(), filter() dan reduce()'
 tags: ['javascript', 'coding', 'higherorderfunction']
 category: 'Engineering'
-keywords: 'higher-order function, fungsi, javascript, array, tutorial'
+keywords: 'higher-order function, fungsi, javascript, array, map, filter, reduce, tutorial'
 image: '/assets/img/collections/desks/desk7.jpg'
 caption: 'Mengenal higher-order function di JavaScript, seperti: map(), filter() dan reduce()'
 css_source: []
@@ -103,7 +103,7 @@ Berikut hasilnya:
 
 ### Array.reduce()
 
-`Array.reduce()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi untuk menjalankan fungsi *callback* pada setiap anggota dari *array* yang dipanggil dengan menghasilkan *single output*. Metode `reduce()` menerima 2 parameter, yaitu fungsi *callback* dan *initialValue* (opsional). Sedangkan fungsi *callback*-nya menerima 4 parameter, yaitu: *accumulator*, *currentValue*, *currentIndex* (opsional), *sourceArray* (opsional).
+`Array.reduce()` adalah salah satu metode dari *higher-order function* bawaan yang berfungsi untuk menjalankan fungsi *callback* pada setiap anggota dari *array* yang dipanggil dengan menghasilkan *single output*. Metode `reduce()` menerima 2 parameter, yaitu fungsi *callback* dan *initialValue* (*opsional but recommended*). Sedangkan fungsi *callback*-nya menghasilkan 4 argumen, yaitu: *accumulator*, *currentValue*, *currentIndex* (opsional), *sourceArray* (opsional).
 
 Jika tidak ada *initialValue* yang disediakan, maka *accumulator* akan sama dengan elemen pertama dalam *array* dan *currentValue* akan sama dengan elemen kedua dalam *array*.
 
@@ -151,7 +151,7 @@ Berikut hasilnya:
 <button onclick="withReduce()">Click here!</button>
 
 ### Terus, apa keunggulannya ?
-Mungkin kamu akan bertanya - tanya apa keunggulan menggunakan *higher-order function* daripada *for-loop* tradisional seperti biasanya. Ya, dengan menggunakan *higher-order function*, kita dapat melakukan *chaining*. *Chaining* sendiri adalah sebuah teknik pemrograman yang menggunakan return dari satu fungsi sebagai argument untuk fungsi seterusnya. Belum jelas ? mari kita lihat contohnya. Anggaplah kita mempunyai data seperti ini.
+Mungkin kamu akan bertanya - tanya apa keunggulan menggunakan *higher-order function* daripada *for-loop* tradisional seperti biasanya. Ya, dengan menggunakan *higher-order function*, kita dapat melakukan *chaining*. *Chaining* sendiri adalah sebuah teknik pemrograman yang menggunakan *return* dari satu fungsi sebagai argumen untuk fungsi seterusnya. Belum jelas ? mari kita lihat contohnya. Anggaplah kita mempunyai data seperti ini.
 
 ```js
 const siswa = [
@@ -206,7 +206,7 @@ Hasilnya bisa dilihat disini:
 <p style="white-space: pre" id="siswa">...</p>
 <p id="ratanilai">...</p>
 
-Bagaimana ? simple dan singkat kan ? Mungkin akan lebih panjang dan bertele-tele jika kita menyelesaikan masalah di atas dengan menggunakan *for-loop* tradisional seperti biasanya. Jadi, *higher-ordere function* disini hadir untuk memudahkan dan mempersingkat penyelesaian masalah yang ada.
+Bagaimana ? simple dan singkat kan ? Mungkin akan lebih panjang dan bertele-tele jika kita menyelesaikan masalah di atas dengan menggunakan *for-loop* tradisional seperti biasanya. Jadi, *higher-order function* disini hadir untuk memudahkan dan mempersingkat penyelesaian masalah yang ada.
 
 ### Kesimpulan
-Sampai disini kita telah mengenal apa itu *higher-order function*. Singkatnya, *higher-order function* adalah fungsi yang dapat menerima fungsi sebagai argumen dan bahkan dapat mengembalikan nilai dari fungsi. *Higher-Order function* sama seperti fungsi biasa dengan kemampuan tambahan untuk menerima dan mengembalikan fungsi lainnya dengan argumen dan output yang ditentukan. Sebenarnya masih ada lagi *Higher-Order function* bawaan yang ada pada bahasa pemrograman JavaScript, seperti: `find()`, `sort()` dan lainnya. Dan bahkan kita dapat membuat *higher-order function* sendiri loh! Hmm, mungkin lain kali kita akan bahas lagi. Jangan lupa share ya 😄
+Sampai disini kita telah mengenal apa itu *higher-order function*. Singkatnya, *higher-order function* adalah fungsi yang dapat menerima parameter fungsi sebagai argumen dan bahkan dapat mengembalikan nilai dari fungsi. *Higher-Order function* sama seperti fungsi biasa dengan kemampuan tambahan untuk menerima dan mengembalikan fungsi lainnya dengan argumen dan output yang ditentukan. Sebenarnya masih ada lagi *Higher-Order function* bawaan yang ada pada bahasa pemrograman JavaScript, seperti: `find()`, `sort()` dan lainnya. Dan bahkan kita dapat membuat *higher-order function* sendiri loh! Hmm, mungkin lain kali kita akan bahas lagi. Jangan lupa share ya 😄
