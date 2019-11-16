@@ -1,7 +1,7 @@
 ---
 title: 'Mengenal higher-order function di JavaScript part 2'
 slug: 'mengenal-higher-order-function-di-javascript-part-2'
-date: 2019-11-15
+date: 2019-11-16
 description: 'Menggunakan higher-order function di JavaScript dapat mempersingkat kode serta mengubah cara berfikir dan gaya pemrograman kita.'
 tags: ['javascript', 'coding', 'higherorderfunction']
 category: 'Engineering'
