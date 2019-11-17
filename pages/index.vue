@@ -28,7 +28,7 @@
                     tag="a"
                     target="_blank"
                     rel="noreferrer"
-                    href="/media/my-resume.pdf"
+                    href="/media/resume-sutan-gading-fadhillah-nasution.pdf"
                     type="info"
                     size="sm"
                     class="mr-4"
