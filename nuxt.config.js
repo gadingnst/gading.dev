@@ -48,8 +48,9 @@ export default {
     AUTHOR: settings.author,
     PRODUCTION_URL: settings.productionUrl,
     BLOG_PAGINATION_LIMIT: settings.blogPaginationLimit,
-
-    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID
+    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
+    GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID,
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID
   },
 
   server: {
@@ -210,7 +211,14 @@ export default {
     '@nuxtjs/sitemap',
     [
       '@nuxtjs/google-analytics',
-      { id: 'UA-135036153-1' }
+      { id: process.env.GOOGLE_ANALYTICS_ID }
+    ],
+    [
+      '@nuxtjs/google-adsense',
+      {
+        id: process.env.GOOGLE_ADSENSE_ID,
+        pageLevelAds: true
+      }
     ]
   ],
 
