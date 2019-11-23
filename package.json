@@ -45,7 +45,7 @@
     "markdown-it-attrs": "3.0.1",
     "markdown-it-plugin-data-src": "1.0.0",
     "node-sass": "4.13.0",
-    "nodemon": "1.19.4",
+    "nodemon": "2.0.1",
     "nouislider": "14.0.3",
     "nuxt": "2.10.2",
     "reading-time": "1.2.0",
