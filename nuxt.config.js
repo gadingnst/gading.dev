@@ -125,8 +125,7 @@ export default {
               feed.addItem({
                 title: content.title,
                 link: `${settings.productionUrl}/blog/${content.slug}`,
-                description: content.description,
-                content: content.html
+                description: content.description
               })
             })
         )))
