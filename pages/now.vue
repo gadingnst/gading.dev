@@ -23,8 +23,8 @@
                 <a href="https://108kb.io/blog/now/">Fariz Rizaldy</a>,
                 <a href="https://afrijaldzuhri.wordpress.com/now/">Afrijal Dzuhri</a> and
                 <a href="https://www.wahudamon.com/pages/now">Afwa Bagas Wahuda</a>.
-                &nbsp;Because all of them, i was inspired to create this page for describing about <b><i>what i'm doing right now</i></b>.
-                &nbsp;So, maybe you don't need to ask me frequently about that.
+                Because all of them, i was inspired to create this page for describing about <b><i>what i'm doing right now</i></b>.
+                So, maybe you don't need to ask me frequently about that.
               </p>
               <p>
                 If you have your own site, maybe you should to make one, too.
