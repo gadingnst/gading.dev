@@ -24,7 +24,7 @@
     "@nuxtjs/onesignal": "3.0.0-beta.16",
     "@nuxtjs/pwa": "3.0.0-beta.19",
     "@nuxtjs/sitemap": "2.0.1",
-    "@vue/test-utils": "1.0.0-beta.29",
+    "@vue/test-utils": "1.0.0-beta.30",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
     "babel-jest": "24.9.0",
