@@ -19,9 +19,9 @@ export default {
     this.$options.staticRenderFns = new Function(this.staticRenderFn)()
   },
   mounted() {
-    for (const element of document.querySelectorAll('pre code')) {
+    document.querySelectorAll('pre code').forEach(element => {
       Highlight.highlightBlock(element)
-    }
+    })
   },
   render() {
     return this.templateRender

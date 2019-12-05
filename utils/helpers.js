@@ -1,8 +1,10 @@
 import readingTime from 'reading-time'
 
-export const wrapText = (text, max) => (
+export const wrapText = (text, max) =>
   text.length > max ? `${text.slice(0, max).trim()} ...` : text
-)
+
+export const range = (start, end) =>
+  start === end ? [start] : [start, ...range(start + 1, end)]
 
 export function formatPostDate(date) {
   if (typeof Date.prototype.toLocaleDateString !== 'function') return date

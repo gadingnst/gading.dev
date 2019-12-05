@@ -29,39 +29,46 @@
               <p>
                 If you have your own site, maybe you should to make one, too.
               </p>
-              <h2 class="mt-5">
-                Living place
-              </h2>
-              <p>
-                Palembang, South Sumatera. Indonesia
-              </p>
+
               <h2 class="mt-5">
                 Careers
               </h2>
               <p>
-                <b><i>Unemployed.</i></b>
+                <b>Working as a Frontend Engineer at <i>Orami Indonesia</i>.</b>
               </p>
+
               <h2 class="mt-5">
                 Activities
               </h2>
               <ul>
-                <li>Looking for decisive job opportunity.</li>
-                <li>Working on several projects to make some money.</li>
-                <li>Learning some stuff from the internet.</li>
+                <li>Learning and research some technology stuff from the internet.</li>
                 <li>Coding, reading and blogging for fun.</li>
-                <li>Making quality time for my family, girlfriend and friends every weekend.</li>
+                <li>Making quality time for my family and girlfriend every weekend. (Umm, from phone maybe ?).</li>
               </ul>
+
               <h2 class="mt-5">
                 My Stacks
               </h2>
               <ul>
-                <li><i>Vue</i> or <i>Nuxt</i> with <i>PWA</i> technology for frontend stuff.</li>
-                <li><i>Node</i> with <i>Express</i> framework for backend services.</li>
-                <li>Sometimes using <i>PHP</i> with <i>Laravel</i> framework as backend services.</li>
-                <li><i>React</i>, but still learning about its hooks and ecosystem.</li>
+                <li>React, Vue or other JavaScript framework for frontend stuff.</li>
+                <li>REST or GraphQL for API usage.</li>
+                <li>Node with Express for backend services.</li>
+                <li>Sometimes using PHP with Laravel or Codeigniter as backend services.</li>
               </ul>
+
+              <h2 class="mt-5">
+                Software that i use
+              </h2>
+              <ul>
+                <li>OS: Arch-based Linux</li>
+                <li>Code Editor: Visual Studio Code</li>
+                <li>Database GUI: DBEaver, PhpMyAdmin and Robo 3T</li>
+                <li>Browsers: Google Chrome and Firefox</li>
+                <li>Others: GIT Kraken, Spotify, XDMan & Advanced REST Client</li>
+              </ul>
+
               <p class="mt-5">
-                <i>Last updated at: September 8, 2019 19:26 from Sekip Ujung, Palembang. Indonesia</i>.
+                <i>Last updated at: December 5, 2019 from Tebet, South Jakarta. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
@@ -87,7 +94,7 @@ export default {
   head: () => ({
     title: `Now | ${process.env.AUTHOR}`,
     meta: metaGenerator('article', {
-      title: `Now Page`,
+      title: 'Now Page',
       description: `What am i doing right now ? - ${process.env.AUTHOR}`,
       keywords: 'now',
       image: '/icon.png',

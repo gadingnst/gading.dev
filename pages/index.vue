@@ -80,17 +80,16 @@
             </div>
             <div class="text-center mt-5">
               <h3>
-                Sutan Nasution.,
-                <span class="font-weight-light">&nbsp;20</span>
+                Sutan Gading Fadhillah Nasution
               </h3>
               <div class="h6 font-weight-300">
-                Palembang, Indonesia
+                BSD City, Indonesia
               </div>
               <div class="h6 mt-4">
-                Software Engineer
+                Software Engineer, Frontend
               </div>
               <div>
-                State of Polytechnic Sriwijaya
+                Orami Indonesia
               </div>
             </div>
             <div class="mt-5 py-4 border-top text-center">
@@ -103,10 +102,10 @@
                     <client-only>
                       <md-quote-icon w="14px" h="14px" />
                     </client-only>
-                    My name is Sutan Gading Fadhillah Nasution. My age is approaching 20 years. Now, i'm lives in Palembang, Indonesia. I still lives with my parents and currently studying at the State of Polytechnic Sriwijaya.
-                  </p>
-                  <p>
-                    I am very interested in Programming, especially in building a website applications. Actually, I'm not very experienced in programming, but I will continue to learn and aspiring to become a Professional Developer.
+                    Software Engineer who specialized in frontend side, but have
+                    an ability to code in backend side too. Very passionate about
+                    modern mobile and web technology using JavaScript while taking into
+                    consideration the latest trends and techniques.
                   </p>
                 </div>
               </div>
@@ -179,7 +178,7 @@ export default {
   head: () => ({
     title: `${process.env.AUTHOR}`,
     meta: metaGenerator('portfolio', {
-      title: `Personal Homepage`,
+      title: 'Personal Homepage',
       description: `A Man who turns a cup of coffee into beautiful codes. - ${process.env.AUTHOR}`,
       keywords: 'homepage, portfolio',
       image: '/icon.png',

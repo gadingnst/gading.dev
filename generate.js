@@ -17,7 +17,7 @@ const generatePostList = async () => {
     [res]: (await fs.lstat(path.resolve(publishedPath, res))).isDirectory()
   })))
 
-  result = result.filter(res => res[Object.keys(res)[0]] === true)
+  result = result.filter(res => res[Object.keys(res)[0]])
 
   result = await Promise.all(result.map(res => {
     const name = Object.keys(res)[0]

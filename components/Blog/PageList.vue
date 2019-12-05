@@ -152,7 +152,7 @@ export default {
   methods: {
     onPageChange(val) {
       if (val === 1) {
-        this.$router.push(`/blog`)
+        this.$router.push('/blog')
       } else {
         this.$router.push(`/blog/page/${val}`)
       }
