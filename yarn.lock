@@ -4309,7 +4309,14 @@ eslint-plugin-unicorn@^13.0.0:
     safe-regex "^2.1.1"
     semver "^6.3.0"
 
-eslint-plugin-vue@6.0.1, eslint-plugin-vue@^6.0.0, eslint-plugin-vue@^6.0.1:
+eslint-plugin-vue@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-6.1.1.tgz#183c4c8b54880e81b585d2f3dd5c183598e73664"
+  integrity sha512-WsJcndi3iOtKF+Wkrw7mWiKT3GdGYUM8onbWYX7sBgggiFKoxHyx8VciA5letkx6iKzoW4B7XrBeVdTukmrtpg==
+  dependencies:
+    vue-eslint-parser "^7.0.0"
+
+eslint-plugin-vue@^6.0.0, eslint-plugin-vue@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-6.0.1.tgz#166d3eb24cf290f3ff24d44fe9fca496f3924fc2"
   integrity sha512-5tgFPcxGDKjfVB/6Yi56bKiWxygUibfZmzSh26Np3kuwAk/lfaGbVld+Yt+MPgD84ppvcachtiL4/winsXLjXA==
