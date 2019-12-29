@@ -141,10 +141,15 @@ blockquote {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
   font-weight: 800;
   margin-bottom: 10px;
   line-height: 1.4;
+}
+
+h6 {
+  margin-bottom: 10px;
+
 }
 
 p, li {
@@ -182,10 +187,6 @@ h4 {
 
 h5 {
   font-size: 1.2rem;
-}
-
-h6 {
-  font-size: 1.1rem;
 }
 
 ul, ol {

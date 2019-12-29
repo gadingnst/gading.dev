@@ -207,7 +207,7 @@ export default {
     maxChunkSize: 100000,
     extractCSS: true,
 
-    optimization: {
+    optimization: process.env.NODE_ENV === 'development' ? {} : {
       minimize: true,
       splitChunks: {
         chunks: 'all',
