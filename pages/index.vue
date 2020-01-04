@@ -2,12 +2,16 @@
   <div class="profile-page">
     <Banner>
       <div class="text-center">
-        <h1 class="text-white text-smooth text-shadow">
-          <b>Sutan Nasution.</b>
-        </h1>
-        <h5 class="text-white text-smooth text-shadow">
-          A Man who turns a cup of coffee into beautiful codes.”
-        </h5>
+        <SlideLeft :duration="1500" :delay="200">
+          <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            <b>Sutan Nasution.</b>
+          </h1>
+        </SlideLeft>
+        <SlideRight :duration="1500" :delay="200">
+          <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            A Man who turns a cup of coffee into beautiful codes.”
+          </h5>
+        </SlideRight>
       </div>
     </Banner>
     <section class="section section-skew">
@@ -133,6 +137,7 @@
 </template>
 
 <script>
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
 import MdBriefcaseIcon from 'vue-ionicons/dist/md-briefcase.vue'
 import MdHelpCircleOutlineIcon from 'vue-ionicons/dist/md-help-circle-outline.vue'
 import MdMailIcon from 'vue-ionicons/dist/md-mail.vue'
@@ -140,10 +145,13 @@ import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
+import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
 
 export default {
   components: {
+    SlideLeft,
+    SlideRight,
     Banner,
     Card,
     Button,
@@ -152,6 +160,7 @@ export default {
     MdHelpCircleOutlineIcon,
     MdBriefcaseIcon
   },
+  mixins: [MountedAnimation],
   data: () => ({
     github: {
       ready: false,

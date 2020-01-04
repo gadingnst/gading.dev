@@ -4,21 +4,27 @@
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
     <Banner height="480px" :image="meta.image">
       <div id="banner-content" class="text-center">
-        <h4 id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">
-          <b style="border-bottom: 2px solid white">{{ meta.title }}</b>
-        </h4>
-        <h5 id="content-description" class="text-white text-smooth text-shadow">
-          {{ meta.description }}”
-        </h5>
-        <div id="content-meta" class="px-2 mt-4 text-shadow">
-          <span>
-            {{ formatPostDate(meta.date) }}
-          </span>
-          &nbsp;•&nbsp;
-          <span>
-            {{ meta.readingtime }}
-          </span>
-        </div>
+        <SlideUp :duration="1500" :delay="200">
+          <h4 v-if="isShow" id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">
+            <b style="border-bottom: 2px solid white">{{ meta.title }}</b>
+          </h4>
+        </SlideUp>
+        <SlideDown :duration="1500" :delay="200">
+          <h5 v-if="isShow" id="content-description" class="text-white text-smooth text-shadow">
+            {{ meta.description }}”
+          </h5>
+        </SlideDown>
+        <FadeIn :duration="1500" :delay="500">
+          <div v-if="isShow" id="content-meta" class="px-2 mt-4 text-shadow">
+            <span>
+              {{ formatPostDate(meta.date) }}
+            </span>
+            &nbsp;•&nbsp;
+            <span>
+              {{ meta.readingtime }}
+            </span>
+          </div>
+        </FadeIn>
       </div>
     </Banner>
     <section
@@ -72,6 +78,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import {
+  FadeTransition as FadeIn,
+  SlideYUpTransition as SlideUp,
+  SlideYDownTransition as SlideDown
+} from 'vue2-transitions'
+import MountedAnimation from '~/mixins/mounted-animation'
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
@@ -81,8 +94,16 @@ import Disqus from '~/components/Blog/Disqus'
 
 export default {
   components: {
-    Card, Button, Banner, ContentParser, Disqus
+    FadeIn,
+    SlideUp,
+    SlideDown,
+    Card,
+    Button,
+    Banner,
+    ContentParser,
+    Disqus
   },
+  mixins: [MountedAnimation],
   asyncData: async ({ params }) => {
     const content = await import(`~/contents/posts/published/${params.slug}/index.md`)
     return {
@@ -103,6 +124,11 @@ export default {
       author: process.env.AUTHOR
     }
   }),
+  computed: {
+    ...mapGetters({
+      isShow: 'router/onMountedShow'
+    })
+  },
   mounted() {
     this.$data.socialShares = [
       {

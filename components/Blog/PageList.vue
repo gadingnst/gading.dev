@@ -2,12 +2,16 @@
   <div>
     <Banner image="/assets/img/collections/desks/desk4.jpg">
       <div class="text-center">
-        <h1 class="text-white text-smooth text-shadow">
-          <b>Blog</b>
-        </h1>
-        <h5 class="text-white text-smooth text-shadow">
-          Coding, work, life and whatever i want.”
-        </h5>
+        <SlideRight :duration="1500" :delay="200">
+          <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            <b>Blog</b>
+          </h1>
+        </SlideRight>
+        <SlideLeft :duration="1500" :delay="200">
+          <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            Coding, work, life and whatever i want.”
+          </h5>
+        </SlideLeft>
       </div>
     </Banner>
     <section id="content-section" class="section section-lg py-3">
@@ -108,6 +112,8 @@
 </template>
 
 <script>
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
+import MountedAnimation from '~/mixins/mounted-animation'
 import { wrapText, formatPostDate, metaGenerator } from '~/utils/helpers'
 import Input from '~/components/Argon/Input'
 import Pagination from '~/components/Argon/Pagination'
@@ -118,8 +124,16 @@ import Banner from '~/components/Base/Banner'
 
 export default {
   components: {
-    Card, Badge, Button, Banner, Pagination, Input
+    SlideLeft,
+    SlideRight,
+    Card,
+    Badge,
+    Button,
+    Banner,
+    Pagination,
+    Input
   },
+  mixins: [MountedAnimation],
   props: {
     contents: {
       type: Array,

@@ -2,12 +2,16 @@
   <div>
     <Banner image="/assets/img/collections/desks/desk5.jpg">
       <div class="text-center">
-        <h1 class="text-white text-smooth text-shadow">
-          <b>Portfolio</b>
-        </h1>
-        <h5 class="text-white text-smooth text-shadow">
-          Projects, experiments and some stuff i've made.”
-        </h5>
+        <SlideLeft :duration="1500" :delay="200">
+          <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            <b>Portfolio</b>
+          </h1>
+        </SlideLeft>
+        <SlideRight :duration="1500" :delay="200">
+          <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            Projects, experiments and some stuff i've made.”
+          </h5>
+        </SlideRight>
       </div>
     </Banner>
     <section id="content-section" class="section section-lg py-3">
@@ -88,7 +92,9 @@
 </template>
 
 <script>
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
 import MdGlobeIcon from 'vue-ionicons/dist/md-globe.vue'
+import MountedAnimation from '~/mixins/mounted-animation'
 import { wrapText, metaGenerator } from '~/utils/helpers'
 import Card from '~/components/Argon/Card'
 import Badge from '~/components/Argon/Badge'
@@ -97,8 +103,15 @@ import Button from '~/components/Argon/Button'
 
 export default {
   components: {
-    Card, Badge, Banner, Button, MdGlobeIcon
+    SlideRight,
+    SlideLeft,
+    Card,
+    Badge,
+    Banner,
+    Button,
+    MdGlobeIcon
   },
+  mixins: [MountedAnimation],
   asyncData: () => (
     import('~/contents/portfolio')
       .then(({ default: portfolio }) => ({

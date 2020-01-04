@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <FadeTransition :duration="800">
+    <FadeTransition :duration="1000">
       <Nuxt />
     </FadeTransition>
     <Footer />
@@ -22,6 +22,7 @@ export default {
   watch: {
     $route() {
       this.$store.commit('router/watchRoutes', this.$route.name)
+      this.$store.commit('router/toggleMountedShow', false)
     }
   },
   beforeCreate() {

@@ -2,12 +2,16 @@
   <div class="profile-page">
     <Banner height="480px" image="/assets/img/collections/desks/desk0.jpg">
       <div class="text-center">
-        <h1 class="text-white text-smooth text-shadow">
-          <b>Now</b>
-        </h1>
-        <h5 class="text-white text-smooth text-shadow">
-          What am i doing right now ?”
-        </h5>
+        <SlideRight :duration="1500" :delay="200">
+          <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            <b>Now</b>
+          </h1>
+        </SlideRight>
+        <SlideLeft :duration="1500" :delay="200">
+          <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
+            What am i doing right now ?”
+          </h5>
+        </SlideLeft>
       </div>
     </Banner>
     <section class="section section-skew">
@@ -80,17 +84,22 @@
 </template>
 
 <script>
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
 import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
 import Banner from '~/components/Base/Banner'
+import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
 
 export default {
   components: {
+    SlideLeft,
+    SlideRight,
     Banner,
     Card,
     MdQuoteIcon
   },
+  mixins: [MountedAnimation],
   head: () => ({
     title: `Now | ${process.env.AUTHOR}`,
     meta: metaGenerator('article', {
