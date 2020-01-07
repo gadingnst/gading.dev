@@ -3,6 +3,7 @@ import path from 'path'
 import fmparse from 'front-matter'
 import mdi from 'markdown-it'
 import mode from 'frontmatter-markdown-loader/mode'
+import { range } from './utils/helpers'
 import posts from './contents/posts/published'
 
 require('dotenv').config({ path: '.env' })
@@ -16,18 +17,15 @@ const settings = {
   blogPaginationLimit: 6
 }
 
-function routes() {
+const routes = () => {
   const routes = []
 
   // slug routes
-  for (const item of posts) {
-    routes.push(`/blog/${item.name}`)
-  }
+  posts.forEach(item => routes.push(`/blog/${item.name}`))
 
   // pagination routes
-  for (let i = 0; i < Math.ceil(posts.length / settings.blogPaginationLimit); i++) {
-    routes.push(`/blog/page/${i + 1}`)
-  }
+  range(0, Math.ceil(posts.length / settings.blogPaginationLimit))
+    .forEach(num => routes.push(`/blog/page/${num + 1}`))
 
   return routes
 }

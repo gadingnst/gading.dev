@@ -6,6 +6,9 @@ export const wrapText = (text, max) =>
 export const range = (start, end) =>
   start === end ? [start] : [start, ...range(start + 1, end)]
 
+export const invert = obj =>
+  Object.fromEntries(Object.entries(obj).map(data => data.reverse()))
+
 export function formatPostDate(date) {
   if (typeof Date.prototype.toLocaleDateString !== 'function') return date
   date = new Date(date)

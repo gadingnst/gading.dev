@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { formatReadingTime } from '~/utils/helpers'
+import { formatReadingTime, range, invert } from '~/utils/helpers'
 import PageList from '~/components/Blog/PageList'
 import posts from '~/contents/posts/published'
 
@@ -15,15 +15,20 @@ export default {
     PageList
   },
   asyncData: () => (
-    Promise.all(posts.map(content => (
-      import(`~/contents/posts/published/${content.name}/index.md`)
-        .then(content => ({
-          ...content.attributes,
-          readingtime: formatReadingTime(content.body)
-        }))
-    ))).then(res => ({
-      contents: res.slice(0, process.env.BLOG_PAGINATION_LIMIT),
-      total: res.length
+    Promise.all(posts
+      .filter((_, idx) => (
+        idx in invert(range(0, process.env.BLOG_PAGINATION_LIMIT - 1))
+      ))
+      .map(post => (
+        import(`~/contents/posts/published/${post.name}/index.md`)
+          .then(content => ({
+            ...content.attributes,
+            readingtime: formatReadingTime(content.body)
+          }))
+      ))
+    ).then(contents => ({
+      contents,
+      total: posts.length
     }))
   )
 }

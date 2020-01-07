@@ -104,17 +104,17 @@ export default {
     Disqus
   },
   mixins: [MountedAnimation],
-  asyncData: async ({ params }) => {
-    const content = await import(`~/contents/posts/published/${params.slug}/index.md`)
-    return {
-      meta: {
-        ...content.attributes,
-        readingtime: formatReadingTime(content.body)
-      },
-      renderFn: content.vue.render,
-      staticRenderFn: content.vue.staticRenderFns
-    }
-  },
+  asyncData: ({ params }) => (
+    import(`~/contents/posts/published/${params.slug}/index.md`)
+      .then(content => ({
+        meta: {
+          ...content.attributes,
+          readingtime: formatReadingTime(content.body)
+        },
+        renderFn: content.vue.render,
+        staticRenderFn: content.vue.staticRenderFns
+      }))
+  ),
   data: () => ({
     formatPostDate,
     twitterUsername: 'sutan_gnst',
