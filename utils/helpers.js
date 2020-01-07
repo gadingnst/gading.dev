@@ -7,7 +7,7 @@ export const range = (start, end) =>
   start === end ? [start] : [start, ...range(start + 1, end)]
 
 export const invert = obj =>
-  Object.fromEntries(Object.entries(obj).map(data => data.reverse()))
+  Object.assign({}, ...Object.entries(obj).map(([key, value]) => ({ [value]: key })))
 
 export function formatPostDate(date) {
   if (typeof Date.prototype.toLocaleDateString !== 'function') return date
