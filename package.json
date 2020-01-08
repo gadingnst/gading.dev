@@ -4,13 +4,13 @@
   "description": "A journal about Sutan Nasution",
   "author": "Sutan Nasution.",
   "private": true,
+  "pre-commit": ["score"],
   "scripts": {
     "start": "node generate.js && nuxt",
     "build": "node generate.js && nuxt generate",
     "score": "/usr/bin/lighthouse-badges -u https://sutanlab.id -o test/lh-scores",
     "test": "jest",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
     "postinstall": "[ -e .env ] || cp .env.example .env"
   },
   "dependencies": {},
@@ -48,6 +48,7 @@
     "nodemon": "2.0.2",
     "nouislider": "14.1.1",
     "nuxt": "2.10.2",
+    "pre-commit": "^1.2.2",
     "reading-time": "1.2.0",
     "sass-loader": "8.0.0",
     "vue-disqus": "3.0.5",
