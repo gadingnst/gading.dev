@@ -87,7 +87,10 @@ $youtube:       #cd201f !default;
 $slack:         #3aaf85 !default;
 $dribbble:      #ea4c89 !default;
 $github:        #222222 !default;
-$linkedin:      #0073B1 !default;
+$linkedin:      #0073b1 !default;
+$telegram:      #35ace1 !default;
+$whatsapp:      #06d755 !default;
+$tumblr:        #37455c !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((
@@ -115,7 +118,10 @@ $brand-colors: map-merge((
   "slack":        $slack,
   "dribbble":     $dribbble,
   "github":       $github,
-  "linkedin":     $linkedin
+  "linkedin":     $linkedin,
+  "telegram":     $telegram,
+  "whatsapp":     $whatsapp,
+  "tumblr":       $tumblr
 ), $brand-colors);
 
 $shape-colors: () !default;

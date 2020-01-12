@@ -57,13 +57,14 @@
             outline
             rounded
             size="lg"
-            :type="item.type"
+            style="margin: 3px"
+            :class="`btn-${item.type}`"
             :aria-label="item.label"
             :title="item.label"
             @click="share(item.link, item.label)"
           >
             <client-only>
-              <component :is="item.icon" w="26px" h="26px" />
+              <component :is="item.icon" :title="item.label" w="26px" h="26px" />
             </client-only>
           </Button>
         </div>
@@ -84,6 +85,7 @@ import {
   SlideYUpTransition as SlideUp,
   SlideYDownTransition as SlideDown
 } from 'vue2-transitions'
+import IosPaperPlaneIcon from 'vue-ionicons/dist/ios-paper-plane.vue'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
 import Button from '~/components/Argon/Button'
@@ -97,6 +99,7 @@ export default {
     FadeIn,
     SlideUp,
     SlideDown,
+    IosPaperPlaneIcon,
     Card,
     Button,
     Banner,
@@ -136,27 +139,39 @@ export default {
     this.$data.socialShares = [
       {
         icon: 'logo-facebook-icon',
-        type: 'primary',
+        type: 'facebook',
         label: 'Share on Facebook',
         link: `https://www.facebook.com/sharer/sharer.php?u=${this.postUrl}`
       },
       {
         icon: 'logo-linkedin-icon',
-        type: 'default',
+        type: 'linkedin',
         label: 'Share on Linkedin',
         link: `https://www.linkedin.com/sharing/share-offsite/?url=${this.postUrl}`
       },
       {
         icon: 'logo-twitter-icon',
-        type: 'info',
+        type: 'twitter',
         label: 'Share on Twitter',
         link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.postUrl}%20via%20%40${this.twitterUsername}&hashtags=${this.meta.tags.reduce((acc, cur) => `${acc},${cur}`)}`
       },
       {
+        icon: 'logo-tumblr-icon',
+        type: 'tumblr',
+        label: 'Share on Tumblr',
+        link: `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${this.postUrl}&title=${this.meta.title}&caption=${this.meta.caption}`
+      },
+      {
         icon: 'logo-whatsapp-icon',
-        type: 'success',
+        type: 'whatsapp',
         label: 'Share on Whatsapp',
         link: `https://${this.$store.getters.mobile.anyMobile() ? 'api' : 'web'}.whatsapp.com/send?text=%22${this.meta.caption}%22%0A%0A${this.postUrl}`
+      },
+      {
+        icon: 'ios-paper-plane-icon',
+        type: 'telegram',
+        label: 'Share on Telegram',
+        link: `https://telegram.me/share/url?url=${this.postUrl}&text=%0A%22${this.meta.caption}%22`
       }
     ]
   },
