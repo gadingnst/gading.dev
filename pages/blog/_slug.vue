@@ -127,7 +127,10 @@ export default {
   computed: {
     ...mapGetters({
       isShow: 'router/onMountedShow'
-    })
+    }),
+    postUrl() {
+      return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`)
+    }
   },
   mounted() {
     this.$data.socialShares = [
@@ -135,19 +138,25 @@ export default {
         icon: 'logo-facebook-icon',
         type: 'primary',
         label: 'Share on Facebook',
-        link: `https://www.facebook.com/sharer/sharer.php?u=${this.env.url}/blog/${this.meta.slug}`
+        link: `https://www.facebook.com/sharer/sharer.php?u=${this.postUrl}`
+      },
+      {
+        icon: 'logo-linkedin-icon',
+        type: 'default',
+        label: 'Share on Linkedin',
+        link: `https://www.linkedin.com/sharing/share-offsite/?url=${this.postUrl}`
       },
       {
         icon: 'logo-twitter-icon',
         type: 'info',
         label: 'Share on Twitter',
-        link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.env.url}/blog/${this.meta.slug}%20via%20%40${this.twitterUsername}&hashtags=${this.meta.tags.reduce((acc, cur) => `${acc},${cur}`)}`
+        link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.postUrl}%20via%20%40${this.twitterUsername}&hashtags=${this.meta.tags.reduce((acc, cur) => `${acc},${cur}`)}`
       },
       {
         icon: 'logo-whatsapp-icon',
         type: 'success',
         label: 'Share on Whatsapp',
-        link: `https://${this.$store.getters.mobile.anyMobile() ? 'api' : 'web'}.whatsapp.com/send?text=%22${this.meta.caption}%22%0A%0A${this.env.url}/blog/${this.meta.slug}`
+        link: `https://${this.$store.getters.mobile.anyMobile() ? 'api' : 'web'}.whatsapp.com/send?text=%22${this.meta.caption}%22%0A%0A${this.postUrl}`
       }
     ]
   },

@@ -17,7 +17,7 @@
 - [x] Image optimized
 - [x] Feed RSS & Sitemap
 - [x] Comment system with disqus
-- [x] Social share (FB, Twitter, WA)
+- [x] Social share (FB, Linkedin, Twitter, WA)
 - [x] Posts pagination
 - [x] Search posts
 - [ ] Sorting posts by category & tags
