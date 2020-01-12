@@ -165,7 +165,7 @@ Kalau dilihat dari hasil udah jelas sama saja, namun dari segi keringkasan kode 
 ### 4. Higher-order function
 Kita sudah membahas tentang *Higher-order function* di JavaScript pada artikel sebelumnya sebanyak 2 part. Namun yang kita bahas kemarin-kemarin itu hanya dari luarnya saja. Lalu bagaimana isi dalamnya? Mari kita praktekkan lebih lanjut disini, hehe.
 
-Namun saya ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah yang menerima fungsi  *callback* sebagai argumen atau mengembalikan nilai fungsi *callback* tsb sebagai *output*. Nah untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
+Namun saya ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi  *callback* sebagai argumen atau mengembalikan nilai fungsi *callback* tsb sebagai *output*. Nah untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
 
 ```js
 const mappedFilter = ([item, ...remaining], cbMap, cbFilter) => (
