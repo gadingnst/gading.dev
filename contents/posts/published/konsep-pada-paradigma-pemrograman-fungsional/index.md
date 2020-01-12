@@ -170,10 +170,10 @@ Namun saya ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa In
 ```js
 const mappedFilter = ([item, ...remaining], cbMap, cbFilter) => (
   typeof item === 'undefined'
-  ? []
-  : cbFilter(item)
-    ? [cbMap(item), ...mappedFilter(remaining, cbMap, cbFilter)]
-    : mappedFilter(remaining, cbMap, cbFilter)
+    ? []
+    : cbFilter(item)
+      ? [cbMap(item), ...mappedFilter(remaining, cbMap, cbFilter)]
+      : mappedFilter(remaining, cbMap, cbFilter)
 )
 
 // PENGGUNAAN
