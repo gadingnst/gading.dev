@@ -197,7 +197,7 @@ console.log(result) // output => ['Product 1', 'Product 4']
 
 Bisa dilihat kalau peran *callback* `cbFilter` pada fungsi `mappedFilter` tsb sebagai argumen operator logika sedangkan `cbMap` sebagai *output*. Nah, kedua *callback* itulah yang disebut *higher-order function*. *Callback* perannya tidak selalu menjadi *higher-order function*, karena bisa saja *callback* hanya dipanggil untuk menyelesaikan proses tanpa me-*return* sebuah argumen atau *output*. Namun *higher-order function* sudah pasti menggunakan fungsi *callback*.
 
-Jadi intinya, jika kita menggunakan *callback*, belum tentu *callback* itu adalah *higher-order function*, namun jika kita menggunakan *higher-order function* sudah dipastikan yang kita gunakan itu adalah *callback*. By the way, itu yang praktekkan menggunakan rekursif, jika ingin menggunakan iterasi tidak ada salahnya kok
+Jadi intinya, jika kita menggunakan *callback*, belum tentu *callback* itu adalah *higher-order function*, namun jika kita menggunakan *higher-order function* sudah dipastikan yang kita gunakan itu adalah *callback*. By the way, itu yang dipraktekkan diatas menggunakan rekursif, jika ingin menggunakan iterasi tidak ada salahnya kok
 
 ### 5. Currying
 Yang terakhir adalah ***Currying*** atau bisa juga disebut ***Curried Function***. Secara bahasa, *curry* artinya bumbu/kari. Jika kita istilahkan secara awam *Curried Function* adalah fungsi yang sudah ditaburi bumbu/kari.
