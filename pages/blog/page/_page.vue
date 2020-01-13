@@ -29,8 +29,8 @@ export default {
           .then(content => ({
             ...content.attributes,
             readingtime: formatReadingTime(content.body)
-          })))
-      )
+          }))
+      ))
     ).then(contents => ({
       contents,
       page: params.page,

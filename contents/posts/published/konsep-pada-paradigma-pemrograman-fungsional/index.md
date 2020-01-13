@@ -160,7 +160,9 @@ console.log(rangeWithIteration(1, 5)) // => [1, 2, 3, 4, 5]
 console.log(rangeWithRecursion(1, 5)) // => [1, 2, 3, 4, 5]
 ```
 
-Kalau dilihat dari hasil udah jelas sama saja, namun dari segi keringkasan kode jelas menggunakan cara rekursif lebih simple, elegan dan kelihatan banget ciri khas fungsionalnya.
+Di dalam fungsi `reangeWithRecursion` ada pemanggilan fungsi `rangeWithRecursion` itu sendiri, itulah yang disebut rekursif. Fungsi rekursif harus memiliki *conditional* untuk sebagai batas panggilannya, karena kalau tidak akan menyebab ***maximum callstack size exceed*** dimana fungsi tidak berhenti memanggil dirinya sendiri peristiwanya sama persis seperti *infinite looping*. Namun disini ada perbedaan antara *maximum callstack* dan *infinite looping* dimana jika *infinite looping* biasanya program akan masih berjalan namun menghasilkan bug yang lama kelamaan program akan freeze/hang sampai crash bahkan OS nya restart sendiri karena memakan memori yang berlebihan. Sedangkan *maximum callstack* langsung mengirimkan sebuah error tanpa menyebabkan freeze/hang atau bug pada program. Mungkin inilah salah satu keunggulan menggunakan fungsi *recursive* ketimbang *looping*.
+
+Kemudian kalau dilihat dari hasil udah jelas sama saja, namun dari segi keringkasan kode jelas menggunakan cara rekursif lebih simple, elegan dan kelihatan banget ciri khas fungsionalnya.
 
 ### 4. Higher-order function
 Kita sudah membahas tentang *Higher-order function* di JavaScript pada artikel sebelumnya sebanyak 2 part. Namun yang kita bahas kemarin-kemarin itu hanya dari luarnya saja. Lalu bagaimana isi dalamnya? Mari kita praktekkan lebih lanjut disini, hehe.
