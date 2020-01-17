@@ -167,7 +167,7 @@ Kemudian kalau dilihat dari hasil udah jelas sama saja, namun dari segi keringka
 ### 4. Higher-order function
 Kita sudah membahas tentang *Higher-order function* di JavaScript pada artikel sebelumnya sebanyak 2 part. Namun yang kita bahas kemarin-kemarin itu hanya dari luarnya saja. Lalu bagaimana isi dalamnya? Mari kita praktekkan lebih lanjut disini, hehe.
 
-Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi  *callback* sebagai argumen atau mengembalikan nilai fungsi *callback* tsb sebagai *output*. Nah untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
+Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi *callback* sebagai argumen ataupun *value* sebagai *output*. Nah untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
 
 ```js
 const mappedFilter = ([item, ...remaining], cbMap, cbFilter) => (
@@ -197,9 +197,13 @@ const result = mappedFilter(data,
 console.log(result) // output => ['Product 1', 'Product 4']
 ```
 
-Bisa dilihat kalau peran *callback* `cbFilter` pada fungsi `mappedFilter` tsb sebagai argumen operator logika sedangkan `cbMap` sebagai *output*. Nah, kedua *callback* itulah yang disebut *higher-order function*. *Callback* perannya tidak selalu menjadi *higher-order function*, karena bisa saja *callback* hanya dipanggil untuk menyelesaikan proses tanpa me-*return* sebuah argumen atau *output*. Namun *higher-order function* sudah pasti menggunakan fungsi *callback*.
+Bisa dilihat kalau fungsi `cbFilter` yang dipanggil di dalam fungsi `mappedFilter` tsb berperan sebagai argumen logika, sedangkan `cbMap` berperan sebagai *output value*. Nah, kedua fungsi yang menjadi parameter itulah disebut *callback*, dan fungsi `mappedFilter` itu sendiri disebut *higher-order function*. Namun *callback* sendiri perannya tidak selalu memenuhi persyaratan *higher-order function*. Karena bisa saja *callback* hanya dipanggil untuk menyelesaikan proses tanpa me-*return* sebuah argumen atau *value* sebagai *output*. Sedangkan syarat agar sebuah fungsi bisa dikatakan *higher-order function* adalah jika fungsi tersebut menerima parameter *callback* yang me-*return* sebuah argumen maupun *value* sebagai *output*.
 
-Jadi intinya, jika kita menggunakan *callback*, belum tentu *callback* itu adalah *higher-order function*, namun jika kita menggunakan *higher-order function* sudah dipastikan yang kita gunakan itu adalah *callback*. By the way, itu yang dipraktekkan diatas menggunakan rekursif, jika ingin menggunakan iterasi tidak ada salahnya kok
+---
+
+Tetapi yang perlu diketahui: *callback* adalah sebuah fungsi yang dipanggil di dalam fungsi lain. Sedangkan *higher-order function* adalah kebalikannya, sebuah fungsi yang didalamnya memanggil fungsi lain, ga peduli *callback* yang dipanggil di dalam fungsi tsb me-*return* *value* atau tidak, kebanyakan orang masih tetap menyebutnya sebagai *higher-order function*.
+
+By the way, kode yang dipraktekkan diatas menggunakan rekursif, jika ingin menggunakan iterasi tidak ada salahnya kok.
 
 ### 5. Currying
 Yang terakhir adalah ***Currying*** atau bisa juga disebut ***Curried Function***. Secara bahasa, *curry* artinya bumbu/kari. Jika kita istilahkan secara awam *Curried Function* adalah fungsi yang sudah ditaburi bumbu/kari.
