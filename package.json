@@ -38,7 +38,7 @@
     "eslint-plugin-vue": "6.1.2",
     "flatpickr": "4.6.3",
     "frontmatter-markdown-loader": "2.3.0",
-    "highlight.js": "9.17.1",
+    "highlight.js": "9.18.0",
     "jest": "24.9.0",
     "markdown-it": "10.0.0",
     "markdown-it-attrs": "3.0.1",
