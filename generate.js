@@ -1,16 +1,11 @@
-const fs = require('fs').promises
-const path = require('path')
-const fmparse = require('front-matter')
-const readingTime = require('reading-time')
+import fileSystem from 'fs'
+import path from 'path'
+import fmparse from 'front-matter'
+import { formatReadingTime } from './utils/helpers'
 
-const formatReadingTime = contents => {
-  const { minutes, text } = readingTime(contents)
-  const cups = Math.round(minutes / 5)
-  return `${new Array(cups || 1).fill('☕️').join('')} ${text}`
-}
+const fs = fileSystem.promises
 
 const generatePostList = async () => {
-  console.log('Generating published post lists ...')
   console.time('Done generate published post lists')
 
   try {
