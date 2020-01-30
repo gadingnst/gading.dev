@@ -1,11 +1,11 @@
 ---
 title: 'Konsep dan teknik yang harus diketahui pada paradigma pemrograman fungsional'
 slug: 'konsep-pada-paradigma-pemrograman-fungsional'
-date: 2019-12-05
+date: 2020-01-18
 description: 'Tidak hanya OOP, paradigma fungsional juga memiliki konsep dan aturan penggunaan yang menarik, apa saja itu ?'
-tags: ['functional', 'purefunction', 'recursive', 'currying', 'higherorderfunction']
+tags: ['functional', 'purefunction', 'recursive', 'currying', 'closure', 'higherorderfunction']
 category: 'Engineering'
-keywords: 'functional paradigm, paradigma fungsional, pure function, curried function, recursive function, currying, recursive, fungsi'
+keywords: 'functional paradigm, paradigma fungsional, pure function, curried function, recursive function, currying, recursive, callback, closure, fungsi'
 image: '/assets/img/collections/desks/desk5.jpg'
 caption: 'Paradigma fungsional sudah muncul sejak lama, lalu meningkat penggunaannya pada akhir-akhir dekade ini, dibuktikan banyak bahasa pemrograman baru bermunculan yang menggunakan paradigma ini. Apa saja konsep-konsep yang harus dipelajari ketika ingin menggunakan paradigma fungsional ?'
 css_source: []
@@ -16,12 +16,13 @@ Pada artikel sebelumnya kita sudah membahas macam-macam *higher-order function* 
 
 ---
 
-###### Setidaknya ada 5 konsep yang *common* pada paradigma fungsional. yaitu:
-1. Transformation dan Immutability (Transformasi dan Kekekalan)
-2. Pure Function (Fungsi Murni)
-3. Recursion/Recursive Function (Fungsi Rekursif)
-4. Higher-order Function (Fungsi Tingkat Tinggi)
-5. Currying/Curried Function (Fungsi Kari)
+###### Setidaknya ada beberapa konsep yang *common* pada paradigma fungsional. yaitu:
+1. Transformation dan Immutability
+2. Pure Function
+3. Recursion/Recursive Function
+4. Callback dan Closure
+5. Higher-order Function
+6. Currying/Curried Function
 
 ### 1. Transformation dan Immutability
 Sebelum masuk ke 4 point yang memang benar-benar khusus fungsional, pertama-tama kita akan bahas dulu apa itu *transformation* dan *immutability*, karena inilah dasar dan ciri khas utama dari paradigma fungsional. Kenapa *transformation* dan *immutability* gua gabung jadi satu point? Karena konsep *transformation* ini biasanya didukung dengan konsep data *immutability* atau kekekalan data, jadi mereka berhubungan satu sama lain hehe.
@@ -164,10 +165,49 @@ Di dalam fungsi `reangeWithRecursion` ada pemanggilan fungsi `rangeWithRecursion
 
 Kemudian kalau dilihat dari hasil udah jelas sama saja, namun dari segi keringkasan kode jelas menggunakan cara rekursif lebih simple, elegan dan kelihatan banget ciri khas fungsionalnya.
 
-### 4. Higher-order function
+### 4. Callback dan Closure
+*Callback* sebenarnya adalah fungsi biasa, bedanya dengan fungsi pada umumnya adalah pada cara eksekusinya. Jika fungsi pada umumnya di eksekusi berurutan dari atas ke bawah maka *callback* di eksekusi pada point tertentu, itu sebabnya di sebut *callback*.
+
+Nah salah satu ciri khas *callback* ini adalah fungsi sebagai parameter. Di JavaScript,*callback* adalah makanan sehari-hari. Kalau kita sering bermain di JavaScript, sangat tidak mungkin jika tidak bertemu *callback*. Mari kita lihat contoh *callback* yang biasa ditemukan pada JavaScript.
+
+```js
+const btn = document.querySelector('#my-btn')
+
+const onClick = () => {
+  window.alert('How dare you touch me !?')
+}
+
+btn.addEventListener('click', onClick) // => fungsi onClick sebagai callback
+
+// atau kita bisa langsung menulis callback seperti ini (anonymous callback)
+btn.addEventListener('mouseenter', () => {
+  window.alert('Get away from me!!')
+})
+```
+
+Nah kita sudah melihat contoh *callback* lalu bagaimana dengan *closure*? Mari lihat ini:
+
+```js
+const input = document.getElementById('my-input')
+
+// Contoh Closure
+input.addEventListener('input', event => {
+  console.log(event.target.value)
+})
+```
+
+Terus, apa bedanya? Ya memang benar pada dasarnya *closure* itu adalah *callback*, namun lebih spesifik. Untuk definisi simplenya, yaitu: *Closure* adalah sebuah *callback* yang memiliki konteks variabel yang akan digunakan. Disini contohnya bisa dilihat dari variabel **event** pada *callback* tersebut.
+
+Walaupun disini gua sebutin perbedaan *callback* dan *closure*, namun kebanyakan orang juga tidak membedakannya, karena ya memang sangat minim perbedaannya haha. Jadi sebenarnya terserah kita sih mau menyebut semuanya *callback* atau *closure*.
+
+Nah, *callback* dan *closure* ini pada umumnya digunakan untuk implementasi *event listener*, *asynchronous process* dan lain sebagainya.
+
+### 5. Higher-order function
 Kita sudah membahas tentang *Higher-order function* di JavaScript pada artikel sebelumnya sebanyak 2 part. Namun yang kita bahas kemarin-kemarin itu hanya dari luarnya saja. Lalu bagaimana isi dalamnya? Mari kita praktekkan lebih lanjut disini, hehe.
 
-Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi *callback* sebagai argumen ataupun *value* sebagai *output*. Nah untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
+Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi *callback* sebagai argumen ataupun *value* sebagai *output*. Nah disini, *callback* atau *closure* kita generalisasikan sebagai *callback* aja ya, biar ga ribet haha. Ya walaupun dipoint 4 kita sudah membedakan antara *callback* dan *closure*, yang penting kita sudah tau perbedaannya apa. 
+
+Untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
 
 ```js
 const mappedFilter = ([item, ...remaining], cbMap, cbFilter) => (
@@ -201,11 +241,11 @@ Bisa dilihat kalau fungsi `cbFilter` yang dipanggil di dalam fungsi `mappedFilte
 
 ---
 
-Tetapi yang perlu diketahui: *callback* adalah sebuah fungsi yang dipanggil di dalam fungsi lain. Sedangkan *higher-order function* adalah kebalikannya, sebuah fungsi yang didalamnya memanggil fungsi lain, ga peduli *callback* yang dipanggil di dalam fungsi tsb me-*return* *value* atau tidak, kebanyakan orang masih tetap menyebutnya sebagai *higher-order function*.
+Tetapi yang perlu diketahui: *callback* adalah sebuah fungsi yang dipanggil di dalam fungsi lain. Sedangkan *higher-order function* adalah kebalikannya, sebuah fungsi yang didalamnya memanggil fungsi lain. Namun, kebanyakan orang masih tetap menyebutnya sebagai *higher-order function* walaupun *callback* yang dipanggil di dalam fungsi tsb tidak memenuhi persyaratan *higher-order function* (me-*return* *value*).
 
 By the way, kode yang dipraktekkan diatas menggunakan rekursif, jika ingin menggunakan iterasi tidak ada salahnya kok.
 
-### 5. Currying
+### 6. Currying
 Yang terakhir adalah ***Currying*** atau bisa juga disebut ***Curried Function***. Secara bahasa, *curry* artinya bumbu/kari. Jika kita istilahkan secara awam *Curried Function* adalah fungsi yang sudah ditaburi bumbu/kari.
 
 Namun secara teknis, *Currying* adalah teknik mengubah fungsi dengan *multiple* parameter/argumen menjadi pecahan banyak fungsi, tiap fungsi harus mengambil setiap parameter yang ada. Mari kita lihat contoh potongan kode ini.
