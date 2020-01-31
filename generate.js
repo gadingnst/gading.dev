@@ -1,9 +1,13 @@
-import fileSystem from 'fs'
-import path from 'path'
-import fmparse from 'front-matter'
-import { formatReadingTime } from './utils/helpers'
+/*
+  eslint-disable no-global-assign
+*/
 
-const fs = fileSystem.promises
+require = require('esm')(module)
+
+const fs = require('fs').promises
+const path = require('path')
+const fmparse = require('front-matter')
+const { formatReadingTime } = require('./utils/helpers')
 
 const generatePostList = async () => {
   console.time('Done generate published post lists')

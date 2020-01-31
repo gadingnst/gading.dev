@@ -3,11 +3,11 @@ import path from 'path'
 import fmparse from 'front-matter'
 import mdi from 'markdown-it'
 import mode from 'frontmatter-markdown-loader/mode'
+import { config } from 'dotenv'
 import { range } from './utils/helpers'
 import posts from './contents/posts/published'
 
-require('dotenv').config({ path: '.env' })
-
+config({ path: '.env' })
 const fs = fileSystem.promises
 const md = mdi({ html: true, linkify: true, typographer: true })
 

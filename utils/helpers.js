@@ -9,7 +9,7 @@ export const range = (start, end) =>
 export const invert = obj =>
   Object.assign({}, ...Object.entries(obj).map(([key, value]) => ({ [value]: key })))
 
-export function formatPostDate(date) {
+export const formatPostDate = date => {
   if (typeof Date.prototype.toLocaleDateString !== 'function') return date
   date = new Date(date)
   const args = [
@@ -19,21 +19,18 @@ export function formatPostDate(date) {
   return `📆 ${date.toLocaleDateString(...args)}`
 }
 
-export function formatReadingTime(contents) {
+export const formatReadingTime = contents => {
   const { minutes, text } = readingTime(contents)
   const cups = Math.round(minutes / 5)
   return `${new Array(cups || 1).fill('☕️').join('')} ${text}`
 }
 
-export function randomString(length = 7) {
+export const randomString = (length = 7) => {
   const possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-  let text = ''
 
-  for (let i = 0; i < length; i++) {
-    text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length))
-  }
-
-  return text
+  return range(0, length)
+    .map(() => possibleChars.charAt(Math.floor(Math.random() * possibleChars.length)))
+    .join('')
 }
 
 export const metaGenerator = (type, meta) => [
