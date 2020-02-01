@@ -68,3 +68,16 @@ fields:
     schema:
       format: markdown
   label: Keywords
+- name: image
+  type: file
+  config:
+    maxSize: 250
+  label: Image
+- name: css_source
+  type: image_gallery
+  config: {}
+  label: CSS Source
+- name: js_source
+  type: image_gallery
+  config: {}
+  label: JS Source
