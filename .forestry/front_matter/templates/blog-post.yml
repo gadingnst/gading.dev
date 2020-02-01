@@ -81,3 +81,5 @@ fields:
   type: image_gallery
   config: {}
   label: JS Source
+pages:
+- contents/posts/published/memahami-konsep-promise-di-javascript/memahami-lebih-dalam-tentang-konsep-promise-di-javascript.md
