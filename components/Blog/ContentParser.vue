@@ -1,7 +1,7 @@
 <script>
 /* eslint-disable no-new-func */
 
-import Highlight from 'highlight.js'
+import Prism from 'prismjs'
 
 export default {
   props: {
@@ -19,9 +19,7 @@ export default {
     this.$options.staticRenderFns = new Function(this.staticRenderFn)()
   },
   mounted() {
-    document.querySelectorAll('pre code').forEach(element => {
-      Highlight.highlightBlock(element)
-    })
+    Prism.highlightAll()
   },
   render() {
     return this.templateRender
@@ -42,7 +40,6 @@ code, kbd, pre, samp {
 }
 
 code {
-  font-size: 1rem;
   font-weight: 600;
   padding: 5px;
   border-radius: 5px;
@@ -56,7 +53,6 @@ pre {
     background: none;
     box-shadow: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
-    font-size: 0.725rem;
     display: block;
     overflow-x: auto;
     max-width: $content-width;
@@ -68,9 +64,6 @@ pre {
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    tab-size: 2;
-    hyphens: none;
-    border-radius: 0;
   }
 }
 

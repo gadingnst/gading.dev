@@ -162,9 +162,9 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/style/highlight.scss',
-    '~/assets/style/ionicons.scss',
-    '~/assets/style/global.scss'
+    '~/assets/style/main.scss',
+    '~/assets/style/code.scss',
+    '~/assets/style/ionicons.scss'
   ],
 
   /*
