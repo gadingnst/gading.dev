@@ -21,7 +21,7 @@
     "@nuxtjs/sitemap": "2.0.1",
     "flatpickr": "4.6.3",
     "nouislider": "14.1.1",
-    "nuxt": "2.10.2",
+    "nuxt": "2.11.0",
     "prismjs": "^1.19.0",
     "reading-time": "1.2.0",
     "vue-disqus": "3.0.5",
