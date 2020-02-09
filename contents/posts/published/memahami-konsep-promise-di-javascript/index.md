@@ -404,9 +404,9 @@ document.getElementById('try-again')
   .addEventListener('click', request(5000)) // timeout 5 detik untuk request selanjutnya.
 ```
 
-Ada lagi kasus yang menarik yang pernah gua implementasiin pake `Promise.race` ini, yaitu membuat sistem *request cancel*. Untuk kasusnya gini:
+Ada lagi kasus menarik yang pernah gua implementasiin pake `Promise.race` ini, yaitu membuat sistem *request cancel*. Untuk kasusnya gini:
 
-> Kita ingin membuat *live search* yang lansung me-*request* data ke server ketika user mengetik *keyword* di form. Namun, masalahnya adalah ketika user terus mengetik, setiap perubahan dari *keyword* yang diketik itu akan di-*request* ke server, jika user terus mengetik maka proses requestnya jadi bertambah banyak, hal ini juga membuat aplikasi menjadi berat. Jadi disini tugas kita akan membuat sistem yang akan men-*cancel* *request* sebelumnya ketika user masih mengetik dan *request* yang berjalan hanya *keyword* terakhir dari ketikan user tersebut.
+> Kita ingin membuat *live search* yang langsung me-*request* data ke server ketika user mengetik *keyword* di form. Namun, masalahnya adalah ketika user terus mengetik, setiap perubahan dari *keyword* yang diketik itu akan di-*request* ke server, jika user terus mengetik maka proses requestnya jadi bertambah banyak, hal ini juga membuat aplikasi menjadi berat. Jadi disini tugas kita akan membuat sistem yang akan men-*cancel* *request* sebelumnya ketika user masih mengetik dan *request* yang berjalan hanya *keyword* terakhir dari ketikan user tersebut.
 
 Adapun contoh implementasinya sebagai berikut:
 
@@ -518,9 +518,9 @@ So, kenapa harus ditunggu? Kalau kita seperti itu artinya kita sudah membuang wa
 
 > Jadi, ***1000ms + 400ms + 100ms + 1500ms = 3000ms (3 detik!)***
 
-Tapi, jika kita menggunakan `Promise.all`, keempat proses itu tidak saling menunggu, melainkan langsung berjalan bersamaan. Namun jika satu proses sudah selesai, maka proses tersebut menunggu proses yang lainnya selesai. Jika berdasarkan asumsi diatas, maka:
+Tapi, jika kita menggunakan `Promise.all`, keempat proses itu tidak saling menunggu, melainkan langsung berjalan secara bersamaan. Namun jika satu proses sudah selesai, maka proses tersebut menunggu proses yang lainnya selesai. Jika berdasarkan asumsi diatas, maka:
 
-> Keempat proses tersebut berjalan bersamaan, namun ***p3*** lebih dulu selesai, disusul oleh ***p2*** lalu ***p1*** kemudian terakhir ***p4***. ***Jadi waktu yang dihabiskan untuk menjalankan keempat proses tersebut adalah waktu yang paling lama dari keempat proses tersebut, yaitu: ***p4*** = 1500ms (1.5 detik!)***
+> Keempat proses tersebut berjalan secara bersamaan, namun ***p3*** lebih dulu selesai, disusul oleh ***p2*** lalu ***p1*** kemudian terakhir ***p4***. ***Jadi waktu yang dihabiskan untuk menjalankan keempat proses tersebut adalah waktu yang paling lama dari keempat proses tersebut, yaitu: ***p4*** = 1500ms (1.5 detik!)***
 
 Jika masih bingung, mari kita lihat contoh perbandingannya pada grafik ini:
 
