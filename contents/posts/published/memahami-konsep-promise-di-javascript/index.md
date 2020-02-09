@@ -364,7 +364,7 @@ Nah, kita akan bahas satu persatu dari fitur-fitur tersebut beserta studi kasusn
 [Goto Table of contents](#table-of-contents)
 
 `Promise.race` adalah salah satu fitur dari *promise* yang menghasilkan *promise* yang lebih dulu masuk dalam *state* ***fulfilled*** dari *array of promise*. Adapun ketentuannya sebagai berikut:
-1. `Promise.race` akan masuk ke *state fulfilled* jika salah satu *promise* dari *array of promise* lebih duluan masuk ke *state fulfilled* (Hasil *return*-nya menghasilkan nilai dari *promise* pertama yang *fulfilled*). Intinya kaya balapanlah, siapa yang menang dia yang diakui, *promise-promise* yang masuk ke *state fulfilled* setelahnya akan tidak dianggap.
+1. `Promise.race` akan masuk ke *state fulfilled* jika salah satu *promise* dari *array of promise* lebih duluan masuk ke *state fulfilled* (Hasil *return*-nya menghasilkan nilai dari *promise* pertama yang *fulfilled*). Intinya kaya balapanlah, siapa yang menang dia yang diakui, *promise-promise* setelahnya akan diabaikan.
 2. `Promise.race` akan *short-circuit* atau masuk kedalam state *rejected* jika ada salah satu *promise* masuk ke state *rejected* lebih dulu.
 
 Lalu, apa studi kasusnya jika ingin mengimplementasikan `Promise.race` ini? Nah gua pernah menggunakan `Promise.race` ini untuk membuat sistem ***request timeout***. Jadi untuk kasusnya seperti ini:
