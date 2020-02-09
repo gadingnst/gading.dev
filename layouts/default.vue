@@ -20,9 +20,11 @@ export default {
     Footer
   },
   watch: {
-    $route() {
+    $route(from, to) {
       this.$store.commit('router/watchRoutes', this.$route.name)
-      this.$store.commit('router/toggleMountedShow', false)
+      if (this.$route.name !== to.name) {
+        this.$store.commit('router/toggleMountedShow', false)
+      }
     }
   },
   beforeCreate() {
