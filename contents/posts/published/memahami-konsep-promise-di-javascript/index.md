@@ -50,20 +50,20 @@ Konsep *asynchronous* memang termasuk salah satu konsep fundamental, namun tidak
 
 ```js
 fs.readFile('content1.txt', 'utf-8', (err, content1) => {
-	if (err) throw err
-	fs.readFile('content2.txt', 'utf-8', (err, content2) => {
-		if (err) throw err
-		fs.readFile('content3.txt', 'utf-8', (err, content3) => {
-			if (err) throw err
-			fs.readFile('content4.txt', 'utf-8', (err, content4) => {
+  if (err) throw err
+  fs.readFile('content2.txt', 'utf-8', (err, content2) => {
+    if (err) throw err
+    fs.readFile('content3.txt', 'utf-8', (err, content3) => {
+      if (err) throw err
+      fs.readFile('content4.txt', 'utf-8', (err, content4) => {
         if (err) throw err
         fs.writeFile('result.txt', content1 + content2 + content3 + content4, err => {
           if (err) throw err
           console.log('Writing done!')
         })
       })
-		})
-	})
+    })
+  })
 })
 ```
 
