@@ -2,11 +2,11 @@
     position: relative;
 }
 
-.profile-page {
-    .card-profile {
+.content-page {
+    .card-content {
         margin-top: -150px;
 
-        .card-profile-image {
+        .card-content-image {
             position: relative;
             //min-height: 130px;
 
@@ -25,7 +25,7 @@
             }
         }
 
-        .card-profile-stats {
+        .card-content-stats {
             padding: 1rem 0;
 
             > div {
@@ -49,18 +49,18 @@
             }
         }
 
-        .card-profile-actions {
+        .card-content-actions {
             padding: .875rem;
         }
 
         @include media-breakpoint-down(xs) {
-            .card-profile-actions {
+            .card-content-actions {
                 margin-top: 110px;
-            } 
+            }
         }
 
         @include media-breakpoint-between(sm, md) {
-            .card-profile-stats {
+            .card-content-stats {
                 margin-top: 30px;
             }
         }

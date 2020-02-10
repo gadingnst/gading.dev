@@ -1,3 +1,25 @@
 body.theme-dark {
-    // TODO
+  & {
+    background-color: #0d2538;
+  }
+
+  *:not(code):not(pre):not(span) {
+    color: #fff !important;
+  }
+
+  .card, .card-content, .navbar-collapse.show {
+    background-color: #37455c;
+
+    &, .card-content-image img {
+      box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .02), 1px 1px 15px 0 rgba(0, 0, 0, .03) !important;
+    }
+
+    button.navbar-toggler > span {
+      background-color: #fff;
+    }
+  }
+
+  #banner, footer:before {
+    background-color: #0f2d44 !important;
+  }
 }
