@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="content-page">
     <Banner>
       <div class="text-center">
         <SlideLeft :duration="1500" :delay="200">
@@ -16,16 +16,16 @@
     </Banner>
     <section class="section section-skew">
       <div class="container">
-        <Card shadow class="card-profile" no-body>
+        <Card shadow class="card-content" no-body>
           <div class="px-4">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
+                <div class="card-content-image">
                   <img v-lazy="'/assets/img/collections/sutan_new.jpeg'" class="rounded-circle" alt="Sutan Nasution">
                 </div>
               </div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-                <div class="card-profile-actions py-4 mt-lg-0">
+                <div class="card-content-actions py-4 mt-lg-0">
                   <Button
                     tag="a"
                     target="_blank"
@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
-                <div class="card-profile-stats d-flex justify-content-center">
+                <div class="card-content-stats d-flex justify-content-center">
                   <div>
                     <span class="heading">
                       <span v-if="github.ready">{{ github.contributions }}</span>

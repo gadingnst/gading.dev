@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="content-page">
     <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
     <Banner height="480px" :image="meta.image">
@@ -36,7 +36,7 @@
       class="container-fluid"
     >
       <div id="content-wrap" style="margin: auto">
-        <Card shadow class="card-profile" style="margin-top: -85px" no-body>
+        <Card shadow class="card-content" style="margin-top: -85px" no-body>
           <ContentParser
             class="py-5"
             :render-fn="renderFn"

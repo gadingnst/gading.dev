@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="content-page">
     <Banner height="480px" image="/assets/img/collections/desks/desk0.jpg">
       <div class="text-center">
         <SlideRight :duration="1500" :delay="200">
@@ -16,7 +16,7 @@
     </Banner>
     <section class="section section-skew">
       <div class="container">
-        <Card shadow class="card-profile" no-body>
+        <Card shadow class="card-content" no-body>
           <div class="px-4 py-5 row justify-content-center">
             <div class="col-lg-9">
               <p>
