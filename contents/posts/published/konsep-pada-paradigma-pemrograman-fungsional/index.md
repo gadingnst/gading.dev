@@ -25,7 +25,7 @@ Pada artikel sebelumnya kita sudah membahas macam-macam *higher-order function* 
 6. Currying/Curried Function
 
 ### 1. Transformation dan Immutability
-Sebelum masuk ke 4 point yang memang benar-benar khusus fungsional, pertama-tama kita akan bahas dulu apa itu *transformation* dan *immutability*, karena inilah dasar dan ciri khas utama dari paradigma fungsional. Kenapa *transformation* dan *immutability* gua gabung jadi satu point? Karena konsep *transformation* ini biasanya didukung dengan konsep data *immutability* atau kekekalan data, jadi mereka berhubungan satu sama lain hehe.
+Sebelum masuk ke 5 point yang memang benar-benar khusus fungsional, pertama-tama kita akan bahas dulu apa itu *transformation* dan *immutability*, karena inilah dasar dan ciri khas utama dari paradigma fungsional. Kenapa *transformation* dan *immutability* gua gabung jadi satu point? Karena konsep *transformation* ini biasanya didukung dengan konsep data *immutability* atau kekekalan data, jadi mereka berhubungan satu sama lain hehe.
 
 Data yang kekal artinya data tidak akan bisa berubah nilainya setelah dibuat. Terus, untuk apa membuat setiap data menjadi immutable/kekal? Yap kita menggunakan konsep *immutability* ini untuk menghindari terjadinya peristiwa *side-effect*. Pada paradigma OOP semua data biasanya bersifat *mutable*. Karena paradigma OOP mengizinkan kita untuk melakukan mutasi data melalui sebuah *setter* pada suatu *class*. Sebagai contoh, biasanya kita ngelakuin ini di Java:
 
