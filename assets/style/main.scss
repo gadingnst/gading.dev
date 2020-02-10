@@ -1,4 +1,10 @@
 @import "argon/main";
+@import "dark";
+
+* {
+  transition: all .25s ease-in-out;
+  transition-property: box-shadow, background-color, color;
+}
 
 .text-smooth {
   font-family: 'Courgette', cursive !important;

@@ -32,6 +32,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getPosts')
+  },
+  head: {
+    bodyAttrs: {
+      class: 'theme-dark'
+    }
   }
 }
 </script>
