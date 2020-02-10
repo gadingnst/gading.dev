@@ -6,16 +6,11 @@ import mode from 'frontmatter-markdown-loader/mode'
 import { config } from 'dotenv'
 import { range } from './utils/helpers'
 import posts from './contents/posts/published'
+import settings from './settings.json'
 
 config({ path: '.env' })
 const fs = fileSystem.promises
 const md = mdi({ html: true, linkify: true, typographer: true })
-
-const settings = {
-  author: 'Sutan Nasution.',
-  productionUrl: 'https://sutanlab.id',
-  blogPaginationLimit: 6
-}
 
 const routes = () => {
   const routes = []
@@ -24,7 +19,7 @@ const routes = () => {
   posts.forEach(item => routes.push(`/blog/${item.name}`))
 
   // pagination routes
-  range(0, Math.ceil(posts.length / settings.blogPaginationLimit))
+  range(0, Math.ceil(posts.length / settings.BLOG_PAGINATION_LIMIT))
     .forEach(num => routes.push(`/blog/page/${num + 1}`))
 
   return routes
@@ -43,12 +38,11 @@ export default {
   mode: 'universal',
 
   env: {
-    AUTHOR: settings.author,
-    PRODUCTION_URL: settings.productionUrl,
-    BLOG_PAGINATION_LIMIT: settings.blogPaginationLimit,
+    // credentials env
     ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
     GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID,
-    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
+    ...settings
   },
 
   server: {
@@ -90,7 +84,7 @@ export default {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: settings.productionUrl,
+    hostname: settings.PRODUCTION_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: routesSitemap(routes())
@@ -101,8 +95,8 @@ export default {
       path: '/feed.xml',
       async create(feed) {
         feed.options = {
-          title: `Blog | ${settings.author}`,
-          link: `${settings.productionUrl}/feed.xml`,
+          title: `Blog | ${settings.AUTHOR}`,
+          link: `${settings.PRODUCTION_URL}/feed.xml`,
           description: 'Sutan Nasution.\'s personal blog feed'
         }
 
@@ -111,7 +105,7 @@ export default {
         feed.addContributor({
           name: 'Sutan Nasution.',
           email: 'sutan.gnst@gmail.com',
-          link: settings.productionUrl
+          link: settings.PRODUCTION_URL
         })
 
         await Promise.all(posts.map(({ name }) => (
@@ -121,7 +115,7 @@ export default {
             .then(content => {
               feed.addItem({
                 title: content.title,
-                link: `${settings.productionUrl}/blog/${content.slug}`,
+                link: `${settings.PRODUCTION_URL}/blog/${content.slug}`,
                 description: content.description
               })
             })
@@ -188,7 +182,7 @@ export default {
       '@nuxtjs/google-analytics',
       { id: process.env.GOOGLE_ANALYTICS_ID }
     ],
-    [
+    process.env.ACTIVATE_ADS === false ? '' : [
       '@nuxtjs/google-adsense',
       {
         id: process.env.GOOGLE_ADSENSE_ID,
