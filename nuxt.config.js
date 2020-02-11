@@ -3,12 +3,13 @@ import path from 'path'
 import fmparse from 'front-matter'
 import mdi from 'markdown-it'
 import mode from 'frontmatter-markdown-loader/mode'
-import { config } from 'dotenv'
+import { config as env } from 'dotenv'
 import { range } from './utils/helpers'
 import posts from './contents/posts/published'
 import settings from './settings.json'
 
-config({ path: '.env' })
+env({ path: '.env' })
+
 const fs = fileSystem.promises
 const md = mdi({ html: true, linkify: true, typographer: true })
 
@@ -34,7 +35,7 @@ const routesSitemap = routes => (
   }))
 )
 
-export default {
+const config = {
   mode: 'universal',
 
   env: {
@@ -181,13 +182,6 @@ export default {
     [
       '@nuxtjs/google-analytics',
       { id: process.env.GOOGLE_ANALYTICS_ID }
-    ],
-    process.env.ACTIVATE_ADS === false ? '' : [
-      '@nuxtjs/google-adsense',
-      {
-        id: process.env.GOOGLE_ADSENSE_ID,
-        pageLevelAds: true
-      }
     ]
   ],
 
@@ -197,18 +191,6 @@ export default {
   build: {
     maxChunkSize: 100000,
     extractCSS: true,
-
-    optimization: process.env.NODE_ENV === 'development' ? {} : {
-      minimize: true,
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.',
-        name: true,
-        cacheGroups: {},
-        minSize: 100000,
-        maxSize: 100000
-      }
-    },
 
     /*
     ** You can extend webpack config here
@@ -233,3 +215,29 @@ export default {
     }
   }
 }
+
+if (settings.ACTIVATE_ADS) {
+  config.modules.push([
+    '@nuxtjs/google-adsense',
+    {
+      id: process.env.GOOGLE_ADSENSE_ID,
+      pageLevelAds: true
+    }
+  ])
+}
+
+if (process.env.NODE_ENV !== 'development') {
+  config.build.optimization = {
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      name: true,
+      cacheGroups: {},
+      minSize: 100000,
+      maxSize: 100000
+    }
+  }
+}
+
+export default config

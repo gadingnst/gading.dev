@@ -9,14 +9,14 @@
   >
     <nuxt-link
       slot="brand"
-      :class="`display-4 text-white mr-lg-5 text-smooth ${transparent ? 'text-shadow' : ''}`"
+      :class="`site-title display-4 text-white mr-lg-5 text-smooth ${transparent ? 'text-shadow' : ''}`"
       to="/"
     >
       Sutanlab
     </nuxt-link>
     <div slot="content-header" slot-scope="{closeMenu}" class="row">
       <div class="col-6 collapse-brand">
-        <nuxt-link to="/" class="text-smooth" style="color: black">
+        <nuxt-link to="/" class="site-title text-smooth">
           <img src="/icon.png" alt="Sutanlab">
           <span>Sutanlab</span>
         </nuxt-link>
@@ -70,11 +70,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   transition: all ease-in-out .4s
 }
+
 li .nuxt-link-exact-active {
   background-color: rgba(255, 255, 255, 0.15);
 }
+
 </style>

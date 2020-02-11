@@ -3,19 +3,50 @@ body.theme-dark {
     background-color: #0d2538;
   }
 
-  *:not(code):not(pre):not(span) {
+  *:not(a):not(code):not(pre):not(span), .badge {
     color: #fff !important;
+  }
+
+  a {
+    color: #b0cdf3;
+    font-weight: 500;
+  }
+
+  button:not(.navbar-toggler) {
+    background-color: #011627;
+    color: #b0cdf3;
+    border-radius: 5px;
+  }
+
+  input {
+    background-color: transparent !important;
   }
 
   .card, .card-content, .navbar-collapse.show {
     background-color: #37455c;
 
     &, .card-content-image img {
-      box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .02), 1px 1px 15px 0 rgba(0, 0, 0, .03) !important;
+      box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .02),
+        1px 1px 15px 0 rgba(0, 0, 0, .03) !important;
     }
 
     button.navbar-toggler > span {
       background-color: #fff;
+    }
+
+    .card-footer {
+      background-color: #374554;
+    }
+  }
+
+  .collapse-brand .site-title {
+    color: #fff;
+  }
+
+  .page-item:not(.active) {
+    .page-link {
+      border-color: transparent;
+      background-color: #374554;
     }
   }
 
