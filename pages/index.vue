@@ -21,7 +21,9 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-content-image">
-                  <img v-lazy="'/assets/img/collections/sutan_new.jpeg'" class="rounded-circle" alt="Sutan Nasution">
+                  <Lazy tag="span">
+                    <img data-src="/assets/img/collections/sutan_new.jpeg" class="rounded-circle" alt="Sutan Nasution">
+                  </Lazy>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">

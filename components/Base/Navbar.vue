@@ -17,7 +17,6 @@
     <div slot="content-header" slot-scope="{ closeMenu }" class="row">
       <div class="col-6 collapse-brand">
         <nuxt-link to="/" class="site-title text-smooth">
-          <img src="/icon.png" alt="Sutanlab">
           <span>Sutanlab</span>
         </nuxt-link>
       </div>
