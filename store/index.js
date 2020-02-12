@@ -13,6 +13,7 @@ export default {
     },
     toggleDark(state, mode = !state.darkMode) {
       state.darkMode = mode
+      window.localStorage.setItem('settings:dark', mode)
     }
   },
   actions: {

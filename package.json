@@ -35,14 +35,11 @@
     "@nuxtjs/dotenv": "1.4.1",
     "@nuxtjs/eslint-config": "2.0.0",
     "@nuxtjs/eslint-module": "1.1.0",
-    "@vue/test-utils": "1.0.0-beta.31",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
-    "babel-jest": "25.1.0",
     "eslint": "6.8.0",
     "eslint-config-standard": "14.1.0",
     "eslint-plugin-import": "2.20.0",
-    "eslint-plugin-jest": "22.20.0",
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-nuxt": "0.5.0",
     "eslint-plugin-promise": "4.2.1",
@@ -50,14 +47,11 @@
     "eslint-plugin-vue": "6.1.2",
     "esm": "^3.2.25",
     "frontmatter-markdown-loader": "2.3.0",
-    "jest": "25.1.0",
     "markdown-it": "10.0.0",
     "markdown-it-attrs": "3.0.1",
     "markdown-it-plugin-data-src": "1.0.0",
     "node-sass": "4.13.1",
-    "nodemon": "2.0.2",
     "pre-commit": "1.2.2",
-    "sass-loader": "8.0.2",
-    "vue-jest": "3.0.5"
+    "sass-loader": "8.0.2"
   }
 }
