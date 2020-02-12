@@ -2,8 +2,7 @@
 @import "dark";
 
 * {
-  transition: all .25s ease-in-out;
-  transition-property: box-shadow, background-color, color;
+  transition: background-color .5s, box-shadow .25s;
 }
 
 .text-smooth {

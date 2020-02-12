@@ -1,21 +1,19 @@
-body.theme-dark {
+body.mode-dark {
   & {
-    background-color: #0d2538;
+    background-color: hsl(207, 62%, 14%);
   }
 
-  *:not(a):not(code):not(pre):not(span), .badge {
-    color: #fff !important;
+  * {
+    color: #fff;
   }
 
-  a {
-    color: #b0cdf3;
+  *[class^="text-primary"] {
+    color: #a0ffcf !important;
+  }
+
+  a:not(.btn) {
+    color: #f3a4b5;
     font-weight: 500;
-  }
-
-  button:not(.navbar-toggler) {
-    background-color: #011627;
-    color: #b0cdf3;
-    border-radius: 5px;
   }
 
   input {

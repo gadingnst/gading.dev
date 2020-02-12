@@ -35,6 +35,15 @@ $normal-font: 1rem;
 $syntax-color: #b0cdf3;
 $syntax-bg: #011627;
 
+body.mode-dark {
+  * {
+    color: #fff;
+  }
+  button {
+    color: #000;
+  }
+}
+
 code, kbd, pre, samp {
   font-family: monospace;
 }
@@ -183,6 +192,9 @@ h5 {
 
 ul, ol {
   padding-left: 2.5rem;
+  & ul, & ol {
+    padding-left: 1.2rem;
+  }
 }
 
 img {

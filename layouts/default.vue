@@ -36,7 +36,7 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        class: ''
+        class: this.$store.getters.darkMode ? 'mode-dark' : ''
       }
     }
   }
