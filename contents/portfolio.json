@@ -1,5 +1,14 @@
 [
   {
+    "name": "Kampus API",
+    "category": "Experiment Project",
+    "description": "GraphQL API for data of \"Perguruan Tinggi\" in Indonesia created using web scraping techniques with puppeteer from \"Kementerian RISTEKDIKTI\" website.",
+    "github": "https://github.com/sutanlab/kampus-api",
+    "website": "https://sutanlab.js.org/redirect/kampus-api",
+    "image": "/media/portfolio/kampus-api.png",
+    "stacks": ["javascript", "puppeteer", "express", "graphql", "apollo"]
+  },
+  {
     "name": "MeChat",
     "category": "Bootcamp Project",
     "description": "MeChat is Meet & Chat Mobile Application built with React Native integrated with Firebase, Google Map API and Netlify functions.",

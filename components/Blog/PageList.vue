@@ -66,7 +66,7 @@
                       </span>
                     </div>
                     <p class="description mt-3">
-                      {{ wrapText(content.description, 150) }}
+                      {{ wrapText(content.description, 300) }}
                     </p>
                     <div>
                       <Badge

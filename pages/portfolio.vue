@@ -36,7 +36,7 @@
                     </h6>
                     <div class="content-desc">
                       <p class="description mt-3">
-                        {{ wrapText(item.description, 125) }}
+                        {{ wrapText(item.description, 200) }}
                       </p>
                     </div>
                     <div>
@@ -87,6 +87,7 @@
 <script>
 import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
 import MdGlobeIcon from 'vue-ionicons/dist/md-globe.vue'
+import LogoGithubIcon from 'vue-ionicons/dist/logo-github.vue'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { wrapText, metaGenerator } from '~/utils/helpers'
 import Card from '~/components/Argon/Card'
@@ -104,7 +105,8 @@ export default {
     Banner,
     Button,
     Lazy,
-    MdGlobeIcon
+    MdGlobeIcon,
+    LogoGithubIcon
   },
   mixins: [MountedAnimation],
   asyncData: () => (
