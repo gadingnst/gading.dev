@@ -16,6 +16,11 @@
           {{ title }}
         </a>
       </slot>
+
+      <div class="ml-auto">
+        <slot name="container-mid" />
+      </div>
+
       <navbar-toggle-button
         :toggled="toggled"
         :target="contentId"
@@ -93,5 +98,9 @@ export default {
   }
 }
 </script>
+
 <style>
+.navbar-collapse {
+  flex-grow: 0;
+}
 </style>

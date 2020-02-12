@@ -1,5 +1,5 @@
 <template>
-  <span class="px-2 py-2" style="cursor: pointer" @click="switchMode">
+  <span class="px-2 py-2" style="cursor: pointer; color: #fff" @click="switchMode">
     <svg
       v-if="isDarkMode"
       :width="size"

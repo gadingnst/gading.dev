@@ -25,6 +25,9 @@
         <CloseButton @click="closeMenu" />
       </div>
     </div>
+    <span slot="container-mid">
+      <SwitchMode />
+    </span>
     <ul slot-scope="{ closeMenu }" class="navbar-nav ml-lg-auto">
       <li
         v-for="(link, i) in $store.getters.menu"
@@ -43,11 +46,13 @@
 <script>
 import BaseNav from '~/components/Argon/Nav'
 import CloseButton from '~/components/Argon/CloseButton'
+import SwitchMode from '~/components/Base/SwitchMode'
 
 export default {
   components: {
     CloseButton,
-    BaseNav
+    BaseNav,
+    SwitchMode
   },
   data: () => ({
     transparent: true
