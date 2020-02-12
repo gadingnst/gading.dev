@@ -117,7 +117,7 @@
               </h2>
               <Lazy class="row py-4">
                 <div class="col-12 px-3">
-                  <img style="width: 100%" data-src="https://ghchart.rshah.org/sutanlab">
+                  <img style="width: 100%" data-src="https://ghchart.rshah.org/sutanlab" alt="My Contributions">
                 </div>
               </Lazy>
             </div>
