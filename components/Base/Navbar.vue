@@ -14,7 +14,7 @@
     >
       Sutanlab
     </nuxt-link>
-    <div slot="content-header" slot-scope="{closeMenu}" class="row">
+    <div slot="content-header" slot-scope="{ closeMenu }" class="row">
       <div class="col-6 collapse-brand">
         <nuxt-link to="/" class="site-title text-smooth">
           <img src="/icon.png" alt="Sutanlab">
@@ -25,7 +25,7 @@
         <CloseButton @click="closeMenu" />
       </div>
     </div>
-    <ul slot-scope="{closeMenu}" class="navbar-nav ml-lg-auto">
+    <ul slot-scope="{ closeMenu }" class="navbar-nav ml-lg-auto">
       <li
         v-for="(link, i) in $store.getters.menu"
         :key="i"
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     onScroll() {
-      if (window.scrollY < 120) {
+      if (window.scrollY < 80) {
         this.transparent = true
       } else {
         this.transparent = false

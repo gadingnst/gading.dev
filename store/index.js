@@ -1,7 +1,8 @@
 export default {
   state: () => ({
     posts: [],
-    searching: false
+    searching: false,
+    darkMode: false
   }),
   mutations: {
     setPosts(state, posts) {
@@ -9,6 +10,9 @@ export default {
     },
     setSearching(state, status) {
       state.searching = status
+    },
+    toggleDark(state, mode = !state.darkMode) {
+      state.darkMode = mode
     }
   },
   actions: {
@@ -25,6 +29,7 @@ export default {
   getters: {
     posts: state => state.posts,
     searching: state => state.searching,
+    darkMode: state => state.darkMode,
     menu: () => [
       { text: 'Home', to: '/' },
       { text: 'Now', to: '/now' },
