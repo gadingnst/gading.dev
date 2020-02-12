@@ -99,8 +99,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .navbar-collapse {
-  flex-grow: 0;
+  flex-grow: 0 !important;
 }
 </style>
