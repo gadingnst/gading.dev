@@ -13,6 +13,7 @@
 - [x] Beautiful but performant
 - [x] Push notifications support
 - [x] Reading-time
+- [x] Dark Mode
 - [x] SEO Optimized
 - [x] Image optimized
 - [x] Feed RSS & Sitemap
