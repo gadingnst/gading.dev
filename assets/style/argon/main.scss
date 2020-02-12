@@ -36,7 +36,7 @@
 // @import "bootstrap/code";
 @import "bootstrap/grid";
 // @import "bootstrap/tables";
-@import "bootstrap/forms";
+// @import "bootstrap/forms";
 @import "bootstrap/buttons";
 @import "bootstrap/transitions";
 // @import "bootstrap/dropdown";
@@ -60,7 +60,7 @@
 // @import "bootstrap/popover";
 // @import "bootstrap/carousel";
 @import "bootstrap/utilities";
-@import "bootstrap/print";
+// @import "bootstrap/print";
 
 // Custom components
 
@@ -95,6 +95,6 @@
 
 // Vendor
 
-@import "custom/vendor/flatpickr.scss";
-@import "custom/vendor/headroom.scss";
+// @import "custom/vendor/flatpickr.scss";
+// @import "custom/vendor/headroom.scss";
 // @import "custom/vendor/nouislider.scss";
