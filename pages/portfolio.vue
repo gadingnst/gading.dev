@@ -18,14 +18,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div
-              v-lazy-container="{
-                selector: 'img',
-                loading: '/assets/img/placeholders/loading.svg',
-                error: '/assets/img/placeholders/error.png'
-              }"
-              class="row row-grid"
-            >
+            <Lazy class="row row-grid">
               <div v-for="(item, i) in portfolio" :key="i" class="col-lg-4 col-md-6 my-3">
                 <Card class="border-0 h-100" hover shadow body-classes="pt-0 px-0" footer-classes="pt-0">
                   <img
@@ -83,7 +76,7 @@
                   </template>
                 </Card>
               </div>
-            </div>
+            </Lazy>
           </div>
         </div>
       </div>
@@ -100,6 +93,7 @@ import Card from '~/components/Argon/Card'
 import Badge from '~/components/Argon/Badge'
 import Banner from '~/components/Base/Banner'
 import Button from '~/components/Argon/Button'
+import Lazy from '~/components/Base/Lazy'
 
 export default {
   components: {
@@ -109,6 +103,7 @@ export default {
     Badge,
     Banner,
     Button,
+    Lazy,
     MdGlobeIcon
   },
   mixins: [MountedAnimation],

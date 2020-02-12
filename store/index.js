@@ -12,7 +12,7 @@ export default {
       state.searching = status
     },
     toggleDark(state, mode = !state.darkMode) {
-      state.darkMode = mode
+      state.darkMode = JSON.parse(mode)
       window.localStorage.setItem('settings:dark', mode)
     }
   },

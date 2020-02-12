@@ -29,7 +29,7 @@
 
       <slot name="container-after" />
 
-      <div :id="contentId" v-click-outside="closeMenu" class="collapse navbar-collapse" :class="{show: toggled}">
+      <div :id="contentId" v-click-outside="closeMenu" class="ml-2 collapse navbar-collapse" :class="{show: toggled}">
         <div class="navbar-collapse-header">
           <slot name="content-header" :close-menu="closeMenu" />
         </div>

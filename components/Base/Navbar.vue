@@ -35,7 +35,7 @@
         class="nav-item"
         @click="closeMenu"
       >
-        <nuxt-link class="nav-link nav-link-icon" :to="link.to">
+        <nuxt-link class="px-2 nav-link nav-link-icon" :to="link.to">
           <b>{{ link.text }}</b>
         </nuxt-link>
       </li>
@@ -82,6 +82,20 @@ export default {
 
 li .nuxt-link-exact-active {
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-collapse.show {
+  li .nuxt-link-exact-active {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+body.mode-dark {
+  .navbar-collapse.show {
+    li .nuxt-link-exact-active {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
 }
 
 </style>

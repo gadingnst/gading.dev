@@ -111,21 +111,15 @@
                   </p>
                 </div>
               </div>
+
               <h2 class="mt-5 text-smooth">
-                Coding Activities
+                Contributions Chart
               </h2>
-              <div class="row py-4">
-                <div class="col-md-6">
-                  <figure>
-                    <embed src="https://wakatime.com/share/@7a831ab0-e43a-4215-aa08-92f915bed065/6309a505-c658-470e-a5ae-266aa8684053.svg">
-                  </figure>
+              <Lazy class="row py-4">
+                <div class="col-12 px-3">
+                  <img style="width: 100%" data-src="https://ghchart.rshah.org/sutanlab">
                 </div>
-                <div class="col-md-6">
-                  <figure>
-                    <embed src="https://wakatime.com/share/@7a831ab0-e43a-4215-aa08-92f915bed065/c584e591-eec6-4df1-81ad-e2930e1e5c6e.svg">
-                  </figure>
-                </div>
-              </div>
+              </Lazy>
             </div>
           </div>
         </Card>
@@ -143,6 +137,7 @@ import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
+import Lazy from '~/components/Base/Lazy'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
 
@@ -155,6 +150,7 @@ export default {
     Button,
     MdMailIcon,
     MdQuoteIcon,
+    Lazy,
     MdHelpCircleOutlineIcon,
     MdBriefcaseIcon
   },

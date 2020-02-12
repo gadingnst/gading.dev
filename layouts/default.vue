@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getPosts')
-    this.$store.commit('toggleDark', JSON.parse(window.localStorage.getItem('settings:dark')))
+    this.$store.commit('toggleDark', window.localStorage.getItem('settings:dark'))
   },
   head() {
     return {

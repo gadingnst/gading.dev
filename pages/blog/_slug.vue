@@ -27,14 +27,7 @@
         </FadeIn>
       </div>
     </Banner>
-    <section
-      v-lazy-container="{
-        selector: 'img',
-        loading: '/assets/img/placeholders/loading.svg',
-        error: '/assets/img/placeholders/error.png'
-      }"
-      class="container-fluid"
-    >
+    <Lazy tag="section" class="container-fluid">
       <div id="content-wrap" style="margin: auto">
         <Card shadow class="card-content" style="margin-top: -85px" no-body>
           <ContentParser
@@ -44,7 +37,7 @@
           />
         </Card>
       </div>
-    </section>
+    </Lazy>
     <div class="container mt-3">
       <div class="row pb-3 justify-content-center">
         <div class="col-lg-10 order-lg-2 text-center">
@@ -92,6 +85,7 @@ import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
 import Card from '~/components/Argon/Card'
 import ContentParser from '~/components/Blog/ContentParser'
+import Lazy from '~/components/Base/Lazy'
 import Disqus from '~/components/Blog/Disqus'
 
 export default {
@@ -104,6 +98,7 @@ export default {
     Button,
     Banner,
     ContentParser,
+    Lazy,
     Disqus
   },
   mixins: [MountedAnimation],

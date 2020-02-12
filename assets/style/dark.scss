@@ -3,7 +3,7 @@ body.mode-dark {
     background-color: hsl(207, 62%, 14%);
   }
 
-  * {
+  *:not(code):not(pre):not(span) {
     color: #fff;
   }
 
