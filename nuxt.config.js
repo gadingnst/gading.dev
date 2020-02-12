@@ -70,8 +70,7 @@ const config = {
       { name: 'google-site-verification', content: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,700|Courgette' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript :)', body: true }
@@ -158,8 +157,7 @@ const config = {
   */
   css: [
     '~/assets/style/main.scss',
-    '~/assets/style/code.scss',
-    '~/assets/style/ionicons.scss'
+    '~/assets/style/code.scss'
   ],
 
   /*
