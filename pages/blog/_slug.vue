@@ -78,6 +78,11 @@ import {
   SlideYUpTransition as SlideUp,
   SlideYDownTransition as SlideDown
 } from 'vue2-transitions'
+import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue'
+import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue'
+import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue'
+import LogoTumblrIcon from 'vue-ionicons/dist/logo-tumblr.vue'
+import LogoWhatsappIcon from 'vue-ionicons/dist/logo-whatsapp.vue'
 import IosPaperPlaneIcon from 'vue-ionicons/dist/ios-paper-plane.vue'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
@@ -93,13 +98,18 @@ export default {
     FadeIn,
     SlideUp,
     SlideDown,
-    IosPaperPlaneIcon,
     Card,
     Button,
     Banner,
     ContentParser,
     Lazy,
-    Disqus
+    Disqus,
+    LogoLinkedinIcon,
+    LogoFacebookIcon,
+    LogoTwitterIcon,
+    LogoTumblrIcon,
+    LogoWhatsappIcon,
+    IosPaperPlaneIcon
   },
   mixins: [MountedAnimation],
   asyncData: ({ params }) => (

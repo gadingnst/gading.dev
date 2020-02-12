@@ -44,7 +44,20 @@
 </template>
 
 <script>
+import LogoOctocatIcon from 'vue-ionicons/dist/logo-octocat.vue'
+import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue'
+import LogoInstagramIcon from 'vue-ionicons/dist/logo-instagram.vue'
+import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue'
+import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue'
+
 export default {
+  components: {
+    LogoOctocatIcon,
+    LogoLinkedinIcon,
+    LogoInstagramIcon,
+    LogoFacebookIcon,
+    LogoTwitterIcon
+  },
   data: () => ({
     env: {
       site: process.env.PRODUCTION_URL,
