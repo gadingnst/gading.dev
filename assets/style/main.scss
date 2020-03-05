@@ -8,6 +8,10 @@
   transition: background-color .5s, box-shadow .25s;
 }
 
+a:not(.btn) {
+  font-weight: 500;
+}
+
 .text-smooth {
   font-family: 'Courgette', cursive !important;
 }
