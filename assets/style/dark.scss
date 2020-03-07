@@ -3,8 +3,17 @@ body.mode-dark {
     background-color: hsl(207, 62%, 14%);
   }
 
-  *:not(code):not(pre):not(span), .badge {
-    color: #fff;
+  &, h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6,
+  .badge, .nav-link,
+  .collapse-brand .site-title {
+    color: #fff !important;
+  }
+
+  a.btn:not([href]):not([tabindex]) {
+    svg, path {
+      color: #525f7f;
+    }
   }
 
   *[class^="text-primary"] {
@@ -34,10 +43,6 @@ body.mode-dark {
     .card-footer {
       background-color: #374554;
     }
-  }
-
-  .collapse-brand .site-title {
-    color: #fff;
   }
 
   .page-item:not(.active) {
