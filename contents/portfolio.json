@@ -1,5 +1,14 @@
 [
   {
+    "name": "COVID-19 Visualized",
+    "category": "Experiment Project",
+    "description": "Web that contains information about corona virus (COVID-19) victim updates with data visualization.",
+    "github": "https://github.com/sutanlab/covid19-visualized",
+    "website": "https://covid19.sutanlab.id",
+    "image": "/media/portfolio/covid19-visualized.png",
+    "stacks": ["typescript", "javascript", "nextjs", "reactjs", "d3", "topojson"]
+  },
+  {
     "name": "Kampus API",
     "category": "Experiment Project",
     "description": "GraphQL API for data of \"Perguruan Tinggi\" in Indonesia created using web scraping techniques with puppeteer from \"Kementerian RISTEKDIKTI\" website.",
