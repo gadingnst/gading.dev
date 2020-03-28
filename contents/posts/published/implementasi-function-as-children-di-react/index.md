@@ -6,7 +6,7 @@ description: 'Function as Children adalah salah satu component pattern di React 
 tags: ['javascript', 'react', 'callback', 'closure']
 category: 'Engineering'
 keywords: 'react, component, komponen, facc, function, javascript, component composition'
-image: '/assets/img/collections/desks/desk5.jpg'
+image: '/media/blog/implementasi-function-as-children-di-react/bg-facc.png'
 caption: 'Function as Children adalah salah satu component pattern di React yang bisa kita gunakan, buat apa?'
 css_source: []
 js_source: []
