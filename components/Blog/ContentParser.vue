@@ -2,6 +2,7 @@
 /* eslint-disable no-new-func */
 
 import Prism from 'prismjs'
+import { SYNTAX_HIGHLIGHTING as language } from '~/settings.json'
 
 export default {
   props: {
@@ -19,7 +20,9 @@ export default {
     this.$options.staticRenderFns = new Function(this.staticRenderFn)()
   },
   mounted() {
-    Prism.highlightAll()
+    Promise.all(language.map(lang =>
+      import(`prismjs/components/prism-${lang}`))
+    ).then(Prism.highlightAll)
   },
   render() {
     return this.templateRender
