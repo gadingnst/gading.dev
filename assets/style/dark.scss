@@ -21,7 +21,9 @@ body.mode-dark {
   }
 
   a:not(.btn) {
-    color: #f3a4b5;
+    &, strong, em {
+      color: #f3a4b5;
+    }
   }
 
   input {
