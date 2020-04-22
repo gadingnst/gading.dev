@@ -28,7 +28,7 @@ Itu adalah awal mula yang membuat gw ilfeel sama *behavior* pengguna twitter, re
 
 Gw sebenernya tipe orang yang gampang iri, tapi untungnya gw sadar diri. Maka dari itu gw ga ngikutin akun-akun artis di instagram, demi ketenangan dalam kehidupan gw. Alih-alih khawatir mencari cara bagaimana seperti mereka, lebih baik bekerja keras agar bisa menjadi pribadi yang kita inginkan.
 
-Gw sadar instagram bukanlah tempat gw nyari duit, padahal banyak orang yang bisa dapet duit dari sana. Gw menggunakan instagram just for fun. Tempat membangun portfolio gw pun sebenarnya bukan dari instagram. But, waktu itu gw berfikir kalo gw bisa menghabiskan waktu lama-lama untuk main instagram dan mendapatkan rasa iri ketika melihat orang pamer apa yang dimilikinya, kenapa gw ga bisa melakukan hal yang sama ya? Tapi apa yang mau gw pamerin coba.
+Gw sadar instagram bukanlah tempat gw nyari duit, walaupun banyak orang yang bisa dapet duit dari sana. Gw menggunakan instagram just for fun. Tempat membangun portfolio gw pun sebenarnya bukan dari instagram. But, waktu itu gw berfikir kalo gw bisa menghabiskan waktu lama-lama untuk main instagram dan mendapatkan rasa iri ketika melihat orang pamer apa yang dimilikinya, kenapa gw ga bisa melakukan hal yang sama ya? Tapi apa yang mau gw pamerin coba.
 
 But, satu hal yang mau gw kasih tau. Sebenernya motivasi gw membuat website ini dan mulai menulis blog pun salah satunya karena faktor IRI tersebut.
 
@@ -80,7 +80,7 @@ Kali ini, ketika gw melihat orang yang pamer kekayaan dan pekerjaan mereka (pame
 
 > ***I don't really know about others background.***
 
-Ya, berarti ada kebanggaan pada diri mereka setelah mencapai itu, makanya mereka pamer. Dan sebenarnya tugas kita yang melihat adalah mengapresiasi, bukan malah julid. Ya, gw tau rasa iri itu pasti ada. Tapi setidaknya *behavior* kita terhadap mereka berubah, dari peng-julid menjadi peng-apresiasi.
+Ya, berarti ada kebanggaan pada diri mereka setelah mencapai itu, makanya mereka pamer. Dan sebenarnya tugas kita yang melihat adalah mengapresiasi, bukan malah julid. Ya, gw tau rasa iri itu pasti ada, ***But c'mon, let them live***. Setidaknya *behavior* kita terhadap mereka berubah, dari *peng-julid* menjadi *peng-apresiasi*.
 
 *Daripada keirian ini mengotori pikiran kita terhadap mereka, mending kita jadikan keirian ini untuk mengapresiasi mereka, ya walaupun dalem hati juga. Atau yang lebih bagus lagi, menjadikan keirian ini sebagai motivasi! **Belajar mengapresiasi orang, kita juga akan diapresiasi orang**.*
 
