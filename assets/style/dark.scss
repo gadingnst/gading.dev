@@ -29,6 +29,10 @@ body.mode-dark {
   input {
     background-color: transparent !important;
   }
+  
+  hr {
+    background-color: #fff;
+  }
 
   .card, .card-content, .navbar-collapse.show {
     background-color: #37455c;

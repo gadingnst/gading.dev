@@ -1,5 +1,14 @@
 [
   {
+    "name": "Qur'an API",
+    "category": "Experiment Project",
+    "description": "Simple Quran API with media audio (murrotal) Syekh. Mishary Rashid Alafasy.",
+    "github": "https://github.com/sutanlab/quran-api",
+    "website": "https://api.quran.sutanlab.id",
+    "image": "/media/portfolio/quran-api.png",
+    "stacks": ["javascript", "rest", "express", "api"]
+  },
+  {
     "name": "COVID-19 Visualized",
     "category": "Experiment Project",
     "description": "Web that contains information about corona virus (COVID-19) victim updates with data visualization.",

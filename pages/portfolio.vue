@@ -80,6 +80,20 @@
           </div>
         </div>
       </div>
+      <hr class="mt-5" style="width: 75%">
+      <div class="row justify-content-center text-center mx-3 py-1">
+        <div class="col-lg-9">
+          <h2><b>Support Me</b></h2>
+          <p>
+            <client-only>
+              <md-quote-icon w="14px" h="14px" />
+            </client-only>
+            Do you love some stuff that I've made? <br>
+            You can support me by clicking on one of the buttons below.
+          </p>
+          <Support />
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -95,6 +109,7 @@ import Badge from '~/components/Argon/Badge'
 import Banner from '~/components/Base/Banner'
 import Button from '~/components/Argon/Button'
 import Lazy from '~/components/Base/Lazy'
+import Support from '~/components/Base/Support'
 
 export default {
   components: {
@@ -105,6 +120,7 @@ export default {
     Banner,
     Button,
     Lazy,
+    Support,
     MdGlobeIcon,
     LogoGithubIcon
   },
