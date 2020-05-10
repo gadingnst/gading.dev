@@ -66,6 +66,15 @@ $ sudo echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &&
 - [Marina Aisa](https://marinaaisa.com/blog/blog-using-vue-nuxt-markdown)
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh)
 
+### Support
+
+#### 1. Global
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B71P7PB)
+
+#### 2. Indonesia
+- [Trakteer](https://trakteer.id/sutanlab)
+- [Karyakarsa](https://karyakarsa.com/sutanlab)
+
 * * *
 
 Copyright © 2019 by Sutan Gading Fadhillah Nasution
