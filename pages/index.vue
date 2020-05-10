@@ -122,6 +122,19 @@
                   <img style="width: 100%" data-src="https://ghchart.rshah.org/sutanlab" alt="My Contributions">
                 </div>
               </Lazy>
+
+              <div class="row justify-content-center mt-5">
+                <div class="col-lg-9">
+                  <h2 class="text-smooth">
+                    Support Me
+                  </h2>
+                  <p>
+                    Do you like this website? Or do you like some stuff that I've made? <br>
+                    You can support me by clicking on one of the buttons below.
+                  </p>
+                  <Support />
+                </div>
+              </div>
             </div>
           </div>
         </Card>
@@ -140,6 +153,7 @@ import Card from '~/components/Argon/Card'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
 import Lazy from '~/components/Base/Lazy'
+import Support from '~/components/Base/Support'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
 
@@ -154,7 +168,8 @@ export default {
     MdQuoteIcon,
     Lazy,
     MdHelpCircleOutlineIcon,
-    MdBriefcaseIcon
+    MdBriefcaseIcon,
+    Support
   },
   mixins: [MountedAnimation],
   data: () => ({

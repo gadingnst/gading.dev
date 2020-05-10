@@ -42,6 +42,25 @@
       <div class="row pb-3 justify-content-center">
         <div class="col-lg-10 order-lg-2 text-center">
           <h3 class="mb-3 pt-4">
+            <b>Menyukai Tulisan ini?</b>
+          </h3>
+          <p>
+            Blog ini tidak seperti blog pada umumnya. <br>
+            Tidak ada iklan, tidak click-bait, fast load dan dibuat senyaman mungkin untuk dibaca.
+            Artinya tulisan ini didanai oleh pembaca seperti kamu. Iya, kamu. <br>
+            Jika kamu merasa tulisan ini bermanfaat dan ada feeling untuk mendukung penulis,
+            kamu bisa mendukung dengan cara mengklik salah satu tombol dibawah ini.
+          </p>
+          <Support />
+          <p class="pt-4 mt-2 border-top">
+            Jika tidak mendapatkan dukungan? <br>
+            Sederhana, berarti tulisan-tulisan disini masih kurang bermanfaat,
+            karena kamu tidak mendapatkan atau merasakan manfaatnya
+            setelah membaca tulisan-tulisan yang ada disini.
+          </p>
+        </div>
+        <div class="col-lg-10 order-lg-2 text-center">
+          <h3 class="mb-3 pt-4">
             <b>Share</b>
           </h3>
           <Button
@@ -92,6 +111,7 @@ import Card from '~/components/Argon/Card'
 import ContentParser from '~/components/Blog/ContentParser'
 import Lazy from '~/components/Base/Lazy'
 import Disqus from '~/components/Blog/Disqus'
+import Support from '~/components/Base/Support'
 
 export default {
   components: {
@@ -109,7 +129,8 @@ export default {
     LogoTwitterIcon,
     LogoTumblrIcon,
     LogoWhatsappIcon,
-    IosPaperPlaneIcon
+    IosPaperPlaneIcon,
+    Support
   },
   mixins: [MountedAnimation],
   asyncData: ({ params }) => (

@@ -81,8 +81,11 @@
                   </div>
                   <template #footer>
                     <nuxt-link :to="`/blog/${content.slug}`">
-                      <Button type="primary" class="mt-4" style="float: right">
-                        Read
+                      <Button type="primary" class="d-inline-flex mt-4" style="float: right">
+                        <client-only>
+                          <ios-book-icon w="20px" h="20px" />
+                        </client-only>
+                        &nbsp;Read
                       </Button>
                     </nuxt-link>
                   </template>
@@ -113,6 +116,7 @@
 
 <script>
 import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
+import IosBookIcon from 'vue-ionicons/dist/ios-book.vue'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { wrapText, formatPostDate, metaGenerator } from '~/utils/helpers'
 import Input from '~/components/Argon/Input'
@@ -131,7 +135,8 @@ export default {
     Button,
     Banner,
     Pagination,
-    Input
+    Input,
+    IosBookIcon
   },
   mixins: [MountedAnimation],
   props: {

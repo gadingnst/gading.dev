@@ -4,6 +4,7 @@
     :type="tag === 'button' ? nativeType: ''"
     class="btn"
     :class="classes"
+    :style="[...styles, bgColor ? { 'background-color': bgColor } : {}]"
     @click="handleClick"
   >
     <span v-if="$slots.icon || icon && $slots.default" class="btn-inner--icon">
@@ -44,6 +45,11 @@ export default {
       default: '',
       description: 'Button text color (e.g primary, danger etc)'
     },
+    bgColor: {
+      type: String,
+      default: '',
+      description: 'Button background color (e.g #AAA, #CDCDCD etc)'
+    },
     nativeType: {
       type: String,
       default: 'button',
@@ -78,6 +84,11 @@ export default {
       type: Boolean,
       default: false,
       description: 'Whether button is of block type'
+    },
+    styles: {
+      type: Array,
+      default: () => [],
+      description: 'Inline styles css'
     }
   },
   computed: {

@@ -1,6 +1,9 @@
 <template>
   <div class="row comments pb-3 justify-content-center">
     <div class="col-lg-10 order-lg-2 text-center">
+      <h4 class="mb-1 pt-3">
+        <b>{{ !ready ? 'Loading Comments..' : 'Comments' }}</b>
+      </h4>
       <div class="mx-auto mt-3">
         <client-only>
           <lazy-component>
@@ -10,6 +13,7 @@
                 :title="title"
                 :url="url"
                 :identifier="`${shortname}-${identifier}`"
+                :ready="ready = true"
               />
             </FadeTransition>
           </lazy-component>
@@ -41,6 +45,9 @@ export default {
       type: String,
       default: `sutanlab-blog-${new Date().getTime()}`
     }
-  }
+  },
+  data: () => ({
+    ready: false
+  })
 }
 </script>
