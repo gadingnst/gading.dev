@@ -46,16 +46,19 @@
           </h3>
           <p>
             Blog ini tidak seperti blog pada umumnya. <br>
-            Tidak ada iklan, tidak click-bait, fast load dan dibuat senyaman mungkin untuk dibaca.
-            Artinya tulisan ini didanai oleh pembaca seperti kamu. Iya, kamu. <br>
+            <b>
+              Tidak ada iklan, tidak click-bait, fast load dan dibuat senyaman mungkin untuk dibaca.
+              Artinya tulisan ini didanai oleh pembaca seperti kamu. Iya, kamu.
+            </b>
+            <br>
             Jika kamu merasa tulisan ini bermanfaat dan ada feeling untuk mendukung penulis,
             kamu bisa mendukung dengan cara mengklik salah satu tombol dibawah ini.
           </p>
           <Support />
           <p class="pt-4 mt-2 border-top">
-            Jika tidak mendapatkan dukungan? <br>
-            Sederhana, berarti tulisan-tulisan disini masih kurang bermanfaat,
-            karena kamu tidak mendapatkan atau merasakan manfaatnya
+            <b>Jika tidak mendapatkan dukungan?</b> <br>
+            Sederhana, berarti tulisan-tulisan disini masih kurang bermanfaat buat kamu,
+            karena kamu belum atau tidak(?) mendapatkan dan merasakan manfaatnya
             setelah membaca tulisan-tulisan yang ada disini.
           </p>
         </div>
