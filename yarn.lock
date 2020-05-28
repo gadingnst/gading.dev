@@ -5769,10 +5769,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markdown-it-attrs@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-3.0.1.tgz#5ce7b4405f2286190fbcf4c482aa9e3e2d55ece5"
-  integrity sha512-fcpdmxdEsctDVJEunPyrirVtU/6zcTMxPxAu4Ofz51PKAa8vRMpmGQXsmXx1HTdIdUPoDonm/RhS/+jTNywj/Q==
+markdown-it-attrs@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-3.0.3.tgz#92acdb16fe551cb056c5eb9848413443cafb5231"
+  integrity sha512-cLnICU2t61skNCr4Wih/sdza+UbQcqJGZwvqAypnbWA284nzDm+Gpc90iaRk/JjsIy4emag5v3s0rXFhFBWhCA==
 
 markdown-it-plugin-data-src@1.0.0:
   version "1.0.0"
