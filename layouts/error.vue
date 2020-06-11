@@ -5,9 +5,7 @@
         <b>{{ error.statusCode }}</b>
       </h1>
       <h4 class="text-white text-smooth text-shadow">
-        <b>
-          {{ is404 ? "Oops! The page you are looking can't be found.”" : 'Something went wrong.”' }} 🙁
-        </b>
+        <b>Oops! {{ error.message }}.” 🙁</b>
       </h4>
       <Button v-if="is404" tag="a" type="default" class="mt-3" href="/">
         Go Back Home

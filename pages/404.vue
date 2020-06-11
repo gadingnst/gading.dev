@@ -2,10 +2,10 @@
   <Banner no-parallax>
     <div class="text-center">
       <h1 class="text-white text-smooth text-shadow">
-        <b>4🙁4</b>
+        <b>404</b>
       </h1>
       <h4 class="text-white text-smooth text-shadow">
-        <b>Oops! The page you are looking can't be found.”</b>
+        <b>Oops! This page could not be found.” 🙁</b>
       </h4>
       <Button tag="a" type="default" class="mt-3" href="/">
         Go Back Home
@@ -21,7 +21,7 @@ import Button from '~/components/Argon/Button'
 export default {
   components: { Banner, Button },
   head: () => ({
-    title: `404 - Page Not Found | ${process.env.AUTHOR}`
+    title: `Error page | ${process.env.AUTHOR}`
   })
 }
 </script>
