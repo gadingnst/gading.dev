@@ -30,7 +30,6 @@ export default {
   },
   computed: {
     is404() {
-      console.log(this.error)
       return this.error.statusCode === 404
     }
   },
