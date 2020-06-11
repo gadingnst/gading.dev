@@ -2,10 +2,10 @@
   <Banner no-parallax>
     <div class="text-center">
       <h1 class="text-white text-smooth text-shadow">
-        <b>{{ error.statusCode }}</b>
+        <b>{{ is404 ? '404' : error.statusCode }}</b>
       </h1>
       <h4 class="text-white text-smooth text-shadow">
-        <b>Oops! {{ error.message }}.” 🙁</b>
+        <b>Oops! {{ is404 ? 'This page could not be found' : error.message }}.” 🙁</b>
       </h4>
       <Button v-if="is404" tag="a" type="default" class="mt-3" href="/">
         Go Back Home
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     is404() {
-      return this.error.statusCode === 404
+      return this.error.statusCode === 404 || this.error.message.includes('Cannot find module')
     }
   },
   head: () => ({
