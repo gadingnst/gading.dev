@@ -47,7 +47,7 @@
                     type="primary"
                     class="float-right"
                     size="sm"
-                    href="mailto:sutan.gnst@gmail.com"
+                    href="mailto:contact@sutanlab.id"
                   >
                     <client-only>
                       <md-mail-icon w="14px" h="14px" />

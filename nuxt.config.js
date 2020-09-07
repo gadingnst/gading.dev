@@ -104,7 +104,7 @@ const config = {
 
         feed.addContributor({
           name: 'Sutan Nasution.',
-          email: 'sutan.gnst@gmail.com',
+          email: 'contact@sutanlab.id',
           link: settings.PRODUCTION_URL
         })
 

@@ -1,16 +1,43 @@
 [
   {
+    "name": "Hadith API",
+    "category": "Open Source Project",
+    "description": "Simple Islamic Hadith REST API with Indonesia Translation.",
+    "github": "https://github.com/sutanlab/hadith-api",
+    "website": "https://api.hadith.sutanlab.id",
+    "image": "https://raw.githubusercontent.com/sutanlab/hadith-api/master/screenshots/example-result.png",
+    "stacks": ["typescript", "express", "api"]
+  },
+  {
+    "name": "Corona Sumsel (Instagram Bot)",
+    "category": "Open Source Project",
+    "description": "An Instagram bot that used to update covid 19 data of South Sumatra, Indonesia.",
+    "github": "https://github.com/sutanlab/igbot-coronasumsel",
+    "website": "https://coronasumsel.sutanlab.id",
+    "image": "/media/portfolio/corona-sumsel.jpeg",
+    "stacks": ["typescript", "express", "bot", "puppeteer"]
+  },
+  {
+    "name": "Ayat Dari Allah (Instagram Bot)",
+    "category": "Open Source Project",
+    "description": "Automatic posts random qur'an verses and translations on Instagram.",
+    "github": "https://github.com/sutanlab/igbot-ayatdariallah",
+    "website": "https://ayatdariallah.sutanlab.id",
+    "image": "/media/portfolio/ayatdariallah.jpeg",
+    "stacks": ["typescript", "express", "bot", "puppeteer"]
+  },
+  {
     "name": "Qur'an API",
-    "category": "Experiment Project",
-    "description": "Simple Quran API with media audio (murrotal) Syekh. Mishary Rashid Alafasy.",
+    "category": "Open Source Project",
+    "description": "Simple Quran REST API with Indonesia Tafsir and media audio (murrotal) Syekh. Mishary Rashid Alafasy",
     "github": "https://github.com/sutanlab/quran-api",
     "website": "https://api.quran.sutanlab.id",
     "image": "/media/portfolio/quran-api.png",
-    "stacks": ["javascript", "rest", "express", "api"]
+    "stacks": ["javascript", "scraping", "rest", "express", "api"]
   },
   {
     "name": "COVID-19 Visualized",
-    "category": "Experiment Project",
+    "category": "Open Source Project",
     "description": "Web that contains information about corona virus (COVID-19) victim updates with data visualization.",
     "github": "https://github.com/sutanlab/covid19-visualized",
     "website": "https://covid19.sutanlab.id",
@@ -19,7 +46,7 @@
   },
   {
     "name": "Kampus API",
-    "category": "Experiment Project",
+    "category": "Open Source Project",
     "description": "GraphQL API for data of \"Perguruan Tinggi\" in Indonesia created using web scraping techniques with puppeteer from \"Kementerian RISTEKDIKTI\" website.",
     "github": "https://github.com/sutanlab/kampus-api",
     "website": "https://sutanlab.js.org/redirect/kampus-api",
@@ -28,7 +55,7 @@
   },
   {
     "name": "MeChat",
-    "category": "Bootcamp Project",
+    "category": "Open Source Project",
     "description": "MeChat is Meet & Chat Mobile Application built with React Native integrated with Firebase, Google Map API and Netlify functions.",
     "github": "https://github.com/sutanlab/mechat",
     "website": "https://sutanlab.js.org/redirect/mechat-apk",
@@ -37,7 +64,7 @@
   },
   {
     "name": "Point of Sales",
-    "category": "Bootcamp Project",
+    "category": "Open Source Project",
     "description": "Point of sales is a cashier application that simplifies the checkout process. Also has a order history feature and income statistics.",
     "github": "https://github.com/sutanlab/point-of-sales-frontend",
     "website": "https://sutanlab.js.org/redirect/pos-web",
@@ -91,7 +118,7 @@
   },
   {
     "name": "Vuetask",
-    "category": "Experiment Project",
+    "category": "Open Source Project",
     "description": "A Progressive Task Management Application with Offline First Technology.",
     "github": "https://github.com/sutanlab/vuetask",
     "website": "https://vuetask.sutanlab.id",
@@ -100,7 +127,7 @@
   },
   {
     "name": "IP Stalker",
-    "category": "Experiment Project",
+    "category": "Open Source Project",
     "description": "Simple & Fast IP Address Stalker Application by using IP scraper in backend API with serverless service",
     "github": "https://github.com/sutanlab/ip-stalker",
     "website": "https://ipstalker.sutanlab.id",
@@ -109,7 +136,7 @@
   },
   {
     "name": "Chat Socket",
-    "category": "Experiment Project",
+    "category": "Open Source Project",
     "description": "Real-time chat app with Gravatar API.",
     "github": "https://github.com/sutanlab/chat-socket",
     "website": "https://sutanlab-chat-socket.herokuapp.com",
