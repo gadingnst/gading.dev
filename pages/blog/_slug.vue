@@ -149,7 +149,7 @@ export default {
   ),
   data: () => ({
     formatPostDate,
-    twitterUsername: 'sutan_gnst',
+    twitterUsername: 'gading_nst',
     socialShares: [],
     env: {
       url: process.env.PRODUCTION_URL,
