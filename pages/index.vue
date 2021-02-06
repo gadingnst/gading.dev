@@ -60,13 +60,6 @@
                 <div class="card-content-stats d-flex justify-content-center">
                   <div>
                     <span class="heading">
-                      <span v-if="github.ready">{{ github.contributions }}</span>
-                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
-                    </span>
-                    <span class="description">Contributions</span>
-                  </div>
-                  <div>
-                    <span class="heading">
                       <span v-if="github.ready">{{ github.publicRepos }}</span>
                       <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
                     </span>
@@ -74,10 +67,17 @@
                   </div>
                   <div>
                     <span class="heading">
-                      <span v-if="github.ready">{{ github.publicGists }}</span>
+                      <span v-if="github.ready">{{ github.followers }}</span>
                       <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
                     </span>
-                    <span class="description">Gists</span>
+                    <span class="description">Followers</span>
+                  </div>
+                  <div>
+                    <span class="heading">
+                      <span v-if="github.ready">{{ github.following }}</span>
+                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                    </span>
+                    <span class="description">Following</span>
                   </div>
                 </div>
               </div>
@@ -113,15 +113,6 @@
                   </p>
                 </div>
               </div>
-
-              <h2 class="mt-5 text-smooth">
-                Contributions Chart
-              </h2>
-              <Lazy class="row py-4">
-                <div class="col-12 px-3">
-                  <img style="width: 100%" data-src="https://ghchart.rshah.org/sutanlab" alt="My Contributions">
-                </div>
-              </Lazy>
 
               <div class="row justify-content-center mt-5">
                 <div class="col-lg-9">
@@ -175,25 +166,20 @@ export default {
   data: () => ({
     github: {
       ready: false,
-      contributions: 0,
+      following: 0,
       publicRepos: 0,
-      publicGists: 0
+      followers: 0
     }
   }),
   mounted() {
-    Promise.all([
-      window.fetch('https://api.github.com/users/sutanlab')
-        .then(res => res.json())
-        .then(res => res),
-      window.fetch('https://github-contributions-api.now.sh/v1/sutanlab')
-        .then(res => res.json())
-        .then(({ years }) => years.reduce((acc, cur) => acc + cur.total, 0))
-    ]).then(result => {
-      this.github.ready = true
-      this.github.publicRepos = result[0].public_repos
-      this.github.publicGists = result[0].public_gists
-      this.github.contributions = result[1]
-    })
+    window.fetch('https://api.github.com/users/sutanlab')
+      .then(res => res.json())
+      .then(result => {
+        this.github.ready = true
+        this.github.publicRepos = result.public_repos
+        this.github.followers = result.followers
+        this.github.following = result.following
+      })
   },
   head: () => ({
     title: `${process.env.AUTHOR}`,
