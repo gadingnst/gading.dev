@@ -2,7 +2,7 @@
   <div class="content-page">
     <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
-    <Banner height="480px" :image="meta.image">
+    <Banner height="70vh" :image="meta.image">
       <div id="banner-content" class="text-center">
         <SlideUp :duration="1500" :delay="200">
           <h4 v-if="isShow" id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">

@@ -1,6 +1,6 @@
 <template>
   <div class="content-page">
-    <Banner height="480px" image="/assets/img/collections/desks/desk0.jpg">
+    <Banner height="70vh" image="/assets/img/collections/desks/desk0.jpg">
       <div class="text-center">
         <SlideRight :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
@@ -24,9 +24,9 @@
                   <md-quote-icon w="14px" h="14px" />
                 </client-only>
                 At first, i'll be thanking to
-                <a href="https://108kb.io/blog/now/">Fariz Rizaldy</a>,
+                <a href="https://faultable.dev/now/">Fariz Rizaldy</a>,
                 <a href="https://afrijaldzuhri.wordpress.com/now/">Afrijal Dzuhri</a> and
-                <a href="https://www.wahudamon.com/pages/now">Afwa Bagas Wahuda</a>.
+                <a href="https://www.wahudamon.com/now">Afwa Bagas Wahuda</a>.
                 Because all of them, i was inspired to create this page for describing about <b><i>what i'm doing right now</i></b>.
                 So, maybe you don't need to ask me frequently about that.
               </p>
@@ -46,33 +46,36 @@
               </h2>
               <ul>
                 <li>Learning and research some technology stuff from the internet.</li>
-                <li>Coding, reading and blogging for fun.</li>
+                <li>Social Media, coding, reading and blogging for fun.</li>
                 <li>Making quality time for my family and girlfriend every weekend. (Umm, from phone maybe ?).</li>
               </ul>
 
               <h2 class="mt-5">
-                My Stacks
+                Stack Experiences
               </h2>
               <ul>
+                <li>Pure JavaScript/TypeScript</li>
                 <li>React, Vue or other JavaScript framework for frontend stuff.</li>
-                <li>REST or GraphQL for API usage.</li>
+                <li>CSS Preprocessor (SASS, LESS)</li>
                 <li>Node with Express for backend services.</li>
+                <li>Bots, Automation, Task Runner, Puppeteer</li>
+                <li>Vercel, Netlify, Firebase, Mongo Cloud/mLab, Heroku, Cloudinary, AWS EC2, GAPPS API (SaaS/PaaS)</li>
                 <li>Sometimes using PHP with Laravel or Codeigniter as backend services.</li>
               </ul>
 
               <h2 class="mt-5">
-                Software that i use
+                Tools that i use
               </h2>
               <ul>
-                <li>OS: Arch-based Linux</li>
+                <li>OS: MacOS BigSur</li>
                 <li>Code Editor: Visual Studio Code</li>
                 <li>Database GUI: DBEaver, PhpMyAdmin and Robo 3T</li>
                 <li>Browsers: Google Chrome and Firefox</li>
-                <li>Others: GIT Kraken, Spotify, XDMan & Advanced REST Client</li>
+                <li>Others: Spotify, XDMan & Advanced REST Client</li>
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: December 5, 2019 from Tebet, South Jakarta. Indonesia</i>.
+                <i>Last updated at: March 4, 2021 from Palembang, South Sumatera. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
