@@ -48,7 +48,7 @@
     "esm": "3.2.25",
     "frontmatter-markdown-loader": "2.3.0",
     "markdown-it": "10.0.0",
-    "markdown-it-attrs": "3.0.1",
+    "markdown-it-attrs": "4.0.0",
     "markdown-it-plugin-data-src": "1.0.0",
     "node-sass": "4.14.1",
     "pre-commit": "1.2.2",
