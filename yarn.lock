@@ -1344,15 +1344,14 @@
     consola "^2.15.0"
     eslint-webpack-plugin "^2.4.1"
 
-"@nuxtjs/feed@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/feed/-/feed-1.1.0.tgz#a4741ffff693615dd989fc8fdd3a8f6a8abc81b8"
-  integrity sha512-yy44/jvL9QEJoAag+FWkwAZPGoe3VPVumXD86OUeW37j7rcfUOtwVBRSJiabtZOOHNdqSUn/9Z0L07yyubmkhQ==
+"@nuxtjs/feed@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/feed/-/feed-2.0.0.tgz#26b110360b730edace55e228dceade27f80b92b5"
+  integrity sha512-HUmvn/+Spd/8sthGJUPnny/Q5nMcvMBotlPxU0UD0f4UoMhSpBqLDFTSTruYDa5VeXKtS3qCkZLhnyqR5aiXTA==
   dependencies:
     async-cache "^1.1.0"
-    consola "^2.3.2"
-    feed "^2.0.2"
-    fs-extra "^7.0.1"
+    consola "^2.12.1"
+    feed "^4.2.0"
 
 "@nuxtjs/google-adsense@1.3.0":
   version "1.3.0"
@@ -2882,10 +2881,15 @@ connect@^3.7.0:
     parseurl "~1.3.3"
     utils-merge "1.0.1"
 
-consola@^2.10.0, consola@^2.10.1, consola@^2.11.3, consola@^2.15.0, consola@^2.3.2, consola@^2.6.0, consola@^2.9.0:
+consola@^2.10.0, consola@^2.10.1, consola@^2.11.3, consola@^2.15.0, consola@^2.6.0, consola@^2.9.0:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.2.tgz#c858f1fe36ab97d256c6ebc791905ee923495602"
   integrity sha512-VxqWw5C8O/mQpZYtfaaSCDJcVK3AxyvQ26rhgvyAI4j/QJISh8DLwFS8GQU+9154u4ngyCsSlnyIAYJme9kQug==
+
+consola@^2.12.1:
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
+  integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
 
 console-browserify@^1.1.0:
   version "1.2.0"
@@ -4230,13 +4234,12 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-feed@^2.0.2:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/feed/-/feed-2.0.4.tgz#14cd71b3bae1e965b81f7e0c5927e8941de996f8"
-  integrity sha512-sWatfulDP6d18qVaWcu34qmq9ml6UeN6nHSBJpNZ2muBqxjPAdT375whPYAHP+gqLfyabtYU5qf2Dv4nqtlp0w==
+feed@^4.2.0:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/feed/-/feed-4.2.2.tgz#865783ef6ed12579e2c44bbef3c9113bc4956a7e"
+  integrity sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==
   dependencies:
-    luxon "^1.3.3"
-    xml "^1.0.1"
+    xml-js "^1.6.11"
 
 figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -4453,15 +4456,6 @@ frontmatter-markdown-loader@2.3.0:
     "@babel/preset-react" "^7.6.0"
     vue-template-compiler "^2.5.0"
     vue-template-es2015-compiler "^1.6.0"
-
-fs-extra@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
-  integrity sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
-  dependencies:
-    graceful-fs "^4.1.2"
-    jsonfile "^4.0.0"
-    universalify "^0.1.0"
 
 fs-extra@^8.1.0:
   version "8.1.0"
@@ -5776,11 +5770,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-luxon@^1.3.3:
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.25.0.tgz#d86219e90bc0102c0eb299d65b2f5e95efe1fe72"
-  integrity sha512-hEgLurSH8kQRjY6i4YLey+mcKVAWXbDNlZRmM6AgWDJ1cY3atl8Ztf5wEY7VBReFbmGnwQPz7KYJblL8B2k0jQ==
 
 make-dir@^1.0.0:
   version "1.3.0"
@@ -9692,10 +9681,12 @@ ws@^6.0.0:
   dependencies:
     async-limiter "~1.0.0"
 
-xml@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
-  integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
+xml-js@^1.6.11:
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.11.tgz#927d2f6947f7f1c19a316dd8eea3614e8b18f8e9"
+  integrity sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==
+  dependencies:
+    sax "^1.2.4"
 
 xmlbuilder@^13.0.0:
   version "13.0.2"
