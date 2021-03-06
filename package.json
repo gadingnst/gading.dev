@@ -19,7 +19,7 @@
     "@nuxtjs/onesignal": "3.0.0-beta.16",
     "@nuxtjs/pwa": "3.0.0-beta.19",
     "@nuxtjs/sitemap": "2.2.1",
-    "flatpickr": "4.6.3",
+    "flatpickr": "4.6.9",
     "nouislider": "14.6.3",
     "nuxt": "2.12.2",
     "prismjs": "1.23.0",
