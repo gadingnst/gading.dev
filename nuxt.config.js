@@ -20,8 +20,8 @@ const routes = () => {
   posts.forEach(item => routes.push(`/blog/${item.name}`))
 
   // pagination routes
-  range(0, Math.ceil(posts.length / settings.BLOG_PAGINATION_LIMIT))
-    .forEach(num => routes.push(`/blog/page/${num + 1}`))
+  range(1, Math.ceil(posts.length / settings.BLOG_PAGINATION_LIMIT))
+    .forEach(num => routes.push(`/blog/page/${num}`))
 
   return routes
 }
@@ -36,7 +36,7 @@ const routesSitemap = routes => (
 )
 
 const config = {
-  mode: 'universal',
+  target: 'static',
 
   env: {
     // credentials env
