@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxtjs/feed": "1.1.0",
     "@nuxtjs/google-adsense": "1.3.0",
-    "@nuxtjs/google-analytics": "2.2.3",
+    "@nuxtjs/google-analytics": "2.4.0",
     "@nuxtjs/onesignal": "3.0.0-beta.16",
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/sitemap": "2.2.1",
