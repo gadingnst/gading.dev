@@ -39,8 +39,7 @@
               </h2>
               <p>
                 <b>
-                  Working as a <a href="#ctfe">Core-Team Frontend Developer</a> at <i><a href="#orami">Orami Indonesia</a></i>.<br>
-                  Previously was <a href="#fe">Jr. Frontend Developer</a>.
+                  Working as a <a href="#ctfe">Core-Team Frontend Developer</a> at <i><a href="#orami">Orami Indonesia</a></i>.
                 </b>
               </p>
 
@@ -78,7 +77,7 @@
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: March 6, 2021 from Palembang, South Sumatera. Indonesia</i>.
+                <i>Last updated at: March 24, 2021 from Palembang, South Sumatera. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
