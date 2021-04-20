@@ -50,7 +50,7 @@
     "markdown-it": "12.0.6",
     "markdown-it-attrs": "4.0.0",
     "markdown-it-plugin-data-src": "1.0.0",
-    "node-sass": "4.14.1",
+    "node-sass": "5.0.0",
     "sass-loader": "8.0.2"
   }
 }
