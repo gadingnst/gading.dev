@@ -47,7 +47,7 @@
     "eslint-plugin-vue": "7.9.0",
     "esm": "3.2.25",
     "frontmatter-markdown-loader": "2.3.0",
-    "markdown-it": "10.0.0",
+    "markdown-it": "12.0.6",
     "markdown-it-attrs": "4.0.0",
     "markdown-it-plugin-data-src": "1.0.0",
     "node-sass": "4.14.1",
