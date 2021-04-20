@@ -20,7 +20,7 @@
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/sitemap": "2.2.1",
     "flatpickr": "4.6.9",
-    "nouislider": "14.6.3",
+    "nouislider": "14.7.0",
     "nuxt": "2.15.2",
     "prismjs": "1.23.0",
     "reading-time": "1.3.0",
