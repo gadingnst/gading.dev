@@ -2250,6 +2250,11 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
 arr-diff@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-4.0.0.tgz#d6461074febfec71e7e15235761a329a5dc7c520"
@@ -3967,6 +3972,11 @@ entities@~2.0.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.3.tgz#5c487e5742ab93c15abb5da22759b8590ec03b7f"
   integrity sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
 
+entities@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-2.1.0.tgz#992d3129cf7df6870b96c57858c249a120f8b8b5"
+  integrity sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w==
+
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.8.tgz#8bb3e9c7d463be4976ff888f76b4809ebc2e811f"
@@ -4186,17 +4196,7 @@ eslint-plugin-unicorn@^28.0.2:
     safe-regex "^2.1.1"
     semver "^7.3.4"
 
-eslint-plugin-vue@7.9.0:
-  version "7.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-7.9.0.tgz#f8e83a2a908f4c43fc8304f5401d4ff671f3d560"
-  integrity sha512-2Q0qQp5+5h+pZvJKCbG1/jCRUYrdgAz5BYKGyTlp2NU8mx09u3Hp7PsH6d5qef6ojuPoCXMnrbbDxeoplihrSw==
-  dependencies:
-    eslint-utils "^2.1.0"
-    natural-compare "^1.4.0"
-    semver "^7.3.2"
-    vue-eslint-parser "^7.6.0"
-
-eslint-plugin-vue@^7.1.0, eslint-plugin-vue@^7.7.0:
+eslint-plugin-vue@7.9.0, eslint-plugin-vue@^7.1.0, eslint-plugin-vue@^7.7.0:
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-7.9.0.tgz#f8e83a2a908f4c43fc8304f5401d4ff671f3d560"
   integrity sha512-2Q0qQp5+5h+pZvJKCbG1/jCRUYrdgAz5BYKGyTlp2NU8mx09u3Hp7PsH6d5qef6ojuPoCXMnrbbDxeoplihrSw==
@@ -4340,7 +4340,7 @@ esprima@^4.0.0:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
-esquery@^1.0.1, esquery@^1.3.1, esquery@^1.4.0:
+esquery@^1.3.1, esquery@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.4.0.tgz#2148ffc38b82e8c7057dfed48425b3e61f0f24a5"
   integrity sha512-cCDispWt5vHHtwMY2YrAQ4ibFkAL8RbH5YGBnZBc90MolvvfkkQcJro/aZiAQUlQ3qgrYS6D6v8Gc5G5CQsc9w==
@@ -5971,6 +5971,13 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
+linkify-it@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-3.0.2.tgz#f55eeb8bc1d3ae754049e124ab3bb56d97797fb8"
+  integrity sha512-gDBO4aHNZS6coiZCKVhSNh43F9ioIL4JwRjLZPkoLIY4yZFwg264Y5lu2x6rb1Js42Gh6Yqm2f6L2AJcnkzinQ==
+  dependencies:
+    uc.micro "^1.0.1"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -6201,7 +6208,18 @@ markdown-it-plugin-data-src@1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-it-plugin-data-src/-/markdown-it-plugin-data-src-1.0.0.tgz#0805d2ded03fd76ff2b3c564201508c0a08b7629"
   integrity sha512-zvna0LMu2hPqHgliaq5JJTp1OnR/rhzYorwKSeMm0YoGgI7K8o0WU+L8nX04Iwomp6AnMbnwnfGSx6CTsKDLwg==
 
-markdown-it@10.0.0, markdown-it@^10.0.0:
+markdown-it@12.0.6:
+  version "12.0.6"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-12.0.6.tgz#adcc8e5fe020af292ccbdf161fe84f1961516138"
+  integrity sha512-qv3sVLl4lMT96LLtR7xeRJX11OUFjsaD5oVat2/SNBIb21bJXwal2+SklcRbTwGwqWpWH/HRtYavOoJE+seL8w==
+  dependencies:
+    argparse "^2.0.1"
+    entities "~2.1.0"
+    linkify-it "^3.0.1"
+    mdurl "^1.0.1"
+    uc.micro "^1.0.5"
+
+markdown-it@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-10.0.0.tgz#abfc64f141b1722d663402044e43927f1f50a8dc"
   integrity sha512-YWOP1j7UbDNz+TumYP1kpwnP0aEa711cJjrAQrzd0UXlbJfc5aAq0F/PZHjiioqDC1NKgvIMX+o+9Bk7yuM2dg==
@@ -9871,18 +9889,6 @@ vue-disqus@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/vue-disqus/-/vue-disqus-4.0.1.tgz#9ec040c575f3b87f3ef4bf43477ff20f06cc57dc"
   integrity sha512-LCmEF4UqLMmMZaZwdMWZ5OO0imu/Cy0pZcr7c0QV7iJk1H9VWKUyxqO7+NNY8hhlAQXTdEq+Hv5tzOA9CfpjdA==
-
-vue-eslint-parser@^7.0.0:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.4.1.tgz#e4adcf7876a7379758d9056a72235af18a587f92"
-  integrity sha512-AFvhdxpFvliYq1xt/biNBslTHE/zbEvSnr1qfHA/KxRIpErmEDrQZlQnvEexednRHmLfDNOMuDYwZL5xkLzIXQ==
-  dependencies:
-    debug "^4.1.1"
-    eslint-scope "^5.0.0"
-    eslint-visitor-keys "^1.1.0"
-    espree "^6.2.1"
-    esquery "^1.0.1"
-    lodash "^4.17.15"
 
 vue-eslint-parser@^7.1.1, vue-eslint-parser@^7.6.0:
   version "7.6.0"
