@@ -111,7 +111,9 @@ Topi Hijau (Green Hat) mewakili sudut pandang berfikir yang bersifat kreatif, al
 Sudut pandang berfikir pada Topi Hijau ini dapat membantu kita untuk bertumbuh dan mengeksekusi ide kreatif guna membuat inovasi serta prespektif baru. Saat menggunakan Topi Hijau, kita harus mengeliminasi terlebih dahulu kemungkinan-kemungkinan negatif yang dideteksi oleh Topi Hitam. Topi ini juga dapat membuat keputusan atau cara-cara alternatif untuk mengatasi masalah yang kita identifikasi saat menggunakan Topi Hitam. 
 
 ### 6. Blue Hat
-Topi Biru (Blue Hat) mewakili sudut pandang berfikir yang bersifat planning, proses, organisir dan action. Jika ke-5 Topi diatas dapat membantu kita untuk mem-*breakdown* komponen-komponen keputusan yang akan diambil. Dengan Topi Biru ini, kita akan dibawa untuk memikirkan bagaimana cara mengimplementasikan komponen-komponen tersebut. Topi ini lebih cenderung ke praktikal. Menggunakan Topi Biru ini dapat membantu kita untuk mengeksekusi keputusan. Semua komponen keputusan yang sudah kita buat dengan menggunakan ke-5 Topi diatas akan sia-sia jika tidak ada actionnya.
+Topi Biru (Blue Hat) mewakili sudut pandang berfikir yang bersifat planning, proses, organisir dan action. Jika ke-5 Topi diatas dapat membantu kita untuk mem-*breakdown* komponen-komponen keputusan yang akan diambil. Dengan Topi Biru ini, kita akan dibawa untuk memikirkan bagaimana cara mengimplementasikan komponen-komponen tersebut.
+
+Topi ini lebih cenderung ke manajemen dan action. Menggunakan Topi Biru ini dapat membantu kita untuk mengeksekusi keputusan. Semua komponen keputusan yang sudah kita buat dengan menggunakan ke-5 Topi diatas akan sia-sia jika tidak ada manajemen dan actionnya.
 
 ---
 
