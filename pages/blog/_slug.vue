@@ -2,7 +2,7 @@
   <div class="content-page">
     <link v-for="(source, i) in meta.css_source" :key="i" rel="stylesheet" :href="source">
     <script v-for="(source, i) in meta.js_source" :key="i" type="text/javascript" :src="source" />
-    <Banner height="70vh" :image="meta.image">
+    <Banner height="70vh" :image="meta.image" :overlay="0.55">
       <div id="banner-content" class="text-center">
         <SlideUp :duration="1500" :delay="200">
           <h4 v-if="isShow" id="content-title" class="text-white text-smooth text-shadow" style="font-weight: 400">
@@ -156,6 +156,22 @@ export default {
       author: process.env.AUTHOR
     }
   }),
+  head() {
+    return {
+      title: `${this.meta.title} | ${this.env.author}`,
+      meta: [
+        ...metaGenerator('article', {
+          title: this.meta.title,
+          description: this.meta.description,
+          keywords: this.meta.keywords,
+          url: `/blog/${this.meta.slug}`,
+          image: this.meta.image
+        }),
+        { hid: 'article:published_time', property: 'article:published_time', content: new Date(this.meta.date).toISOString() },
+        { hid: 'article:section', property: 'article:section', content: this.meta.category }
+      ]
+    }
+  },
   computed: {
     ...mapGetters({
       isShow: 'router/onMountedShow'
@@ -208,22 +224,6 @@ export default {
     share(link, target) {
       window.open(link, target, 'width=600,height=600')
       return false
-    }
-  },
-  head() {
-    return {
-      title: `${this.meta.title} | ${this.env.author}`,
-      meta: [
-        ...metaGenerator('article', {
-          title: this.meta.title,
-          description: this.meta.description,
-          keywords: this.meta.keywords,
-          url: `/blog/${this.meta.slug}`,
-          image: this.meta.image
-        }),
-        { hid: 'article:published_time', property: 'article:published_time', content: new Date(this.meta.date).toISOString() },
-        { hid: 'article:section', property: 'article:section', content: this.meta.category }
-      ]
     }
   }
 }
