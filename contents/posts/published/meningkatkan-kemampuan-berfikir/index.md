@@ -44,7 +44,7 @@ Tapi bagaimana jika belum ada sama sekali basic-basic pengetahuannya? Jelas, ket
 
 Oke, sekarang kita masuk ke inti pembahasannya. Tulisan ini tidak akan membahas bagaimana cara berfikir dengan cepat, atau semacamnya. Tapi kita disini akan membahas bagaimana cara meningkatkan kualitas berfikir kita.
 
-Ada sebuah cara yang unik untuk meningkatkan kualitas berfikir kita. ***Dr. Edward De Bono*** mengungkapkan sebuah metode berfikir yang ditulis dalam bukunya yang berjudul ***"Six Thinking Hats"***, bahwa terdapat 6 metode berfikir manusia. Di dalam buku tersebut, 6 metode berfikir ini diumpamakan menjadi 6 Topi yang berwarna, antara lain ialah:
+Ada sebuah cara yang unik untuk meningkatkan kualitas berfikir kita. ***[Dr. Edward De Bono](https://www.google.com/search?q=Edward+the+bono)*** mengungkapkan sebuah metode berfikir yang ditulis dalam bukunya yang berjudul ***["Six Thinking Hats"](https://www.google.com/search?q=six+thinking+hats)***, bahwa terdapat 6 metode berfikir manusia. Di dalam buku tersebut, 6 metode berfikir ini diumpamakan menjadi 6 Topi yang berwarna, antara lain ialah:
 
 - White Hat,
 - Red Hat,
@@ -73,7 +73,7 @@ Secara overall, Topi Putih ini adalah Topi yang paling dasar untuk dimiliki. Seb
 ### 2. Red Hat
 Topi Merah (Red Hat) ini mewakili sudut pandang berfikir yang bersifat emosional, naluri, intuisi, dan perasaan. Ketika menggunakan Topi ini artinya kita menghadapi persoalan dari sudut pandang emosi, naluri dan perasaan baik positif maupun negatif. Dengan menggunakan naluri, kita sering sekali mendapat arahan akan hal yang tidak bisa diungkapkan secara fakta dan informasi.
 
-Tidak semua didunia ini ada datanya. Oleh karena itu, Topi ini juga cukup penting. Karena emosi, naluri, dan perasaan berpengaruh penting dalam menilai dan mengungkapkan sesuatu yang tidak ada datanya. Jelas, sebab kita adalah manusia. Tanpa sudut pandang pada Topi Merah ini, kita akan menjadi seperti robot yang hanya mengambil keputusan berdasarkan data, serta mengesampingkan perasaan manusiawi. Apakah kita harus memilih untuk tidak mengambil keputusan jika dihadapi dengan persoalan yang tidak ada datanya? Tentu tidak kan?
+Tidak semua di dunia ini ada datanya. Oleh karena itu, Topi ini juga cukup penting. Karena emosi, naluri, dan perasaan berpengaruh penting dalam menilai dan mengungkapkan sesuatu yang tidak ada datanya. Jelas, sebab kita adalah manusia. Tanpa sudut pandang pada Topi Merah ini, kita akan menjadi seperti robot yang hanya mengambil keputusan berdasarkan data, serta mengesampingkan perasaan manusiawi. Apakah kita harus memilih untuk tidak mengambil keputusan jika dihadapi dengan persoalan yang tidak ada datanya? Tentu tidak kan?
 
 Contoh statement yang dapat kita gunakan saat memakai Topi Merah adalah:
 - Instingku berkata tidak untuk mengambil keputusan ini.
