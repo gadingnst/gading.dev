@@ -16,7 +16,7 @@ Manusia adalah mahluk sempurna, yang diciptakan Allah dengan memiliki Akal. Akal
 
 Ada salah satu bagian dari akal, yaitu ***Berfikir***. Siapa sih yang tidak tahu berfikir? Berfikir sudah menjadi kebutuhan kita untuk menjadi manusia normal dalam mencari jawaban dari persoalan-persoalan yang ada di kehidupan kita. 
 
-Secara istilah, Berfikir adalah suatu aktivitas otak yang dapat mengubungkan partikel-partikel pengetahuan/informasi yang ada di dalam otak kita guna untuk dapat membentuk sebuah jawaban. Sebagai penjelasannnya, coba kita lihat exercise berikut.
+Secara istilah, Berfikir adalah suatu aktivitas otak yang dapat mengubungkan partikel-partikel pengetahuan/informasi yang ada di dalam otak kita guna untuk dapat membentuk sebuah keputusan atau jawaban. Sebagai penjelasannnya, coba kita lihat exercise berikut.
 
 ```
 1 + 1 = ?
