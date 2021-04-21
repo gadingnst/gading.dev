@@ -24,7 +24,9 @@ Secara istilah, Berfikir adalah suatu aktivitas otak yang dapat mengubungkan par
 7 - 2 = ?
 ```
 
-Pada persoalan diatas, jelas kita dapat dengan mudah menemukan jawabannya. Kira-kira seperti itulah contoh sederhana ***pengalaman***, jawaban dari persoalan tersebut sudah tertanam di otak kita. Jadi, kita tinggal mengambil jawaban tersebut dari otak tanpa harus berfikir lebih lama lagi, karena kita sudah sering bertemu dengan persoalannya. Beda lagi kalau persoalan tersebut dikasih ke anak yang baru memulai sekolah, mereka pasti membutuhkan waktu yang lebih lama untuk menemukan jawabannya, karena mereka sendiri belum ada pengalaman dari persoalan tersebut. Lalu bagaimana kalau dengan ini?
+Pada persoalan diatas, jelas kita dapat dengan mudah menemukan jawabannya. Kira-kira seperti itulah contoh sederhana ***pengalaman***, jawaban dari persoalan tersebut sudah tertanam di otak kita. Jadi, kita tinggal mengambil jawaban tersebut dari otak tanpa harus berfikir lebih lama lagi, karena kita sudah sering bertemu dengan persoalannya. Beda lagi kalau persoalan tersebut dikasih ke anak yang baru memulai sekolah, mereka pasti membutuhkan waktu yang lebih lama untuk menemukan jawabannya, karena mereka sendiri belum ada pengalaman dari persoalan tersebut.
+
+Lalu, bagaimana kalau dengan ini?
 
 ```
 69321 + 771425 = ?
@@ -41,3 +43,75 @@ Tapi bagaimana jika belum ada sama sekali basic-basic pengetahuannya? Jelas, ket
 ---
 
 Oke, sekarang kita masuk ke inti pembahasannya. Tulisan ini tidak akan membahas bagaimana cara berfikir dengan cepat, atau semacamnya. Tapi kita disini akan membahas bagaimana cara meningkatkan kualitas berfikir kita.
+
+Ada sebuah cara yang unik untuk meningkatkan kualitas berfikir kita. ***Dr. Edward De Bono*** mengungkapkan sebuah metode berfikir yang ditulis dalam bukunya yang berjudul ***"Six Thinking Hats"***, bahwa terdapat 6 metode berfikir manusia. Di dalam buku tersebut, 6 metode berfikir ini diumpamakan menjadi 6 topi yang berwarna, antara lain ialah:
+
+- White Hat,
+- Red Hat,
+- Yellow Hat,
+- Black Hat,
+- Green Hat, dan
+- Blue Hat
+
+Masing-masing dari topi tersebut mempresentasikan sudut pandang atau metode cara berfikir. Adapun point-point sudut pandang dari setiap topi berfikir itu sebagai berikut:
+
+![Six Thinking Hats](/media/blog/meningkatkan-kemampuan-berfikir/six-thinking-hats.jpg)
+
+### 1. White Hat
+Topi Putih (White Hat) mewakili sudut pandang berfikir yang bersifat netral, faktual dan objektif. Ketika menggunakan topi ini artinya kita sedang mengumpulkan data atau informasi-informasi yang bersifat fakta dan objektif, informasi-informasi yang dikumpulkan ini akan digunakan untuk menjadi sebuah pondasi dalam penyelesaian suatu persoalan. Informasi disini tidak termasuk opini atau interpretasi pribadi, seperti: *'Menurut saya..', 'Katanya..', 'Setau saya..',* dan sebagainya.
+
+Contoh statement yang dapat kita gunakan saat memakai Topi Putih ini adalah:
+- Apakah Data ini valid?
+- Dari mana sumbernya?
+- Bagaimana dengan statistiknya?
+- Apakah Metode ini sudah terbukti?
+- Berapa orang yang sudah mencobanya?
+
+Secara overall, Topi Putih ini adalah Topi yang paling penting, topi ini dapat menjadi sebuah pondasi diantara topi-topi lainnya. Karena kualitas dari setiap keputusan atau jawaban yang kita ambil untuk kedepannya ialah tergantung dari kualitas data dan informasi yang kita punya.
+
+### 2. Red Hat
+Topi Merah (Red Hat) ini mewakili sudut pandang berfikir yang bersifat emosional, naluri, intuisi, dan perasaan. Ketika menggunakan topi ini artinya kita menghadapi persoalan dari sudut pandang emosi, naluri dan perasaan baik positif maupun negatif. Dengan menggunakan naluri, kita sering sekali mendapat arahan akan hal yang tidak bisa diungkapkan secara fakta dan informasi. Topi ini juga cukup penting, karena emosi, naluri, dan perasaan berpengatuh penting dalam menilai sesuatu. Jelas, karena kita adalah manusia. Tanpa sudut pandang pada Topi Merah ini, kita akan menjadi seperti robot yang mengambil keputusan dengan mengesampingkan perasaan manusiawi.
+
+Contoh statement yang dapat kita gunakan saat memakai Topi Merah adalah:
+- Instingku berkata tidak untuk mengambil keputusan ini.
+- Menurutku, keputusan ini terlalu berat untuk dilaksanakan tanpa eksplorasi yang lebih dalam.
+- Masyarakat mungkin tidak setuju dengan keputusan ini.
+
+Namun, untuk mengambil keputusan dan menjawab persoalan tidak hanya dengan menggunakan emosi belaka. Kita juga harus menyatukan perasaan dengan fakta yang ada. Karena jika tidak begitu, maka keputusan yang kita buat bisa saja salah dan berakibat sangat fatal.
+
+### 3. Yellow Hat
+Topi Kuning (Yellow Hat) ini mewakili sudut pandang berfikir yang bersifat positif, konstruktif, optimis, dan harapan-harapan yang bersifat kesuksesan, kekuatan, manfaat ataupun keuntungan. Ketika menggunakan topi ini artinya kita memikirkan manfaat-manfaat dari keputusan-keputusan yang sudah kita buat, serta mempertanyakan mengapa keputusan atau jawaban ini layak dieksplorasi dan diimplementasikan.
+
+Contoh statement yang dapat kita gunakan saat memakai Topi Kuning adalah:
+- Apa point-point positifnya?
+- Apa manfaatnya?
+- Mengapa keputusan ini layak diambil? 
+- Bagaimana keputusan ini dapat membantu kita untuk kedepannya?
+
+Sudut pandang berfikir pada Topi Kuning ini dapat membantu kita untuk terus melangkah ketika segala sesuatunya tampak sulit. Kita akan dapat dengan jelas melihat sisi-sisi positif dari keputusan yang kita ambil. Efeknya, kita akan lebih bersemangat untuk menyelesaikan persoalan.
+
+### 4. Black Hat
+Kebalikan dari Topi Kuning, Topi Hitam (Black Hat) ini mewakili sudut pandang berfikir yang bersifat negatif, destruktif, pesimis, dan harapan-harapan yang bersifat kegagalan, kelemahan ataupun kerugian. Ketika menggunakan topi ini artinya kita harus berfikir kritis guna untuk mengkaji resiko-resiko yang mungkin terjadi dari keputusan atau jawaban yang sudah kita buat.
+
+Adapun contoh statement yang dapat kita gunakan saat memakai Topi Hitam adalah:
+- Apa point-point negatifnya?
+- Mengapa keputusan ini mungkin tidak akan berhasil?
+- Bagaimana keputusan ini dapat merobohkan kita untuk kedepannya?
+
+Sudut pandang berfikir pada Topi Hitam ini sebenarnya dapat membantu kita untuk lebih hati-hati dalam menghadapi persoalan. Tidak ceroboh dan gegabah. Kita dapat dengan mudah untuk mengambil langkah dalam menyelesaikan persoalan jika kita sudah tau sisi kelemahan dan hal-hal apa saja yang membuat kita jatuh ketika memilih sebuah keputusan.
+
+### 5. Green Hat
+Topi Hijau (Green Hat) mewakili sudut pandang berfikir yang bersifat kreatif, alternatif atau *out of the box*. Ketika menggunakan Topi ini, biarkan otak kita mengumpulkan ide-ide kreatif sebanyak mungkin tanpa harus mempertimbangkan informasi, fakta, logika dan kemungkinan negatif dari ide tersebut. Tujuannya agar otak kita tidak terhambat.
+
+Sudut pandang berfikir pada Topi Hijau ini dapat membantu kita untuk bertumbuh dan mengeksekusi ide kreatif untuk membuat inovasi baru. Saat menggunakan Topi Hijau, kita harus mengeliminasi terlebih dahulu kemungkinan-kemungkinan negatif yang dideteksi oleh Topi Hitam. Topi ini juga dapat membuat keputusan atau cara-cara alternatif untuk mengatasi masalah yang kita identifikasi saat menggunakan Topi Hitam. 
+
+### 6. Blue Hat
+Topi Biru (Blue Hat) mewakili sudut pandang berfikir yang bersifat planning, proses, organisir dan action. Jika ke-5 Topi diatas dapat membantu kita untuk mem-*breakdown* komponen-komponen keputusan yang akan diambil. Dengan Topi Biru ini, kita akan dibawa untuk memikirkan bagaimana cara mengimplementasikan komponen-komponen tersebut. Topi ini lebih cenderung ke praktikal. Menggunakan Topi Biru ini dapat membantu kita untuk mengeksekusi keputusan. Semua komponen keputusan yang sudah kita buat dengan menggunakan ke-5 Topi diatas akan sia-sia jika tidak ada actionnya.
+
+---
+
+6 Topi berfikir seperti yang disebutkan tadi dapat meningkatkan kualitas berfikir kita, serta membantu untuk menyelesaikan persoalan-persoalan yang sedang kita hadapi. Sebenarnya tidak ada dari 6 Topi tersebut yang lebih penting, semuanya sama penting. 
+
+Normalnya, tidak semua orang yang memiliki gaya berfikir seperti ini, dan tidak semua orang bisa menggunakan ke-6 sudut pandang ini. Ini sama seperti kita memiliki 6 Topi, tetapi kita lebih suka memakai satu atau beberapa warna saja untuk sehari-hari, tanpa memakai topi yang lain.
+
+Namun, kita tetap bisa menggunakan semua Topi ini, jika kita terus membiasakannya. Teknik berfikir yang baik adalah dengan menggunakan semua Topi tersebut secara *step by step*. Keputusan atau jawaban yang kita ambil akan menjadi lebih matang jika kita menggunakan semua metode berfikir tersebut. Jika pun sekarang kita tidak dapat menggunakan semuanya, kita bisa melatihnya sampai terbiasa untuk menggunakan semuanya. Jadi mulai sekarang, yuk kita biasakan untuk menggunakan ke-6 metode berfikir ini sebelum menyelesaikan persoalan-persoalan yang ada pada kehidupan sehari-hari kita ☺️
