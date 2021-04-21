@@ -84,11 +84,11 @@
           </Button>
         </div>
       </div>
-      <Disqus
+      <!-- <Disqus
         :title="`${meta.title} | ${env.author}`"
         :url="`${env.url}/blog/${meta.slug}`"
         :identifier="`${meta.slug}-${new Date(meta.date).getTime()}`"
-      />
+      /> -->
     </div>
   </div>
 </template>
