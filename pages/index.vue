@@ -171,16 +171,6 @@ export default {
       followers: 0
     }
   }),
-  mounted() {
-    window.fetch('https://api.github.com/users/sutanlab')
-      .then(res => res.json())
-      .then(result => {
-        this.github.ready = true
-        this.github.publicRepos = result.public_repos
-        this.github.followers = result.followers
-        this.github.following = result.following
-      })
-  },
   head: () => ({
     title: `${process.env.AUTHOR}`,
     meta: metaGenerator('portfolio', {
@@ -190,6 +180,16 @@ export default {
       image: '/icon.png',
       url: '/'
     })
-  })
+  }),
+  mounted() {
+    window.fetch('https://api.github.com/users/sutanlab')
+      .then(res => res.json())
+      .then(result => {
+        this.github.ready = true
+        this.github.publicRepos = result.public_repos
+        this.github.followers = result.followers
+        this.github.following = result.following
+      })
+  }
 }
 </script>
