@@ -34,7 +34,7 @@ POST_TITLE="${@:2:$(($#-1))}"
 POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
 CURRENT_YEARMONTH="$(date +'%Y/%m')"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
-RAND_NUM=$(shuf -i 0-7 -n 1)
+RAND_NUM=$(node -e "console.log(~~(Math.random() * 7) + 0)")
 # TIME=$(date +"%T")
 # ----------------------------------------------------------------
 
