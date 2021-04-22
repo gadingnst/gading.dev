@@ -8,11 +8,8 @@
         <client-only>
           <lazy-component>
             <FadeTransition :duration="1250">
-              <vue-disqus
-                :shortname="shortname"
-                :title="title"
-                :url="url"
-                :identifier="`${shortname}-${identifier}`"
+              <Disqus
+                :page-config="pageConfig"
                 :ready="ready = true"
               />
             </FadeTransition>
@@ -24,15 +21,8 @@
 </template>
 
 <script>
-import { FadeTransition } from 'vue2-transitions'
-
 export default {
-  components: { FadeTransition },
   props: {
-    shortname: {
-      type: String,
-      default: 'sutanlab'
-    },
     title: {
       type: String,
       required: true
@@ -43,11 +33,20 @@ export default {
     },
     identifier: {
       type: String,
-      default: `sutanlab-blog-${new Date().getTime()}`
+      required: true
     }
   },
   data: () => ({
     ready: false
-  })
+  }),
+  computed: {
+    pageConfig() {
+      return {
+        title: this.title,
+        url: this.url,
+        identifier: `sutanlab/blog/${this.identifier}`
+      }
+    }
+  }
 }
 </script>

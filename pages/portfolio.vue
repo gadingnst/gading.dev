@@ -138,7 +138,7 @@ export default {
     title: `Portfolio | ${process.env.AUTHOR}`,
     meta: metaGenerator('portfolio', {
       title: 'Portfolio',
-      description: 'Some stuff made by Sutan Nasution.',
+      description: `Some stuff made by ${process.env.AUTHOR}`,
       keywords: 'portfolio, projects, experiments, stuff, technology, programming',
       image: '/icon.png',
       url: '/portfolio'
@@ -146,3 +146,9 @@ export default {
   })
 }
 </script>
+
+<style scoped>
+#content-section {
+  margin-top: -180px;
+}
+</style>

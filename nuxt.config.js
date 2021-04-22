@@ -39,10 +39,7 @@ const config = {
   target: 'static',
 
   env: {
-    // credentials env
-    ONESIGNAL_APP_ID: process.env.ONESIGNAL_APP_ID,
-    GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID,
-    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
+    ...process.env,
     ...settings
   },
 
@@ -97,13 +94,13 @@ const config = {
         feed.options = {
           title: `Blog | ${settings.AUTHOR}`,
           link: `${settings.PRODUCTION_URL}/feed.xml`,
-          description: 'Sutan Nasution.\'s personal blog feed'
+          description: `${settings.AUTHOR}'s personal blog feed`
         }
 
         feed.addCategory('Personal Blog')
 
         feed.addContributor({
-          name: 'Sutan Nasution.',
+          name: settings.AUTHOR,
           email: 'contact@sutanlab.id',
           link: settings.PRODUCTION_URL
         })

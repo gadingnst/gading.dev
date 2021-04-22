@@ -1,7 +1,7 @@
 {
   "name": "sutanlab",
   "version": "1.0.0",
-  "description": "A journal about Sutan Nasution",
+  "description": "A journal about Sutan Nasution.",
   "author": "Sutan Nasution.",
   "private": true,
   "pre-commit": [],

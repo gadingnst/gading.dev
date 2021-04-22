@@ -293,9 +293,9 @@ $shape-height-sm:              1.5 !default;
 $border-width:                .0625rem !default;
 $border-color:                $gray-200 !default;
 
-$border-radius:               .25rem !default;
-$border-radius-xl:            .35rem !default;
-$border-radius-lg:            .3rem !default;
+$border-radius:               .3rem !default;
+$border-radius-xl:            .5rem !default;
+$border-radius-lg:            .4rem !default;
 $border-radius-sm:            .2rem !default;
 
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
@@ -809,7 +809,7 @@ $pagination-disabled-border-color:  $gray-300 !default;
 $card-spacer-y:                     1.25rem !default;
 $card-spacer-x:                     1.5rem !default;
 $card-border-width:                 $border-width !default;
-$card-border-radius:                $border-radius !default;
+$card-border-radius:                $border-radius-xl !default;
 $card-border-color:                 rgba($black, .05);
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width});
 $card-cap-bg:                       $gray-100 !default;

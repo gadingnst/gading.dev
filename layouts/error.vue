@@ -26,13 +26,13 @@ export default {
       default: () => ({})
     }
   },
+  head: () => ({
+    title: `Error page | ${process.env.AUTHOR}`
+  }),
   computed: {
     is404() {
       return this.error.statusCode === 404 || this.error.message.includes('Cannot find module')
     }
-  },
-  head: () => ({
-    title: `Error page | ${process.env.AUTHOR}`
-  })
+  }
 }
 </script>

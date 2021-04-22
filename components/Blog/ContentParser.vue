@@ -45,6 +45,9 @@ body.mode-dark {
   button {
     color: #000;
   }
+  h1, h2, h3, h4, h5, h6 {
+    color: #a0ffcf !important;
+  }
 }
 
 code, kbd, pre, samp {
@@ -76,6 +79,7 @@ pre {
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
+    font-size: 0.85rem;
   }
 }
 
@@ -211,7 +215,7 @@ iframe {
   width: 100%;
 }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 768px) {
   blockquote, hr {
     width: 70%;
   }

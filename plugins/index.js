@@ -8,5 +8,8 @@ Vue.use(VueLazyLoad, {
   lazyComponent: true
 })
 
-Vue.use(VueDisqus)
+Vue.use(VueDisqus, {
+  shortname: process.env.DISQUS_SHORTNAME
+})
+
 Vue.use(Directive)

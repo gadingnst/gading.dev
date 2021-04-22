@@ -3,8 +3,6 @@
     id="navbar"
     :style="transparent ? `background-color: transparent !important;` : ''"
     class="fixed-top"
-    type="default"
-    effect="dark"
     expand
   >
     <nuxt-link
@@ -90,6 +88,9 @@ li .nuxt-link-exact-active {
 }
 
 body.mode-dark {
+  #navbar {
+    background-color: #282F5F !important;
+  }
   .navbar-collapse.show {
     li .nuxt-link-exact-active {
       background-color: rgba(255, 255, 255, 0.15);

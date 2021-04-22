@@ -19,6 +19,13 @@ export default {
     Navbar,
     Footer
   },
+  head() {
+    return {
+      bodyAttrs: {
+        class: this.$store.getters.darkMode ? 'mode-dark' : ''
+      }
+    }
+  },
   watch: {
     $route(from, to) {
       this.$store.commit('router/watchRoutes', this.$route.name)
@@ -33,13 +40,6 @@ export default {
   mounted() {
     this.$store.dispatch('getPosts')
     this.$store.commit('toggleDark', window.localStorage.getItem('settings:dark'))
-  },
-  head() {
-    return {
-      bodyAttrs: {
-        class: this.$store.getters.darkMode ? 'mode-dark' : ''
-      }
-    }
   }
 }
 </script>

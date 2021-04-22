@@ -18,7 +18,7 @@
       <div class="container">
         <div class="row justify-content-right">
           <div class="col-sm-6" style="text-align: right">
-            <h5 v-if="this.$store.getters.searching">
+            <h5 v-if="$store.getters.searching">
               Loading ...
             </h5>
           </div>
@@ -162,6 +162,16 @@ export default {
       limit: process.env.BLOG_PAGINATION_LIMIT
     }
   }),
+  head: () => ({
+    title: `Blog | ${process.env.AUTHOR}`,
+    meta: metaGenerator('blog', {
+      title: 'Blog',
+      description: `A Journal about ${process.env.AUTHOR}`,
+      keywords: 'blogs, posts, articles',
+      image: '/icon.png',
+      url: '/blog'
+    })
+  }),
   computed: {
     pg: {
       get() { return this.page },
@@ -185,17 +195,7 @@ export default {
           return title.includes(key) || keywords.includes(key)
         })
     }
-  },
-  head: () => ({
-    title: `Blog | ${process.env.AUTHOR}`,
-    meta: metaGenerator('blog', {
-      title: 'Blog',
-      description: 'A Journal about Sutan Nasution.',
-      keywords: 'blogs, posts, articles',
-      image: '/icon.png',
-      url: '/blog'
-    })
-  })
+  }
 }
 </script>
 
