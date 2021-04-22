@@ -178,6 +178,9 @@ export default {
     }),
     postUrl() {
       return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`)
+    },
+    tags() {
+      return this.meta.tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
     }
   },
   mounted() {
@@ -186,7 +189,7 @@ export default {
         icon: 'logo-facebook-icon',
         type: 'facebook',
         label: 'Share on Facebook',
-        link: `https://www.facebook.com/sharer/sharer.php?u=${this.postUrl}`
+        link: `https://www.facebook.com/sharer/sharer.php?u=${this.postUrl}&quote=%22${this.meta.caption}%22%0A%0A${this.tags}`
       },
       {
         icon: 'logo-linkedin-icon',
@@ -198,7 +201,7 @@ export default {
         icon: 'logo-twitter-icon',
         type: 'twitter',
         label: 'Share on Twitter',
-        link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.postUrl}%20via%20%40${this.twitterUsername}&hashtags=${this.meta.tags.reduce((acc, cur) => `${acc},${cur}`)}`
+        link: `https://twitter.com/intent/tweet?text=%22${this.meta.caption}%22%20${this.postUrl}%20via%20%40${this.twitterUsername}%0A%0A${this.tags}`
       },
       {
         icon: 'logo-tumblr-icon',
