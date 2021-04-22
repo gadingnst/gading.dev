@@ -35,7 +35,7 @@ body.mode-dark {
   }
 
   .card, .card-content, .navbar-collapse.show {
-    background-color: #37455c;
+    background-color: #23395D;
 
     &, .card-content-image img {
       box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .02),
@@ -47,14 +47,14 @@ body.mode-dark {
     }
 
     .card-footer {
-      background-color: #374554;
+      background-color: #2D366C;
     }
   }
 
   .page-item:not(.active) {
     .page-link {
       border-color: transparent;
-      background-color: #374554;
+      background-color: #2D366C;
     }
   }
 

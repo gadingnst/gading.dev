@@ -4,7 +4,7 @@
       <div class="text-center">
         <SlideLeft :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            <b>Sutan Nasution.</b>
+            <b>{{ author }}</b>
           </h1>
         </SlideLeft>
         <SlideRight :duration="1500" :delay="200">
@@ -16,13 +16,13 @@
     </Banner>
     <section class="section section-skew">
       <div class="container">
-        <Card shadow class="card-content" no-body>
+        <Card class="card-content" shadow no-body>
           <div class="px-4">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-content-image">
                   <Lazy tag="span">
-                    <img data-src="/assets/img/collections/sutan_new.jpeg" class="rounded-circle" alt="Sutan Nasution">
+                    <img data-src="/assets/img/collections/sutan_new.jpeg" class="rounded-circle" :alt="author">
                   </Lazy>
                 </div>
               </div>
@@ -164,6 +164,7 @@ export default {
   },
   mixins: [MountedAnimation],
   data: () => ({
+    author: process.env.AUTHOR,
     github: {
       ready: false,
       following: 0,

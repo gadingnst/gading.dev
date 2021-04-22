@@ -16,8 +16,8 @@
     </Banner>
     <section class="section section-skew">
       <div class="container">
-        <Card shadow class="card-content" no-body>
-          <div class="px-4 py-5 row justify-content-center">
+        <Card class="card-content" shadow no-body>
+          <div id="now-content" class="px-4 row justify-content-center">
             <div class="col-lg-9">
               <p>
                 <client-only>
@@ -69,15 +69,16 @@
                 Tools that i use
               </h2>
               <ul>
+                <li>Main Device: MacBook Pro M1 (2020)</li>
                 <li>OS: MacOS BigSur</li>
                 <li>Code Editor: Visual Studio Code</li>
                 <li>Database GUI: DBEaver, PhpMyAdmin and Robo 3T</li>
-                <li>Browsers: Google Chrome and Firefox</li>
-                <li>Others: Spotify, XDMan & Advanced REST Client</li>
+                <li>Browsers: Google Chrome and Safari</li>
+                <li>Others: Jira, Postman, Spotify</li>
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: March 24, 2021 from Palembang, South Sumatera. Indonesia</i>.
+                <i>Last updated at: April 23, 2021 from Palembang, South Sumatera. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
@@ -117,3 +118,17 @@ export default {
   })
 }
 </script>
+
+<style scoped>
+#now-content {
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+}
+
+@media only screen and (max-width: 768px) {
+  #now-content {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+</style>

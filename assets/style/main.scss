@@ -8,6 +8,12 @@
   transition: background-color .5s, box-shadow .25s;
 }
 
+.content-page {
+  .card-content {
+    border-radius: 1.25rem;
+  }
+}
+
 a:not(.btn) {
   font-weight: 500;
 }
@@ -23,4 +29,14 @@ a:not(.btn) {
 .site-title {
   color: $default;
   font-weight: bold !important;
+}
+
+.posts {
+  padding-top: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .posts {
+    padding-top: 1.25rem;
+  }
 }

@@ -31,7 +31,6 @@
       <div id="content-wrap" style="margin: auto">
         <Card shadow class="card-content" style="margin-top: -85px" no-body>
           <ContentParser
-            class="py-5"
             :render-fn="renderFn"
             :static-render-fn="staticRenderFn"
           />
@@ -84,11 +83,11 @@
           </Button>
         </div>
       </div>
-      <!-- <Disqus
+      <Disqus
         :title="`${meta.title} | ${env.author}`"
         :url="`${env.url}/blog/${meta.slug}`"
         :identifier="`${meta.slug}-${new Date(meta.date).getTime()}`"
-      /> -->
+      />
     </div>
   </div>
 </template>
