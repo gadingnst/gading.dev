@@ -7,7 +7,7 @@ tags: ['life', 'problem solving', 'six thinking hats']
 category: 'Life'
 keywords: 'life, thinking, self upgrade, life hack, problem solving, edward de bono, six thinking hats'
 image: '/media/blog/meningkatkan-kemampuan-berfikir/banner.jpg'
-caption: 'Ada cara unik untuk meningkatkan kemampuan berfikir dan problem solving. Yaitu dengan memiliki 6 gaya berfikir menurut Edward de Bono. Apa saja kah itu?'
+caption: 'Ada sebuah cara unik untuk meningkatkan kemampuan berfikir dan problem solving ala Dr. Edward de Bono. Yaitu dengan memiliki "The Six Thinking Hats". Apakah itu?'
 css_source: []
 js_source: []
 ---
