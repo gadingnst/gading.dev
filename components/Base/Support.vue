@@ -8,6 +8,7 @@
       target="_blank"
       size="lg"
       class="d-inline-flex my-1"
+      rel="noreferrer"
       :bg-color="support.color"
     >
       <client-only>

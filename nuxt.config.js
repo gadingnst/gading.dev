@@ -135,7 +135,8 @@ const config = {
   pwa: {
     manifest: {
       name: 'Sutanlab',
-      short_name: 'Sutanlab'
+      short_name: 'Sutanlab',
+      theme_color: '#fff'
     }
   },
 
