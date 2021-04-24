@@ -41,7 +41,7 @@ export default {
     },
     height: {
       type: String,
-      description: 'Min: 450px',
+      description: 'Min: 70vh. Max: 100vh',
       default: '100vh'
     },
     overlay: {
