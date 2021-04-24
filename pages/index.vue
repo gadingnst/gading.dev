@@ -1,6 +1,6 @@
 <template>
   <div class="content-page">
-    <Banner>
+    <Banner height="70vh">
       <div class="text-center">
         <SlideLeft :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
@@ -9,7 +9,7 @@
         </SlideLeft>
         <SlideRight :duration="1500" :delay="200">
           <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            A Man who turns a cup of coffee into beautiful codes.”
+            Just an ordinary Man who turns inspiration into beautiful codes.”
           </h5>
         </SlideRight>
       </div>
@@ -60,24 +60,21 @@
                 <div class="card-content-stats d-flex justify-content-center">
                   <div>
                     <span class="heading">
-                      <span v-if="github.ready">{{ github.publicRepos }}</span>
-                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                      <span>👨🏻‍💻</span>
                     </span>
-                    <span class="description">Repositories</span>
+                    <span class="description">Writer,</span>
                   </div>
                   <div>
                     <span class="heading">
-                      <span v-if="github.ready">{{ github.followers }}</span>
-                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                      <span>🧐</span>
                     </span>
-                    <span class="description">Followers</span>
+                    <span class="description">Learner,</span>
                   </div>
                   <div>
                     <span class="heading">
-                      <span v-if="github.ready">{{ github.following }}</span>
-                      <md-help-circle-outline-icon v-else w="18px" h="18px" animate="beat" />
+                      <span>😴</span>
                     </span>
-                    <span class="description">Following</span>
+                    <span class="description">but Slacker</span>
                   </div>
                 </div>
               </div>
@@ -87,7 +84,7 @@
                 Sutan Gading Fadhillah Nasution
               </h3>
               <div class="h6 font-weight-300">
-                BSD City, Indonesia
+                Gading, Since 1998
               </div>
               <div class="h6 mt-4">
                 Software Engineer, Frontend
@@ -137,7 +134,6 @@
 <script>
 import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
 import MdBriefcaseIcon from 'vue-ionicons/dist/md-briefcase.vue'
-import MdHelpCircleOutlineIcon from 'vue-ionicons/dist/md-help-circle-outline.vue'
 import MdMailIcon from 'vue-ionicons/dist/md-mail.vue'
 import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
 import Card from '~/components/Argon/Card'
@@ -158,19 +154,12 @@ export default {
     MdMailIcon,
     MdQuoteIcon,
     Lazy,
-    MdHelpCircleOutlineIcon,
     MdBriefcaseIcon,
     Support
   },
   mixins: [MountedAnimation],
   data: () => ({
-    author: process.env.AUTHOR,
-    github: {
-      ready: false,
-      following: 0,
-      publicRepos: 0,
-      followers: 0
-    }
+    author: process.env.AUTHOR
   }),
   head: () => ({
     title: `${process.env.AUTHOR}`,
@@ -181,16 +170,6 @@ export default {
       image: '/icon.png',
       url: '/'
     })
-  }),
-  mounted() {
-    window.fetch('https://api.github.com/users/sutanlab')
-      .then(res => res.json())
-      .then(result => {
-        this.github.ready = true
-        this.github.publicRepos = result.public_repos
-        this.github.followers = result.followers
-        this.github.following = result.following
-      })
-  }
+  })
 }
 </script>
