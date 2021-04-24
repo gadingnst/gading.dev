@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner image="/assets/img/collections/desks/desk5.jpg">
+    <Banner height="70vh" image="/assets/img/collections/desks/desk2.jpg">
       <div class="text-center">
         <SlideLeft :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
@@ -149,6 +149,6 @@ export default {
 
 <style scoped>
 #content-section {
-  margin-top: -180px;
+  margin-top: -120px;
 }
 </style>

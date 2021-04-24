@@ -49,7 +49,7 @@
               <ul>
                 <li>Learning and research some technology stuff from the internet.</li>
                 <li>Social Media, coding, reading and blogging for fun.</li>
-                <li>Making quality time for my family and girlfriend every weekend. (Umm, from phone maybe ?).</li>
+                <li>Making quality time for my family and girlfriend every weekend.</li>
               </ul>
 
               <h2 class="mt-5">
@@ -78,7 +78,7 @@
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: April 23, 2021 from Palembang, South Sumatera. Indonesia</i>.
+                <i>Last updated at: April 25, 2021 from Palembang, South Sumatera. Indonesia</i>.
                 &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner image="/assets/img/collections/desks/desk4.jpg">
+    <Banner height="70vh" image="/assets/img/collections/desks/desk5.jpg">
       <div class="text-center">
         <SlideRight :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
