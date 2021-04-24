@@ -5,7 +5,7 @@ date: 2021-04-21
 description: 'Ada sebuah cara unik untuk meningkatkan kemampuan berfikir dan problem solving ala Dr. Edward de Bono. Yaitu dengan memiliki "The Six Thinking Hats". Apakah itu?'
 tags: ['life', 'problem solving', 'six thinking hats']
 category: 'Life'
-keywords: 'life, thinking, self upgrade, life hack, problem solving, edward de bono, six thinking hats'
+keywords: 'meningkatkan kemampuan berfikir, kemampuan berfikir, akal, berfikir, life, thinking, self upgrade, life hack, problem solving, edward de bono, six thinking hats, thinking hats'
 image: '/media/blog/meningkatkan-kemampuan-berfikir/banner.jpg'
 caption: 'Ada sebuah cara unik untuk meningkatkan kemampuan berfikir dan problem solving ala Dr. Edward de Bono. Yaitu dengan memiliki "The Six Thinking Hats". Apakah itu?'
 css_source: []
