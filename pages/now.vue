@@ -112,8 +112,8 @@ export default {
     meta: metaGenerator('article', {
       title: 'Now Page',
       description: `What am i doing right now ? - ${AUTHOR_NAME}`,
-      keywords: 'now',
-      image: '/icon.png',
+      keywords: 'now, now page, what im doing right now',
+      image: '/assets/img/collections/desks/desk0.jpg',
       url: '/now'
     })
   })

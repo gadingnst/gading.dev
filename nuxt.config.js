@@ -70,7 +70,7 @@ const config = {
       { name: 'google-site-verification', content: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ' },
       { name: 'author', content: AUTHOR_FULLNAME },
       { name: 'profile:username', content: SITE_NAME.toLowerCase() },
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:creator', content: `@${TWITTER_USERNAME}` },
       { name: 'twitter:site', content: `@${TWITTER_USERNAME}` },
       { property: 'og:site_name', content: SITE_NAME }
@@ -153,7 +153,12 @@ const config = {
       offlineAnalytics: true,
       runtimeCaching: [
         {
-          urlPattern: 'https://sutanlab.id/*',
+          urlPattern: 'https://sutanlab.id/assets/*',
+          handler: 'cacheFirst',
+          method: 'GET'
+        },
+        {
+          urlPattern: 'https://sutanlab.id/media/*',
           handler: 'cacheFirst',
           method: 'GET'
         },

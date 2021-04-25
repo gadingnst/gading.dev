@@ -137,11 +137,11 @@ export default {
   }),
   head: () => ({
     title: `Portfolio | ${AUTHOR_NAME}`,
-    meta: metaGenerator('portfolio', {
+    meta: metaGenerator('website', {
       title: 'Portfolio',
       description: `Some stuff made by ${AUTHOR_NAME}`,
       keywords: 'portfolio, projects, experiments, stuff, technology, programming',
-      image: '/icon.png',
+      image: '/assets/img/collections/desks/desk2.jpg',
       url: '/portfolio'
     })
   })

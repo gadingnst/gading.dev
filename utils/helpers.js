@@ -11,7 +11,9 @@ export const invert = obj =>
   Object.assign({}, ...Object.entries(obj).map(([key, value]) => ({ [value]: key })))
 
 export const formatPostDate = date => {
-  if (typeof Date.prototype.toLocaleDateString !== 'function') return date
+  if (typeof Date.prototype.toLocaleDateString !== 'function') {
+    return date
+  }
   date = new Date(date)
   const args = [
     'en-ID',
