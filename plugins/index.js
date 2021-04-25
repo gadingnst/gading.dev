@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueLazyLoad from 'vue-lazyload'
 import VueDisqus from 'vue-disqus'
+import { DISQUS_SHORTNAME } from '../utils/config'
 import Directive from './directive'
 
 Vue.use(VueLazyLoad, {
@@ -9,7 +10,7 @@ Vue.use(VueLazyLoad, {
 })
 
 Vue.use(VueDisqus, {
-  shortname: process.env.DISQUS_SHORTNAME
+  shortname: DISQUS_SHORTNAME
 })
 
 Vue.use(Directive)

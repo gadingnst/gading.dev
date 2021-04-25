@@ -10,12 +10,12 @@
       :class="`site-title display-4 text-white mr-lg-5 text-smooth ${transparent ? 'text-shadow' : ''}`"
       to="/"
     >
-      Sutanlab
+      {{ siteName }}
     </nuxt-link>
     <div slot="content-header" slot-scope="{ closeMenu }" class="row">
       <div class="col-6 collapse-brand">
         <nuxt-link to="/" class="site-title text-smooth">
-          <span>Sutanlab</span>
+          <span>{{ siteName }}</span>
         </nuxt-link>
       </div>
       <div class="col-6 collapse-close">
@@ -44,6 +44,7 @@
 import BaseNav from '~/components/Argon/Nav'
 import CloseButton from '~/components/Argon/CloseButton'
 import SwitchMode from '~/components/Base/SwitchMode'
+import { SITE_NAME } from '~/utils/config'
 
 export default {
   components: {
@@ -52,7 +53,8 @@ export default {
     SwitchMode
   },
   data: () => ({
-    transparent: true
+    transparent: true,
+    siteName: SITE_NAME
   }),
   beforeMount() {
     window.addEventListener('scroll', this.onScroll)

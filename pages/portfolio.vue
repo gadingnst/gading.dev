@@ -110,6 +110,7 @@ import Banner from '~/components/Base/Banner'
 import Button from '~/components/Argon/Button'
 import Lazy from '~/components/Base/Lazy'
 import Support from '~/components/Base/Support'
+import { AUTHOR_NAME } from '~/utils/config'
 
 export default {
   components: {
@@ -135,10 +136,10 @@ export default {
     wrapText
   }),
   head: () => ({
-    title: `Portfolio | ${process.env.AUTHOR}`,
+    title: `Portfolio | ${AUTHOR_NAME}`,
     meta: metaGenerator('portfolio', {
       title: 'Portfolio',
-      description: `Some stuff made by ${process.env.AUTHOR}`,
+      description: `Some stuff made by ${AUTHOR_NAME}`,
       keywords: 'portfolio, projects, experiments, stuff, technology, programming',
       image: '/icon.png',
       url: '/portfolio'

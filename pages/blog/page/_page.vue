@@ -10,13 +10,14 @@
 import { formatReadingTime, range, invert } from '~/utils/helpers'
 import PageList from '~/components/Blog/PageList'
 import posts from '~/contents/posts/published'
+import { BLOG_PAGINATION_LIMIT } from '~/utils/config'
 
 export default {
   components: {
     PageList
   },
   asyncData: ({ params }) => {
-    const limit = process.env.BLOG_PAGINATION_LIMIT
+    const limit = BLOG_PAGINATION_LIMIT
     return Promise.all(posts
       .filter((_, idx) => (
         idx in invert(range(

@@ -47,7 +47,7 @@
                     type="primary"
                     class="float-right"
                     size="sm"
-                    href="mailto:contact@sutanlab.id"
+                    :href="`mailto:${email}`"
                   >
                     <client-only>
                       <md-mail-icon w="14px" h="14px" />
@@ -81,7 +81,7 @@
             </div>
             <div class="text-center mt-5">
               <h3>
-                Sutan Gading Fadhillah Nasution
+                {{ authorFullname }}
               </h3>
               <div class="h6 font-weight-300">
                 Gading, Since 1998
@@ -143,6 +143,7 @@ import Lazy from '~/components/Base/Lazy'
 import Support from '~/components/Base/Support'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
+import { AUTHOR_NAME, AUTHOR_FULLNAME, EMAIL } from '~/utils/config'
 
 export default {
   components: {
@@ -159,13 +160,15 @@ export default {
   },
   mixins: [MountedAnimation],
   data: () => ({
-    author: process.env.AUTHOR
+    author: AUTHOR_NAME,
+    authorFullname: AUTHOR_FULLNAME,
+    email: EMAIL
   }),
   head: () => ({
-    title: `${process.env.AUTHOR}`,
+    title: `${AUTHOR_FULLNAME} | ${AUTHOR_NAME}`,
     meta: metaGenerator('portfolio', {
       title: 'Personal Homepage',
-      description: `A Man who turns a cup of coffee into beautiful codes. - ${process.env.AUTHOR}`,
+      description: `A Man who turns a cup of coffee into beautiful codes. - ${AUTHOR_NAME}`,
       keywords: 'homepage, portfolio',
       image: '/icon.png',
       url: '/'

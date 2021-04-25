@@ -125,6 +125,10 @@ import Card from '~/components/Argon/Card'
 import Badge from '~/components/Argon/Badge'
 import Button from '~/components/Argon/Button'
 import Banner from '~/components/Base/Banner'
+import {
+  AUTHOR_NAME,
+  BLOG_PAGINATION_LIMIT
+} from '~/utils/config'
 
 export default {
   components: {
@@ -159,14 +163,14 @@ export default {
     inputSearch: '',
     posts: [],
     pagination: {
-      limit: process.env.BLOG_PAGINATION_LIMIT
+      limit: BLOG_PAGINATION_LIMIT
     }
   }),
   head: () => ({
-    title: `Blog | ${process.env.AUTHOR}`,
+    title: `Blog | ${AUTHOR_NAME}`,
     meta: metaGenerator('blog', {
       title: 'Blog',
-      description: `A Journal about ${process.env.AUTHOR}`,
+      description: `A Journal about ${AUTHOR_NAME}`,
       keywords: 'blogs, posts, articles',
       image: '/icon.png',
       url: '/blog'

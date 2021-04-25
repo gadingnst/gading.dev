@@ -96,6 +96,7 @@ import Card from '~/components/Argon/Card'
 import Banner from '~/components/Base/Banner'
 import MountedAnimation from '~/mixins/mounted-animation'
 import { metaGenerator } from '~/utils/helpers'
+import { AUTHOR_NAME } from '~/utils/config'
 
 export default {
   components: {
@@ -107,10 +108,10 @@ export default {
   },
   mixins: [MountedAnimation],
   head: () => ({
-    title: `Now | ${process.env.AUTHOR}`,
+    title: `Now | ${AUTHOR_NAME}`,
     meta: metaGenerator('article', {
       title: 'Now Page',
-      description: `What am i doing right now ? - ${process.env.AUTHOR}`,
+      description: `What am i doing right now ? - ${AUTHOR_NAME}`,
       keywords: 'now',
       image: '/icon.png',
       url: '/now'

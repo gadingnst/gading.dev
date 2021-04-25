@@ -114,6 +114,7 @@ import ContentParser from '~/components/Blog/ContentParser'
 import Lazy from '~/components/Base/Lazy'
 import Disqus from '~/components/Blog/Disqus'
 import Support from '~/components/Base/Support'
+import { PRODUCTION_URL, AUTHOR_NAME } from '~/utils/config'
 
 export default {
   components: {
@@ -151,8 +152,8 @@ export default {
     twitterUsername: 'gading_nst',
     socialShares: [],
     env: {
-      url: process.env.PRODUCTION_URL,
-      author: process.env.AUTHOR
+      url: PRODUCTION_URL,
+      author: AUTHOR_NAME
     }
   }),
   head() {
@@ -166,8 +167,8 @@ export default {
           url: `/blog/${this.meta.slug}`,
           image: this.meta.image
         }),
-        { hid: 'article:published_time', property: 'article:published_time', content: new Date(this.meta.date).toISOString() },
-        { hid: 'article:section', property: 'article:section', content: this.meta.category }
+        { property: 'article:published_time', content: new Date(this.meta.date).toISOString() },
+        { property: 'article:section', content: this.meta.category }
       ]
     }
   },
@@ -176,7 +177,7 @@ export default {
       isShow: 'router/onMountedShow'
     }),
     postUrl() {
-      return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`)
+      return `${this.env.url}/blog/${this.meta.slug}`
     },
     tags() {
       return this.meta.tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
