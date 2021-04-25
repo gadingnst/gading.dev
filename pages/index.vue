@@ -166,11 +166,11 @@ export default {
   }),
   head: () => ({
     title: `${AUTHOR_FULLNAME} | ${AUTHOR_NAME}`,
-    meta: metaGenerator('portfolio', {
+    meta: metaGenerator('website', {
       title: 'Personal Homepage',
       description: `A Man who turns a cup of coffee into beautiful codes. - ${AUTHOR_NAME}`,
       keywords: 'homepage, portfolio',
-      image: '/icon.png',
+      image: '/assets/img/collections/desks/desk1.jpg',
       url: '/'
     })
   })

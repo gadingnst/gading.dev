@@ -172,7 +172,7 @@ export default {
       title: 'Blog',
       description: `A Journal about ${AUTHOR_NAME}`,
       keywords: 'blogs, posts, articles',
-      image: '/icon.png',
+      image: '/assets/img/collections/desks/desk5.jpg',
       url: '/blog'
     })
   }),
