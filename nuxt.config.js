@@ -77,6 +77,7 @@ const config = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://onesignal.com' },
       { rel: 'preconnect', href: 'https://cdn.onesignal.com' }
     ],
     noscript: [
@@ -153,6 +154,11 @@ const config = {
       runtimeCaching: [
         {
           urlPattern: 'https://sutanlab.id/*',
+          handler: 'cacheFirst',
+          method: 'GET'
+        },
+        {
+          urlPattern: 'https://onesignal.com/*',
           handler: 'cacheFirst',
           method: 'GET'
         },

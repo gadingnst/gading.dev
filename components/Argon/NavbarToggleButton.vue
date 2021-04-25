@@ -3,6 +3,7 @@
     class="navbar-toggler"
     type="button"
     data-toggle="collapse"
+    aria-hidden="false"
     aria-label="Toggle navigation"
     :data-target="target"
     :aria-controls="target"
