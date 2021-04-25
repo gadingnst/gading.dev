@@ -177,7 +177,7 @@ export default {
       isShow: 'router/onMountedShow'
     }),
     postUrl() {
-      return `${this.env.url}/blog/${this.meta.slug}`
+      return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`)
     },
     tags() {
       return this.meta.tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
