@@ -17,11 +17,12 @@
 <script>
 import Banner from '~/components/Base/Banner'
 import Button from '~/components/Argon/Button'
+import { AUTHOR_NAME } from '~/utils/config'
 
 export default {
   components: { Banner, Button },
   head: () => ({
-    title: `Error page | ${process.env.AUTHOR}`
+    title: `Error page | ${AUTHOR_NAME}`
   })
 }
 </script>

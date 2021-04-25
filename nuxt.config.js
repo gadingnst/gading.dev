@@ -6,7 +6,16 @@ import mode from 'frontmatter-markdown-loader/mode'
 import { config as env } from 'dotenv'
 import { range } from './utils/helpers'
 import posts from './contents/posts/published'
-import settings from './settings.json'
+import {
+  PRODUCTION_URL,
+  SITE_NAME,
+  AUTHOR_NAME,
+  AUTHOR_FULLNAME,
+  TWITTER_USERNAME,
+  EMAIL,
+  BLOG_PAGINATION_LIMIT,
+  ACTIVATE_ADS
+} from './utils/config'
 
 env({ path: '.env' })
 
@@ -20,7 +29,7 @@ const routes = () => {
   posts.forEach(item => routes.push(`/blog/${item.name}`))
 
   // pagination routes
-  range(1, Math.ceil(posts.length / settings.BLOG_PAGINATION_LIMIT))
+  range(1, Math.ceil(posts.length / BLOG_PAGINATION_LIMIT))
     .forEach(num => routes.push(`/blog/page/${num}`))
 
   return routes
@@ -39,8 +48,7 @@ const config = {
   target: 'static',
 
   env: {
-    ...process.env,
-    ...settings
+    ...process.env
   },
 
   server: {
@@ -52,22 +60,24 @@ const config = {
   ** Headers of the page
   */
   head: {
-    title: 'Sutanlab',
+    title: SITE_NAME,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#304165' },
       { name: 'mobile-web-app-capable', content: 'yes' },
-      { name: 'apple-mobile-web-app-title', content: 'Sutanlab' },
+      { name: 'apple-mobile-web-app-title', content: SITE_NAME },
+      { name: 'google-site-verification', content: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ' },
+      { name: 'author', content: AUTHOR_FULLNAME },
+      { name: 'profile:username', content: SITE_NAME.toLowerCase() },
       { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:creator', content: '@sutan_gnst' },
-      { name: 'twitter:site', content: '@sutan_gnst' },
-      { property: 'og:site_name', content: 'Sutanlab' },
-      { property: 'profile:username', content: 'sutanlab' },
-      { name: 'google-site-verification', content: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ' }
+      { name: 'twitter:creator', content: `@${TWITTER_USERNAME}` },
+      { name: 'twitter:site', content: `@${TWITTER_USERNAME}` },
+      { property: 'og:site_name', content: SITE_NAME }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://cdn.onesignal.com' }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript :)', body: true }
@@ -81,7 +91,7 @@ const config = {
 
   sitemap: {
     path: '/sitemap.xml',
-    hostname: settings.PRODUCTION_URL,
+    hostname: PRODUCTION_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     routes: routesSitemap(routes())
@@ -92,17 +102,17 @@ const config = {
       path: '/feed.xml',
       async create(feed) {
         feed.options = {
-          title: `Blog | ${settings.AUTHOR}`,
-          link: `${settings.PRODUCTION_URL}/feed.xml`,
-          description: `${settings.AUTHOR}'s personal blog feed`
+          title: `Blog | ${AUTHOR_NAME}`,
+          link: `${PRODUCTION_URL}/feed.xml`,
+          description: `${AUTHOR_NAME}'s personal blog feed`
         }
 
         feed.addCategory('Personal Blog')
 
         feed.addContributor({
-          name: settings.AUTHOR,
-          email: 'contact@sutanlab.id',
-          link: settings.PRODUCTION_URL
+          name: AUTHOR_NAME,
+          email: EMAIL,
+          link: PRODUCTION_URL
         })
 
         await Promise.all(posts.map(({ name }) => (
@@ -112,7 +122,7 @@ const config = {
             .then(content => {
               feed.addItem({
                 title: content.title,
-                link: `${settings.PRODUCTION_URL}/blog/${content.slug}`,
+                link: `${PRODUCTION_URL}/blog/${content.slug}`,
                 description: content.description
               })
             })
@@ -134,9 +144,29 @@ const config = {
 
   pwa: {
     manifest: {
-      name: 'Sutanlab',
-      short_name: 'Sutanlab',
+      name: SITE_NAME,
+      short_name: SITE_NAME,
       theme_color: '#fff'
+    },
+    workbox: {
+      offlineAnalytics: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'https://sutanlab.id/*',
+          handler: 'cacheFirst',
+          method: 'GET'
+        },
+        {
+          urlPattern: 'https://cdn.onesignal.com/*',
+          handler: 'cacheFirst',
+          method: 'GET'
+        },
+        {
+          urlPattern: 'https://www.google-analytics.com/*',
+          handler: 'cacheFirst',
+          method: 'GET'
+        }
+      ]
     }
   },
 
@@ -154,6 +184,8 @@ const config = {
   ** Global CSS
   */
   css: [
+    '~/assets/style/fonts.scss',
+    '~/assets/style/dark.scss',
     '~/assets/style/main.scss',
     '~/assets/style/code.scss'
   ],
@@ -212,7 +244,7 @@ const config = {
   }
 }
 
-if (settings.ACTIVATE_ADS) {
+if (ACTIVATE_ADS) {
   config.modules.push([
     '@nuxtjs/google-adsense',
     {

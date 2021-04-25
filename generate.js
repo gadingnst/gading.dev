@@ -9,7 +9,7 @@ const fs = require('fs').promises
 const path = require('path')
 const fmparse = require('front-matter')
 const { formatReadingTime } = require('./utils/helpers')
-const settings = require('./settings.json')
+const { ACTIVATE_ADS } = require('./utils/config')
 
 const generatePostList = async () => {
   console.time('Done generate published post lists')
@@ -45,7 +45,7 @@ const generatePostList = async () => {
 
 generatePostList()
 
-!settings.ACTIVATE_ADS || fs.writeFile(
+!ACTIVATE_ADS || fs.writeFile(
   path.resolve('static', 'ads.txt'),
   `google.com, ${process.env.GOOGLE_ADSENSE_ID.replace(/ca-/, '')}, DIRECT, f08c47fec0942fa0`
 )

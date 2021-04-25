@@ -2,17 +2,12 @@
   <div class="row comments pb-3 justify-content-center">
     <div class="col-lg-10 order-lg-2 text-center">
       <h4 class="mb-1 pt-3">
-        <b>{{ !ready ? 'Loading Comments..' : 'Comments' }}</b>
+        <b>Comments</b>
       </h4>
       <div class="mx-auto mt-3">
         <client-only>
           <lazy-component>
-            <FadeTransition :duration="1250">
-              <Disqus
-                :page-config="pageConfig"
-                :ready="ready = true"
-              />
-            </FadeTransition>
+            <Disqus :page-config="pageConfig" />
           </lazy-component>
         </client-only>
       </div>
@@ -36,9 +31,6 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    ready: false
-  }),
   computed: {
     pageConfig() {
       return {

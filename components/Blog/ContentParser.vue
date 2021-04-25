@@ -2,7 +2,7 @@
 /* eslint-disable no-new-func */
 
 import Prism from 'prismjs'
-import { SYNTAX_HIGHLIGHTING as language } from '~/settings.json'
+import { SYNTAX_HIGHLIGHTING as language } from '~/utils/config'
 
 export default {
   props: {

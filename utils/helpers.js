@@ -1,4 +1,5 @@
 import readingTime from 'reading-time'
+import { PRODUCTION_URL, SITE_NAME, AUTHOR_NAME } from './config'
 
 export const wrapText = (text, max) =>
   text.length > max ? `${text.slice(0, max).trim()} ...` : text
@@ -34,18 +35,19 @@ export const randomString = (length = 7) => {
 }
 
 export const metaGenerator = (type, meta) => [
-  { hid: 'title', name: 'title', content: `${meta.title} | ${process.env.AUTHOR}` },
-  { hid: 'description', name: 'description', content: `${meta.description}` },
-  { hid: 'keywords', name: 'keywords', content: `sutan nst, sutan gading fadhillah nasution, sutan, gading, fadhillah, nasution, sgnzst, sutanlab, sutan lab, coder, mahasiswa, it polsri, itpolsri, polsri, politeknik negeri sriwijaya, ${meta.title}, ${meta.keywords}` },
-  { hid: 'og:image', property: 'og:image', content: process.env.PRODUCTION_URL + meta.image },
-  { hid: 'og:image:secure_url', property: 'og:image:secure_url', content: process.env.PRODUCTION_URL + meta.image },
-  { hid: 'og:title', property: 'og:title', content: `${meta.title} | ${process.env.AUTHOR}` },
-  { hid: 'og:description', property: 'og:description', content: meta.description },
-  { hid: 'og:url', property: 'og:url', content: process.env.PRODUCTION_URL + meta.url },
-  { hid: 'og:updated_time', property: 'og:updated_time', content: new Date().toISOString() },
-  { hid: 'og:type', property: 'og:type', content: type },
-  { hid: 'twitter:title', name: 'twitter:title', content: `${meta.title} | ${process.env.AUTHOR}` },
-  { hid: 'twitter:image:src', name: 'twitter:image:src', content: process.env.PRODUCTION_URL + meta.url },
-  { hid: 'twitter:description', name: 'twitter:description', content: meta.description },
-  { hid: 'twitter:url', name: 'twitter:url', content: process.env.PRODUCTION_URL + meta.url }
+  { name: 'title', content: `${meta.title} | ${AUTHOR_NAME}` },
+  { name: 'description', content: `${meta.description}` },
+  { name: 'keywords', content: `sutan nst, sutan nasution, sutan gading, sutan gading fadhillah nasution, sutan, gading, fadhillah, nasution, sgnzst, sutanlab, sutan lab, coder, mahasiswa, it polsri, itpolsri, polsri, politeknik negeri sriwijaya, ${meta.title}, ${meta.keywords}` },
+  { name: 'twitter:title', content: `${meta.title} | ${PRODUCTION_URL}` },
+  { name: 'twitter:image', content: PRODUCTION_URL + meta.image },
+  { name: 'twitter:description', content: meta.description },
+  { name: 'twitter:url', content: PRODUCTION_URL + meta.url },
+  { property: 'og:type', content: type },
+  { property: 'og:title', content: `${meta.title} | ${AUTHOR_NAME}` },
+  { property: 'og:description', content: meta.description },
+  { property: 'og:url', content: PRODUCTION_URL + meta.url },
+  { property: 'og:site_name', content: SITE_NAME },
+  { property: 'og:image', content: PRODUCTION_URL + meta.image },
+  { property: 'og:image:secure_url', content: PRODUCTION_URL + meta.image },
+  { property: 'og:updated_time', content: new Date().toISOString() }
 ]

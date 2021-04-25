@@ -1,10 +1,19 @@
 {
-  "AUTHOR": "Sutan Nasution.",
   "PRODUCTION_URL": "https://sutanlab.id",
+  "SITE_NAME": "Sutanlab",
+  "AUTHOR_NAME": "Sutan Nasution.",
+  "AUTHOR_FULLNAME": "Sutan Gading Fadhillah Nasution",
+  "EMAIL": "contact@sutanlab.id",
+  "FACEBOOK_USERNAME": "sutanlab",
+  "TWITTER_USERNAME": "gading_nst",
+  "INSTAGRAM_USERNAME": "gadingnst",
+  "GITHUB_USERNAME": "sutanlab",
+  "LINKEDIN_USERNAME": "sutan-nasution",
+  "DISQUS_SHORTNAME": "sutanlab",
   "BLOG_PAGINATION_LIMIT": 6,
-  "ACTIVATE_ADS": false,
   "SYNTAX_HIGHLIGHTING": [
     "java",
     "jsx"
-  ]
+  ],
+  "ACTIVATE_ADS": false
 }

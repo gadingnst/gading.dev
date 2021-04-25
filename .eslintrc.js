@@ -15,18 +15,8 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'arrow-parens': 'off',
-    'curly': 'off',
     'space-before-function-paren': 'off',
     'handle-callback-err': 'off',
-    'template-curly-spacing': ['off'],
-    'indent': [
-      'error',
-      2,
-      {
-        'ignoredNodes': [
-          'TemplateLiteral'
-        ]
-      }
-    ]
+    'template-curly-spacing': ['off']
   }
 }
