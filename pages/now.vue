@@ -24,9 +24,9 @@
                   <md-quote-icon w="14px" h="14px" />
                 </client-only>
                 At first, i'll be thanking to
-                <a href="https://faultable.dev/now/">Fariz Rizaldy</a>,
-                <a href="https://afrijaldzuhri.wordpress.com/now/">Afrijal Dzuhri</a> and
-                <a href="https://www.wahudamon.com/now">Afwa Bagas Wahuda</a>.
+                <a rel="noreferrer" target="_blank" href="https://faultable.dev/now/">Fariz Rizaldy</a>,
+                <a rel="noreferrer" target="_blank" href="https://afrijaldzuhri.wordpress.com/now/">Afrijal Dzuhri</a> and
+                <a rel="noreferrer" target="_blank" href="https://www.wahudamon.com/now">Afwa Bagas Wahuda</a>.
                 Because all of them, i was inspired to create this page for describing about <b><i>what i'm doing right now</i></b>.
                 So, maybe you don't need to ask me frequently about that.
               </p>
@@ -39,7 +39,7 @@
               </h2>
               <p>
                 <b>
-                  Working as a <a href="#ctfe">Core-Team Frontend Developer</a> at <i><a href="#orami">Orami Indonesia</a></i>.
+                  Working as a <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=Core+developer">Core-Team Frontend Developer</a> at <i><a href="https://www.google.com/search?q=orami+indonesia">Orami Indonesia</a></i>.
                 </b>
               </p>
 
@@ -78,8 +78,8 @@
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: April 25, 2021 from Palembang, South Sumatera. Indonesia</i>.
-                &nbsp;<a href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
+                <i>Last updated at: May 3, 2021 from Palembang, South Sumatera. Indonesia</i>.
+                &nbsp;<a rel="noreferrer" target="_blank" href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
           </div>
