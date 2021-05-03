@@ -6330,10 +6330,10 @@ normalize-url@^3.0.0, normalize-url@^3.3.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
-nouislider@14.7.0:
-  version "14.7.0"
-  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-14.7.0.tgz#a71db0587c92567b6da1df57d251d3696d942362"
-  integrity sha512-4RtQ1+LHJKesDCNJrXkQcwXAWCrC2aggdLYMstS/G5fEWL+fXZbUA9pwVNHFghMGuFGRATlDLNInRaPeRKzpFQ==
+nouislider@15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-15.0.0.tgz#2136d811bbc48b2c16959cfc8d9f87144719b885"
+  integrity sha512-mc468FpXujtNydUO5hrI+R1CqUTQuAxeNT8r0L43ABdgvAL34MSq1lvVYFlrqVo1nitET9M8BdzZHTHgeuRr4w==
 
 npm-run-path@^4.0.1:
   version "4.0.1"
