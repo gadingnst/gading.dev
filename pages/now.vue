@@ -39,7 +39,7 @@
               </h2>
               <p>
                 <b>
-                  Working as a <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=Core+developer">Core-Team Frontend Developer</a> at <i><a href="https://www.google.com/search?q=orami+indonesia">Orami Indonesia</a></i>.
+                  Working as a <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+core+team">Core-Team</a> <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+frontend+developer+do">Frontend Developer</a> at <i><a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=orami+indonesia">Orami Indonesia</a></i>.
                 </b>
               </p>
 
