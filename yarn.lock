@@ -1330,10 +1330,10 @@
     consola "^2.12.1"
     feed "^4.2.0"
 
-"@nuxtjs/google-adsense@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/google-adsense/-/google-adsense-1.3.0.tgz#28da2ab54deb767827cf930777826e8b72c84d2c"
-  integrity sha512-4kBOhcID/fVGgIosG273Zpx0nnwcT06RuqcmjDQmR9g+u3K5MgQBdkzKYTHefvAHzraf5KBROrA7/9HPp6Js3Q==
+"@nuxtjs/google-adsense@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/google-adsense/-/google-adsense-1.4.0.tgz#c86eedf10fa8cc9ae5e4b3bb45998bd462d9634b"
+  integrity sha512-C5PfE/IE/VhqhomZWNNbTmVIPjB2o+2iRXZA16QoPMA0n2cotfGqt1CkECTYPyFhN89beMa7ioOic9/+ESLPXg==
 
 "@nuxtjs/google-analytics@2.4.0":
   version "2.4.0"
