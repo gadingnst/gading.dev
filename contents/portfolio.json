@@ -9,21 +9,12 @@
     "stacks": ["typescript", "express", "api"]
   },
   {
-    "name": "Corona Sumsel (Instagram Bot)",
+    "name": "Qur'an Machine (Instagram & Telegram Bot)",
     "category": "Open Source Project",
-    "description": "An Instagram bot that used to update covid 19 data of South Sumatra, Indonesia.",
-    "github": "https://github.com/sutanlab/igbot-coronasumsel",
-    "website": "https://coronasumsel.sutanlab.id",
-    "image": "/media/portfolio/corona-sumsel.jpeg",
-    "stacks": ["typescript", "express", "bot", "puppeteer"]
-  },
-  {
-    "name": "Ayat Dari Allah (Instagram Bot)",
-    "category": "Open Source Project",
-    "description": "Automatic posts random qur'an verses and translations on Instagram.",
-    "github": "https://github.com/sutanlab/igbot-ayatdariallah",
-    "website": "https://ayatdariallah.sutanlab.id",
-    "image": "/media/portfolio/ayatdariallah.jpeg",
+    "description": "Automatic shares qur'an verses and translations on Instagram/Telegram.",
+    "github": "https://github.com/sutanlab/quran.machine",
+    "website": "https://quran-machine.sutanlab.id",
+    "image": "/media/portfolio/quran-machine.jpeg",
     "stacks": ["typescript", "express", "bot", "puppeteer"]
   },
   {
