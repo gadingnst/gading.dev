@@ -47,6 +47,7 @@
                 Activities
               </h2>
               <ul>
+                <li>Trading, Investing, and Learning Cryptocurrency</li>
                 <li>Learning and research some technology stuff from the internet.</li>
                 <li>Social Media, coding, reading and blogging for fun.</li>
                 <li>Making quality time for my family and girlfriend every weekend.</li>
@@ -70,15 +71,15 @@
               </h2>
               <ul>
                 <li>Main Device: MacBook Pro M1 (2020)</li>
-                <li>OS: MacOS BigSur</li>
+                <li>OS: MacOS Monterey</li>
                 <li>Code Editor: Visual Studio Code</li>
                 <li>Database GUI: DBEaver, PhpMyAdmin and Robo 3T</li>
                 <li>Browsers: Google Chrome and Safari</li>
-                <li>Others: Jira, Postman, Spotify</li>
+                <li>Others: Jira/Trello, Postman, Spotify</li>
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: May 3, 2021 from Palembang, South Sumatera. Indonesia</i>.
+                <i>Last updated at: November 7, 2021 from Palembang, South Sumatera. Indonesia</i>.
                 &nbsp;<a rel="noreferrer" target="_blank" href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
               </p>
             </div>
