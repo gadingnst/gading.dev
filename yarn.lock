@@ -5807,10 +5807,10 @@ markdown-it-plugin-data-src@1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-it-plugin-data-src/-/markdown-it-plugin-data-src-1.0.0.tgz#0805d2ded03fd76ff2b3c564201508c0a08b7629"
   integrity sha512-zvna0LMu2hPqHgliaq5JJTp1OnR/rhzYorwKSeMm0YoGgI7K8o0WU+L8nX04Iwomp6AnMbnwnfGSx6CTsKDLwg==
 
-markdown-it@12.0.6:
-  version "12.0.6"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-12.0.6.tgz#adcc8e5fe020af292ccbdf161fe84f1961516138"
-  integrity sha512-qv3sVLl4lMT96LLtR7xeRJX11OUFjsaD5oVat2/SNBIb21bJXwal2+SklcRbTwGwqWpWH/HRtYavOoJE+seL8w==
+markdown-it@12.3.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-12.3.0.tgz#11490c61b412b8f41530319c005ecdcd4367171f"
+  integrity sha512-T345UZZ6ejQWTjG6PSEHplzNy5m4kF6zvUpHVDv8Snl/pEU0OxIK0jGg8YLVNwJvT8E0YJC7/2UvssJDk/wQCQ==
   dependencies:
     argparse "^2.0.1"
     entities "~2.1.0"
