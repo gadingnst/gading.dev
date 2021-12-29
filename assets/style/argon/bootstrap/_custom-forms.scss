@@ -6,6 +6,7 @@
 // Checkboxes and radios
 //
 // Base class takes care of all the key behavioral aspects.
+@use 'sass:math';
 
 .custom-control {
   position: relative;
@@ -63,7 +64,7 @@
   // Background-color and (when enabled) gradient
   &::before {
     position: absolute;
-    top: (($font-size-base * $line-height-base - $custom-control-indicator-size) / 2);
+    top: math.div(($font-size-base * $line-height-base - $custom-control-indicator-size), 2);
     left: -$custom-control-gutter;
     display: block;
     width: $custom-control-indicator-size;
@@ -78,7 +79,7 @@
   // Foreground (icon)
   &::after {
     position: absolute;
-    top: (($font-size-base * $line-height-base - $custom-control-indicator-size) / 2);
+    top: math.div(($font-size-base * $line-height-base - $custom-control-indicator-size), 2);
     left: -$custom-control-gutter;
     display: block;
     width: $custom-control-indicator-size;
@@ -335,7 +336,7 @@
   &::-webkit-slider-thumb {
     width: $custom-range-thumb-width;
     height: $custom-range-thumb-height;
-    margin-top: (($custom-range-track-height - $custom-range-thumb-height) / 2); // Webkit specific
+    margin-top: math.div(($custom-range-track-height - $custom-range-thumb-height), 2); // Webkit specific
     @include gradient-bg($custom-range-thumb-bg);
     border: $custom-range-thumb-border;
     @include border-radius($custom-range-thumb-border-radius);
