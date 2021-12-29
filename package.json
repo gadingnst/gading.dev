@@ -44,7 +44,7 @@
     "eslint-plugin-nuxt": "2.0.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-standard": "4.1.0",
-    "eslint-plugin-vue": "7.9.0",
+    "eslint-plugin-vue": "8.2.0",
     "esm": "3.2.25",
     "frontmatter-markdown-loader": "2.3.0",
     "markdown-it": "12.0.6",
