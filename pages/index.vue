@@ -32,7 +32,7 @@
                     tag="a"
                     target="_blank"
                     rel="noreferrer"
-                    href="/media/resume.pdf"
+                    href="/media/cv.pdf"
                     type="info"
                     size="sm"
                     class="mr-4"
@@ -40,7 +40,7 @@
                     <client-only>
                       <md-briefcase-icon w="14px" h="14px" />
                     </client-only>
-                    Resume
+                    CV
                   </Button>
                   <Button
                     tag="a"
