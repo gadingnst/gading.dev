@@ -5,7 +5,7 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser'
   },
   extends: [
     '@nuxtjs',
@@ -17,6 +17,7 @@ module.exports = {
     'arrow-parens': 'off',
     'space-before-function-paren': 'off',
     'handle-callback-err': 'off',
-    'template-curly-spacing': ['off']
+    'template-curly-spacing': ['off'],
+    'vue/multi-word-component-names': 0
   }
 }
