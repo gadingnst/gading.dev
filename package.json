@@ -37,7 +37,7 @@
     "@nuxtjs/eslint-config": "8.0.0",
     "@nuxtjs/eslint-module": "3.0.2",
     "babel-core": "7.0.0-bridge.0",
-    "eslint": "8.5.0",
+    "eslint": "8.8.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "11.1.0",
