@@ -6522,10 +6522,10 @@ normalize-url@^3.0.0, normalize-url@^3.3.0:
   resolved "https://registry.npmjs.org/normalize-url/-/normalize-url-3.3.0.tgz"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
-nouislider@15.5.0:
-  version "15.5.0"
-  resolved "https://registry.npmjs.org/nouislider/-/nouislider-15.5.0.tgz"
-  integrity sha512-p0Rn0a4XzrBJ+JZRhNDYpRYr6sDPkajsjbvEQoTp/AZlNI3NirO15s1t11D25Gk3zVyvNJAzc1DO48cq/KX5Sw==
+nouislider@15.5.1:
+  version "15.5.1"
+  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-15.5.1.tgz#3d6c5e73f85110b91d4e029d88fd8532aca98353"
+  integrity sha512-V8LNPhLPXLNjkgXLfyzDRGDeKvzZeaiIx5YagMiHnOMqgcRzT75jqvEZYXbSrEffXouwcEShSd8Vllm2Nkwqew==
 
 npm-run-path@^4.0.1:
   version "4.0.1"
