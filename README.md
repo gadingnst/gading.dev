@@ -1,6 +1,6 @@
-## 👨‍💻 Sutan Nst. Personal Homepage
+## 👨‍💻 Gading Personal Homepage
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=sutanlab-id&style=flat-square) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5136a14bf5a24cc9a77634c17273b738)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sutanlab/sutanlab.id&amp;utm_campaign=Badge_Grade) [![Website](https://img.shields.io/website/https/sutanlab.id.svg)](https://sutanlab.id)
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=sutanlab-id&style=flat-square)](https://vercel.com/sutanlab/sutanlab-id/deployments) [![Website](https://img.shields.io/website/https/sutanlab.id.svg)](https://sutanlab.id)
 
 > My Personal Homepage & Blog site with NuxtJS : https://sutanlab.id
 
