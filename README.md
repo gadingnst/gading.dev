@@ -7,6 +7,7 @@
 ### Required in System
 
 - [NodeJS](https://nodejs.org/en/download/)
+- [Yarn](https://yarnpkg.com/)
 
 ### Ongoing Features
 - [x] Mobile friendly + offline-first with PWA Module
@@ -28,13 +29,11 @@
 ``` bash
 $ yarn install # install dependencies
 
-$ yarn start # serve with hot reload at local server
+$ yarn dev # serve with hot reload at local server
 
 $ yarn build # build for production
 
-$ yarn test # test with jest environment
-
-$ yarn score # generate lighthouse badges for deployed site with (if has lighthouse-badges cli)
+$ yarn start # serve at production server
 ```
 
 This site use Nuxt.js Framework. [Read Nuxt.js Documentation](https://nuxtjs.org).
@@ -49,13 +48,6 @@ $ ./post -c {POST_TITLE} # create post
 $ ./post -d {POST_TITLE} # create draft post
 
 $ ./post -p {POST_TITLE} # publish/promote a draft to a post
-```
-
-### Note
-
-- How to resolve System limit for number of file watchers reached
-```bash
-$ sudo echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
 - Integrate OneSignal Push Notifications with RSS Feed in [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed)
@@ -75,4 +67,4 @@ $ sudo echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &&
 
 * * *
 
-Copyright © 2019 by Sutan Gading Fadhillah Nasution
+Copyright © 2022 by Sutan Gading Fadhillah Nasution
