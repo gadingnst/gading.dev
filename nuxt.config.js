@@ -120,7 +120,7 @@ const config = {
           fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
             .then(result => fmparse(result))
             .then(({ attributes, html }) => ({ ...attributes, html }))
-            .then(content => {
+            .then((content) => {
               feed.addItem({
                 title: content.title,
                 link: `${PRODUCTION_URL}/blog/${content.slug}`,
@@ -224,6 +224,15 @@ const config = {
     ]
   ],
 
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    // https://go.nuxtjs.dev/typescript
+    '@nuxt/typescript-build'
+  ],
+
   /*
   ** Build configuration
   */
@@ -234,14 +243,14 @@ const config = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, _) {
       config.module.rules.push({
         test: /\.md$/,
         loader: 'frontmatter-markdown-loader',
         include: path.resolve(__dirname, 'contents'),
         options: {
           mode: [mode.BODY, mode.VUE_RENDER_FUNCTIONS],
-          markdown: body => {
+          markdown: (body) => {
             md.use(require('markdown-it-attrs'))
             md.use(require('markdown-it-plugin-data-src'))
             return md.render(body)

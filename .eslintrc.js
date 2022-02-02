@@ -18,6 +18,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     'handle-callback-err': 'off',
     'template-curly-spacing': ['off'],
+    'import/namespace': ['off'],
     'vue/multi-word-component-names': 0
   }
 }

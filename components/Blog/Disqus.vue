@@ -1,9 +1,6 @@
 <template>
   <div class="row comments pb-3 justify-content-center">
     <div class="col-lg-10 order-lg-2 text-center">
-      <h4 class="mb-1 pt-3">
-        <b>Comments</b>
-      </h4>
       <div class="mx-auto mt-3">
         <client-only>
           <lazy-component>
