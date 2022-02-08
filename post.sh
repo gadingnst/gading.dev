@@ -34,7 +34,6 @@ POST_TITLE="${@:2:$(($#-1))}"
 POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
 CURRENT_YEARMONTH="$(date +'%Y/%m')"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
-RAND_NUM=$(node -e "console.log(~~(Math.random() * 8) + 0)")
 # TIME=$(date +"%T")
 # ----------------------------------------------------------------
 
@@ -47,6 +46,7 @@ BINPATH=$(cd `dirname $0`; pwd)
 POSTPATH="${BINPATH}/contents/posts/published"
 DRAFTPATH="${BINPATH}/contents/posts/drafts"
 BLOGMEDIAPATH="${BINPATH}/static/media/blog"
+RAND_NUM=$(node -e "console.log(~~(Math.random() * 8) + 0)")
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
     DIST_FOLDER="$POSTPATH"
@@ -115,7 +115,7 @@ Example:
   ./post.sh -c How to replace strings with sed
 Important Notes:
   - This script was created to generate new text files to my blog.
-Copyright (c) Vitor Britto './initpost.sh'
+Copyright (c) Vitor Britto './initpost.sh' (Modified by Sutan Nst.)
 Licensed under the MIT license.
 ------------------------------------------------------------------------------
 EOT
