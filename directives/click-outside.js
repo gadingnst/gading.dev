@@ -9,6 +9,7 @@ export default {
     }
     document.body.addEventListener('click', el.clickOutsideEvent)
   },
+
   unbind(el) {
     document.body.removeEventListener('click', el.clickOutsideEvent)
   }

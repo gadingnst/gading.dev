@@ -14,12 +14,13 @@
   </div>
 </template>
 <script>
-import { randomString } from '~/utils/helpers'
+import { randomString } from '~/utils/helpers';
 
 export default {
   props: {
     name: {
       type: [String, Number],
+      default: '',
       description: 'Radio label'
     },
     disabled: {
@@ -28,6 +29,7 @@ export default {
     },
     value: {
       type: [String, Boolean],
+      default: '',
       description: 'Radio value'
     },
     inline: {
@@ -38,26 +40,26 @@ export default {
   data() {
     return {
       cbId: ''
-    }
+    };
   },
   computed: {
     model: {
       get() {
-        return this.value
+        return this.value;
       },
       set(value) {
-        this.$emit('input', value)
+        this.$emit('input', value);
       }
     },
     inlineClass() {
       if (this.inline) {
-        return `form-check-inline`
+        return 'form-check-inline';
       }
-      return ''
+      return '';
     }
   },
   mounted() {
-    this.cbId = randomString()
+    this.cbId = randomString();
   }
-}
+};
 </script>

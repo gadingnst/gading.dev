@@ -39,7 +39,19 @@
               </h2>
               <p>
                 <b>
-                  Working as a <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+core+team">Core-Team</a> <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+frontend+developer+do">Frontend Developer</a> at <i><a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=orami+indonesia">Orami Indonesia</a></i>.
+                  Working as a
+                  <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+core+team">Core</a>
+                  <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=what+is+frontend+developer+do">
+                    Frontend Developer
+                  </a>
+                  at
+                  <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=orami+indonesia">
+                    Orami
+                  </a>
+                  by
+                  <a rel="noreferrer" target="_blank" href="https://www.google.com/search?q=sirclo+group">
+                    SIRCLO Group
+                  </a>.
                 </b>
               </p>
 
@@ -79,8 +91,10 @@
               </ul>
 
               <p class="mt-5">
-                <i>Last updated at: November 7, 2021 from Palembang, South Sumatera. Indonesia</i>.
-                &nbsp;<a rel="noreferrer" target="_blank" href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">History</a>
+                <i>Last updated at: Februray, 2022 from Palembang, South Sumatera. Indonesia</i>.
+                <a rel="noreferrer" target="_blank" href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">
+                  History
+                </a>
               </p>
             </div>
           </div>
@@ -91,13 +105,13 @@
 </template>
 
 <script>
-import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
-import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
-import Card from '~/components/Argon/Card'
-import Banner from '~/components/Base/Banner'
-import MountedAnimation from '~/mixins/mounted-animation'
-import { metaGenerator } from '~/utils/helpers'
-import { AUTHOR_NAME } from '~/utils/config'
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions';
+import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue';
+import Card from '~/components/Argon/Card';
+import Banner from '~/components/Base/Banner';
+import MountedAnimation from '~/mixins/mounted-animation';
+import { metaGenerator } from '~/utils/helpers';
+import { AUTHOR_NAME } from '~/utils/config';
 
 export default {
   components: {
@@ -118,7 +132,7 @@ export default {
       url: '/now'
     })
   })
-}
+};
 </script>
 
 <style scoped>

@@ -5,7 +5,9 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: '@babel/eslint-parser'
+    parser: '@babel/eslint-parser',
+    sourceType: 'module',
+    requireConfigFile: false
   },
   extends: [
     '@nuxtjs',
@@ -13,12 +15,12 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'no-console': 'off',
+    semi: ['error', 'always'],
+    'no-console': 'warn',
     'arrow-parens': 'off',
     'space-before-function-paren': 'off',
     'handle-callback-err': 'off',
-    'template-curly-spacing': ['off'],
-    'import/namespace': ['off'],
-    'vue/multi-word-component-names': 0
+    'template-curly-spacing': 'off',
+    'vue/multi-word-component-names': 'off'
   }
-}
+};

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { SlideYUpTransition } from 'vue2-transitions'
+import { SlideYUpTransition } from 'vue2-transitions';
 
 export default {
   components: {
@@ -60,33 +60,39 @@ export default {
       type: String,
       default: '',
       validator(value) {
-        const acceptedValues = ['', 'notice', 'mini']
-        return acceptedValues.indexOf(value) !== -1
+        const acceptedValues = ['', 'notice', 'mini'];
+        return acceptedValues.includes(value);
       },
       description: 'Modal type (notice|mini|"") '
     },
     modalClasses: {
       type: [Object, String],
+      default: '',
       description: 'Modal dialog css classes'
     },
     modalContentClasses: {
       type: [Object, String],
+      default: '',
       description: 'Modal dialog content css classes'
     },
     gradient: {
       type: String,
+      default: '',
       description: 'Modal gradient type (danger, primary etc)'
     },
     headerClasses: {
       type: [Object, String],
+      default: '',
       description: 'Modal Header css classes'
     },
     bodyClasses: {
       type: [Object, String],
+      default: '',
       description: 'Modal Body css classes'
     },
     footerClasses: {
       type: [Object, String],
+      default: '',
       description: 'Modal Footer css classes'
     },
     animationDuration: {
@@ -97,21 +103,21 @@ export default {
   },
   watch: {
     show(val) {
-      const documentClasses = document.body.classList
+      const documentClasses = document.body.classList;
       if (val) {
-        documentClasses.add('modal-open')
+        documentClasses.add('modal-open');
       } else {
-        documentClasses.remove('modal-open')
+        documentClasses.remove('modal-open');
       }
     }
   },
   methods: {
     closeModal() {
-      this.$emit('update:show', false)
-      this.$emit('close')
+      this.$emit('update:show', false);
+      this.$emit('close');
     }
   }
-}
+};
 </script>
 <style>
 .modal.show {

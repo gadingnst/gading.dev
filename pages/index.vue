@@ -90,7 +90,7 @@
                 Software Engineer, Frontend
               </div>
               <div>
-                Orami Indonesia
+                ORAMI by SIRCLO Group
               </div>
             </div>
             <div class="mt-5 py-4 border-top text-center">
@@ -132,18 +132,18 @@
 </template>
 
 <script>
-import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
-import MdBriefcaseIcon from 'vue-ionicons/dist/md-briefcase.vue'
-import MdMailIcon from 'vue-ionicons/dist/md-mail.vue'
-import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue'
-import Card from '~/components/Argon/Card'
-import Button from '~/components/Argon/Button'
-import Banner from '~/components/Base/Banner'
-import Lazy from '~/components/Base/Lazy'
-import Support from '~/components/Base/Support'
-import MountedAnimation from '~/mixins/mounted-animation'
-import { metaGenerator } from '~/utils/helpers'
-import { AUTHOR_NAME, AUTHOR_FULLNAME, EMAIL } from '~/utils/config'
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions';
+import MdBriefcaseIcon from 'vue-ionicons/dist/md-briefcase.vue';
+import MdMailIcon from 'vue-ionicons/dist/md-mail.vue';
+import MdQuoteIcon from 'vue-ionicons/dist/md-quote.vue';
+import Card from '~/components/Argon/Card';
+import Button from '~/components/Argon/Button';
+import Banner from '~/components/Base/Banner';
+import Lazy from '~/components/Base/Lazy';
+import Support from '~/components/Base/Support';
+import MountedAnimation from '~/mixins/mounted-animation';
+import { metaGenerator } from '~/utils/helpers';
+import { AUTHOR_NAME, AUTHOR_FULLNAME, EMAIL } from '~/utils/config';
 
 export default {
   components: {
@@ -174,5 +174,5 @@ export default {
       url: '/'
     })
   })
-}
+};
 </script>

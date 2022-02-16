@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       focused: false
-    }
+    };
   },
   computed: {
     listeners() {
@@ -115,39 +115,39 @@ export default {
         input: this.updateValue,
         focus: this.onFocus,
         blur: this.onBlur
-      }
+      };
     },
     slotData() {
       return {
         focused: this.focused,
         ...this.listeners
-      }
+      };
     },
     hasIcon() {
-      const { addonRight, addonLeft } = this.$slots
+      const { addonRight, addonLeft } = this.$slots;
       return (
         addonRight !== undefined ||
         addonLeft !== undefined ||
         this.addonRightIcon !== undefined ||
         this.addonLeftIcon !== undefined
-      )
+      );
     }
   },
   methods: {
     updateValue(evt) {
-      const value = evt.target.value
-      this.$emit('input', value)
+      const value = evt.target.value;
+      this.$emit('input', value);
     },
     onFocus(value) {
-      this.focused = true
-      this.$emit('focus', value)
+      this.focused = true;
+      this.$emit('focus', value);
     },
     onBlur(value) {
-      this.focused = false
-      this.$emit('blur', value)
+      this.focused = false;
+      this.$emit('blur', value);
     }
   }
-}
+};
 </script>
 <style>
 </style>

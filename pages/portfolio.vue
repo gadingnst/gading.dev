@@ -99,18 +99,18 @@
 </template>
 
 <script>
-import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions'
-import MdGlobeIcon from 'vue-ionicons/dist/md-globe.vue'
-import LogoGithubIcon from 'vue-ionicons/dist/logo-github.vue'
-import MountedAnimation from '~/mixins/mounted-animation'
-import { wrapText, metaGenerator } from '~/utils/helpers'
-import Card from '~/components/Argon/Card'
-import Badge from '~/components/Argon/Badge'
-import Banner from '~/components/Base/Banner'
-import Button from '~/components/Argon/Button'
-import Lazy from '~/components/Base/Lazy'
-import Support from '~/components/Base/Support'
-import { AUTHOR_NAME } from '~/utils/config'
+import { SlideXLeftTransition as SlideLeft, SlideXRightTransition as SlideRight } from 'vue2-transitions';
+import MdGlobeIcon from 'vue-ionicons/dist/md-globe.vue';
+import LogoGithubIcon from 'vue-ionicons/dist/logo-github.vue';
+import MountedAnimation from '~/mixins/mounted-animation';
+import { wrapText, metaGenerator } from '~/utils/helpers';
+import Card from '~/components/Argon/Card';
+import Badge from '~/components/Argon/Badge';
+import Banner from '~/components/Base/Banner';
+import Button from '~/components/Argon/Button';
+import Lazy from '~/components/Base/Lazy';
+import Support from '~/components/Base/Support';
+import { AUTHOR_NAME } from '~/utils/config';
 
 export default {
   components: {
@@ -145,7 +145,7 @@ export default {
       url: '/portfolio'
     })
   })
-}
+};
 </script>
 
 <style scoped>

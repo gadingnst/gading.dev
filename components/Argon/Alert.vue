@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { FadeTransition } from 'vue2-transitions'
+import { FadeTransition } from 'vue2-transitions';
 
 export default {
   components: {
@@ -55,12 +55,12 @@ export default {
   data() {
     return {
       visible: true
-    }
+    };
   },
   methods: {
     dismissAlert() {
-      this.visible = false
+      this.visible = false;
     }
   }
-}
+};
 </script>

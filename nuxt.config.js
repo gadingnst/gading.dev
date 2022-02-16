@@ -1,11 +1,11 @@
-import fileSystem from 'fs'
-import path from 'path'
-import fmparse from 'front-matter'
-import mdi from 'markdown-it'
-import mode from 'frontmatter-markdown-loader/mode'
-import { config as env } from 'dotenv'
-import { range } from './utils/helpers'
-import posts from './contents/posts/published'
+import fileSystem from 'fs';
+import path from 'path';
+import fmparse from 'front-matter';
+import mdi from 'markdown-it';
+import mode from 'frontmatter-markdown-loader/mode';
+import { config as env } from 'dotenv';
+import { range } from './utils/helpers';
+import posts from './contents/posts/published';
 import {
   PRODUCTION_URL,
   SITE_NAME,
@@ -15,25 +15,25 @@ import {
   EMAIL,
   BLOG_PAGINATION_LIMIT,
   ACTIVATE_ADS
-} from './utils/config'
+} from './utils/config';
 
-env({ path: '.env' })
+env({ path: '.env' });
 
-const fs = fileSystem.promises
-const md = mdi({ html: true, linkify: true, typographer: true })
+const fs = fileSystem.promises;
+const md = mdi({ html: true, linkify: true, typographer: true });
 
 const routes = () => {
-  const routes = []
+  const routes = [];
 
   // slug routes
-  posts.forEach(item => routes.push(`/blog/${item.name}`))
+  posts.forEach(item => routes.push(`/blog/${item.name}`));
 
   // pagination routes
   range(1, Math.ceil(posts.length / BLOG_PAGINATION_LIMIT))
-    .forEach(num => routes.push(`/blog/page/${num}`))
+    .forEach(num => routes.push(`/blog/page/${num}`));
 
-  return routes
-}
+  return routes;
+};
 
 const routesSitemap = routes => (
   routes.map(route => ({
@@ -42,7 +42,7 @@ const routesSitemap = routes => (
     priority: 1,
     lastmodISO: String(new Date().toISOString())
   }))
-)
+);
 
 const config = {
   target: 'static',
@@ -106,15 +106,15 @@ const config = {
           title: `Blog | ${AUTHOR_NAME}`,
           link: `${PRODUCTION_URL}/feed.xml`,
           description: `${AUTHOR_NAME}'s personal blog feed`
-        }
+        };
 
-        feed.addCategory('Personal Blog')
+        feed.addCategory('Personal Blog');
 
         feed.addContributor({
           name: AUTHOR_NAME,
           email: EMAIL,
           link: PRODUCTION_URL
-        })
+        });
 
         await Promise.all(posts.map(({ name }) => (
           fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
@@ -125,9 +125,9 @@ const config = {
                 title: content.title,
                 link: `${PRODUCTION_URL}/blog/${content.slug}`,
                 description: content.description
-              })
+              });
             })
-        )))
+        )));
       },
       cacheTime: 1000 * 60 * 15,
       type: 'rss2'
@@ -251,18 +251,18 @@ const config = {
         options: {
           mode: [mode.BODY, mode.VUE_RENDER_FUNCTIONS],
           markdown: (body) => {
-            md.use(require('markdown-it-attrs'))
-            md.use(require('markdown-it-plugin-data-src'))
-            return md.render(body)
+            md.use(require('markdown-it-attrs'));
+            md.use(require('markdown-it-plugin-data-src'));
+            return md.render(body);
           },
           vue: {
             root: 'posts'
           }
         }
-      })
+      });
     }
   }
-}
+};
 
 if (ACTIVATE_ADS) {
   config.modules.push([
@@ -271,7 +271,7 @@ if (ACTIVATE_ADS) {
       id: process.env.GOOGLE_ADSENSE_ID,
       pageLevelAds: true
     }
-  ])
+  ]);
 }
 
 if (process.env.NODE_ENV !== 'development') {
@@ -285,7 +285,7 @@ if (process.env.NODE_ENV !== 'development') {
       minSize: 100000,
       maxSize: 100000
     }
-  }
+  };
 }
 
-export default config
+export default config;

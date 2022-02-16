@@ -1,12 +1,12 @@
-import { mapMutations } from 'vuex'
+import { mapMutations } from 'vuex';
 
 export default {
   mounted() {
-    this.toggleMountedShow(true)
+    this.toggleMountedShow(true);
   },
   methods: {
     ...mapMutations({
       toggleMountedShow: 'router/toggleMountedShow'
     })
   }
-}
+};

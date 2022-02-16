@@ -39,7 +39,7 @@
   </nav>
 </template>
 <script>
-import NavbarToggleButton from './NavbarToggleButton'
+import NavbarToggleButton from './NavbarToggleButton';
 
 export default {
   components: {
@@ -86,17 +86,17 @@ export default {
   data() {
     return {
       toggled: false
-    }
+    };
   },
   methods: {
     onTitleClick(evt) {
-      this.$emit('title-click', evt)
+      this.$emit('title-click', evt);
     },
     closeMenu() {
-      this.toggled = false
+      this.toggled = false;
     }
   }
-}
+};
 </script>
 
 <style scoped>

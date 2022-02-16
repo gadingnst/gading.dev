@@ -39,6 +39,7 @@ export default {
     },
     label: {
       type: String,
+      default: '',
       description: 'Progress label (shown on the left above progress)'
     },
     height: {
@@ -55,7 +56,7 @@ export default {
       type: Number,
       default: 0,
       validator: value => {
-        return value >= 0 && value <= 100
+        return value >= 0 && value <= 100;
       },
       description: 'Progress value'
     }
@@ -66,10 +67,10 @@ export default {
         { 'progress-bar-striped': this.striped },
         { 'progress-bar-animated': this.animated },
         { [`bg-${this.type}`]: this.type }
-      ]
+      ];
     }
   }
-}
+};
 </script>
 <style>
 </style>

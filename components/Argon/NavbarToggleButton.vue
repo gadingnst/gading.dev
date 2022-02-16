@@ -27,7 +27,7 @@ export default {
       description: 'Whether button is toggled'
     }
   }
-}
+};
 </script>
 <style>
 </style>

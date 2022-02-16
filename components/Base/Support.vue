@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import MdHeartIcon from 'vue-ionicons/dist/md-heart.vue'
-import MdCafeIcon from 'vue-ionicons/dist/md-cafe.vue'
-import MdIceCreamIcon from 'vue-ionicons/dist/md-ice-cream.vue'
-import Button from '~/components/Argon/Button'
+import MdHeartIcon from 'vue-ionicons/dist/md-heart.vue';
+import MdCafeIcon from 'vue-ionicons/dist/md-cafe.vue';
+import MdIceCreamIcon from 'vue-ionicons/dist/md-ice-cream.vue';
+import Button from '~/components/Argon/Button';
 
 export default {
   components: {
@@ -36,5 +36,5 @@ export default {
       { name: 'Karyakarsa', link: 'https://karyakarsa.com/sutanlab', color: '#eb5757', icon: 'md-heart-icon' }
     ]
   })
-}
+};
 </script>

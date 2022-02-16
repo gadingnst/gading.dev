@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import Banner from '~/components/Base/Banner'
-import Button from '~/components/Argon/Button'
-import { AUTHOR_NAME } from '~/utils/config'
+import Banner from '~/components/Base/Banner';
+import Button from '~/components/Argon/Button';
+import { AUTHOR_NAME } from '~/utils/config';
 
 export default {
   components: { Banner, Button },
   head: () => ({
     title: `Error page | ${AUTHOR_NAME}`
   })
-}
+};
 </script>

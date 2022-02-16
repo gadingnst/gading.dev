@@ -56,5 +56,5 @@ export default {
       description: 'Whether icon is rounded'
     }
   }
-}
+};
 </script>

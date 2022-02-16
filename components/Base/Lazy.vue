@@ -24,5 +24,5 @@ export default {
       default: '/assets/img/placeholders/error.png'
     }
   }
-}
+};
 </script>

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -62,10 +62,10 @@ export default {
       toggleDarkMode: 'toggleDark'
     }),
     switchMode() {
-      this.toggleDarkMode(!this.isDarkMode)
+      this.toggleDarkMode(!this.isDarkMode);
     }
   }
-}
+};
 </script>
 
 <style scoped>

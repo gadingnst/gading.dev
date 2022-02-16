@@ -34,8 +34,8 @@ export default {
         title: this.title,
         url: this.url,
         identifier: `sutanlab/blog/${this.identifier}`
-      }
+      };
     }
   }
-}
+};
 </script>

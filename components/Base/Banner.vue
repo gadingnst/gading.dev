@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Parallax from 'vue-parallaxy'
+import Parallax from 'vue-parallaxy';
 
 export default {
   components: {
@@ -57,7 +57,7 @@ export default {
       default: 'Sutanlab Banner'
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
