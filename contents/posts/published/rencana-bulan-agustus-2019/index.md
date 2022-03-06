@@ -6,7 +6,7 @@ description: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
 tags: ['campus', 'planning']
 category: 'Life'
 keywords: 'kampus, planning, rencana, wisuda, polsri'
-image: '/assets/img/collections/desks/desk2.jpg'
+image: '/assets/img/collections/default-banners/2.jpg'
 caption: 'Bacotan dan rencanaku untuk bulan agustus ini, semoga bisa terselesaikan semua'
 css_source: []
 js_source: []

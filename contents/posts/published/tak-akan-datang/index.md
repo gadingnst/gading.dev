@@ -6,7 +6,7 @@ description: 'My bullshit motivation.'
 tags: ['time', 'motivation']
 category: 'Life'
 keywords: 'life, kehidupan, waktu, motivasi, motivation'
-image: '/assets/img/collections/desks/desk1.jpg'
+image: '/assets/img/collections/default-banners/1.jpg'
 caption: 'My bullshit motivation.'
 css_source: []
 js_source: []

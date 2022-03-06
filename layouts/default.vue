@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import { FadeTransition } from 'vue2-transitions'
-import Navbar from '~/components/Base/Navbar'
-import Footer from '~/components/Base/Footer'
+import { FadeTransition } from 'vue2-transitions';
+import Navbar from '~/components/Base/Navbar';
+import Footer from '~/components/Base/Footer';
 
 export default {
   components: {
@@ -24,22 +24,22 @@ export default {
       bodyAttrs: {
         class: this.$store.getters.darkMode ? 'mode-dark' : ''
       }
-    }
+    };
   },
   watch: {
     $route(from, to) {
-      this.$store.commit('router/watchRoutes', this.$route.name)
+      this.$store.commit('router/watchRoutes', this.$route.name);
       if (this.$route.name !== to.name) {
-        this.$store.commit('router/toggleMountedShow', false)
+        this.$store.commit('router/toggleMountedShow', false);
       }
     }
   },
   beforeCreate() {
-    this.$store.commit('router/watchRoutes', this.$route.name)
+    this.$store.commit('router/watchRoutes', this.$route.name);
   },
   mounted() {
-    this.$store.dispatch('getPosts')
-    this.$store.commit('toggleDark', window.localStorage.getItem('settings:dark'))
+    this.$store.dispatch('getPosts');
+    this.$store.commit('toggleDark', window.localStorage.getItem('settings:dark'));
   }
-}
+};
 </script>

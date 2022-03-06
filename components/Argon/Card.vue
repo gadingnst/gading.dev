@@ -73,7 +73,7 @@ export default {
       default: ''
     }
   }
-}
+};
 </script>
 <style>
 </style>

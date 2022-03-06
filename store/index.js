@@ -6,25 +6,25 @@ export default {
   }),
   mutations: {
     setPosts(state, posts) {
-      state.posts = posts
+      state.posts = posts;
     },
     setSearching(state, status) {
-      state.searching = status
+      state.searching = status;
     },
     toggleDark(state, mode = !state.darkMode) {
-      state.darkMode = JSON.parse(mode)
-      window.localStorage.setItem('settings:dark', mode)
+      state.darkMode = JSON.parse(mode);
+      window.localStorage.setItem('settings:dark', mode);
     }
   },
   actions: {
     getPosts({ commit }) {
-      commit('setSearching', true)
+      commit('setSearching', true);
       window.fetch('/posts.published.json')
         .then(res => res.json())
         .then(result => {
-          commit('setSearching', false)
-          commit('setPosts', result)
-        })
+          commit('setSearching', false);
+          commit('setPosts', result);
+        });
     }
   },
   getters: {
@@ -54,8 +54,8 @@ export default {
         window.navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i)
       ),
       anyMobile() {
-        return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows())
+        return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());
       }
     })
   }
-}
+};

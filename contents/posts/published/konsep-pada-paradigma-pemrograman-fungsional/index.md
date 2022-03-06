@@ -6,7 +6,7 @@ description: 'Tidak hanya OOP, paradigma fungsional juga memiliki konsep dan atu
 tags: ['functional', 'purefunction', 'recursive', 'currying', 'closure', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'functional paradigm, paradigma fungsional, pure function, curried function, recursive function, currying, recursive, callback, closure, fungsi'
-image: '/assets/img/collections/desks/desk5.jpg'
+image: '/assets/img/collections/default-banners/5.jpg'
 caption: 'Paradigma fungsional sudah muncul sejak lama, lalu meningkat penggunaannya pada akhir-akhir dekade ini, dibuktikan banyak bahasa pemrograman baru bermunculan yang menggunakan paradigma ini. Apa saja konsep-konsep yang harus dipelajari ketika ingin menggunakan paradigma fungsional ?'
 css_source: []
 js_source: []
@@ -41,7 +41,7 @@ product.setDiscount("50%");
 System.out.println(product.getSalePrice()); // 45000
 ```
 
-Nah, mungkin kurang lebih seperti itu kalau kita mengetik program di Java yang paradigmanya menggunakan OOP. Disitu dapat kita lihat bahwa kita sudah memutasi nilai diskonnya dari `10%` menjadi `50%`. "Lah terus, emang kenapa?" Ga ada apa-apa sih, sebenarnya sah-sah aja kalau kita ingin seperti itu, namun disini gua ingin menunjukkan apa itu peristiwa *side-effect*, coba kita lihat ini: 
+Nah, mungkin kurang lebih seperti itu kalau kita mengetik program di Java yang paradigmanya menggunakan OOP. Disitu dapat kita lihat bahwa kita sudah memutasi nilai diskonnya dari `10%` menjadi `50%`. "Lah terus, emang kenapa?" Ga ada apa-apa sih, sebenarnya sah-sah aja kalau kita ingin seperti itu, namun disini gua ingin menunjukkan apa itu peristiwa *side-effect*, coba kita lihat ini:
 
 ```java
 Product product = new Product("Sepatu");
@@ -205,7 +205,7 @@ Nah, *callback* dan *closure* ini pada umumnya digunakan untuk implementasi *eve
 ### 5. Higher-order function
 Kita sudah membahas tentang *Higher-order function* di JavaScript pada artikel sebelumnya sebanyak 2 part. Namun yang kita bahas kemarin-kemarin itu hanya dari luarnya saja. Lalu bagaimana isi dalamnya? Mari kita praktekkan lebih lanjut disini, hehe.
 
-Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi *callback* sebagai argumen ataupun *value* sebagai *output*. Nah disini, *callback* atau *closure* kita generalisasikan sebagai *callback* aja ya, biar ga ribet haha. Ya walaupun dipoint 4 kita sudah membedakan antara *callback* dan *closure*, yang penting kita sudah tau perbedaannya apa. 
+Namun gua ulangi lagi pengertiannya, ***Higher-Order function*** atau bahasa Indonesianya **fungsi tingkat tinggi** adalah fungsi yang menerima fungsi *callback* sebagai argumen ataupun *value* sebagai *output*. Nah disini, *callback* atau *closure* kita generalisasikan sebagai *callback* aja ya, biar ga ribet haha. Ya walaupun dipoint 4 kita sudah membedakan antara *callback* dan *closure*, yang penting kita sudah tau perbedaannya apa.
 
 Untuk contoh, kalau sebelumnya fungsi `Array.map()` dan `Array.filter()` di JavaScript hadir secara terpisah, asumsikan saja kita ingin membuat fungsi map dan filter sekaligus dalam satu fungsi supaya lebih optimal, haha.
 

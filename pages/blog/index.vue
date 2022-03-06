@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import { formatReadingTime, range, invert } from '~/utils/helpers'
-import PageList from '~/components/Blog/PageList'
-import posts from '~/contents/posts/published'
-import { BLOG_PAGINATION_LIMIT } from '~/utils/config'
+import { formatReadingTime, range, invert } from '~/utils/helpers';
+import PageList from '~/components/Blog/PageList';
+import posts from '~/contents/posts/published';
+import { BLOG_PAGINATION_LIMIT } from '~/utils/config';
 
 export default {
   components: {
@@ -32,5 +32,5 @@ export default {
       total: posts.length
     }))
   )
-}
+};
 </script>

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import Banner from '~/components/Base/Banner'
-import Button from '~/components/Argon/Button'
-import { AUTHOR_NAME } from '~/utils/config'
+import Banner from '~/components/Base/Banner';
+import Button from '~/components/Argon/Button';
+import { AUTHOR_NAME } from '~/utils/config';
 
 export default {
   components: { Banner, Button },
@@ -32,8 +32,8 @@ export default {
   }),
   computed: {
     is404() {
-      return this.error.statusCode === 404 || this.error.message.includes('Cannot find module')
+      return this.error.statusCode === 404 || this.error.message.includes('Cannot find module');
     }
   }
-}
+};
 </script>

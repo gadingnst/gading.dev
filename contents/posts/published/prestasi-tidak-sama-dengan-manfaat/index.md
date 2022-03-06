@@ -6,7 +6,7 @@ description: 'Apakah tujuan kita meraih prestasi? Apakah bedanya prestasi dengan
 tags: ['life', 'thoughts']
 category: 'Life'
 keywords: 'prestasi, bermanfaat, menjadi orang yang berguna, meraih prestasi, kehidupan'
-image: '/assets/img/collections/desks/desk8.jpg'
+image: '/assets/img/collections/default-banners/8.jpg'
 caption: 'Apakah tujuan kita meraih prestasi? Apakah bedanya prestasi dengan manfaat? Well, ga ada salahnya kamu mengejar prestasi. Namun, pastikan kalau kontribusimu juga bermanfaat buat orang lain.'
 css_source: []
 js_source: []

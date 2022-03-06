@@ -9,12 +9,13 @@
   </div>
 </template>
 <script>
-import noUiSlider from 'nouislider'
+import noUiSlider from 'nouislider';
 
 export default {
   props: {
     value: {
       type: [String, Array, Number],
+      default: '',
       description: 'Slider value'
     },
     disabled: {
@@ -27,7 +28,7 @@ export default {
         return {
           min: 0,
           max: 100
-        }
+        };
       },
       description: 'Slider range (defaults to 0-100)'
     },
@@ -39,7 +40,7 @@ export default {
     options: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       },
       description: 'noUiSlider options'
     }
@@ -47,33 +48,33 @@ export default {
   data() {
     return {
       slider: null
-    }
+    };
   },
   computed: {
     connect() {
-      return Array.isArray(this.value) || [true, false]
+      return Array.isArray(this.value) || [true, false];
     }
   },
   watch: {
     value(newValue, oldValue) {
-      const slider = this.$refs.slider.noUiSlider
-      const sliderValue = slider.get()
+      const slider = this.$refs.slider.noUiSlider;
+      const sliderValue = slider.get();
       if (newValue !== oldValue && sliderValue !== newValue) {
         if (Array.isArray(sliderValue) && Array.isArray(newValue)) {
           if (
             oldValue.length === newValue.length &&
             oldValue.every((v, i) => v === newValue[i])
           ) {
-            slider.set(newValue)
+            slider.set(newValue);
           }
         } else {
-          slider.set(newValue)
+          slider.set(newValue);
         }
       }
     }
   },
   mounted() {
-    this.createSlider()
+    this.createSlider();
   },
   methods: {
     createSlider() {
@@ -82,15 +83,15 @@ export default {
         connect: this.connect,
         range: this.range,
         ...this.options
-      })
-      const slider = this.$refs.slider.noUiSlider
+      });
+      const slider = this.$refs.slider.noUiSlider;
       slider.on('slide', () => {
-        const value = slider.get()
+        const value = slider.get();
         if (value !== this.value) {
-          this.$emit('input', value)
+          this.$emit('input', value);
         }
-      })
+      });
     }
   }
-}
+};
 </script>

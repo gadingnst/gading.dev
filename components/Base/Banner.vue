@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Parallax from 'vue-parallaxy'
+import Parallax from 'vue-parallaxy';
 
 export default {
   components: {
@@ -50,14 +50,14 @@ export default {
     },
     image: {
       type: String,
-      default: '/assets/img/collections/desks/desk1.jpg'
+      default: '/assets/img/collections/default-banners/1.jpg'
     },
     alt: {
       type: String,
       default: 'Sutanlab Banner'
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

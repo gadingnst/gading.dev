@@ -17,11 +17,11 @@ export default {
   }),
   mutations: {
     watchRoutes(state, routeName) {
-      state.homepage.show = (state.homepage.routes.includes(routeName))
-      state.blogContent.show = (state.blogContent.routes.includes(routeName))
+      state.homepage.show = (state.homepage.routes.includes(routeName));
+      state.blogContent.show = (state.blogContent.routes.includes(routeName));
     },
     toggleMountedShow(state, show = false) {
-      state.onMountedShow = show
+      state.onMountedShow = show;
     }
   },
   getters: {
@@ -29,4 +29,4 @@ export default {
     isBlogContent: state => state.blogContent.show,
     onMountedShow: state => state.onMountedShow
   }
-}
+};

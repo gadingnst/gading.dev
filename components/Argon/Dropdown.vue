@@ -36,18 +36,22 @@ export default {
     },
     title: {
       type: String,
+      default: '',
       description: 'Dropdown title'
     },
     icon: {
       type: String,
+      default: '',
       description: 'Icon for dropdown title'
     },
     position: {
       type: String,
+      default: '',
       description: 'Position of dropdown menu (e.g right|left)'
     },
     menuClasses: {
       type: [String, Object],
+      default: '',
       description: 'Dropdown menu classes'
     },
     hideArrow: {
@@ -63,19 +67,19 @@ export default {
   data() {
     return {
       isOpen: false
-    }
+    };
   },
   methods: {
     toggleDropDown() {
-      this.isOpen = !this.isOpen
-      this.$emit('change', this.isOpen)
+      this.isOpen = !this.isOpen;
+      this.$emit('change', this.isOpen);
     },
     closeDropDown() {
-      this.isOpen = false
-      this.$emit('change', this.isOpen)
+      this.isOpen = false;
+      this.$emit('change', this.isOpen);
     }
   }
-}
+};
 </script>
 
 <style>

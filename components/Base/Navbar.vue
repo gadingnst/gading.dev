@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import BaseNav from '~/components/Argon/Nav'
-import CloseButton from '~/components/Argon/CloseButton'
-import SwitchMode from '~/components/Base/SwitchMode'
-import { SITE_NAME } from '~/utils/config'
+import BaseNav from '~/components/Argon/Nav';
+import CloseButton from '~/components/Argon/CloseButton';
+import SwitchMode from '~/components/Base/SwitchMode';
+import { SITE_NAME } from '~/utils/config';
 
 export default {
   components: {
@@ -57,21 +57,21 @@ export default {
     siteName: SITE_NAME
   }),
   beforeMount() {
-    window.addEventListener('scroll', this.onScroll)
+    window.addEventListener('scroll', this.onScroll);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
     onScroll() {
       if (window.scrollY < 80) {
-        this.transparent = true
+        this.transparent = true;
       } else {
-        this.transparent = false
+        this.transparent = false;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { randomString } from '~/utils/helpers'
+import { randomString } from '~/utils/helpers';
 
 export default {
   model: {
@@ -46,26 +46,26 @@ export default {
     return {
       cbId: '',
       touched: false
-    }
+    };
   },
   computed: {
     model: {
       get() {
-        return this.checked
+        return this.checked;
       },
       set(check) {
         if (!this.touched) {
-          this.touched = true
+          this.touched = true;
         }
-        this.$emit('input', check)
+        this.$emit('input', check);
       }
     },
     inlineClass() {
-      return this.inline ? 'form-check-inline' : null
+      return this.inline ? 'form-check-inline' : null;
     }
   },
   mounted() {
-    this.cbId = randomString()
+    this.cbId = randomString();
   }
-}
+};
 </script>

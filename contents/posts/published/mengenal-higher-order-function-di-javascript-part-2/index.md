@@ -6,13 +6,13 @@ description: 'Menggunakan higher-order function dapat mempersingkat kode serta m
 tags: ['javascript', 'functional', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'functional, higher-order function, fungsi, javascript, array, tutorial, sort, find, findIndex'
-image: '/assets/img/collections/desks/desk3.jpg'
+image: '/assets/img/collections/default-banners/3.jpg'
 caption: 'Sebagai anak fungsional, kita harus paham dan menguasai higher-order function. Agar ketika berurusan dengan array, kita tidak lagi menggunakan looping.'
 css_source: []
 js_source: ['/media/blog/mengenal-higher-order-function-di-javascript-part-2/case.js']
 ---
 
-Sesuai janji, seri **higher-order function** di JavaScript bakal ada kelanjutannya. Kali ini kita bakal coba mengutik `find()`, `findIndex()`, dan `sort()`. Sebelumnya mohon maaf, aku agak lama update, dikarenakan satu atau hal lainnya yang tidak perlu dijelaskan, intinya kurang sempat aja dah haha 😆. Udah gausah basa-basi, ga penting juga.. Sekarang kita langsung masuk aja. 
+Sesuai janji, seri **higher-order function** di JavaScript bakal ada kelanjutannya. Kali ini kita bakal coba mengutik `find()`, `findIndex()`, dan `sort()`. Sebelumnya mohon maaf, aku agak lama update, dikarenakan satu atau hal lainnya yang tidak perlu dijelaskan, intinya kurang sempat aja dah haha 😆. Udah gausah basa-basi, ga penting juga.. Sekarang kita langsung masuk aja.
 
 > Note: Yang belum baca part 1 nya, silahkan baca dulu [disini](http://sutanlab.id/blog/mengenal-higher-order-function-di-javascript).
 

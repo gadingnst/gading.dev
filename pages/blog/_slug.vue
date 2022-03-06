@@ -93,28 +93,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 import {
   FadeTransition as FadeIn,
   SlideYUpTransition as SlideUp,
   SlideYDownTransition as SlideDown
-} from 'vue2-transitions'
-import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue'
-import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue'
-import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue'
-import LogoTumblrIcon from 'vue-ionicons/dist/logo-tumblr.vue'
-import LogoWhatsappIcon from 'vue-ionicons/dist/logo-whatsapp.vue'
-import IosPaperPlaneIcon from 'vue-ionicons/dist/ios-paper-plane.vue'
-import MountedAnimation from '~/mixins/mounted-animation'
-import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers'
-import Button from '~/components/Argon/Button'
-import Banner from '~/components/Base/Banner'
-import Card from '~/components/Argon/Card'
-import ContentParser from '~/components/Blog/ContentParser'
-import Lazy from '~/components/Base/Lazy'
-import Disqus from '~/components/Blog/Disqus'
-import Support from '~/components/Base/Support'
-import { PRODUCTION_URL, AUTHOR_NAME } from '~/utils/config'
+} from 'vue2-transitions';
+import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue';
+import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue';
+import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue';
+import LogoTumblrIcon from 'vue-ionicons/dist/logo-tumblr.vue';
+import LogoWhatsappIcon from 'vue-ionicons/dist/logo-whatsapp.vue';
+import IosPaperPlaneIcon from 'vue-ionicons/dist/ios-paper-plane.vue';
+import MountedAnimation from '~/mixins/mounted-animation';
+import { formatPostDate, formatReadingTime, metaGenerator } from '~/utils/helpers';
+import Button from '~/components/Argon/Button';
+import Banner from '~/components/Base/Banner';
+import Card from '~/components/Argon/Card';
+import ContentParser from '~/components/Blog/ContentParser';
+import Lazy from '~/components/Base/Lazy';
+import Disqus from '~/components/Blog/Disqus';
+import Support from '~/components/Base/Support';
+import { PRODUCTION_URL, AUTHOR_NAME } from '~/utils/config';
 
 export default {
   components: {
@@ -170,17 +170,17 @@ export default {
         { property: 'article:published_time', content: new Date(this.meta.date).toISOString() },
         { property: 'article:section', content: this.meta.category }
       ]
-    }
+    };
   },
   computed: {
     ...mapGetters({
       isShow: 'router/onMountedShow'
     }),
     postUrl() {
-      return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`)
+      return window.encodeURIComponent(`${this.env.url}/blog/${this.meta.slug}`);
     },
     tags() {
-      return this.meta.tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
+      return this.meta.tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim();
     }
   },
   mounted() {
@@ -221,15 +221,15 @@ export default {
         label: 'Share on Telegram',
         link: `https://telegram.me/share/url?url=${this.postUrl}&text=%0A%22${this.meta.caption}%22`
       }
-    ]
+    ];
   },
   methods: {
     share(link, target) {
-      window.open(link, target, 'width=600,height=600')
-      return false
+      window.open(link, target, 'width=600,height=600');
+      return false;
     }
   }
-}
+};
 </script>
 
 <style scoped>

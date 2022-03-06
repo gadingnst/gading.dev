@@ -1,8 +1,7 @@
 <script>
 /* eslint-disable no-new-func */
-
-import Prism from 'prismjs'
-import { SYNTAX_HIGHLIGHTING as language } from '~/utils/config'
+import Prism from 'prismjs';
+import { SYNTAX_HIGHLIGHTING as language } from '~/utils/config';
 
 export default {
   props: {
@@ -16,20 +15,26 @@ export default {
     }
   },
   created() {
-    this.templateRender = new Function(this.renderFn)()
-    this.$options.staticRenderFns = new Function(this.staticRenderFn)()
+    this.templateRender = new Function(this.renderFn)();
+    this.$options.staticRenderFns = new Function(this.staticRenderFn)();
   },
   mounted() {
     Promise.all(language.map(lang =>
       import(`prismjs/components/prism-${lang}`))
-    ).then(Prism.highlightAll)
+    ).then(Prism.highlightAll);
   },
-  render() {
-    return this.templateRender
-      ? this.templateRender()
-      : <div>Rendering</div>
+  render(createElement) {
+    if (!this.templateRender) {
+      const fallbackElement = createElement('div', {
+        domProps: {
+          innerHTML: 'Something went wrong.'
+        }
+      });
+      return fallbackElement;
+    }
+    return this.templateRender();
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

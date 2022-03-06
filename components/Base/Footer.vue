@@ -45,11 +45,11 @@
 </template>
 
 <script>
-import LogoOctocatIcon from 'vue-ionicons/dist/logo-octocat.vue'
-import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue'
-import LogoInstagramIcon from 'vue-ionicons/dist/logo-instagram.vue'
-import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue'
-import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue'
+import LogoOctocatIcon from 'vue-ionicons/dist/logo-octocat.vue';
+import LogoLinkedinIcon from 'vue-ionicons/dist/logo-linkedin.vue';
+import LogoInstagramIcon from 'vue-ionicons/dist/logo-instagram.vue';
+import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue';
+import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue';
 import {
   PRODUCTION_URL,
   SITE_NAME,
@@ -59,7 +59,7 @@ import {
   INSTAGRAM_USERNAME,
   FACEBOOK_USERNAME,
   TWITTER_USERNAME
-} from '~/utils/config'
+} from '~/utils/config';
 
 export default {
   components: {
@@ -83,5 +83,5 @@ export default {
       { icon: 'logo-twitter-icon', link: `https://www.twitter.com/${TWITTER_USERNAME}`, class: 'btn-twitter' }
     ]
   })
-}
+};
 </script>
