@@ -170,7 +170,7 @@ export default {
       title: 'Personal Homepage',
       description: `A Man who turns a cup of coffee into beautiful codes. - ${AUTHOR_NAME}`,
       keywords: 'homepage, portfolio',
-      image: '/assets/img/collections/desks/desk1.jpg',
+      image: '/assets/img/collections/default-banners/1.jpg',
       url: '/'
     })
   })

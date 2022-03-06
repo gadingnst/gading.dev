@@ -132,7 +132,7 @@ initpost_content() {
     echo "tags: []"
     echo "category: ''"
     echo "keywords: ''"
-    echo "image: '/assets/img/collections/desks/desk${RAND_NUM}.jpg'"
+    echo "image: '/assets/img/collections/default-banners/${RAND_NUM}.jpg'"
     echo "caption: ''"
     echo "css_source: []"
     echo "js_source: []"

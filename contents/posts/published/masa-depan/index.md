@@ -6,7 +6,7 @@ description: 'Kenapa belajar lebih dalam tentang teknologi ? Apa alasannya ? Wel
 tags: ['future', 'motivation']
 category: 'Life'
 keywords: 'life, masa depan, koding, cita-cita, programming, technology, teknologi, pemrograman'
-image: '/assets/img/collections/desks/desk3.jpg'
+image: '/assets/img/collections/default-banners/3.jpg'
 caption: 'Kenapa belajar lebih dalam tentang teknologi ? Apa alasannya ? Well, my code is my future'
 css_source: []
 js_source: []
@@ -32,11 +32,11 @@ Btw, bahasa pemrograman yang pertama kali aku pelajari saat SMK dan bikin aku pu
 
 ## My way start from here!
 
-Setelah lulus dari SMK jurusan TKJ, aku masuk POLSRI dengan prodi pilihanku yang pertama yaitu Teknik Komputer. Apa alasanku memilih prodi tersebut? Tak lebih karena latar belakangku dari sana! Aku menyangka aku akan belajar lebih dalam tentang pengetahuan yang aku pelajari saat SMK. Troubleshooting, networking, hardware, rakit PC dan sebagainya. But.. What the fuck ? Aku bertemu dengan teori-teori elektronika yang ujung-ujungnya berhubungan dengan mata pelajaran fisika sama hitung-hitungan, dan itu adalah pelajaran yang sangat aku benci daripada pelajaran pemrograman waktu SMK dulu. 
+Setelah lulus dari SMK jurusan TKJ, aku masuk POLSRI dengan prodi pilihanku yang pertama yaitu Teknik Komputer. Apa alasanku memilih prodi tersebut? Tak lebih karena latar belakangku dari sana! Aku menyangka aku akan belajar lebih dalam tentang pengetahuan yang aku pelajari saat SMK. Troubleshooting, networking, hardware, rakit PC dan sebagainya. But.. What the fuck ? Aku bertemu dengan teori-teori elektronika yang ujung-ujungnya berhubungan dengan mata pelajaran fisika sama hitung-hitungan, dan itu adalah pelajaran yang sangat aku benci daripada pelajaran pemrograman waktu SMK dulu.
 
 Dan parahnya lagi aku ketemu mata kuliah pemrograman dikampus yang menjadi salah satu mata pelajaran yang aku benci saat SMK dulu. **Pernah merasa salah jurusan? Pernah sekali!** tapi ya, sudahlah ikutin aja, toh prodi ini juga pilihan sendiri. Kenapa harus menyesal? Bukannya itu salah dari diri kita sendiri yang milih? Lantas, haruskah kita menyalahkan Takdir? Kalo kayak kata kang pukis, "Sudah, ikutin aja.."
 
-Jadi, aku tetap mengikuti mata kuliah dikampusku sembari aku masih hobi bermain game dan ngotak-ngatik PC serta menjalani job install ulangku kalo ada yang dateng. But.. hey, seiring waktu berlalu aku mengikuti mata kuliah pemrograman di kampus, aku jadi berpikir-pikir lagi untuk selalu membenci mata kuliah ini. Ibarat pepatah ala bisa karena biasa, sekarang aku edit dikit menjadi ala cinta karena sering bertemu, plak hahaha skiplah. 
+Jadi, aku tetap mengikuti mata kuliah dikampusku sembari aku masih hobi bermain game dan ngotak-ngatik PC serta menjalani job install ulangku kalo ada yang dateng. But.. hey, seiring waktu berlalu aku mengikuti mata kuliah pemrograman di kampus, aku jadi berpikir-pikir lagi untuk selalu membenci mata kuliah ini. Ibarat pepatah ala bisa karena biasa, sekarang aku edit dikit menjadi ala cinta karena sering bertemu, plak hahaha skiplah.
 
 Then, lama-kelamaan aku jadi menyukai mata kuliah pemrograman karena dosen yang dikampus mengajar beserta Algoritmanya, beda dengan guru pemrogramanku yang mengajar waktu SMK cuma di tampilin kode yang sudah dibuat terus disuruh ketik tanpa menjelaskan alurnya. Ya, walaupun juga dosen dikampusku cuma mengajar dasar-dasarnya. Yang penting aku dapet pengetahuan disitu. Gara-gara sering dikasih soal pemecahan masalah aku jadi lebih rajin untuk bereksperimen di dunia koding.
 

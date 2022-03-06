@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner height="70vh" image="/assets/img/collections/desks/desk2.jpg">
+    <Banner height="70vh" image="/assets/img/collections/default-banners/2.jpg">
       <div class="text-center">
         <SlideLeft :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
@@ -24,7 +24,7 @@
                   <img
                     style="width: 100%; height: 200px; object-fit: contain"
                     class="card-pic card-img-top"
-                    :data-src="item.image || `/assets/img/collections/desks/desk${Math.floor(Math.random() * 7)}.jpg`"
+                    :data-src="item.image || `/assets/img/collections/default-banners/${Math.floor(Math.random() * 7)}.jpg`"
                     :alt="item.name"
                   >
                   <div class="px-3 pt-4">
@@ -141,7 +141,7 @@ export default {
       title: 'Portfolio',
       description: `Some stuff made by ${AUTHOR_NAME}`,
       keywords: 'portfolio, projects, experiments, stuff, technology, programming',
-      image: '/assets/img/collections/desks/desk2.jpg',
+      image: '/assets/img/collections/default-banners/2.jpg',
       url: '/portfolio'
     })
   })

@@ -6,7 +6,7 @@ description: "Iri adalah sifat manusiawi. But, you don't really know about other
 tags: ['iri', 'life', 'thoughts']
 category: 'Life'
 keywords: 'iri, thoughts, sifat manusiawi, programming, instagram, twitter'
-image: '/assets/img/collections/desks/desk0.jpg'
+image: '/assets/img/collections/default-banners/0.jpg'
 caption: "Iri adalah sifat manusiawi. But, you don't really know about others background."
 css_source: []
 js_source: []
@@ -16,7 +16,7 @@ Sebelum masuk ke pandangan gw terhadap IRI, gw pingin bercerita dan bersenda gur
 
 Kalo dari prespektif yang gw lihat, ada beberapa *behavior* dan *culture* klasik terkait **Instagram** VS **Twitter**. Instagram tempatnya pamer ***kekayaan***, ***pekerjaan***, ***travelling***, dan hal woah lainnya. But, Twitter malah sebaliknya, pamer ***kemiskinan***, ***pengangguran***, ***kemalasan***, dan hal receh lainnya. Berlawanan banget emang.
 
-So, terbentuklah perbedaan karakteristik dari pengguna dua sosmed tersebut, yaitu: 
+So, terbentuklah perbedaan karakteristik dari pengguna dua sosmed tersebut, yaitu:
 
 *Pengguna instagram lebih serius, baperan dan songong. Sedangkan pengguna twitter lebih receh, gabut dan ga jelas*. Hahaha, section ini for fun aja ya.
 

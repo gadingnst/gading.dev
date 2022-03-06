@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner height="70vh" image="/assets/img/collections/desks/desk5.jpg">
+    <Banner height="70vh" image="/assets/img/collections/default-banners/5.jpg">
       <div class="text-center">
         <SlideRight :duration="1500" :delay="200">
           <h1 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
@@ -123,7 +123,7 @@ export default {
       title: 'Blog',
       description: `A Journal about ${AUTHOR_NAME}`,
       keywords: 'blogs, posts, articles',
-      image: '/assets/img/collections/desks/desk5.jpg',
+      image: '/assets/img/collections/default-banners/5.jpg',
       url: '/blog'
     })
   }),

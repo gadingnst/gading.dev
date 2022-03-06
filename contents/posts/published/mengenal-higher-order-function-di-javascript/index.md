@@ -6,7 +6,7 @@ description: 'Mengenal higher-order function di JavaScript, seperti: map(), filt
 tags: ['javascript', 'functional', 'higherorderfunction']
 category: 'Engineering'
 keywords: 'functional, higher-order function, fungsi, javascript, array, map, filter, reduce, tutorial'
-image: '/assets/img/collections/desks/desk7.jpg'
+image: '/assets/img/collections/default-banners/7.jpg'
 caption: 'Menggunakan higher-order function dapat mempersingkat kode serta mengubah sudut pandang dan gaya pemrograman kita.'
 css_source: []
 js_source: ['/media/blog/mengenal-higher-order-function-di-javascript/test.js']
@@ -82,7 +82,7 @@ for (let i = 0; i < orang.length; i++) {
 
 alert(orangDiizinkan) // ['Joni','Mark','Toni']
 ```
-Berikut hasilnya: 
+Berikut hasilnya:
 <button onclick="withoutFilter()">Click here!</button>
 
 **Menggunakan *Array.filter()* dan *Array.map()***
@@ -139,7 +139,7 @@ for (let i = 0; i < keranjang.length; i++) {
 }
 alert('Rp.' + totalHarga) // Hasil: Rp.78000
 ```
-Berikut hasilnya: 
+Berikut hasilnya:
 <button onclick="withoutReduce()">Click here!</button>
 
 **Menggunakan *Array.reduce()***
@@ -201,7 +201,7 @@ const rataNilaiLulus = siswaLulus.reduce((acc, cur) => acc + cur.nilaiAkhir, 0) 
 document.writeln('Siswa yang lulus: ', JSON.stringify(siswaLulus, null, 2))
 document.write('Rata-rata nilai siswa yang lulus: ', Number(rataNilaiLulus).toFixed(2))
 ```
-Hasilnya bisa dilihat disini: 
+Hasilnya bisa dilihat disini:
 <button onclick="kasus()">Click here!</button>
 <p style="white-space: pre" id="siswa">...</p>
 <p id="ratanilai">...</p>

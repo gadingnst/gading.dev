@@ -50,7 +50,7 @@ export default {
     },
     image: {
       type: String,
-      default: '/assets/img/collections/desks/desk1.jpg'
+      default: '/assets/img/collections/default-banners/1.jpg'
     },
     alt: {
       type: String,
