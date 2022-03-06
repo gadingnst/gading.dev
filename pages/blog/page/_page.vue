@@ -16,13 +16,17 @@ export default {
   components: {
     PageList
   },
-  asyncData: ({ params }) => {
+  asyncData: async ({ params, error }) => {
     const limit = BLOG_PAGINATION_LIMIT;
-    return Promise.all(posts
+    const page = Number.isNaN(Number(params.page)) ? 0 : params.page;
+    if (page < 1) {
+      return error({ statusCode: 404 });
+    }
+    const results = await Promise.all(posts
       .filter((_, idx) => (
         idx in invert(range(
-          (params.page - 1) * limit,
-          (params.page * limit) - 1
+          (page - 1) * limit,
+          (page * limit) - 1
         ))
       ))
       .map(post => (
@@ -37,6 +41,10 @@ export default {
       page: params.page,
       total: posts.length
     }));
+    if (results.contents.length < 1) {
+      return error({ statusCode: 404 });
+    }
+    return results;
   }
 };
 </script>
