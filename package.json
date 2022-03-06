@@ -2,6 +2,7 @@
   "name": "sutanlab.id",
   "version": "1.0.0",
   "private": false,
+  "license": "MIT",
   "scripts": {
     "dev": "node generate.js && nuxt",
     "start": "node generate.js && nuxt start",

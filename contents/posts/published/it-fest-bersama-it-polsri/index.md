@@ -57,15 +57,15 @@ Hah, mendengar suara itu Aku dan Irvan saling menoleh. Perasaan bingung bermuncu
 Setelah pemberian hadiah dan trophy, kami berfoto foto dan bersalam salaman dengan panitia acaranya.
 
 ![Saat Aku di panggung](/media/blog/it-fest-bersama-it-polsri/4.jpeg)
-<p class="text-xs-center">Aku saat dipanggung, Btw aku yang berkacamata, hehe.</p>
+<p class="text-center">Aku saat dipanggung, Btw aku yang berkacamata, hehe.</p>
 
 Akhirnya kami pun turun dari panggung. Perasaan bangga serta shock menjadi satu saat menuruni panggung. Lalu setelah itu, aku dan timku berfoto - foto untuk mendokumentasi kemenangan ini. Benar - benar moment kebanggaan `IT Polsri` yang tidak terlupakan, <del>Lebay lu</del>.
 
 ![Irvan and Me](/media/blog/it-fest-bersama-it-polsri/1.jpeg)
-<p class="text-xs-center">Aku dan Kelaborasiku, Irvan</p>
+<p class="text-center">Aku dan Kelaborasiku, Irvan</p>
 
 ![IT Polsri](/media/blog/it-fest-bersama-it-polsri/2.jpeg)
-<p class="text-xs-center">Eh, belom siap nih. Bingung siapa yang megang trophy wkwk
+<p class="text-center">Eh, belom siap nih. Bingung siapa yang megang trophy wkwk</p>
 
 ![IT Polsri](/media/blog/it-fest-bersama-it-polsri/3.jpeg)
-<p class="text-xs-center"><b>We &lt;/&gt; with <i class="em em-heart"></i>. We are `IT Polsri` !</p>
+<p class="text-center"><b>We &lt;/&gt; with <i class="em em-heart"></i>. We are `IT Polsri` !</p>
