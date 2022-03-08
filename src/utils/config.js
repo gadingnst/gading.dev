@@ -13,4 +13,4 @@ export {
   BLOG_PAGINATION_LIMIT,
   SYNTAX_HIGHLIGHTING,
   ACTIVATE_ADS
-} from '../settings.json';
+} from '../../settings.json';

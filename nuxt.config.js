@@ -4,8 +4,8 @@ import fmparse from 'front-matter';
 import mdi from 'markdown-it';
 import mode from 'frontmatter-markdown-loader/mode';
 import { config as env } from 'dotenv';
-import { range } from './utils/helpers';
-import posts from './contents/posts/published';
+import { range } from './src/utils/helpers';
+import posts from './src/contents/posts/published';
 import {
   PRODUCTION_URL,
   SITE_NAME,
@@ -15,7 +15,7 @@ import {
   EMAIL,
   BLOG_PAGINATION_LIMIT,
   ACTIVATE_ADS
-} from './utils/config';
+} from './src/utils/config';
 
 env({ path: '.env' });
 
@@ -46,6 +46,7 @@ const routesSitemap = routes => (
 
 const config = {
   target: 'static',
+  srcDir: 'src',
 
   env: {
     ...process.env

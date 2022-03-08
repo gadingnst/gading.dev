@@ -8,14 +8,14 @@ require('dotenv').config({ path: '.env' });
 const fs = require('fs').promises;
 const path = require('path');
 const fmparse = require('front-matter');
-const { formatReadingTime } = require('./utils/helpers');
-const { ACTIVATE_ADS } = require('./utils/config');
+const { formatReadingTime } = require('./src/utils/helpers');
+const { ACTIVATE_ADS } = require('./src/utils/config');
 
 const generatePostList = async () => {
   console.time('Done generate published post lists');
 
   try {
-    const publishedPath = path.resolve(__dirname, 'contents/posts/published');
+    const publishedPath = path.resolve(__dirname, 'src/contents/posts/published');
 
     const result = (await Promise.all((await fs.readdir(publishedPath, 'utf-8'))
       .map(name =>
@@ -34,7 +34,7 @@ const generatePostList = async () => {
 
     await Promise.all([
       fs.writeFile(path.resolve(publishedPath, 'index.js'), `/* eslint-disable */\n\nexport default ${JSON.stringify(result.map(attr => ({ name: attr.slug })))}`),
-      fs.writeFile(path.resolve(__dirname, 'static/posts.published.json'), JSON.stringify(result))
+      fs.writeFile(path.resolve(__dirname, 'src/static/posts.published.json'), JSON.stringify(result))
     ]);
 
     console.timeEnd('Done generate published post lists');

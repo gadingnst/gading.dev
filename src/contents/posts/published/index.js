@@ -1,0 +1,3 @@
+/* eslint-disable */
+
+export default [{"name":"pov-tentang-work-life-balance-yang-berbeda"},{"name":"meningkatkan-kemampuan-berfikir"},{"name":"prestasi-tidak-sama-dengan-manfaat"},{"name":"iri"},{"name":"implementasi-function-as-children-di-react"},{"name":"memahami-konsep-promise-di-javascript"},{"name":"konsep-pada-paradigma-pemrograman-fungsional"},{"name":"mengenal-higher-order-function-di-javascript-part-2"},{"name":"mengenal-higher-order-function-di-javascript"},{"name":"rencana-bulan-agustus-2019"},{"name":"masa-depan"},{"name":"tak-akan-datang"},{"name":"it-fest-bersama-it-polsri"}]
