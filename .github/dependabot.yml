@@ -1,12 +1,14 @@
 version: 2
+
 updates:
 # Fetch and update latest `npm` packages
 - package-ecosystem: npm
   directory: '/'
+  target-branch: 'deps-update'
   schedule:
     interval: daily
     time: '00:00'
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 5
   reviewers:
     - sutanlab
   assignees:
