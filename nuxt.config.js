@@ -118,7 +118,7 @@ const config = {
         });
 
         await Promise.all(posts.map(({ name }) => (
-          fs.readFile(path.resolve(__dirname, `contents/posts/published/${name}/index.md`), 'utf-8')
+          fs.readFile(path.resolve(__dirname, 'src', `contents/posts/published/${name}/index.md`), 'utf-8')
             .then(result => fmparse(result))
             .then(({ attributes, html }) => ({ ...attributes, html }))
             .then((content) => {
@@ -206,7 +206,7 @@ const config = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/index', ssr: false }
+    { src: '~/plugins/index', ssr: false }
   ],
 
   /*
@@ -248,7 +248,7 @@ const config = {
       config.module.rules.push({
         test: /\.md$/,
         loader: 'frontmatter-markdown-loader',
-        include: path.resolve(__dirname, 'contents'),
+        include: path.resolve(__dirname, 'src', 'contents'),
         options: {
           mode: [mode.BODY, mode.VUE_RENDER_FUNCTIONS],
           markdown: (body) => {
