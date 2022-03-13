@@ -9,7 +9,7 @@
         </SlideRight>
         <SlideLeft :duration="1500" :delay="200">
           <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            Coding, work, life and whatever i want.”
+            <span id="desc-blog" />”
           </h5>
         </SlideLeft>
       </div>
@@ -83,6 +83,7 @@ import {
   AUTHOR_NAME,
   BLOG_PAGINATION_LIMIT
 } from '~/utils/config';
+import { type } from '~/utils/typical';
 
 export default {
   components: {
@@ -136,6 +137,12 @@ export default {
         this.$emit('update:page', val);
       }
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      const desc = document.getElementById('desc-blog');
+      type(desc, 'Coding,', 100, 'Coding, work,', 100, 'Coding, work, life,', 250, 'Coding, work, life, and whatever i want.');
+    }, 250);
   },
   methods: {
     onPageChange(val) {

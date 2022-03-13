@@ -9,7 +9,7 @@
         </SlideLeft>
         <SlideRight :duration="1500" :delay="200">
           <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            Projects, experiments and some stuff i've made.”
+            <span id="desc-portfolio" />”
           </h5>
         </SlideRight>
       </div>
@@ -111,6 +111,7 @@ import Button from '~/components/Argon/Button';
 import Lazy from '~/components/Base/Lazy';
 import Support from '~/components/Base/Support';
 import { AUTHOR_NAME } from '~/utils/config';
+import { type } from '~/utils/typical';
 
 export default {
   components: {
@@ -144,7 +145,13 @@ export default {
       image: '/assets/img/collections/default-banners/2.jpg',
       url: '/portfolio'
     })
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      const desc = document.getElementById('desc-portfolio');
+      type(desc, 'Projects,', 100, 'Projects, experiments,', 250, 'Projects, experiments, and some stuff that i\'ve made.');
+    }, 250);
+  }
 };
 </script>
 
