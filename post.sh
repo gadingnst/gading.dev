@@ -43,9 +43,10 @@ CURRENT_DATE="$(date +'%Y-%m-%d')"
 
 # Set your destination folder
 BINPATH=$(cd `dirname $0`; pwd)
-POSTPATH="${BINPATH}/contents/posts/published"
-DRAFTPATH="${BINPATH}/contents/posts/drafts"
-BLOGMEDIAPATH="${BINPATH}/static/media/blog"
+SRCPATH="${BINPATH}/src"
+POSTPATH="${SRCPATH}/contents/posts/published"
+DRAFTPATH="${SRCPATH}/contents/posts/drafts"
+BLOGMEDIAPATH="${SRCPATH}/static/media/blog"
 RAND_NUM=$(node -e "console.log(~~(Math.random() * 8) + 0)")
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
