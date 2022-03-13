@@ -9,7 +9,7 @@
         </SlideLeft>
         <SlideRight :duration="1500" :delay="200">
           <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            Just an ordinary Man who turns inspiration into beautiful codes.”
+            <span id="desc-home" />”
           </h5>
         </SlideRight>
       </div>
@@ -144,6 +144,7 @@ import Support from '~/components/Base/Support';
 import MountedAnimation from '~/mixins/mounted-animation';
 import { metaGenerator } from '~/utils/helpers';
 import { AUTHOR_NAME, AUTHOR_FULLNAME, EMAIL } from '~/utils/config';
+import { type } from '~/utils/typical';
 
 export default {
   components: {
@@ -173,6 +174,12 @@ export default {
       image: '/assets/img/collections/default-banners/1.jpg',
       url: '/'
     })
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      const desc = document.getElementById('desc-home');
+      type(desc, 'Just an ordinary Man who turns a cup of coffee into beautiful codes.');
+    }, 250);
+  }
 };
 </script>

@@ -11,7 +11,7 @@
         </SlideUp>
         <SlideDown :duration="1500" :delay="200">
           <h5 v-if="isShow" id="content-description" class="text-white text-smooth text-shadow">
-            {{ meta.description }}”
+            <span id="desc-blog-content" />”
           </h5>
         </SlideDown>
         <FadeIn :duration="1500" :delay="500">
@@ -115,6 +115,7 @@ import Lazy from '~/components/Base/Lazy';
 import Disqus from '~/components/Blog/Disqus';
 import Support from '~/components/Base/Support';
 import { PRODUCTION_URL, AUTHOR_NAME } from '~/utils/config';
+import { type } from '~/utils/typical';
 
 export default {
   components: {
@@ -184,6 +185,10 @@ export default {
     }
   },
   mounted() {
+    setTimeout(() => {
+      const desc = document.getElementById('desc-blog-content');
+      type(desc, this.meta.description);
+    }, 250);
     this.$data.socialShares = [
       {
         icon: 'logo-facebook-icon',

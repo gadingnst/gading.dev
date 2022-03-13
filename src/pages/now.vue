@@ -9,7 +9,7 @@
         </SlideRight>
         <SlideLeft :duration="1500" :delay="200">
           <h5 v-if="$store.getters['router/onMountedShow']" class="text-white text-smooth text-shadow">
-            What am i doing right now ?”
+            <span id="desc-now" />”
           </h5>
         </SlideLeft>
       </div>
@@ -112,6 +112,7 @@ import Banner from '~/components/Base/Banner';
 import MountedAnimation from '~/mixins/mounted-animation';
 import { metaGenerator } from '~/utils/helpers';
 import { AUTHOR_NAME } from '~/utils/config';
+import { type } from '~/utils/typical';
 
 export default {
   components: {
@@ -131,7 +132,13 @@ export default {
       image: '/assets/img/collections/default-banners/0.jpg',
       url: '/now'
     })
-  })
+  }),
+  mounted() {
+    setTimeout(() => {
+      const desc = document.getElementById('desc-now');
+      type(desc, 'What am i doing right now ?');
+    }, 250);
+  }
 };
 </script>
 
