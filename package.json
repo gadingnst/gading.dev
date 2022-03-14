@@ -19,7 +19,7 @@
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/sitemap": "2.4.0",
     "core-js": "3.21.1",
-    "flatpickr": "4.6.10",
+    "flatpickr": "4.6.11",
     "nouislider": "15.5.1",
     "nuxt": "2.15.8",
     "prismjs": "1.27.0",
