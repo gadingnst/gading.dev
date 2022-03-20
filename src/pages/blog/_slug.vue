@@ -114,7 +114,7 @@ import ContentParser from '~/components/Blog/ContentParser';
 import Lazy from '~/components/Base/Lazy';
 import Disqus from '~/components/Blog/Disqus';
 import Support from '~/components/Base/Support';
-import { PRODUCTION_URL, AUTHOR_NAME } from '~/utils/config';
+import { PRODUCTION_URL, AUTHOR_NAME, TWITTER_USERNAME } from '~/utils/config';
 import { type } from '~/utils/typical';
 
 export default {
@@ -150,7 +150,7 @@ export default {
   ),
   data: () => ({
     formatPostDate,
-    twitterUsername: 'gading_nst',
+    twitterUsername: TWITTER_USERNAME,
     socialShares: [],
     env: {
       url: PRODUCTION_URL,

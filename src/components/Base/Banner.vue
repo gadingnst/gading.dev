@@ -25,6 +25,7 @@
 
 <script>
 import Parallax from 'vue-parallaxy';
+import { SITE_NAME } from '~/utils/config';
 
 export default {
   components: {
@@ -54,7 +55,7 @@ export default {
     },
     alt: {
       type: String,
-      default: 'Sutanlab Banner'
+      default: `${SITE_NAME} Banner`
     }
   }
 };

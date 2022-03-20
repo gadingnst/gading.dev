@@ -154,12 +154,12 @@ const config = {
       offlineAnalytics: true,
       runtimeCaching: [
         {
-          urlPattern: 'https://sutanlab.id/assets/*',
+          urlPattern: `${PRODUCTION_URL}/assets/*`,
           handler: 'cacheFirst',
           method: 'GET'
         },
         {
-          urlPattern: 'https://sutanlab.id/media/*',
+          urlPattern: `${PRODUCTION_URL}/media/*`,
           handler: 'cacheFirst',
           method: 'GET'
         },

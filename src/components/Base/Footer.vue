@@ -32,9 +32,9 @@
             &copy; {{ new Date().getFullYear() }}
             <a :href="env.site" target="_blank" rel="noopener">{{ env.siteName }}</a>
             &nbsp;•&nbsp;
-            <a href="https://github.com/sutanlab/sutanlab.id" target="_blank" rel="noopener">Built</a>
+            <a :href="`https://github.com/${env.githubUsername}/sutanlab.id`" target="_blank" rel="noopener">Built</a>
             with <span style="text-decoration: underline dotted">Bullshit</span> by
-            <a href="https://github.com/sutanlab" target="_blank" rel="noopener">
+            <a :href="`https://github.com/${env.githubUsername}`" target="_blank" rel="noopener">
               {{ env.author }}
             </a>
           </div>
@@ -73,7 +73,8 @@ export default {
     env: {
       site: PRODUCTION_URL,
       siteName: SITE_NAME,
-      author: AUTHOR_NAME
+      author: AUTHOR_NAME,
+      githubUsername: GITHUB_USERNAME
     },
     socials: [
       { icon: 'logo-octocat-icon', link: `https://github.com/${GITHUB_USERNAME}`, class: 'btn-github' },

@@ -92,7 +92,7 @@
 
               <p class="mt-5">
                 <i>Last updated at: Februray, 2022 from Palembang, South Sumatera. Indonesia</i>.
-                <a rel="noreferrer" target="_blank" href="https://github.com/sutanlab/sutanlab.id/commits/master/pages/now.vue">
+                <a rel="noreferrer" target="_blank" :href="`https://github.com/${githubUsername}/sutanlab.id/commits/master/pages/now.vue`">
                   History
                 </a>
               </p>
@@ -111,7 +111,7 @@ import Card from '~/components/Argon/Card';
 import Banner from '~/components/Base/Banner';
 import MountedAnimation from '~/mixins/mounted-animation';
 import { metaGenerator } from '~/utils/helpers';
-import { AUTHOR_NAME } from '~/utils/config';
+import { AUTHOR_NAME, GITHUB_USERNAME } from '~/utils/config';
 import { type } from '~/utils/typical';
 
 export default {
@@ -123,6 +123,9 @@ export default {
     MdQuoteIcon
   },
   mixins: [MountedAnimation],
+  data: () => ({
+    githubUsername: GITHUB_USERNAME
+  }),
   head: () => ({
     title: `Now | ${AUTHOR_NAME}`,
     meta: metaGenerator('article', {

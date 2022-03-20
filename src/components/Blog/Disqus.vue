@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { DISQUS_SHORTNAME } from '~/utils/config';
+
 export default {
   props: {
     title: {
@@ -33,7 +35,7 @@ export default {
       return {
         title: this.title,
         url: this.url,
-        identifier: `sutanlab/blog/${this.identifier}`
+        identifier: `${DISQUS_SHORTNAME}/blog/${this.identifier}`
       };
     }
   }
