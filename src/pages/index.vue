@@ -22,7 +22,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-content-image">
                   <Lazy tag="span">
-                    <img data-src="/assets/img/collections/sutan_new.jpeg" class="rounded-circle" :alt="author">
+                    <img data-src="/assets/img/collections/gading-talks.jpeg" class="rounded-circle" :alt="author">
                   </Lazy>
                 </div>
               </div>
