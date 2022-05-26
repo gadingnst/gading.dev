@@ -93,7 +93,7 @@ h6 {
   @apply text-base sm:text-lg;
 }
 
-p, span, ul, ol, blockquote, pre span, code span {
+p, ul, ol, blockquote, pre span, code span {
   @apply text-sm sm:text-base;
 }
 
