@@ -8,21 +8,22 @@ Under development! Content and features may not be completed yet. 🚧
 
 ### Ongoing Features
 - [x] Dark Mode
+- [x] Color System Documentation
 - [x] Mobile friendly
-- [x] Stateful MDX (Can write stateful MDX in the markdown)
-- [x] Synchronizing media images to Cloudinary CDN
-- [x] Image optimized with scaling & Lazyload with blur effect like Instagram
-- [x] Reading-time
+- [x] Stateful MDX (Can write stateful Component in the Markdown)
+- [x] Synchronizing media images to [Cloudinary](https://cloudinary.com) CDN
+- [x] Optimized image scaling & Lazyload with blur effect like Instagram
+- [x] Reading-time prediction like Medium
 - [x] Internationalization content (for now, only [Now Page](https://gading.dev/now)).
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
-- [ ] Comment system
+- [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized
 - [ ] Feed RSS & Sitemap
-- [ ] Page Transition and effect
+- [ ] Page transition and effect
 - [ ] Search posts
 - [ ] Posts pagination
-- [ ] Push notifications support
-- [ ] Offline-first
+- [ ] Push notifications support with [OneSignal](https://onesignal.com/pricing) and [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed) Integration
+- [ ] PWA / Offline-first
 - [ ] Sorting posts by date & tags
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
