@@ -42,16 +42,6 @@ export const contentsDir = path.join(rootDir, 'contents');
 
 /**
  *
- * @param content - content to be parsed
- * @returns {ReadTimeResults} - formatted reading time
- */
-function formatReadingTime(content: string): ReadTimeResults {
-  const { minutes, ...otherResult } = readingTime(content);
-  return { minutes, ...otherResult };
-}
-
-/**
- *
  * @param filePath - path to file
  * @param language - language of file
  * @returns {Promise<string>} - asynchronous content string
@@ -75,7 +65,7 @@ async function getBlogMeta(filePath: string, language: string): Promise<MetaCont
   const fileContents = await readContent(filePath, language);
   const { content, data } = matter(fileContents);
   data.date = day(data.date).format('YYYY-MM-DD');
-  const readTime = formatReadingTime(content);
+  const readTime = readingTime(content);
   return { ...data, readTime } as MetaContents;
 }
 
@@ -160,7 +150,7 @@ export async function parseContent(slugParam: string, language = 'en'): Promise<
   });
   const source = matter(fileContents).content;
   const { code: content, frontmatter: meta } = result;
-  const readTime = formatReadingTime(source);
+  const readTime = readingTime(source);
   meta.date = day(meta.date).format('YYYY-MM-DD');
   meta.readTime = readTime;
   return { slug, meta, content } as MDContents;
