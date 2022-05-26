@@ -13,7 +13,7 @@ Pertama-tama, saya berterima kasih kepada [Fariz Rizaldy](https://faultable.dev/
 > Jika kamu mempunyai situsmu sendiri, mungkin kamu harus membuatnya juga.
 
 #### 💼 Karir
-Bekerja sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=what+is+software+engineer+do), [Inti](https://www.google.com/search?q=what+is+core+team) di [Orami](https://www.google.com/search?q=orami+indonesia) dibawah [SIRCLO Group](https://www.google.com/search?q=sirclo+group).
+Bekerja sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [SIRCLO](https://www.google.com/search?q=sirclo).
 
 #### ☕️ Aktivitas
 - Berinvestasi, and mempelajari Cryptocurrency
@@ -54,4 +54,4 @@ Bekerja sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=what+
 - Peramban: Google Chrome and Safari
 - Lain-lain: Jira/Trello, Postman, Spotify
 
-*Terakhir diperbarui: April, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/index.md)*
+*Terakhir diperbarui: Mei, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

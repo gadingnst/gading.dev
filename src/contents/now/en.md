@@ -13,7 +13,7 @@ At first, i'll be thanking to [Fariz Rizaldy](https://faultable.dev/now/), [Afri
 > If you have your own site, maybe you should to make one, too.
 
 #### 💼 Careers
-Working as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do), [Core](https://www.google.com/search?q=what+is+core+team) at [Orami](https://www.google.com/search?q=orami+indonesia) by [SIRCLO Group](https://www.google.com/search?q=sirclo+group).
+Working as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) at [SIRCLO](https://www.google.com/search?q=sirclo).
 
 #### ☕️ Activities
 - Investing, and Learning Cryptocurrency
@@ -54,4 +54,4 @@ Working as a [Software Engineer](https://www.google.com/search?q=what+is+softwar
 - Browsers: Google Chrome and Safari
 - Others: Jira/Trello, Postman, Spotify
 
-*Last updated at: April, 2022 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/index.md)*
+*Last updated at: May, 2022 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/en.md)*
