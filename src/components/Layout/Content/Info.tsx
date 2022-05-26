@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { MetaContents } from '@/server/content-parser';
-import postDate from '@/utils/helpers/post-date';
+import date from '@/utils/helpers/date';
 
 export interface Props {
   meta: MetaContents;
@@ -17,7 +17,7 @@ const ContentInfo: FunctionComponent<Props> = (props) => {
         🗓
       </span>
       <span className={`${colorClassName} mr-4`}>
-        {postDate(meta.date, locale)}
+        {date(meta.date, locale)}
       </span>
         •
       <span className={`${colorClassName} ml-4 pr-8 -mr-2`}>
