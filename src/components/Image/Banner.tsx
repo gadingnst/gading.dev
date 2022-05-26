@@ -1,6 +1,7 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Parallax, ParallaxProps } from 'react-parallax';
 import clsxm from '@/utils/helpers/clsxm';
+import cloudinary from '@/utils/helpers/cloudinary';
 
 export interface Props extends ParallaxProps {
   overlay?: number;
@@ -14,10 +15,16 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     bgClassName,
     overlay,
     height,
-    containerClassName
+    bgImage,
+    containerClassName,
+    ...otherProps
   } = props;
   return (
-    <Parallax {...props} bgClassName={clsxm('object-cover', bgClassName)}>
+    <Parallax
+      {...otherProps}
+      bgImage={cloudinary(bgImage as string)}
+      bgClassName={clsxm('object-cover w-full', bgClassName)}
+    >
       <div
         className="flex items-center justify-center absoulte h-full w-full"
         style={{ backgroundColor: `rgba(0, 0, 0, ${overlay})` }}

@@ -79,7 +79,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
           </Link>
           <div className="flex flex-grow font-poppins font-bold justify-end items-center xs:ml-16">
             <Dropdown
-              className="bg-transparent pt-8 px-8 -mt-[3px] text-sm"
+              className="bg-transparent pt-8 px-8 -mt-[3px]"
               title={i18nList.get(locale || 'en')}
             >
               {Array.from(i18nList).map(([code, label]) => (
