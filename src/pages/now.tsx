@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Content, Footer, Navbar, Banner, CardHero, ContentParser, withLayoutPage } from '@/components';
-import { MDContents, parseContent } from '@/server/content-parser';
+import { MDContents, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment } from 'react';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
   const { locale } = ctx;
-  const contents = await parseContent('now', locale);
+  const contents = await getContentMultiLanguage('now', locale);
   return {
     props: {
       contents

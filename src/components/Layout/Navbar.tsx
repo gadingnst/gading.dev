@@ -78,27 +78,29 @@ const Navbar: FunctionComponent<Props> = (props) => {
             {title}
           </Link>
           <div className="flex flex-grow font-poppins font-bold justify-end items-center xs:ml-16">
-            <Dropdown
-              className="bg-transparent px-8 pt-[3px]"
-              title={i18nList.get(locale || 'en')}
-              btnClassName="text-sm md:text-base"
-            >
-              {Array.from(i18nList).map(([code, label]) => (
-                <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
-                  <Link
-                    href={pathname}
-                    asPath={asPath}
-                    locale={code}
-                    className={clsxm(
-                      'text-dark-70 dark:text-white',
-                      code === locale && 'text-accent-1 dark:text-accent-2'
-                    )}
-                  >
-                    {label}
-                  </Link>
-                </Dropdown.Item>
-              ))}
-            </Dropdown>
+            {pathname !== '/blog/[slug]' && (
+              <Dropdown
+                className="bg-transparent px-8 pt-[3px]"
+                title={i18nList.get(locale || 'en')}
+                btnClassName="text-sm md:text-base"
+              >
+                {Array.from(i18nList).map(([code, label]) => (
+                  <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
+                    <Link
+                      href={pathname}
+                      asPath={asPath}
+                      locale={code}
+                      className={clsxm(
+                        'text-dark-70 dark:text-white',
+                        code === locale && 'text-accent-1 dark:text-accent-2'
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </Dropdown.Item>
+                ))}
+              </Dropdown>
+            )}
             <SwitchTheme className={clsxm(textShadowClass, 'px-8')} />
             <div className="hidden md:block">
               {menus.map(({ label, href }, idx) => (

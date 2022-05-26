@@ -1,8 +1,7 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
-import { getAllBlogPaths, MDContents, parseContent } from '@/server/content-parser';
-import { IS_DEV } from '@/utils/config';
+import { getAllBlogPaths, MDContents, getContent } from '@/server/content-parser';
 
 type Props = {
   contents: MDContents;
@@ -20,13 +19,7 @@ export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
   const { locale, params } = ctx;
   const { slug } = params as any;
-  const contents = await parseContent(`posts/published/${slug}`, locale)
-    .catch((err: any) => {
-      if (IS_DEV && err.message.includes('ERRNOTFOUND')) {
-        return parseContent(`posts/drafts/${slug}`, locale);
-      }
-      return null;
-    });
+  const contents = await getContent(slug, locale);
   if (contents) {
     return {
       props: {
