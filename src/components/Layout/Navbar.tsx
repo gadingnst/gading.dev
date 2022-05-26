@@ -79,11 +79,12 @@ const Navbar: FunctionComponent<Props> = (props) => {
           </Link>
           <div className="flex flex-grow font-poppins font-bold justify-end items-center xs:ml-16">
             <Dropdown
-              className="bg-transparent pt-8 px-8 -mt-[3px]"
+              className="bg-transparent px-8 pt-[3px]"
               title={i18nList.get(locale || 'en')}
+              btnClassName="text-sm md:text-base"
             >
               {Array.from(i18nList).map(([code, label]) => (
-                <Dropdown.Item key={code} active={code === locale}>
+                <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
                   <Link
                     href={pathname}
                     asPath={asPath}

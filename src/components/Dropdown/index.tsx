@@ -11,15 +11,17 @@ export interface Props {
   title?: ReactNode;
   className?: string;
   contentClassName?: string;
+  btnClassName?: string;
 }
 
 export interface DropdownItemProps {
   active?: boolean;
+  className?: string;
   onClick?: () => void;
 }
 
 export const DropdownItem: FunctionComponent<PropsWithChildren<DropdownItemProps>> = (props) => {
-  const { children, active, onClick } = props;
+  const { children, active, className, onClick } = props;
   return (
     <div
       onClick={onClick}
@@ -29,7 +31,8 @@ export const DropdownItem: FunctionComponent<PropsWithChildren<DropdownItemProps
         active && [
           styles['active'],
           'text-accent-1 dark:text-accent-2'
-        ]
+        ],
+        className
       )}
     >
       {children}
@@ -38,7 +41,8 @@ export const DropdownItem: FunctionComponent<PropsWithChildren<DropdownItemProps
 };
 
 DropdownItem.defaultProps = {
-  active: false
+  active: false,
+  className: ''
 };
 
 const Dropdown = (props: PropsWithChildren<Props>) => {
@@ -46,7 +50,8 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
     title,
     children,
     className,
-    contentClassName
+    contentClassName,
+    btnClassName
   } = props;
 
   const [show, toggler] = useToggler();
@@ -71,7 +76,7 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
     >
       <Button
         onClick={toggler}
-        className={styles.button}
+        className={clsxm(styles.button, btnClassName)}
       >
         {title} <Icon color="white" src={iconCaretDown} size={12} className="-mt-4" />
       </Button>
@@ -98,7 +103,9 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
 
 Dropdown.defaultProps = {
   title: '',
-  className: ''
+  className: '',
+  btnClassName: '',
+  contentClassName: ''
 };
 
 Dropdown.Item = DropdownItem;
