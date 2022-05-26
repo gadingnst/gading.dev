@@ -1,0 +1,15 @@
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  animation: spinner 1s linear infinite;
+  @apply
+    inline-block align-middle box-border
+    rounded-full border-2 border-solid
+    border-b-transparent border-r-transparent
+    border-t-light-30 border-l-light-30;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

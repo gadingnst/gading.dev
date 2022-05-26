@@ -1,0 +1,33 @@
+.parser {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold mt-24 mb-12;
+  }
+
+  p, ul, ol, dl, pre, table, blockquote, form, fieldset {
+    line-height: 1.8;
+    @apply mb-24;
+  }
+
+  button {
+    @apply mb-24 text-sm sm:text-base;
+  }
+
+  ul, ol {
+    li {
+      @apply pl-4;
+    }
+    @apply ml-32;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  iframe {
+    @apply max-w-full;
+  }
+}

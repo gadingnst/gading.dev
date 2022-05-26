@@ -1,0 +1,63 @@
+name: Continuous Integration
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  install:
+    name: Install Dependency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: node_modules-${{ github.event.pull_request.head.sha }}
+          restore-keys: |
+            node_modules-
+      - name: Install Dependency Package
+        env:
+          GITHUB_PACKAGE_TOKEN: ${{ secrets.NPMGITHUB_PACKAGE_TOKEN }}
+        run: |
+          npm install
+
+  lint:
+    name: Lint
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Load node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: node_modules-${{ github.event.pull_request.head.sha }}
+      - name: Start Linting
+        run: |
+          npm run lint
+
+  test:
+    name: Unit Test
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Load node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: node_modules-${{ github.event.pull_request.head.sha }}
+      - name: Start Unit Testing
+        run: |
+          npm run test:unit

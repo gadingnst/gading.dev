@@ -1,0 +1,28 @@
+name: Cloudinary
+on:
+  workflow_dispatch:
+    branches: [main]
+
+jobs:
+  sync_media:
+    name: Sync Media Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install Dependency Package
+        env:
+          GITHUB_PACKAGE_TOKEN: ${{ secrets.NPMGITHUB_PACKAGE_TOKEN }}
+        run: |
+          npm install
+      - name: Sync Media Files
+        env:
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+        run: |
+          npm run cloudinary:sync

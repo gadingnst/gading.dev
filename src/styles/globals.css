@@ -1,0 +1,126 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "fonts";
+@import "utility";
+@import "dark";
+@import "katex";
+@import "prism";
+@import "image";
+
+/* Normalize CSS */
+body {
+  @apply font-poppins;
+
+  /**
+    Customize website's scrollbar like Mac OS
+  */
+
+  /* background of the scrollbar except button or resizer */
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* scrollbar itself */
+  &::-webkit-scrollbar-thumb {
+    background-color: grey;
+    @apply rounded-16 border-solid border-white border-4;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  &::-webkit-scrollbar-button {
+    @apply hidden;
+  }
+
+  /* Firefox 64 */
+  scrollbar-width: none;
+
+  /* IE 11 */
+  -ms-overflow-style: none;
+
+  @apply transition-colors duration-300 bg-white dark:bg-dark-20;
+
+  /**
+    End --> Customize website's scrollbar like Mac OS
+  */
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+  @apply outline-none;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  @apply inline-block align-middle;
+}
+
+hr {
+  width: auto;
+  border-color: rgba(0, 0, 0, 0.12);
+  @apply block float-none max-w-3xl border border-solid p-0 my-40 mx-auto dark:bg-light-30;
+  &:before {
+    @apply content-none table;
+  }
+  &:after {
+    @apply content-none table clear-both;
+  }
+}
+
+a {
+  @apply text-primary dark:text-accent-2;
+}
+
+p, h1, h2, h3, h4, h5, h6, span, ul, ol, blockquote {
+  @apply text-dark-70 dark:text-white;
+}
+
+pre, code {
+  span {
+    @apply text-white;
+  }
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl;
+}
+
+h2 {
+  @apply text-3xl sm:text-4xl;
+}
+
+h3 {
+  @apply text-2xl sm:text-3xl;
+}
+
+h4 {
+  @apply text-xl sm:text-2xl;
+}
+
+h5 {
+  @apply text-lg sm:text-xl;
+}
+
+h6 {
+  @apply text-base sm:text-lg;
+}
+
+p, pre span, code span {
+  @apply text-sm sm:text-base;
+}
+
+blockquote {
+  width: auto;
+  @apply
+    block float-none max-w-3xl my-16 mx-auto py-0 px-24
+    border-l-4 border-l-primary-1 dark:border-l-accent-2;
+  p {
+    @apply m-0 italic;
+  }
+  &:before {
+    @apply table content-none;
+  }
+  &:after {
+    @apply table content-none clear-both;
+  }
+}
+/* End Normalize */

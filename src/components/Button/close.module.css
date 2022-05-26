@@ -1,0 +1,12 @@
+.close-button {
+  @apply inline-block bg-transparent p-0 w-[20px] h-[20px];
+  span {
+    &.cross-left {
+      transform: rotate(135deg);
+    }
+    &.cross-right {
+      transform: rotate(-135deg);
+    }
+    @apply block absolute w-full h-[2px] rounded-2;
+  }
+}

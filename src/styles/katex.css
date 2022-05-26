@@ -1,0 +1,28 @@
+div.math-display {
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--comment);
+    border-radius: 0 0 0.5em 0.5em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--purple);
+    border-radius: 0 0 0.5em 0.5em;
+  }
+
+  span {
+    @apply text-sm sm:text-base;
+  }
+
+  @apply overflow-x-auto mb-24 rounded-8 bg-light-40;
+}
+
+html.dark {
+  div.math-display {
+    background-color: var(--selection);
+  }
+}

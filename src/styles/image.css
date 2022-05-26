@@ -1,0 +1,31 @@
+.lazy-load-image-background.blur {
+  @apply blur-sm;
+}
+
+.lazy-load-image-background.blur.lazy-load-image-loaded {
+  transition: filter .5s;
+  @apply blur-none;
+}
+
+.lazy-load-image-background.blur > img {
+  @apply opacity-0;
+}
+
+.lazy-load-image-background.blur.lazy-load-image-loaded > img {
+  transition: opacity .5s;
+  @apply opacity-100;
+}
+
+.content-parser {
+  @apply text-dark-70 dark:text-white;
+}
+
+body > div[aria-label="Zoomed image"], .content-parser {
+  .content-image {
+    display: flex !important;
+  }
+}
+
+body > div[aria-label="Zoomed image"] img {
+  @apply rounded-0;
+}

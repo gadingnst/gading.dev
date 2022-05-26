@@ -1,0 +1,13 @@
+/**
+  This files used for handle dark mode that can't be handle on Regular Tailwind Dark Mode
+*/
+
+html {
+  &.dark {
+    footer {
+      &::before {
+        @apply bg-dark-30;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.dropdown {
+  @apply relative text-base rounded-8;
+  .button {
+    @apply cursor-pointer rounded-8 font-bold bg-transparent p-0;
+  }
+  .dropdown-content {
+    @apply absolute max-w-[160px] overflow-auto shadow-all z-10 rounded-8 mt-2 py-8 px-12;
+    .dropdown-item {
+      @apply transition-all duration-150;
+      a, li {
+        @apply list-none shadow-none;
+      }
+      &.active {
+        @apply pointer-events-none;
+      }
+    }
+  }
+}
