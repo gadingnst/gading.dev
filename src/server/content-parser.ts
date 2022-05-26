@@ -14,6 +14,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
 export interface MetaContents {
   title: string;
@@ -92,7 +93,7 @@ async function parseContent(fileContents: string): Promise<MDContents> {
  * @param language - language of the content 'en'|'id'
  * @returns {Promise<MDContents>} - asynchronous content string
  */
-export async function getContentMultiLanguage(contentPath: string, language = 'en'): Promise<MDContents> {
+export async function getContentMultiLanguage(contentPath: string, language = DEFAULT_LOCALE): Promise<MDContents> {
   const filePath = path.join(contentsDir, contentPath);
   const files = await Fs.readdir(filePath).catch(() => []);
   const file = files.find((file) => file.endsWith(`${language}.md`) || file.endsWith(`${language}.mdx`));
@@ -103,7 +104,7 @@ export async function getContentMultiLanguage(contentPath: string, language = 'e
   return parseContent(fileContents);
 }
 
-export async function getContent(slug: string, language = 'en'): Promise<MDContents> {
+export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContents> {
   const filePath = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')
     .catch((err) => {
@@ -120,7 +121,7 @@ export async function getContent(slug: string, language = 'en'): Promise<MDConte
  * @param slug - slug file with extension
  * @returns {Promise<MetaContents>} - asynchronous content meta
  */
-async function getBlogMeta(slug: string, language = 'en'): Promise<MetaContents> {
+async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Promise<MetaContents> {
   const blogFile = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(blogFile, 'utf8');
   const { content, data } = matter(fileContents);
@@ -148,7 +149,7 @@ export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> 
  * @param language - filter language of file 'en'|'id'
  * @returns {Promise<MetaLocale[]>} - asynchronous all blog meta and locale
  */
-async function getAllBlogMeta(language = 'en'): Promise<MetaLocale[]> {
+async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
   const postsPath = path.join(contentsDir, 'posts', language);
   const slugPaths = await Fs.readdir(postsPath).catch(() => []);
   const result = await Promise.all(slugPaths.map(async(slug) => {
@@ -163,7 +164,7 @@ async function getAllBlogMeta(language = 'en'): Promise<MetaLocale[]> {
  * @param language - language of the content (default: en)
  * @returns {Promise<MDContents[]>} - asynchronous all content meta
  */
-export async function getBlogList(language = 'en'): Promise<MetaContents[]> {
+export async function getBlogList(language = DEFAULT_LOCALE): Promise<MetaContents[]> {
   const contents = await getAllBlogMeta(language);
   return contents
     .sort((a, b) => {

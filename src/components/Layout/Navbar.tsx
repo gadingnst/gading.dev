@@ -9,7 +9,7 @@ import Modal from '@/components/Modal';
 import Dropdown from '@/components/Dropdown';
 
 import { useToggler, useMounted } from '@/hooks';
-import { SITE_NAME } from '@/utils/config';
+import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
 import iconAppLogo from '@/assets/icons/app/logo.svg';
@@ -81,7 +81,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
             {pathname !== '/blog/[slug]' && (
               <Dropdown
                 className="bg-transparent px-8 pt-[3px]"
-                title={i18nList.get(locale || 'en')}
+                title={i18nList.get(locale || DEFAULT_LOCALE)}
                 btnClassName="text-sm md:text-base"
               >
                 {Array.from(i18nList).map(([code, label]) => (

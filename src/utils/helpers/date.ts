@@ -1,4 +1,5 @@
 import day from '@/utils/day';
+import { DEFAULT_LOCALE } from '../config';
 
 export interface FormatDate {
   [key: string]: string;
@@ -22,7 +23,7 @@ const getFormat = (locale: string): string => {
  * @param date - date to be formatted
  * @returns {string} - formatted date
  */
-function date(date: string, locale = 'en', format?: string): string {
+function date(date: string, locale = DEFAULT_LOCALE, format?: string): string {
   return day(date)
     .locale(locale)
     .format(format ?? getFormat(locale));
