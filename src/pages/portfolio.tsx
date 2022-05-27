@@ -10,13 +10,14 @@ import {
   ImageLazy
 } from '@/components';
 import { Portfolio } from '@/types/contents';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
   contents: Portfolio[];
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
-  const { locale } = ctx;
+  const { locale = DEFAULT_LOCALE } = ctx;
   const { default: contents } = await import(`@/contents/portfolio/${locale}`)
     .catch((err) => {
       if (err.code === 'MODULE_NOT_FOUND') {

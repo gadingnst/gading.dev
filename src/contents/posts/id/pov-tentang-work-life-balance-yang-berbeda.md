@@ -1,6 +1,9 @@
 ---
 title: 'POV tentang Work Life Balance yang berbeda'
-slug: 'pov-tentang-work-life-balance-yang-berbeda'
+slug: {
+  en: null,
+  id: 'pov-tentang-work-life-balance-yang-berbeda'
+}
 date: 2022-03-06
 description: 'Work Life Balance selalu diartikan memisahkan antara kehidupan pekerjaan & pribadi agar seimbang dan tidak saling mengganggu. Tapi apakah harus seperti itu? Lalu, bagaimana kita bisa menciptakan Work Life Balance dengan cara yang berbeda?'
 tags: ['work', 'life']

@@ -1,6 +1,9 @@
 ---
 title: 'Implementasi component pattern "Function as children" di React'
-slug: 'implementasi-function-as-children-di-react'
+slug: {
+  en: null,
+  id: 'implementasi-component-pattern-function-as-children-di-react'
+}
 date: 2020-03-28
 description: 'Function as Children adalah salah satu component pattern di React yang bisa kita gunakan, buat apa?'
 keywords: 'react, component, komponen, facc, function, javascript, component composition'

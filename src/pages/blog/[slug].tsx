@@ -1,11 +1,16 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
-import { getAllBlogPaths, MDContents, getContent } from '@/server/content-parser';
+import {
+  getAllBlogPaths,
+  MDContent,
+  getContent
+} from '@/server/content-parser';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
-  contents: MDContents;
-  locale?: string;
+  contents: MDContent;
+  locale: string;
 };
 
 export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
@@ -17,7 +22,10 @@ export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
-  const { locale, params } = ctx;
+  const {
+    locale = DEFAULT_LOCALE,
+    params
+  } = ctx;
   const { slug } = params as any;
   const contents = await getContent(slug, locale);
   if (contents) {

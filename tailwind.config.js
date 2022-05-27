@@ -3,7 +3,8 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}'
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/contents/**/*.{md,mdx}'
   ],
   safelist: [
     {

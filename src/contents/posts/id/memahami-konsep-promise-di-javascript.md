@@ -1,6 +1,9 @@
 ---
 title: 'Memahami lebih dalam konsep Promise di JavaScript'
-slug: 'memahami-konsep-promise-di-javascript'
+slug: {
+  en: null,
+  id: 'memahami-konsep-promise-di-javascript'
+}
 date: 2020-02-08
 description: 'Promise hadir untuk menyelesaikan kasus-kasus pada proses asynchronous di JavaScript. Memahami konsep promise adalah bagian terpenting dalam JavaScript.'
 tags: ['javascript', 'promise', 'callback', 'asynchronous']

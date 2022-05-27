@@ -1,6 +1,9 @@
 ---
 title: 'Prestasi ≠ Manfaat'
-slug: 'prestasi-tidak-sama-dengan-manfaat'
+slug: {
+  en: null,
+  id: 'prestasi-tidak-sama-dengan-manfaat'
+}
 date: 2020-09-22
 description: 'Apakah tujuan kita meraih prestasi? Apakah bedanya prestasi dengan manfaat? Well, ga ada salahnya kamu mengejar prestasi. Namun, pastikan kalau kontribusimu juga bermanfaat buat orang lain.'
 keywords: 'prestasi, bermanfaat, menjadi orang yang berguna, meraih prestasi, kehidupan'

@@ -1,6 +1,9 @@
 ---
 title: 'Tak akan datang'
-slug: 'tak-akan-datang'
+slug: {
+  en: null,
+  id: 'tak-akan-datang'
+}
 date: 2019-05-07
 description: 'My bullshit motivation.'
 keywords: 'life, kehidupan, waktu, motivasi, motivation'
