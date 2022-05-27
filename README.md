@@ -1,4 +1,6 @@
 # 👨‍💻 Gading's Hideout
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=gading-dev) [![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
+
 Under development! Content and features may not be completed yet. 🚧
 
 > My Personal Homepage & Blog site with NextJS : https://gading.dev
