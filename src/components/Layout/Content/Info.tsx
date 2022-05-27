@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
-import { MetaContents } from '@/server/content-parser';
+import { ContentMeta } from '@/server/content-parser';
 import date from '@/utils/helpers/date';
 
 export interface Props {
-  meta: MetaContents;
+  meta: ContentMeta;
   locale?: string;
   className?: string;
   colorClassName?: string;
