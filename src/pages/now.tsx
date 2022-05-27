@@ -25,7 +25,7 @@ const NowPage: NextPage<Props> = (props) => {
   const { meta, content } = contents;
   return (
     <Fragment>
-      <Navbar />
+      <Navbar localeChange />
       <Banner
         bgImage={meta.image}
         className="font-courgette text-white util--text-shadow text-center"

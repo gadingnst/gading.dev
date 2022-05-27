@@ -34,7 +34,7 @@ const BlogListPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   return (
     <Fragment>
-      <Navbar />
+      <Navbar localeChange />
       <Banner
         bgImage="/media/banners/5.jpg"
         className="font-courgette text-white util--text-shadow text-center"
@@ -49,7 +49,7 @@ const BlogListPage: NextPage<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-28 max-w-5xl sm:grid-cols-2 -mt-80">
+        <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 -mt-80">
           {contents.map(item => (
             <Card
               hoverEffect

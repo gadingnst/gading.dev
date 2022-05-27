@@ -51,7 +51,7 @@ const PortfolioPage: NextPage<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-28 max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80">
+        <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80">
           {contents.map(item => (
             <Card hoverEffect className="rounded-12 overflow-hidden" key={item.image}>
               <div className="relative w-full overflow-hidden h-[200px]">

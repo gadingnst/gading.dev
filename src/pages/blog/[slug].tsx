@@ -1,5 +1,5 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import { Fragment, useCallback } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
 import {
   getAllBlogPaths,
@@ -7,6 +7,7 @@ import {
   getContent
 } from '@/server/content-parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
+import { I18nLocales } from '@/types/contents';
 
 type Props = {
   contents: MDContent;
@@ -44,9 +45,18 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
+  const localeChange = Object.values(meta.slug).every(Boolean);
+
+  const onLocaleChange = useCallback((i18nLocale: I18nLocales) => {
+    return meta.slug[i18nLocale];
+  }, []);
+
   return (
     <Fragment>
-      <Navbar />
+      <Navbar
+        localeChange={localeChange}
+        onLocaleChange={onLocaleChange}
+      />
       <Banner
         bgImage={meta.image}
         className="font-courgette text-white util--text-shadow text-center"
