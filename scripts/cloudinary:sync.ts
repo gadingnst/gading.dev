@@ -5,13 +5,13 @@ require('dotenv').config();
 
 import Path from 'path';
 import CloudinaryInstance from 'cloudinary';
+import ConcurrentManager from 'concurrent-manager';
 import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   CLOUDINARY_CLOUD_NAME
 } from '../src/utils/config';
 import { getFiles, isImage } from '../src/server/files';
-import PromiseQueue from '../src/utils/lib/PromiseQueue';
 
 const Cloudinary = CloudinaryInstance.v2;
 Cloudinary.config({
@@ -27,9 +27,9 @@ async function syncMedia() {
   console.log('> Syncing `media` files...');
 
   // setup queue for uploading with 7 concurrent uploads
-  const queue = new PromiseQueue({ concurrent: 7 });
+  const concurrent = new ConcurrentManager({ concurrent: 7 });
 
-  queue.onQueueSettled((data) => {
+  concurrent.onQueueSettled((data) => {
     console.log(data);
   });
 
@@ -43,7 +43,7 @@ async function syncMedia() {
     const extension = Path.extname(fileName);
     const name = fileName.slice(0, -extension.length);
     if (isImage(pathToUpload)) {
-      queue.add(async() => {
+      concurrent.queue(async() => {
         process.stdout.write('.');
         const response = await Cloudinary.uploader.upload(file, {
           public_id: name,
@@ -54,7 +54,7 @@ async function syncMedia() {
       });
     }
   }
-  await queue.run();
+  await concurrent.run();
 }
 
 syncMedia();

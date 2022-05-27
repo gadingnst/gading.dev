@@ -38,6 +38,7 @@
     "autoprefixer": "^10.4.7",
     "cloudinary": "^1.30.0",
     "clsx": "^1.1.1",
+    "concurrent-manager": "^0.1.2",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
