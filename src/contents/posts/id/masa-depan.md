@@ -1,6 +1,9 @@
 ---
 title: 'Masa Depan'
-slug: 'masa-depan'
+slug: {
+  en: null,
+  id: 'masa-depan'
+}
 date: 2019-05-17
 description: 'Kenapa belajar lebih dalam tentang teknologi ? Apa alasannya ? Well, my code is my future'
 keywords: 'life, masa depan, koding, cita-cita, programming, technology, teknologi, pemrograman'

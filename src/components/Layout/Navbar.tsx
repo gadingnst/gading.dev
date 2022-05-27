@@ -9,7 +9,7 @@ import Modal from '@/components/Modal';
 import Dropdown from '@/components/Dropdown';
 
 import { useToggler, useMounted } from '@/hooks';
-import { SITE_NAME } from '@/utils/config';
+import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
 import iconAppLogo from '@/assets/icons/app/logo.svg';
@@ -17,10 +17,13 @@ import iconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
 import iconHamburger from '@/assets/icons/tools/hamburger.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
+import { I18nLocales } from '@/types/contents';
 
 export interface Props {
   title?: ReactNode|string;
   className?: string;
+  localeChange?: boolean;
+  onLocaleChange?: (locale: I18nLocales) => string;
 }
 
 export const menus = [
@@ -36,7 +39,7 @@ export const i18nList = new Map([
 ]);
 
 const Navbar: FunctionComponent<Props> = (props) => {
-  const { title, className } = props;
+  const { title, className, localeChange, onLocaleChange } = props;
   const [transparent, setTransparent] = useState(true);
   const [modalVisibility, modalToggler] = useToggler();
   const { pathname, locale, asPath } = useRouter();
@@ -78,27 +81,29 @@ const Navbar: FunctionComponent<Props> = (props) => {
             {title}
           </Link>
           <div className="flex flex-grow font-poppins font-bold justify-end items-center xs:ml-16">
-            <Dropdown
-              className="bg-transparent px-8 pt-[3px]"
-              title={i18nList.get(locale || 'en')}
-              btnClassName="text-sm md:text-base"
-            >
-              {Array.from(i18nList).map(([code, label]) => (
-                <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
-                  <Link
-                    href={pathname}
-                    asPath={asPath}
-                    locale={code}
-                    className={clsxm(
-                      'text-dark-70 dark:text-white',
-                      code === locale && 'text-accent-1 dark:text-accent-2'
-                    )}
-                  >
-                    {label}
-                  </Link>
-                </Dropdown.Item>
-              ))}
-            </Dropdown>
+            {localeChange && (
+              <Dropdown
+                className="bg-transparent px-8 pt-[3px]"
+                title={i18nList.get(locale || DEFAULT_LOCALE)}
+                btnClassName="text-sm md:text-base"
+              >
+                {Array.from(i18nList).map(([code, label]) => (
+                  <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
+                    <Link
+                      href={pathname}
+                      asPath={onLocaleChange?.(code as I18nLocales) ?? asPath}
+                      locale={code}
+                      className={clsxm(
+                        'text-dark-70 dark:text-white',
+                        code === locale && 'text-accent-1 dark:text-accent-2'
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </Dropdown.Item>
+                ))}
+              </Dropdown>
+            )}
             <SwitchTheme className={clsxm(textShadowClass, 'px-8')} />
             <div className="hidden md:block">
               {menus.map(({ label, href }, idx) => (

@@ -6,6 +6,7 @@ export const {
   NEXT_PUBLIC_APP_ENVIRONMENT: APP_ENVIRONMENT = 'production'
 } = process.env;
 
+export const DEFAULT_LOCALE = 'en';
 export const IS_DEV = APP_ENVIRONMENT !== 'production';
 export const PRODUCTION_URL = 'https://gading.dev';
 export const SITE_NAME = 'Gading\'s Hideout';

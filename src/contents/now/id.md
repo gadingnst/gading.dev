@@ -1,6 +1,9 @@
 ---
 title: "Now"
-slug: "now"
+slug: {
+  en: "now",
+  id: "now"
+}
 date: 2022-04-24
 description: "Apa yang sedang kulakukan sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"

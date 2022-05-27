@@ -1,12 +1,17 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import { Fragment, useCallback } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
-import { getAllBlogPaths, MDContents, parseContent } from '@/server/content-parser';
-import { IS_DEV } from '@/utils/config';
+import {
+  getAllBlogPaths,
+  MDContent,
+  getContent
+} from '@/server/content-parser';
+import { DEFAULT_LOCALE } from '@/utils/config';
+import { I18nLocales } from '@/types/contents';
 
 type Props = {
-  contents: MDContents;
-  locale?: string;
+  contents: MDContent;
+  locale: string;
 };
 
 export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
@@ -18,15 +23,12 @@ export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
-  const { locale, params } = ctx;
+  const {
+    locale = DEFAULT_LOCALE,
+    params
+  } = ctx;
   const { slug } = params as any;
-  const contents = await parseContent(`posts/published/${slug}`, locale)
-    .catch((err: any) => {
-      if (IS_DEV && err.message.includes('ERRNOTFOUND')) {
-        return parseContent(`posts/drafts/${slug}`, locale);
-      }
-      return null;
-    });
+  const contents = await getContent(slug, locale);
   if (contents) {
     return {
       props: {
@@ -43,9 +45,18 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
+  const localeChange = Object.values(meta.slug).every(Boolean);
+
+  const onLocaleChange = useCallback((i18nLocale: I18nLocales) => {
+    return meta.slug[i18nLocale];
+  }, []);
+
   return (
     <Fragment>
-      <Navbar />
+      <Navbar
+        localeChange={localeChange}
+        onLocaleChange={onLocaleChange}
+      />
       <Banner
         bgImage={meta.image}
         className="font-courgette text-white util--text-shadow text-center"

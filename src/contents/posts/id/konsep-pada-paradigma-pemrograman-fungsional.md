@@ -1,6 +1,9 @@
 ---
 title: 'Konsep dan teknik yang harus diketahui pada paradigma pemrograman fungsional'
-slug: 'konsep-pada-paradigma-pemrograman-fungsional'
+slug: {
+  en: null,
+  id: 'konsep-pada-paradigma-pemrograman-fungsional'
+}
 date: 2020-01-18
 description: 'Tidak hanya OOP, paradigma fungsional juga memiliki konsep dan aturan penggunaan yang menarik, apa saja itu ?'
 keywords: 'functional paradigm, paradigma fungsional, pure function, curried function, recursive function, currying, recursive, callback, closure, fungsi'

@@ -1,6 +1,9 @@
 ---
 title: 'IRI'
-slug: 'iri'
+slug: {
+  en: null,
+  id: 'iri'
+}
 date: 2020-04-22
 description: "Iri adalah sifat manusiawi. But, you don't really know about others background."
 keywords: 'iri, thoughts, sifat manusiawi, programming, instagram, twitter'

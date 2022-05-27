@@ -1,6 +1,9 @@
 ---
 title: 'Rencana bulan agustus 2019'
-slug: 'rencana-bulan-agustus-2019'
+slug: {
+  en: null,
+  id: 'rencana-bulan-agustus-2019'
+}
 date: 2019-08-03
 description: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
 keywords: 'kampus, planning, rencana, wisuda, polsri'

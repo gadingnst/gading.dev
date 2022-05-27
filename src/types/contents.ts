@@ -3,6 +3,8 @@ export enum I18n {
   id = 'id',
 }
 
+export type I18nLocales = keyof typeof I18n;
+
 export interface Portfolio {
   name: string;
   category: string;

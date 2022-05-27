@@ -33,7 +33,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <button
       role="button"
-      className={clsxm('relative cursor-pointer transition-all rounded-8 p-8', className)}
+      className={clsxm('relative cursor-pointer transition-all rounded-8 p-8 text-white', className)}
       onClick={onClick}
     >
       {children || text}
@@ -43,7 +43,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
 Button.defaultProps = {
   text: '',
-  className: 'bg-primary text-white',
+  className: 'bg-primary',
   href: '',
   onClick: () => void 0
 };

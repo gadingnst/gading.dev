@@ -11,15 +11,16 @@ import {
   ImageLazy,
   ContentInfo
 } from '@/components';
-import { getBlogList, MetaContents } from '@/server/content-parser';
+import { getBlogList, ContentMeta } from '@/server/content-parser';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
-  contents: MetaContents[];
-  locale?: string;
+  contents: ContentMeta[];
+  locale: string;
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
-  const { locale } = ctx;
+  const { locale = DEFAULT_LOCALE } = ctx;
   const contents = await getBlogList(locale);
   return {
     props: {
@@ -33,7 +34,7 @@ const BlogListPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   return (
     <Fragment>
-      <Navbar />
+      <Navbar localeChange />
       <Banner
         bgImage="/media/banners/5.jpg"
         className="font-courgette text-white util--text-shadow text-center"
@@ -48,9 +49,13 @@ const BlogListPage: NextPage<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-28 max-w-5xl sm:grid-cols-2 -mt-80">
+        <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 -mt-80">
           {contents.map(item => (
-            <Card hoverEffect className="rounded-12 overflow-hidden" key={item.slug}>
+            <Card
+              hoverEffect
+              key={item.slugOriginal}
+              className="rounded-12 overflow-hidden"
+            >
               <div className="relative w-full overflow-hidden h-[200px]">
                 <ImageLazy
                   src={item.image}
@@ -67,7 +72,7 @@ const BlogListPage: NextPage<Props> = (props) => {
                   <div className="w-full text-center">
                     <Link
                       href="/blog/[slug]"
-                      asPath={`/blog/${item.slug}`}
+                      asPath={`/blog/${item.slugOriginal}`}
                       className="mb-4 text-primary dark:text-primary-2"
                     >
                       {item.title}

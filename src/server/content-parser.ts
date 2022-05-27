@@ -14,10 +14,17 @@ import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
-export interface MetaContents {
+interface ContentSlug {
+  en: string;
+  id: string;
+}
+
+export interface ContentMeta {
   title: string;
-  slug: string;
+  slug: ContentSlug;
+  slugOriginal: string;
   date: string;
   description: string;
   keywords: string;
@@ -26,14 +33,13 @@ export interface MetaContents {
   readTime: ReadTimeResults;
 }
 
-export interface MDContents {
-  slug: string;
+export interface MDContent {
+  meta: ContentMeta;
   content: string;
-  meta: MetaContents;
 }
 
 export interface MetaLocale {
-  meta: MetaContents;
+  meta: ContentMeta;
   locale: string;
 }
 
@@ -42,85 +48,11 @@ export const contentsDir = path.join(rootDir, 'contents');
 
 /**
  *
- * @param filePath - path to file
- * @param language - language of file
- * @returns {Promise<string>} - asynchronous content string
- */
-async function readContent(filePath: string, language = 'en'): Promise<string> {
-  const files = await Fs.readdir(filePath).catch(() => []);
-  const file = files.find((file) => file.endsWith(`${language}.md`) || file.endsWith(`${language}.mdx`));
-  let fallbackFile;
-  if (files.length === 0) throw new Error(`ERRNOTFOUND: No content found on directory ${filePath}`);
-  if (!file) fallbackFile = files.find((file) => file.endsWith('.md') || file.endsWith('.mdx'));
-  return Fs.readFile(path.join(filePath, file || fallbackFile as string), 'utf8');
-}
-
-/**
- *
- * @param filePath - slug path to file
- * @param language - language of file (default: en)
- * @returns {Promise<MetaContents>} - asynchronous content meta
- */
-async function getBlogMeta(filePath: string, language: string): Promise<MetaContents> {
-  const fileContents = await readContent(filePath, language);
-  const { content, data } = matter(fileContents);
-  data.date = day(data.date).format('YYYY-MM-DD');
-  const readTime = readingTime(content);
-  return { ...data, readTime } as MetaContents;
-}
-
-/**
- * @param type - type of content published or drafts
- * @param language - filter language of file 'en'|'id'
- * @returns {Promise<MetaLocale[]>} - asynchronous all blog meta and locale
- */
-async function getAllBlogMeta(type: 'published'|'drafts', language?: string): Promise<MetaLocale[]> {
-  const postsPath = path.join(contentsDir, 'posts');
-  const filePath = path.join(postsPath, type);
-  const slugPaths = await Fs.readdir(filePath).catch(() => []);
-  const result = await Promise.all(slugPaths.map(async(slugPath) => {
-    const blogPaths = path.join(filePath, slugPath);
-    if (language) {
-      const meta = await getBlogMeta(blogPaths, language);
-      return { meta, language };
-    }
-    const i18n = Object.values(I18n);
-    return Promise.all(i18n.map(async lang => {
-      const meta = await getBlogMeta(blogPaths, lang);
-      return {
-        meta,
-        locale: lang.replace(/\.(md|mdx)$/, '')
-      };
-    }));
-  }));
-  return (language ? result : result.flat(1)) as MetaLocale[];
-}
-
-/**
- * Get all published or drafts blog
- * @param language - filter language of file 'en'|'id'
- * @returns {Promise<MetaLocale[]>} - asynchronous published and drafts blog contents
- */
-async function getAllBlog(language?: string): Promise<MetaLocale[]> {
-  const [published] = await Promise.all([
-    getAllBlogMeta('published', language)
-    // TODO: add draft blog only on Development Environment
-    // IS_DEV ? getAllBlogMeta('drafts', language) : Promise.resolve([])
-  ]);
-  return [...published];
-}
-
-/**
- *
- * @param slugParam - slug of the content
- * @param language - language of the content (default: en)
- * @returns {Promise<MDContents>} - asynchronous content meta & detail
+ * @param fileContents - string file content that have to be read
+ * @returns {Promise<MDContent>} - asynchronous content meta & detail
  * @see https://www.learnnext.blog/blogs/lets-build-a-blog-with-tailwind-mdx-bundler-and-next#creating-the-mdxjs-file
  */
-export async function parseContent(slugParam: string, language = 'en'): Promise<MDContents> {
-  const slug = slugParam.replace(/\.(md|mdx)$/, '');
-  const fullPath = path.join(contentsDir, slug);
-  const fileContents = await readContent(fullPath, language);
+async function parseContent(fileContents: string): Promise<MDContent> {
   const result = await bundleMDX({
     source: fileContents,
     cwd: rootDir,
@@ -153,7 +85,45 @@ export async function parseContent(slugParam: string, language = 'en'): Promise<
   const readTime = readingTime(source);
   meta.date = day(meta.date).format('YYYY-MM-DD');
   meta.readTime = readTime;
-  return { slug, meta, content } as MDContents;
+  return {
+    meta,
+    content
+  } as MDContent;
+}
+
+/**
+ * Get blog meta information
+ * @param slug - slug file with extension
+ * @returns {Promise<ContentMeta>} - asynchronous content meta
+ */
+async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Promise<ContentMeta> {
+  const blogFile = path.join(contentsDir, 'posts', language, slug);
+  const fileContents = await Fs.readFile(blogFile, 'utf8');
+  const { content, data } = matter(fileContents);
+  const date = day(data.date).format('YYYY-MM-DD');
+  const slugOriginal = data.slug[language];
+  const readTime = readingTime(content);
+  return {
+    ...data,
+    slugOriginal,
+    date,
+    readTime
+  } as ContentMeta;
+}
+
+/**
+ * Get all blog meta information
+ * @param language - filter language of file 'en'|'id'
+ * @returns {Promise<MetaLocale[]>} - asynchronous all blog meta and locale
+ */
+async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
+  const postsPath = path.join(contentsDir, 'posts', language);
+  const slugPaths = await Fs.readdir(postsPath).catch(() => []);
+  const result = await Promise.all(slugPaths.map(async(slug) => {
+    const meta = await getBlogMeta(slug, language);
+    return { meta, locale: language };
+  }));
+  return result;
 }
 
 /**
@@ -161,22 +131,22 @@ export async function parseContent(slugParam: string, language = 'en'): Promise<
  * @returns {Promise<GetStaticPathsResult['paths']>} - asynchronous next static paths
  */
 export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> {
-  const contents = await getAllBlog();
-  return contents.map(({ meta, locale }) => ({
+  const paths = await Promise.all(Object.keys(I18n).map(getAllBlogMeta));
+  return paths.flat(1).map(({ meta, locale }) => ({
     params: {
-      slug: meta.slug
+      slug: meta.slugOriginal
     },
     locale
   }));
 }
 
 /**
- *
+ * Get blog list by language
  * @param language - language of the content (default: en)
- * @returns {Promise<MDContents[]>} - asynchronous all content meta
+ * @returns {Promise<MDContent[]>} - asynchronous all content meta
  */
-export async function getBlogList(language = 'en'): Promise<MetaContents[]> {
-  const contents = await getAllBlog(language);
+export async function getBlogList(language = DEFAULT_LOCALE): Promise<ContentMeta[]> {
+  const contents = await getAllBlogMeta(language);
   return contents
     .sort((a, b) => {
       const dateA = day(a.meta.date);
@@ -184,4 +154,33 @@ export async function getBlogList(language = 'en'): Promise<MetaContents[]> {
       return dateB.isBefore(dateA) ? -1 : 1;
     })
     .map(({ meta }) => meta);
+}
+
+/**
+ * Get content with multi language with one slug path
+ * @param contentPath - path to content
+ * @param language - language of the content 'en'|'id'
+ * @returns {Promise<MDContent>} - asynchronous content string
+ */
+export async function getContentMultiLanguage(contentPath: string, language = DEFAULT_LOCALE): Promise<MDContent> {
+  const filePath = path.join(contentsDir, contentPath);
+  const files = await Fs.readdir(filePath).catch(() => []);
+  const file = files.find((file) => file.endsWith(`${language}.md`) || file.endsWith(`${language}.mdx`));
+  let fallbackFile;
+  if (files.length === 0) throw new Error(`ERRNOTFOUND: No content found on directory ${filePath}`);
+  if (!file) fallbackFile = files.find((file) => file.endsWith('.md') || file.endsWith('.mdx'));
+  const fileContents = await Fs.readFile(path.join(filePath, file || fallbackFile as string), 'utf8');
+  return parseContent(fileContents);
+}
+
+export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContent> {
+  const filePath = path.join(contentsDir, 'posts', language, slug);
+  const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')
+    .catch((err) => {
+      if (err.code === 'ENOENT' && err.message.includes('.md')) {
+        return Fs.readFile(`${filePath}.mdx`, 'utf8');
+      }
+      throw err;
+    });
+  return parseContent(fileContents);
 }

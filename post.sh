@@ -12,7 +12,6 @@
 # Options:
 #   -h, --help        output instructions
 #   -c, --create      create post
-#   -d, --draft       create draft post
 #
 # Alias: alias ipost="bash ~/path/to/script/initpost.sh"
 #
@@ -30,8 +29,6 @@
 
 # CORE: Do not change these lines
 # ----------------------------------------------------------------
-POST_TITLE="${@:2:$(($#-1))}"
-POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
 CURRENT_YEARMONTH="$(date +'%Y/%m')"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
 # TIME=$(date +"%T")
@@ -44,24 +41,37 @@ CURRENT_DATE="$(date +'%Y-%m-%d')"
 # Set your destination folder
 BINPATH=$(cd `dirname $0`; pwd)
 SRCPATH="${BINPATH}/src"
-POSTPATH="${SRCPATH}/contents/posts/published"
-DRAFTPATH="${SRCPATH}/contents/posts/drafts"
+POSTPATH="${SRCPATH}/contents/posts"
 BLOGMEDIAPATH="${BINPATH}/public/media/blog"
 RAND_NUM=$(node -e "console.log(~~(Math.random() * 8) + 0)")
 
 if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
-    DIST_FOLDER="$POSTPATH"
-    FILE_NAME="${POST_NAME}/index.md"
+    POST_TITLE="${@:2:$(($#-1))}"
+    POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
+    DIST_FOLDER="$POSTPATH/en"
+    FILE_NAME="${POST_NAME}.md"
+    SLUG_NAME_EN="\"${POST_NAME}\""
+    SLUG_NAME_ID="null"
 fi
 
-if [[ "${1}" == "-d" || "${1}" == "--draft" ]]; then
-    DIST_FOLDER="$DRAFTPATH"
-    FILE_NAME="${POST_NAME}/index.md"
+# Handle EN lang
+if [[ "${2}" == "-en" ]]; then
+    POST_TITLE="${@:3:$(($#-1))}"
+    POST_NAME="$(echo ${@:3:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
+    DIST_FOLDER="${POSTPATH}/en"
+    FILE_NAME="${POST_NAME}.md"
+    SLUG_NAME_EN="\"${POST_NAME}\""
+    SLUG_NAME_ID="null"
 fi
 
-if [[ "${1}" == "-p" || "${1}" == "--publish" ]]; then
-    DIST_FOLDER="$POSTPATH"
-    FILE_NAME="${POST_NAME}/index.md"
+# Handle ID lang
+if [[ "${2}" == "-id" ]]; then
+    DIST_FOLDER="${POSTPATH}/id"
+    POST_TITLE="${@:3:$(($#-1))}"
+    POST_NAME="$(echo ${@:3:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
+    FILE_NAME="${POST_NAME}.md"
+    SLUG_NAME_EN="null"
+    SLUG_NAME_ID="\"${POST_NAME}\""
 fi
 
 # ----------------------------------------------------------------
@@ -109,8 +119,6 @@ Usage: ./post.sh [options] <post name>
 Options:
     -h, --help        output instructions
     -c, --create      create post
-    -d, --draft       create draft post
-    -p, --publish     publish/promote a draft to a post
 Example:
     ./post.sh -c How to replace strings with sed
 Important Notes:
@@ -126,20 +134,25 @@ EOT
 initpost_content() {
     echo "---"
     echo "title: \"${POST_TITLE}\""
-    echo "slug: \"${POST_NAME}\""
+    echo "slug: {"
+    echo -e "\ten: ${SLUG_NAME_EN},"
+    echo -e "\tid: ${SLUG_NAME_ID}"
+    echo "}"
     echo "date: ${CURRENT_DATE}"
-    echo "description: \"\""
-    echo "keywords: \"\""
-    echo "tags: []"
+    echo "description: \"An description\""
+    echo "keywords: \"keyword, blog template\""
+    echo "tags: [\"template\"]"
     echo "image: \"/media/banners/${RAND_NUM}.jpg\""
     echo "---"
+    echo ""
+    echo "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
 }
 
 # Create post
 initpost_file() {
     if [ ! -f "$FILE_NAME" ]; then
         e_header "Creating template..."
-        mkdir -p "${DIST_FOLDER}/${POST_NAME}"
+        echo "dist: $DIST_FOLDER/$FILE_NAME"
         mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
         initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
         e_success "Initial post successfully created!"
@@ -148,40 +161,6 @@ initpost_file() {
         exit 1
     fi
 
-}
-
-# Create draft
-initdraft_file() {
-    if [ ! -f "$FILE_NAME" ]; then
-        e_header "Creating draft template..."
-        mkdir -p "${DIST_FOLDER}/${POST_NAME}"
-        initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
-        e_success "Initial draft successfully created!"
-    else
-        e_warning "File already exist."
-        exit 1
-    fi
-}
-
-# Promote draft
-promote_draft() {
-    if [ ! -f "$FILE_NAME" ]; then
-        e_header "Promoting draft..."
-        if [ -f "${DRAFTPATH}/${FILE_NAME}" ]; then
-            if mkdir -p "${POSTPATH}/${POST_NAME}" && mv "${DRAFTPATH}/${FILE_NAME}" "${POSTPATH}/${FILE_NAME}"; then
-                mkdir -p "${BLOGMEDIAPATH}/${POST_NAME}"
-                sed -i -e "s/date: .*/date: ${CURRENT_DATE}/" ${POSTPATH}/${FILE_NAME}
-                rm -rf "${DRAFTPATH}/${POST_NAME}"
-                e_success "Draft promoted successfully!"
-            else
-                e_warning "File already exists or draft promotion failed."
-                exit 1
-            fi
-        else
-            e_warning "File not exists."
-            exit 1
-        fi
-    fi
 }
 
 # ------------------------------------------------------------------------------
@@ -196,21 +175,9 @@ main() {
         exit
     fi
 
-    # Create
+    # Create post
     if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
         initpost_file $*
-        exit
-    fi
-
-    # Draft
-    if [[ "${1}" == "-d" || "${1}" == "--draft" ]]; then
-        initdraft_file $*
-        exit
-    fi
-
-    # Promote
-    if [[ "${1}" == "-p" || "${1}" == "--promote" ]]; then
-        promote_draft $*
         exit
     fi
 }
