@@ -14,10 +14,10 @@ Under development! Content and features may not be completed yet. 🚧
 - [x] Synchronizing media images to [Cloudinary](https://cloudinary.com) CDN
 - [x] Optimized image scaling & Lazyload with blur effect like Instagram
 - [x] Reading-time prediction like Medium
-- [x] Internationalization content (for now, only [Now Page](https://gading.dev/now)).
+- [x] I18n (Internationalization) content.
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
-- [ ] SEO Optimized
+- [ ] SEO Optimized with meta information tags
 - [ ] Feed RSS & Sitemap
 - [ ] Page transition and effect
 - [ ] Search posts
