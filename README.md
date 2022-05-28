@@ -1,5 +1,5 @@
 # 👨‍💻 Gading's Hideout
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=gading-dev) [![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=gading-dev) [![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml) [![Continuous Integration](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml/badge.svg)](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml)
 
 Under development! Content and features may not be completed yet. 🚧
 
@@ -31,8 +31,9 @@ Under development! Content and features may not be completed yet. 🚧
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Special Thanks to:
-- [Argon Design System](https://demos.creative-tim.com/vue-argon-design-system)
-- [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh)
+- [Creative Tim](https://demos.creative-tim.com/vue-argon-design-system) (Inspired me to to reproduce their `Argon Design System`)
+- [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh) (Inspired me to to reproduce his `./initpost` script)
+- [Marina Aisa](https://marinaaisa.com) (Inspired me to create I18n content)
 
 ## Support Me
 ### Global

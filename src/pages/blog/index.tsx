@@ -74,6 +74,7 @@ const BlogListPage: NextPage<Props> = (props) => {
                       href="/blog/[slug]"
                       asPath={`/blog/${item.slugOriginal}`}
                       className="mb-4 text-primary dark:text-primary-2"
+                      locale={locale}
                     >
                       {item.title}
                     </Link>
