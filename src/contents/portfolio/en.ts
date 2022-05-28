@@ -52,7 +52,7 @@ const portfolio = [
     description: 'MeChat is Meet & Chat Mobile Application built with React Native integrated with Firebase, Google Map API and Netlify functions.',
     github: `https://github.com/${GITHUB_USERNAME}/mechat`,
     website: 'https://sutanlab.js.org/redirect/mechat-apk',
-    image: '/media/portfolio/mechat.png',
+    image: '/media/portfolio/mechat.jpg',
     stacks: ['javascript', 'react native', 'firebase', 'one signal']
   },
   {
