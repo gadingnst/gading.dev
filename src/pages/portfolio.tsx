@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
+import { motion } from 'framer-motion';
 import {
   Content,
   Footer,
@@ -41,13 +42,23 @@ const PortfolioPage: NextPage<Props> = (props) => {
         bgImage="/media/banners/2.jpg"
         className="font-courgette text-white util--text-shadow text-center"
       >
-        <div className="-mt-48">
-          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white">
+        <div className="container -mt-48">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ease: 'easeInOut', duration: 0.5 }}
+            className="font-bold text-4xl mb-8 text-white dark:text-white"
+          >
             Portfolio
-          </h1>
-          <p className="text-lg px-8 text-white dark:text-white">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
+            className="text-lg px-8 text-white dark:text-white"
+          >
             Projects, experiments, and some stuff that I&apos;ve made.”
-          </p>
+          </motion.p>
         </div>
       </Banner>
       <Content className="flex items-center justify-center">

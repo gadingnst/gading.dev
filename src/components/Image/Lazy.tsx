@@ -49,7 +49,7 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
         useIntersectionObserver
       />
       {loading && (
-        <span className={clsxm(styles.spinner, 'absolute')} />
+        <span className={clsxm(styles.loader, 'absolute')} />
       )}
     </span>
   );
