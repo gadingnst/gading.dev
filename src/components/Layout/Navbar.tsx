@@ -74,7 +74,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
           <Link
             href="/"
             className={clsxm(
-              'hidden xxs:flex justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:text-light-50',
+              'hidden xxs:flex justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
               textShadowClass
             )}
           >
@@ -94,7 +94,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                       asPath={onLocaleChange?.(code as I18nLocales) ?? asPath}
                       locale={code}
                       className={clsxm(
-                        'text-dark-70 dark:text-white',
+                        'text-dark-70 dark:text-white hover:no-underline',
                         code === locale && 'text-accent-1 dark:text-accent-2'
                       )}
                     >
@@ -111,7 +111,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                   key={href}
                   href={href}
                   className={clsxm(
-                    'font-bold text-lg mx-8 transition-all duration-200 hover:scale-105',
+                    'font-bold text-lg mx-8 transition-all duration-200 hover:scale-105 hover:no-underline',
                     idx === (menus.length - 1) ? 'mr-0' : '',
                     pathname === href && 'pointer-events-none',
                     textShadowClass
@@ -148,7 +148,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
         )}
       >
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:scale-105">
+          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:no-underline hover:scale-105">
             {title}
           </Link>
           <ButtonClose onClick={modalToggler} />
@@ -159,8 +159,9 @@ const Navbar: FunctionComponent<Props> = (props) => {
             <Link
               key={href}
               href={href}
+              delay={150}
               className={clsxm(
-                'font-bold my-4 transition-all duration-200 hover:scale-105',
+                'font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
                 idx === (menus.length - 1) ? 'mb-0' : '',
                 pathname === href
                   ? 'pointer-events-none text-accent dark:text-accent-2'

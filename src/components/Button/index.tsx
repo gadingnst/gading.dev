@@ -18,12 +18,15 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     onClick
   } = props;
 
+  const classes = 'relative cursor-pointer transition-all duration-150 rounded-8 p-8 hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
+
   if (href) {
     return (
       <Link
+        delay={300}
         href={href}
         onClick={onClick}
-        className={clsxm('relative cursor-pointer transition-all rounded-8 p-8', className)}
+        className={clsxm(classes, className)}
       >
         {children || text}
       </Link>
@@ -33,7 +36,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <button
       role="button"
-      className={clsxm('relative cursor-pointer transition-all rounded-8 p-8 text-white', className)}
+      className={clsxm(classes, 'text-white', className)}
       onClick={onClick}
     >
       {children || text}

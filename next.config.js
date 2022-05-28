@@ -4,9 +4,6 @@ const nextConfig = {
   reactStrictMode: true,
   webpack5: true,
   pageExtensions: ['ts', 'tsx'],
-  images: {
-    domains: ['raw.githubusercontent.com']
-  },
   i18n: {
     locales: ['en', 'id'],
     defaultLocale: 'en'

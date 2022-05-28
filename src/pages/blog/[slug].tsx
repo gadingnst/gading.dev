@@ -62,10 +62,10 @@ const BlogDetailPage: NextPage<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="-mt-48 px-8 md:px-0">
-          <h1 className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline" style={{ textUnderlinePosition: 'under' }}>
+          <h1 className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4">
             {meta.title}
           </h1>
-          <p className="font-bold text-base sm:text-lg px-8 text-white dark:text-white leading-tight">
+          <p className="text-base sm:text-lg px-8 text-white dark:text-white">
             {meta.description}”
           </p>
           <ContentInfo
