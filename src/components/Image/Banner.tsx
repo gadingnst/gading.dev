@@ -1,5 +1,6 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Parallax, ParallaxProps } from 'react-parallax';
+import { motion } from 'framer-motion';
 import clsxm from '@/utils/helpers/clsxm';
 import cloudinary from '@/utils/helpers/cloudinary';
 
@@ -25,14 +26,16 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       bgImage={cloudinary(bgImage as string)}
       bgClassName={clsxm('object-cover w-full', bgClassName)}
     >
-      <div
+      <motion.div
+        initial={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}
+        animate={{ backgroundColor: `rgba(0, 0, 0, ${overlay})` }}
+        transition={{ type: 'spring', duration: 1.25 }}
         className="flex items-center justify-center absoulte h-full w-full"
-        style={{ backgroundColor: `rgba(0, 0, 0, ${overlay})` }}
       >
         <div className={containerClassName} style={{ height }}>
           {children}
         </div>
-      </div>
+      </motion.div>
     </Parallax>
   );
 };

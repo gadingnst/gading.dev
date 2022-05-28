@@ -17,11 +17,11 @@ Under development! Content and features may not be completed yet. 🚧
 - [x] Optimized image scaling & Lazyload with blur effect like Instagram
 - [x] Reading-time prediction like Medium
 - [x] I18n (Internationalization) content.
+- [x] Page transition and effect
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized with meta information tags
 - [ ] Feed RSS & Sitemap
-- [ ] Page transition and effect
 - [ ] Search posts
 - [ ] Posts pagination
 - [ ] Push notifications support with [OneSignal](https://onesignal.com/pricing) and [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed) Integration
