@@ -47,7 +47,7 @@ const AboutPage: NextPage = () => {
   return (
     <Fragment>
       <Navbar />
-      <Banner bgImage="/media/banners/0.jpg" className="font-courgette text-white util--text-shadow text-center">
+      <Banner bgImage="/media/banners/8.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
           <motion.h1
             initial={{ opacity: 0, scale: 0.8 }}

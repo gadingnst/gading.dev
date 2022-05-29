@@ -2,7 +2,6 @@ import { FunctionComponent, PropsWithChildren } from 'react';
 import { Parallax, ParallaxProps } from 'react-parallax';
 import { motion } from 'framer-motion';
 import clsxm from '@/utils/helpers/clsxm';
-import cloudinary from '@/utils/helpers/cloudinary';
 
 export interface Props extends ParallaxProps {
   overlay?: number;
@@ -23,7 +22,7 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <Parallax
       {...otherProps}
-      bgImage={cloudinary(bgImage as string)}
+      bgImage={bgImage}
       bgClassName={clsxm('object-cover w-full', bgClassName)}
     >
       <motion.div

@@ -7,7 +7,7 @@ slug: {
 date: 2022-04-24
 description: "Apa yang sedang kulakukan sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
-image: "/media/banners/8.jpg"
+image: "/media/banners/0.jpg"
 tags: []
 ---
 

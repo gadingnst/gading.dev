@@ -7,7 +7,7 @@ slug: {
 date: 2022-04-24
 description: "What am i doing right now ?"
 keywords: "now, gading's activities, now page, gading now page, gading"
-image: "/media/banners/8.jpg"
+image: "/media/banners/0.jpg"
 tags: []
 ---
 
