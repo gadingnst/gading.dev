@@ -28,7 +28,6 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
   } = props;
 
   const [loading, setLoading] = useToggler(true);
-  const source = cloudinary(src);
   const placeholder = cloudinary(src, placeholderScaling);
 
   const handleLoad = useCallback(() => {
@@ -40,7 +39,7 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
     <span className="w-full flex relative items-center justify-center">
       <LazyLoadImage
         {...otherProps}
-        src={IS_DEV ? src : source}
+        src={src}
         placeholderSrc={IS_DEV ? src : placeholder}
         style={{ ...style, height, width }}
         effect="blur"
@@ -80,7 +79,7 @@ ImageLazy.defaultProps = {
   style: {},
   zoomable: false,
   wrapperClassName: '',
-  placeholderScaling: 0.15 /* 15% */
+  placeholderScaling: 0.05 /* 5% */
 };
 
 export default ImageLazy;
