@@ -8,7 +8,7 @@ export const {
 
 export const DEFAULT_LOCALE = 'en';
 export const IS_DEV = APP_ENVIRONMENT !== 'production';
-export const PRODUCTION_URL = 'https://gading.dev';
+export const BASE_URL = IS_DEV ? 'http://localhost:3000' : 'https://gading.dev';
 export const SITE_NAME = 'Gading\'s Hideout';
 export const AUTHOR_NAME = 'Gading Nasution.';
 export const AUTHOR_FULLNAME = 'Sutan Gading Fadhillah Nasution';

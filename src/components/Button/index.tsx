@@ -6,6 +6,7 @@ export interface Props {
   text?: string;
   className?: string;
   href?: string;
+  locale?: string;
   onClick?: () => void;
 }
 
@@ -15,7 +16,8 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     children,
     className,
     href,
-    onClick
+    onClick,
+    locale
   } = props;
 
   const classes = 'relative cursor-pointer transition-all duration-150 rounded-8 p-8 hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
@@ -23,6 +25,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   if (href) {
     return (
       <Link
+        locale={locale}
         delay={300}
         href={href}
         onClick={onClick}

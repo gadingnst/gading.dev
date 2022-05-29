@@ -62,7 +62,8 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     }
   }, []);
 
-  const link = locale ? `/${locale}/${asPath}` : (asPath || href);
+  const path = asPath || href;
+  const link = locale ? `/${locale}/${path}` : path;
 
   return (
     <a

@@ -64,8 +64,8 @@ const BlogDetailPage: NextPage<Props> = (props) => {
       >
         <div className="container -mt-48 px-8 md:px-0">
           <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: -25 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
             className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4"
           >

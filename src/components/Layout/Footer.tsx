@@ -6,7 +6,7 @@ import {
   GITHUB_USERNAME,
   INSTAGRAM_USERNAME,
   LINKEDIN_USERNAME,
-  PRODUCTION_URL,
+  BASE_URL,
   SITE_NAME,
   TWITTER_USERNAME
 } from '@/utils/config';
@@ -75,7 +75,7 @@ const Footer: FunctionComponent<Props> = (props) => {
       <hr className="container lg:max-w-5xl" />
       <div className="container w-full mx-auto my-48 text-sm max-w-5xl">
         <span className="inline-block">&copy;&nbsp;{new Date().getFullYear()}&nbsp;</span>
-        <Link className="inline-block" href={PRODUCTION_URL}>{SITE_NAME}</Link>
+        <Link className="inline-block" href={BASE_URL}>{SITE_NAME}</Link>
         <span className="inline-block">&nbsp;&bull;&nbsp;</span>
         <Link className="inline-block" href={`https://github.com/${GITHUB_USERNAME}/gading.dev`}>Built</Link>
         <span className="inline-block">&nbsp;with&nbsp;</span>
