@@ -145,15 +145,16 @@ export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> 
  * @param language - language of the content (default: en)
  * @returns {Promise<MDContent[]>} - asynchronous all content meta
  */
-export async function getBlogList(language = DEFAULT_LOCALE): Promise<ContentMeta[]> {
-  const contents = await getAllBlogMeta(language);
-  return contents
+export async function getBlogList(language = DEFAULT_LOCALE, limit?: number): Promise<ContentMeta[]> {
+  const blogs = await getAllBlogMeta(language);
+  const blogsSortedByDate = blogs
     .sort((a, b) => {
       const dateA = day(a.meta.date);
       const dateB = day(b.meta.date);
       return dateB.isBefore(dateA) ? -1 : 1;
-    })
-    .map(({ meta }) => meta);
+    });
+  const contents = limit ? blogsSortedByDate.slice(0, limit) : blogsSortedByDate;
+  return contents.map(({ meta }) => meta);
 }
 
 /**

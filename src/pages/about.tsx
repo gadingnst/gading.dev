@@ -1,13 +1,30 @@
-import { NextPage } from 'next';
+import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { Content, Footer, Navbar, Banner, CardHero, Image, withLayoutPage, Button, Icon } from '@/components';
-import { AUTHOR_NAME, BASE_URL } from '@/utils/config';
+import { Content, Footer, Navbar, Banner, CardHero, Image, withLayoutPage, Button, Icon, ContentParser } from '@/components';
+import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 
 import iconMail from '@/assets/icons/tools/ios/mail.svg';
 import iconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
-
 import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
+import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
+
+type Props = {
+  contents: MDContent;
+};
+
+export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
+  const {
+    locale = DEFAULT_LOCALE
+  } = ctx;
+  const contents = await getContentMultiLanguage('about', locale);
+  return {
+    revalidate: 60 * 60,
+    props: {
+      contents
+    }
+  };
+};
 
 const LeftDesc = ({ className = 'hidden md:flex' }) => (
   <div className={`${className} items-center h-[30px] flex-1 justify-center text-center`}>
@@ -43,10 +60,11 @@ const RightDesc = ({ className = 'hidden md:flex' }) => (
   </div>
 );
 
-const AboutPage: NextPage = () => {
+const AboutPage: NextPage<Props> = (props) => {
+  const { meta, content } = props.contents;
   return (
     <Fragment>
-      <Navbar />
+      <Navbar localeChange />
       <Banner bgImage="/media/banners/8.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
           <motion.h1
@@ -63,7 +81,7 @@ const AboutPage: NextPage = () => {
             transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
             className="text-lg px-8 text-white dark:text-white"
           >
-            Just an ordinary Man who turns a ☕️ into beautiful &lt; /&gt;.”
+            {meta.description}”
           </motion.p>
         </div>
       </Banner>
@@ -94,18 +112,9 @@ const AboutPage: NextPage = () => {
               <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-32 mb-32" />
               <LeftDesc className="flex h-[auto]" />
             </div>
-            <div className="max-w-[48rem] mx-auto">
-              <h3 className="text-center">
-                Sutan Gading Fadhillah Nasution
-              </h3>
-              <hr className="my-24" />
-              <p className="text-center mb-16">
-                Software Engineer who specialized in Frontend on Full-time work, and also has some ability to code in Backend on Freelance/Side work. Very passionate about modern mobile and web technology while taking into consideration the latest trends and techniques. I would be a fast learner in doing new things and building good teamwork either.
-              </p>
-              <p className="text-center">
-                Would be a fast learner in doing new things and building good teamwork either. Also, made several side or open-source projects on GitHub for fun, and maybe be useful for people who have used it.
-              </p>
-            </div>
+            <ContentParser className="text-center">
+              {content}
+            </ContentParser>
           </div>
         </CardHero>
       </Content>
