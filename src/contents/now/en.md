@@ -1,14 +1,8 @@
 ---
 title: "Now"
-slug: {
-  en: "now",
-  id: "now"
-}
-date: 2022-04-24
 description: "What am i doing right now ?"
 keywords: "now, gading's activities, now page, gading now page, gading"
 image: "/media/banners/0.jpg"
-tags: []
 ---
 
 At first, i'll be thanking to [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), [Afwa Bagas Wahuda](https://www.wahudamon.com/now). Because all of them, i was inspired to create this page for describing about ***what i'm doing right now***. So, maybe you don't need to ask me frequently about that.

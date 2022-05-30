@@ -1,14 +1,8 @@
 ---
 title: "Now"
-slug: {
-  en: "now",
-  id: "now"
-}
-date: 2022-04-24
 description: "Apa yang sedang kulakukan sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
 image: "/media/banners/0.jpg"
-tags: []
 ---
 
 Pertama-tama, saya berterima kasih kepada [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), [Afwa Bagas Wahuda](https://www.wahudamon.com/now). Karena mereka semua, saya terinspirasi membuat halaman ini untuk mendeskripsikan tentang ***apa yang sedang kulakukan sekarang***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang itu.

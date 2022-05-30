@@ -15,6 +15,7 @@ import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
   contents: Portfolio[];
+  locale: string;
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
@@ -29,16 +30,17 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   return {
     revalidate: 60 * 60,
     props: {
-      contents
+      contents,
+      locale
     }
   };
 };
 
 const PortfolioPage: NextPage<Props> = (props) => {
-  const { contents } = props;
+  const { contents, locale } = props;
   return (
     <Fragment>
-      <Navbar />
+      <Navbar localeChange />
       <Banner
         bgImage="/media/banners/2.jpg"
         className="font-courgette text-white util--text-shadow text-center"
@@ -58,7 +60,11 @@ const PortfolioPage: NextPage<Props> = (props) => {
             transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
             className="text-lg px-8 text-white dark:text-white"
           >
-            Projects, experiments, and some stuff that I&apos;ve made.”
+            {
+              locale === 'en'
+                ? 'Projects, experiments, and some stuff that I\'ve made.'
+                : 'Proyek, eksperimen, dan beberapa hal yang telah saya buat.'
+            }”
           </motion.p>
         </div>
       </Banner>

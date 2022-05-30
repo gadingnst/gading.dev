@@ -6,11 +6,8 @@ import {
   Footer,
   Navbar,
   Banner,
-  Card,
   withLayoutPage,
-  Link,
-  ImageLazy,
-  ContentInfo
+  CardBlog
 } from '@/components';
 import { getBlogList, ContentMeta } from '@/server/content-parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
@@ -56,54 +53,17 @@ const BlogListPage: NextPage<Props> = (props) => {
             transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
             className="text-lg px-8 text-white dark:text-white"
           >
-            Coding, work, life, and whatever i want.”
+            {
+              locale === 'en'
+                ? 'Coding, work, life, and whatever i want.'
+                : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+            }”
           </motion.p>
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
         <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 -mt-80">
-          {contents.map(item => (
-            <Card
-              hoverEffect
-              key={item.slugOriginal}
-              className="rounded-12 overflow-hidden"
-            >
-              <div className="relative w-full overflow-hidden h-[200px]">
-                <ImageLazy
-                  src={item.image}
-                  alt={item.title}
-                  className="object-cover w-full"
-                  wrapperClassName="w-full"
-                  width="100%"
-                  height={200}
-                  placeholderScaling={0.05}
-                />
-              </div>
-              <div className="flex flex-col pt-12 pb-16 px-16">
-                <div className="flex flex-col justify-between items-center min-h-[50px]">
-                  <div className="w-full text-center">
-                    <Link
-                      href="/blog/[slug]"
-                      asPath={`/blog/${item.slugOriginal}`}
-                      className="mb-4 text-primary dark:text-primary-2"
-                      locale={locale}
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
-                  <ContentInfo
-                    className="flex my-8 text-xs"
-                    meta={item}
-                    locale={locale}
-                  />
-                </div>
-                <hr className="w-full mt-0 mb-12" />
-                <p className="text-center text-sm">
-                  {item.description}
-                </p>
-              </div>
-            </Card>
-          ))}
+          {contents.map(item => <CardBlog key={item.slugOriginal} meta={item} locale={locale} />)}
         </div>
       </Content>
       <Footer />

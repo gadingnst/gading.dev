@@ -9,7 +9,7 @@ const CardHero: FunctionComponent<PropsWithChildren<CardProps>> = (props) => {
       {...cardProps}
       className={clsxm(
         className,
-        'min-h-[500px] max-w-5xl rounded-24 mx-auto -mt-80',
+        'max-w-5xl rounded-24 mx-auto -mt-80',
         'py-24 px-28',
         'sm:py-36 sm:px-40',
         'md:py-44 md:px-56',
@@ -18,6 +18,10 @@ const CardHero: FunctionComponent<PropsWithChildren<CardProps>> = (props) => {
       {children}
     </Card>
   );
+};
+
+CardHero.defaultProps = {
+  className: 'min-h-[500px]'
 };
 
 export default CardHero;
