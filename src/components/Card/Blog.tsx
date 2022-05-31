@@ -26,6 +26,7 @@ const CardBlog: FunctionComponent<Props> = (props) => {
           wrapperClassName="w-full"
           width="100%"
           height={200}
+          scaling={0.45}
           placeholderScaling={0.05}
         />
       </div>
