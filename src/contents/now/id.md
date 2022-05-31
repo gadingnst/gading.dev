@@ -1,31 +1,49 @@
 ---
 title: "Now"
-description: "Apa yang sedang kulakukan sekarang?"
+description: "Lagi sibuk apa sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
 image: "/media/banners/0.jpg"
 ---
 
-Pertama-tama, saya berterima kasih kepada [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), [Afwa Bagas Wahuda](https://www.wahudamon.com/now). Karena mereka semua, saya terinspirasi membuat halaman ini untuk mendeskripsikan tentang ***apa yang sedang kulakukan sekarang***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang itu.
+Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), dan [Afwa Bagas Wahuda](https://www.wahudamon.com/now). Karena mereka semua, saya terinspirasi membuat halaman ini untuk mendeskripsikan tentang ***lagi sibuk apa sekarang?***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang hal itu.
 
 > Jika kamu mempunyai situsmu sendiri, mungkin kamu harus membuatnya juga.
 
+#### 🏡 Tempat Tinggal
+Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak April, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
+
 #### 💼 Karir
-Bekerja sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [SIRCLO](https://www.google.com/search?q=sirclo).
+Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [SIRCLO](https://www.google.com/search?q=sirclo) dalam Tim Insinyur Inti [Orami](https://orami.co.id), yang berfokus pada membuat layanan yang bukan produk *end-to-end* di sisi *Frontend*.
 
 #### ☕️ Aktivitas
-- Berinvestasi, and mempelajari Cryptocurrency
+- Berinvestasi, dan mempelajari Cryptocurrency
 - Belajar dan riset beberapa teknologi dari internet.
-- Sosmed, ngoding, membaca dan menulis blog untuk bersenang-senang.
-- Menikmati waktu dengan keluarga dan pasanganku hampir setiap minggu.
+- Sosmed, ngoding, mendengarkan musik, membaca dan menulis blog untuk bersenang-senang.
+- Menikmati waktu dengan orang-orang terdekatku hampir setiap minggu.
 
-#### 💡 Pengalaman Tech
-1. Ekosistem Murni JavaScript/TypeScript
-2. React Web/Native/NextJS, Vue/NuxtJS
-3. Jest, React Testing Library
-4. Storybook
-5. Bots, Automation, Task Runner, Data Collection
+#### 📘 Buku yang dibaca
+- [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Friend & David Heinemeier Hansson
+- [Psychology of Money](https://www.google.com/search?q=psychology+of+money+by+morgan+housel) dari Morgan Housel
+- [Atomic Habits](https://www.google.com/search?q=atomic+habits+by+james+clear) dari James Clear
+- [Rahasia bersikap tenang dalam kondisi apapun](https://www.google.com/search?q=rahasia+bersikap+tenang+dalam+kondisi+apapun+sabrina+ara) dari Sabrina Ara
 
-*Dan saya bisa terbuka untuk mempelajari Stack Teknologi lain jika dibutuhkan.*
+#### 🎧 Musik yang didengar
+Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya dimana saya membuat *playlist* untuk musik terbaru yang saya temukan ataupun musik lama yang ingin saya dengarkan berulang-ulang.
+
+#### 💡 Teknologi yang digunakan
+- Ekosistem Murni JavaScript/TypeScript
+- React Web/Native/NextJS, Vue/NuxtJS
+- Jest, React Testing Library
+- Storybook
+- Bot, Otomatisasi, Task Runner, Data Collection
+> *Dan saya bisa terbuka untuk mempelajari Stack Teknologi lain jika dibutuhkan.*
+
+#### 🛠 Beberapa Perangkat Lunak yang digunakan sehari-hari
+- Sistem Operasi: MacOS Monterey
+- Kode Editor: Visual Studio Code
+- GUI Basis Data: DBEaver, PhpMyAdmin and Robo 3T
+- Peramban: Google Chrome and Safari
+- Lain-lain: Jira/Trello, Postman, Spotify
 
 #### 🖥 Pengaturan Bekerja dari Rumah
 - MacBook Pro M1 8/512 (2020). [Link](https://shopee.co.id/Apple-MacBook-Pro-(13.3-inci-M1-2020)-8GB-RAM-512GB-SSD-Space-Grey-i.241308147.5176302064?sp_atk=3db06e93-1ed2-4045-bf33-249549e4df4c&xptdk=3db06e93-1ed2-4045-bf33-249549e4df4c)
@@ -43,12 +61,5 @@ Bekerja sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+p
 - Bardi Smart Light Bulb. [Link](https://www.tokopedia.com/bardistore/bardi-smart-light-bulb-rgb-ww-12w-wifi-wireless-iot-home-automation)
 - Standard Wood Table. [Link](https://www.tokopedia.com/alfaproofficial/meja-kerja-meja-kantor-meja-belajar-meja-gaming-murah-minimalis-modern-dark?src=topads)
 - Holi Gaming Chair with Footrest. [Link](https://www.tokopedia.com/holiofficialstore/holi-kursi-gaming-chair-computer-bangku-gaming-game-murah-hl-502-putih-footrest)
-
-#### 🛠 Beberapa Perangkat Lunak yang saya gunakan sehari-hari
-- Sistem Operasi: MacOS Monterey
-- Kode Editor: Visual Studio Code
-- GUI Basis Data: DBEaver, PhpMyAdmin and Robo 3T
-- Peramban: Google Chrome and Safari
-- Lain-lain: Jira/Trello, Postman, Spotify
 
 *Terakhir diperbarui: Mei, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

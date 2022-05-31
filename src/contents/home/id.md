@@ -5,10 +5,8 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/banners/1.jpg"
 ---
 
-Saya bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan tren dan teknik terbaru. Aku dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik.
+Saya sekarang bekerja *full-time* secara *remote* di [SIRCLO](https://sirclo.com) dalam Tim Insinyur Inti [Orami](https://orami.co.id).
 
-Saya sekarang bekerja secara remote di [SIRCLO](https://sirclo.com) dalam Tim Insinyur Inti [Orami](https://orami.co.id).
-
-Anda bisa lihat-lihat halaman [Now](/now) dan [About](/about) jika ingin tahu lebih banyak tentangku.
+Saya bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan tren dan teknik terbaru. Dan juga dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Kamu bisa lihat-lihat halaman [Now](/now) dan [About](/about) jika ingin tahu lebih banyak tentang saya.
 
 ##### *Terima kasih sudah berkunjung.*

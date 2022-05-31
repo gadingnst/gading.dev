@@ -7,7 +7,7 @@ image: "/media/banners/1.jpg"
 
 ### Sutan Gading Fadhillah Nasution
 
----
+<hr className="my-28" />
 
 ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh waktu*, dan juga dapat mengerjakan ***Backend*** dalam pekerjaan *Freelance/Paruh waktu*. Sangat bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan tren dan teknik terbaru.
 
