@@ -12,11 +12,16 @@ import {
 } from '@/components';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
+import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
 
 type Props = {
   contents: Portfolio[];
   locale: string;
 };
+
+interface PortfolioListProps extends LazyComponentProps {
+  contents: Portfolio[];
+}
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
   const { locale = DEFAULT_LOCALE } = ctx;
@@ -35,6 +40,39 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     }
   };
 };
+
+const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
+  const { contents, scrollPosition } = props;
+  return (
+    <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80">
+      {contents.map(item => (
+        <Card hoverEffect className="rounded-12 overflow-hidden" key={item.image}>
+          <div className="relative w-full overflow-hidden h-[200px]">
+            <ImageLazy
+              zoomable
+              src={item.image}
+              alt={item.name}
+              width="100%"
+              height="200px"
+              className="object-contain"
+              wrapperClassName="w-full"
+              scaling={0.5}
+              scrollPosition={scrollPosition}
+            />
+          </div>
+          <div className="flex flex-col pt-12 pb-16 px-16">
+            <p className="mb-4 text-primary dark:text-primary-2">
+              {item.name}
+            </p>
+            <p className="text-sm">
+              {item.description}
+            </p>
+          </div>
+        </Card>
+      ))}
+    </div>
+  );
+});
 
 const PortfolioPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
@@ -69,32 +107,7 @@ const PortfolioPage: NextPage<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80">
-          {contents.map(item => (
-            <Card hoverEffect className="rounded-12 overflow-hidden" key={item.image}>
-              <div className="relative w-full overflow-hidden h-[200px]">
-                <ImageLazy
-                  zoomable
-                  src={item.image}
-                  alt={item.name}
-                  width="100%"
-                  height="200px"
-                  className="object-contain"
-                  wrapperClassName="w-full"
-                  scaling={0.5}
-                />
-              </div>
-              <div className="flex flex-col pt-12 pb-16 px-16">
-                <p className="mb-4 text-primary dark:text-primary-2">
-                  {item.name}
-                </p>
-                <p className="text-sm">
-                  {item.description}
-                </p>
-              </div>
-            </Card>
-          ))}
-        </div>
+        <PortfolioList contents={contents} />
       </Content>
       <Footer />
     </Fragment>
