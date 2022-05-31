@@ -33,14 +33,9 @@ export const menus = [
   { label: 'About', href: '/about' }
 ];
 
-// export const i18nList = new Map([
-//   ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
-//   ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
-// ]);
-
 export const i18nList = new Map([
-  ['en', '🇺🇸'],
-  ['id', '🇮🇩']
+  ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
+  ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
 ]);
 
 const Navbar: FunctionComponent<Props> = (props) => {
