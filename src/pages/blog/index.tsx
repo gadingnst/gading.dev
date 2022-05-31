@@ -7,7 +7,7 @@ import {
   Navbar,
   Banner,
   withLayoutPage,
-  CardBlog
+  CardBlogList
 } from '@/components';
 import { getBlogList, ContentMeta } from '@/server/content-parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
@@ -62,9 +62,11 @@ const BlogListPage: NextPage<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex items-center justify-center">
-        <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 -mt-80">
-          {contents.map(item => <CardBlog key={item.slugOriginal} meta={item} locale={locale} />)}
-        </div>
+        <CardBlogList
+          className="-mt-80"
+          contents={contents}
+          locale={locale}
+        />
       </Content>
       <Footer />
     </Fragment>

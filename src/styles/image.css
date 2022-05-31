@@ -1,23 +1,19 @@
+/* img loading */
 .lazy-load-image-background.blur {
-  @apply blur-sm;
+  @apply blur-none;
+  & > img {
+    @apply opacity-0;
+  }
 }
 
+/* img loaded */
 .lazy-load-image-background.blur.lazy-load-image-loaded {
   transition: filter .5s;
   @apply blur-none;
-}
-
-.lazy-load-image-background.blur > img {
-  @apply opacity-0;
-}
-
-.lazy-load-image-background.blur.lazy-load-image-loaded > img {
-  transition: opacity .5s;
-  @apply opacity-100;
-}
-
-.content-parser {
-  @apply text-dark-70 dark:text-white;
+  & > img {
+    transition: opacity .5s;
+    @apply opacity-100;
+  }
 }
 
 body > div[aria-label="Zoomed image"], .content-parser {

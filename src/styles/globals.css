@@ -9,3 +9,7 @@
 @import "katex";
 @import "prism";
 @import "image";
+
+.content-parser {
+  @apply text-dark-70 dark:text-white;
+}
