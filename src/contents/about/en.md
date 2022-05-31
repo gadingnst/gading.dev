@@ -7,7 +7,7 @@ image: "/media/banners/1.jpg"
 
 ### Sutan Gading Fadhillah Nasution
 
----
+<hr className="my-28" />
 
 ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* work, and also has some ability to code in ***Backend*** on Freelance/Side work. Very passionate to explore about modern mobile and web technology while taking into consideration the latest trends and techniques.
 
