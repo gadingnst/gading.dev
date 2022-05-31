@@ -20,7 +20,6 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     getBlogList(locale, 4)
   ]);
   return {
-    revalidate: 60 * 60,
     props: {
       contents,
       blogList,

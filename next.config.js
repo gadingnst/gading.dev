@@ -8,6 +8,20 @@ const nextConfig = {
     locales: ['en', 'id'],
     defaultLocale: 'en'
   },
+  webpack: (config, { dev, isServer }) => {
+    /**
+     * Replace React with Preact only in client production build
+     * @see https://preactjs.com/guide/v10/getting-started#aliasing-in-webpack
+    */
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        'react': 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat'
+      });
+    }
+    return config;
+  },
   headers: () => {
     return [
       {

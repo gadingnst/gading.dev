@@ -33,9 +33,14 @@ export const menus = [
   { label: 'About', href: '/about' }
 ];
 
+// export const i18nList = new Map([
+//   ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
+//   ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
+// ]);
+
 export const i18nList = new Map([
-  ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
-  ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
+  ['en', '🇺🇸'],
+  ['id', '🇮🇩']
 ]);
 
 const Navbar: FunctionComponent<Props> = (props) => {
@@ -68,7 +73,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
         <div className={styles['header-container']}>
           <Icon
             className="inline-block xxs:hidden mr-8"
-            src={theme.current === 'dark' ? iconAppLogo : iconAppLogoSecondary}
+            src={theme?.current === 'dark' ? iconAppLogo : iconAppLogoSecondary}
             size={32}
           />
           <Link

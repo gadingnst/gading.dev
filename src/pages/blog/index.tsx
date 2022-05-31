@@ -21,7 +21,6 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   const { locale = DEFAULT_LOCALE } = ctx;
   const contents = await getBlogList(locale);
   return {
-    revalidate: 60 * 60,
     props: {
       contents,
       locale

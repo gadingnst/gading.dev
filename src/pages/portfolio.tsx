@@ -33,7 +33,6 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
       throw err;
     });
   return {
-    revalidate: 60 * 60,
     props: {
       contents,
       locale
