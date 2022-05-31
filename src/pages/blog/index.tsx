@@ -27,7 +27,6 @@ const BlogIndexPage: NextPage<Props> = (props) => {
     <BlogList
       contents={contents}
       locale={locale}
-      pageCurrent={1}
       total={total}
     />
   );
