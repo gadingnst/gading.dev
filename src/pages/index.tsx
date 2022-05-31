@@ -1,17 +1,12 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, CardBlog, Button } from '@/components';
+import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, Button, CardBlogList } from '@/components';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 type Props = {
   contents: MDContent;
-  blogList: ContentMeta[];
-  locale: string;
-};
-
-type LatestPostsProps = {
   blogList: ContentMeta[];
   locale: string;
 };
@@ -33,12 +28,6 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     }
   };
 };
-
-const LatestPosts = ({ blogList, locale }: LatestPostsProps) => (
-  <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2">
-    {blogList.map((item) => <CardBlog key={item.slugOriginal} meta={item} locale={locale} />)}
-  </div>
-);
 
 const HomePage: NextPage<Props> = (props) => {
   const { contents, blogList, locale } = props;
@@ -82,7 +71,10 @@ const HomePage: NextPage<Props> = (props) => {
             Latest Posts
           </h3>
           <hr className="w-full mt-16" />
-          <LatestPosts blogList={blogList} locale={locale} />
+          <CardBlogList
+            contents={blogList}
+            locale={locale}
+          />
           <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary hover:no-underline">
             More Posts...
           </Button>

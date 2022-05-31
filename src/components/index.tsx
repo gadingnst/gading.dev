@@ -14,6 +14,7 @@ export { default as Banner } from './Image/Banner';
 export { default as Card } from './Card';
 export { default as CardHero } from './Card/Hero';
 export { default as CardBlog } from './Card/Blog';
+export { CardBlogList } from './Card/Blog';
 
 export { default as Link } from './Link';
 

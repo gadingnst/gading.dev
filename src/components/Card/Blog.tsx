@@ -4,14 +4,23 @@ import Card from '@/components/Card';
 import ImageLazy from '@/components/Image/Lazy';
 import ContentInfo from '@/components/Layout/Content/Info';
 import Link from '@/components/Link';
+import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
+import clsxm from '@/utils/helpers/clsxm';
 
 interface Props {
   meta: ContentMeta;
   locale: string;
+  scrollPosition?: ScrollPosition;
+}
+
+interface CardBlogListProps extends LazyComponentProps {
+  className?: string;
+  contents: ContentMeta[];
+  locale: string;
 }
 
 const CardBlog: FunctionComponent<Props> = (props) => {
-  const { meta, locale } = props;
+  const { meta, locale, scrollPosition } = props;
   return (
     <Card
       hoverEffect
@@ -28,6 +37,7 @@ const CardBlog: FunctionComponent<Props> = (props) => {
           height={200}
           scaling={0.45}
           placeholderScaling={0.05}
+          scrollPosition={scrollPosition}
         />
       </div>
       <div className="flex flex-col pt-12 pb-16 px-16">
@@ -56,5 +66,26 @@ const CardBlog: FunctionComponent<Props> = (props) => {
     </Card>
   );
 };
+
+export const CardBlogList = trackWindowScroll((props: CardBlogListProps) => {
+  const {
+    className,
+    contents,
+    locale,
+    scrollPosition
+  } = props;
+  return (
+    <div className={clsxm('grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2', className)}>
+      {contents.map((item) => (
+        <CardBlog
+          key={item.slugOriginal}
+          meta={item}
+          locale={locale}
+          scrollPosition={scrollPosition}
+        />
+      ))}
+    </div>
+  );
+});
 
 export default CardBlog;
