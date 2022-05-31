@@ -81,6 +81,7 @@ const PortfolioPage: NextPage<Props> = (props) => {
                   height="200px"
                   className="object-contain"
                   wrapperClassName="w-full"
+                  scaling={0.5}
                 />
               </div>
               <div className="flex flex-col pt-12 pb-16 px-16">

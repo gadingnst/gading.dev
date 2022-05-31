@@ -11,6 +11,7 @@ import 'react-medium-image-zoom/dist/styles.css';
 interface Props extends LazyLoadImageProps {
   src: string;
   zoomable?: boolean;
+  scaling?: number;
   placeholderScaling?: number;
 }
 
@@ -20,6 +21,7 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
     zoomable,
     height,
     width,
+    scaling,
     placeholderScaling,
     style,
     className,
@@ -28,7 +30,10 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
   } = props;
 
   const [loading, setLoading] = useToggler(true);
-  const placeholder = cloudinary(src, placeholderScaling);
+  const placeholder = cloudinary(src, { scale: placeholderScaling, placeholder: true });
+  const source = Number(scaling) < 1
+    ? cloudinary(src, { scale: scaling })
+    : src;
 
   const handleLoad = useCallback(() => {
     setLoading(false);
@@ -39,7 +44,7 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
     <span className="w-full flex relative items-center justify-center">
       <LazyLoadImage
         {...otherProps}
-        src={src}
+        src={IS_DEV ? src : source}
         placeholderSrc={IS_DEV ? src : placeholder}
         style={{ ...style, height, width }}
         effect="blur"
@@ -79,6 +84,7 @@ ImageLazy.defaultProps = {
   style: {},
   zoomable: false,
   wrapperClassName: '',
+  scaling: 1,
   placeholderScaling: 0.05 /* 5% */
 };
 
