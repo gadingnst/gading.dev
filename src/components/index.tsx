@@ -13,12 +13,13 @@ export { default as Banner } from './Image/Banner';
 
 export { default as Card } from './Card';
 export { default as CardHero } from './Card/Hero';
-export { default as CardBlog } from './Card/Blog';
-export { CardBlogList } from './Card/Blog';
+export { default as CardBlog, CardBlogList } from './Card/Blog';
 
 export { default as Link } from './Link';
 
 export { default as Button } from './Button';
 export { default as ButtonClose } from './Button/Close';
+
+export { default as Pagination } from './Pagination';
 
 export { default as SwitchTheme } from './Switch/Theme';

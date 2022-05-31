@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, ReactNode, useCallback, useState } from 'react';
+import { Fragment, FunctionComponent, ReactNode, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from '@/components/Link';
@@ -45,10 +45,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
   const { pathname, locale, asPath } = useRouter();
   const [theme] = useAppTheme();
 
-  const textShadowClass = transparent ? 'util--text-shadow' : '';
+  const textShadowClass = useMemo(() => {
+    return transparent ? 'util--text-shadow' : '';
+  }, [transparent]);
 
-  const headerClass = transparent
-    ? 'bg-transparent' : 'bg-primary shadow-bottom dark:bg-dark-40';
+  const headerClass = useMemo(() => {
+    return transparent
+      ? 'bg-transparent'
+      : 'bg-primary shadow-bottom dark:bg-dark-40';
+  }, [transparent]);
 
   const onScroll = useCallback(() => {
     setTransparent(window.scrollY < 5);

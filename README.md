@@ -16,7 +16,7 @@
 - [x] Reading-time prediction like Medium
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
-- [ ] Posts pagination
+- [x] Posts pagination
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized with meta information tags

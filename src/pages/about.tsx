@@ -95,7 +95,7 @@ const AboutPage: NextPage<Props> = (props) => {
               transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
             >
               <Image
-                classNameWrapper="absolute rounded-full mx-auto shadow-all transition-all hover:-mt-12 mx-auto"
+                classNameWrapper="absolute rounded-full mx-auto shadow-all transition-all hover:-mt-12 mx-auto select-none"
                 src={imgProfile}
                 alt={AUTHOR_NAME}
                 width={180}

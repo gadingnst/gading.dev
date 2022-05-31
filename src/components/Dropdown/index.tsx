@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useRef } from 'react';
+import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useRef } from 'react';
 import { getChildrenByType } from 'react-nanny';
 import Button from '@/components/Button';
 import Icon from '@/components/Image/Icon';
@@ -56,7 +56,10 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
 
   const [show, toggler] = useToggler();
   const ref = useRef(null);
-  const Items = getChildrenByType(children, DropdownItem);
+
+  const Items = useMemo(() => {
+    return getChildrenByType(children, DropdownItem);
+  }, [children]);
 
   const onItemClick = useCallback(() => {
     toggler(false);

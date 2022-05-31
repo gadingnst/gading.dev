@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback } from 'react';
+import { FunctionComponent, useCallback, useMemo } from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import Zoom from 'react-medium-image-zoom';
 import { useToggler } from '@/hooks';
@@ -21,19 +21,25 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
     zoomable,
     height,
     width,
-    scaling,
     placeholderScaling,
     style,
     className,
     afterLoad,
+    scaling = 1,
     ...otherProps
   } = props;
 
   const [loading, setLoading] = useToggler(true);
-  const placeholder = cloudinary(src, { scale: placeholderScaling, placeholder: true });
-  const source = Number(scaling) < 1
-    ? cloudinary(src, { scale: scaling })
-    : src;
+
+  const placeholder = useMemo(() => {
+    return cloudinary(src, { scale: placeholderScaling, placeholder: true });
+  }, [src, placeholderScaling]);
+
+  const source = useMemo(() => {
+    return scaling < 1
+      ? cloudinary(src, { scale: scaling })
+      : src;
+  }, [src, scaling]);
 
   const handleLoad = useCallback(() => {
     setLoading(false);
@@ -49,7 +55,7 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
         style={{ ...style, height, width }}
         effect="blur"
         afterLoad={handleLoad}
-        className={clsxm('min-h-[50px]', className)}
+        className={clsxm('min-h-[50px] select-none', className)}
         useIntersectionObserver
       />
       {loading && (
