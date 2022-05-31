@@ -20,7 +20,8 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     locale
   } = props;
 
-  const classes = 'relative cursor-pointer transition-all duration-150 rounded-8 p-8 hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
+  const classes = 'relative cursor-pointer transition-all duration-150 rounded-8 p-8'
+    + ' hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
 
   if (href) {
     return (

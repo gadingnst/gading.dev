@@ -1,0 +1,19 @@
+.pagination {
+  @apply flex items-center justify-center select-none;
+  .page-item {
+    .page-link, span {
+      width: 36px;
+      height: 36px;
+      @apply flex items-center justify-center text-base p-0 my-0 mx-4 rounded-full cursor-pointer;
+    }
+
+    &.active .page-link {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      @apply bg-primary text-white cursor-auto;
+    }
+
+    &.disabled .page-link {
+      @apply cursor-not-allowed opacity-50;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import Image, { Props as ImageProps } from '@/components/Image';
 
 type Size = {
@@ -13,9 +13,11 @@ export type Props = ImageProps & {
 const Icon: FunctionComponent<Props> = (props) => {
   const { size, alt } = props;
 
-  const imgSize = typeof size === 'number'
-    ? { width: size, height: size }
-    : size;
+  const imgSize = useMemo(() => {
+    return typeof size === 'number'
+      ? { width: size, height: size }
+      : size;
+  }, [size]);
 
   return (
     <Image

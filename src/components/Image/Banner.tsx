@@ -23,7 +23,7 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     <Parallax
       {...otherProps}
       bgImage={bgImage}
-      bgClassName={clsxm('object-cover w-full', bgClassName)}
+      bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
     >
       <motion.div
         initial={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}

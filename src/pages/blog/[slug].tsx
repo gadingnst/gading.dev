@@ -32,7 +32,6 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   const contents = await getContent(slug, locale);
   if (contents) {
     return {
-      revalidate: 60 * 60,
       props: {
         contents,
         locale

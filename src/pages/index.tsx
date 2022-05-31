@@ -7,7 +7,7 @@ import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/
 
 type Props = {
   contents: MDContent;
-  blogList: ContentMeta[];
+  blogs: ContentMeta[];
   locale: string;
 };
 
@@ -15,22 +15,21 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   const {
     locale = DEFAULT_LOCALE
   } = ctx;
-  const [contents, blogList] = await Promise.all([
+  const [contents, { contents: blogs }] = await Promise.all([
     getContentMultiLanguage('home', locale),
-    getBlogList(locale, 4)
+    getBlogList(locale, { limit: 4 })
   ]);
   return {
-    revalidate: 60 * 60,
     props: {
       contents,
-      blogList,
+      blogs,
       locale
     }
   };
 };
 
 const HomePage: NextPage<Props> = (props) => {
-  const { contents, blogList, locale } = props;
+  const { contents, blogs, locale } = props;
   const { meta, content } = contents;
   return (
     <Fragment>
@@ -72,7 +71,7 @@ const HomePage: NextPage<Props> = (props) => {
           </h3>
           <hr className="w-full mt-16" />
           <CardBlogList
-            contents={blogList}
+            contents={blogs}
             locale={locale}
           />
           <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary hover:no-underline">

@@ -14,11 +14,16 @@ import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
 
 interface ContentSlug {
   en: string;
   id: string;
+}
+
+interface BlogLimit {
+  limit?: number;
+  offset?: number;
 }
 
 export interface ContentMeta {
@@ -31,6 +36,11 @@ export interface ContentMeta {
   image: string;
   tags: string[];
   readTime: ReadTimeResults;
+}
+
+export interface ContentBlogList {
+  contents: ContentMeta[];
+  total: number;
 }
 
 export interface MDContent {
@@ -145,7 +155,11 @@ export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> 
  * @param language - language of the content (default: en)
  * @returns {Promise<MDContent[]>} - asynchronous all content meta
  */
-export async function getBlogList(language = DEFAULT_LOCALE, limit?: number): Promise<ContentMeta[]> {
+export async function getBlogList(language = DEFAULT_LOCALE, limitOptions?: BlogLimit): Promise<ContentBlogList> {
+  const {
+    limit = BLOG_PAGINATION_LIMIT,
+    offset = 0
+  } = limitOptions || {};
   const blogs = await getAllBlogMeta(language);
   const blogsSortedByDate = blogs
     .sort((a, b) => {
@@ -153,8 +167,12 @@ export async function getBlogList(language = DEFAULT_LOCALE, limit?: number): Pr
       const dateB = day(b.meta.date);
       return dateB.isBefore(dateA) ? -1 : 1;
     });
-  const contents = limit ? blogsSortedByDate.slice(0, limit) : blogsSortedByDate;
-  return contents.map(({ meta }) => meta);
+  const result = limit ? blogsSortedByDate.slice(offset, limit) : blogsSortedByDate;
+  const contents = result.map(({ meta }) => meta);
+  return {
+    contents,
+    total: blogs.length
+  };
 }
 
 /**
