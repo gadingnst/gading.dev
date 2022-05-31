@@ -1,6 +1,6 @@
 /* img loading */
 .lazy-load-image-background.blur {
-  @apply blur-sm;
+  @apply blur-none;
   & > img {
     @apply opacity-0;
   }
