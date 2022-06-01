@@ -111,8 +111,7 @@ const AboutPage: NextPage<Props> = (props) => {
               <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-32 mb-32" />
               <LeftDesc className="flex h-[auto]" />
             </div>
-            <h3 className="text-center font-semibold">{AUTHOR_FULLNAME}</h3>
-            <hr className="my-28" />
+            <h3 className="text-center font-semibold mb-36">{AUTHOR_FULLNAME}</h3>
             <ContentParser>
               {content}
             </ContentParser>
