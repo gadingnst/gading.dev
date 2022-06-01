@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import { Fragment, FunctionComponent, memo, useMemo, useRef } from 'react';
+import Script from 'next/script';
 import NProgress from 'nextjs-progressbar';
 import { useMounted, useUpdated } from '@/hooks';
 import useAppTheme from '@/hooks/stores/useAppTheme';
@@ -26,6 +27,7 @@ const App: FunctionComponent<AppProps> = (props) => {
 
   return (
     <Fragment>
+      <Script async defer data-website-id="a8624063-6ac4-498d-a7ef-51492ea31bac" src="https://analytics.gading.dev/umami.js" />
       <NProgress color={nprogressColor} />
       <Component {...pageProps} />
     </Fragment>
