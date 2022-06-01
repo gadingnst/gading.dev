@@ -9,6 +9,7 @@ export const {
 export const DEFAULT_LOCALE = 'en';
 export const IS_DEV = APP_ENVIRONMENT !== 'production';
 export const BASE_URL = IS_DEV ? 'http://localhost:3000' : 'https://gading.dev';
+export const ANALYTICS_ID = '4378cf7b-8ecb-441a-a1e5-25008dc7f232';
 export const SITE_NAME = 'Gading\'s Hideout';
 export const AUTHOR_NAME = 'Gading Nasution.';
 export const AUTHOR_FULLNAME = 'Sutan Gading Fadhillah Nasution';
