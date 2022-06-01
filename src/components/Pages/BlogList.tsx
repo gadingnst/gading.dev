@@ -73,16 +73,18 @@ const BlogList: FunctionComponent<Props> = (props) => {
           contents={contents}
           locale={locale}
         />
-        <div className="mt-40 text-center">
-          <h4 className="mb-16">
-            Page {pageCurrent} of {pageCount}
-          </h4>
-          <Pagination
-            onPageChange={handlePageChange}
-            value={pageCurrent}
-            pageCount={pageCount}
-          />
-        </div>
+        {pageCount > 1 && (
+          <div className="mt-40 text-center">
+            <h4 className="mb-16">
+              Page {pageCurrent} of {pageCount}
+            </h4>
+            <Pagination
+              onPageChange={handlePageChange}
+              value={pageCurrent}
+              pageCount={pageCount}
+            />
+          </div>
+        )}
       </Content>
       <Footer />
     </Fragment>
