@@ -1,4 +1,4 @@
-name: Lighthouse Report
+name: Lighthouse
 on:
   # schedule:
     # * is a special character in YAML so you have to quote this string
@@ -7,14 +7,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  ps_report:
+  report:
+    name: Page Speed Report
+    runs-on: ubuntu-latest
     env:
       HOST: https://gading.dev
       PSURL: https://pagespeed-insights.herokuapp.com
       PSRDESKTOP: desktop
       PSRMOBILE: mobile
       RESULTSFOLDER: public/reports
-    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # This is a premade github action
       with:
