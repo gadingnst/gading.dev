@@ -28,8 +28,8 @@ export interface Props {
 
 export const menus = [
   { label: 'Now', href: '/now' },
-  { label: 'Portfolio', href: '/portfolio' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'About', href: '/about' }
 ];
 

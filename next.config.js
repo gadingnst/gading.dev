@@ -8,6 +8,10 @@ const nextConfig = {
     locales: ['en', 'id'],
     defaultLocale: 'en'
   },
+  images: {
+    domains: ['raw.githubusercontent.com', 'res.cloudinary.com'],
+    minimumCacheTTL: 60 * 60 * 24 * 7
+  },
   headers: () => {
     return [
       {

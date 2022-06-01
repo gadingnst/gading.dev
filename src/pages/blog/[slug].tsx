@@ -1,5 +1,5 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment, useCallback } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
 import {
@@ -46,7 +46,10 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
-  const localeChange = Object.values(meta.slug).every(Boolean);
+
+  const localeChange = useMemo(() => {
+    return Object.values(meta.slug).every(Boolean);
+  }, [meta.slug]);
 
   const onLocaleChange = useCallback((i18nLocale: I18nLocales) => {
     return meta.slug[i18nLocale];
