@@ -24,7 +24,7 @@
 - [x] Page transition and effect
 - [x] Posts pagination
 - [x] Automate Lighthouse report
-- [ ] Integrate with [Analytic tool](https://analytics.gading.dev)
+- [x] Integration with Web Analytics tool. [Gading's Analytic](https://analytics.gading.dev) powered by [umami](https://umami.is)
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized with meta information tags
