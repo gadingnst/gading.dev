@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, Image, withLayoutPage, Button, Icon, ContentParser } from '@/components';
-import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
+import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 
 import iconMail from '@/assets/icons/tools/ios/mail.svg';
@@ -111,7 +111,9 @@ const AboutPage: NextPage<Props> = (props) => {
               <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-32 mb-32" />
               <LeftDesc className="flex h-[auto]" />
             </div>
-            <ContentParser className="text-center">
+            <h3 className="text-center font-semibold">{AUTHOR_FULLNAME}</h3>
+            <hr className="my-28" />
+            <ContentParser>
               {content}
             </ContentParser>
           </div>
@@ -123,5 +125,5 @@ const AboutPage: NextPage<Props> = (props) => {
 };
 
 export default withLayoutPage(AboutPage, {
-  title: 'About'
+  title: `About ${AUTHOR_FULLNAME}`
 });

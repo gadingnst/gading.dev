@@ -176,7 +176,7 @@ export async function getBlogList(language = DEFAULT_LOCALE, limitOptions?: Blog
 }
 
 /**
- * Get content with multi language with one slug path
+ * Get multi language content with one slug path
  * @param contentPath - path to content
  * @param language - language of the content 'en'|'id'
  * @returns {Promise<MDContent>} - asynchronous content string
@@ -192,6 +192,12 @@ export async function getContentMultiLanguage(contentPath: string, language = DE
   return parseContent(fileContents);
 }
 
+/**
+ * Get content by slug path
+ * @param slug - content slug
+ * @param language - language of the content 'en'|'id'
+ * @returns {Promise<MDContent>} - asynchronous content string
+ */
 export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContent> {
   const filePath = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')

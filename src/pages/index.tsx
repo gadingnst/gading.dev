@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, Button, CardBlogList } from '@/components';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { AUTHOR_FULLNAME, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
@@ -85,5 +85,5 @@ const HomePage: NextPage<Props> = (props) => {
 };
 
 export default withLayoutPage(HomePage, {
-  title: 'Gading\'s Hideout'
+  title: AUTHOR_FULLNAME
 });
