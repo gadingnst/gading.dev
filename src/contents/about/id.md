@@ -28,7 +28,7 @@ Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, pro
 - Fadilah *(kurang `H` dan satu `L`)*
 
 #### Pertanyaan lebih tentangku?
-Kamu bisa melihat-lihat halaman [Now](/now) sebelum bertanya lebih tentangku, mungkin disana kamu akan menemukan jawabannya.
+Kamu bisa melihat-lihat halaman [Now](/now) sebelum bertanya lebih, mungkin disana kamu akan menemukan jawabannya.
 
 ---
 

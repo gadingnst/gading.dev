@@ -28,7 +28,7 @@ I’m a *long-life learner person*. Online developer communities, OSS projects, 
 - Fadilah *(missing `H` and one `L`)*
 
 #### More questions about me?
-You can check [Now](/now) page before asking more about me, maybe there you'll find the answer.
+You can check [Now](/now) page before asking more, maybe there you'll find the answer.
 
 ---
 
