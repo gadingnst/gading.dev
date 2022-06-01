@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
 import NextHead from 'next/head';
 import { AUTHOR_FULLNAME, BASE_URL, DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import { I18nLocales } from '@/types/contents';
@@ -23,7 +23,7 @@ const language = {
   id: 'Bahasa Indonesia'
 };
 
-const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.15 });
+const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.1 });
 
 const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const {
@@ -42,10 +42,16 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     tags = []
   } = meta;
 
-  const url = `${BASE_URL}/${locale ? `${locale}/` : ''}${slug}`;
-  const img = thumbnail(image);
-  const combinedKeywords = `gading's hideout, sutanlab, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading's website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab`
-    + keywords + tags?.join(', ');
+  const img = useMemo(() => thumbnail(image), [image]);
+
+  const url = useMemo(() => {
+    return `${BASE_URL}/${locale ? `${locale}/` : ''}${slug}`;
+  }, [locale, slug]);
+
+  const combinedKeywords = useMemo(() => {
+    return [...tags, keywords].join(', ')
+      + 'gading\'s hideout, sutanlab, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading\'s website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab';
+  }, [tags, keywords]);
 
   return (
     <NextHead>

@@ -4,7 +4,7 @@ import { Fragment, FunctionComponent, memo, useMemo, useRef } from 'react';
 import NProgress from 'nextjs-progressbar';
 import { useMounted, useUpdated } from '@/hooks';
 import useAppTheme from '@/hooks/stores/useAppTheme';
-import { ANALYTICS_ID } from '@/utils/config';
+import { ANALYTICS_ID, IS_DEV } from '@/utils/config';
 import '@/styles/globals.css';
 
 const App: FunctionComponent<AppProps> = (props) => {
@@ -28,9 +28,11 @@ const App: FunctionComponent<AppProps> = (props) => {
 
   return (
     <Fragment>
-      <Script async defer data-website-id={ANALYTICS_ID} src="https://analytics.gading.dev/umami.js" />
       <NProgress color={nprogressColor} />
       <Component {...pageProps} />
+      {!IS_DEV && (
+        <Script async defer data-website-id={ANALYTICS_ID} src="https://analytics.gading.dev/umami.js" />
+      )}
     </Fragment>
   );
 };

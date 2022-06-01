@@ -66,7 +66,7 @@ export default withLayoutPage(BlogPagingPage, ({ locale, page }) => {
   return {
     locale,
     meta: {
-      title: '',
+      title: `Blog - Page ${page}`,
       date: '2022-06-01',
       image: '/media/banners/5.jpg',
       keywords: 'gadings writing, technical writing, blog gading, gading blog',
