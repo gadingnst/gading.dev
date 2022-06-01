@@ -1,5 +1,6 @@
 ---
 title: "Now"
+date: 2022-06-01
 description: "What I'm doing right now?"
 keywords: "now, gading's activities, now page, gading now page, gading"
 image: "/media/banners/0.jpg"

@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, Button, CardBlogList } from '@/components';
-import { AUTHOR_FULLNAME, DEFAULT_LOCALE } from '@/utils/config';
+import { DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
@@ -84,6 +84,15 @@ const HomePage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(HomePage, {
-  title: AUTHOR_FULLNAME
+export default withLayoutPage(HomePage, (props) => {
+  const { contents, locale } = props;
+  const { meta } = contents;
+  return {
+    locale,
+    meta: {
+      ...meta,
+      title: 'Sutan Gading Fadhillah Nasution',
+      slug: ''
+    }
+  };
 });

@@ -62,9 +62,19 @@ const BlogPagingPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogPagingPage, (props) => {
-  const { page } = props;
+export default withLayoutPage(BlogPagingPage, ({ locale, page }) => {
   return {
-    title: `Blog - Page ${page}`
+    locale,
+    meta: {
+      title: '',
+      date: '2022-06-01',
+      image: '/media/banners/5.jpg',
+      keywords: 'gadings writing, technical writing, blog gading, gading blog',
+      slug: `blog/page/${page}`,
+      tags: ['blog', 'writing', 'technical writing', 'gadings'],
+      description: locale === 'en'
+        ? 'Coding, work, life, and whatever i want.'
+        : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+    }
   };
 });

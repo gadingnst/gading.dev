@@ -32,6 +32,19 @@ const BlogIndexPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogIndexPage, {
-  title: 'Blog'
+export default withLayoutPage(BlogIndexPage, ({ locale }) => {
+  return {
+    locale,
+    meta: {
+      title: 'Blog',
+      date: '2022-06-01',
+      image: '/media/banners/5.jpg',
+      keywords: 'gadings writing, technical writing, blog gading, gading blog',
+      slug: 'blog',
+      tags: ['blog', 'writing', 'technical writing', 'gadings'],
+      description: locale === 'en'
+        ? 'Coding, work, life, and whatever i want.'
+        : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+    }
+  };
 });

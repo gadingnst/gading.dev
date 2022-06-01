@@ -1,23 +1,26 @@
 import { NextPage } from 'next';
 import { FunctionComponent, Fragment, PropsWithChildren, useMemo } from 'react';
-import Head from '@/components/Head';
+import Head, { Props as HeadProps } from '@/components/Head';
 import { SITE_NAME } from '@/utils/config';
+import { I18nLocales } from '@/types/contents';
 
 export interface Props {
-  title: string;
+  locale?: I18nLocales|string;
+  meta: HeadProps['meta'];
 }
 
 export type UnknownProps = Record<string, unknown>;
 
 const Layout: FunctionComponent<PropsWithChildren<Props>> = (props) => {
-  const { children, title } = props;
+  const {
+    children,
+    locale,
+    meta
+  } = props;
+  const title = meta?.title?.includes(SITE_NAME) ? meta?.title : `${meta?.title} | ${SITE_NAME}`;
   return (
     <Fragment>
-      <Head>
-        <title>
-          {title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`}
-        </title>
-      </Head>
+      <Head locale={locale} meta={{ ...meta, title }} />
       <div className="flex flex-col min-h-screen">
         {children}
       </div>

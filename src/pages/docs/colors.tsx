@@ -80,5 +80,11 @@ const ColorDocs: NextPage = () => {
 };
 
 export default withLayoutPage(ColorDocs, {
-  title: 'Colors System'
+  meta: {
+    title: 'Colors System',
+    slug: 'docs/colors',
+    date: '2022-06-01',
+    description: 'Colors System for Gading\'s Hideout',
+    keywords: 'colors system'
+  }
 });
