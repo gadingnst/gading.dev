@@ -113,6 +113,19 @@ const PortfolioPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(PortfolioPage, {
-  title: 'Portfolio'
+export default withLayoutPage(PortfolioPage, ({ locale }) => {
+  return {
+    locale,
+    meta: {
+      title: 'Porfolio',
+      keywords: 'gading portfolio, gading works, gading projects, gading repository',
+      slug: 'portfolio',
+      date: '2022-06-01',
+      image: '/media/banners/2.jpg',
+      tags: ['portfolio', 'gading', 'works', 'oss', 'expressjs'],
+      description: locale === 'en'
+        ? 'Projects, experiments, and some stuff that I\'ve made.'
+        : 'Proyek, eksperimen, dan beberapa hal yang telah saya buat.'
+    }
+  };
 });

@@ -11,6 +11,7 @@ import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 type Props = {
   contents: MDContent;
+  locale: string;
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
@@ -20,7 +21,8 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   const contents = await getContentMultiLanguage('about', locale);
   return {
     props: {
-      contents
+      contents,
+      locale
     }
   };
 };
@@ -123,6 +125,14 @@ const AboutPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(AboutPage, {
-  title: `About ${AUTHOR_FULLNAME}`
+export default withLayoutPage(AboutPage, ({ contents, locale }) => {
+  const { meta } = contents;
+  return {
+    locale,
+    meta: {
+      ...meta,
+      title: `About ${AUTHOR_FULLNAME}`,
+      slug: 'about'
+    }
+  };
 });

@@ -10,7 +10,7 @@ I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* wor
 I would be a fast learner in doing new things and building good teamwork either. Also, made several side or *open-source* projects on [GitHub](https://github.com/gadingnst) for fun, and maybe already useful for people who have used it.
 
 #### What I’m passionate about
-I’m a *long-life learner person*. Online developer communities, OSS projects, mentors sharing their knowledge (for free & paid), colleagues, and friends, all those people helped me get to where I am today. And I’m very grateful for that. Early on I also helped out people, contributed to some OSS projects and published my own projects on [GitHub](https://github.com/gadingnst?tab=repositories). That’s how I realized that I enjoy technical writing like in blog or software documentation, and creating educational content and managing & interacting with communities.
+I’m a *long-life learner person*. Online developer communities, OSS projects, mentors sharing their knowledge (for free & paid), colleagues, and friends, all those people helped me get to where I am today. And I’m very grateful for that. Early on I also helped out people, contributed to some OSS projects and published my own projects on [GitHub](https://github.com/gadingnst?tab=repositories). That’s how I realized that I enjoy technical writing like in blog or software documentation, and creating educational content & interacting with another developers.
 
 #### Spelling my name
 ###### ✅ These are ***correct*** :
@@ -38,18 +38,18 @@ In building this website, I really paid attention to all aspects related to *per
 
 ##### *Performance* Report (Desktop)
 <ImageLazy
-  className="mt-36"
+  className="mt-36 max-w-[700px]"
   src="/reports/desktop.svg"
   alt="Lighthouse Report Desktop"
-  width="700px"
+  width="100%"
 />
 
 ##### *Performance* Report (Mobile)
 <ImageLazy
-  className="mt-36"
+  className="mt-36 max-w-[700px]"
   src="/reports/mobile.svg"
   alt="Lighthouse Report Mobile"
-  width="700px"
+  width="100%"
 />
 
 ---

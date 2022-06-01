@@ -10,7 +10,7 @@ Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend**
 Saya dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Dan juga, telah membuat beberapa proyek sampingan atau *sumber-terbuka* di [GitHub](https://github.com/gadingnst) untuk bersenang-senang, dan mungkin sudah berguna bagi orang-orang yang telah menggunakannya.
 
 #### Bagaimana saya bersemangat
-Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, proyek sumber-terbuka, mentor-mentor yang berbagi pengetahuan (yang gratis & berbayar) di internet, rekan kerja, dan teman-teman, semua orang tersebut membantu saya sampai ke titik saat ini. Dan saya sangat bersyukur untuk itu. Sejak awal saya juga membantu orang, berkontribusi pada sedikit proyek sumber-terbuka dan menerbitkan proyek saya sendiri di [GitHub](https://github.com/gadingnst?tab=repositories). Begitulah cara saya menyadari bahwa saya menikmati *technical writing* seperti di blog atau dokumentasi perangkat lunak, serta membuat konten pendidikan dan mengelola & berinteraksi dengan komunitas.
+Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, proyek sumber-terbuka, mentor-mentor yang berbagi pengetahuan (yang gratis & berbayar) di internet, rekan kerja, dan teman-teman, semua orang tersebut membantu saya sampai ke titik saat ini. Dan saya sangat bersyukur untuk itu. Sejak awal saya juga membantu orang, berkontribusi pada sedikit proyek sumber-terbuka dan menerbitkan proyek saya sendiri di [GitHub](https://github.com/gadingnst?tab=repositories). Begitulah cara saya menyadari bahwa saya menikmati *technical writing* seperti di blog atau dokumentasi perangkat lunak, serta membuat konten pendidikan & berinteraksi dengan developer lain.
 
 #### Menyebut namaku
 ###### ✅ Berikut yang ***benar*** :
@@ -38,18 +38,18 @@ Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan
 
 ##### Laporan *Performance* (Desktop)
 <ImageLazy
-  className="mt-36"
+  className="mt-36 max-w-[700px]"
   src="/reports/desktop.svg"
   alt="Lighthouse Report Desktop"
-  width="700px"
+  width="100%"
 />
 
 ##### Laporan *Performance* (Mobile)
 <ImageLazy
-  className="mt-36"
+  className="mt-36 max-w-[700px]"
   src="/reports/mobile.svg"
   alt="Lighthouse Report Mobile"
-  width="700px"
+  width="100%"
 />
 
 ---

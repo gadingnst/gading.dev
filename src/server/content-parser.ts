@@ -62,7 +62,7 @@ export const contentsDir = path.join(rootDir, 'contents');
  * @returns {Promise<MDContent>} - asynchronous content meta & detail
  * @see https://www.learnnext.blog/blogs/lets-build-a-blog-with-tailwind-mdx-bundler-and-next#creating-the-mdxjs-file
  */
-async function parseContent(fileContents: string): Promise<MDContent> {
+async function parseContent(fileContents: string, locale: string): Promise<MDContent> {
   const result = await bundleMDX({
     source: fileContents,
     cwd: rootDir,
@@ -95,6 +95,9 @@ async function parseContent(fileContents: string): Promise<MDContent> {
   const readTime = readingTime(source);
   meta.date = day(meta.date).format('YYYY-MM-DD');
   meta.readTime = readTime;
+  if (meta?.slug) {
+    meta.slugOriginal = meta.slug[locale];
+  }
   return {
     meta,
     content
@@ -189,7 +192,7 @@ export async function getContentMultiLanguage(contentPath: string, language = DE
   if (files.length === 0) throw new Error(`ERRNOTFOUND: No content found on directory ${filePath}`);
   if (!file) fallbackFile = files.find((file) => file.endsWith('.md') || file.endsWith('.mdx'));
   const fileContents = await Fs.readFile(path.join(filePath, file || fallbackFile as string), 'utf8');
-  return parseContent(fileContents);
+  return parseContent(fileContents, language);
 }
 
 /**
@@ -207,5 +210,5 @@ export async function getContent(slug: string, language = DEFAULT_LOCALE): Promi
       }
       throw err;
     });
-  return parseContent(fileContents);
+  return parseContent(fileContents, language);
 }

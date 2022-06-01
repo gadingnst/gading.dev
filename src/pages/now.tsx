@@ -7,6 +7,7 @@ import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
   contents: MDContent;
+  locale: string;
 };
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
@@ -16,7 +17,8 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   const contents = await getContentMultiLanguage('now', locale);
   return {
     props: {
-      contents
+      contents,
+      locale
     }
   };
 };
@@ -62,9 +64,12 @@ const NowPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(NowPage, (props) => {
-  const { title } = props.contents.meta;
+export default withLayoutPage(NowPage, ({ contents, locale }) => {
   return {
-    title
+    locale,
+    meta: {
+      ...contents.meta,
+      slug: 'now'
+    }
   };
 });

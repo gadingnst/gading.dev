@@ -108,9 +108,10 @@ const BlogDetailPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogDetailPage, (props) => {
-  const { title } = props.contents.meta;
-  return {
-    title
-  };
-});
+export default withLayoutPage(BlogDetailPage, ({ contents, locale }) => ({
+  locale,
+  meta: {
+    ...contents.meta,
+    slug: `blog/${contents.meta.slugOriginal}`
+  }
+}));
