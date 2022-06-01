@@ -24,6 +24,7 @@
 - [x] Page transition and effect
 - [x] Posts pagination
 - [x] Automate Lighthouse report
+- [ ] Integrate with [Analytic tool](https://analytics.gading.dev)
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized with meta information tags
