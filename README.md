@@ -3,10 +3,16 @@
 
 > My Personal Homepage & Blog site with NextJS : https://gading.dev
 
-### Prerequisites
+## Page Speed Report
+### Desktop
+![Mobile Report](https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/desktop.svg)
+### Mobile
+![Mobile Report](https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/mobile.svg)
+
+## Prerequisites
 - [NodeJS](https://nodejs.org/en/download/)
 
-### Ongoing Features
+## Ongoing Features
 - [x] Dark Mode
 - [x] Color System Documentation
 - [x] Mobile friendly
@@ -17,6 +23,7 @@
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
 - [x] Posts pagination
+- [x] Automate Lighthouse report
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] SEO Optimized with meta information tags
@@ -28,7 +35,7 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-### Special Thanks to:
+## Special Thanks to:
 - [Creative Tim](https://demos.creative-tim.com/vue-argon-design-system) (Inspired me to to reproduce their `Argon Design System`)
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh) (Inspired me to to reproduce his `./initpost` script)
 - [Marina Aisa](https://marinaaisa.com) (Inspired me to create I18n content)
