@@ -39,7 +39,7 @@ Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan
 ##### Laporan *Performance* (Desktop)
 <ImageLazy
   className="mt-36"
-  src="https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/desktop.svg"
+  src="/reports/desktop.svg"
   alt="Lighthouse Report Desktop"
   width="700px"
 />
@@ -47,7 +47,7 @@ Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan
 ##### Laporan *Performance* (Mobile)
 <ImageLazy
   className="mt-36"
-  src="https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/mobile.svg"
+  src="/reports/mobile.svg"
   alt="Lighthouse Report Mobile"
   width="700px"
 />

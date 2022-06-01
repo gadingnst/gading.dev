@@ -39,7 +39,7 @@ In building this website, I really paid attention to all aspects related to *per
 ##### *Performance* Report (Desktop)
 <ImageLazy
   className="mt-36"
-  src="https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/desktop.svg"
+  src="/reports/desktop.svg"
   alt="Lighthouse Report Desktop"
   width="700px"
 />
@@ -47,7 +47,7 @@ In building this website, I really paid attention to all aspects related to *per
 ##### *Performance* Report (Mobile)
 <ImageLazy
   className="mt-36"
-  src="https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/mobile.svg"
+  src="/reports/mobile.svg"
   alt="Lighthouse Report Mobile"
   width="700px"
 />
