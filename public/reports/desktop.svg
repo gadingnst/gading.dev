@@ -122,8 +122,8 @@
 		<svg class="guage-div guage-perf guage-green"
 				viewBox="0 0 200 200" width="200" height="200" x="0" y="0">
 		<circle class="gauge-base" r="56" cx="100" cy="60" stroke-width="8"></circle>
-		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 351.858, 351.858;"></circle>
-		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">100</text>
+		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 348.33942, 351.858;"></circle>
+		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">99</text>
 		<text class="guage-title" x="100px" y="160px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">Performance</text>
 	</svg>,<svg class="guage-div guage-perf guage-green"
 				viewBox="0 0 200 200" width="200" height="200" x="200" y="0">
@@ -140,8 +140,8 @@
 	</svg>,<svg class="guage-div guage-perf guage-green"
 				viewBox="0 0 200 200" width="200" height="200" x="600" y="0">
 		<circle class="gauge-base" r="56" cx="100" cy="60" stroke-width="8"></circle>
-		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 316.67220000000003, 351.858;"></circle>
-		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">90</text>
+		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 351.858, 351.858;"></circle>
+		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">100</text>
 		<text class="guage-title" x="100px" y="160px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">SEO</text>
 	</svg>,<svg class="guage-div guage-pwa" viewBox="0 0 200 200" width="200" height="200" x="800" y="0">
 		<svg viewBox="0 0 60 60" width="112" height="112" x="44" y="4">
