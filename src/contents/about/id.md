@@ -1,5 +1,6 @@
 ---
 title: "About"
+date: 2022-06-01
 description: "Hanya Lelaki biasa yang dapat mengubah ☕️ menjadi < /> yang cantik."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, who is gading, biodata gading, tentang gading"
 image: "/media/banners/1.jpg"

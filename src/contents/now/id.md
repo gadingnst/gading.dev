@@ -1,5 +1,6 @@
 ---
 title: "Now"
+date: 2022-06-01
 description: "Lagi sibuk apa sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
 image: "/media/banners/0.jpg"

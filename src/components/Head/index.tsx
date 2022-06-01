@@ -6,15 +6,15 @@ import cloudinary from '@/utils/helpers/cloudinary';
 import day from '@/utils/day';
 
 export interface Props {
-  locale: I18nLocales|string;
+  locale?: I18nLocales|string;
   meta: {
     title: string;
-    description: string;
-    keywords: string;
-    slug: string;
-    date: string;
-    image: string;
-    tags: string[];
+    description?: string;
+    keywords?: string;
+    slug?: string;
+    date?: string;
+    image?: string;
+    tags?: string[];
   };
 }
 
@@ -28,7 +28,7 @@ const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.15 });
 const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const {
     children,
-    locale = DEFAULT_LOCALE,
+    locale,
     meta
   } = props;
 
@@ -42,7 +42,7 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     tags = []
   } = meta;
 
-  const url = `${BASE_URL}/${locale}/${slug}`;
+  const url = `${BASE_URL}/${locale ? `${locale}/` : ''}${slug}`;
   const img = thumbnail(image);
   const combinedKeywords = `gading's hideout, sutanlab, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading's website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab`
     + keywords + tags?.join(', ');
@@ -54,7 +54,7 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={combinedKeywords} />
-      <meta name="language" content={language?.[locale as I18nLocales] || language['en']} />
+      <meta name="language" content={language?.[locale as I18nLocales] || language[DEFAULT_LOCALE]} />
 
       <meta name="revisit-after" content="7 days" />
       <meta name="robots" content="index, follow" />

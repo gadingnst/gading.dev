@@ -1,5 +1,6 @@
 ---
 title: "About"
+date: 2022-06-01
 description: "Just an ordinary Man who turns a ☕️ into beautiful < />."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, about gading, who is gading, bio gading, about gading"
 image: "/media/banners/1.jpg"

@@ -5,7 +5,7 @@ import { SITE_NAME } from '@/utils/config';
 import { I18nLocales } from '@/types/contents';
 
 export interface Props {
-  locale: I18nLocales|string;
+  locale?: I18nLocales|string;
   meta: HeadProps['meta'];
 }
 
