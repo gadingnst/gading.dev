@@ -23,7 +23,7 @@
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
-- [x] Automate Lighthouse report
+- [x] Automate Lighthouse report 
 - [x] Integration with Web Analytics tool. [Gading's Analytic](https://analytics.gading.dev) powered by [umami](https://umami.is)
 - [x] SEO Optimized with meta information tags
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
@@ -40,6 +40,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [Creative Tim](https://demos.creative-tim.com/vue-argon-design-system) (Inspired me to to reproduce their `Argon Design System`)
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh) (Inspired me to to reproduce his `./initpost` script)
 - [Marina Aisa](https://marinaaisa.com) (Inspired me to create I18n content)
+- [Anku Parihar](https://github.com/ankurparihar/readme-pagespeed-insights) (Inspired me to use his repo to generate Pagespeed insight periodically)
 
 ## Support Me
 ### Global
