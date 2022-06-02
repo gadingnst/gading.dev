@@ -35,7 +35,7 @@ Kamu bisa melihat-lihat halaman [Now](/now) sebelum bertanya lebih, mungkin disa
 #### Tentang situs ini
 Saya membangun situs ini menggunakan teknologi *JAMStack* dengan *Next.js*, kamu bisa melihat kode sumbernya [disini](https://github.com/gadingnst/gading.dev). Semua konten di situs ini sebagian besar ditulis menggunakan *Markdown* (tidak ada *database*). Jika kamu ingin membuat juga, saya menyarankan kamu untuk belajar tentang *JAMStack* terlebih dahulu, teknologi *JAMStack* sangat luas, ada banyak teknologi atau *framework* yang bisa kamu gunakan untuk membangun situs berbasis *JAMStack*, bukan hanya *Next.js* saja. *DYOR*.
 
-Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan dengan *performance* dan *SEO*. Oleh karena itu, saya akan menampilkan laporan *performance* website di halaman ini, dan akan selalu diperbarui secara berkala. Terima kasih kepada [Anku Parihar](https://github.com/ankurparihar) karena telah membuat [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) yang dapat membuat laporan *performance* di situs ini secara otomatis. Berikut adalah laporan yang terakhir diupdate:
+Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan dengan *performance* dan *SEO*. Oleh karena itu, saya akan menampilkan laporan *performance* website di halaman ini, dan akan selalu diperbarui secara berkala. Terima kasih kepada [Ankur Parihar](https://github.com/ankurparihar) karena telah membuat [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) yang dapat membuat laporan *performance* di situs ini secara otomatis. Berikut adalah laporan yang terakhir diupdate:
 
 ##### Laporan *Performance* (Desktop)
 <ImageLazy

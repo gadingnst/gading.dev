@@ -35,7 +35,7 @@ You can check [Now](/now) page before asking more, maybe there you'll find the a
 #### About this website
 I built this website using *JAMStack* with *Next.js* technology, you can check the source-code [here](https://github.com/gadingnst/gading.dev). All content on this website mostly is written using *Markdown* (no database included). If you want to make one too, then I suggest you learn about *JAMStack* first, *JAMStack* technology is quite extensive, there are many technologies or frameworks that you can use to build a *JAMStack-based* website, not just using *Next.js*. You can *DYOR*.
 
-In building this website, I really paid attention to all aspects related to *performance* and *SEO*. Therefore, I'll display the website *performance* report on this page, and it will always be updated periodically. Thanks to [Anku Parihar](https://github.com/ankurparihar) for making [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) that can generate *performance* report of this website automatically. Here's the last updated report:
+In building this website, I really paid attention to all aspects related to *performance* and *SEO*. Therefore, I'll display the website *performance* report on this page, and it will always be updated periodically. Thanks to [Ankur Parihar](https://github.com/ankurparihar) for making [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) that can generate *performance* report of this website automatically. Here's the last updated report:
 
 ##### *Performance* Report (Desktop)
 <ImageLazy
