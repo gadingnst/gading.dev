@@ -1,7 +1,7 @@
 # 👨‍💻 Gading's Hideout
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=gading-dev)
 [![Lighthouse](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml)
-[![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
+[![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
 [![Continuous Integration](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml/badge.svg)](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml)
 
 > My Personal Homepage & Blog site with NextJS : https://gading.dev
