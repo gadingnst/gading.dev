@@ -10,7 +10,7 @@ const nextConfig = {
   },
   images: {
     domains: ['raw.githubusercontent.com', 'res.cloudinary.com'],
-    minimumCacheTTL: 60 * 60 * 24 * 7
+    minimumCacheTTL: 60 * 60 * 12
   },
   headers: () => {
     return [
