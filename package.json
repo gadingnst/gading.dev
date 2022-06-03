@@ -43,7 +43,7 @@
     "@nuxtjs/eslint-module": "3.0.2",
     "eslint": "8.10.0",
     "eslint-plugin-nuxt": "3.1.0",
-    "eslint-plugin-vue": "8.5.0",
+    "eslint-plugin-vue": "9.1.0",
     "esm": "3.2.25",
     "frontmatter-markdown-loader": "2.3.0",
     "markdown-it": "12.3.2",
