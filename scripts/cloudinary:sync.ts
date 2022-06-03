@@ -30,7 +30,7 @@ async function syncMedia() {
   const concurrent = new ConcurrentManager({ concurrent: 7 });
 
   concurrent.onQueueSettled((data) => {
-    console.log(data);
+    console.log(`Queue ${data.id}:`, data);
   });
 
   console.log('> Deleting `media` folder in Cloudinary...');
@@ -44,7 +44,6 @@ async function syncMedia() {
     const name = fileName.slice(0, -extension.length);
     if (isImage(pathToUpload)) {
       concurrent.queue(async() => {
-        process.stdout.write('.');
         const response = await Cloudinary.uploader.upload(file, {
           public_id: name,
           folder: `gading.dev/${folderName}`,
