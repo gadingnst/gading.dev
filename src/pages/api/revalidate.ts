@@ -27,16 +27,21 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   try {
     let paths = [path.toString()];
     if (path.includes(',') || Array.isArray(path)) {
+      paths = [];
       const pathSplitted = path.toString().split(',');
       const concurrent = new ConcurrentManager<string>({ concurrent: 50 });
+      concurrent.onProcessSettled((data) => {
+        if (data.status === 'fulfilled' && data.response) {
+          paths.push(data.response);
+        }
+      });
       pathSplitted.forEach((p) => {
         concurrent.queue(async() => {
           await res.unstable_revalidate(p);
           return p;
         });
       });
-      const result = await concurrent.run();
-      paths = result.map((data) => data.response as string);
+      await concurrent.run();
     } else {
       await res.unstable_revalidate(path);
     }
