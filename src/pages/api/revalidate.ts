@@ -27,7 +27,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   try {
     let paths = [path.toString()];
     if (path.includes(',') || Array.isArray(path)) {
-      const pathSplitted = (path as string).split(',');
+      const pathSplitted = path.toString().split(',');
       const concurrent = new ConcurrentManager<string>({ concurrent: 50 });
       pathSplitted.forEach((p) => {
         concurrent.queue(async() => {
