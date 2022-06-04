@@ -26,12 +26,13 @@
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
-- [x] Automate Lighthouse report 
+- [x] Automate Lighthouse report
 - [x] Integration with Web Analytics tool. [Gading's Analytic](https://analytics.gading.dev) powered by [umami](https://umami.is)
 - [x] SEO Optimized with meta information tags
+- [ ] Feed RSS & Sitemap
+- [x] On Demand Revalidation
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
-- [ ] Feed RSS & Sitemap
 - [ ] Push notifications support with [OneSignal](https://onesignal.com/pricing) and [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed) Integration
 - [ ] PWA / Offline-first
 - [ ] Search posts

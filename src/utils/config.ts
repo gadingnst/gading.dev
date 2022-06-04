@@ -1,6 +1,7 @@
 process.env;
 
 export const {
+  SECRET_KEY,
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   NEXT_PUBLIC_APP_ENVIRONMENT: APP_ENVIRONMENT = 'production'
