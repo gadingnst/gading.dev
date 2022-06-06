@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, ReactNode, useCallback, useMemo, useState } from 'react';
+import { Fragment, FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from '@/components/base/Link';
@@ -19,14 +19,22 @@ import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';
 
-export interface Props {
-  title?: ReactNode|string;
-  className?: string;
-  localeChange?: boolean;
+interface LocaleItemProps {
+  code: I18nLocales;
+  active: boolean;
+  pathname: string;
+  asPath: string;
   onLocaleChange?: (locale: I18nLocales) => {
     pathname?: string;
     asPath?: string;
   };
+}
+
+export interface Props {
+  title?: ReactNode|string;
+  className?: string;
+  localeChange?: boolean;
+  onLocaleChange?: LocaleItemProps['onLocaleChange'];
 }
 
 export const menus = [
@@ -40,6 +48,31 @@ export const i18nList = new Map([
   ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
   ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
 ]);
+
+const LocaleItem: FunctionComponent<PropsWithChildren<LocaleItemProps>> = (props) => {
+  const {
+    children,
+    code,
+    active,
+    pathname,
+    asPath,
+    onLocaleChange
+  } = props;
+  const locales = useMemo(() => onLocaleChange?.(code) ?? {}, []);
+  return (
+    <Link
+      href={locales.pathname ?? pathname}
+      asPath={locales.asPath ?? asPath}
+      locale={code}
+      className={clsxm(
+        'text-dark-70 dark:text-white hover:no-underline',
+        active && 'text-accent-1 dark:text-accent-2'
+      )}
+    >
+      {children}
+    </Link>
+  );
+};
 
 const Navbar: FunctionComponent<Props> = (props) => {
   const { title, className, localeChange, onLocaleChange } = props;
@@ -101,17 +134,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
               >
                 {Array.from(i18nList).map(([code, label]) => (
                   <Dropdown.Item key={code} className="text-sm md:text-base" active={code === locale}>
-                    <Link
-                      href={localeChanges(code).pathname ?? pathname}
-                      asPath={localeChanges(code).asPath ?? asPath}
-                      locale={code}
-                      className={clsxm(
-                        'text-dark-70 dark:text-white hover:no-underline',
-                        code === locale && 'text-accent-1 dark:text-accent-2'
-                      )}
+                    <LocaleItem
+                      active={code === locale}
+                      pathname={pathname}
+                      asPath={asPath}
+                      onLocaleChange={localeChanges}
+                      code={code as I18nLocales}
                     >
                       {label}
-                    </Link>
+                    </LocaleItem>
                   </Dropdown.Item>
                 ))}
               </Dropdown>
