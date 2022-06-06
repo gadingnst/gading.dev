@@ -1,5 +1,5 @@
 /**
- *
+ * check if url is valid
  * @param val - value to be checked
  * @returns {boolean} - true/false validation URL
  */
@@ -9,7 +9,21 @@ export const isURL = (val: string): boolean => {
 };
 
 /**
- *
+ * Sanitize URL
+ * @param url - url to be sanitize
+ * @returns {string} - sanitized url
+ */
+export const sanitizeURL = (url: string): string => {
+  const [scheme] = url.split('://');
+  const result = url
+    .replace(/(http:\/\/|https:\/\/)/, '')
+    .replace(/\/+/g, '/')
+    .replace(/\/+$/, '');
+  return scheme.includes('http') ? `${scheme}://${result}` : result;
+};
+
+/**
+ * Parse query string to object query
  * @param url - url to be parsed
  * @returns {Record<string, string>} - object parsed url
  */

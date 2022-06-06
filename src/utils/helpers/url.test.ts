@@ -1,4 +1,4 @@
-import { isURL, parseQuery } from './url';
+import { isURL, sanitizeURL, parseQuery } from './url';
 
 describe('url helper test', () => {
   describe('isURL() function', () => {
@@ -24,6 +24,24 @@ describe('url helper test', () => {
 
     it('`example` should be false', () => {
       expect(isURL('example')).toBe(false);
+    });
+  });
+
+  describe('sanitizeURL() function', () => {
+    it('`http://example.com/` should be `http://example.com`', () => {
+      expect(sanitizeURL('http://example.com/')).toBe('http://example.com');
+    });
+    it('`https://example.com/` should be `https://example.com`', () => {
+      expect(sanitizeURL('https://example.com/')).toBe('https://example.com');
+    });
+    it('`http://example.com//test/` should be `http://example.com/test`', () => {
+      expect(sanitizeURL('http://example.com//test/')).toBe('http://example.com/test');
+    });
+    it('`http://example.com//test//` should be `http://example.com/test`', () => {
+      expect(sanitizeURL('http://example.com//test//')).toBe('http://example.com/test');
+    });
+    it('`//test///blog/` should be `/test/blog`', () => {
+      expect(sanitizeURL('//test///blog//')).toBe('/test/blog');
     });
   });
 
