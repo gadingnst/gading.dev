@@ -1,12 +1,12 @@
 import { Fragment, FunctionComponent, ReactNode, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import Link from '@/components/Link';
-import SwitchTheme from '@/components/Switch/Theme';
-import ButtonClose from '@/components/Button/Close';
-import Icon from '@/components/Image/Icon';
-import Modal from '@/components/Modal';
-import Dropdown from '@/components/Dropdown';
+import Link from '@/components/base/Link';
+import SwitchTheme from '@/components/base/Switch/Theme';
+import ButtonClose from '@/components/base/Button/Close';
+import Icon from '@/components/base/Image/Icon';
+import Modal from '@/components/base/Modal';
+import Dropdown from '@/components/base/Dropdown';
 
 import { useToggler, useMounted } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
@@ -23,7 +23,10 @@ export interface Props {
   title?: ReactNode|string;
   className?: string;
   localeChange?: boolean;
-  onLocaleChange?: (locale: I18nLocales) => string;
+  onLocaleChange?: (locale: I18nLocales) => {
+    pathname?: string;
+    asPath?: string;
+  };
 }
 
 export const menus = [
@@ -59,6 +62,10 @@ const Navbar: FunctionComponent<Props> = (props) => {
     setTransparent(window.scrollY < 5);
   }, []);
 
+  const localeChanges = useCallback((code: string) => {
+    return onLocaleChange?.(code as I18nLocales) ?? {};
+  }, [onLocaleChange]);
+
   useMounted(() => {
     setTransparent(window.scrollY < 5);
     window.addEventListener('scroll', onScroll);
@@ -93,10 +100,10 @@ const Navbar: FunctionComponent<Props> = (props) => {
                 btnClassName="text-sm md:text-base"
               >
                 {Array.from(i18nList).map(([code, label]) => (
-                  <Dropdown.Item className="text-sm md:text-base" key={code} active={code === locale}>
+                  <Dropdown.Item key={code} className="text-sm md:text-base" active={code === locale}>
                     <Link
-                      href={pathname}
-                      asPath={onLocaleChange?.(code as I18nLocales) ?? asPath}
+                      href={localeChanges(code).pathname ?? pathname}
+                      asPath={localeChanges(code).asPath ?? asPath}
                       locale={code}
                       className={clsxm(
                         'text-dark-70 dark:text-white hover:no-underline',

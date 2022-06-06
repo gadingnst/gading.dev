@@ -1,6 +1,8 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, Button, CardBlogList } from '@/components';
+import { CardHero, Button } from '@/components/base';
+import { Banner, Navbar, Footer, Content, ContentParser, withMainLayoutPage } from '@/components/layouts';
+import BlogCardList from '@/components/layouts/blog/CardList';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
@@ -70,10 +72,7 @@ const HomePage: NextPage<Props> = (props) => {
             Latest Posts
           </h3>
           <hr className="w-full mt-16" />
-          <CardBlogList
-            contents={blogs}
-            locale={locale}
-          />
+          <BlogCardList contents={blogs} locale={locale} />
           <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary hover:no-underline">
             More Posts...
           </Button>
@@ -84,7 +83,7 @@ const HomePage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(HomePage, (props) => {
+export default withMainLayoutPage(HomePage, (props) => {
   const { contents, locale } = props;
   const { meta } = contents;
   return {

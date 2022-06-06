@@ -1,18 +1,11 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Content,
-  Footer,
-  Navbar,
-  Banner,
-  Card,
-  withLayoutPage,
-  ImageLazy
-} from '@/components';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
+import { Card, ImageLazy } from '@/components/base';
+import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 
 type Props = {
   contents: Portfolio[];
@@ -113,7 +106,7 @@ const PortfolioPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(PortfolioPage, ({ locale }) => {
+export default withMainLayoutPage(PortfolioPage, ({ locale }) => {
   return {
     locale,
     meta: {

@@ -1,16 +1,14 @@
 import { Fragment, FunctionComponent, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Content,
-  Footer,
-  Navbar,
-  Banner,
-  CardBlogList,
-  Pagination
-} from '@/components';
+import { Pagination } from '@/components/base';
+import BlogCardList from '@/components/layouts/blog/CardList';
 import { ContentMeta } from '@/server/content-parser';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
 import { useRouter } from 'next/router';
+import Navbar from '@/components/layouts/main/Navbar';
+import Banner from '@/components/layouts/main/Banner';
+import Content from '@/components/layouts/main/Content';
+import Footer from '@/components/layouts/main/Footer';
 
 export type Props = {
   contents: ContentMeta[];
@@ -19,7 +17,7 @@ export type Props = {
   pageCurrent?: number;
 };
 
-const BlogList: FunctionComponent<Props> = (props) => {
+const BlogPageList: FunctionComponent<Props> = (props) => {
   const {
     contents,
     locale,
@@ -37,9 +35,17 @@ const BlogList: FunctionComponent<Props> = (props) => {
     router.push('/blog/page/[page]', `/blog/page/${page}`);
   }, []);
 
+  const handleLocaleChange = useCallback(() => ({
+    pathname: '/blog',
+    asPath: '/blog'
+  }), []);
+
   return (
     <Fragment>
-      <Navbar localeChange />
+      <Navbar
+        localeChange
+        onLocaleChange={handleLocaleChange}
+      />
       <Banner
         bgImage="/media/banners/5.jpg"
         className="font-courgette text-white util--text-shadow text-center"
@@ -68,7 +74,7 @@ const BlogList: FunctionComponent<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex flex-col items-center justify-center">
-        <CardBlogList
+        <BlogCardList
           className="-mt-80"
           contents={contents}
           locale={locale}
@@ -91,4 +97,4 @@ const BlogList: FunctionComponent<Props> = (props) => {
   );
 };
 
-export default BlogList;
+export default BlogPageList;

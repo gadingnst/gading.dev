@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { Content, Footer, Navbar, Banner, CardHero, Image, withLayoutPage, Button, Icon, ContentParser } from '@/components';
+import { CardHero, Image, Button, Icon } from '@/components/base';
+import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 
@@ -125,7 +126,7 @@ const AboutPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(AboutPage, ({ contents, locale }) => {
+export default withMainLayoutPage(AboutPage, ({ contents, locale }) => {
   const { meta } = contents;
   return {
     locale,

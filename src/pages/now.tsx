@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Content, Footer, Navbar, Banner, CardHero, ContentParser, withLayoutPage } from '@/components';
+import { CardHero } from '@/components/base';
+import { Banner, Content, Footer, Navbar, ContentParser, withMainLayoutPage } from '@/components/layouts';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
@@ -64,7 +65,7 @@ const NowPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(NowPage, ({ contents, locale }) => {
+export default withMainLayoutPage(NowPage, ({ contents, locale }) => {
   return {
     locale,
     meta: {

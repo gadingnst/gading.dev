@@ -1,10 +1,10 @@
 import { FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { isURL } from '@/utils/helpers/url';
+import { isURL, sanitizeURL } from '@/utils/helpers/url';
 import clsxm from '@/utils/helpers/clsxm';
 
 export interface Props {
-  href?: string;
+  href: string;
   asPath?: string;
   className?: string;
   disabled?: boolean;
@@ -36,7 +36,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [asPath, href]);
 
   const link = useMemo(() => {
-    return locale ? `/${locale}/${path}` : path;
+    return sanitizeURL(locale ? `/${locale}/${path}` : path);
   }, [locale, path]);
 
   const withDelay = useCallback((callback: () => void) => {

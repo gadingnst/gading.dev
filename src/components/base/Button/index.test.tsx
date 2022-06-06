@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Button from '@/components/Button';
+import Button from '@/components/base/Button';
 
 describe('<Button /> component test', () => {
   render(<Button text="Hello World" />);

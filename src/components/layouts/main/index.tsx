@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { FunctionComponent, Fragment, PropsWithChildren, useMemo } from 'react';
-import Head, { Props as HeadProps } from '@/components/Head';
+import Head, { Props as HeadProps } from '@/components/base/Head';
 import { SITE_NAME } from '@/utils/config';
 import { I18nLocales } from '@/types/contents';
 
@@ -11,7 +11,7 @@ export interface Props {
 
 export type UnknownProps = Record<string, unknown>;
 
-const Layout: FunctionComponent<PropsWithChildren<Props>> = (props) => {
+const MainLayout: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const {
     children,
     locale,
@@ -34,22 +34,22 @@ const Layout: FunctionComponent<PropsWithChildren<Props>> = (props) => {
  * @param layoutProps - The props to pass to the layout
  * @returns - NextPage
  */
-export const withLayoutPage = <T extends UnknownProps>(
+export const withMainLayoutPage = <T extends UnknownProps>(
   PageComponent: NextPage<T>, layoutProps: Props|((pageProps: T) => Props)
 ) => {
-  const LayoutPage: FunctionComponent<T> = (pageProps) => {
+  const MainLayoutPage: FunctionComponent<T> = (pageProps) => {
     const layoutPropsWithPageProps = useMemo(() => {
       return typeof layoutProps === 'function'
         ? layoutProps(pageProps) : layoutProps;
     }, [layoutProps, pageProps]);
 
     return (
-      <Layout {...layoutPropsWithPageProps}>
+      <MainLayout {...layoutPropsWithPageProps}>
         <PageComponent {...pageProps} />
-      </Layout>
+      </MainLayout>
     );
   };
-  return LayoutPage;
+  return MainLayoutPage;
 };
 
-export default Layout;
+export default MainLayout;

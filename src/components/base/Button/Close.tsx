@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import Button from '@/components/Button';
+import Button from '@/components/base/Button';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './close.module.css';
 

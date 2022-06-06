@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { NextPage } from 'next';
 import { Fragment, FunctionComponent, PropsWithChildren } from 'react';
-import { Content, Link, SwitchTheme, withLayoutPage } from '@/components';
+import { Link, SwitchTheme } from '@/components/base';
 import { SITE_NAME } from '@/utils/config';
+import { Content, withMainLayoutPage } from '@/components/layouts';
 
 const theme = require('../../../tailwind.config').theme;
 const themeColors = Object.entries(theme.colors);
@@ -79,7 +80,7 @@ const ColorDocs: NextPage = () => {
   );
 };
 
-export default withLayoutPage(ColorDocs, {
+export default withMainLayoutPage(ColorDocs, {
   meta: {
     title: 'Colors System',
     slug: 'docs/colors',

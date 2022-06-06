@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useRef } from 'react';
 import { getChildrenByType } from 'react-nanny';
-import Button from '@/components/Button';
-import Icon from '@/components/Image/Icon';
+import Button from '@/components/base/Button';
+import Icon from '@/components/base/Image/Icon';
 import clsxm from '@/utils/helpers/clsxm';
 import iconCaretDown from '@/assets/icons/tools/caret-down.svg';
 import { useToggler, useOutsideClick } from '@/hooks';

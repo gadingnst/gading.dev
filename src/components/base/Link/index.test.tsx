@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Link from '@/components/Link';
+import Link from '@/components/base/Link';
 
 describe('<Link /> component test', () => {
   render(<Link href="https://gading.dev">Hello World</Link>);

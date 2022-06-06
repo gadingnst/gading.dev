@@ -1,8 +1,8 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { withLayoutPage } from '@/components';
+import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
-import BlogList from '@/components/Pages/BlogList';
+import BlogPageList from '@/components/layouts/blog/PageList';
 import range from '@/utils/helpers/range';
 import { I18n } from '@/types/contents';
 
@@ -53,7 +53,7 @@ const BlogPagingPage: NextPage<Props> = (props) => {
   const { blogs, locale, page } = props;
   const { total, contents } = blogs;
   return (
-    <BlogList
+    <BlogPageList
       contents={contents}
       locale={locale}
       pageCurrent={page}
@@ -62,7 +62,7 @@ const BlogPagingPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogPagingPage, ({ locale, page }) => {
+export default withMainLayoutPage(BlogPagingPage, ({ locale, page }) => {
   return {
     locale,
     meta: {

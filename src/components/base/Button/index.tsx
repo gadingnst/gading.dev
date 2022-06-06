@@ -1,6 +1,6 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import clsxm from '@/utils/helpers/clsxm';
-import Link from '@/components/Link';
+import Link from '@/components/base/Link';
 
 export interface Props {
   text?: string;

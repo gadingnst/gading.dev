@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo } from 'react';
-import Image, { Props as ImageProps } from '@/components/Image';
+import Image, { Props as ImageProps } from '@/components/base/Image';
 
 type Size = {
   width: number;

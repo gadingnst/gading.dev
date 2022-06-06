@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Link, Button } from '@/components';
+import { Link, Button, Icon } from '@/components/base';
 import {
   AUTHOR_NAME,
   FACEBOOK_USERNAME,
@@ -12,7 +12,6 @@ import {
 } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
-import Icon from '../Image/Icon';
 
 import iconGithub from '@/assets/icons/logo/octocat.svg';
 import iconLinkedin from '@/assets/icons/logo/linkedin.svg';

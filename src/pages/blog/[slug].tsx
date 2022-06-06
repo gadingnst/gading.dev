@@ -1,14 +1,12 @@
 import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Content, Footer, Navbar, Banner, CardHero, withLayoutPage, ContentParser, ContentInfo } from '@/components';
-import {
-  getAllBlogPaths,
-  MDContent,
-  getContent
-} from '@/server/content-parser';
+import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
+import {  CardHero } from '@/components/base';
+import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
+import ContentInfo from '@/components/layouts/main/Content/Info';
+import type { I18nLocales } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import { I18nLocales } from '@/types/contents';
 
 type Props = {
   contents: MDContent;
@@ -51,9 +49,9 @@ const BlogDetailPage: NextPage<Props> = (props) => {
     return Object.values(meta.slug).every(Boolean);
   }, [meta.slug]);
 
-  const onLocaleChange = useCallback((i18nLocale: I18nLocales) => {
-    return meta.slug[i18nLocale];
-  }, []);
+  const onLocaleChange = useCallback((i18nLocale: I18nLocales) => ({
+    asPath: meta.slug[i18nLocale]
+  }), []);
 
   return (
     <Fragment>
@@ -108,7 +106,7 @@ const BlogDetailPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogDetailPage, ({ contents, locale }) => ({
+export default withMainLayoutPage(BlogDetailPage, ({ contents, locale }) => ({
   locale,
   meta: {
     ...contents.meta,

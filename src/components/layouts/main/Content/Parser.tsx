@@ -1,6 +1,6 @@
 import { Fragment, FunctionComponent, PropsWithChildren, useMemo } from 'react';
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
-import * as SharedComponents from '@/components';
+import * as SharedComponents from '@/components/base';
 import State from './StatefulMDX';
 
 import clsxm from '@/utils/helpers/clsxm';

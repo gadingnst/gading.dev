@@ -1,25 +1,25 @@
 import { FunctionComponent } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
-import Card from '@/components/Card';
-import ImageLazy from '@/components/Image/Lazy';
-import ContentInfo from '@/components/Layout/Content/Info';
-import Link from '@/components/Link';
+import Card from '@/components/base/Card';
+import ImageLazy from '@/components/base/Image/Lazy';
+import ContentInfo from '@/components/layouts/main/Content/Info';
+import Link from '@/components/base/Link';
 import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
 import clsxm from '@/utils/helpers/clsxm';
 
-interface Props {
+interface CardProps {
   meta: ContentMeta;
   locale: string;
   scrollPosition?: ScrollPosition;
 }
 
-interface CardBlogListProps extends LazyComponentProps {
+interface Props extends LazyComponentProps {
   className?: string;
   contents: ContentMeta[];
   locale: string;
 }
 
-const CardBlog: FunctionComponent<Props> = (props) => {
+export const BlogCard: FunctionComponent<CardProps> = (props) => {
   const { meta, locale, scrollPosition } = props;
   return (
     <Card
@@ -67,7 +67,7 @@ const CardBlog: FunctionComponent<Props> = (props) => {
   );
 };
 
-export const CardBlogList = trackWindowScroll((props: CardBlogListProps) => {
+const BlogCardList = trackWindowScroll((props: Props) => {
   const {
     className,
     contents,
@@ -77,7 +77,7 @@ export const CardBlogList = trackWindowScroll((props: CardBlogListProps) => {
   return (
     <div className={clsxm('grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2', className)}>
       {contents.map((item) => (
-        <CardBlog
+        <BlogCard
           key={item.slugOriginal}
           meta={item}
           locale={locale}
@@ -88,4 +88,4 @@ export const CardBlogList = trackWindowScroll((props: CardBlogListProps) => {
   );
 });
 
-export default CardBlog;
+export default BlogCardList;

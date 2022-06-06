@@ -1,8 +1,8 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { withLayoutPage } from '@/components';
+import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import BlogList from '@/components/Pages/BlogList';
+import BlogPageList from '@/components/layouts/blog/PageList';
 
 type Props = {
   blogs: ContentBlogList;
@@ -24,7 +24,7 @@ const BlogIndexPage: NextPage<Props> = (props) => {
   const { blogs, locale } = props;
   const { total, contents } = blogs;
   return (
-    <BlogList
+    <BlogPageList
       contents={contents}
       locale={locale}
       total={total}
@@ -32,7 +32,7 @@ const BlogIndexPage: NextPage<Props> = (props) => {
   );
 };
 
-export default withLayoutPage(BlogIndexPage, ({ locale }) => {
+export default withMainLayoutPage(BlogIndexPage, ({ locale }) => {
   return {
     locale,
     meta: {
