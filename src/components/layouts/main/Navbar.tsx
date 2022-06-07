@@ -88,7 +88,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
   const headerClass = useMemo(() => {
     return transparent
       ? 'bg-transparent'
-      : 'bg-primary shadow-bottom dark:bg-dark-40';
+      : 'bg-primary shadow-md-bottom dark:bg-dark-40';
   }, [transparent]);
 
   const onScroll = useCallback(() => {

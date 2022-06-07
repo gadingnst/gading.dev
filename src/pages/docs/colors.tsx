@@ -28,8 +28,8 @@ const ColorCard: FunctionComponent<PropsWithChildren<{ title: string; }>> =
 
 const renderColorMap = (name: string, color: string) => {
   const mapColor = (key:  string, name: string, color: string) => (
-    <div key={key} className="w-[120px] shadow-all rounded-8 m-8 py-16 px-12">
-      <div className={`w-full shadow-all rounded-8 h-[20px] bg-${name}`} />
+    <div key={key} className="w-[120px] shadow-lg rounded-8 m-8 py-16 px-12">
+      <div className={`w-full shadow-lg rounded-8 h-[20px] bg-${name}`} />
       <p className="font-bold text-center mt-4 text-light text-sm">
         {name}
       </p>
@@ -65,7 +65,7 @@ const ColorDocs: NextPage = () => {
         <h1 className="font-bold text-center text-2xl mb-16">
           Colors System
         </h1>
-        <div className="p-16 rounded-16 shadow-all mb-42">
+        <div className="p-16 rounded-16 shadow-lg mb-42">
           <ColorCard title="ABSOLUTE">
             {absoluteColors.map(([name, value]: string[]) => renderColorMap(name, value))}
           </ColorCard>
