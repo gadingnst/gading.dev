@@ -34,7 +34,7 @@
     "@testing-library/react": "^13.3.0",
     "@types/react": "18.0.12",
     "@types/react-lazy-load-image-component": "^1.5.2",
-    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "autoprefixer": "^10.4.7",
     "cloudinary": "^1.30.0",
