@@ -7,7 +7,7 @@
 .header-mobile {
   @apply
     fixed w-[95%] z-30 rounded-12 transition-all duration-200
-    px-28 py-20 my-12 mx-auto shadow-all;
+    px-28 py-20 my-12 mx-auto shadow-lg;
 }
 
 .header-container {

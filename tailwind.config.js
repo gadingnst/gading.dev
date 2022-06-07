@@ -43,12 +43,6 @@ module.exports = {
       full: '100%',
       screen: '100vh'
     },
-    boxShadow: {
-      none: 'none',
-      all: '0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 0 8px 0 rgba(0, 0, 0, 0.08)',
-      bottom: '0 2px 4px 0 rgba(0, 0, 0, 0.08)',
-      DEFAULT: '0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 0 8px 0 rgba(0, 0, 0, 0.08)'
-    },
     colors: {
       transparent: 'transparent',
       black: '#000000',
@@ -149,6 +143,9 @@ module.exports = {
       screens: {
         xxs: '360px',
         xs: '428px'
+      },
+      boxShadow: {
+        'md-bottom': '0 2px 4px 0 rgba(0, 0, 0, 0.1)'
       },
       scale: {
         '102': '1.02'

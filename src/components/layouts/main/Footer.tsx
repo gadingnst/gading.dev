@@ -64,7 +64,7 @@ const Footer: FunctionComponent<Props> = (props) => {
             <Button
               key={socialLink.url}
               href={socialLink.url}
-              className={`${socialLink.color} shadow-all rounded-8 px-[11px] py-[6px] mx-4 hover:-mt-8`}
+              className={`${socialLink.color} shadow-lg rounded-8 px-[11px] py-[6px] mx-4 hover:-mt-8`}
             >
               <Icon color="white" size={14} src={socialLink.logo} className="-mt-4" />
             </Button>

@@ -12,7 +12,7 @@ export interface ThemeState {
  */
 function useAppTheme() {
   const [theme, setTheme] = useStore<Theme>({
-    key: '@app/theme',
+    key: '@gading.dev/theme',
     initial: 'light',
     persist: true
   });
