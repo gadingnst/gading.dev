@@ -27,7 +27,7 @@
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
 - [x] Automate Lighthouse report
-- [x] Web Vital integration with [Axiom](https://www.axiom.co/)
+- [x] Logging & Web Vital integration with [Axiom](https://www.axiom.co/)
 - [x] Web Analytic integration with [umami](https://umami.is)
 - [x] SEO Optimized with meta information tags
 - [ ] Feed RSS & Sitemap
