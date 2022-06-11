@@ -26,6 +26,7 @@
     "no-useless-catch": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "space-before-function-paren": ["error", "never"],
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/semi": "error",
     "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/space-before-blocks": "error",

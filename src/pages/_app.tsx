@@ -4,6 +4,7 @@ import { Fragment, FunctionComponent, memo, useMemo, useRef } from 'react';
 import NProgress from 'nextjs-progressbar';
 import { useMounted, useUpdated } from '@/hooks';
 import useAppTheme from '@/hooks/stores/useAppTheme';
+import Sentry from '@/utils/libs/Sentry';
 import { ANALYTICS_ID, IS_DEV } from '@/utils/config';
 import '@/styles/globals.css';
 
@@ -19,6 +20,7 @@ const App: FunctionComponent<AppProps> = (props) => {
   }, [theme.current]);
 
   useMounted(() => {
+    Sentry.setup();
     root.current = window.document.documentElement;
   });
 
