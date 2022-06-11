@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const { withAxiom } = require('next-axiom');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   dir: './src',
@@ -39,4 +43,4 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig;
+module.exports = withAxiom(nextConfig);

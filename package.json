@@ -19,6 +19,7 @@
     "dayjs": "^1.11.3",
     "framer-motion": "^6.3.10",
     "next": "12.1.6",
+    "next-axiom": "^0.7.0",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.1.0",
     "react-dom": "18.1.0",
