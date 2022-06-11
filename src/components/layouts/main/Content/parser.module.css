@@ -1,4 +1,12 @@
 .parser {
+  & > :first-child {
+    @apply mt-0;
+  }
+
+  & > :last-child {
+    @apply mb-0;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold mt-24 mb-12;
   }
@@ -29,5 +37,9 @@
 
   iframe {
     @apply max-w-full;
+  }
+
+  em {
+    @apply mr-2;
   }
 }
