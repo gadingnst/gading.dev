@@ -27,7 +27,8 @@
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
 - [x] Automate Lighthouse report
-- [x] Integration with Web Analytics tool. [Gading's Analytic](https://analytics.gading.dev) powered by [umami](https://umami.is)
+- [x] Web Vital integration with [Axiom](https://www.axiom.co/)
+- [x] Web Analytic integration with [umami](https://umami.is)
 - [x] SEO Optimized with meta information tags
 - [ ] Feed RSS & Sitemap
 - [x] On Demand Revalidation

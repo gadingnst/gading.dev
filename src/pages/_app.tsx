@@ -7,6 +7,8 @@ import useAppTheme from '@/hooks/stores/useAppTheme';
 import { ANALYTICS_ID, IS_DEV } from '@/utils/config';
 import '@/styles/globals.css';
 
+export { reportWebVitals } from 'next-axiom';
+
 const App: FunctionComponent<AppProps> = (props) => {
   const { Component, pageProps } = props;
   const [theme] = useAppTheme();
