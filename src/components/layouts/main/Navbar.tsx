@@ -162,7 +162,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                 >
                   <span
                     className={clsxm({
-                      'text-accent dark:text-accent-2': pathname === href,
+                      'text-primary-2 dark:text-accent-2': pathname === href,
                       'text-white dark:text-white': pathname !== href
                     })}
                   >
@@ -207,7 +207,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                 'font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
                 idx === (menus.length - 1) ? 'mb-0' : '',
                 pathname === href
-                  ? 'pointer-events-none text-accent dark:text-accent-2'
+                  ? 'pointer-events-none text-primary-2 dark:text-accent-2'
                   : 'text-dark dark:text-white'
               )}
             >
