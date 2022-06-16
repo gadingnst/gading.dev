@@ -5,9 +5,9 @@ updates:
   directory: '/'
   target-branch: 'main'
   schedule:
-    interval: daily
+    interval: weekly
     time: '00:00'
-  open-pull-requests-limit: 3
+  open-pull-requests-limit: 10
   reviewers:
     - gadingnst
   assignees:
