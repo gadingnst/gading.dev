@@ -38,20 +38,10 @@ Saya membangun situs ini menggunakan teknologi *JAMStack* dengan *Next.js*, kamu
 Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan dengan *performance* dan *SEO*. Oleh karena itu, saya akan menampilkan laporan *performance* website di halaman ini, dan akan selalu diperbarui secara berkala. Terima kasih kepada [Ankur Parihar](https://github.com/ankurparihar) karena telah membuat [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) yang dapat membuat laporan *performance* di situs ini secara otomatis. Berikut adalah laporan yang terakhir diupdate:
 
 ##### Laporan *Performance* (Desktop)
-<ImageLazy
-  className="mt-36 max-w-[700px]"
-  src="/reports/desktop.svg"
-  alt="Lighthouse Report Desktop"
-  width="100%"
-/>
+<PerformanceReportsDesktop />
 
 ##### Laporan *Performance* (Mobile)
-<ImageLazy
-  className="mt-36 max-w-[700px]"
-  src="/reports/mobile.svg"
-  alt="Lighthouse Report Mobile"
-  width="100%"
-/>
+<PerformanceReportsMobile />
 
 ---
 

@@ -177,6 +177,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                 src={iconHamburger}
                 className="cursor-pointer"
                 onClick={modalToggler}
+                size={32}
               />
             </div>
           </div>

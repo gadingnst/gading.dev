@@ -1,88 +1,39 @@
-/* eslint-disable @next/next/no-img-element */
-import { MouseEventHandler, useCallback, useMemo, useRef } from 'react';
 import NextImage, { ImageProps } from 'next/image';
-import SVG, { Props as SVGProps } from 'react-inlinesvg';
 import clsxm from '@/utils/helpers/clsxm';
 
 export type Props = ImageProps & {
   src: ImageProps['src'];
-  inline?: boolean;
-  fallbackSrc?: string;
+  placeholderSrc?: string;
   classNameWrapper?: string;
-  onClick?: MouseEventHandler<HTMLImageElement> | MouseEventHandler<SVGAElement>;
-  svgProps?: SVGProps;
 };
 
-export const DEFAULT = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
+export const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
 
 const Image = (props: Props) => {
   const {
-    inline,
-    fallbackSrc,
     classNameWrapper,
-    color,
-    svgProps,
     ...nextImageProps
   } = props;
 
-  const {
-    src,
-    alt,
-    className,
-    width,
-    height,
-    onClick
-  } = nextImageProps;
+  const { src } = nextImageProps;
+  const width = nextImageProps.width || (src as any)?.width;
+  const height = nextImageProps.height || (src as any)?.height;
 
-  const imgRef = useRef<HTMLImageElement>(null);
-  const Component = useRef(<NextImage {...nextImageProps} />);
+  const Component = (
+    <NextImage
+      blurDataURL={(src as any)?.blurDataURL ? undefined : DEFAULT_PLACEHOLDER}
+      {...nextImageProps}
+      width={width}
+      height={height}
+    />
+  );
 
-  const source = useMemo(() => {
-    return (src as any)?.src || src || fallbackSrc || DEFAULT;
-  }, [src, fallbackSrc]);
-
-  const isSvg = useMemo(() => {
-    return source.endsWith('.svg');
-  }, [src]);
-
-  const onError = useCallback(() => {
-    if (imgRef.current) {
-      imgRef.current.src = fallbackSrc || DEFAULT;
-    }
-  }, []);
-
-  if (isSvg && inline) {
-    Component.current = (
-      <SVG
-        cacheRequests
-        {...svgProps}
-        fill={svgProps?.fill ?? color}
-        stroke={svgProps?.stroke ?? color}
-        src={source}
-        className={className}
-        width={width}
-        height={height}
-        onClick={onClick as MouseEventHandler<SVGAElement>}
-      >
-        <img
-          ref={imgRef}
-          src={source}
-          onError={onError}
-          className={className}
-          width={width}
-          height={height}
-          alt={alt}
-        />
-      </SVG>
-    );
-  }
-
-  return !classNameWrapper ? Component.current : (
+  return !classNameWrapper ? Component : (
     <div
       className={clsxm('inline-block overflow-hidden', classNameWrapper)}
       style={{ width, height }}
     >
-      {Component.current}
+      {Component}
     </div>
   );
 };
@@ -90,10 +41,7 @@ const Image = (props: Props) => {
 Image.defaultProps = {
   className: '',
   classNameWrapper: '',
-  fallbackSrc: '',
-  inline: false,
-  svgProps: {},
-  onClick: () => void 0
+  placeholderSrc: ''
 };
 
 export default Image;

@@ -38,20 +38,10 @@ I built this website using *JAMStack* with *Next.js* technology, you can check t
 In building this website, I really paid attention to all aspects related to *performance* and *SEO*. Therefore, I'll display the website *performance* report on this page, and it will always be updated periodically. Thanks to [Ankur Parihar](https://github.com/ankurparihar) for making [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) that can generate *performance* report of this website automatically. Here's the last updated report:
 
 ##### *Performance* Report (Desktop)
-<ImageLazy
-  className="mt-36 max-w-[700px]"
-  src="/reports/desktop.svg"
-  alt="Lighthouse Report Desktop"
-  width="100%"
-/>
+<PerformanceReportsDesktop />
 
 ##### *Performance* Report (Mobile)
-<ImageLazy
-  className="mt-36 max-w-[700px]"
-  src="/reports/mobile.svg"
-  alt="Lighthouse Report Mobile"
-  width="100%"
-/>
+<PerformanceReportsMobile />
 
 ---
 

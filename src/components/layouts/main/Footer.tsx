@@ -83,10 +83,9 @@ const Footer: FunctionComponent<Props> = (props) => {
         <Link className="inline-block text-primary" href={`https://github.com/${AUTHOR_GITHUB}`}>
           {AUTHOR_NAME}
         </Link>
-        <div className="-ml-4 dark:text-white">
-          <span className="inline-block">&nbsp;</span>
+        <div className="dark:text-white mt-4">
           <Link className="inline-block text-primary" href="/docs/colors">
-            Colors system
+            Colors System
           </Link>
           <span className="inline-block">&nbsp;&bull;&nbsp;</span>
           <Link className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>

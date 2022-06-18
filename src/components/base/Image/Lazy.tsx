@@ -5,6 +5,7 @@ import { useToggler } from '@/hooks';
 import cloudinary from '@/utils/helpers/cloudinary';
 import clsxm from '@/utils/helpers/clsxm';
 import { IS_DEV } from '@/utils/config';
+import { DEFAULT_PLACEHOLDER } from './index';
 import styles from './lazy.module.css';
 import 'react-medium-image-zoom/dist/styles.css';
 
@@ -32,7 +33,8 @@ const ImageLazy: FunctionComponent<Props> = (props) => {
   const [loading, setLoading] = useToggler(true);
 
   const placeholder = useMemo(() => {
-    return cloudinary(src, { scale: placeholderScaling, placeholder: true });
+    const placeholderSrc = cloudinary(src, { scale: placeholderScaling, placeholder: true });
+    return placeholderSrc === src ? DEFAULT_PLACEHOLDER : placeholderSrc;
   }, [src, placeholderScaling]);
 
   const source = useMemo(() => {
