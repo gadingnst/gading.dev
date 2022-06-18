@@ -5,12 +5,6 @@
 
 > My Personal Homepage & Blog site with NextJS : https://gading.dev
 
-## Page Speed Report
-### Desktop
-![Mobile Report](https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/desktop.svg)
-### Mobile
-![Mobile Report](https://raw.githubusercontent.com/gadingnst/gading.dev/main/public/reports/mobile.svg)
-
 ## Prerequisites
 - [NodeJS](https://nodejs.org/en/download/)
 
