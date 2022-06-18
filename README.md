@@ -29,6 +29,7 @@
 - [x] Automate Lighthouse report
 - [x] Logging & Web Vital integration with [Axiom](https://www.axiom.co/)
 - [x] Web Analytic integration with [umami](https://umami.is)
+- [x] Issue reporting integration with [Sentry](https://sentry.io)
 - [x] SEO Optimized with meta information tags
 - [x] Feed RSS & Sitemap
 - [x] On Demand Revalidation
