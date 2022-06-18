@@ -10,7 +10,7 @@ import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   CLOUDINARY_CLOUD_NAME
-} from '../src/utils/config';
+} from './config';
 
 const Cloudinary = CloudinaryInstance.v2;
 Cloudinary.config({
