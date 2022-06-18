@@ -39,6 +39,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # Auto generated build file
+/public/rss
 /public/robots.txt
 /public/sitemap.xml
-/public/sitemap-*.xml
+/public/sitemap-*.xml*
