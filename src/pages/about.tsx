@@ -4,11 +4,13 @@ import { CardHero, Image, Button, Icon } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
+import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 import iconMail from '@/assets/icons/tools/ios/mail.svg';
 import iconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
 import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
-import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
+import imgReportDesktop from '@/assets/images/reports/desktop.svg';
+import imgReportMobile from '@/assets/images/reports/mobile.svg';
 
 type Props = {
   contents: MDContent;
@@ -61,6 +63,22 @@ const RightDesc = ({ className = 'hidden md:flex' }) => (
     </Button>
   </div>
 );
+
+const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Report Desktop' }) => {
+  return (
+    <div className="relative w-full max-w-[700px] h-[100px] sm:h-[140px] lg:h-[200px] mx-auto mt-24">
+      <Image
+        src={src}
+        alt={alt}
+        layout="fill"
+        objectFit="contain"
+      />
+    </div>
+  );
+};
+
+const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
+const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} alt="Performance Report Mobile" />;
 
 const AboutPage: NextPage<Props> = (props) => {
   const { meta, content } = props.contents;
@@ -115,7 +133,7 @@ const AboutPage: NextPage<Props> = (props) => {
               <LeftDesc className="flex h-[auto]" />
             </div>
             <h3 className="text-center font-semibold mb-36">{AUTHOR_FULLNAME}</h3>
-            <ContentParser>
+            <ContentParser components={{ PerformanceReportsDesktop, PerformanceReportsMobile }}>
               {content}
             </ContentParser>
           </div>

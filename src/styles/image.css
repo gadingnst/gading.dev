@@ -22,6 +22,11 @@ body > div[aria-label="Zoomed image"], .content-parser {
   }
 }
 
-body > div[aria-label="Zoomed image"] img {
-  @apply rounded-0;
+body > div[aria-label="Zoomed image"] {
+  & > div {
+    @apply bg-white dark:bg-dark-60 !important;
+  }
+  img {
+    @apply rounded-0;
+  }
 }
