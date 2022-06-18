@@ -13,6 +13,7 @@
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --ci --json --coverage --testLocationInResults --outputFile=report.json",
+    "app:revalidate": "ts-node ./scripts/app:revalidate.ts",
     "cloudinary:sync": "ts-node ./scripts/cloudinary:sync.ts"
   },
   "dependencies": {
@@ -35,8 +36,10 @@
     "@jest/transform": "^28.1.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
+    "@types/isomorphic-fetch": "^0.0.36",
     "@types/react": "18.0.14",
     "@types/react-lazy-load-image-component": "^1.5.2",
+    "@types/xml2js": "^0.4.11",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "autoprefixer": "^10.4.7",
@@ -51,6 +54,7 @@
     "husky": "^8.0.1",
     "identity-obj-proxy": "^3.0.0",
     "image-extensions": "^1.1.0",
+    "isomorphic-fetch": "^3.0.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "mdx-bundler": "^9.0.1",
@@ -70,6 +74,7 @@
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4",
-    "typescript-plugin-css-modules": "^3.4.0"
+    "typescript-plugin-css-modules": "^3.4.0",
+    "xml2js": "^0.4.23"
   }
 }
