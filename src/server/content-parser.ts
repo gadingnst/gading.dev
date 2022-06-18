@@ -109,7 +109,7 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
  * @param slug - slug file with extension
  * @returns {Promise<ContentMeta>} - asynchronous content meta
  */
-async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Promise<ContentMeta> {
+export async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Promise<ContentMeta> {
   const blogFile = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(blogFile, 'utf8');
   const { content, data } = matter(fileContents);
@@ -129,7 +129,7 @@ async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Promise<Con
  * @param language - filter language of file 'en'|'id'
  * @returns {Promise<MetaLocale[]>} - asynchronous all blog meta and locale
  */
-async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
+export async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
   const postsPath = path.join(contentsDir, 'posts', language);
   const slugPaths = await Fs.readdir(postsPath).catch(() => []);
   const result = await Promise.all(slugPaths.map(async(slug) => {

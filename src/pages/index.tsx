@@ -6,6 +6,7 @@ import BlogCardList from '@/components/layouts/blog/CardList';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
+import generateRSSFeed from '@/server/feed-rss';
 
 type Props = {
   contents: MDContent;
@@ -19,7 +20,8 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   } = ctx;
   const [contents, { contents: blogs }] = await Promise.all([
     getContentMultiLanguage('home', locale),
-    getBlogList(locale, { limit: 4 })
+    getBlogList(locale, { limit: 4 }),
+    generateRSSFeed()
   ]);
   return {
     props: {

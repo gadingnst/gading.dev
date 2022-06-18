@@ -2,13 +2,13 @@ import { FunctionComponent } from 'react';
 import { Link, Button, Icon } from '@/components/base';
 import {
   AUTHOR_NAME,
-  FACEBOOK_USERNAME,
-  GITHUB_USERNAME,
-  INSTAGRAM_USERNAME,
-  LINKEDIN_USERNAME,
+  AUTHOR_FACEBOOK,
+  AUTHOR_GITHUB,
+  AUTHOR_INSTAGRAM,
+  AUTHOR_LINKEDIN,
   BASE_URL,
   SITE_NAME,
-  TWITTER_USERNAME
+  AUTHOR_TWITTER
 } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
@@ -27,27 +27,27 @@ const socialLinks = [
   {
     color: 'bg-github',
     logo: iconGithub,
-    url: `https://github.com/${GITHUB_USERNAME}`
+    url: `https://github.com/${AUTHOR_GITHUB}`
   },
   {
     color: 'bg-linkedin',
     logo: iconLinkedin,
-    url: `https://linkedin.com/in/${LINKEDIN_USERNAME}`
+    url: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`
   },
   {
     color: 'bg-instagram',
     logo: iconInstagram,
-    url: `https://instagram.com/${INSTAGRAM_USERNAME}`
+    url: `https://instagram.com/${AUTHOR_INSTAGRAM}`
   },
   {
     color: 'bg-facebook',
     logo: iconFacebook,
-    url: `https://facebook.com/${FACEBOOK_USERNAME}`
+    url: `https://facebook.com/${AUTHOR_FACEBOOK}`
   },
   {
     color: 'bg-twitter',
     logo: iconTwitter,
-    url: `https://twitter.com/${TWITTER_USERNAME}`
+    url: `https://twitter.com/${AUTHOR_TWITTER}`
   }
 ];
 
@@ -76,11 +76,11 @@ const Footer: FunctionComponent<Props> = (props) => {
         <span className="inline-block">&copy;&nbsp;{new Date().getFullYear()}&nbsp;</span>
         <Link className="inline-block" href={BASE_URL}>{SITE_NAME}</Link>
         <span className="inline-block">&nbsp;&bull;&nbsp;</span>
-        <Link className="inline-block" href={`https://github.com/${GITHUB_USERNAME}/gading.dev`}>Built</Link>
+        <Link className="inline-block" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
         <span className="inline-block">&nbsp;with&nbsp;</span>
         <span className="inline-block util--underline-dotted">Bullshit</span>
         <span className="inline-block">&nbsp;by&nbsp;</span>
-        <Link className="inline-block text-primary" href={`https://github.com/${GITHUB_USERNAME}`}>
+        <Link className="inline-block text-primary" href={`https://github.com/${AUTHOR_GITHUB}`}>
           {AUTHOR_NAME}
         </Link>
         <div className="-ml-4 dark:text-white">

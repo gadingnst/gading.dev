@@ -1,20 +1,20 @@
-import { GITHUB_USERNAME } from '@/utils/config';
+import { AUTHOR_GITHUB } from '@/utils/config';
 
 const portfolio = [
   {
     name: 'Hadith API',
     category: 'Open Source Project',
     description: 'Simple Islamic Hadith REST API with Indonesia Translation.',
-    github: `https://github.com/${GITHUB_USERNAME}/hadith-api`,
+    github: `https://github.com/${AUTHOR_GITHUB}/hadith-api`,
     website: 'https://api.hadith.sutanlab.id',
-    image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/hadith-api/master/screenshots/example-result.png`,
+    image: `https://raw.githubusercontent.com/${AUTHOR_GITHUB}/hadith-api/master/screenshots/example-result.png`,
     stacks: ['typescript', 'express', 'api']
   },
   {
     name: 'Qur\'an Machine (Instagram & Telegram Bot)',
     category: 'Open Source Project',
     description: 'Automatic shares qur\'an verses and translations on Instagram/Telegram.',
-    github: `https://github.com/${GITHUB_USERNAME}/quran.machine`,
+    github: `https://github.com/${AUTHOR_GITHUB}/quran.machine`,
     website: 'https://quran-machine.sutanlab.id',
     image: '/media/portfolio/quran-machine.jpeg',
     stacks: ['typescript', 'express', 'bot', 'puppeteer']
@@ -23,7 +23,7 @@ const portfolio = [
     name: 'Qur\'an API',
     category: 'Open Source Project',
     description: 'Simple Quran REST API with Indonesia Tafsir and media audio (murrotal) Syekh. Mishary Rashid Alafasy',
-    github: `https://github.com/${GITHUB_USERNAME}/quran-api`,
+    github: `https://github.com/${AUTHOR_GITHUB}/quran-api`,
     website: 'https://api.quran.sutanlab.id',
     image: '/media/portfolio/quran-api.png',
     stacks: ['javascript', 'scraping', 'rest', 'express', 'api']
@@ -32,7 +32,7 @@ const portfolio = [
     name: 'COVID-19 Visualized',
     category: 'Open Source Project',
     description: 'Web that contains information about corona virus (COVID-19) victim updates with data visualization.',
-    github: `https://github.com/${GITHUB_USERNAME}/covid19-visualized`,
+    github: `https://github.com/${AUTHOR_GITHUB}/covid19-visualized`,
     website: 'https://covid19.sutanlab.id',
     image: '/media/portfolio/covid19-visualized.png',
     stacks: ['typescript', 'javascript', 'nextjs', 'reactjs', 'd3', 'topojson']
@@ -41,7 +41,7 @@ const portfolio = [
     name: 'Kampus API & Scraper',
     category: 'Open Source Project',
     description: 'GraphQL API for data of "Perguruan Tinggi" in Indonesia created using web scraping techniques with puppeteer from "Kementerian RISTEKDIKTI" website.',
-    github: `https://github.com/${GITHUB_USERNAME}/kampus-scraper`,
+    github: `https://github.com/${AUTHOR_GITHUB}/kampus-scraper`,
     website: null,
     image: '/media/portfolio/kampus-api.png',
     stacks: ['javascript', 'puppeteer', 'express', 'graphql', 'apollo']
@@ -50,7 +50,7 @@ const portfolio = [
     name: 'MeChat',
     category: 'Open Source Project',
     description: 'MeChat is Meet & Chat Mobile Application built with React Native integrated with Firebase, Google Map API and Netlify functions.',
-    github: `https://github.com/${GITHUB_USERNAME}/mechat`,
+    github: `https://github.com/${AUTHOR_GITHUB}/mechat`,
     website: 'https://sutanlab.js.org/redirect/mechat-apk',
     image: '/media/portfolio/mechat.jpg',
     stacks: ['javascript', 'react native', 'firebase', 'one signal']
@@ -59,7 +59,7 @@ const portfolio = [
     name: 'Point of Sales',
     category: 'Open Source Project',
     description: 'Point of sales is a cashier application that simplifies the checkout process. Also has a order history feature and income statistics.',
-    github: `https://github.com/${GITHUB_USERNAME}/point-of-sales-frontend`,
+    github: `https://github.com/${AUTHOR_GITHUB}/point-of-sales-frontend`,
     website: 'https://sutanlab.js.org/redirect/pos-web',
     image: '/media/portfolio/pos-web.png',
     stacks: ['javascript', 'node', 'express', 'react', 'mysql']
@@ -77,7 +77,7 @@ const portfolio = [
     name: 'Simple Web Storage',
     category: 'Open Source Project',
     description: 'Lightweight utilities that can make easier to access application storage in client browser.',
-    github: `https://github.com/${GITHUB_USERNAME}/simple-webstorage`,
+    github: `https://github.com/${AUTHOR_GITHUB}/simple-webstorage`,
     website: 'https://sutanlab.js.org/simple-webstorage',
     image: '/media/portfolio/simple-webstorage.png',
     stacks: ['javascript', 'webpack']
@@ -86,7 +86,7 @@ const portfolio = [
     name: 'Simple Print',
     category: 'Open Source Project',
     description: 'Simple Javascript utility to print HTML element easier..',
-    github: `https://github.com/${GITHUB_USERNAME}/simple-print`,
+    github: `https://github.com/${AUTHOR_GITHUB}/simple-print`,
     website: 'https://sutanlab.js.org/simple-print',
     image: '/media/portfolio/simple-print.png',
     stacks: ['javascript', 'webpack']
@@ -113,7 +113,7 @@ const portfolio = [
     name: 'Vuetask',
     category: 'Open Source Project',
     description: 'A Progressive Task Management Application with Offline First Technology.',
-    github: `https://github.com/${GITHUB_USERNAME}/vuetask`,
+    github: `https://github.com/${AUTHOR_GITHUB}/vuetask`,
     website: 'https://vuetask.sutanlab.id',
     image: '/media/portfolio/vuetask.png',
     stacks: ['javascript', 'vue', 'pwa']
@@ -122,7 +122,7 @@ const portfolio = [
     name: 'IP Stalker',
     category: 'Open Source Project',
     description: 'Simple & Fast IP Address Stalker Application by using IP scraper in backend API with serverless service',
-    github: `https://github.com/${GITHUB_USERNAME}/ip-stalker`,
+    github: `https://github.com/${AUTHOR_GITHUB}/ip-stalker`,
     website: 'https://ipstalker.sutanlab.id',
     image: '/media/portfolio/ip-stalker.png',
     stacks: ['javascript', 'node', 'express', 'vue', 'pwa']
@@ -131,7 +131,7 @@ const portfolio = [
     name: 'Chat Socket',
     category: 'Open Source Project',
     description: 'Real-time chat app with Gravatar API.',
-    github: `https://github.com/${GITHUB_USERNAME}/chat-socket`,
+    github: `https://github.com/${AUTHOR_GITHUB}/chat-socket`,
     website: 'https://sutanlab-chat-socket.herokuapp.com',
     image: '/media/portfolio/chat-socket.png',
     stacks: ['javascript', 'node', 'express', 'socketio', 'gravatar api']
@@ -140,7 +140,7 @@ const portfolio = [
     name: 'Jekyll Starter Blog',
     category: 'Open Source Project',
     description: 'Static generated site designed for developers that want to write blog posts that hosted in static hosting.',
-    github: `https://github.com/${GITHUB_USERNAME}/jekyll-starter-blog`,
+    github: `https://github.com/${AUTHOR_GITHUB}/jekyll-starter-blog`,
     website: 'https://sutanlab.js.org/jekyll-starter-blog',
     image: '/media/portfolio/jekyll-starter-blog.png',
     stacks: ['jekyll', 'javascript']

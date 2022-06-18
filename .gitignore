@@ -37,3 +37,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Auto generated build file
+/public/rss
+/public/robots.txt
+/public/sitemap.xml
+/public/sitemap-*.xml*

@@ -30,7 +30,7 @@
 - [x] Logging & Web Vital integration with [Axiom](https://www.axiom.co/)
 - [x] Web Analytic integration with [umami](https://umami.is)
 - [x] SEO Optimized with meta information tags
-- [ ] Feed RSS & Sitemap
+- [x] Feed RSS & Sitemap
 - [x] On Demand Revalidation
 - [ ] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
