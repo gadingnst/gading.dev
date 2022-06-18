@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
-require('dotenv').config();
 
 import { readdir } from 'fs/promises';
 import Path from 'path';
@@ -50,7 +48,11 @@ export async function* getFiles(dir: string): any {
 export const isImage = (path: string): boolean =>
   imgExtensions.has(Path.extname(path).slice(1).toLowerCase());
 
-async function syncMedia() {
+/**
+ * Sync media folder to Cloudinary
+ * @returns {Promise<void>}
+ */
+async function syncMedia(): Promise<void> {
   console.log('> Syncing `media` files...');
 
   // setup queue for uploading with 7 concurrent uploads
@@ -60,27 +62,31 @@ async function syncMedia() {
     console.log(`Queue ${data.id}:`, data);
   });
 
-  console.log('> Deleting `media` folder in Cloudinary...');
-  await Cloudinary.api.delete_resources_by_prefix('gading.dev/media/');
-  console.log('> Uploading all files in local `media` folder to Cloudinary.');
-  for await (const file of getFiles(mediaDir)) {
-    const pathToUpload = Path.join('media', file.replace(mediaDir, ''));
-    const fileName = Path.basename(pathToUpload);
-    const folderName = Path.dirname(pathToUpload);
-    const extension = Path.extname(fileName);
-    const name = fileName.slice(0, -extension.length);
-    if (isImage(pathToUpload)) {
-      concurrent.queue(async() => {
-        const response = await Cloudinary.uploader.upload(file, {
-          public_id: name,
-          folder: `gading.dev/${folderName}`,
-          overwrite: false
+  try {
+    console.log('> Deleting `media` folder in Cloudinary...');
+    await Cloudinary.api.delete_resources_by_prefix('gading.dev/media/');
+    console.log('> Uploading all files in local `media` folder to Cloudinary.');
+    for await (const file of getFiles(mediaDir)) {
+      const pathToUpload = Path.join('media', file.replace(mediaDir, ''));
+      const fileName = Path.basename(pathToUpload);
+      const folderName = Path.dirname(pathToUpload);
+      const extension = Path.extname(fileName);
+      const name = fileName.slice(0, -extension.length);
+      if (isImage(pathToUpload)) {
+        concurrent.queue(async() => {
+          const response = await Cloudinary.uploader.upload(file, {
+            public_id: name,
+            folder: `gading.dev/${folderName}`,
+            overwrite: false
+          });
+          return response.public_id;
         });
-        return response.public_id;
-      });
+      }
     }
+    await concurrent.run();
+  } catch (err) {
+    console.error(err);
   }
-  await concurrent.run();
 }
 
 syncMedia();
