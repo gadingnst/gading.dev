@@ -24,6 +24,7 @@ Cloudinary.config({
 const rootDir = process.cwd();
 const mediaDir = Path.resolve(rootDir, 'public', 'media');
 const imgExtensions = new Set(imgExts);
+
 /**
  * Read all files in a directory deeply
  * @param dir - directory to be read
