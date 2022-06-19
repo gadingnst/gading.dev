@@ -1,4 +1,4 @@
-import { GetStaticPathsResult } from 'next';
+import type { GetStaticPathsResult } from 'next';
 import Fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';

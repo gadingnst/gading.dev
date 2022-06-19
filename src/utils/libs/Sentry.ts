@@ -1,5 +1,5 @@
 import * as SentryCore from '@sentry/nextjs';
-import { NextjsOptions } from '@sentry/nextjs/types/utils/nextjsOptions';
+import type { NextjsOptions } from '@sentry/nextjs/types/utils/nextjsOptions';
 import { IS_DEV, SENTRY_DSN } from '@/utils/config';
 
 class Sentry {

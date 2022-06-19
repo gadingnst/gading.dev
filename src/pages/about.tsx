@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';

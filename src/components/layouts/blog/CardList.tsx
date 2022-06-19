@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
 import Card from '@/components/base/Card';
 import Image from '@/components/base/Image';

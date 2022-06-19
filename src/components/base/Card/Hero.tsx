@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 import Card, { Props as CardProps } from '@/components/base/Card';
 import clsxm from '@/utils/helpers/clsxm';
 

@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 import clsxm from '@/utils/helpers/clsxm';
 import Link from '@/components/base/Link';
 

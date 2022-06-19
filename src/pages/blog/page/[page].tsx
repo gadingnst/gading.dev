@@ -1,4 +1,4 @@
-import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
