@@ -13,11 +13,11 @@ describe('cloudinary url helper test', () => {
   });
   it(`should return cloudinary path with image scaling with blur`, () => {
     expect(cloudinary('/media/folder/image.jpg', { scale: 0.1, placeholder: true }))
-      .toBe(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/e_blur:750,c_scale,w_0.1,h_0.1/gading.dev/media/folder/image.jpg`);
+      .toBe(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/e_blur:250,c_scale,w_0.1,h_0.1/gading.dev/media/folder/image.jpg`);
   });
   it(`should return cloudinary path with image scaling with blur and stopping play gif image`, () => {
     expect(cloudinary('/media/folder/image.gif', { scale: 0.1, placeholder: true }))
-      .toBe(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/e_blur:750,pg_2,c_scale,w_0.1,h_0.1/gading.dev/media/folder/image.gif`);
+      .toBe(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/e_blur:250,pg_2,c_scale,w_0.1,h_0.1/gading.dev/media/folder/image.gif`);
   });
   it('should return raw url', () => {
     expect(cloudinary('https://www.google.com/an-image.png'))

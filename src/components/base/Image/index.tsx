@@ -23,22 +23,27 @@ const Image: FunctionComponent<Props> = (props) => {
   const {
     src: srcProps,
     zoomable,
-    height,
-    width,
     placeholderScaling,
-    style,
-    className,
-    afterLoad,
     scaling = 1,
-    ...otherProps
+    ...lazyloadProps
   } = props;
 
+  const {
+    height,
+    width,
+    style,
+    className,
+    wrapperClassName,
+    afterLoad
+  } = lazyloadProps;
+
   const src = (srcProps as any)?.src ?? srcProps;
+  const blurDataURL = (srcProps as any)?.blurDataURL;
   const [loading, setLoading] = useToggler(true);
 
   const placeholder = useMemo(() => {
     const placeholderSrc = cloudinary(src, { scale: placeholderScaling, placeholder: true });
-    const placeholderDefault = (srcProps as any)?.blurDataURL ?? DEFAULT_PLACEHOLDER;
+    const placeholderDefault = blurDataURL ?? DEFAULT_PLACEHOLDER;
     return placeholderSrc === src ? placeholderDefault : placeholderSrc;
   }, [src, placeholderScaling]);
 
@@ -56,13 +61,14 @@ const Image: FunctionComponent<Props> = (props) => {
   const ImageComponent = (
     <span className="w-full flex relative items-center justify-center">
       <LazyLoadImage
-        {...otherProps}
+        {...lazyloadProps}
         src={IS_DEV ? src : source}
         placeholderSrc={IS_DEV ? src : placeholder}
         style={{ ...style, height, width }}
         effect="blur"
         afterLoad={handleLoad}
         className={clsxm('min-h-[50px] select-none', className)}
+        wrapperClassName={clsxm(blurDataURL && loading ? styles.blur : '', wrapperClassName)}
         useIntersectionObserver
       />
       {loading && (
