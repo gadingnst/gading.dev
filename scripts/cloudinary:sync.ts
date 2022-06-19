@@ -86,6 +86,7 @@ async function syncMedia(): Promise<void> {
     await concurrent.run();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 

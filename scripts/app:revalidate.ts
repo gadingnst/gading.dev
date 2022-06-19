@@ -25,6 +25,7 @@ async function revalidate(): Promise<void> {
       .then(console.info);
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 
