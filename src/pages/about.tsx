@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { CardHero, Image, ImageStatic, Button, SVG } from '@/components/base';
+import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
@@ -68,6 +68,7 @@ const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Re
   return (
     <div className="w-full max-w-[700px] mx-auto mt-24">
       <Image
+        zoomable
         src={src}
         alt={alt}
         width="100%"
@@ -114,15 +115,15 @@ const AboutPage: NextPage<Props> = (props) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
             >
-              <ImageStatic
-                classNameWrapper="absolute rounded-full mx-auto shadow-lg transition-all hover:-mt-12 mx-auto select-none"
-                src={imgProfile}
-                alt={AUTHOR_NAME}
-                width={180}
-                height={180}
-                placeholder="blur"
-                layout="responsive"
-              />
+              <div className="transition-all hover:-mt-12">
+                <Image
+                  className="rounded-full shadow-lg mx-auto"
+                  src={imgProfile}
+                  alt={AUTHOR_NAME}
+                  width={180}
+                  height={180}
+                />
+              </div>
             </motion.div>
             <RightDesc />
           </div>

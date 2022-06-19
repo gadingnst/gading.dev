@@ -1,3 +1,4 @@
+import type { ImageProps } from 'next/image';
 import { FunctionComponent, useCallback, useMemo } from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import Zoom from 'react-medium-image-zoom';
@@ -7,14 +8,14 @@ import clsxm from '@/utils/helpers/clsxm';
 import { IS_DEV } from '@/utils/config';
 import styles from './index.module.css';
 import 'react-medium-image-zoom/dist/styles.css';
-import { ImageProps } from 'next/image';
 
-type Props = LazyLoadImageProps & {
+//@ts-ignore
+interface Props extends LazyLoadImageProps {
   src: ImageProps['src'];
   zoomable?: boolean;
   scaling?: number;
   placeholderScaling?: number;
-};
+}
 
 export const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
 
@@ -95,9 +96,8 @@ Image.defaultProps = {
   className: '',
   style: {},
   zoomable: false,
-  wrapperClassName: '',
   scaling: 1,
-  placeholderScaling: 0.05 /* 5% */
+  placeholderScaling: 0.01 /* 1% */
 };
 
 export default Image;

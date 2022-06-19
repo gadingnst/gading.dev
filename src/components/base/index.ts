@@ -1,5 +1,4 @@
 export { default as Image } from './Image';
-export { default as ImageStatic } from './Image/Static';
 export { default as SVG } from './Image/SVG';
 
 export { default as Card } from './Card';
