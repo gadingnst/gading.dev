@@ -1,7 +1,7 @@
 .dropdown {
   @apply relative text-base rounded-8;
   .button {
-    @apply font-bold hover:scale-100 active:scale-100 bg-transparent p-0;
+    @apply font-bold transition-none hover:scale-100 active:scale-100 bg-transparent p-0 flex items-center justify-center;
   }
   .dropdown-content {
     @apply absolute max-w-[160px] overflow-auto shadow-lg z-10 rounded-8 mt-2 py-8 px-12;

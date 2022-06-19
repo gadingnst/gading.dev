@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
 import Card from '@/components/base/Card';
-import ImageLazy from '@/components/base/Image/Lazy';
+import Image from '@/components/base/Image';
 import ContentInfo from '@/components/layouts/main/Content/Info';
 import Link from '@/components/base/Link';
 import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
@@ -28,7 +28,7 @@ export const BlogCard: FunctionComponent<CardProps> = (props) => {
       className="rounded-12 overflow-hidden"
     >
       <div className="relative w-full overflow-hidden h-[200px]">
-        <ImageLazy
+        <Image
           src={meta.image}
           alt={meta.title}
           className="object-cover w-full"
@@ -36,7 +36,6 @@ export const BlogCard: FunctionComponent<CardProps> = (props) => {
           width="100%"
           height={200}
           scaling={0.45}
-          placeholderScaling={0.05}
           scrollPosition={scrollPosition}
         />
       </div>

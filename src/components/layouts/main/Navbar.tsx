@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from '@/components/base/Link';
 import SwitchTheme from '@/components/base/Switch/Theme';
 import ButtonClose from '@/components/base/Button/Close';
-import Icon from '@/components/base/Image/Icon';
+import SVG from '@/components/base/Image/SVG';
 import Modal from '@/components/base/Modal';
 import Dropdown from '@/components/base/Dropdown';
 
@@ -12,9 +12,9 @@ import { useToggler, useMounted } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
-import iconAppLogo from '@/assets/icons/app/logo.svg';
-import iconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
-import iconHamburger from '@/assets/icons/tools/hamburger.svg';
+import IconAppLogo from '@/assets/icons/app/logo.svg';
+import IconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
+import IconHamburger from '@/assets/icons/tools/hamburger.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';
@@ -111,9 +111,9 @@ const Navbar: FunctionComponent<Props> = (props) => {
     <Fragment>
       <nav className={clsxm(styles.header, headerClass, className)}>
         <div className={styles['header-container']}>
-          <Icon
+          <SVG
             className="inline-block xxs:hidden mr-8"
-            src={theme?.current === 'dark' ? iconAppLogo : iconAppLogoSecondary}
+            src={theme?.current === 'dark' ? IconAppLogo : IconAppLogoSecondary}
             size={32}
           />
           <Link
@@ -172,9 +172,9 @@ const Navbar: FunctionComponent<Props> = (props) => {
               ))}
             </div>
             <div className="block md:hidden">
-              <Icon
-                color="white"
-                src={iconHamburger}
+              <SVG
+                stroke="white"
+                src={IconHamburger}
                 className="cursor-pointer"
                 onClick={modalToggler}
                 size={32}

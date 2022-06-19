@@ -1,16 +1,16 @@
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
-import { CardHero, Image, Button, Icon } from '@/components/base';
+import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
-import iconMail from '@/assets/icons/tools/ios/mail.svg';
-import iconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
+import IconMail from '@/assets/icons/tools/ios/mail.svg';
+import IconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
 import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
-import imgReportDesktop from '@/assets/images/reports/desktop.svg';
-import imgReportMobile from '@/assets/images/reports/mobile.svg';
+import imgReportDesktop from '@/assets/images/reports/desktop.svg?url';
+import imgReportMobile from '@/assets/images/reports/mobile.svg?url';
 
 type Props = {
   contents: MDContent;
@@ -53,32 +53,32 @@ const RightDesc = ({ className = 'hidden md:flex' }) => (
       href="mailto:contact@gading.dev"
       className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-primary mx-8 hover:no-underline"
     >
-      <Icon size={16} className="mr-4" color="white" src={iconMail} /> Contact
+      <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
     </Button>
     <Button
       href={`${BASE_URL}/media/cv.pdf`}
       className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-info mx-8 hover:no-underline"
     >
-      <Icon size={14} className="mr-4" color="white" src={iconBriefcase} /> Resume
+      <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
     </Button>
   </div>
 );
 
 const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Report Desktop' }) => {
   return (
-    <div className="relative w-full max-w-[700px] h-[100px] sm:h-[140px] lg:h-[200px] mx-auto mt-24">
+    <div className="w-full max-w-[700px] mx-auto mt-24">
       <Image
+        zoomable
         src={src}
         alt={alt}
-        layout="fill"
-        objectFit="contain"
+        width="100%"
       />
     </div>
   );
 };
 
 const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
-const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} alt="Performance Report Mobile" />;
+const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} />;
 
 const AboutPage: NextPage<Props> = (props) => {
   const { meta, content } = props.contents;
@@ -115,15 +115,15 @@ const AboutPage: NextPage<Props> = (props) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
             >
-              <Image
-                classNameWrapper="absolute rounded-full mx-auto shadow-lg transition-all hover:-mt-12 mx-auto select-none"
-                src={imgProfile}
-                alt={AUTHOR_NAME}
-                width={180}
-                height={180}
-                placeholder="blur"
-                layout="responsive"
-              />
+              <div className="transition-all hover:-mt-12">
+                <Image
+                  className="rounded-full shadow-lg mx-auto"
+                  src={imgProfile}
+                  alt={AUTHOR_NAME}
+                  width={180}
+                  height={180}
+                />
+              </div>
             </motion.div>
             <RightDesc />
           </div>

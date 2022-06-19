@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Link, Button, Icon } from '@/components/base';
+import { Link, Button, SVG } from '@/components/base';
 import {
   AUTHOR_NAME,
   AUTHOR_FACEBOOK,
@@ -13,11 +13,11 @@ import {
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
 
-import iconGithub from '@/assets/icons/logo/octocat.svg';
-import iconLinkedin from '@/assets/icons/logo/linkedin.svg';
-import iconInstagram from '@/assets/icons/logo/instagram.svg';
-import iconFacebook from '@/assets/icons/logo/facebook.svg';
-import iconTwitter from '@/assets/icons/logo/twitter.svg';
+import IconGithub from '@/assets/icons/logo/octocat.svg';
+import IconLinkedin from '@/assets/icons/logo/linkedin.svg';
+import IconInstagram from '@/assets/icons/logo/instagram.svg';
+import IconFacebook from '@/assets/icons/logo/facebook.svg';
+import IconTwitter from '@/assets/icons/logo/twitter.svg';
 
 export interface Props {
   className?: string;
@@ -26,27 +26,27 @@ export interface Props {
 const socialLinks = [
   {
     color: 'bg-github',
-    logo: iconGithub,
+    logo: IconGithub,
     url: `https://github.com/${AUTHOR_GITHUB}`
   },
   {
     color: 'bg-linkedin',
-    logo: iconLinkedin,
+    logo: IconLinkedin,
     url: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`
   },
   {
     color: 'bg-instagram',
-    logo: iconInstagram,
+    logo: IconInstagram,
     url: `https://instagram.com/${AUTHOR_INSTAGRAM}`
   },
   {
     color: 'bg-facebook',
-    logo: iconFacebook,
+    logo: IconFacebook,
     url: `https://facebook.com/${AUTHOR_FACEBOOK}`
   },
   {
     color: 'bg-twitter',
-    logo: iconTwitter,
+    logo: IconTwitter,
     url: `https://twitter.com/${AUTHOR_TWITTER}`
   }
 ];
@@ -64,9 +64,9 @@ const Footer: FunctionComponent<Props> = (props) => {
             <Button
               key={socialLink.url}
               href={socialLink.url}
-              className={`${socialLink.color} shadow-lg rounded-8 px-[11px] py-[6px] mx-4 hover:-mt-8`}
+              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 hover:-mt-8`}
             >
-              <Icon color="white" size={14} src={socialLink.logo} className="-mt-4" />
+              <SVG fill="white" size={14} src={socialLink.logo} />
             </Button>
           ))}
         </div>

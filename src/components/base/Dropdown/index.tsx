@@ -1,9 +1,9 @@
 import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useRef } from 'react';
 import { getChildrenByType } from 'react-nanny';
 import Button from '@/components/base/Button';
-import Icon from '@/components/base/Image/Icon';
+import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
-import iconCaretDown from '@/assets/icons/tools/caret-down.svg';
+import IconCaretDown from '@/assets/icons/tools/caret-down.svg';
 import { useToggler, useOutsideClick } from '@/hooks';
 import styles from './index.module.css';
 
@@ -81,7 +81,12 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
         onClick={toggler}
         className={clsxm(styles.button, btnClassName)}
       >
-        {title} <Icon color="white" src={iconCaretDown} size={12} className="-mt-4" />
+        <span className="text-white dark:text-white">
+          {title}
+        </span>
+        <span>
+          <SVG className="ml-4 -mt-2" fill="white" src={IconCaretDown} size={12} />
+        </span>
       </Button>
       {show && (
         <div
