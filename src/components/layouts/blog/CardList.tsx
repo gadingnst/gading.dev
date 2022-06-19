@@ -1,10 +1,11 @@
 import type { FunctionComponent } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
+import NextLink from 'next/link';
+import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
 import Card from '@/components/base/Card';
 import Image from '@/components/base/Image';
 import ContentInfo from '@/components/layouts/main/Content/Info';
 import Link from '@/components/base/Link';
-import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
 import clsxm from '@/utils/helpers/clsxm';
 
 interface CardProps {
@@ -27,18 +28,20 @@ export const BlogCard: FunctionComponent<CardProps> = (props) => {
       key={meta.slugOriginal}
       className="rounded-12 overflow-hidden"
     >
-      <div className="relative w-full overflow-hidden h-[200px]">
-        <Image
-          src={meta.image}
-          alt={meta.title}
-          className="object-cover w-full"
-          wrapperClassName="w-full"
-          width="100%"
-          height={200}
-          scaling={0.45}
-          scrollPosition={scrollPosition}
-        />
-      </div>
+      <NextLink href="/blog/[slug]" as={`/blog/${meta.slugOriginal}`}>
+        <div className="relative w-full overflow-hidden h-[200px] cursor-pointer">
+          <Image
+            src={meta.image}
+            alt={meta.title}
+            className="object-cover w-full"
+            wrapperClassName="w-full"
+            width="100%"
+            height={200}
+            scaling={0.45}
+            scrollPosition={scrollPosition}
+          />
+        </div>
+      </NextLink>
       <div className="flex flex-col pt-12 pb-16 px-16">
         <div className="flex flex-col justify-between items-center min-h-[50px]">
           <div className="w-full text-center">

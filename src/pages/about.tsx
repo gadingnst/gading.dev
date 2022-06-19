@@ -115,7 +115,7 @@ const AboutPage: NextPage<Props> = (props) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
             >
-              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl hover:-mt-12">
+              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl hover:-mt-12 active:shadow-md active:scale-95">
                 <Image
                   src={imgProfile}
                   alt={AUTHOR_NAME}
