@@ -16,7 +16,7 @@ function cloudinary(path: string, opts?: Options): string {
   const isOnMedia = path.startsWith('/media/');
   if (isOnMedia) {
     const gifHandler = path.endsWith('.gif') ? ',pg_2,' : ',';
-    const placeholderHandler = placeholder ? `e_blur:750${gifHandler}` : '';
+    const placeholderHandler = placeholder ? `e_blur:250${gifHandler}` : '';
     const scaling = scale ? `${placeholderHandler}c_scale,w_${scale},h_${scale}/` : '';
     const basePath =
       `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${scaling}gading.dev${path}`;

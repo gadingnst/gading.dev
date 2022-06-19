@@ -6,3 +6,7 @@
     rounded-full border-2 border-solid
     border-t-light-30 border-l-light-30;
 }
+
+.blur {
+  @apply blur-lg !important;
+}
