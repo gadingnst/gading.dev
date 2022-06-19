@@ -1,6 +1,6 @@
 export { default as Image } from './Image';
-export { default as Icon } from './Image/Icon';
-export { default as ImageLazy } from './Image/Lazy';
+export { default as ImageStatic } from './Image/Static';
+export { default as SVG } from './Image/SVG';
 
 export { default as Card } from './Card';
 export { default as CardHero } from './Card/Hero';

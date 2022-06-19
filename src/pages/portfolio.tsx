@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
-import { Card, ImageLazy } from '@/components/base';
+import { Card, Image } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 
 type Props = {
@@ -40,7 +40,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
       {contents.map(item => (
         <Card hoverEffect className="rounded-12 overflow-hidden" key={item.image}>
           <div className="relative w-full overflow-hidden h-[200px]">
-            <ImageLazy
+            <Image
               zoomable
               src={item.image}
               alt={item.name}
