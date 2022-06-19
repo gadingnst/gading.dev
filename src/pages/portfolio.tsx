@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { Portfolio } from '@/types/contents';

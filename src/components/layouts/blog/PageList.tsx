@@ -1,8 +1,8 @@
 import { Fragment, FunctionComponent, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import type { ContentMeta } from '@/server/content-parser';
 import { Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
-import { ContentMeta } from '@/server/content-parser';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
 import { useRouter } from 'next/router';
 import Navbar from '@/components/layouts/main/Navbar';

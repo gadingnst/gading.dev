@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { CardHero } from '@/components/base';
 import { Banner, Content, Footer, Navbar, ContentParser, withMainLayoutPage } from '@/components/layouts';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';

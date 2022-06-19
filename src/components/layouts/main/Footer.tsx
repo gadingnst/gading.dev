@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import { Link, Button, SVG } from '@/components/base';
 import {
   AUTHOR_NAME,

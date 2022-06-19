@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { Fragment, FunctionComponent, PropsWithChildren } from 'react';
 import { Link, SwitchTheme } from '@/components/base';
 import { SITE_NAME } from '@/utils/config';

@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import Button from '@/components/base/Button';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './close.module.css';

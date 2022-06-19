@@ -1,8 +1,8 @@
-import { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
-import {  CardHero } from '@/components/base';
+import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import ContentInfo from '@/components/layouts/main/Content/Info';
 import type { I18nLocales } from '@/types/contents';

@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-import clsxm from '@/utils/helpers/clsxm';
 import type { ImageProps } from 'next/image';
-import { FunctionComponent, SVGAttributes } from 'react';
+import type { FunctionComponent, SVGAttributes } from 'react';
+import clsxm from '@/utils/helpers/clsxm';
 
 export interface Props extends SVGAttributes<SVGElement> {
   src: ImageProps['src'];

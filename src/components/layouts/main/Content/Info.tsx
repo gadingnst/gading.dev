@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
-import { ContentMeta } from '@/server/content-parser';
+import type { FunctionComponent } from 'react';
+import type { ContentMeta } from '@/server/content-parser';
 import date from '@/utils/helpers/date';
 
 export interface Props {

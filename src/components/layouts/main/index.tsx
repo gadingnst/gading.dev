@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { FunctionComponent, Fragment, PropsWithChildren, useMemo } from 'react';
 import Head, { Props as HeadProps } from '@/components/base/Head';
 import { SITE_NAME } from '@/utils/config';

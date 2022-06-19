@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 import { motion } from 'framer-motion';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './index.module.css';
