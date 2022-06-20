@@ -8,6 +8,10 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
+    &:before {
+      content: "";
+      @apply block h-[150px] mt-[-150px] md:h-[180px] md:mt-[-180px];
+    }
     @apply font-bold mt-24 mb-12;
   }
 
