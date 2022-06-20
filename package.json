@@ -29,7 +29,7 @@
     "react-lazy-load-image-component": "^1.5.4",
     "react-medium-image-zoom": "^4.4.3",
     "react-nanny": "^2.14.0",
-    "react-parallax": "^3.5.0"
+    "react-parallax": "^3.5.1"
   },
   "devDependencies": {
     "@jest/transform": "^28.1.1",
