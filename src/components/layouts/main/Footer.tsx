@@ -72,26 +72,26 @@ const Footer: FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <hr className="container lg:max-w-5xl" />
-      <div className="container w-full mx-auto my-48 text-sm max-w-5xl">
+      <div className="container w-full mx-auto my-48 text-sm max-w-5xl text-center sm:text-left">
         <span className="inline-block">&copy;&nbsp;{new Date().getFullYear()}&nbsp;</span>
         <Link className="inline-block" href={BASE_URL}>{SITE_NAME}</Link>
-        <span className="inline-block">&nbsp;&bull;&nbsp;</span>
-        <Link className="inline-block" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
-        <span className="inline-block">&nbsp;with&nbsp;</span>
-        <span className="inline-block util--underline-dotted">Bullshit</span>
-        <span className="inline-block">&nbsp;by&nbsp;</span>
-        <Link className="inline-block text-primary" href={`https://github.com/${AUTHOR_GITHUB}`}>
+        <span className="inline-block mx-4">&bull;</span>
+        <Link className="inline-block mx-2" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
+        <span className="inline-block mx-2">with</span>
+        <span className="inline-block util--underline-dotted mx-2">Bullshit</span>
+        <span className="inline-block mx-2">by</span>
+        <Link className="inline-block text-primary mx-2" href={`https://github.com/${AUTHOR_GITHUB}`}>
           {AUTHOR_NAME}
         </Link>
-        <div className="dark:text-white mt-4">
+        <div className="dark:text-white mt-8">
           <Link className="inline-block text-primary" href="/docs/colors">
             Colors System
           </Link>
-          <span className="inline-block">&nbsp;&bull;&nbsp;</span>
+          <span className="inline-block mx-4">&bull;</span>
           <Link className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
             Feed RSS
           </Link>
-          <span className="inline-block">&nbsp;&bull;&nbsp;</span>
+          <span className="inline-block mx-4">&bull;</span>
           <Link className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
             Sitemap
           </Link>

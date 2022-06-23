@@ -67,6 +67,7 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="google-site-verification" content="eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ" />
 
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
