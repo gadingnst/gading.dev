@@ -63,4 +63,13 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 - Standard Wood Table. [Link](https://www.tokopedia.com/alfaproofficial/meja-kerja-meja-kantor-meja-belajar-meja-gaming-murah-minimalis-modern-dark?src=topads)
 - Holi Gaming Chair with Footrest. [Link](https://www.tokopedia.com/holiofficialstore/holi-kursi-gaming-chair-computer-bangku-gaming-game-murah-hl-502-putih-footrest)
 
-*Last updated at: May, 2022 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/en.md)*
+#### 🎮 Gaming Setup
+- Core i7 3770 @ 3.40GHz
+- ASRock Radeon RX 6600 Challenger D 8GB GDDR6
+- HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel
+- SSD 512GB RX7 SATA + HDD 1TB
+- Aerocool United Power 500W 80+ PSU Pure
+- Panasonic LED TV 32" FHD
+- CyberPower UPS UT1050E (1050VA/630W)
+
+*Last updated at: July, 2022 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/en.md)*

@@ -46,7 +46,7 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Peramban: Google Chrome and Safari
 - Lain-lain: Jira/Trello, Postman, Spotify
 
-#### 🖥 Pengaturan Bekerja dari Rumah
+#### 🖥 Setup Bekerja dari Rumah
 - MacBook Pro M1 8/512 (2020). [Link](https://shopee.co.id/Apple-MacBook-Pro-(13.3-inci-M1-2020)-8GB-RAM-512GB-SSD-Space-Grey-i.241308147.5176302064?sp_atk=3db06e93-1ed2-4045-bf33-249549e4df4c&xptdk=3db06e93-1ed2-4045-bf33-249549e4df4c)
 - Keychron Keyboard K2 V2 with RGB Backlight & Alumunium Frame. [Link](https://www.tokopedia.com/ptnmtindo/keychron-k2-v2-hot-swappble-rgb-backlight-aluminum-frame-brown-switch)
 - Robot Mouse M350 MX Master with Silent Click. [Link](https://www.tokopedia.com/vivanjkt/mouse-silent-dual-mode-bluetooth-wireless-2-4ghz-robot-m350-mx-master-hitam)
@@ -63,4 +63,13 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Standard Wood Table. [Link](https://www.tokopedia.com/alfaproofficial/meja-kerja-meja-kantor-meja-belajar-meja-gaming-murah-minimalis-modern-dark?src=topads)
 - Holi Gaming Chair with Footrest. [Link](https://www.tokopedia.com/holiofficialstore/holi-kursi-gaming-chair-computer-bangku-gaming-game-murah-hl-502-putih-footrest)
 
-*Terakhir diperbarui: Mei, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+#### 🎮 Setup Gaming
+- Core i7 3770 @ 3.40GHz
+- ASRock Radeon RX 6600 Challenger D 8GB GDDR6
+- HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel
+- SSD 512GB RX7 SATA + HDD 1TB
+- Aerocool United Power 500W 80+ PSU Pure
+- Panasonic LED TV 32" FHD
+- CyberPower UPS UT1050E (1050VA/630W)
+
+*Terakhir diperbarui: Juli, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
