@@ -38,13 +38,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
       });
       pathSplitted.forEach((p) => {
         concurrent.queue(async() => {
-          await res.unstable_revalidate(p);
+          await res.revalidate(p);
           return p;
         });
       });
       await concurrent.run();
     } else {
-      await res.unstable_revalidate(path);
+      await res.revalidate(path);
     }
     return res.status(200)
       .json({
