@@ -19,7 +19,7 @@ Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/se
 #### ☕️ Aktivitas
 - Berinvestasi, dan mempelajari Cryptocurrency
 - Belajar dan riset beberapa teknologi dari internet.
-- Sosmed, ngoding, mendengarkan musik, membaca dan menulis blog untuk bersenang-senang.
+- Sosmed, gaming, ngoding, mendengarkan musik, membaca dan menulis blog untuk bersenang-senang.
 - Menikmati waktu dengan orang-orang terdekatku hampir setiap minggu.
 
 #### 📘 Buku yang dibaca
@@ -63,7 +63,7 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Standard Wood Table. [Link](https://www.tokopedia.com/alfaproofficial/meja-kerja-meja-kantor-meja-belajar-meja-gaming-murah-minimalis-modern-dark?src=topads)
 - Holi Gaming Chair with Footrest. [Link](https://www.tokopedia.com/holiofficialstore/holi-kursi-gaming-chair-computer-bangku-gaming-game-murah-hl-502-putih-footrest)
 
-#### 🎮 Setup Gaming
+#### 🎮 Setup Gaming (Worth ~60fps di 1080p)
 - Core i7 3770 @ 3.40GHz
 - ASRock Radeon RX 6600 Challenger D 8GB GDDR6
 - HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel

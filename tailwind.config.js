@@ -159,7 +159,8 @@ module.exports = {
         'tumblr': '#37455c',
         'whatsapp': '#06d755',
         'telegram': '#35ace1',
-        'youtube': '#cd201f'
+        'youtube': '#cd201f',
+        'steam': '#2a475e'
       }
     }
   },

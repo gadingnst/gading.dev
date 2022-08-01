@@ -28,3 +28,4 @@ export const AUTHOR_TWITTER = 'gadingnstn';
 export const AUTHOR_INSTAGRAM = 'gadingnst';
 export const AUTHOR_GITHUB = 'gadingnst';
 export const AUTHOR_LINKEDIN = 'gadingnst';
+export const AUTHOR_STEAM = 'gadingnst';
