@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@gadingnst/store-swr": "^0.3.1",
-    "@sentry/nextjs": "^7.6.0",
+    "@sentry/nextjs": "^7.8.1",
     "dayjs": "^1.11.4",
     "framer-motion": "^6.5.1",
     "next": "12.2.2",
