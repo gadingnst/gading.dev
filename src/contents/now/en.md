@@ -19,7 +19,7 @@ Working full-time as a [Software Engineer](https://www.google.com/search?q=what+
 #### ☕️ Activities
 - Investing, and Learning Cryptocurrency
 - Learning and research some technology stuff from the internet.
-- Social Media, coding, listening music, reading and blogging for fun.
+- Social Media, gaming, coding, listening music, reading and blogging for fun.
 - Making quality time with the people closest to me every weekend.
 
 #### 📘 Books that I'm reading
@@ -63,7 +63,7 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 - Standard Wood Table. [Link](https://www.tokopedia.com/alfaproofficial/meja-kerja-meja-kantor-meja-belajar-meja-gaming-murah-minimalis-modern-dark?src=topads)
 - Holi Gaming Chair with Footrest. [Link](https://www.tokopedia.com/holiofficialstore/holi-kursi-gaming-chair-computer-bangku-gaming-game-murah-hl-502-putih-footrest)
 
-#### 🎮 Gaming Setup
+#### 🎮 Gaming Setup (Worth ~60fps in 1080p)
 - Core i7 3770 @ 3.40GHz
 - ASRock Radeon RX 6600 Challenger D 8GB GDDR6
 - HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel

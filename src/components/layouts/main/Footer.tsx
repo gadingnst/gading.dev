@@ -6,9 +6,10 @@ import {
   AUTHOR_GITHUB,
   AUTHOR_INSTAGRAM,
   AUTHOR_LINKEDIN,
+  AUTHOR_TWITTER,
+  AUTHOR_STEAM,
   BASE_URL,
-  SITE_NAME,
-  AUTHOR_TWITTER
+  SITE_NAME
 } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
@@ -18,6 +19,7 @@ import IconLinkedin from '@/assets/icons/logo/linkedin.svg';
 import IconInstagram from '@/assets/icons/logo/instagram.svg';
 import IconFacebook from '@/assets/icons/logo/facebook.svg';
 import IconTwitter from '@/assets/icons/logo/twitter.svg';
+import IconSteam from '@/assets/icons/logo/steam.svg';
 
 export interface Props {
   className?: string;
@@ -48,6 +50,11 @@ const socialLinks = [
     color: 'bg-twitter',
     logo: IconTwitter,
     url: `https://twitter.com/${AUTHOR_TWITTER}`
+  },
+  {
+    color: 'bg-steam',
+    logo: IconSteam,
+    url: `https://steamcommunity.com/id/${AUTHOR_STEAM}`
   }
 ];
 
