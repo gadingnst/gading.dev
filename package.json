@@ -47,7 +47,7 @@
     "clsx": "^1.2.1",
     "concurrent-manager": "^0.1.2",
     "dotenv": "^16.0.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-next": "^12.2.3",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
