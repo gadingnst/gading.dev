@@ -4,9 +4,7 @@ const { withAxiom } = require('next-axiom');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  dir: './src',
   reactStrictMode: true,
-  webpack5: true,
   pageExtensions: ['ts', 'tsx'],
   i18n: {
     locales: ['en', 'id'],
