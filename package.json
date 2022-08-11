@@ -22,7 +22,7 @@
     "dayjs": "^1.11.4",
     "framer-motion": "^7.0.1",
     "next": "12.2.4",
-    "next-axiom": "^0.11.1",
+    "next-axiom": "^0.12.1",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
