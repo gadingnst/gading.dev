@@ -5,10 +5,9 @@ import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser'
 import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import ContentInfo from '@/components/layouts/main/Content/Info';
-import type { I18nLocales } from '@/types/contents';
-import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import Disqus from '@/components/layouts/blog/Disqus';
-import dayjs from 'dayjs';
+import type { I18nLocales } from '@/types/contents';
+import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE, DISQUS_SHORTNAME } from '@/utils/config';
 
 type Props = {
   contents: MDContent;
@@ -105,7 +104,7 @@ const BlogDetailPage: NextPage<Props> = (props) => {
         <Disqus
           title={`${meta.title} | ${AUTHOR_NAME}`}
           url={`${BASE_URL}/${locale}/blog/${(meta.slug as any)[locale]}`}
-          identifier={`${(meta.slug as any)[locale]}-${dayjs(meta.date).valueOf()}`}
+          identifier={`${DISQUS_SHORTNAME}-${(meta.slug as any)[locale]}`}
           locale={locale}
         />
       </Content>
