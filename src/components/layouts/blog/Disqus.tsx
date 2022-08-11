@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Disqus: FunctionComponent<Props> = (props) => {
+  const { locale } = props;
   const [theme] = useAppTheme();
   const [isDark, setIsDark] = useState(theme.current === 'light' ? false : true);
 
@@ -24,12 +25,12 @@ const Disqus: FunctionComponent<Props> = (props) => {
   return (
     <div className="container max-w-5xl mt-40 mx-auto">
       <DiscussionEmbed
-        key={+isDark}
+        key={`${locale}-${+isDark}`}
         shortname={DISQUS_SHORTNAME}
         config={
           {
             ...props,
-            language: props.locale === 'id' ? 'id' : undefined
+            language: locale === 'id' ? 'id' : undefined
           }
         }
       />
