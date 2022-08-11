@@ -122,8 +122,8 @@
 		<svg class="guage-div guage-perf guage-orange"
 				viewBox="0 0 200 200" width="200" height="200" x="0" y="0">
 		<circle class="gauge-base" r="56" cx="100" cy="60" stroke-width="8"></circle>
-		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 306.11646, 351.858;"></circle>
-		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">87</text>
+		<circle class="gauge-arc guage-arc-1" r="56" cx="100" cy="60" stroke-width="8" style="stroke-dasharray: 274.44924, 351.858;"></circle>
+		<text class="guage-text" x="100px" y="60px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">78</text>
 		<text class="guage-title" x="100px" y="160px" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">Performance</text>
 	</svg>,<svg class="guage-div guage-perf guage-green"
 				viewBox="0 0 200 200" width="200" height="200" x="200" y="0">
