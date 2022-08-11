@@ -40,7 +40,7 @@
     "@types/react": "18.0.17",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/xml2js": "^0.4.11",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "autoprefixer": "^10.4.8",
     "cloudinary": "^1.30.1",
