@@ -6,7 +6,9 @@ import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import ContentInfo from '@/components/layouts/main/Content/Info';
 import type { I18nLocales } from '@/types/contents';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
+import Disqus from '@/components/layouts/blog/Disqus';
+import dayjs from 'dayjs';
 
 type Props = {
   contents: MDContent;
@@ -100,6 +102,12 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
+        <Disqus
+          title={`${meta.title} | ${AUTHOR_NAME}`}
+          url={`${BASE_URL}/${locale}/blog/${(meta.slug as any)[locale]}`}
+          identifier={`${(meta.slug as any)[locale]}-${dayjs(meta.date).valueOf()}`}
+          locale={locale}
+        />
       </Content>
       <Footer />
     </Fragment>
