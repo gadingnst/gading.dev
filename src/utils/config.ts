@@ -16,7 +16,7 @@ export const BASE_URL = IS_DEV ? 'http://localhost:3000' : 'https://gading.dev';
 export const DEFAULT_LOCALE = 'en';
 export const ANALYTICS_ID = '4378cf7b-8ecb-441a-a1e5-25008dc7f232';
 export const BLOG_PAGINATION_LIMIT = 6;
-export const DISQUS_SHORTNAME = 'sutanlab';
+export const DISQUS_SHORTNAME = 'gadingnst';
 export const CLOUDINARY_CLOUD_NAME = 'gadingnst';
 
 /* Author Information */
