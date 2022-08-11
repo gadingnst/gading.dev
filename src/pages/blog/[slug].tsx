@@ -7,7 +7,7 @@ import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } fr
 import ContentInfo from '@/components/layouts/main/Content/Info';
 import Disqus from '@/components/layouts/blog/Disqus';
 import type { I18nLocales } from '@/types/contents';
-import { AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE, DISQUS_SHORTNAME } from '@/utils/config';
+import { AUTHOR_NAME, DEFAULT_LOCALE, DISQUS_SHORTNAME } from '@/utils/config';
 
 type Props = {
   contents: MDContent;
@@ -103,7 +103,7 @@ const BlogDetailPage: NextPage<Props> = (props) => {
         </CardHero>
         <Disqus
           title={`${meta.title} | ${AUTHOR_NAME}`}
-          url={`${BASE_URL}/${locale}/blog/${(meta.slug as any)[locale]}`}
+          slug={(meta.slug as any)[locale]}
           identifier={`${DISQUS_SHORTNAME}-${(meta.slug as any)[locale]}`}
           locale={locale}
         />

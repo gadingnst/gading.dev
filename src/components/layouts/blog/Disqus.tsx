@@ -1,18 +1,18 @@
 import { FunctionComponent, useState } from 'react';
 import { DiscussionEmbed } from 'disqus-react';
-import { DISQUS_SHORTNAME } from '@/utils/config';
+import { DISQUS_SHORTNAME, PRODUCTION_URL } from '@/utils/config';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { useUpdated } from '@/hooks';
 
 interface Props {
-  url: string;
-  identifier: string;
+  slug: string;
   title: string;
+  identifier: string;
   locale?: 'en'|'id'|string;
 }
 
 const Disqus: FunctionComponent<Props> = (props) => {
-  const { locale } = props;
+  const { locale, slug } = props;
   const [theme] = useAppTheme();
   const [isDark, setIsDark] = useState(theme.current === 'light' ? false : true);
 
@@ -30,6 +30,7 @@ const Disqus: FunctionComponent<Props> = (props) => {
         config={
           {
             ...props,
+            url: `${PRODUCTION_URL}/${locale}/blog/${slug}`,
             language: locale === 'id' ? 'id' : undefined
           }
         }
