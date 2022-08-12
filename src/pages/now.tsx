@@ -5,6 +5,7 @@ import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { DEFAULT_LOCALE } from '@/utils/config';
+import Disqus from '@/components/layouts/main/Content/Disqus';
 
 type Props = {
   contents: MDContent;
@@ -25,7 +26,7 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 };
 
 const NowPage: NextPage<Props> = (props) => {
-  const { contents } = props;
+  const { contents, locale } = props;
   const { meta, content } = contents;
   return (
     <Fragment>
@@ -59,6 +60,12 @@ const NowPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
+        <Disqus
+          url="now"
+          identifier="now"
+          title={meta.title}
+          locale={locale}
+        />
       </Content>
       <Footer />
     </Fragment>

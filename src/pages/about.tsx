@@ -11,6 +11,7 @@ import IconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
 import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
 import imgReportDesktop from '@/assets/images/reports/desktop.svg?url';
 import imgReportMobile from '@/assets/images/reports/mobile.svg?url';
+import Disqus from '@/components/layouts/main/Content/Disqus';
 
 type Props = {
   contents: MDContent;
@@ -81,7 +82,8 @@ const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
 const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} />;
 
 const AboutPage: NextPage<Props> = (props) => {
-  const { meta, content } = props.contents;
+  const { contents, locale } = props;
+  const { meta, content } = contents;
   return (
     <Fragment>
       <Navbar localeChange />
@@ -137,6 +139,12 @@ const AboutPage: NextPage<Props> = (props) => {
             </ContentParser>
           </div>
         </CardHero>
+        <Disqus
+          url="about"
+          identifier="about"
+          title={meta.title}
+          locale={locale}
+        />
       </Content>
       <Footer />
     </Fragment>

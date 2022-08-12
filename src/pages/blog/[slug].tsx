@@ -1,13 +1,12 @@
 import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { I18nLocales } from '@/types/contents';
 import { Fragment, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import { CardHero } from '@/components/base';
-import { Banner, Content, ContentParser, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
-import ContentInfo from '@/components/layouts/main/Content/Info';
-import Disqus from '@/components/layouts/blog/Disqus';
-import type { I18nLocales } from '@/types/contents';
-import { AUTHOR_NAME, DEFAULT_LOCALE, DISQUS_SHORTNAME } from '@/utils/config';
+import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
+import Disqus from '@/components/layouts/main/Content/Disqus';
+import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
   contents: MDContent;
@@ -102,9 +101,9 @@ const BlogDetailPage: NextPage<Props> = (props) => {
           </ContentParser>
         </CardHero>
         <Disqus
-          title={`${meta.title} | ${AUTHOR_NAME}`}
-          slug={(meta.slug as any)[locale]}
-          identifier={`${DISQUS_SHORTNAME}-${(meta.slug as any)[locale]}`}
+          title={meta.title}
+          identifier={`${locale}_${meta.slugOriginal}`}
+          url={`${locale}/blog/${meta.slugOriginal}`}
           locale={locale}
         />
       </Content>
