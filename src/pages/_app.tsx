@@ -1,15 +1,11 @@
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { Fragment, FunctionComponent, useMemo, useRef } from 'react';
-import { reportWebVitals as AxiomReportWebVitals } from 'next-axiom';
 import NProgress from 'nextjs-progressbar';
 import { useMounted, useUpdated } from '@/hooks';
 import useAppTheme from '@/hooks/stores/useAppTheme';
-import Sentry from '@/utils/libs/Sentry';
 import { ANALYTICS_ID, IS_DEV } from '@/utils/config';
 import '@/styles/globals.css';
-
-export const reportWebVitals = IS_DEV ? () => null : AxiomReportWebVitals;
 
 const App: FunctionComponent<AppProps> = (props) => {
   const { Component, pageProps } = props;
@@ -21,7 +17,6 @@ const App: FunctionComponent<AppProps> = (props) => {
   }, [theme.current]);
 
   useMounted(() => {
-    Sentry.setup();
     root.current = window.document.documentElement;
   });
 
