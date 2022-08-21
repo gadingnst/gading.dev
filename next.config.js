@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { withAxiom } = require('next-axiom');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -65,4 +63,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withAxiom(nextConfig);
+module.exports = nextConfig;
