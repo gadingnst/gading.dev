@@ -31,7 +31,7 @@
     "react-parallax": "^3.5.1"
   },
   "devDependencies": {
-    "@jest/transform": "^28.1.1",
+    "@jest/transform": "^29.0.1",
     "@svgr/webpack": "^6.3.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
