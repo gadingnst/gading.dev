@@ -5,7 +5,7 @@ slug: {
 	id: null
 }
 date: 2022-08-25
-description: ""
+description: "How JavaScript really works behind the scene?"
 keywords: "javascript, javascript works, browser, frontend development, sutanlab, gadingnst, nodejs, event loop, js engine, callstack, asynchronous"
 tags: ["template"]
 image: "/media/banners/5.jpg"

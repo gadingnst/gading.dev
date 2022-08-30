@@ -6,7 +6,7 @@ keywords: "now, gading's activities, now page, gading now page, gading, gading s
 image: "/media/banners/0.jpg"
 ---
 
-Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), dan [Afwa Bagas Wahuda](https://www.wahudamon.com/now). Karena mereka semua, saya terinspirasi membuat halaman ini untuk mendeskripsikan tentang ***lagi sibuk apa sekarang?***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang hal itu.
+Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), [Afwa Bagas Wahuda](https://www.wahudamon.com/now), dan [Iyan Saputra](https://iyansr.id/now). Karena mereka semua, saya terinspirasi membuat dan menambahkan konten baru di halaman ini untuk mendeskripsikan tentang ***lagi sibuk apa sekarang?***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang hal itu.
 
 > Jika kamu mempunyai situsmu sendiri, mungkin kamu harus membuatnya juga.
 
