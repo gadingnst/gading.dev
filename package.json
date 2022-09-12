@@ -41,7 +41,7 @@
     "@types/xml2js": "^0.4.11",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.9",
     "cloudinary": "^1.31.0",
     "clsx": "^1.2.1",
     "concurrent-manager": "^0.1.2",
