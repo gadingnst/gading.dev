@@ -4,7 +4,7 @@ slug: {
 	en: "understanding-javascript-engine",
 	id: "memahami-javascript-engine"
 }
-date: 2022-09-25
+date: 2022-09-07
 description: "How JavaScript really works behind the scenes?"
 keywords: "javascript, understanding javascript, javascript works, browser, frontend development, sutanlab, gadingnst, nodejs, event loop, js engine, callstack, asynchronous"
 tags: ["javascript", "engineering"]
@@ -114,3 +114,7 @@ And that’s not the only problem. Once your browser starts processing so many t
 ---
 
 About ***Concurrency and Event Loop***, maybe we will discuss it in the next article. Stay Tuned!
+
+---
+
+*Modified: September, 25 2022*
