@@ -20,7 +20,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     locale
   } = props;
 
-  const classes = 'relative cursor-pointer transition-all duration-150 rounded-8 p-8'
+  const classes = 'relative cursor-pointer transition-all duration-150 p-8'
     + ' hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
 
   if (href) {
@@ -50,7 +50,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
 Button.defaultProps = {
   text: '',
-  className: 'bg-primary',
+  className: 'bg-primary rounded-8',
   href: '',
   onClick: () => void 0
 };

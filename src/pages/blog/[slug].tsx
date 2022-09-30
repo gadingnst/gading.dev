@@ -6,6 +6,7 @@ import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser'
 import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import Disqus from '@/components/layouts/main/Content/Disqus';
+import Share from '@/components/layouts/blog/Share';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
@@ -44,6 +45,8 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
+
+  const postPath = `${locale}/blog/${meta.slugOriginal}`;
 
   const localeChange = useMemo(() => {
     return Object.values(meta.slug).every(Boolean);
@@ -100,10 +103,15 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
+        <Share
+          path={postPath}
+          meta={meta}
+          locale={locale}
+        />
         <Disqus
           title={meta.title}
           identifier={`${locale}_${meta.slugOriginal}`}
-          url={`${locale}/blog/${meta.slugOriginal}`}
+          path={postPath}
           locale={locale}
         />
       </Content>

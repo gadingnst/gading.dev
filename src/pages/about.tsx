@@ -140,7 +140,7 @@ const AboutPage: NextPage<Props> = (props) => {
           </div>
         </CardHero>
         <Disqus
-          url="about"
+          path="about"
           identifier="about"
           title={meta.title}
           locale={locale}
