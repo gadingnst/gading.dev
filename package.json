@@ -36,7 +36,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/isomorphic-fetch": "^0.0.36",
-    "@types/react": "18.0.19",
+    "@types/react": "18.0.21",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/xml2js": "^0.4.11",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
