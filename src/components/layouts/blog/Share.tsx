@@ -2,6 +2,8 @@ import { FunctionComponent, useCallback, useMemo } from 'react';
 import { Button, SVG } from '@/components/base';
 import { I18nLocales } from '@/types/contents';
 import { AUTHOR_TWITTER, BASE_URL } from '@/utils/config';
+import { ContentMeta } from '@/server/content-parser';
+import createPopUp from '@/utils/helpers/popup';
 
 import IconFacebook from '@/assets/icons/logo/facebook.svg';
 import IconLinkedin from '@/assets/icons/logo/linkedin.svg';
@@ -9,7 +11,6 @@ import IconTwitter from '@/assets/icons/logo/twitter.svg';
 import IconTumblr from '@/assets/icons/logo/tumblr.svg';
 import IconWhatsapp from '@/assets/icons/logo/whatsapp.svg';
 import IconTelegram from '@/assets/icons/logo/telegram.svg';
-import { ContentMeta } from '@/server/content-parser';
 
 interface Props {
   path: string;
@@ -62,10 +63,14 @@ const Share: FunctionComponent<Props> = (props) => {
 
   const url = `${BASE_URL}/${path}`;
 
+  const hastags = useMemo(() => (
+    tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
+  ), [tags]);
+
   const socialShareUrl = useMemo(() => ({
     'bg-facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${description}%22%0A%0A${tags}`,
     'bg-linkedin': `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    'bg-twitter': `https://twitter.com/intent/tweet?text=%22${description}%22%20${url}%20via%20%40${AUTHOR_TWITTER}%0A%0A${tags}`,
+    'bg-twitter': `https://twitter.com/intent/tweet?text=%22${description}%22%20${url}%20via%20%40${AUTHOR_TWITTER}%0A%0A${hastags}`,
     'bg-tumblr': `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${url}&title=${title}&caption=${description}`,
     'bg-whatsapp': `https://api.whatsapp.com/send?text=%22${description}%22%0A%0A${url}`,
     'bg-telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${description}%22`
@@ -73,13 +78,20 @@ const Share: FunctionComponent<Props> = (props) => {
 
   const onShare = useCallback((social: SocialShare) => () => {
     const shareUrl = (socialShareUrl as any)[social.color] || null;
-    if (shareUrl) window.open(shareUrl, social.label, 'width=600,height=600');
+    if (shareUrl) {
+      createPopUp({
+        url: shareUrl,
+        title: social.label,
+        w: 600,
+        h: 600
+      });
+    }
     return false;
   }, []);
 
   return (
     <div className="mt-40">
-      <h4 className="text-center mb-8">
+      <h4 className="text-center mb-12">
         {locale === 'id' ? 'Bagikan' : 'Share'}
       </h4>
       <div className="relative flex justify-center items-center flex-wrap">
