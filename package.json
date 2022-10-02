@@ -45,7 +45,7 @@
     "cloudinary": "^1.32.0",
     "clsx": "^1.2.1",
     "concurrent-manager": "^0.1.2",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "eslint": "^8.24.0",
     "eslint-config-next": "^12.3.1",
     "feed": "^4.2.2",
