@@ -62,7 +62,6 @@ const Share: FunctionComponent<Props> = (props) => {
   const { title, description, tags } = meta;
 
   const url = `${BASE_URL}/${path}`;
-  const seralizePath = path.replace(/-|\//g, '_');
 
   const hastags = useMemo(() => (
     tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
@@ -100,7 +99,7 @@ const Share: FunctionComponent<Props> = (props) => {
           <Button
             key={social.color}
             onClick={onShare(social)}
-            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 umami--click--share-${social.color.substring(3)}-${seralizePath}`}
+            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 umami--click--share-${social.color.substring(3)}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
           </Button>
