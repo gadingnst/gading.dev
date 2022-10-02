@@ -65,7 +65,7 @@ const Share: FunctionComponent<Props> = (props) => {
 
   const hastags = useMemo(() => (
     tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
-  ), [tags]);
+  ), []);
 
   const socialShareUrl = useMemo(() => ({
     'bg-facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${description}%22%0A%0A${tags}`,
@@ -74,7 +74,7 @@ const Share: FunctionComponent<Props> = (props) => {
     'bg-tumblr': `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${url}&title=${title}&caption=${description}`,
     'bg-whatsapp': `https://api.whatsapp.com/send?text=%22${description}%22%0A%0A${url}`,
     'bg-telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${description}%22`
-  }), [url, description]);
+  }), []);
 
   const onShare = useCallback((social: SocialShare) => () => {
     const shareUrl = (socialShareUrl as any)[social.color] || null;
