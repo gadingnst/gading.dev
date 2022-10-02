@@ -61,9 +61,8 @@ const Share: FunctionComponent<Props> = (props) => {
   const { path, meta, locale } = props;
   const { title, description, tags } = meta;
 
-  const url = `${BASE_URL}/${path}`;
-
   const socialShareUrl = useMemo(() => {
+    const url = `${BASE_URL}/${path}`;
     const encodedDesc = encodeURIComponent(description);
     const encodedTitle = encodeURIComponent(title);
     const hastags = tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim();
