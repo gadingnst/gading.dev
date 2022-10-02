@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@jest/transform": "^29.1.2",
-    "@svgr/webpack": "^6.3.1",
+    "@svgr/webpack": "^6.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/isomorphic-fetch": "^0.0.36",
