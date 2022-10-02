@@ -5,14 +5,14 @@ import useAppTheme from '@/hooks/stores/useAppTheme';
 import { useUpdated } from '@/hooks';
 
 interface Props {
-  url: string;
+  path: string;
   title: string;
   identifier: string;
   locale?: 'en'|'id'|string;
 }
 
 const Disqus: FunctionComponent<Props> = (props) => {
-  const { title, locale, url, identifier } = props;
+  const { title, locale, path, identifier } = props;
   const [theme] = useAppTheme();
   const [isDark, setIsDark] = useState(theme.current === 'light' ? false : true);
 
@@ -29,7 +29,7 @@ const Disqus: FunctionComponent<Props> = (props) => {
         shortname={DISQUS_SHORTNAME}
         config={{
           title: `${title} | ${AUTHOR_NAME}`,
-          url: `${PRODUCTION_URL}/${url}`,
+          url: `${PRODUCTION_URL}/${path}`,
           identifier: `${DISQUS_SHORTNAME}_${identifier}`,
           language: locale === 'id' ? 'id' : undefined
         }}

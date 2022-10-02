@@ -25,7 +25,7 @@
 - [x] Feed RSS & Sitemap
 - [x] [On Demand Revalidation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation-beta)
 - [x] Comment & Reaction System with [Disqus](https://disqus.com) plugin
-- [ ] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
+- [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [ ] Push notifications support with [OneSignal](https://onesignal.com/pricing) and [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed) Integration
 - [ ] PWA / Offline-first
 - [ ] Search posts

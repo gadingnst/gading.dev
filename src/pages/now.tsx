@@ -61,7 +61,7 @@ const NowPage: NextPage<Props> = (props) => {
           </ContentParser>
         </CardHero>
         <Disqus
-          url="now"
+          path="now"
           identifier="now"
           title={meta.title}
           locale={locale}
