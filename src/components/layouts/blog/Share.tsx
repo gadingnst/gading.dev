@@ -63,13 +63,10 @@ const Share: FunctionComponent<Props> = (props) => {
 
   const url = `${BASE_URL}/${path}`;
 
-  const hastags = useMemo(() => (
-    tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
-  ), []);
-
   const socialShareUrl = useMemo(() => {
     const encodedDesc = encodeURIComponent(description);
     const encodedTitle = encodeURIComponent(title);
+    const hastags = tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim();
     return {
       'bg-facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${encodedDesc}%22%0A%0A${tags}`,
       'bg-linkedin': `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
