@@ -99,7 +99,7 @@ const Share: FunctionComponent<Props> = (props) => {
           <Button
             key={social.color}
             onClick={onShare(social)}
-            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8`}
+            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 umami--click--share-${social.color.substring(3)}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
           </Button>
