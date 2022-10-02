@@ -62,21 +62,23 @@ const Share: FunctionComponent<Props> = (props) => {
   const { title, description, tags } = meta;
 
   const url = `${BASE_URL}/${path}`;
-  const encodedDesc = encodeURIComponent(description);
-  const encodedTitle = encodeURIComponent(title);
 
   const hastags = useMemo(() => (
     tags.reduce((acc, cur) => `${acc}%23${cur.replace(/\s+/g, '_')} `, '').trim()
   ), []);
 
-  const socialShareUrl = useMemo(() => ({
-    'bg-facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${encodedDesc}%22%0A%0A${tags}`,
-    'bg-linkedin': `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    'bg-twitter': `https://twitter.com/intent/tweet?text=%22${encodedDesc}%22%20${url}%20via%20%40${AUTHOR_TWITTER}%0A%0A${hastags}`,
-    'bg-tumblr': `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${url}&title=${encodedTitle}&caption=${encodedDesc}`,
-    'bg-whatsapp': `https://api.whatsapp.com/send?text=%22${encodedDesc}%22%0A%0A${url}`,
-    'bg-telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${encodedDesc}%22`
-  }), []);
+  const socialShareUrl = useMemo(() => {
+    const encodedDesc = encodeURIComponent(description);
+    const encodedTitle = encodeURIComponent(title);
+    return {
+      'bg-facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${encodedDesc}%22%0A%0A${tags}`,
+      'bg-linkedin': `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      'bg-twitter': `https://twitter.com/intent/tweet?text=%22${encodedDesc}%22%20${url}%20via%20%40${AUTHOR_TWITTER}%0A%0A${hastags}`,
+      'bg-tumblr': `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${url}&title=${encodedTitle}&caption=${encodedDesc}`,
+      'bg-whatsapp': `https://api.whatsapp.com/send?text=%22${encodedDesc}%22%0A%0A${url}`,
+      'bg-telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${encodedDesc}%22`
+    };
+  }, []);
 
   const onShare = useCallback((social: SocialShare) => () => {
     const shareUrl = (socialShareUrl as any)[social.color] || null;
