@@ -75,7 +75,7 @@ const HomePage: NextPage<Props> = (props) => {
           </h3>
           <hr className="w-full mt-16" />
           <BlogCardList contents={blogs} locale={locale} />
-          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary hover:no-underline">
+          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8 hover:no-underline">
             More Posts...
           </Button>
         </motion.div>

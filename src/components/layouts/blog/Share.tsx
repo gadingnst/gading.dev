@@ -24,7 +24,7 @@ type SocialShare = {
   logo: any;
 };
 
-const socialLinks: SocialShare[] = [
+const socialShares: SocialShare[] = [
   {
     color: 'bg-facebook',
     label: 'Share on Facebook',
@@ -95,10 +95,11 @@ const Share: FunctionComponent<Props> = (props) => {
         {locale === 'id' ? 'Bagikan' : 'Share'}
       </h4>
       <div className="relative flex justify-center items-center flex-wrap">
-        {socialLinks.map((social) => (
+        {socialShares.map((social) => (
           <Button
             key={social.color}
             onClick={onShare(social)}
+            delay={300}
             className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 umami--click--share-${social.color.substring(3)}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
