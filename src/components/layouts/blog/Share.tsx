@@ -74,7 +74,7 @@ const Share: FunctionComponent<Props> = (props) => {
       'bg-whatsapp': `https://api.whatsapp.com/send?text=%22${encodedDesc}%22%0A%0A${url}`,
       'bg-telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${encodedDesc}%22`
     };
-  }, []);
+  }, [path]);
 
   const onShare = useCallback((social: SocialShare) => () => {
     const shareUrl = (socialShareUrl as any)[social.color] || null;
@@ -87,7 +87,7 @@ const Share: FunctionComponent<Props> = (props) => {
       });
     }
     return false;
-  }, []);
+  }, [socialShareUrl]);
 
   return (
     <div className="mt-40">
