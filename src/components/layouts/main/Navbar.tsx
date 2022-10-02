@@ -130,7 +130,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
               <Dropdown
                 className="bg-transparent px-8 pt-[3px]"
                 title={i18nList.get(locale || DEFAULT_LOCALE)}
-                btnClassName="text-sm md:text-base"
+                btnClassName="text-sm rounded-4 md:text-base"
               >
                 {Array.from(i18nList).map(([code, label]) => (
                   <Dropdown.Item key={code} className="text-sm md:text-base" active={code === locale}>
@@ -203,7 +203,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
             <Link
               key={href}
               href={href}
-              delay={150}
+              delay={300}
               className={clsxm(
                 'font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
                 idx === (menus.length - 1) ? 'mb-0' : '',

@@ -2,6 +2,7 @@ import { FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo 
 import { useRouter } from 'next/router';
 import { isURL, sanitizeURL } from '@/utils/helpers/url';
 import clsxm from '@/utils/helpers/clsxm';
+import useDelayedAction from '@/hooks/useDelayedAction';
 
 export interface Props {
   href: string;
@@ -39,12 +40,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     return sanitizeURL(locale ? `/${locale}/${path}` : path);
   }, [locale, path]);
 
-  const withDelay = useCallback((callback: () => void) => {
-    if (delay) {
-      return setTimeout(callback, delay);
-    }
-    return callback();
-  }, []);
+  const withDelay = useDelayedAction(delay);
 
   const clickHandler = useCallback((event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>) => {
     event.preventDefault();
@@ -68,7 +64,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
         });
       }
     }
-  }, []);
+  }, [onClick, disabled, asPath, href, locale, title, target]);
 
   return (
     <a
