@@ -24,7 +24,7 @@ type SocialShare = {
   logo: any;
 };
 
-const socialLinks: SocialShare[] = [
+const socialShares: SocialShare[] = [
   {
     color: 'bg-facebook',
     label: 'Share on Facebook',
@@ -95,7 +95,7 @@ const Share: FunctionComponent<Props> = (props) => {
         {locale === 'id' ? 'Bagikan' : 'Share'}
       </h4>
       <div className="relative flex justify-center items-center flex-wrap">
-        {socialLinks.map((social) => (
+        {socialShares.map((social) => (
           <Button
             key={social.color}
             onClick={onShare(social)}
