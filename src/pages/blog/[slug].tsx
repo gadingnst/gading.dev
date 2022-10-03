@@ -1,12 +1,12 @@
 import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import type { I18nLocales } from '@/types/contents';
-import { Fragment, useCallback, useMemo } from 'react';
+import { Fragment, Suspense, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import Disqus from '@/components/layouts/main/Content/Disqus';
-import Share from '@/components/layouts/blog/Share';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
@@ -41,6 +41,10 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     notFound: true
   };
 };
+
+const Share = dynamic(() => import('@/components/layouts/blog/Share'), {
+  suspense: true
+});
 
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
@@ -103,11 +107,21 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <Share
-          path={postPath}
-          meta={meta}
-          locale={locale}
-        />
+        <Suspense
+          fallback={
+            <div className="mt-40">
+              <h4 className="text-center mb-12">
+                Loading...
+              </h4>
+            </div>
+          }
+        >
+          <Share
+            path={postPath}
+            meta={meta}
+            locale={locale}
+          />
+        </Suspense>
         <Disqus
           title={meta.title}
           identifier={`${locale}_${meta.slugOriginal}`}
