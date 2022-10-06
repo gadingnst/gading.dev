@@ -37,9 +37,10 @@ const Image: FunctionComponent<Props> = (props) => {
     afterLoad
   } = lazyloadProps;
 
-  const src = (srcProps as any)?.src ?? srcProps;
   const blurDataURL = (srcProps as any)?.blurDataURL;
   const [loading, setLoading] = useToggler(true);
+
+  const src = useMemo(() => (srcProps as any)?.src ?? srcProps, [srcProps]);
 
   const placeholder = useMemo(() => {
     const placeholderSrc = cloudinary(src, { scale: placeholderScaling, placeholder: true });

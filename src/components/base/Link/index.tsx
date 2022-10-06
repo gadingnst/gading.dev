@@ -32,6 +32,8 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     onClick
   } = props;
 
+  const withDelay = useDelayedAction(delay);
+
   const path = useMemo(() => {
     return asPath || href;
   }, [asPath, href]);
@@ -39,8 +41,6 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const link = useMemo(() => {
     return sanitizeURL(locale ? `/${locale}/${path}` : path);
   }, [locale, path]);
-
-  const withDelay = useDelayedAction(delay);
 
   const clickHandler = useCallback((event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>) => {
     event.preventDefault();

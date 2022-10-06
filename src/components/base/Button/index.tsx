@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren, useCallback, MouseEvent } from 'react';
+import { FunctionComponent, PropsWithChildren, useCallback, MouseEvent, useMemo } from 'react';
 import clsxm from '@/utils/helpers/clsxm';
 import Link from '@/components/base/Link';
 import useDelayedAction from '@/hooks/useDelayedAction';
@@ -23,10 +23,12 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     delay
   } = props;
 
-  const classes = 'relative cursor-pointer transition-all duration-150 p-8'
-    + ' hover:scale-105 active:scale-95 active:outline-1 active:outline-white';
-
   const withDelay = useDelayedAction(delay);
+
+  const classes = useMemo(() => (
+    'relative cursor-pointer transition-all duration-150 p-8 '
+    + 'hover:scale-105 active:scale-95 active:outline-1 active:outline-white'
+  ), []);
 
   const onClickBtn = useCallback((event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     event.preventDefault();

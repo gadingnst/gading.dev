@@ -24,7 +24,7 @@ const App: FunctionComponent<AppProps> = (props) => {
     const htmlClass = root.current?.classList;
     htmlClass?.remove(theme.next);
     htmlClass?.add(theme.current);
-  }, [theme]);
+  }, [theme.next, theme.current]);
 
   return (
     <Fragment>

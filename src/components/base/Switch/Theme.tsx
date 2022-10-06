@@ -17,7 +17,7 @@ const SwitchTheme: FunctionComponent<Props> = (props) => {
 
   const onChangeTheme = useCallback(() => {
     setTheme(theme.next);
-  }, [theme]);
+  }, [theme.next]);
 
   const Icon = useMemo(() => {
     if (theme.current === 'light') {

@@ -1,5 +1,5 @@
 import type { ImageProps } from 'next/image';
-import type { FunctionComponent, SVGAttributes } from 'react';
+import { FunctionComponent, SVGAttributes, useMemo } from 'react';
 import clsxm from '@/utils/helpers/clsxm';
 
 export interface Props extends SVGAttributes<SVGElement> {
@@ -18,8 +18,10 @@ const SVG: FunctionComponent<Props> = (props) => {
     ...svgProps
   } = props;
 
-  const width = svgProps.width || size;
-  const height = svgProps.height || size;
+  const { width, height } = useMemo(() => ({
+    width: svgProps.width || size,
+    height: svgProps.height || size
+  }), [svgProps.width, svgProps.height, size]);
 
   return (
     <span
