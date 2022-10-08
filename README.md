@@ -38,6 +38,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh) (Inspired me to to reproduce his `./initpost` script)
 - [Marina Aisa](https://marinaaisa.com) (Inspired me to create I18n content)
 - [Ankur Parihar](https://github.com/ankurparihar/readme-pagespeed-insights) (Inspired me to use his repo to generate Pagespeed insight periodically)
+- [Myself](https://github.com/gadingnst/swr-global-state) (Have created a zero-setup global state management library for this repository)
 
 ## Support Me
 ### Global
