@@ -1,4 +1,4 @@
-import useStore from '@gadingnst/store-swr';
+import useStore from 'swr-global-state';
 
 export type Theme = 'light'|'dark';
 export interface ThemeState {
