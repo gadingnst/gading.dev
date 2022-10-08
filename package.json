@@ -17,7 +17,6 @@
     "cloudinary:sync": "ts-node ./scripts/cloudinary:sync.ts"
   },
   "dependencies": {
-    "@gadingnst/store-swr": "^0.3.1",
     "dayjs": "^1.11.5",
     "disqus-react": "^1.1.3",
     "framer-motion": "^7.5.1",
@@ -28,7 +27,8 @@
     "react-lazy-load-image-component": "^1.5.5",
     "react-medium-image-zoom": "^4.4.3",
     "react-nanny": "^2.14.0",
-    "react-parallax": "^3.5.1"
+    "react-parallax": "^3.5.1",
+    "swr-global-state": "^0.1.2"
   },
   "devDependencies": {
     "@jest/transform": "^29.1.2",
@@ -39,7 +39,7 @@
     "@types/react": "18.0.21",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/xml2js": "^0.4.11",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.38.1",
     "autoprefixer": "^10.4.12",
     "cloudinary": "^1.32.0",
