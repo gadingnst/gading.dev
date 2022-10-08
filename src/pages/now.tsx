@@ -2,10 +2,10 @@ import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next
 import { CardHero } from '@/components/base';
 import { Banner, Content, Footer, Navbar, ContentParser, withMainLayoutPage } from '@/components/layouts';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
-import { Fragment } from 'react';
+import { Fragment, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import Disqus from '@/components/layouts/main/Content/Disqus';
 
 type Props = {
   contents: MDContent;
@@ -24,6 +24,10 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     }
   };
 };
+
+const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
+  suspense: true
+});
 
 const NowPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
@@ -60,12 +64,22 @@ const NowPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <Disqus
-          path="now"
-          identifier="now"
-          title={meta.title}
-          locale={locale}
-        />
+        <Suspense
+          fallback={
+            <div className="container max-w-5xl mt-40 mx-auto">
+              <h4 className="text-center mb-12">
+                Loading Disqus...
+              </h4>
+            </div>
+          }
+        >
+          <Disqus
+            path="now"
+            identifier="now"
+            title={meta.title}
+            locale={locale}
+          />
+        </Suspense>
       </Content>
       <Footer />
     </Fragment>

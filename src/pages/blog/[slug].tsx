@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
-import Disqus from '@/components/layouts/main/Content/Disqus';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
@@ -43,6 +42,10 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 };
 
 const Share = dynamic(() => import('@/components/layouts/blog/Share'), {
+  suspense: true
+});
+
+const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
   suspense: true
 });
 
@@ -122,12 +125,22 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             locale={locale}
           />
         </Suspense>
-        <Disqus
-          title={meta.title}
-          identifier={`${locale}_${meta.slugOriginal}`}
-          path={postPath}
-          locale={locale}
-        />
+        <Suspense
+          fallback={
+            <div className="container max-w-5xl mt-40 mx-auto">
+              <h4 className="text-center mb-12">
+                Loading Disqus...
+              </h4>
+            </div>
+          }
+        >
+          <Disqus
+            title={meta.title}
+            identifier={`${locale}_${meta.slugOriginal}`}
+            path={postPath}
+            locale={locale}
+          />
+        </Suspense>
       </Content>
       <Footer />
     </Fragment>

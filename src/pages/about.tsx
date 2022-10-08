@@ -1,5 +1,6 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import dynamic from 'next/dynamic';
+import { Fragment, Suspense } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
@@ -11,7 +12,6 @@ import IconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
 import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
 import imgReportDesktop from '@/assets/images/reports/desktop.svg?url';
 import imgReportMobile from '@/assets/images/reports/mobile.svg?url';
-import Disqus from '@/components/layouts/main/Content/Disqus';
 
 type Props = {
   contents: MDContent;
@@ -81,6 +81,10 @@ const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Re
 const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
 const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} />;
 
+const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
+  suspense: true
+});
+
 const AboutPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
@@ -139,12 +143,22 @@ const AboutPage: NextPage<Props> = (props) => {
             </ContentParser>
           </div>
         </CardHero>
-        <Disqus
-          path="about"
-          identifier="about"
-          title={meta.title}
-          locale={locale}
-        />
+        <Suspense
+          fallback={
+            <div className="container max-w-5xl mt-40 mx-auto">
+              <h4 className="text-center mb-12">
+                Loading Disqus...
+              </h4>
+            </div>
+          }
+        >
+          <Disqus
+            path="about"
+            identifier="about"
+            title={meta.title}
+            locale={locale}
+          />
+        </Suspense>
       </Content>
       <Footer />
     </Fragment>
