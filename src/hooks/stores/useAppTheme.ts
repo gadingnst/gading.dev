@@ -7,8 +7,8 @@ export interface ThemeState {
 }
 
 /**
- *
- * @returns - theme state
+ * hooks for app theming states
+ * @returns Theme state and setter
  */
 function useAppTheme() {
   const [theme, setTheme] = useStore<Theme>({
