@@ -1,7 +1,7 @@
 import { Fragment, FunctionComponent, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import type { ContentMeta } from '@/server/content-parser';
-import { Pagination } from '@/components/base';
+import { CardSearch, Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
 import { useRouter } from 'next/router';
@@ -74,8 +74,8 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex flex-col items-center justify-center">
+        <CardSearch className="-mt-28 mb-48" />
         <BlogCardList
-          className="-mt-80"
           contents={contents}
           locale={locale}
         />

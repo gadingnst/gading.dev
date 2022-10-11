@@ -3,6 +3,7 @@ export { default as SVG } from './Image/SVG';
 
 export { default as Card } from './Card';
 export { default as CardHero } from './Card/Hero';
+export { default as CardSearch } from './Card/Search';
 
 export { default as Link } from './Link';
 
