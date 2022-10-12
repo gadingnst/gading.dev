@@ -5,7 +5,7 @@ import { createStore } from 'swr-global-state';
  * @returns Active Modal state and setter
  */
 const useActiveModals = createStore<string[]>({
-  key: '@gading.dev/isActiveModal',
+  key: '@gading.dev/active-modals',
   initial: []
 });
 
