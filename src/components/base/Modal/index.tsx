@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useMounted, useToggler, useOutsideClick, useUpdated } from '@/hooks';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './index.module.css';
-import useActiveModals from '@/hooks/stores/useActiveModal';
+import useActiveModals from '@/hooks/stores/useActiveModals';
 
 export interface Props {
   show: boolean;
