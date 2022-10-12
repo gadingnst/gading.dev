@@ -1,9 +1,8 @@
-import { FunctionComponent, PropsWithChildren, useId, useRef } from 'react';
+import { FunctionComponent, PropsWithChildren, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useMounted, useToggler, useOutsideClick, useUpdated } from '@/hooks';
+import { useMounted, useToggler, useOutsideClick } from '@/hooks';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './index.module.css';
-import useActiveModals from '@/hooks/stores/useActiveModals';
 
 export interface Props {
   show: boolean;
@@ -19,25 +18,14 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     toggler
   } = props;
 
-  const modalId = useId();
   const refContent = useRef<HTMLDivElement>(null);
   const [renderable, setRenderable] = useToggler();
-  const [, setActiveModals] = useActiveModals();
 
   useMounted(setRenderable);
 
   useOutsideClick(() => {
     toggler(false);
   }, [refContent]);
-
-  useUpdated(() => {
-    if (show) {
-      setActiveModals((prev) => [...prev, modalId]);
-    }
-    return () => {
-      setActiveModals((prev) => prev.filter((id => id !== modalId)));
-    };
-  }, [show]);
 
   if (renderable) {
     const Component = (

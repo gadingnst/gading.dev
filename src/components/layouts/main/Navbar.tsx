@@ -8,7 +8,7 @@ import SVG from '@/components/base/Image/SVG';
 import Modal from '@/components/base/Modal';
 import Dropdown from '@/components/base/Dropdown';
 
-import { useToggler, useMounted } from '@/hooks';
+import { useToggler, useMounted, useUpdated } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
@@ -77,6 +77,7 @@ const LocaleItem: FunctionComponent<PropsWithChildren<LocaleItemProps>> = (props
 const Navbar: FunctionComponent<Props> = (props) => {
   const { title, className, localeChange, onLocaleChange } = props;
   const [transparent, setTransparent] = useState(true);
+  const [modalClass, setModalClass] = useState('');
   const [modalVisibility, modalToggler] = useToggler();
   const { pathname, locale, asPath } = useRouter();
   const [theme] = useAppTheme();
@@ -106,6 +107,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
       window.removeEventListener('scroll', onScroll);
     };
   });
+
+  useUpdated(() => {
+    if (modalVisibility) {
+      setModalClass('mt-12');
+    }
+    return () => {
+      setModalClass('');
+    };
+  }, [modalVisibility]);
 
   return (
     <Fragment>
@@ -188,7 +198,8 @@ const Navbar: FunctionComponent<Props> = (props) => {
         toggler={modalToggler}
         className={clsxm(
           styles['header-mobile'],
-          'bg-white self-start justify-self-center dark:bg-dark-60'
+          'bg-white self-start justify-self-center -mt-[300px] dark:bg-dark-60',
+          modalClass,
         )}
       >
         <div className="flex items-center justify-between">

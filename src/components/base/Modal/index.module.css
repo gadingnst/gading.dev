@@ -1,7 +1,7 @@
 .modal {
   animation: fade-in 200ms ease-in-out;
   animation-fill-mode: forwards;
-  @apply flex justify-center items-center inset-0 fixed w-full h-screen px-40 z-50 opacity-0;
+  @apply flex justify-center items-center inset-0 fixed w-full h-screen px-40 z-50 opacity-0 backdrop-filter backdrop-blur-sm;
 }
 
 .modal-overlay {
