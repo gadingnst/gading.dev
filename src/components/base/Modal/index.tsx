@@ -1,8 +1,9 @@
-import { FunctionComponent, PropsWithChildren, useRef } from 'react';
+import { FunctionComponent, PropsWithChildren, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useMounted, useToggler, useOutsideClick } from '@/hooks';
+import { useMounted, useToggler, useOutsideClick, useUpdated } from '@/hooks';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './index.module.css';
+import useActiveModals from '@/hooks/stores/useActiveModal';
 
 export interface Props {
   show: boolean;
@@ -18,8 +19,10 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     toggler
   } = props;
 
-  const [renderable, setRenderable] = useToggler();
+  const modalId = useId();
   const refContent = useRef<HTMLDivElement>(null);
+  const [renderable, setRenderable] = useToggler();
+  const [, setActiveModals] = useActiveModals();
 
   useMounted(setRenderable);
 
@@ -27,9 +30,18 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     toggler(false);
   }, [refContent]);
 
+  useUpdated(() => {
+    if (show) {
+      setActiveModals((prev) => [...prev, modalId]);
+    }
+    return () => {
+      setActiveModals((prev) => prev.filter((id => id !== modalId)));
+    };
+  }, [show]);
+
   if (renderable) {
     const Component = (
-      <div role="dialog" className={styles['modal-overlay']}>
+      <div role="dialog" className={styles['modal']}>
         <div
           ref={refContent}
           className={clsxm([
@@ -39,6 +51,7 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
         >
           {children}
         </div>
+        <figure className={styles['modal-overlay']} />
       </div>
     );
     return show ? createPortal(Component, document.body) : null;
