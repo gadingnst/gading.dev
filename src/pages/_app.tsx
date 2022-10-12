@@ -4,7 +4,7 @@ import { Fragment, FunctionComponent, useMemo, useRef } from 'react';
 import NProgress from 'nextjs-progressbar';
 import { useMounted, useUpdated } from '@/hooks';
 import useAppTheme from '@/hooks/stores/useAppTheme';
-import useActiveModals from '@/hooks/stores/useActiveModal';
+import useActiveModals from '@/hooks/stores/useActiveModals';
 import { ANALYTICS_ID, IS_DEV } from '@/utils/config';
 import '@/styles/globals.css';
 
