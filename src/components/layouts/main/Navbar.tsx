@@ -109,12 +109,8 @@ const Navbar: FunctionComponent<Props> = (props) => {
   });
 
   useUpdated(() => {
-    if (modalVisibility) {
-      setModalClass('mt-12');
-    }
-    return () => {
-      setModalClass('');
-    };
+    const newClass = modalVisibility ? 'mt-12 opacity-100' : '';
+    setModalClass(newClass);
   }, [modalVisibility]);
 
   return (
@@ -185,7 +181,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
               <SVG
                 stroke="white"
                 src={IconHamburger}
-                className="cursor-pointer"
+                className={`cursor-pointer transition-all duration-150 ${modalClass ? 'scale-50 opacity-0' : 'scale-100 opacity-100'}`}
                 onClick={modalToggler}
                 size={32}
               />
@@ -198,7 +194,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
         toggler={modalToggler}
         className={clsxm(
           styles['header-mobile'],
-          'bg-white self-start justify-self-center -mt-[300px] dark:bg-dark-60',
+          'bg-white self-start justify-self-center opacity-0 -mt-52 dark:bg-dark-60',
           modalClass,
         )}
       >

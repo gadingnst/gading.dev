@@ -69,10 +69,11 @@ const Footer: FunctionComponent<Props> = (props) => {
         <div className="flex items-center relative h-full my-24 lg:my-0">
           {socialLinks.map((socialLink) => (
             <Button
+              disableHover
               key={socialLink.url}
               href={socialLink.url}
               delay={300}
-              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 hover:-mt-8`}
+              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 hover:-mt-8 hover:scale-105`}
             >
               <SVG fill="white" size={14} src={socialLink.logo} />
             </Button>

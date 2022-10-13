@@ -9,6 +9,7 @@ export interface Props {
   href?: string;
   locale?: string;
   delay?: number;
+  disableHover?: boolean;
   onClick?: <T>(event: MouseEvent<T, globalThis.MouseEvent>) => void;
 }
 
@@ -20,15 +21,19 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     href,
     onClick,
     locale,
+    disableHover,
     delay
   } = props;
 
   const withDelay = useDelayedAction(delay);
 
-  const classes = useMemo(() => (
-    'relative cursor-pointer transition-all duration-150 p-8 '
-    + 'hover:scale-105 active:scale-95 active:outline-1 active:outline-white'
-  ), []);
+  const classes = useMemo(() => {
+    let defaultClass = 'relative cursor-pointer p-8 duration-150 transition-all active:scale-95 active:outline-1 active:outline-light dark:active:outline-white';
+    if (!disableHover) {
+      defaultClass += ' hover:-translate-y-2 hover:shadow-xl active:shadow-none';
+    }
+    return defaultClass;
+  }, [disableHover]);
 
   const onClickBtn = useCallback((event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     event.preventDefault();
@@ -44,7 +49,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
         delay={delay}
         href={href}
         onClick={onClick}
-        className={clsxm(classes, className)}
+        className={clsxm(classes, className, 'hover:no-underline')}
       >
         {children || text}
       </Link>
@@ -66,6 +71,7 @@ Button.defaultProps = {
   text: '',
   className: 'bg-primary rounded-8',
   href: '',
+  disableHover: false,
   onClick: () => void 0
 };
 

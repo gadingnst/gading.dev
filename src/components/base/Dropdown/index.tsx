@@ -78,6 +78,7 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
       )}
     >
       <Button
+        disableHover
         onClick={toggler}
         className={clsxm(styles.button, btnClassName)}
       >

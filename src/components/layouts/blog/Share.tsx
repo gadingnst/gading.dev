@@ -97,10 +97,11 @@ const Share: FunctionComponent<Props> = (props) => {
       <div className="relative flex justify-center items-center flex-wrap">
         {socialShares.map((social) => (
           <Button
+            disableHover
             key={social.color}
             onClick={onShare(social)}
             delay={300}
-            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 umami--click--share-${social.color.substring(3)}`}
+            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 hover:scale-105 umami--click--share-${social.color.substring(3)}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
           </Button>
