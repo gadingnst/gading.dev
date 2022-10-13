@@ -13,6 +13,7 @@ const ButtonClose: FunctionComponent<Props> = (props) => {
 
   return (
     <Button
+      disableHover
       className={clsxm(styles['close-button'], className)}
       onClick={onClick}
     >

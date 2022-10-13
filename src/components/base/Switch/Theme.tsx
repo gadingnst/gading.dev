@@ -29,7 +29,7 @@ const SwitchTheme: FunctionComponent<Props> = (props) => {
   return (
     <span className={clsxm('cursor-pointer text-white dark:text-white', className)} onClick={onChangeTheme}>
       <SVG
-        className="transition-transform active:scale-75"
+        className="transition-transform active:scale-50"
         fill="none"
         stroke="white"
         strokeWidth="2"

@@ -71,8 +71,8 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       role="link"
       className={clsxm([
         disabled && 'cursor-not-allowed',
-        'transition-all hover:util--underline-dotted hover:underline-offset-2',
-        className
+        className,
+        'transition-all hover:util--underline-dotted hover:underline-offset-2'
       ])}
       href={link}
       onClick={clickHandler}
