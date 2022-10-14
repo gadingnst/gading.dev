@@ -9,6 +9,7 @@ import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
 import Content from '@/components/layouts/main/Content';
 import Footer from '@/components/layouts/main/Footer';
+import createContentLocales from '@/utils/helpers/locales';
 
 export type Props = {
   contents: ContentMeta[];
@@ -16,6 +17,13 @@ export type Props = {
   total: number;
   pageCurrent?: number;
 };
+
+export const withLocales = createContentLocales({
+  desc: {
+    en: 'Coding, work, life, and whatever i want.',
+    id: 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+  }
+});
 
 const BlogPageList: FunctionComponent<Props> = (props) => {
   const {
@@ -26,6 +34,8 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
   } = props;
 
   const router = useRouter();
+
+  const locales = useMemo(() => withLocales(locale), [locale]);
 
   const pageCount = useMemo(() => {
     return Math.ceil(total / BLOG_PAGINATION_LIMIT);
@@ -65,11 +75,7 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
             transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
             className="text-lg px-8 text-white dark:text-white"
           >
-            {
-              locale === 'en'
-                ? 'Coding, work, life, and whatever i want.'
-                : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
-            }”
+            {locales.desc}”
           </motion.p>
         </div>
       </Banner>

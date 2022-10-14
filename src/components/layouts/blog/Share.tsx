@@ -11,6 +11,7 @@ import IconTwitter from '@/assets/icons/logo/twitter.svg';
 import IconTumblr from '@/assets/icons/logo/tumblr.svg';
 import IconWhatsapp from '@/assets/icons/logo/whatsapp.svg';
 import IconTelegram from '@/assets/icons/logo/telegram.svg';
+import createContentLocales from '@/utils/helpers/locales';
 
 interface Props {
   path: string;
@@ -57,9 +58,18 @@ const socialShares: SocialShare[] = [
   }
 ];
 
+const withLocales = createContentLocales({
+  share: {
+    en: 'Share',
+    id: 'Bagikan'
+  }
+});
+
 const Share: FunctionComponent<Props> = (props) => {
   const { path, meta, locale } = props;
   const { title, description, tags } = meta;
+
+  const locales = useMemo(() => withLocales(locale), [locale]);
 
   const socialShareUrl = useMemo(() => {
     const url = `${BASE_URL}/${path}`;
@@ -92,7 +102,7 @@ const Share: FunctionComponent<Props> = (props) => {
   return (
     <div className="mt-40">
       <h4 className="text-center mb-12">
-        {locale === 'id' ? 'Bagikan' : 'Share'}
+        {locales.share}
       </h4>
       <div className="relative flex justify-center items-center flex-wrap">
         {socialShares.map((social) => (
