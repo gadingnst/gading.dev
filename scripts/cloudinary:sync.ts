@@ -28,7 +28,7 @@ const imgExtensions = new Set(imgExts);
  * @param dir - directory to be read
  * @see https://stackoverflow.com/a/45130990
  */
-export async function* getFiles(dir: string): any {
+export async function* getFiles(dir: string) {
   const dirents = await readdir(dir, { withFileTypes: true });
   for (const dirent of dirents) {
     const res = Path.resolve(dir, dirent.name);
