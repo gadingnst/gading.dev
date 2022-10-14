@@ -1,11 +1,12 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
 import { Card, Image } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
+import createContentLocales from '@/utils/helpers/locales';
 
 type Props = {
   contents: Portfolio[];
@@ -15,6 +16,13 @@ type Props = {
 interface PortfolioListProps extends LazyComponentProps {
   contents: Portfolio[];
 }
+
+const withLocales = createContentLocales({
+  desc: {
+    en: 'Projects, experiments, and some stuff that I\'ve made.',
+    id: 'Proyek, eksperimen, dan beberapa hal yang telah saya buat.'
+  }
+});
 
 export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
   const { locale = DEFAULT_LOCALE } = ctx;
@@ -68,6 +76,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
 
 const PortfolioPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
+  const locales = useMemo(() => withLocales(locale), [locale]);
   return (
     <Fragment>
       <Navbar localeChange />
@@ -90,11 +99,7 @@ const PortfolioPage: NextPage<Props> = (props) => {
             transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
             className="text-lg px-8 text-white dark:text-white"
           >
-            {
-              locale === 'en'
-                ? 'Projects, experiments, and some stuff that I\'ve made.'
-                : 'Proyek, eksperimen, dan beberapa hal yang telah saya buat.'
-            }”
+            {locales.desc}”
           </motion.p>
         </div>
       </Banner>
@@ -116,9 +121,7 @@ export default withMainLayoutPage(PortfolioPage, ({ locale }) => {
       date: '2022-06-01',
       image: '/media/banners/2.jpg',
       tags: ['portfolio', 'gading', 'works', 'oss', 'expressjs'],
-      description: locale === 'en'
-        ? 'Projects, experiments, and some stuff that I\'ve made.'
-        : 'Proyek, eksperimen, dan beberapa hal yang telah saya buat.'
+      description: withLocales(locale).desc
     }
   };
 });

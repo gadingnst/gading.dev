@@ -2,7 +2,7 @@ import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult,
 import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
-import BlogPageList from '@/components/layouts/blog/PageList';
+import BlogPageList, { withLocales } from '@/components/layouts/blog/PageList';
 import range from '@/utils/helpers/range';
 import { I18n } from '@/types/contents';
 
@@ -72,9 +72,7 @@ export default withMainLayoutPage(BlogPagingPage, ({ locale, page }) => {
       keywords: 'gadings writing, technical writing, blog gading, gading blog',
       slug: `blog/page/${page}`,
       tags: ['blog', 'writing', 'technical writing', 'gadings'],
-      description: locale === 'en'
-        ? 'Coding, work, life, and whatever i want.'
-        : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+      description: withLocales(locale).desc
     }
   };
 });
