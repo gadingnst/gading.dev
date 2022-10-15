@@ -11,12 +11,12 @@ const xmlParser = new xml2js.Parser();
  * On Demand Revalidation trigger from sitemap.xml
  * @returns {Promise<void>}
  */
-async function revalidate(): Promise<void> {
+async function revalidate<T>(): Promise<void> {
   try {
     const response = await fetch(`${BASE_URL}/sitemap.xml`);
     const sitemap = await response.text();
     const data = await xmlParser.parseStringPromise(sitemap);
-    const paths: string[] = data.urlset.url.map((url: any) => {
+    const paths: string[] = data.urlset.url.map((url: Record<string, T>) => {
       const path: string = url.loc[0];
       return path.slice(BASE_URL.length) || '/';
     });

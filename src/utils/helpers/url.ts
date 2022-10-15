@@ -33,5 +33,5 @@ export const parseQuery = (url: string): Record<string, string> => {
     const [key, value] = item.split('=');
     acc[key] = value;
     return acc;
-  }, {} as any) : {};
+  }, {} as Record<string, string>) : {};
 };

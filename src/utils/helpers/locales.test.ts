@@ -17,7 +17,7 @@ describe('convert content locales data function', () => {
     expect(enLocales.test).toBe('Test!');
     expect(enLocales.hello).toBe('Hello');
   });
-  it('should be return `en` locale properly', () => {
+  it('should be return `id` locale properly', () => {
     const idLocales = withLocales('id');
     expect(idLocales.test).toBe('Tes!');
     expect(idLocales.hello).toBe('Halo');
