@@ -1,12 +1,13 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import { Fragment, Suspense } from 'react';
 import { CardHero, Button } from '@/components/base';
 import { Banner, Navbar, Footer, Content, ContentParser, withMainLayoutPage } from '@/components/layouts';
-import BlogCardList from '@/components/layouts/blog/CardList';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 import generateRSSFeed from '@/server/feed-rss';
+import dynamic from 'next/dynamic';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 type Props = {
   contents: MDContent;
@@ -31,6 +32,10 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
     }
   };
 };
+
+const BlogCardList = dynamic(() => import('@/components/layouts/blog/CardList'), {
+  suspense: true
+});
 
 const HomePage: NextPage<Props> = (props) => {
   const { contents, blogs, locale } = props;
@@ -64,21 +69,31 @@ const HomePage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <motion.div
-          className="flex justify-center items-center flex-col my-40"
-          initial={{ opacity: 0, y: 150 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
-        >
-          <h3 className="font-courgette">
-            Latest Posts
-          </h3>
-          <hr className="w-full mt-16" />
-          <BlogCardList contents={blogs} locale={locale} />
-          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8">
-            More Posts...
-          </Button>
-        </motion.div>
+        <LazyLoadComponent>
+          <motion.div
+            className="flex justify-center items-center flex-col my-40"
+            initial={{ opacity: 0, y: 150 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
+          >
+            <h3 className="font-courgette">
+              Latest Posts
+            </h3>
+            <hr className="w-full mt-16" />
+            <Suspense
+              fallback={
+                <div className="w-full max-w-5xl">
+                  <h4>Loading Latest Posts...</h4>
+                </div>
+              }
+            >
+              <BlogCardList contents={blogs} locale={locale} />
+            </Suspense>
+            <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8">
+              More Posts...
+            </Button>
+          </motion.div>
+        </LazyLoadComponent>
       </Content>
       <Footer />
     </Fragment>

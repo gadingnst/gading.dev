@@ -2,6 +2,7 @@ import type { FunctionComponent, PropsWithChildren } from 'react';
 import { Parallax, ParallaxProps } from 'react-parallax';
 import { motion } from 'framer-motion';
 import clsxm from '@/utils/helpers/clsxm';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 export interface Props extends ParallaxProps {
   overlay?: number;
@@ -20,22 +21,24 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     ...otherProps
   } = props;
   return (
-    <Parallax
-      {...otherProps}
-      bgImage={bgImage}
-      bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
-    >
-      <motion.div
-        initial={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}
-        animate={{ backgroundColor: `rgba(0, 0, 0, ${overlay})` }}
-        transition={{ type: 'spring', duration: 1.25 }}
-        className="flex items-center justify-center absoulte h-full w-full"
+    <LazyLoadComponent>
+      <Parallax
+        {...otherProps}
+        bgImage={bgImage}
+        bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
       >
-        <div className={containerClassName} style={{ height }}>
-          {children}
-        </div>
-      </motion.div>
-    </Parallax>
+        <motion.div
+          initial={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}
+          animate={{ backgroundColor: `rgba(0, 0, 0, ${overlay})` }}
+          transition={{ type: 'spring', duration: 1.25 }}
+          className="flex items-center justify-center absoulte h-full w-full"
+        >
+          <div className={containerClassName} style={{ height }}>
+            {children}
+          </div>
+        </motion.div>
+      </Parallax>
+    </LazyLoadComponent>
   );
 };
 
