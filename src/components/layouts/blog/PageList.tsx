@@ -1,10 +1,10 @@
-import { Fragment, FunctionComponent, useCallback, useMemo } from 'react';
+import { Fragment, FunctionComponent, Suspense, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import type { ContentMeta } from '@/server/content-parser';
-import { Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
-import { useRouter } from 'next/router';
 import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
 import Content from '@/components/layouts/main/Content';
@@ -23,6 +23,10 @@ export const withLocales = createContentLocales({
     en: 'Coding, work, life, and whatever i want.',
     id: 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
   }
+});
+
+const Pagination = dynamic(() => import('@/components/base/Pagination'), {
+  suspense: true
 });
 
 const BlogPageList: FunctionComponent<Props> = (props) => {
@@ -90,11 +94,21 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
             <h4 className="mb-16">
               Page {pageCurrent} of {pageCount}
             </h4>
-            <Pagination
-              onPageChange={handlePageChange}
-              value={pageCurrent}
-              pageCount={pageCount}
-            />
+            <Suspense
+              fallback={
+                <div className="container max-w-5xl mt-40 mx-auto">
+                  <h4 className="text-center mb-12">
+                    Loading Pagination..
+                  </h4>
+                </div>
+              }
+            >
+              <Pagination
+                onPageChange={handlePageChange}
+                value={pageCurrent}
+                pageCount={pageCount}
+              />
+            </Suspense>
           </div>
         )}
       </Content>

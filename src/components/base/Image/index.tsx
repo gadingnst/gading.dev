@@ -62,15 +62,16 @@ const Image: FunctionComponent<Props> = (props) => {
   const ImageComponent = (
     <span className="w-full flex relative items-center justify-center">
       <LazyLoadImage
+        delayTime={1500}
+        useIntersectionObserver
         {...lazyloadProps}
+        effect="blur"
         src={IS_DEV ? src : source}
         placeholderSrc={IS_DEV ? src : placeholder}
         style={{ ...style, height, width }}
-        effect="blur"
         afterLoad={handleLoad}
         className={clsxm('min-h-[50px] select-none', className)}
         wrapperClassName={clsxm(blurDataURL && loading ? styles.blur : '', wrapperClassName)}
-        useIntersectionObserver
       />
       {loading && (
         <span className={clsxm(styles.loader, 'absolute')} />

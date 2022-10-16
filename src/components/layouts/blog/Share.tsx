@@ -1,4 +1,5 @@
 import { FunctionComponent, useCallback, useMemo } from 'react';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { Button, SVG } from '@/components/base';
 import { I18nLocales } from '@/types/contents';
 import { AUTHOR_TWITTER, BASE_URL } from '@/utils/config';
@@ -100,24 +101,26 @@ const Share: FunctionComponent<Props> = (props) => {
   }, [socialShareUrl]);
 
   return (
-    <div className="mt-40">
-      <h4 className="text-center mb-12">
-        {locales.share}
-      </h4>
-      <div className="relative flex justify-center items-center flex-wrap">
-        {socialShares.map((social) => (
-          <Button
-            disableHover
-            key={social.color}
-            onClick={onShare(social)}
-            delay={300}
-            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 hover:scale-105 umami--click--share-${social.color.substring(3)}`}
-          >
-            <SVG fill="white" size={24} src={social.logo} />
-          </Button>
-        ))}
+    <LazyLoadComponent>
+      <div className="mt-40">
+        <h4 className="text-center mb-12">
+          {locales.share}
+        </h4>
+        <div className="relative flex justify-center items-center flex-wrap">
+          {socialShares.map((social) => (
+            <Button
+              disableHover
+              key={social.color}
+              onClick={onShare(social)}
+              delay={300}
+              className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 hover:scale-105 umami--click--share-${social.color.substring(3)}`}
+            >
+              <SVG fill="white" size={24} src={social.logo} />
+            </Button>
+          ))}
+        </div>
       </div>
-    </div>
+    </LazyLoadComponent>
   );
 };
 
