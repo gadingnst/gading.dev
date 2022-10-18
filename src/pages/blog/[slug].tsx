@@ -2,7 +2,6 @@ import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult,
 import dynamic from 'next/dynamic';
 import type { I18nLocales } from '@/types/contents';
 import { Fragment, Suspense, useCallback, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import { CardHero } from '@/components/base';
 import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
@@ -74,34 +73,20 @@ const BlogDetailPage: NextPage<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="container -mt-48 px-8 md:px-0">
-          <motion.h1
-            initial={{ opacity: 0, y: -25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4"
-          >
+          <h1 className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4 opacity-0 animate-[y-t-25_.5s_ease-in-out_.1s_1_normal_forwards]">
             {meta.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="text-base sm:text-lg px-8 text-white dark:text-white"
-          >
+          </h1>
+          <p className="text-base sm:text-lg px-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
             {meta.description}”
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: 'easeInOut', duration: 0.75, delay: 0.2 }}
-          >
+          </p>
+          <div className="opacity-0 animate-[y-b-25_.75s_ease-in-out_.2s_1_normal_forwards]">
             <ContentInfo
               meta={meta}
               locale={locale}
               className="font-poppins text-xs mt-12 opacity-95"
               colorClassName="text-light-50 dark:text-light-50"
             />
-          </motion.div>
+          </div>
         </div>
       </Banner>
       <Content>

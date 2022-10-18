@@ -1,6 +1,5 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
@@ -85,22 +84,12 @@ const PortfolioPage: NextPage<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="container -mt-48">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="font-bold text-4xl mb-8 text-white dark:text-white"
-          >
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
             Portfolio
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
-            className="text-lg px-8 text-white dark:text-white"
-          >
+          </h1>
+          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
             {locales.desc}”
-          </motion.p>
+          </p>
         </div>
       </Banner>
       <Content className="flex items-center justify-center">

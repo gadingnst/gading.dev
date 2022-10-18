@@ -4,7 +4,6 @@ import { CardHero, Button } from '@/components/base';
 import { Banner, Navbar, Footer, Content, ContentParser, withMainLayoutPage } from '@/components/layouts';
 import BlogCardList from '@/components/layouts/blog/CardList';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import { motion } from 'framer-motion';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 import generateRSSFeed from '@/server/feed-rss';
 
@@ -40,22 +39,12 @@ const HomePage: NextPage<Props> = (props) => {
       <Navbar localeChange />
       <Banner bgImage="/media/banners/1.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="font-bold text-4xl mb-8 text-white dark:text-white"
-          >
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
             {meta.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
-            className="text-lg px-8 text-white dark:text-white"
-          >
+          </h1>
+          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
             {meta.description}”
-          </motion.p>
+          </p>
         </div>
       </Banner>
       <Content>
@@ -64,12 +53,7 @@ const HomePage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <motion.div
-          className="flex justify-center items-center flex-col my-40"
-          initial={{ opacity: 0, y: 150 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
-        >
+        <div className="flex justify-center items-center flex-col my-40 opacity-0 animate-[y-b-25_.5s_ease-in-out_.75s_1_normal_forwards]">
           <h3 className="font-courgette">
             Latest Posts
           </h3>
@@ -78,7 +62,7 @@ const HomePage: NextPage<Props> = (props) => {
           <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8">
             More Posts...
           </Button>
-        </motion.div>
+        </div>
       </Content>
       <Footer />
     </Fragment>
