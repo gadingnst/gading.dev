@@ -4,7 +4,6 @@ import { Fragment, Suspense } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
-import { motion } from 'framer-motion';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 import IconMail from '@/assets/icons/tools/ios/mail.svg';
@@ -93,34 +92,19 @@ const AboutPage: NextPage<Props> = (props) => {
       <Navbar localeChange />
       <Banner bgImage="/media/banners/8.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="font-bold text-4xl mb-8 text-white dark:text-white"
-          >
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
             {AUTHOR_NAME}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.2 }}
-            className="text-lg px-8 text-white dark:text-white"
-          >
+          </h1>
+          <p className="opacity-0 text-lg px-8 text-white dark:text-white animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
             {meta.description}”
-          </motion.p>
+          </p>
         </div>
       </Banner>
       <Content>
         <CardHero>
           <div className="relative flex justify-around items-start mb-24 md:mb-32 md:-mx-36">
             <LeftDesc />
-            <motion.div
-              className="-mt-100 w-[180px] h-[180px] flex flex-1 items-center justify-center"
-              initial={{ opacity: 0, y: -25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: 'easeInOut', duration: 0.5, delay: 0.5 }}
-            >
+            <div className="-mt-100 w-[180px] h-[180px] flex flex-1 items-center justify-center opacity-0 animate-[y-t-25_.75s_ease-in-out_.5s_1_normal_forwards]">
               <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl hover:-mt-12 active:shadow-md active:scale-95">
                 <Image
                   src={imgProfile}
@@ -129,7 +113,7 @@ const AboutPage: NextPage<Props> = (props) => {
                   height={180}
                 />
               </div>
-            </motion.div>
+            </div>
             <RightDesc />
           </div>
           <div>

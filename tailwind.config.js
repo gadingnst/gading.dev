@@ -161,6 +161,48 @@ module.exports = {
         'telegram': '#35ace1',
         'youtube': '#cd201f',
         'steam': '#2a475e'
+      },
+      keyframes: {
+        'scale': {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(0.8)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        },
+        'y-t-25': {
+          from: {
+            opacity: 0,
+            transform: 'translate(0, -25px)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'translate(0)'
+          }
+        },
+        'y-b-25': {
+          from: {
+            opacity: 0,
+            transform: 'translate(0, 25px)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'translate(0)'
+          }
+        },
+        'y-b-100': {
+          from: {
+            opacity: 0,
+            transform: 'translate(0, 100px)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'translate(0)'
+          }
+        }
       }
     }
   },
