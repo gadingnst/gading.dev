@@ -4,7 +4,9 @@ import type { I18nLocales } from '@/types/contents';
 import { Fragment, Suspense, useCallback, useMemo } from 'react';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import CardHero from '@/components/base/Card/Hero';
-import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
+import ContentInfo from '@/components/layouts/main/Content/Info';
+import ContentParser from '@/components/layouts/main/Content/Parser';
+import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
 type Props = {
@@ -40,7 +42,7 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
-const Share = dynamic(() => import('@/components/layouts/blog/Share'), {
+const Share = dynamic(() => import('@/components/layouts/main/Content/Share'), {
   suspense: true
 });
 

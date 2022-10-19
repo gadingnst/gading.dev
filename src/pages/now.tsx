@@ -1,6 +1,7 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { CardHero } from '@/components/base';
-import { Banner, Content, Footer, Navbar, ContentParser, withMainLayoutPage } from '@/components/layouts';
+import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
+import ContentParser from '@/components/layouts/main/Content/Parser';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment, Suspense } from 'react';
 import dynamic from 'next/dynamic';

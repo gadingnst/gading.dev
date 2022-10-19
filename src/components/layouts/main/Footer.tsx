@@ -81,7 +81,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <hr className="container lg:max-w-5xl" />
-      <div className="container w-full mx-auto my-48 text-sm max-w-5xl text-center sm:text-left">
+      <div className="container w-full mx-auto my-48 text-sm text-center lg:max-w-5xl sm:text-left">
         <span className="inline-block">&copy;&nbsp;{new Date().getFullYear()}&nbsp;</span>
         <Link className="inline-block" href={BASE_URL}>{SITE_NAME}</Link>
         <span className="inline-block mx-4">&bull;</span>
