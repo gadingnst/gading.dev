@@ -2,7 +2,8 @@ import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next
 import dynamic from 'next/dynamic';
 import { Fragment, Suspense } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
-import { Banner, Content, Navbar, Footer, withMainLayoutPage, ContentParser } from '@/components/layouts';
+import { Banner, Content, Navbar, Footer, withMainLayoutPage } from '@/components/layouts';
+import ContentParser from '@/components/layouts/main/Content/Parser';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
