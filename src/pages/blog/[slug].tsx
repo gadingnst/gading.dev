@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import type { I18nLocales } from '@/types/contents';
 import { Fragment, Suspense, useCallback, useMemo } from 'react';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
-import { CardHero } from '@/components/base';
+import CardHero from '@/components/base/Card/Hero';
 import { Banner, Content, ContentParser, ContentInfo, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
