@@ -62,18 +62,18 @@ const Footer: FunctionComponent<Props> = (props) => {
   const { className } = props;
   return (
     <footer className={clsxm('w-full h-full', className, styles.footer)}>
-      <div className="flex container mx-auto my-64 flex-col justify-between lg:max-w-5xl lg:flex-row">
-        <p className="text-2xl text-left">
+      <div className="flex container mx-auto my-64 flex-col justify-between lg:items-center lg:max-w-5xl lg:flex-row">
+        <p className="text-2xl text-left mx-4">
           Let&lsquo;s get in touch on my social.
         </p>
-        <div className="flex items-center relative h-full my-24 lg:my-0">
+        <div className="flex flex-wrap items-center my-20 lg:my-0">
           {socialLinks.map((socialLink) => (
             <Button
               disableHover
               key={socialLink.url}
               href={socialLink.url}
               delay={300}
-              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 hover:-mt-8 hover:scale-105`}
+              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-4 hover:scale-105`}
             >
               <SVG fill="white" size={14} src={socialLink.logo} />
             </Button>
