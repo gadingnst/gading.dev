@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useRef } from 'react';
-import { getChildrenByType } from 'react-nanny';
+import { getChildrenByType } from 'react-nanny/lib/es5/getChildrenByType';
 import Button from '@/components/base/Button';
 import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
