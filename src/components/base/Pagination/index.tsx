@@ -103,7 +103,7 @@ const Pagination: FunctionComponent<Props> = (props) => {
       >
         <NextLink href={handleHref(value - 1)}>
           <a className={styles['page-link']}>
-            <SVG fill="#5E72E4" size={16} src={IconArrowBack} />
+            <SVG fill="currentColor" size={16} src={IconArrowBack} />
           </a>
         </NextLink>
       </li>
@@ -129,7 +129,7 @@ const Pagination: FunctionComponent<Props> = (props) => {
       >
         <NextLink href={handleHref(value + 1)}>
           <a className={styles['page-link']}>
-            <SVG fill="#5E72E4" size={16} src={IconArrowForward} />
+            <SVG fill="currentColor" size={16} src={IconArrowForward} />
           </a>
         </NextLink>
       </li>
