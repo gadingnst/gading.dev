@@ -16,7 +16,7 @@ export interface Props {
   className?: string;
   hrefPrefix?: string;
   defaultPagesToDisplay?: number;
-  onPageChange: (page: number) => void;
+  onPageChange?: (page: number) => void;
 }
 
 const Pagination: FunctionComponent<Props> = (props) => {
@@ -24,11 +24,11 @@ const Pagination: FunctionComponent<Props> = (props) => {
     value,
     className,
     hrefPrefix,
-    onPageChange,
     total = 0,
     perPage = 10,
     pageCount = 0,
-    defaultPagesToDisplay = 5
+    defaultPagesToDisplay = 5,
+    onPageChange = () => void 0
   } = props;
 
   const totalPages = useMemo(() => {
@@ -143,7 +143,8 @@ Pagination.defaultProps = {
   pageCount: 0,
   perPage: 10,
   className: '',
-  hrefPrefix: ''
+  hrefPrefix: '',
+  onPageChange: () => void 0
 };
 
 export default Pagination;

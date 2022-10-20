@@ -3,7 +3,6 @@ import type { ContentMeta } from '@/server/content-parser';
 import { Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
-import { useRouter } from 'next/router';
 import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
 import Content from '@/components/layouts/main/Content';
@@ -32,17 +31,11 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
     pageCurrent = 1
   } = props;
 
-  const router = useRouter();
-
   const locales = useMemo(() => withLocales(locale), [locale]);
 
   const pageCount = useMemo(() => {
     return Math.ceil(total / BLOG_PAGINATION_LIMIT);
   }, [total]);
-
-  const handlePageChange = useCallback((page: number) => {
-    router.push('/blog/page/[page]', `/blog/page/${page}`);
-  }, []);
 
   const handleLocaleChange = useCallback(() => ({
     pathname: '/blog',
@@ -81,7 +74,6 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
             </h4>
             <Pagination
               hrefPrefix="/blog/page/"
-              onPageChange={handlePageChange}
               value={pageCurrent}
               pageCount={pageCount}
             />
