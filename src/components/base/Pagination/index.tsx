@@ -89,10 +89,7 @@ const Pagination: FunctionComponent<Props> = (props) => {
   }, [value]);
 
   const handleHref = useCallback((page: number) => {
-    if (!hrefPrefix) return '';
-    if (page > totalPages) return '';
-    if (page < 1) return '';
-    return hrefPrefix + page;
+    return !hrefPrefix || page > totalPages || page < 1 ? '' : hrefPrefix + page;
   }, [hrefPrefix, totalPages]);
 
   return (
