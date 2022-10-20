@@ -1,7 +1,12 @@
 import { FunctionComponent, useCallback, useMemo } from 'react';
+import NextLink from 'next/link';
+import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
 import range from '@/utils/helpers/range';
 import styles from './index.module.css';
+
+import IconArrowForward from '@/assets/icons/tools/ios/arrow-forward.svg';
+import IconArrowBack from '@/assets/icons/tools/ios/arrow-back.svg';
 
 export interface Props {
   value: number;
@@ -9,6 +14,7 @@ export interface Props {
   perPage?: number;
   pageCount?: number;
   className?: string;
+  hrefPrefix?: string;
   defaultPagesToDisplay?: number;
   onPageChange: (page: number) => void;
 }
@@ -17,6 +23,7 @@ const Pagination: FunctionComponent<Props> = (props) => {
   const {
     value,
     className,
+    hrefPrefix,
     onPageChange,
     total = 0,
     perPage = 10,
@@ -81,6 +88,13 @@ const Pagination: FunctionComponent<Props> = (props) => {
     }
   }, [value]);
 
+  const handleHref = useCallback((page: number) => {
+    if (!hrefPrefix) return '';
+    if (page > totalPages) return '';
+    if (page < 1) return '';
+    return hrefPrefix + page;
+  }, [hrefPrefix, totalPages]);
+
   return (
     <ul className={clsxm(styles.pagination, className)}>
       <li
@@ -90,9 +104,11 @@ const Pagination: FunctionComponent<Props> = (props) => {
           value === 1 ? styles.disabled : ''
         )}
       >
-        <a className={styles['page-link']}>
-          <span>Prev</span>
-        </a>
+        <NextLink href={handleHref(value - 1)}>
+          <a className={styles['page-link']}>
+            <SVG fill="#5E72E4" size={16} src={IconArrowBack} />
+          </a>
+        </NextLink>
       </li>
       {pages.map((page) => (
         <li
@@ -100,9 +116,11 @@ const Pagination: FunctionComponent<Props> = (props) => {
           onClick={handlePageChange(page)}
           className={clsxm(styles['page-item'], value === page ? styles.active : '')}
         >
-          <a className={styles['page-link']}>
-            {page}
-          </a>
+          <NextLink href={handleHref(page)}>
+            <a className={styles['page-link']}>
+              {page}
+            </a>
+          </NextLink>
         </li>
       ))}
       <li
@@ -112,9 +130,11 @@ const Pagination: FunctionComponent<Props> = (props) => {
           value === totalPages ? styles.disabled : ''
         )}
       >
-        <a className={styles['page-link']}>
-          <span>Next</span>
-        </a>
+        <NextLink href={handleHref(value + 1)}>
+          <a className={styles['page-link']}>
+            <SVG fill="#5E72E4" size={16} src={IconArrowForward} />
+          </a>
+        </NextLink>
       </li>
     </ul>
   );
@@ -125,7 +145,8 @@ Pagination.defaultProps = {
   total: 0,
   pageCount: 0,
   perPage: 10,
-  className: ''
+  className: '',
+  hrefPrefix: ''
 };
 
 export default Pagination;
