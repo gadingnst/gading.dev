@@ -15,6 +15,7 @@ import clsxm from '@/utils/helpers/clsxm';
 import IconAppLogo from '@/assets/icons/app/logo.svg';
 import IconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
 import IconHamburger from '@/assets/icons/tools/hamburger.svg';
+import IconArrowForward from '@/assets/icons/tools/ios/arrow-forward.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';
@@ -206,22 +207,31 @@ const Navbar: FunctionComponent<Props> = (props) => {
         </div>
         <hr className="my-8" />
         <div className="flex flex-col justify-center">
-          {menus.map(({ label, href }, idx) => (
-            <Link
-              key={href}
-              href={href}
-              delay={300}
-              className={clsxm(
-                'font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
-                idx === (menus.length - 1) ? 'mb-0' : '',
-                pathname === href
-                  ? 'pointer-events-none text-primary-2 dark:text-accent-2'
-                  : 'text-dark dark:text-white'
-              )}
-            >
-              {label}
-            </Link>
-          ))}
+          {menus.map(({ label, href }, idx) => {
+            const menuClass = pathname === href
+              ? 'pointer-events-none text-primary-2 dark:text-accent-2'
+              : 'text-dark dark:text-white';
+            return (
+              <Link
+                key={href}
+                href={href}
+                delay={300}
+                className={clsxm(
+                  'flex justify-between items-center font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
+                  menuClass,
+                  idx === (menus.length - 1) ? 'mb-0' : ''
+                )}
+              >
+                {label}
+                <SVG
+                  size={16}
+                  className={menuClass}
+                  src={IconArrowForward}
+                  fill="currentColor"
+                />
+              </Link>
+            );
+          })}
         </div>
       </Modal>
     </Fragment>
