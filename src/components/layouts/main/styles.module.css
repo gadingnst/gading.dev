@@ -1,7 +1,7 @@
 .header {
   @apply
     fixed flex w-full items-center p-8 delay-150
-    z-30 transition-all duration-200 md:px-16 md:py-16 select-none;
+    z-30 transition-all duration-150 md:px-16 md:py-16 select-none;
 }
 
 .header-mobile {

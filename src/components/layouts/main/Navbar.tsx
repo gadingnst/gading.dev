@@ -125,7 +125,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
           <Link
             href="/"
             className={clsxm(
-              'hidden xxs:flex justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
+              'hidden xxs:flex hover:util--text-shadow-white justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
               textShadowClass
             )}
           >
@@ -169,7 +169,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                   <span
                     className={clsxm({
                       'text-primary-2 dark:text-accent-2': pathname === href,
-                      'text-white dark:text-white': pathname !== href
+                      'text-white dark:text-white hover:util--text-shadow-white': pathname !== href
                     })}
                   >
                     {label}

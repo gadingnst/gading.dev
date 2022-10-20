@@ -3,7 +3,6 @@ import type { ContentMeta } from '@/server/content-parser';
 import { Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
-import { useRouter } from 'next/router';
 import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
 import Content from '@/components/layouts/main/Content';
@@ -32,17 +31,11 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
     pageCurrent = 1
   } = props;
 
-  const router = useRouter();
-
   const locales = useMemo(() => withLocales(locale), [locale]);
 
   const pageCount = useMemo(() => {
     return Math.ceil(total / BLOG_PAGINATION_LIMIT);
   }, [total]);
-
-  const handlePageChange = useCallback((page: number) => {
-    router.push('/blog/page/[page]', `/blog/page/${page}`);
-  }, []);
 
   const handleLocaleChange = useCallback(() => ({
     pathname: '/blog',
@@ -60,10 +53,10 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="container -mt-48">
-          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.25s_ease-in-out]">
             Blog
           </h1>
-          <p className="text-lg opacity-0 px-8 text-white dark:text-white animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
+          <p className="text-lg opacity-0 px-8 text-white dark:text-white animate-[y-b-25_.3s_ease-in-out_.2s_1_normal_forwards]">
             {locales.desc}”
           </p>
         </div>
@@ -80,7 +73,7 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
               Page {pageCurrent} of {pageCount}
             </h4>
             <Pagination
-              onPageChange={handlePageChange}
+              hrefPrefix="/blog/page/"
               value={pageCurrent}
               pageCount={pageCount}
             />

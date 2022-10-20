@@ -1,5 +1,5 @@
 .parallax-banner {
-  animation: bg-overlay 1s ease-in-out 1 normal forwards;
+  animation: bg-overlay .5s ease-in-out 1 normal forwards;
   @apply flex items-center justify-center h-full w-full;
 }
 

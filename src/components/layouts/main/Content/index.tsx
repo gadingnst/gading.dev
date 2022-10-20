@@ -13,7 +13,7 @@ const Content: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       className={clsxm(
         styles.content,
         className,
-        'opacity-0 animate-[y-b-100_.5s_ease-in-out_.3s_1_normal_forwards]'
+        'opacity-0 animate-[y-b-25_.35s_ease-in-out_.3s_1_normal_forwards]'
       )}
     >
       {children}

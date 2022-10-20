@@ -192,16 +192,6 @@ module.exports = {
             opacity: 1,
             transform: 'translate(0)'
           }
-        },
-        'y-b-100': {
-          from: {
-            opacity: 0,
-            transform: 'translate(0, 100px)'
-          },
-          to: {
-            opacity: 1,
-            transform: 'translate(0)'
-          }
         }
       }
     }

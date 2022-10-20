@@ -30,7 +30,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const classes = useMemo(() => {
     let defaultClass = 'relative cursor-pointer p-8 duration-150 transition-all active:scale-95 active:outline-1 active:outline-light dark:active:outline-white';
     if (!disableHover) {
-      defaultClass += ' hover:-translate-y-2 hover:shadow-xl active:shadow-none';
+      defaultClass += ' hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-light';
     }
     return defaultClass;
   }, [disableHover]);
@@ -59,7 +59,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <button
       role="button"
-      className={clsxm(classes, 'text-white', className)}
+      className={clsxm(classes, className, 'text-white')}
       onClick={onClickBtn}
     >
       {children || text}

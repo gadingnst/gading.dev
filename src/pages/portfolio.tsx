@@ -43,7 +43,7 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
   const { contents, scrollPosition } = props;
   return (
-    <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80">
+    <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80 min-h-[500px]">
       {contents.map((item, idx) => (
         <LazyLoadComponent key={`${item.image}-${idx}`}>
           <Card hoverEffect className="rounded-12 overflow-hidden">
@@ -86,10 +86,10 @@ const PortfolioPage: NextPage<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="container -mt-48">
-          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.25s_ease-in-out]">
             Portfolio
           </h1>
-          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
+          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.3s_ease-in-out_.2s_1_normal_forwards]">
             {locales.desc}”
           </p>
         </div>

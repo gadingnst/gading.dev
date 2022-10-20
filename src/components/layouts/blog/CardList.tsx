@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
 import NextLink from 'next/link';
-import { LazyComponentProps, LazyLoadComponent, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
+import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
 import Card from '@/components/base/Card';
 import Image from '@/components/base/Image';
 import ContentInfo from '@/components/layouts/main/Content/Info';
@@ -79,13 +79,12 @@ const BlogCardList = trackWindowScroll((props: Props) => {
   return (
     <div className={clsxm('grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2', className)}>
       {contents.map((item) => (
-        <LazyLoadComponent key={item.slugOriginal}>
-          <BlogCard
-            meta={item}
-            locale={locale}
-            scrollPosition={scrollPosition}
-          />
-        </LazyLoadComponent>
+        <BlogCard
+          key={item.slugOriginal}
+          meta={item}
+          locale={locale}
+          scrollPosition={scrollPosition}
+        />
       ))}
     </div>
   );

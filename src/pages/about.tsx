@@ -33,17 +33,29 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
 
 const LeftDesc = ({ className = 'hidden md:flex' }) => (
   <div className={`${className} items-center h-[30px] flex-1 justify-center text-center`}>
-    <div className="opacity-90">
-      <div>👨🏻‍💻</div>
-      <p className="text-light-20 dark:text-light-20">Writer,</p>
+    <div className="group hover:util--text-shadow dark:hover:util--text-shadow-white">
+      <div className="transition-transform duration-200 hover:cursor-pointer group-hover:-translate-y-4">
+        👨🏻‍💻
+      </div>
+      <p className="text-light-20 dark:text-light-20">
+        Writer,
+      </p>
     </div>
-    <div className="mx-24">
-      <div>🧐</div>
-      <p className="text-light-20 dark:text-light-20">Explorer,</p>
+    <div className="group hover:util--text-shadow dark:hover:util--text-shadow-white mx-24">
+      <div className="transition-transform duration-200 hover:cursor-pointer group-hover:-translate-y-4">
+        🧐
+      </div>
+      <p className="text-light-20 dark:text-light-20">
+        Explorer,
+      </p>
     </div>
-    <div>
-      <div>😴</div>
-      <p className="text-light-20 dark:text-light-20">Slacker</p>
+    <div className="group hover:util--text-shadow dark:hover:util--text-shadow-white">
+      <div className="transition-transform duration-200 hover:cursor-pointer group-hover:-translate-y-4">
+        😴
+      </div>
+      <p className="text-light-20 dark:text-light-20">
+        Slacker
+      </p>
     </div>
   </div>
 );
@@ -51,14 +63,15 @@ const LeftDesc = ({ className = 'hidden md:flex' }) => (
 const RightDesc = ({ className = 'hidden md:flex' }) => (
   <div className={`${className} items-center h-[30px] flex-1 justify-center`}>
     <Button
+      disableHover
       href="mailto:contact@gading.dev"
-      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-primary mx-8 hover:no-underline"
+      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-primary mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-primary"
     >
       <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
     </Button>
     <Button
       href={`${BASE_URL}/media/cv.pdf`}
-      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-info mx-8 hover:no-underline"
+      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-info mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-info"
     >
       <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
     </Button>
@@ -93,10 +106,10 @@ const AboutPage: NextPage<Props> = (props) => {
       <Navbar localeChange />
       <Banner bgImage="/media/banners/8.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
-          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.25s_ease-in-out]">
             {AUTHOR_NAME}
           </h1>
-          <p className="opacity-0 text-lg px-8 text-white dark:text-white animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
+          <p className="opacity-0 text-lg px-8 text-white dark:text-white animate-[y-b-25_.3s_ease-in-out_.2s_1_normal_forwards]">
             {meta.description}”
           </p>
         </div>
@@ -105,9 +118,10 @@ const AboutPage: NextPage<Props> = (props) => {
         <CardHero>
           <div className="relative flex justify-around items-start mb-24 md:mb-32 md:-mx-36">
             <LeftDesc />
-            <div className="-mt-100 w-[180px] h-[180px] flex flex-1 items-center justify-center opacity-0 animate-[y-t-25_.75s_ease-in-out_.5s_1_normal_forwards]">
-              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl hover:-mt-12 active:shadow-md active:scale-95">
+            <div className="-mt-100 w-[180px] h-[180px] flex flex-1 items-center justify-center opacity-0 animate-[y-t-25_.5s_ease-in-out_.5s_1_normal_forwards]">
+              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl dark:hover:shadow-accent hover:-mt-12 active:shadow-md active:scale-95">
                 <Image
+                  className="rounded-full cursor-grab active:cursor-grabbing"
                   src={imgProfile}
                   alt={AUTHOR_NAME}
                   width={180}
@@ -122,7 +136,9 @@ const AboutPage: NextPage<Props> = (props) => {
               <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-32 mb-32" />
               <LeftDesc className="flex h-[auto]" />
             </div>
-            <h3 className="text-center font-semibold mb-36">{AUTHOR_FULLNAME}</h3>
+            <h3 className="text-center font-semibold mb-36">
+              Sutan <span className="text-primary dark:text-accent-2 hover:cursor-pointer hover:underline underline-offset-4">Gading</span> Fadhillah Nasution
+            </h3>
             <ContentParser components={{ PerformanceReportsDesktop, PerformanceReportsMobile }}>
               {content}
             </ContentParser>

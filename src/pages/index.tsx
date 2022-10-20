@@ -40,10 +40,10 @@ const HomePage: NextPage<Props> = (props) => {
       <Navbar localeChange />
       <Banner bgImage="/media/banners/1.jpg" className="font-courgette text-white util--text-shadow text-center">
         <div className="container -mt-48">
-          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
+          <h1 className="font-bold text-4xl mb-8 text-white dark:text-white animate-[scale_.25s_ease-in-out]">
             {meta.title}
           </h1>
-          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.5s_ease-in-out_.2s_1_normal_forwards]">
+          <p className="text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.3s_ease-in-out_.2s_1_normal_forwards]">
             {meta.description}”
           </p>
         </div>

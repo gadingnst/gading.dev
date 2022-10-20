@@ -75,13 +75,13 @@ const BlogDetailPage: NextPage<Props> = (props) => {
         className="font-courgette text-white util--text-shadow text-center"
       >
         <div className="container -mt-48 px-8 md:px-0">
-          <h1 className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4 opacity-0 animate-[y-t-25_.5s_ease-in-out_.1s_1_normal_forwards]">
+          <h1 className="font-bold text-xl sm:text-2xl md:text-3xl mb-8 text-white dark:text-white underline underline-offset-4 opacity-0 animate-[y-t-25_.25s_ease-in-out_.1s_1_normal_forwards]">
             {meta.title}
           </h1>
-          <p className="text-base sm:text-lg px-8 text-white dark:text-white animate-[scale_.5s_ease-in-out]">
+          <p className="text-base sm:text-lg px-8 text-white dark:text-white opacity-0 animate-[y-b-25_.3s_ease-in-out_.2s_1_normal_forwards]">
             {meta.description}”
           </p>
-          <div className="opacity-0 animate-[y-b-25_.75s_ease-in-out_.2s_1_normal_forwards]">
+          <div className="opacity-0 animate-[y-b-25_.5s_ease-in-out_.3s_1_normal_forwards]">
             <ContentInfo
               meta={meta}
               locale={locale}

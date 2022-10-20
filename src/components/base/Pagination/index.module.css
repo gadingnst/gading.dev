@@ -5,15 +5,20 @@
       width: 36px;
       height: 36px;
       @apply flex items-center justify-center text-base p-0 my-0 mx-4 rounded-full cursor-pointer;
+      &:not(.active), &:not(.disabled) {
+        .page-link {
+          @apply hover:outline hover:outline-1 outline-primary dark:outline-accent;
+        }
+      }
     }
 
     &.active .page-link {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      @apply bg-primary text-white cursor-auto;
+      @apply bg-primary text-white pointer-events-none;
     }
 
     &.disabled .page-link {
-      @apply cursor-not-allowed opacity-50;
+      @apply pointer-events-none opacity-50;
     }
   }
 }
