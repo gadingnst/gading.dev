@@ -1,18 +1,18 @@
-import { FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
+import { AnchorHTMLAttributes, FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { isURL, sanitizeURL } from '@/utils/helpers/url';
 import clsxm from '@/utils/helpers/clsxm';
 import useDelayedAction from '@/hooks/useDelayedAction';
 
-export interface Props {
+export interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   asPath?: string;
-  className?: string;
+  locale?: string|false;
   disabled?: boolean;
+  delay?: number;
+  className?: string;
   target?: string;
   title?: string;
-  locale?: string|false;
-  delay?: number;
   onClick?: (event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>) => void;
 }
 
@@ -24,13 +24,17 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     href,
     asPath,
     disabled,
+    delay,
+    locale,
+    ...anchorProps
+  } = props;
+
+  const {
     className,
     title,
     target,
-    locale,
-    delay,
     onClick
-  } = props;
+  } = anchorProps;
 
   const withDelay = useDelayedAction(delay);
 
@@ -68,6 +72,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
   return (
     <a
+      {...anchorProps}
       role="link"
       className={clsxm([
         disabled && 'cursor-not-allowed',
@@ -76,7 +81,6 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       ])}
       href={link}
       onClick={clickHandler}
-      title={title}
     >
       {children}
     </a>
