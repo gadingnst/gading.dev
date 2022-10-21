@@ -7,8 +7,8 @@ import ContentParser from '@/components/layouts/main/Content/Parser';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
-import IconMail from '@/assets/icons/tools/ios/mail.svg';
-import IconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
+import IconMail from '@/assets/icons/tools/mail.svg';
+import IconBriefcase from '@/assets/icons/tools/briefcase.svg';
 import imgReportDesktop from '$/assets/images/reports/desktop.svg?url';
 import imgReportMobile from '$/assets/images/reports/mobile.svg?url';
 import imgProfile from '$/assets/images/authors/gading-talks.jpeg';
@@ -60,23 +60,27 @@ const LeftDesc = ({ className = 'hidden md:flex' }) => (
   </div>
 );
 
-const RightDesc = ({ className = 'hidden md:flex' }) => (
-  <div className={`${className} items-center h-[30px] flex-1 justify-center`}>
-    <Button
-      disableHover
-      href="mailto:contact@gading.dev"
-      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-primary mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-primary"
-    >
-      <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
-    </Button>
-    <Button
-      href={`${BASE_URL}/resume`}
-      className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-info mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-info"
-    >
-      <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
-    </Button>
-  </div>
-);
+const RightDesc = ({ className = 'hidden md:flex' }) => {
+  const btnClasses = 'flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-sm';
+  return (
+    <div className={`${className} items-center h-[30px] flex-1 justify-center`}>
+      <Button
+        disableHover
+        href="mailto:contact@gading.dev"
+        className={`${btnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--about_contact`}
+      >
+        <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
+      </Button>
+      <Button
+        disableHover
+        href={`${BASE_URL}/resume`}
+        className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--about_resume`}
+      >
+        <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
+      </Button>
+    </div>
+  );
+};
 
 const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Report Desktop' }) => {
   return (
@@ -119,7 +123,7 @@ const AboutPage: NextPage<Props> = (props) => {
           <div className="relative flex justify-around items-start mb-24 md:mb-32 md:-mx-36">
             <LeftDesc />
             <div className="-mt-100 w-[180px] h-[180px] flex flex-1 items-center justify-center opacity-0 animate-[y-t-25_.5s_ease-in-out_.5s_1_normal_forwards]">
-              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl dark:hover:shadow-accent hover:-mt-12 active:shadow-md active:scale-95">
+              <div className="rounded-full overflow-hidden transition-all shadow-lg hover:shadow-xl hover:-mt-12 active:shadow-md active:scale-95 dark:active:shadow-accent dark:hover:shadow-accent">
                 <Image
                   className="rounded-full cursor-grab active:cursor-grabbing"
                   src={imgProfile}

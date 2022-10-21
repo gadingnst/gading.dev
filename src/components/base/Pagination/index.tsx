@@ -5,8 +5,8 @@ import clsxm from '@/utils/helpers/clsxm';
 import range from '@/utils/helpers/range';
 import styles from './index.module.css';
 
-import IconArrowForward from '@/assets/icons/tools/ios/arrow-forward.svg';
-import IconArrowBack from '@/assets/icons/tools/ios/arrow-back.svg';
+import IconArrowForward from '@/assets/icons/tools/arrow-forward.svg';
+import IconArrowBack from '@/assets/icons/tools/arrow-back.svg';
 
 export interface Props {
   value: number;

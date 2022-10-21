@@ -10,4 +10,6 @@ Saya sekarang bekerja *full-time* secara *remote* di [SIRCLO](https://sirclo.com
 
 Saya bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan tren dan teknik terbaru. Dan juga dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Kamu bisa lihat-lihat halaman [About](/about) jika ingin tahu lebih banyak tentang saya.
 
-##### *Terima kasih sudah berkunjung.*
+---
+
+Kamu telah menemukan bagian dari saya di *internet*. Mari lihat-lihat dan nikmati.

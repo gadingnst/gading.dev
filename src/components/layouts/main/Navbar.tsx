@@ -15,7 +15,7 @@ import clsxm from '@/utils/helpers/clsxm';
 import IconAppLogo from '@/assets/icons/app/logo.svg';
 import IconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
 import IconHamburger from '@/assets/icons/tools/hamburger.svg';
-import IconArrowForward from '@/assets/icons/tools/ios/arrow-forward.svg';
+import IconArrowForward from '@/assets/icons/tools/arrow-forward.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';
@@ -200,7 +200,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
         )}
       >
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:no-underline hover:scale-105">
+          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:no-underline hover:scale-105 hover:util--text-shadow-white">
             {title}
           </Link>
           <ButtonClose onClick={modalToggler} />
@@ -217,7 +217,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                 href={href}
                 delay={300}
                 className={clsxm(
-                  'flex justify-between items-center font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
+                  'group flex justify-between items-center font-bold my-4 transition-all duration-100 hover:translate-x-8 active:scale-100',
                   menuClass,
                   idx === (menus.length - 1) ? 'mb-0' : ''
                 )}
