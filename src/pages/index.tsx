@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { CardHero, Button } from '@/components/base';
 import { Banner, Navbar, Footer, Content, withMainLayoutPage } from '@/components/layouts';
 import BlogCardList from '@/components/layouts/blog/CardList';
@@ -7,6 +7,7 @@ import ContentParser from '@/components/layouts/main/Content/Parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 import generateRSSFeed from '@/server/feed-rss';
+import createContentLocales from '@/utils/helpers/locales';
 
 type Props = {
   contents: MDContent;
@@ -32,9 +33,38 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
+const withLocales = createContentLocales({
+  myBlog: {
+    en: 'Read my blog',
+    id: 'Baca blog saya'
+  },
+  myPortfolio: {
+    en: 'See my portfolio',
+    id: 'Lihat portfolio saya'
+  },
+  aboutMe: {
+    en: 'Learn more About me',
+    id: 'Pelajari tentang saya'
+  },
+  thansksVisit: {
+    en: 'Thanks for visiting me',
+    id: 'Terima kasih sudah berkunjung'
+  },
+  recentPosts: {
+    en: 'Recent posts',
+    id: 'Tulisan terbaru'
+  },
+  seeMore: {
+    en: 'See more posts',
+    id: 'Lihat tulisan lainnya'
+  }
+});
+
 const HomePage: NextPage<Props> = (props) => {
   const { contents, blogs, locale } = props;
   const { meta, content } = contents;
+  const locales = useMemo(() => withLocales(locale), [locale]);
+  const btnClasses = 'text-white text-sm sm:text-base dark:text-white rounded-8 my-4 hover:shadow-lg active:shadow-sm hover:-translate-y-2';
   return (
     <Fragment>
       <Navbar localeChange />
@@ -53,15 +83,38 @@ const HomePage: NextPage<Props> = (props) => {
           <ContentParser className="text-center">
             {content}
           </ContentParser>
+          <div className="flex justify-center items-center flex-wrap text-center my-16">
+            <Button
+              disableHover
+              text={locales.myBlog}
+              href="/blog"
+              className={`${btnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--homepage_see-blog`}
+            />
+            <Button
+              disableHover
+              text={locales.aboutMe}
+              href="/about"
+              className={`${btnClasses} bg-accent active:shadow-accent-2 hover:shadow-accent-2 mx-8 umami--click--homepage_see-about`}
+            />
+            <Button
+              disableHover
+              text={locales.myPortfolio}
+              href="/portfolio"
+              className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--homepage_see-portfolio`}
+            />
+          </div>
+          <h5 className="font-bold italic text-center mt-8">
+            {locales.thansksVisit}.
+          </h5>
         </CardHero>
         <div className="flex justify-center items-center flex-col my-40 opacity-0 animate-[y-b-25_.5s_ease-in-out_.75s_1_normal_forwards]">
           <h3 className="font-courgette">
-            Latest Posts
+            {locales.recentPosts}
           </h3>
           <hr className="w-full mt-16" />
           <BlogCardList contents={blogs} locale={locale} />
-          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8">
-            More Posts...
+          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8 umami--click--homepage_more-posts">
+            {locales.seeMore}...
           </Button>
         </div>
       </Content>

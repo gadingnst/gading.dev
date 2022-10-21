@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import { Fragment, FunctionComponent, PropsWithChildren } from 'react';
 import { Link, SwitchTheme } from '@/components/base';
 import { SITE_NAME } from '@/utils/config';
-import { Content, withMainLayoutPage } from '@/components/layouts';
+import { Content, Footer, withMainLayoutPage } from '@/components/layouts';
 
 const theme = require('../../../tailwind.config').theme;
 const themeColors = Object.entries(theme.colors);
@@ -16,7 +16,7 @@ const [absoluteColors, variantColors] = themeColors.reduce((acc: any, curr) => {
 
 const ColorCard: FunctionComponent<PropsWithChildren<{ title: string; }>> =
   ({ title, children }) => (
-    <div className="flex flex-col border rounded-8 my-16 p-8">
+    <div className="flex flex-col border dark:border-white rounded-8 my-16 p-8">
       <div className="w-[120px] flex justify-center items-center">
         <p className="font-bold px-16 text-center text-lg">{title}</p>
       </div>
@@ -53,29 +53,34 @@ const renderColorMap = (name: string, color: string) => {
 const ColorDocs: NextPage = () => {
   return (
     <Fragment>
-      <div className="flex mb-24 bg-primary py-16 px-52 justify-between">
-        <Link href="/">
-          <h1 className="font-courgette font-bold text-center text-xl text-white">
-            {SITE_NAME}
-          </h1>
-        </Link>
-        <SwitchTheme />
+      <div className="flex items-center justify-center mb-24 bg-primary dark:bg-dark-40 py-16 px-52 fixed w-screen z-50">
+        <div className="flex justify-between container lg:max-w-5xl">
+          <Link href="/" className="hover:no-underline hover:util--text-shadow-white hover:scale-105">
+            <h1 className="font-courgette font-bold text-center text-xl text-white">
+              {SITE_NAME}
+            </h1>
+          </Link>
+          <SwitchTheme />
+        </div>
       </div>
-      <Content className="px-52 mb-48">
-        <h1 className="font-bold text-center text-2xl mb-16">
-          Colors System
-        </h1>
-        <div className="p-16 rounded-16 shadow-lg mb-42">
-          <ColorCard title="ABSOLUTE">
-            {absoluteColors.map(([name, value]: string[]) => renderColorMap(name, value))}
-          </ColorCard>
-          {variantColors.map(([name, value]: string[], idx: number) => (
-            <ColorCard key={idx} title={name.toUpperCase()}>
-              {renderColorMap(name, value)}
+      <Content className="px-52 mt-80 mb-48">
+        <div className="flex flex-col container lg:max-w-5xl justify-center items-center mx-auto">
+          <h1 className="font-bold text-center text-2xl mb-16">
+            Colors System
+          </h1>
+          <div className="p-16 rounded-16 shadow-lg dark:shadow-primary mb-42 w-full">
+            <ColorCard title="ABSOLUTE">
+              {absoluteColors.map(([name, value]: string[]) => renderColorMap(name, value))}
             </ColorCard>
-          ))}
+            {variantColors.map(([name, value]: string[], idx: number) => (
+              <ColorCard key={idx} title={name.toUpperCase()}>
+                {renderColorMap(name, value)}
+              </ColorCard>
+            ))}
+          </div>
         </div>
       </Content>
+      <Footer />
     </Fragment>
   );
 };
