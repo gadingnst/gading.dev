@@ -9,9 +9,9 @@ import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 import IconMail from '@/assets/icons/tools/ios/mail.svg';
 import IconBriefcase from '@/assets/icons/tools/ios/briefcase.svg';
-import imgProfile from '@/assets/images/authors/gading-talks.jpeg';
-import imgReportDesktop from '@/assets/images/reports/desktop.svg?url';
-import imgReportMobile from '@/assets/images/reports/mobile.svg?url';
+import imgReportDesktop from '$/assets/images/reports/desktop.svg?url';
+import imgReportMobile from '$/assets/images/reports/mobile.svg?url';
+import imgProfile from '$/assets/images/authors/gading-talks.jpeg';
 
 type Props = {
   contents: MDContent;
@@ -70,7 +70,7 @@ const RightDesc = ({ className = 'hidden md:flex' }) => (
       <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
     </Button>
     <Button
-      href={`${BASE_URL}/media/cv.pdf`}
+      href={`${BASE_URL}/resume`}
       className="flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white bg-info mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-info"
     >
       <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume

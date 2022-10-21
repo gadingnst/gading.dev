@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const withCacheControl = (params = []) => ([
+  {
+    key: 'Cache-Control',
+    value: 'public, max-age=31536000, immutable'
+  },
+  ...params
+]);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -11,7 +19,7 @@ const nextConfig = {
   },
   images: {
     domains: ['raw.githubusercontent.com', 'res.cloudinary.com'],
-    minimumCacheTTL: 60 * 60 * 24 * 30
+    minimumCacheTTL: 60 * 60 * 24
   },
   webpack: (config) => {
     /**
@@ -40,12 +48,20 @@ const nextConfig = {
   headers: () => {
     return [
       {
+        source: '/assets/fonts/(.*)',
+        headers: withCacheControl()
+      },
+      {
+        source: '/assets/images/authors/(.*)',
+        headers: withCacheControl()
+      },
+      {
+        source: '/assets/media/banners/(.*)',
+        headers: withCacheControl()
+      },
+      {
         source: '/(.*)',
         headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
-          },
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload'

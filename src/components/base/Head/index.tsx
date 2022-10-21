@@ -9,9 +9,9 @@ export interface Props {
   locale?: I18nLocales|string;
   meta: {
     title: string;
+    slug: string;
     description?: string;
     keywords?: string;
-    slug?: string;
     date?: string;
     image?: string;
     tags?: string[];
@@ -33,12 +33,12 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   } = props;
 
   const {
-    title = SITE_NAME,
+    title,
+    slug,
     description = 'Software Engineer from Palembang, Indonesia 🇮🇩',
-    image = 'https://avatars.githubusercontent.com/u/38345393?v=4',
+    image = `${BASE_URL}/assets/images/authors/gading-talks`,
     date = day().format('YYYY-MM-DD'),
     keywords = '',
-    slug = '',
     tags = []
   } = meta;
 
