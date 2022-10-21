@@ -38,6 +38,7 @@ export const BlogCard: FunctionComponent<CardProps> = (props) => {
             width="100%"
             height={200}
             scaling={0.45}
+            delayLoad={300}
             scrollPosition={scrollPosition}
           />
         </div>

@@ -2,7 +2,7 @@ import type { ImageProps } from 'next/image';
 import { FunctionComponent, useCallback, useMemo } from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import Zoom from 'react-medium-image-zoom';
-import { useToggler } from '@/hooks';
+import { useDelayedAction, useToggler } from '@/hooks';
 import cloudinary from '@/utils/helpers/cloudinary';
 import clsxm from '@/utils/helpers/clsxm';
 import { IS_DEV } from '@/utils/config';
@@ -14,6 +14,7 @@ interface Props extends LazyLoadImageProps {
   src: ImageProps['src'];
   zoomable?: boolean;
   scaling?: number;
+  delayLoad?: number;
   placeholderScaling?: number;
 }
 
@@ -25,6 +26,7 @@ const Image: FunctionComponent<Props> = (props) => {
     zoomable,
     placeholderScaling,
     scaling = 1,
+    delayLoad = 150,
     ...lazyloadProps
   } = props;
 
@@ -39,6 +41,7 @@ const Image: FunctionComponent<Props> = (props) => {
 
   const blurDataURL = (srcProps as any)?.blurDataURL;
   const [loading, setLoading] = useToggler(true);
+  const withDelay = useDelayedAction(delayLoad);
 
   const src = useMemo(() => (srcProps as any)?.src ?? srcProps, [srcProps]);
 
@@ -54,13 +57,15 @@ const Image: FunctionComponent<Props> = (props) => {
       : src;
   }, [src, scaling]);
 
-  const handleLoad = useCallback(() => {
-    setLoading(false);
-    afterLoad?.();
+  const handleAfterLoad = useCallback(() => {
+    withDelay(() => {
+      setLoading(false);
+      afterLoad?.();
+    });
   }, []);
 
   const ImageComponent = (
-    <span className="w-full flex relative items-center justify-center">
+    <span className="flex relative items-center justify-center">
       <LazyLoadImage
         useIntersectionObserver
         decoding="async"
@@ -70,9 +75,9 @@ const Image: FunctionComponent<Props> = (props) => {
         placeholderSrc={IS_DEV ? src : placeholder}
         style={{ ...style, height, width }}
         effect="blur"
-        afterLoad={handleLoad}
+        afterLoad={handleAfterLoad}
         className={clsxm('min-h-[50px] select-none', className)}
-        wrapperClassName={clsxm(blurDataURL && loading ? styles.blur : '', wrapperClassName)}
+        wrapperClassName={clsxm(loading ? styles.blur : '', wrapperClassName)}
       />
       {loading && (
         <span className={clsxm(styles.loader, 'absolute')} />

@@ -24,7 +24,8 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
         zoomable
         src={src}
         alt={alt}
-        wrapperClassName="content-image items-center w-full"
+        delayLoad={500}
+        wrapperClassName="content-image items-center w-full rounded-8"
         className="mx-auto rounded-8 max-h-[500px] cursor-pointer"
       />
       <span className="block text-center italic text-xs mt-8">

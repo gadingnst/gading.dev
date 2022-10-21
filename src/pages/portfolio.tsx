@@ -57,6 +57,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
                 className="object-contain"
                 wrapperClassName="w-full"
                 scaling={0.5}
+                delayLoad={300}
                 scrollPosition={scrollPosition}
               />
             </div>
