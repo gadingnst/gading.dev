@@ -130,6 +130,7 @@ const AboutPage: NextPage<Props> = (props) => {
                   alt={AUTHOR_NAME}
                   width={180}
                   height={180}
+                  delayLoad={750}
                 />
               </div>
             </div>

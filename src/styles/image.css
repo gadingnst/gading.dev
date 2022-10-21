@@ -8,10 +8,10 @@
 
 /* img loaded */
 .lazy-load-image-background.blur.lazy-load-image-loaded {
-  transition: filter .5s;
+  transition: filter .3s;
   @apply blur-none;
   & > img {
-    transition: opacity .5s;
+    transition: opacity .3s;
     @apply opacity-100;
   }
 }
@@ -23,10 +23,8 @@ body > div[aria-label="Zoomed image"], .content-parser {
 }
 
 body > div[aria-label="Zoomed image"] {
-  & > div {
-    @apply bg-white dark:bg-dark-60 !important;
-  }
+  @apply backdrop-blur-sm;
   img {
-    @apply rounded-0;
+    @apply rounded-0 bg-white dark:bg-dark-60 !important;
   }
 }
