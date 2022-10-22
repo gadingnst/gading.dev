@@ -12,3 +12,5 @@ export { default as ButtonClose } from './Button/Close';
 export { default as Pagination } from './Pagination';
 
 export { default as SwitchTheme } from './Switch/Theme';
+
+export { default as LazyLoad } from './LazyLoad';

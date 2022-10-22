@@ -7,8 +7,8 @@ import ContentParser from '@/components/layouts/main/Content/Parser';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
-import IconMail from '@/assets/icons/tools/mail.svg';
-import IconBriefcase from '@/assets/icons/tools/briefcase.svg';
+import IconMail from '$/assets/icons/tools/mail.svg';
+import IconBriefcase from '$/assets/icons/tools/briefcase.svg';
 import imgReportDesktop from '$/assets/images/reports/desktop.svg?url';
 import imgReportMobile from '$/assets/images/reports/mobile.svg?url';
 import imgProfile from '$/assets/images/authors/gading-talks.jpeg';

@@ -3,7 +3,7 @@ import { getChildrenByType } from 'react-nanny/lib/es5/getChildrenByType';
 import Button from '@/components/base/Button';
 import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
-import IconCaretDown from '@/assets/icons/tools/caret-down.svg';
+import IconCaretDown from '$/assets/icons/tools/caret-down.svg';
 import { useToggler, useOutsideClick } from '@/hooks';
 import styles from './index.module.css';
 

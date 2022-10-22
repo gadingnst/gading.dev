@@ -2,8 +2,8 @@ import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next
 import { Fragment, useMemo } from 'react';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import { LazyComponentProps, LazyLoadComponent, trackWindowScroll } from 'react-lazy-load-image-component';
-import { Card, Image } from '@/components/base';
+import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
+import { Card, Image, LazyLoad } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import createContentLocales from '@/utils/helpers/locales';
 
@@ -45,7 +45,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
   return (
     <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80 min-h-[500px]">
       {contents.map((item, idx) => (
-        <LazyLoadComponent key={`${item.image}-${idx}`}>
+        <LazyLoad key={`${item.image}-${idx}`}>
           <Card hoverEffect className="rounded-12 overflow-hidden">
             <div className="relative w-full overflow-hidden h-[200px]">
               <Image
@@ -70,7 +70,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
               </p>
             </div>
           </Card>
-        </LazyLoadComponent>
+        </LazyLoad>
       ))}
     </div>
   );
