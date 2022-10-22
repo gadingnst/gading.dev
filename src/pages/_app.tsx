@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { Fragment, FunctionComponent, useMemo, useRef } from 'react';
@@ -29,6 +30,7 @@ const App: FunctionComponent<AppProps> = (props) => {
   return (
     <Fragment>
       <NProgress color={nprogressColor} />
+      <Script strategy="beforeInteractive" src="/assets/scripts/noflash.js" />
       <Component {...pageProps} />
       {!IS_DEV && (
         <Script async defer data-website-id={ANALYTICS_ID} src="https://analytics.gading.dev/umami.js" />
