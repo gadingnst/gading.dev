@@ -52,7 +52,7 @@
   }
 
   table {
-    @apply mx-auto max-w-full;
+    @apply mx-auto max-w-full text-sm sm:text-base;
     th, td {
       @apply border px-8 py-4;
       &[class^="rrt-del-td"] {
@@ -66,7 +66,8 @@
         @apply px-8 py-4 md:hidden;
         span {
           &[class^="rrt-new-tr__span-other"] {
-            @apply font-bold;
+            line-height: 1.5;
+            @apply font-bold italic mr-8;
           }
           &[class^="rrt-new-tr__span-top"] {
             @apply block w-full border-b mb-8 text-center font-bold;
