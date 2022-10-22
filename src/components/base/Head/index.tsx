@@ -50,7 +50,7 @@ const Head: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
   const combinedKeywords = useMemo(() => {
     return [...tags, keywords].join(', ')
-      + 'gading\'s hideout, sutanlab, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading\'s website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab';
+      + 'gading\'s hideout, gadingnst, gadingnstn, gadingdev, gading.dev, gading dev, gading fadhillah, gading developer, sutan nasution, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading\'s website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab';
   }, [tags, keywords]);
 
   return (
