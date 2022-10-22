@@ -3,8 +3,8 @@ import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 
-import IconCrescent from '@/assets/icons/tools/crescent.svg';
-import IconSun from '@/assets/icons/tools/sun.svg';
+import IconCrescent from '$/assets/icons/tools/crescent.svg';
+import IconSun from '$/assets/icons/tools/sun.svg';
 
 export interface Props {
   className?: string;

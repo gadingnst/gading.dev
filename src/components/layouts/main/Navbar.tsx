@@ -12,10 +12,10 @@ import { useToggler, useMounted, useUpdated } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
-import IconAppLogo from '@/assets/icons/app/logo.svg';
-import IconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
-import IconHamburger from '@/assets/icons/tools/hamburger.svg';
-import IconArrowForward from '@/assets/icons/tools/arrow-forward.svg';
+import IconAppLogo from '$/assets/icons/app/logo.svg';
+import IconAppLogoSecondary from '$/assets/icons/app/logo-secondary.svg';
+import IconHamburger from '$/assets/icons/tools/hamburger.svg';
+import IconArrowForward from '$/assets/icons/tools/arrow-forward.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';

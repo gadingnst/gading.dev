@@ -5,12 +5,12 @@ import { AUTHOR_TWITTER, BASE_URL } from '@/utils/config';
 import { ContentMeta } from '@/server/content-parser';
 import createPopUp from '@/utils/helpers/popup';
 
-import IconFacebook from '@/assets/icons/logo/facebook.svg';
-import IconLinkedin from '@/assets/icons/logo/linkedin.svg';
-import IconTwitter from '@/assets/icons/logo/twitter.svg';
-import IconTumblr from '@/assets/icons/logo/tumblr.svg';
-import IconWhatsapp from '@/assets/icons/logo/whatsapp.svg';
-import IconTelegram from '@/assets/icons/logo/telegram.svg';
+import IconFacebook from '$/assets/icons/logo/facebook.svg';
+import IconLinkedin from '$/assets/icons/logo/linkedin.svg';
+import IconTwitter from '$/assets/icons/logo/twitter.svg';
+import IconTumblr from '$/assets/icons/logo/tumblr.svg';
+import IconWhatsapp from '$/assets/icons/logo/whatsapp.svg';
+import IconTelegram from '$/assets/icons/logo/telegram.svg';
 import createContentLocales from '@/utils/helpers/locales';
 
 interface Props {

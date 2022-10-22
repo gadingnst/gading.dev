@@ -152,21 +152,26 @@ See: [MathJax cheatseet](https://jojozhuang.github.io/tutorial/mathjax-cheat-she
 
 
 ## Tables
+This table is responsive, using [rehype-responsive-tables](https://codsen.com/os/rehype-responsive-tables)
 
-Title 1               | Title 2               | Title 3               | Title 4
+Name                  | Age                   | City                  | Role
 --------------------- | :-------------------: | :-------------------- | --------------------:
-lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
+Gading                | 19                    | Palembang             | Software Engineer
+James                 | 27                    | Jakarta               | Engineering Manager
+Eugene                | 25                    | New York              | Product Manager
+Jack                  | 15                    | Bekasi                | Quality Assurance
 
 ## Embedding
 
-Plenty of social media sites offer the option of embedding certain parts of their site on your own site, such as YouTube and Twitter:
+Plenty of social media sites offer the option of embedding certain parts of their site on your own site, such as YouTube and Twitter (can used with LazyLoad):
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0uAnZHE1kaI" frameBorder="0" allowFullScreen></iframe>
-
-<a datapartner="tweetdeck" href="https://twitter.com/paululele/timelines/755079130027352064">New Collection</a> <script async src="//platform.twitter.com/widgets.js" charSet="utf-8"></script>
+<LazyLoad>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/0uAnZHE1kaI" frameBorder="0" allowFullScreen />
+  <a target="_blank" data-theme="dark" className="twitter-timeline block mx-auto text-center max-w-[250px]" href="https://twitter.com/TwitterDev/lists/national-parks?ref_src=twsrc%5Etfw">
+    A Twitter List by TwitterDev
+  </a>
+  <TwitterScript  />
+</LazyLoad>
 
 ## Inline HTML elements
 

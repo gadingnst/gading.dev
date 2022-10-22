@@ -14,12 +14,12 @@ import {
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
 
-import IconGithub from '@/assets/icons/logo/octocat.svg';
-import IconLinkedin from '@/assets/icons/logo/linkedin.svg';
-import IconInstagram from '@/assets/icons/logo/instagram.svg';
-import IconFacebook from '@/assets/icons/logo/facebook.svg';
-import IconTwitter from '@/assets/icons/logo/twitter.svg';
-import IconSteam from '@/assets/icons/logo/steam.svg';
+import IconGithub from '$/assets/icons/logo/octocat.svg';
+import IconLinkedin from '$/assets/icons/logo/linkedin.svg';
+import IconInstagram from '$/assets/icons/logo/instagram.svg';
+import IconFacebook from '$/assets/icons/logo/facebook.svg';
+import IconTwitter from '$/assets/icons/logo/twitter.svg';
+import IconSteam from '$/assets/icons/logo/steam.svg';
 
 export interface Props {
   className?: string;

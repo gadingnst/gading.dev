@@ -97,6 +97,7 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
+        <script async defer src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
         <Suspense
           fallback={
             <div className="mt-40">

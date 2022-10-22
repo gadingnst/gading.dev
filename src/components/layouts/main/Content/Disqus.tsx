@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from 'react';
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { DiscussionEmbed } from 'disqus-react';
 import { AUTHOR_NAME, DISQUS_SHORTNAME, PRODUCTION_URL } from '@/utils/config';
 import useUpdated from '@/hooks/useUpdated';
 import useAppTheme from '@/hooks/stores/useAppTheme';
+import LazyLoad from '@/components/base/LazyLoad';
 
 interface Props {
   path: string;
@@ -25,7 +25,7 @@ const Disqus: FunctionComponent<Props> = (props) => {
 
   return (
     <div className="container max-w-5xl mt-40 mx-auto">
-      <LazyLoadComponent>
+      <LazyLoad>
         <DiscussionEmbed
           key={`${locale}-${+isDark}`}
           shortname={DISQUS_SHORTNAME}
@@ -36,7 +36,7 @@ const Disqus: FunctionComponent<Props> = (props) => {
             language: locale === 'id' ? 'id' : undefined
           }}
         />
-      </LazyLoadComponent>
+      </LazyLoad>
     </div>
   );
 };
