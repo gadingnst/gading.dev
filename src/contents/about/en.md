@@ -6,17 +6,21 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/banners/1.jpg"
 ---
 
-I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* work, and also has some ability to code in ***Backend*** on *Freelance/Side-work*. Very passionate to explore about modern mobile and web technology while taking into consideration the latest trends and techniques.
+I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* work, and also has some ability to code in ***Fullstack*** on *Freelance/Side-work*.
+
+I'm passionate in exploring about modern mobile and web technology while taking into consideration about *DX (Developer Experience)*, the latest trends, and techniques.
+
+My main focus is on improving DX in the Frontend team, such as setup the boilerplate, standardization, creating utilities/libraries, research, and improving the reliability structure in codebases. My works is mostly on building services that are not *end-to-end products* on the Frontend side.
 
 I would be a fast learner in doing new things and building good teamwork either. Also, made several side or *open-source* projects on [GitHub](https://github.com/gadingnst) for fun, and maybe already useful for people who have used it.
 
-#### What I’m passionate about
-I’m a *long-life learner person*. Online developer communities, OSS projects, mentors sharing their knowledge (for free & paid), colleagues, and friends, all those people helped me get to where I am today. And I’m very grateful for that. Early on I also helped out people, contributed to some OSS projects and published my own projects on [GitHub](https://github.com/gadingnst?tab=repositories). That’s how I realized that I enjoy technical writing like in blog or software documentation, and creating educational content & interacting with another developers.
-
 #### Spelling my name
+Before getting to know more about someone, the first thing you should do is knowing how to pronounce their name properly.
+Here are the names you can use to call me:
+
 ###### ✅ These are ***correct*** :
 - Sutan
-- Gading
+- Gading (I recommend you to call me with this name)
 - Fadhillah
 - Nasution
 
@@ -27,8 +31,11 @@ I’m a *long-life learner person*. Online developer communities, OSS projects, 
 - Fadhilah *(missing one `L`)*
 - Fadilah *(missing `H` and one `L`)*
 
+#### The story behind "Gading"
+I’m a *long-life learner person*. Online developer communities, OSS projects, mentors sharing their knowledge (for free & paid), colleagues, and friends, all those people helped me get to where I am today. And I’m very grateful for that. Early on I also helped out people, contributed to some OSS projects and published my own projects on [GitHub](https://github.com/gadingnst?tab=repositories). That’s how I realized that I enjoy technical writing like in blog or software documentation, and creating educational content & interacting with another developers.
+
 #### More questions about me?
-You can check [Now](/now) page before asking more, maybe there you'll find the answer.
+Before asking me more, you can check my [Now](/now) page to know about what I'm doing in daily, maybe there you'll find the answer.
 
 ---
 

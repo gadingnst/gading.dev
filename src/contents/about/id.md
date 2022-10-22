@@ -6,17 +6,21 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/banners/1.jpg"
 ---
 
-Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh-waktu*, dan juga dapat mengerjakan ***Backend*** dalam pekerjaan *Freelance/Paruh-waktu*. Sangat bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan tren dan teknik terbaru.
+Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh-waktu*, dan juga dapat mengerjakan hal ***Fullstack*** dalam pekerjaan *Freelance/Paruh-waktu*.
+
+Saya bersemangat dalam mengeksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan *DX (Developer Experience)*, teknik, dan tren terbaru.
+
+Fokus utama saya adalah meningkatkan *DX* di tim Frontend, seperti menyiapkan *boilerplate*, standardisasi, membuat utilitas/pustaka, meneliti, dan meningkatkan kehandalan struktur di dalam *codebase*. Pekerjaan saya sebagian besar pada membangun layanan yang bukan produk *end-to-end* di sisi Frontend.
 
 Saya dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Dan juga, telah membuat beberapa proyek sampingan atau *sumber-terbuka* di [GitHub](https://github.com/gadingnst) untuk bersenang-senang, dan mungkin sudah berguna bagi orang-orang yang telah menggunakannya.
 
-#### Bagaimana saya bersemangat
-Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, proyek sumber-terbuka, mentor-mentor yang berbagi pengetahuan (yang gratis & berbayar) di internet, rekan kerja, dan teman-teman, semua orang tersebut membantu saya sampai ke titik saat ini. Dan saya sangat bersyukur untuk itu. Sejak awal saya juga membantu orang, berkontribusi pada sedikit proyek sumber-terbuka dan menerbitkan proyek saya sendiri di [GitHub](https://github.com/gadingnst?tab=repositories). Begitulah cara saya menyadari bahwa saya menikmati *technical writing* seperti di blog atau dokumentasi perangkat lunak, serta membuat konten pendidikan & berinteraksi dengan developer lain.
-
 #### Menyebut namaku
+Sebelum mengenal seseorang lebih lanjut, yang pertama harus kamu lakukan adalah tahu cara menyebut namanya dengan benar.
+Berikut adalah nama yang bisa kamu gunakan untuk memanggilku:
+
 ###### ✅ Berikut yang ***benar*** :
 - Sutan
-- Gading
+- Gading (Aku merekomendasikanmu untuk memanggilku dengan nama ini)
 - Fadhillah
 - Nasution
 
@@ -27,8 +31,11 @@ Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, pro
 - Fadhilah *(kurang satu `L`)*
 - Fadilah *(kurang `H` dan satu `L`)*
 
+#### Cerita di balik "Gading"
+Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, proyek sumber-terbuka, mentor-mentor yang berbagi pengetahuan (yang gratis & berbayar) di internet, rekan kerja, dan teman-teman, semua orang tersebut membantu saya sampai ke titik saat ini. Dan saya sangat bersyukur untuk itu. Sejak awal saya juga membantu orang, berkontribusi pada sedikit proyek sumber-terbuka dan menerbitkan proyek saya sendiri di [GitHub](https://github.com/gadingnst?tab=repositories). Begitulah cara saya menyadari bahwa saya menikmati *technical writing* seperti di blog atau dokumentasi perangkat lunak, serta membuat konten pendidikan & berinteraksi dengan developer lain.
+
 #### Pertanyaan lebih tentangku?
-Kamu bisa melihat-lihat halaman [Now](/now) sebelum bertanya lebih, mungkin disana kamu akan menemukan jawabannya.
+Sebelum bertanya lebih lanjut, kamu bisa lihat-lihat halaman [Now](/now) untuk mengetahui tentang keseharianku, mungkin disana kamu akan menemukan jawabannya.
 
 ---
 

@@ -8,8 +8,8 @@ image: "/media/banners/1.jpg"
 
 I'm currently working full-time remotely at [SIRCLO](https://sirclo.com) on the [Orami's](https://orami.co.id) Core Engineering team.
 
-I'm passionate to explore about modern mobile and web technology while taking into consideration the latest trends and techniques. And also, I would be a fast learner in doing new things and building good teamwork either.
+Passionate to explore about modern mobile and web technology while taking into consideration about *DX (Developer Experience)*, the latest trends, and techniques. And also, I would be a fast learner in doing new things and building good teamwork either.
 
 ---
 
-You've found my personal slice of the internet. Let's take a look and enjoy.
+Yeah, you've found my personal slice of the internet. So let's take a look and enjoy.
