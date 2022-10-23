@@ -176,9 +176,12 @@ export default withMainLayoutPage(AboutPage, ({ contents, locale }) => {
   return {
     locale,
     meta: {
-      ...meta,
       title: `About ${AUTHOR_FULLNAME}`,
-      slug: 'about'
+      slug: 'about',
+      date: meta.date,
+      description: meta.description,
+      keywords: meta.keywords,
+      tags: meta.tags
     }
   };
 });

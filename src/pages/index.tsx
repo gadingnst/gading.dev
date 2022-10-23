@@ -129,9 +129,12 @@ export default withMainLayoutPage(HomePage, (props) => {
   return {
     locale,
     meta: {
-      ...meta,
       title: 'Sutan Gading Fadhillah Nasution',
-      slug: ''
+      slug: '',
+      date: meta.date,
+      description: meta.description,
+      keywords: meta.keywords,
+      tags: meta.tags
     }
   };
 });
