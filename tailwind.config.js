@@ -17,6 +17,15 @@ module.exports = {
       courgette: ['"Courgette"', 'cursive'],
       poppins: ['"Poppins"', 'sans-serif']
     },
+    screens: {
+      '2xs': '360px',
+      xs: '428px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     container: {
       screens: {
         'md': '768px',
@@ -140,10 +149,6 @@ module.exports = {
       full: '50%'
     },
     extend: {
-      screens: {
-        xxs: '360px',
-        xs: '428px'
-      },
       boxShadow: {
         'md-bottom': '0 2px 4px 0 rgba(0, 0, 0, 0.1)'
       },

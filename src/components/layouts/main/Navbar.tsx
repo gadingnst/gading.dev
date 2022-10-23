@@ -119,14 +119,15 @@ const Navbar: FunctionComponent<Props> = (props) => {
       <nav className={clsxm(styles.header, headerClass, className)}>
         <div className={styles['header-container']}>
           <SVG
-            className="inline-block xxs:hidden mr-8"
+            className="inline-block 2xs:hidden mr-8"
             src={theme?.current === 'dark' ? IconAppLogo : IconAppLogoSecondary}
             size={32}
           />
           <Link
             href="/"
             className={clsxm(
-              'hidden xxs:flex hover:util--text-shadow-white justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
+              'hidden 2xs:flex hover:util--text-shadow-white justify-center items-center text-base xs:text-xl sm:text-2xl',
+              'transition-all duration-150 text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
               textShadowClass
             )}
           >
