@@ -20,7 +20,7 @@ Here are the names you can use to call me:
 
 ###### ✅ These are ***correct*** :
 - Sutan
-- Gading (I recommend you to call me with this name)
+- Gading *(recommended)*
 - Fadhillah
 - Nasution
 

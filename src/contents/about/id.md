@@ -20,7 +20,7 @@ Berikut adalah nama yang bisa kamu gunakan untuk memanggilku:
 
 ###### ✅ Berikut yang ***benar*** :
 - Sutan
-- Gading (Aku merekomendasikanmu untuk memanggilku dengan nama ini)
+- Gading *(direkomendasikan)*
 - Fadhillah
 - Nasution
 
