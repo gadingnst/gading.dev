@@ -28,7 +28,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const withDelay = useDelayedAction(delay);
 
   const classes = useMemo(() => {
-    let defaultClass = 'relative cursor-pointer p-8 duration-150 transition-all active:scale-95 active:outline-1 active:outline-light dark:active:outline-white';
+    let defaultClass = 'relative shadow-md cursor-pointer p-8 duration-150 transition-all active:scale-95 active:outline-1 active:outline-light dark:active:outline-white';
     if (!disableHover) {
       defaultClass += ' hover:-translate-y-2 hover:shadow-lg active:shadow-none dark:hover:shadow-primary-2';
     }

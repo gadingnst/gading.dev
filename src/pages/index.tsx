@@ -43,8 +43,8 @@ const withLocales = createContentLocales({
     id: 'Lihat portfolio saya'
   },
   aboutMe: {
-    en: 'Learn more About me',
-    id: 'Pelajari tentang saya'
+    en: 'Learn more about me',
+    id: 'Cari tahu tentang saya'
   },
   thansksVisit: {
     en: 'Thanks for visiting me',
@@ -60,11 +60,12 @@ const withLocales = createContentLocales({
   }
 });
 
+const btnClasses = 'text-white text-sm sm:text-base dark:text-white rounded-8 my-4 hover:shadow-lg active:shadow-sm hover:-translate-y-2';
+
 const HomePage: NextPage<Props> = (props) => {
   const { contents, blogs, locale } = props;
   const { meta, content } = contents;
   const locales = useMemo(() => withLocales(locale), [locale]);
-  const btnClasses = 'text-white text-sm sm:text-base dark:text-white rounded-8 my-4 hover:shadow-lg active:shadow-sm hover:-translate-y-2';
   return (
     <Fragment>
       <Navbar localeChange />

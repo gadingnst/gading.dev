@@ -1,5 +1,5 @@
 .close-button {
-  @apply inline-block rounded-8 bg-transparent p-0 w-[20px] h-[20px];
+  @apply shadow-none inline-block rounded-8 bg-transparent p-0 w-[20px] h-[20px];
   span {
     &.cross-left {
       transform: rotate(135deg);

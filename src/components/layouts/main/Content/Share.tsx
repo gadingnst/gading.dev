@@ -27,32 +27,32 @@ type SocialShare = {
 
 const socialShares: SocialShare[] = [
   {
-    color: 'bg-facebook',
+    color: 'bg-facebook dark:hover:shadow-facebook',
     label: 'Share on Facebook',
     logo: IconFacebook
   },
   {
-    color: 'bg-linkedin',
+    color: 'bg-linkedin dark:hover:shadow-linkedin',
     label: 'Share on Linkedin',
     logo: IconLinkedin
   },
   {
-    color: 'bg-twitter',
+    color: 'bg-twitter dark:hover:shadow-twitter',
     logo: IconTwitter,
     label: 'Share on Twitter'
   },
   {
-    color: 'bg-tumblr',
+    color: 'bg-tumblr dark:hover:shadow-tumblr',
     logo: IconTumblr,
     label: 'Share on Tumblr'
   },
   {
-    color: 'bg-whatsapp',
+    color: 'bg-whatsapp dark:hover:shadow-whatsapp',
     logo: IconWhatsapp,
     label: 'Share on Whatsapp'
   },
   {
-    color: 'bg-telegram',
+    color: 'bg-telegram dark:hover:shadow-telegram',
     logo: IconTelegram,
     label: 'Share on Telegram'
   }
@@ -64,6 +64,8 @@ const withLocales = createContentLocales({
     id: 'Bagikan'
   }
 });
+
+const btnShareClasses = 'shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 hover:scale-105';
 
 const Share: FunctionComponent<Props> = (props) => {
   const { path, meta, locale } = props;
@@ -108,10 +110,10 @@ const Share: FunctionComponent<Props> = (props) => {
         {socialShares.map((social) => (
           <Button
             disableHover
-            key={social.color}
+            key={social.label}
             onClick={onShare(social)}
             delay={300}
-            className={`${social.color} shadow-lg rounded-full p-12 mx-4 mb-12 hover:-mt-8 hover:scale-105 dark:hover:shadow-primary-2 umami--click--share-${social.color.substring(3)}`}
+            className={`${social.color} ${btnShareClasses} umami--click--share-${social.label.substring(9).toLocaleLowerCase()}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
           </Button>

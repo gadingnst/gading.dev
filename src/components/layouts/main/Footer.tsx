@@ -27,32 +27,32 @@ export interface Props {
 
 const socialLinks = [
   {
-    color: 'bg-github',
+    color: 'bg-github dark:hover:shadow-light',
     logo: IconGithub,
     url: `https://github.com/${AUTHOR_GITHUB}`
   },
   {
-    color: 'bg-linkedin',
+    color: 'bg-linkedin dark:hover:shadow-linkedin',
     logo: IconLinkedin,
     url: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`
   },
   {
-    color: 'bg-instagram',
+    color: 'bg-instagram dark:hover:shadow-instagram',
     logo: IconInstagram,
     url: `https://instagram.com/${AUTHOR_INSTAGRAM}`
   },
   {
-    color: 'bg-facebook',
+    color: 'bg-facebook dark:hover:shadow-facebook',
     logo: IconFacebook,
     url: `https://facebook.com/${AUTHOR_FACEBOOK}`
   },
   {
-    color: 'bg-twitter',
+    color: 'bg-twitter dark:hover:shadow-twitter',
     logo: IconTwitter,
     url: `https://twitter.com/${AUTHOR_TWITTER}`
   },
   {
-    color: 'bg-steam',
+    color: 'bg-steam dark:hover:shadow-steam',
     logo: IconSteam,
     url: `https://steamcommunity.com/id/${AUTHOR_STEAM}`
   }
@@ -73,7 +73,7 @@ const Footer: FunctionComponent<Props> = (props) => {
               key={socialLink.url}
               href={socialLink.url}
               delay={300}
-              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-4 hover:scale-105 dark:hover:shadow-primary-2`}
+              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-4 hover:scale-105`}
             >
               <SVG fill="white" size={14} src={socialLink.logo} />
             </Button>

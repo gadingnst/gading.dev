@@ -60,27 +60,25 @@ const LeftDesc = ({ className = 'hidden md:flex' }) => (
   </div>
 );
 
-const RightDesc = ({ className = 'hidden md:flex' }) => {
-  const btnClasses = 'flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-sm';
-  return (
-    <div className={`${className} items-center h-[30px] flex-1 justify-center`}>
-      <Button
-        disableHover
-        href="mailto:contact@gading.dev"
-        className={`${btnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--about_contact`}
-      >
-        <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
-      </Button>
-      <Button
-        disableHover
-        href={`${BASE_URL}/resume`}
-        className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--about_resume`}
-      >
-        <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
-      </Button>
-    </div>
-  );
-};
+const rightDescBtnClasses = 'flex items-center text-sm rounded-4 px-8 py-4 text-white dark:text-white mx-8 hover:no-underline hover:-translate-y-2 hover:shadow-lg active:shadow-sm';
+const RightDesc = ({ className = 'hidden md:flex' }) => (
+  <div className={`${className} items-center h-[30px] flex-1 justify-center`}>
+    <Button
+      disableHover
+      href="mailto:contact@gading.dev"
+      className={`${rightDescBtnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--about_contact`}
+    >
+      <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
+    </Button>
+    <Button
+      disableHover
+      href={`${BASE_URL}/resume`}
+      className={`${rightDescBtnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--about_resume`}
+    >
+      <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
+    </Button>
+  </div>
+);
 
 const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Report Desktop' }) => {
   return (
