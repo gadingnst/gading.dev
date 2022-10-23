@@ -90,7 +90,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
   const headerClass = useMemo(() => {
     return transparent
       ? 'bg-transparent'
-      : 'bg-primary shadow-md-bottom dark:bg-dark-40';
+      : 'bg-primary shadow-md-bottom dark:bg-dark-50';
   }, [transparent]);
 
   const onScroll = useCallback(() => {
@@ -195,7 +195,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
         toggler={modalToggler}
         className={clsxm(
           styles['header-mobile'],
-          'bg-white self-start justify-self-center opacity-0 -mt-52 dark:bg-dark-60',
+          'bg-white self-start justify-self-center opacity-0 -mt-52 dark:bg-dark-50',
           modalClass,
         )}
       >
