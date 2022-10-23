@@ -53,7 +53,7 @@ const renderColorMap = (name: string, color: string) => {
 const ColorDocs: NextPage = () => {
   return (
     <Fragment>
-      <div className="flex items-center justify-center mb-24 bg-primary dark:bg-dark-50 py-16 px-52 fixed w-screen z-50">
+      <div className="flex items-center justify-center mb-24 bg-primary dark:bg-dark-60 py-16 px-52 fixed w-screen z-50">
         <div className="flex justify-between container lg:max-w-5xl">
           <Link href="/" className="hover:no-underline hover:util--text-shadow-white hover:scale-105">
             <h1 className="font-courgette font-bold text-center text-xl text-white">

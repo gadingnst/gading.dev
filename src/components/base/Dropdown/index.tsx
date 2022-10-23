@@ -93,7 +93,7 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
         <div
           className={clsxm(
             styles['dropdown-content'],
-            'bg-white dark:bg-dark-50',
+            'bg-white dark:bg-dark-60 shadow-md dark:shadow-dark-70',
             contentClassName
           )}
         >

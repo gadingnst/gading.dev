@@ -73,7 +73,7 @@ const Footer: FunctionComponent<Props> = (props) => {
               key={socialLink.url}
               href={socialLink.url}
               delay={300}
-              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-4 hover:scale-105 dark:hover:shadow-dark-60`}
+              className={`${socialLink.color} shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-4 hover:scale-105 dark:hover:shadow-primary-2`}
             >
               <SVG fill="white" size={14} src={socialLink.logo} />
             </Button>
