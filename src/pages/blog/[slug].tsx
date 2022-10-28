@@ -4,8 +4,8 @@ import type { I18nLocales } from '@/types/contents';
 import { Fragment, Suspense, useCallback, useMemo } from 'react';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import CardHero from '@/components/base/Card/Hero';
-import ContentInfo from '@/components/layouts/main/Content/Info';
-import ContentParser from '@/components/layouts/main/Content/Parser';
+import ContentInfo from '@/components/base/Content/Info';
+import ContentParser from '@/components/base/Content/Parser';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import { DEFAULT_LOCALE } from '@/utils/config';
 
@@ -42,11 +42,11 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
-const Share = dynamic(() => import('@/components/layouts/main/Content/Share'), {
+const Share = dynamic(() => import('@/components/base/Content/Share'), {
   suspense: true
 });
 
-const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
+const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
   suspense: true
 });
 

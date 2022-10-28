@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { LazyComponentProps, ScrollPosition, trackWindowScroll } from 'react-lazy-load-image-component';
 import Card from '@/components/base/Card';
 import Image from '@/components/base/Image';
-import ContentInfo from '@/components/layouts/main/Content/Info';
+import ContentInfo from '@/components/base/Content/Info';
 import Link from '@/components/base/Link';
 import clsxm from '@/utils/helpers/clsxm';
 

@@ -5,7 +5,7 @@ import BlogCardList from '@/components/layouts/blog/CardList';
 import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
 import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
-import Content from '@/components/layouts/main/Content';
+import Content from '@/components/base/Content';
 import Footer from '@/components/layouts/main/Footer';
 import createContentLocales from '@/utils/helpers/locales';
 

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { Fragment, Suspense } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage } from '@/components/layouts';
-import ContentParser from '@/components/layouts/main/Content/Parser';
+import ContentParser from '@/components/base/Content/Parser';
 import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
@@ -96,7 +96,7 @@ const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Re
 const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
 const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} />;
 
-const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
+const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
   suspense: true
 });
 
