@@ -15,14 +15,12 @@ function useAppTheme() {
     key: '@gading.dev/theme',
     initial: 'light',
     persist: {
-      onGetData(key, isServer?) {
-        if (isServer) return 'light';
-        const data = window.localStorage.getItem(key as string);
+      onGetData(key) {
+        const data = window.localStorage.getItem(String(key));
         return data as Theme;
       },
-      onSetData(key, data, isServer?) {
-        if (isServer) return;
-        window.localStorage.setItem(key as string, data);
+      onSetData(key, data) {
+        window.localStorage.setItem(String(key), data);
       }
     }
   });
