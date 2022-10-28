@@ -1,7 +1,7 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { CardHero } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
-import ContentParser from '@/components/layouts/main/Content/Parser';
+import ContentParser from '@/components/base/Content/Parser';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment, Suspense } from 'react';
 import dynamic from 'next/dynamic';
@@ -25,7 +25,7 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
-const Disqus = dynamic(() => import('@/components/layouts/main/Content/Disqus'), {
+const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
   suspense: true
 });
 

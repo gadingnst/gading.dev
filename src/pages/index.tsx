@@ -3,7 +3,7 @@ import { Fragment, useMemo } from 'react';
 import { CardHero, Button } from '@/components/base';
 import { Banner, Navbar, Footer, Content, withMainLayoutPage } from '@/components/layouts';
 import BlogCardList from '@/components/layouts/blog/CardList';
-import ContentParser from '@/components/layouts/main/Content/Parser';
+import ContentParser from '@/components/base/Content/Parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { ContentMeta, getBlogList, getContentMultiLanguage, MDContent } from '@/server/content-parser';
 import generateRSSFeed from '@/server/feed-rss';

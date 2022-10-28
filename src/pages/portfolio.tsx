@@ -3,7 +3,7 @@ import { Fragment, useMemo } from 'react';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
-import { Card, Image, LazyLoad } from '@/components/base';
+import { Card, Image } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import createContentLocales from '@/utils/helpers/locales';
 
@@ -45,32 +45,30 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
   return (
     <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80 min-h-[500px]">
       {contents.map((item, idx) => (
-        <LazyLoad key={`${item.image}-${idx}`}>
-          <Card hoverEffect className="rounded-12 overflow-hidden">
-            <div className="relative w-full overflow-hidden h-[200px]">
-              <Image
-                zoomable
-                src={item.image}
-                alt={item.name}
-                width="100%"
-                height="200px"
-                className="object-contain"
-                wrapperClassName="w-full"
-                scaling={0.5}
-                delayLoad={300}
-                scrollPosition={scrollPosition}
-              />
-            </div>
-            <div className="flex flex-col pt-12 pb-16 px-16">
-              <p className="mb-4 text-primary dark:text-primary-2">
-                {item.name}
-              </p>
-              <p className="text-sm">
-                {item.description}
-              </p>
-            </div>
-          </Card>
-        </LazyLoad>
+        <Card key={`${item.image}-${idx}`} hoverEffect className="rounded-12 overflow-hidden">
+          <div className="relative w-full overflow-hidden h-[200px]">
+            <Image
+              zoomable
+              src={item.image}
+              alt={item.name}
+              width="100%"
+              height="200px"
+              className="object-contain"
+              wrapperClassName="w-full"
+              scaling={0.5}
+              delayLoad={300}
+              scrollPosition={scrollPosition}
+            />
+          </div>
+          <div className="flex flex-col pt-12 pb-16 px-16">
+            <p className="mb-4 text-primary dark:text-primary-2">
+              {item.name}
+            </p>
+            <p className="text-sm">
+              {item.description}
+            </p>
+          </div>
+        </Card>
       ))}
     </div>
   );
