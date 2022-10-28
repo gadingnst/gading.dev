@@ -1,4 +1,4 @@
-import useStore, { Store } from 'swr-global-state';
+import useStore from 'swr-global-state';
 
 export type Theme = 'light'|'dark';
 export interface ThemeState {
@@ -10,11 +10,19 @@ export interface ThemeState {
  * hooks for app theming states
  * @returns Theme state and setter
  */
-function useAppTheme(): Store<ThemeState, Theme> {
+function useAppTheme() {
   const [theme, setTheme] = useStore<Theme>({
     key: '@gading.dev/theme',
     initial: 'light',
-    persist: true
+    persist: {
+      onGetData(key) {
+        const data = window.localStorage.getItem(String(key));
+        return data as Theme;
+      },
+      onSetData(key, data) {
+        window.localStorage.setItem(String(key), data);
+      }
+    }
   });
 
   return [
