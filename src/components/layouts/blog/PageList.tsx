@@ -62,8 +62,11 @@ const BlogPageList: FunctionComponent<Props> = (props) => {
         </div>
       </Banner>
       <Content className="flex flex-col items-center justify-center">
-        <CardSearch className="-mt-28 mb-48" />
+        <div className="-mt-[180px] w-full">
+          <CardSearch className="mx-auto" />
+        </div>
         <BlogCardList
+          className="mt-40"
           contents={contents}
           locale={locale}
         />
