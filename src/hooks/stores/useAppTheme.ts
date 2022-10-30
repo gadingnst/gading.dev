@@ -14,12 +14,12 @@ function useAppTheme() {
   const [theme, setTheme] = useStore<Theme>({
     key: '@gading.dev/theme',
     initial: 'light',
-    persist: {
-      onGetData(key) {
-        const data = window.localStorage.getItem(String(key));
-        return data as Theme;
+    persistor: {
+      onGet(key) {
+        const data = window.localStorage.getItem(String(key)) as Theme;
+        return data;
       },
-      onSetData(key, data) {
+      onSet(key, data) {
         window.localStorage.setItem(String(key), data);
       }
     }
