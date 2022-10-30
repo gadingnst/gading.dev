@@ -228,12 +228,13 @@ pre, pre[class*='language-'] {
 }
 
 div.rehype-code-title {
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: 0.5em 0.5em 0 0 !important;
   padding: 0.75em 1em;
   color: var(--foreground);
   background-color: #3E4672;
+  @apply mb-0 !important;
   & + pre {
-    @apply mt-0 rounded-t-0;
+    @apply mt-0 rounded-t-0 !important;
   }
 }
 

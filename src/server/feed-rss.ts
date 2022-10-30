@@ -17,7 +17,7 @@ import day from '@/utils/day';
  * @returns {Promise<void>}
  */
 async function generateRSSFeed(): Promise<void> {
-  const blogList = await Promise.all(Object.values(I18n).map(lang => getAllBlogMeta(lang)));
+  const blogList = await Promise.all(Object.keys(I18n).map(lang => getAllBlogMeta(lang)));
   const posts = blogList.flat(1).sort((a, b) => {
     const dateA = day(a.meta.date);
     const dateB = day(b.meta.date);

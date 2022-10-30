@@ -2,7 +2,7 @@ import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next
 import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
 import { DEFAULT_LOCALE } from '@/utils/config';
-import BlogPageList from '@/components/layouts/blog/PageList';
+import BlogPageList, { withLocales } from '@/components/layouts/blog/PageList';
 
 type Props = {
   blogs: ContentBlogList;
@@ -42,9 +42,7 @@ export default withMainLayoutPage(BlogIndexPage, ({ locale }) => {
       keywords: 'gadings writing, technical writing, blog gading, gading blog',
       slug: 'blog',
       tags: ['blog', 'writing', 'technical writing', 'gadings'],
-      description: locale === 'en'
-        ? 'Coding, work, life, and whatever i want.'
-        : 'Kode, pekerjaan, kehidupan, dan apapun yang ku mau.'
+      description: withLocales(locale).desc
     }
   };
 });

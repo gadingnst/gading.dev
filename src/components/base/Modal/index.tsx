@@ -18,8 +18,8 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     toggler
   } = props;
 
-  const [renderable, setRenderable] = useToggler();
   const refContent = useRef<HTMLDivElement>(null);
+  const [renderable, setRenderable] = useToggler();
 
   useMounted(setRenderable);
 
@@ -29,7 +29,7 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
   if (renderable) {
     const Component = (
-      <div role="dialog" className={styles['modal-overlay']}>
+      <div role="dialog" className={styles['modal']}>
         <div
           ref={refContent}
           className={clsxm([
@@ -39,6 +39,7 @@ const Modal: FunctionComponent<PropsWithChildren<Props>> = (props) => {
         >
           {children}
         </div>
+        <figure className={styles['modal-overlay']} />
       </div>
     );
     return show ? createPortal(Component, document.body) : null;

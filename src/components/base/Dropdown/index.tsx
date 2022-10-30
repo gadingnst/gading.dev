@@ -1,9 +1,9 @@
 import { FunctionComponent, PropsWithChildren, ReactNode, useCallback, useMemo, useRef } from 'react';
-import { getChildrenByType } from 'react-nanny';
+import { getChildrenByType } from 'react-nanny/lib/es5/getChildrenByType';
 import Button from '@/components/base/Button';
 import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
-import IconCaretDown from '@/assets/icons/tools/caret-down.svg';
+import IconCaretDown from '$/assets/icons/tools/caret-down.svg';
 import { useToggler, useOutsideClick } from '@/hooks';
 import styles from './index.module.css';
 
@@ -78,6 +78,7 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
       )}
     >
       <Button
+        disableHover
         onClick={toggler}
         className={clsxm(styles.button, btnClassName)}
       >
@@ -92,7 +93,7 @@ const Dropdown = (props: PropsWithChildren<Props>) => {
         <div
           className={clsxm(
             styles['dropdown-content'],
-            'bg-white dark:bg-dark-40',
+            'bg-white dark:bg-dark-60 shadow-md dark:shadow-dark-70',
             contentClassName
           )}
         >

@@ -3,8 +3,8 @@ import SVG from '@/components/base/Image/SVG';
 import clsxm from '@/utils/helpers/clsxm';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 
-import IconCrescent from '@/assets/icons/tools/crescent.svg';
-import IconSun from '@/assets/icons/tools/sun.svg';
+import IconCrescent from '$/assets/icons/tools/crescent.svg';
+import IconSun from '$/assets/icons/tools/sun.svg';
 
 export interface Props {
   className?: string;
@@ -29,6 +29,7 @@ const SwitchTheme: FunctionComponent<Props> = (props) => {
   return (
     <span className={clsxm('cursor-pointer text-white dark:text-white', className)} onClick={onChangeTheme}>
       <SVG
+        className="transition-transform active:scale-50"
         fill="none"
         stroke="white"
         strokeWidth="2"

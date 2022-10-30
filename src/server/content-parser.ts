@@ -12,8 +12,10 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
+import rehypeResponsiveTables from 'rehype-responsive-tables';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
 
 interface ContentSlug {
@@ -78,6 +80,12 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
         rehypeCodeTitles,
         rehypePrism,
         rehypeKatex,
+        [
+          rehypeResponsiveTables,
+          {
+            up: ['*']
+          }
+        ],
         [
           rehypeAutolinkHeadings,
           {

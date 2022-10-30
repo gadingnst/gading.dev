@@ -8,13 +8,14 @@ import SVG from '@/components/base/Image/SVG';
 import Modal from '@/components/base/Modal';
 import Dropdown from '@/components/base/Dropdown';
 
-import { useToggler, useMounted } from '@/hooks';
+import { useToggler, useMounted, useUpdated } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
 import clsxm from '@/utils/helpers/clsxm';
 
-import IconAppLogo from '@/assets/icons/app/logo.svg';
-import IconAppLogoSecondary from '@/assets/icons/app/logo-secondary.svg';
-import IconHamburger from '@/assets/icons/tools/hamburger.svg';
+import IconAppLogo from '$/assets/icons/app/logo.svg';
+import IconAppLogoSecondary from '$/assets/icons/app/logo-secondary.svg';
+import IconHamburger from '$/assets/icons/tools/hamburger.svg';
+import IconArrowForward from '$/assets/icons/tools/arrow-forward.svg';
 import styles from './styles.module.css';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import { I18nLocales } from '@/types/contents';
@@ -77,6 +78,7 @@ const LocaleItem: FunctionComponent<PropsWithChildren<LocaleItemProps>> = (props
 const Navbar: FunctionComponent<Props> = (props) => {
   const { title, className, localeChange, onLocaleChange } = props;
   const [transparent, setTransparent] = useState(true);
+  const [modalClass, setModalClass] = useState('');
   const [modalVisibility, modalToggler] = useToggler();
   const { pathname, locale, asPath } = useRouter();
   const [theme] = useAppTheme();
@@ -88,7 +90,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
   const headerClass = useMemo(() => {
     return transparent
       ? 'bg-transparent'
-      : 'bg-primary shadow-md-bottom dark:bg-dark-40';
+      : 'bg-primary shadow-md-bottom dark:bg-dark-60';
   }, [transparent]);
 
   const onScroll = useCallback(() => {
@@ -107,19 +109,25 @@ const Navbar: FunctionComponent<Props> = (props) => {
     };
   });
 
+  useUpdated(() => {
+    const newClass = modalVisibility ? 'mt-12 opacity-100' : '';
+    setModalClass(newClass);
+  }, [modalVisibility]);
+
   return (
     <Fragment>
       <nav className={clsxm(styles.header, headerClass, className)}>
         <div className={styles['header-container']}>
           <SVG
-            className="inline-block xxs:hidden mr-8"
+            className="inline-block 2xs:hidden mr-8"
             src={theme?.current === 'dark' ? IconAppLogo : IconAppLogoSecondary}
             size={32}
           />
           <Link
             href="/"
             className={clsxm(
-              'hidden xxs:flex justify-center items-center text-base transition-all duration-150 xs:text-2xl text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
+              'hidden 2xs:flex hover:util--text-shadow-white justify-center items-center text-base xs:text-xl sm:text-2xl',
+              'transition-all duration-150 text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
               textShadowClass
             )}
           >
@@ -163,7 +171,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
                   <span
                     className={clsxm({
                       'text-primary-2 dark:text-accent-2': pathname === href,
-                      'text-white dark:text-white': pathname !== href
+                      'text-white dark:text-white hover:util--text-shadow-white': pathname !== href
                     })}
                   >
                     {label}
@@ -175,7 +183,7 @@ const Navbar: FunctionComponent<Props> = (props) => {
               <SVG
                 stroke="white"
                 src={IconHamburger}
-                className="cursor-pointer"
+                className={`cursor-pointer transition-all duration-150 ${modalClass ? 'scale-50 opacity-0' : 'scale-100 opacity-100'}`}
                 onClick={modalToggler}
                 size={32}
               />
@@ -188,33 +196,43 @@ const Navbar: FunctionComponent<Props> = (props) => {
         toggler={modalToggler}
         className={clsxm(
           styles['header-mobile'],
-          'bg-white self-start justify-self-center dark:bg-dark-60'
+          'bg-white self-start justify-self-center opacity-0 -mt-52 dark:bg-dark-60',
+          modalClass,
         )}
       >
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:no-underline hover:scale-105">
+          <Link href="/" className="font-courgette transition-all duration-200 font-bold text-xl text-dark dark:text-white hover:no-underline hover:scale-105 hover:util--text-shadow-white">
             {title}
           </Link>
           <ButtonClose onClick={modalToggler} />
         </div>
         <hr className="my-8" />
         <div className="flex flex-col justify-center">
-          {menus.map(({ label, href }, idx) => (
-            <Link
-              key={href}
-              href={href}
-              delay={300}
-              className={clsxm(
-                'font-bold my-4 transition-all duration-100 hover:scale-102 active:scale-100',
-                idx === (menus.length - 1) ? 'mb-0' : '',
-                pathname === href
-                  ? 'pointer-events-none text-primary-2 dark:text-accent-2'
-                  : 'text-dark dark:text-white'
-              )}
-            >
-              {label}
-            </Link>
-          ))}
+          {menus.map(({ label, href }, idx) => {
+            const menuClass = pathname === href
+              ? 'pointer-events-none text-primary-2 dark:text-accent-2'
+              : 'text-dark dark:text-white';
+            return (
+              <Link
+                key={href}
+                href={href}
+                delay={300}
+                className={clsxm(
+                  'group flex justify-between items-center font-bold my-4 transition-all duration-100 hover:translate-x-8 active:scale-100',
+                  menuClass,
+                  idx === (menus.length - 1) ? 'mb-0' : ''
+                )}
+              >
+                {label}
+                <SVG
+                  size={16}
+                  className={menuClass}
+                  src={IconArrowForward}
+                  fill="currentColor"
+                />
+              </Link>
+            );
+          })}
         </div>
       </Modal>
     </Fragment>

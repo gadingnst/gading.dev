@@ -17,6 +17,15 @@ module.exports = {
       courgette: ['"Courgette"', 'cursive'],
       poppins: ['"Poppins"', 'sans-serif']
     },
+    screens: {
+      '2xs': '360px',
+      xs: '428px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     container: {
       screens: {
         'md': '768px',
@@ -88,13 +97,13 @@ module.exports = {
         DEFAULT: '#666B71'
       },
       dark: {
-        10: '#0C1F30',
+        10: '#0B2032',
         20: '#0E263A',
         30: '#0F2D44',
-        40: '#282F5E',
-        50: '#2D366C',
-        60: '#23395D',
-        70: '#525F7F',
+        40: '#113754',
+        50: '#23395D',
+        60: '#282F5E',
+        70: '#313764',
         DEFAULT: '#0C1F30'
       }
     },
@@ -140,15 +149,8 @@ module.exports = {
       full: '50%'
     },
     extend: {
-      screens: {
-        xxs: '360px',
-        xs: '428px'
-      },
       boxShadow: {
         'md-bottom': '0 2px 4px 0 rgba(0, 0, 0, 0.1)'
-      },
-      scale: {
-        '102': '1.02'
       },
       colors: {
         'github': '#222222',
@@ -161,6 +163,38 @@ module.exports = {
         'telegram': '#35ace1',
         'youtube': '#cd201f',
         'steam': '#2a475e'
+      },
+      keyframes: {
+        'scale': {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(0.8)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        },
+        'y-t-25': {
+          from: {
+            opacity: 0,
+            transform: 'translate(0, -25px)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'translate(0)'
+          }
+        },
+        'y-b-25': {
+          from: {
+            opacity: 0,
+            transform: 'translate(0, 25px)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'translate(0)'
+          }
+        }
       }
     }
   },

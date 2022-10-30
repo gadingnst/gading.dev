@@ -8,11 +8,10 @@ export interface Options {
 /**
  * get the cloudinary url
  * @param path - path to file
- * @param imgScale - scale of image
  * @returns {string} - image url
  */
 function cloudinary(path: string, opts?: Options): string {
-  const { scale = null, placeholder = false } = opts || {};
+  const { scale, placeholder = false } = opts || {};
   const isOnMedia = path.startsWith('/media/');
   if (isOnMedia) {
     const gifHandler = path.endsWith('.gif') ? ',pg_2,' : ',';

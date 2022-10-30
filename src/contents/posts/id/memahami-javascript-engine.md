@@ -40,9 +40,14 @@ Itulah apa yang dilakukan dengan ***JavaScript Engine***. *JavaScript Engine* si
 
 ![JS Engine](/media/blog/understanding-javascript-engine/js-engine.png)
 
-Setiap browser mempunyai *JavaScript Engine* miliknya sendiri, tapi yang *JS Engine* paling dikenal adalah ***Google V8***. *V8 Engine* dipersembahkan oleh *Google Chrome*, dan juga digunakan oleh *JavaScript Runtime* seperti *Node.js* yang kita kenal.
+Setiap browser mempunyai *JavaScript Engine* miliknya sendiri, tapi yang *JS Engine* paling dikenal adalah ***Google V8***. *V8 Engine* dipersembahkan oleh *Google Chrome*, dan juga digunakan oleh *JavaScript Runtime* seperti *Node.js* yang kita kenal. Beberapa *JS Engine* dalam setiap browser modern bisa kita lihat dalam tabel di bawah ini:
 
-![JS Engine dalam setiap browser modern](/media/blog/understanding-javascript-engine/engine-tables.png)
+JS Engine             | Browser
+--------------------- | -------------------
+V8                    | Google Chrome and NodeJS
+Spider Monkey         | Mozilla Firefox
+JavaScriptCore        | Safari
+Chakra                | Microsoft Edge Browser
 
 ---
 

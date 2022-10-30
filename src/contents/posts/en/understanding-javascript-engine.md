@@ -40,9 +40,14 @@ That’s the job for a JavaScript engine. JavaScript engine is simply a computer
 
 ![JS Engine](/media/blog/understanding-javascript-engine/js-engine.png)
 
-Every browser has its own JavaScript engine, but the most well known engine is *Google’s V8*. The V8 engine powers Google Chrome but also Node.js which is that JavaScript Runtime.
+Every browser has its own JavaScript engine, but the most well known engine is *Google’s V8*. The V8 engine powers Google Chrome but also Node.js which is that JavaScript Runtime. Some *JS Engine* in every modern browser we can see in the table below:
 
-![JS Engine in every modern browser](/media/blog/understanding-javascript-engine/engine-tables.png)
+JS Engine             | Browser
+--------------------- | -------------------
+V8                    | Google Chrome and NodeJS
+Spider Monkey         | Mozilla Firefox
+JavaScriptCore        | Safari
+Chakra                | Microsoft Edge Browser
 
 ---
 
