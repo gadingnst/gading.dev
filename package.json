@@ -46,7 +46,7 @@
     "concurrent-manager": "^0.1.2",
     "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
-    "eslint-config-next": "^12.3.1",
+    "eslint-config-next": "^13.0.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.1",
