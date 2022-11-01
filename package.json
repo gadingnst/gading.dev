@@ -30,7 +30,7 @@
     "swr-global-state": "^2.0.0"
   },
   "devDependencies": {
-    "@jest/transform": "^29.1.2",
+    "@jest/transform": "^29.2.2",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
