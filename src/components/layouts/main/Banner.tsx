@@ -2,8 +2,11 @@ import type { FunctionComponent, PropsWithChildren } from 'react';
 import { Parallax, ParallaxProps } from 'react-parallax';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './Banner.module.css';
+import cloudinary from '@/utils/helpers/cloudinary';
+import { IS_DEV } from '@/utils/config';
 
 export interface Props extends ParallaxProps {
+  bgImage: string;
   height?: number|string;
   containerClassName?: string;
 }
@@ -20,7 +23,8 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <Parallax
       {...otherProps}
-      bgImage={bgImage}
+      lazy
+      bgImage={IS_DEV ? bgImage : cloudinary(bgImage, { scale: 0.75 })}
       bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
     >
       <div className={clsxm(styles['parallax-banner'])}>
