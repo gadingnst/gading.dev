@@ -23,7 +23,6 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <Parallax
       {...otherProps}
-      lazy
       bgImage={IS_DEV ? bgImage : cloudinary(bgImage, { scale: 0.75 })}
       bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
     >
