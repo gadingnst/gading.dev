@@ -6,7 +6,7 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/banners/1.jpg"
 ---
 
-I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* work, and also has some ability to code in ***Fullstack*** on *Freelance/Side-work*.
+I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* work, and also has some ability to code in ***Fullstack*** on *Part-time/Freelance*.
 
 I'm passionate in exploring about modern mobile and web technology while taking into consideration about *DX (Developer Experience)*, the latest trends, and techniques.
 
