@@ -1,7 +1,7 @@
 import { I18n, I18nLocales } from '@/types/contents';
 
-type I18nLocalesToContent<T extends string> = {
-  [locale in I18nLocales]: Record<T, string>
+type I18nLocalesToContent<K extends string> = {
+  [locale in I18nLocales]: Record<K, string>
 };
 
 type ObjectContents = {
@@ -10,19 +10,19 @@ type ObjectContents = {
 
 type I18nContentToLocales<K extends string> = Record<K, ObjectContents>;
 
-type CreateContentLocales<T extends string> =
-  <K = I18nLocales>(locale: K) => Record<T, string>;
+type CreateContentLocales<K extends string> =
+  <T = I18nLocales>(locale: T) => Record<K, string>;
 
 /**
  * convert passed (contents->locales based) to (locales->contents based)
  * @param data (content->locales based) data
  */
 export function generateLocaleBasedContents<T extends string>(data: I18nContentToLocales<T>): I18nLocalesToContent<T> {
-  const classificationLocales: I18nLocalesToContent<T> = Object.entries(data)
+  const classificationLocales: I18nLocalesToContent<T> = Object.entries<ObjectContents>(data)
     .reduce((accumulator, [key, contentLocales]) => {
       Object.keys(I18n).forEach((lcl) => {
         const locale = lcl as I18nLocales;
-        const content = (contentLocales as ObjectContents)[locale];
+        const content = contentLocales[locale];
         if (accumulator?.[locale]) {
           accumulator[locale][key as T] = content;
         } else {
