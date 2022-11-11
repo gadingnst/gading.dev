@@ -21,17 +21,19 @@ const Banner: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     ...otherProps
   } = props;
   return (
-    <Parallax
-      {...otherProps}
-      bgImage={IS_DEV ? bgImage : cloudinary(bgImage, { scale: 0.75 })}
-      bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
-    >
-      <div className={clsxm(styles['parallax-banner'])}>
-        <div className={containerClassName} style={{ height }}>
-          {children}
+    <div className="bg-gradient-to-tr from-primary-1 to-accent-1 dark:from-dark-60 dark:to-dark-70">
+      <Parallax
+        {...otherProps}
+        bgImage={IS_DEV ? bgImage : cloudinary(bgImage, { scale: 0.75 })}
+        bgClassName={clsxm('object-cover w-full select-none', bgClassName)}
+      >
+        <div className={clsxm(styles['parallax-banner'])}>
+          <div className={containerClassName} style={{ height }}>
+            {children}
+          </div>
         </div>
-      </div>
-    </Parallax>
+      </Parallax>
+    </div>
   );
 };
 
