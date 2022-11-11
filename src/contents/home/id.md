@@ -12,4 +12,4 @@ Bersemangat untuk bereksplorasi tentang teknologi seluler dan web modern sambil 
 
 ---
 
-Ya, kamu telah menemukan bagian dari saya di *internet*. Jadi, mari lihat-lihat dan nikmati.
+Ya, kamu telah menemukan saya di *internet*. Jadi, mari lihat-lihat dan nikmati.

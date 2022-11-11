@@ -12,4 +12,4 @@ Passionate to explore about modern mobile and web technology while taking into c
 
 ---
 
-Yeah, you've found my personal slice of the internet. So let's take a look and enjoy.
+Yeah, you've found me on the internet. So let's take a look and enjoy.
