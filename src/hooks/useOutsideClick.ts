@@ -1,5 +1,4 @@
-import { RefObject, useCallback } from 'react';
-import useMounted from './useMounted';
+import { RefObject, useCallback, useEffect } from 'react';
 
 /**
  * React hook that listens for clicks outside of a given refs.
@@ -7,21 +6,21 @@ import useMounted from './useMounted';
  * @param refs - The array of ref element to listen to
  * @returns {void} - void
  */
-function useOutsideClick<T extends Node>(callback: () => void, refs: RefObject<T>[]): void {
+function useOutsideClick<T extends Node>(callback: (target: HTMLElement) => void, refs: RefObject<T>[]): void {
   const handleOutsideClick = useCallback((event: MouseEvent) => {
-    refs.forEach((ref) => {
+    const isOutsideRefs = refs.every(ref => {
       const refElement = ref?.current;
-      if (refElement && !refElement?.contains(event?.target as Node)) {
-        callback();
-      }
+      const isOutside = refElement && !refElement?.contains(event?.target as Node);
+      return isOutside;
     });
+    if (isOutsideRefs) callback(event.target as HTMLElement);
   }, []);
-  useMounted(() => {
+  useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  });
+  }, []);
 }
 
 export default useOutsideClick;
