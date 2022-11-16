@@ -104,6 +104,10 @@ const Footer: FunctionComponent<Props> = (props) => {
           <Link className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
             Sitemap
           </Link>
+          <span className="inline-block mx-4">&bull;</span>
+          <Link className="inline-block text-primary" href="https://analytics.gading.dev/share/OBNvcvLy/Gading's%20Hideout">
+            Analytics
+          </Link>
         </div>
       </div>
     </footer>
