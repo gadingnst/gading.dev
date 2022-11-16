@@ -3,9 +3,11 @@ import { Fragment, useMemo } from 'react';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/utils/config';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
-import { Card, Image } from '@/components/base';
+import { Button, Card, Image, Link, SVG } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import createContentLocales from '@/utils/helpers/locales';
+
+import IconGithub from '$/assets/icons/logo/octocat.svg';
 
 type Props = {
   contents: Portfolio[];
@@ -45,7 +47,7 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
   return (
     <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80 min-h-[500px]">
       {contents.map((item, idx) => (
-        <Card key={`${item.image}-${idx}`} hoverEffect className="rounded-12 overflow-hidden">
+        <Card key={`${item.image}-${idx}`} hoverEffect className="relative rounded-12 overflow-hidden flex flex-col justify-start">
           <div className="relative w-full overflow-hidden h-[200px]">
             <Image
               zoomable
@@ -61,13 +63,25 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
             />
           </div>
           <div className="flex flex-col pt-12 pb-16 px-16">
-            <p className="mb-4 text-primary dark:text-primary-2">
+            <Link href={item.website || ''} className="mb-4 text-primary dark:text-primary-2 hover:underline">
               {item.name}
-            </p>
+            </Link>
             <p className="text-sm">
               {item.description}
             </p>
           </div>
+          {item.github && (
+            <div className="w-full flex items-end justify-end mt-8 flex-1 pb-8 px-8">
+              <Button
+                disableHover
+                href={item.github}
+                delay={300}
+                className="bg-github shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-2"
+              >
+                <SVG fill="white" size={14} src={IconGithub} />
+              </Button>
+            </div>
+          )}
         </Card>
       ))}
     </div>
