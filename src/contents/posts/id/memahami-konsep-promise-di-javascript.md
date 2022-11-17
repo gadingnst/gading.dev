@@ -177,7 +177,7 @@ const writeFile = (file, content) => new Promise((resolve, reject) => {
 
 Eh sebentar, tapi kok cara membuat objek *promise*-nya beda dari contoh yang pernah dibuat? Kalo yang pertama `const readFile = (file, options) => ...` sedangkan yang kedua `const readFile = options => file => ...`?
 
-Jadi gini, contoh yang baru itu kita menggunakan teknik ***currying***, di blog sebelumnya gua udah menjelaskan tentang *currying*, nanti kalian bisa baca [disini](https://sutanlab.id/blog/konsep-pada-paradigma-pemrograman-fungsional). Oke skip ya, kita lanjut dulu. Nah, setelah membuat objek *promise* seperti diatas, mari kita pake *promise* tersebut untuk menyelesaikan kasus seperti *callback hell* tadi.
+Jadi gini, contoh yang baru itu kita menggunakan teknik ***currying***, di blog sebelumnya gua udah menjelaskan tentang *currying*, nanti kalian bisa baca [disini](https://gading.dev/blog/konsep-pada-paradigma-pemrograman-fungsional). Oke skip ya, kita lanjut dulu. Nah, setelah membuat objek *promise* seperti diatas, mari kita pake *promise* tersebut untuk menyelesaikan kasus seperti *callback hell* tadi.
 
 ```js
 const
@@ -374,7 +374,7 @@ const getJSON = url => delay => () =>
       }
     })
 
-const request = getJSON('https://sutanlab.id/posts.published.json')
+const request = getJSON('https://api.quran.gading.dev/surah')
 
 request(1500)() // jalankan request dengan timeout 1,5 detik
 

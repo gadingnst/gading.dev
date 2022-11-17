@@ -29,7 +29,7 @@ const portfolio: Portfolio[] = [
     category: 'Open Source Project',
     description: 'Simple Islamic Hadith REST API with Indonesia Translation.',
     github: `https://github.com/${AUTHOR_GITHUB}/hadith-api`,
-    website: 'https://api.hadith.sutanlab.id',
+    website: 'https://api.hadith.gading.dev',
     image: `https://raw.githubusercontent.com/${AUTHOR_GITHUB}/hadith-api/master/screenshots/example-result.png`,
     stacks: ['typescript', 'express', 'api'],
     isActive: true,
@@ -40,7 +40,7 @@ const portfolio: Portfolio[] = [
     category: 'Open Source Project',
     description: 'Bot that can automate shares qur\'an verses and translations on Instagram/Telegram.',
     github: `https://github.com/${AUTHOR_GITHUB}/quran.machine`,
-    website: 'https://quran-machine.sutanlab.id',
+    website: 'https://instagram.com/quran.machine',
     image: '/media/portfolio/quran-machine.jpeg',
     stacks: ['typescript', 'express', 'puppeteer', 'web scraping'],
     isActive: false,
@@ -51,7 +51,7 @@ const portfolio: Portfolio[] = [
     category: 'Open Source Project',
     description: 'Simple Quran REST API with Indonesia Tafsir and media audio (murrotal) Syekh. Mishary Rashid Alafasy',
     github: `https://github.com/${AUTHOR_GITHUB}/quran-api`,
-    website: 'https://api.quran.sutanlab.id',
+    website: 'https://api.quran.gading.dev',
     image: '/media/portfolio/quran-api.png',
     stacks: ['javascript', 'express', 'api', 'web scraping'],
     isActive: true,
@@ -258,4 +258,7 @@ const portfolio: Portfolio[] = [
   }
 ];
 
-export default portfolio.sort((a, b) => (a.isActive && a.year > b.year) ? -1 : 1);
+export default portfolio.sort((a, b) => {
+  if (a.isActive && b.isActive) return (a.year > b.year) ? -1 : 1;
+  return (a.isActive && a.year >= b.year) ? -1 : 1;
+});
