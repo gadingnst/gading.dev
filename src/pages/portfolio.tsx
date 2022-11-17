@@ -63,9 +63,12 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
             />
           </div>
           <div className="flex flex-col pt-12 pb-16 px-16">
-            <Link href={item.website || ''} className="mb-4 text-primary dark:text-primary-2 hover:underline">
-              {item.name}
-            </Link>
+            <div className="flex justify-between items-start">
+              <Link href={item.website || ''} className="mb-4 text-primary dark:text-primary-2 hover:underline inline-block">
+                {item.name}
+              </Link>
+              <span className="mt-4 text-xs text-accent-1 dark:text-accent-1">{item.year}</span>
+            </div>
             <p className="text-sm">
               {item.description}
             </p>

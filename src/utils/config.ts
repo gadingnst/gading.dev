@@ -1,12 +1,12 @@
-process.env;
+/** Process ENV */
+export const SECRET_KEY = process.env.SECRET_KEY;
+export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
+export const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
-export const {
-  SECRET_KEY,
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  NEXT_PUBLIC_APP_ENVIRONMENT: APP_ENVIRONMENT = 'production'
-} = process.env;
+/** NEXT_PUBLIC Process ENV */
+export const APP_ENVIRONMENT = process.env.NEXT_PUBLIC_APP_ENVIRONMENT || 'production';
 
+/** Custom ENV */
 export const IS_DEV = APP_ENVIRONMENT !== 'production';
 
 /* Site Information */

@@ -1,5 +1,5 @@
 import type { ImageProps } from 'next/image';
-import { FunctionComponent, useCallback, useMemo } from 'react';
+import { FunctionComponent, ReactEventHandler, useCallback, useMemo, useState } from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import Zoom from 'react-medium-image-zoom';
 import { useDelayedAction, useToggler } from '@/hooks';
@@ -36,7 +36,8 @@ const Image: FunctionComponent<Props> = (props) => {
     style,
     className,
     wrapperClassName,
-    afterLoad
+    afterLoad,
+    onError
   } = lazyloadProps;
 
   const blurDataURL = (srcProps as any)?.blurDataURL;
@@ -49,13 +50,15 @@ const Image: FunctionComponent<Props> = (props) => {
     const placeholderSrc = cloudinary(src, { scale: placeholderScaling, placeholder: true });
     const placeholderDefault = blurDataURL ?? DEFAULT_PLACEHOLDER;
     return placeholderSrc === src ? placeholderDefault : placeholderSrc;
-  }, [src, placeholderScaling]);
+  }, [src, placeholderScaling, blurDataURL]);
 
-  const source = useMemo(() => {
+  const initialSource = useMemo(() => {
     return scaling < 1
       ? cloudinary(src, { scale: scaling })
       : src;
   }, [src, scaling]);
+
+  const [source, setSource] = useState<string>(initialSource);
 
   const handleAfterLoad = useCallback(() => {
     withDelay(() => {
@@ -63,6 +66,11 @@ const Image: FunctionComponent<Props> = (props) => {
       afterLoad?.();
     });
   }, []);
+
+  const handleError: ReactEventHandler<HTMLImageElement> = useCallback((event) => {
+    setSource(DEFAULT_PLACEHOLDER);
+    onError?.(event);
+  }, [onError, placeholder]);
 
   const ImageComponent = (
     <span className="flex relative items-center justify-center">
@@ -77,6 +85,7 @@ const Image: FunctionComponent<Props> = (props) => {
         effect="blur"
         afterLoad={handleAfterLoad}
         className={clsxm('min-h-[50px] select-none', className)}
+        onError={handleError}
         wrapperClassName={clsxm(loading ? styles.blur : '', wrapperClassName)}
       />
       {loading && (
