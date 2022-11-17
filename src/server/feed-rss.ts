@@ -9,7 +9,7 @@ import {
   AUTHOR_INSTAGRAM,
   SITE_NAME,
   AUTHOR_NAME
-} from '@/utils/config';
+} from '@/configs/env';
 import day from '@/utils/day';
 
 /**

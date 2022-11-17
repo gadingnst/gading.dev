@@ -1,4 +1,4 @@
-import { CLOUDINARY_CLOUD_NAME } from '@/utils/config';
+import { CLOUDINARY_CLOUD_NAME } from '@/configs/env';
 
 export interface Options {
   scale?: number;

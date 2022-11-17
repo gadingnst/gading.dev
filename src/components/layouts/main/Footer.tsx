@@ -10,7 +10,7 @@ import {
   AUTHOR_STEAM,
   BASE_URL,
   SITE_NAME
-} from '@/utils/config';
+} from '@/configs/env';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
 
@@ -93,6 +93,10 @@ const Footer: FunctionComponent<Props> = (props) => {
           {AUTHOR_NAME}
         </Link>
         <div className="dark:text-white mt-8">
+          <Link className="inline-block text-primary" href="https://analytics.gading.dev/share/OBNvcvLy/Gading's%20Hideout">
+            Analytics
+          </Link>
+          <span className="inline-block mx-4">&bull;</span>
           <Link className="inline-block text-primary" href="/docs/colors">
             Colors System
           </Link>
@@ -103,10 +107,6 @@ const Footer: FunctionComponent<Props> = (props) => {
           <span className="inline-block mx-4">&bull;</span>
           <Link className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
             Sitemap
-          </Link>
-          <span className="inline-block mx-4">&bull;</span>
-          <Link className="inline-block text-primary" href="https://analytics.gading.dev/share/OBNvcvLy/Gading's%20Hideout">
-            Analytics
           </Link>
         </div>
       </div>

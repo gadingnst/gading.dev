@@ -1,6 +1,6 @@
 import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
 import NextHead from 'next/head';
-import { AUTHOR_FULLNAME, BASE_URL, DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
+import { AUTHOR_FULLNAME, BASE_URL, DEFAULT_LOCALE, SITE_NAME } from '@/configs/env';
 import { I18nLocales } from '@/types/contents';
 import cloudinary from '@/utils/helpers/cloudinary';
 import day from '@/utils/day';

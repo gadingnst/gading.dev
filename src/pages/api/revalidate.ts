@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import ConcurrentManager from 'concurrent-manager';
-import { SECRET_KEY } from '@/utils/config';
+import { SECRET_KEY } from '@/configs/env';
 
 type Data = {
   revalidated: boolean;

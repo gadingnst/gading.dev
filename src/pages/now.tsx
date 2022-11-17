@@ -5,7 +5,7 @@ import ContentParser from '@/components/base/Content/Parser';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
 import { Fragment, Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { DEFAULT_LOCALE } from '@/configs/env';
 
 type Props = {
   contents: MDContent;

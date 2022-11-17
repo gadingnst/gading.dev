@@ -1,5 +1,5 @@
 import day from '@/utils/day';
-import { DEFAULT_LOCALE } from '../config';
+import { DEFAULT_LOCALE } from '../../configs/env';
 
 export interface FormatDate {
   [key: string]: string;

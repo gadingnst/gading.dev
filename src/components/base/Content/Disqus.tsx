@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import { DiscussionEmbed } from 'disqus-react';
-import { AUTHOR_NAME, DISQUS_SHORTNAME, PRODUCTION_URL } from '@/utils/config';
+import { AUTHOR_NAME, DISQUS_SHORTNAME, PRODUCTION_URL } from '@/configs/env';
 import useUpdated from '@/hooks/useUpdated';
 import useAppTheme from '@/hooks/stores/useAppTheme';
 import LazyLoad from '@/components/base/LazyLoad';

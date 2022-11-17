@@ -4,7 +4,7 @@ import { Fragment, Suspense } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage } from '@/components/layouts';
 import ContentParser from '@/components/base/Content/Parser';
-import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/utils/config';
+import { AUTHOR_FULLNAME, AUTHOR_NAME, BASE_URL, DEFAULT_LOCALE } from '@/configs/env';
 import { getContentMultiLanguage, MDContent } from '@/server/content-parser';
 
 import IconMail from '$/assets/icons/tools/mail.svg';

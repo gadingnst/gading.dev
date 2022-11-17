@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import { CLOUDINARY_CLOUD_NAME } from '@/utils/config';
+import { CLOUDINARY_CLOUD_NAME } from '@/configs/env';
 import cloudinary from './cloudinary';
 
 describe('cloudinary url helper test', () => {
