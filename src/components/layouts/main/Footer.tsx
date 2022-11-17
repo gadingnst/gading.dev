@@ -10,7 +10,7 @@ import {
   AUTHOR_STEAM,
   BASE_URL,
   SITE_NAME
-} from '@/utils/config';
+} from '@/configs/env';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './styles.module.css';
 

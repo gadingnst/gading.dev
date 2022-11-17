@@ -1,7 +1,7 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { DEFAULT_LOCALE } from '@/configs/env';
 import BlogPageList, { withLocales } from '@/components/layouts/blog/PageList';
 
 type Props = {

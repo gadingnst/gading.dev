@@ -16,7 +16,7 @@ import rehypeResponsiveTables from 'rehype-responsive-tables';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
-import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
+import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/configs/env';
 
 interface ContentSlug {
   en: string;

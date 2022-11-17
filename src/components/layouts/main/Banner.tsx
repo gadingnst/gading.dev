@@ -3,7 +3,7 @@ import { Parallax, ParallaxProps } from 'react-parallax';
 import clsxm from '@/utils/helpers/clsxm';
 import styles from './Banner.module.css';
 import cloudinary from '@/utils/helpers/cloudinary';
-import { IS_DEV } from '@/utils/config';
+import { IS_DEV } from '@/configs/env';
 
 export interface Props extends ParallaxProps {
   bgImage: string;

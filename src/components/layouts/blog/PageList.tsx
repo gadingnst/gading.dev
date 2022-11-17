@@ -2,7 +2,7 @@ import { Fragment, FunctionComponent, useCallback, useMemo } from 'react';
 import type { ContentMeta } from '@/server/content-parser';
 import { Pagination } from '@/components/base';
 import BlogCardList from '@/components/layouts/blog/CardList';
-import { BLOG_PAGINATION_LIMIT } from '@/utils/config';
+import { BLOG_PAGINATION_LIMIT } from '@/configs/env';
 import Navbar from '@/components/layouts/main/Navbar';
 import Banner from '@/components/layouts/main/Banner';
 import Content from '@/components/base/Content';

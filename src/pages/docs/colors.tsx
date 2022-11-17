@@ -2,7 +2,7 @@
 import type { NextPage } from 'next';
 import { Fragment, FunctionComponent, PropsWithChildren } from 'react';
 import { Link, SwitchTheme } from '@/components/base';
-import { SITE_NAME } from '@/utils/config';
+import { SITE_NAME } from '@/configs/env';
 import { Content, Footer, withMainLayoutPage } from '@/components/layouts';
 
 const theme = require('../../../tailwind.config').theme;

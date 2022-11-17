@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { FunctionComponent, Fragment, PropsWithChildren, useMemo } from 'react';
 import Head, { Props as HeadProps } from '@/components/base/Head';
-import { SITE_NAME } from '@/utils/config';
+import { SITE_NAME } from '@/configs/env';
 import { I18nLocales } from '@/types/contents';
 
 export interface Props {

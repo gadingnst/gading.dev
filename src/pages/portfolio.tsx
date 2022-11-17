@@ -1,7 +1,7 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { Fragment, useMemo } from 'react';
 import { Portfolio } from '@/types/contents';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { DEFAULT_LOCALE } from '@/configs/env';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
 import { Button, Card, Image, Link, SVG } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';

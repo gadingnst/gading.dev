@@ -5,7 +5,7 @@ import Zoom from 'react-medium-image-zoom';
 import { useDelayedAction, useToggler } from '@/hooks';
 import cloudinary from '@/utils/helpers/cloudinary';
 import clsxm from '@/utils/helpers/clsxm';
-import { IS_DEV } from '@/utils/config';
+import { IS_DEV } from '@/configs/env';
 import styles from './index.module.css';
 import 'react-medium-image-zoom/dist/styles.css';
 

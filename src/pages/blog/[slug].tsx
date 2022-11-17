@@ -7,7 +7,7 @@ import CardHero from '@/components/base/Card/Hero';
 import ContentInfo from '@/components/base/Content/Info';
 import ContentParser from '@/components/base/Content/Parser';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
-import { DEFAULT_LOCALE } from '@/utils/config';
+import { DEFAULT_LOCALE } from '@/configs/env';
 
 type Props = {
   contents: MDContent;

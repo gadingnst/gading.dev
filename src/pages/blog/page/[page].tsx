@@ -1,7 +1,7 @@
 import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import { withMainLayoutPage } from '@/components/layouts';
 import { getBlogList, ContentBlogList } from '@/server/content-parser';
-import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/utils/config';
+import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/configs/env';
 import BlogPageList, { withLocales } from '@/components/layouts/blog/PageList';
 import range from '@/utils/helpers/range';
 import { I18n } from '@/types/contents';

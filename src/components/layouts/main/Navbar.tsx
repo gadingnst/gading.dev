@@ -9,7 +9,7 @@ import Modal from '@/components/base/Modal';
 import Dropdown from '@/components/base/Dropdown';
 
 import { useToggler, useMounted, useUpdated } from '@/hooks';
-import { DEFAULT_LOCALE, SITE_NAME } from '@/utils/config';
+import { DEFAULT_LOCALE, SITE_NAME } from '@/configs/env';
 import clsxm from '@/utils/helpers/clsxm';
 
 import IconAppLogo from '$/assets/icons/app/logo.svg';

@@ -1,7 +1,7 @@
 import { FunctionComponent, useCallback, useMemo } from 'react';
 import { Button, SVG } from '@/components/base';
 import { I18nLocales } from '@/types/contents';
-import { AUTHOR_TWITTER, BASE_URL } from '@/utils/config';
+import { AUTHOR_TWITTER, BASE_URL } from '@/configs/env';
 import { ContentMeta } from '@/server/content-parser';
 import createPopUp from '@/utils/helpers/popup';
 
