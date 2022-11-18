@@ -59,6 +59,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <button
       role="button"
+      aria-label={`Aria ${children?.toString() || text}`}
       className={clsxm(classes, className, 'text-white')}
       onClick={onClickBtn}
     >

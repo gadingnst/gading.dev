@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { AnchorHTMLAttributes, FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { isURL, sanitizeURL } from '@/utils/helpers/url';
@@ -71,19 +72,20 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [onClick, disabled, asPath, href, locale, title, target]);
 
   return (
-    <a
-      {...anchorProps}
+    <NextLink
+      aria-label={`Aria ${children?.toString()}`}
       role="link"
-      className={clsxm([
-        disabled && 'cursor-not-allowed',
-        className,
-        'transition-all hover:util--underline-dotted hover:underline-offset-2'
-      ])}
+      {...anchorProps}
       href={link}
       onClick={clickHandler}
+      className={clsxm([
+        disabled && 'cursor-not-allowed',
+        'transition-all hover:util--underline-dotted hover:underline-offset-2',
+        className
+      ])}
     >
       {children}
-    </a>
+    </NextLink>
   );
 };
 
