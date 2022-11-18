@@ -73,7 +73,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
   return (
     <NextLink
-      aria-label={children?.toString()}
+      aria-label={`Aria ${children?.toString()}`}
       role="link"
       {...anchorProps}
       href={link}
