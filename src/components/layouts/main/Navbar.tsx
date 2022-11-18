@@ -93,13 +93,13 @@ const Navbar: FunctionComponent<Props> = (props) => {
       : 'bg-primary shadow-md-bottom dark:bg-dark-60';
   }, [transparent]);
 
-  useScrollListener(({ scrollY }) => {
-    setTransparent(scrollY < 5);
-  }, 'window');
-
   const localeChanges = useCallback((code: string) => {
     return onLocaleChange?.(code as I18nLocales) ?? {};
   }, [onLocaleChange]);
+
+  useScrollListener(({ scrollY }) => {
+    setTransparent(scrollY < 5);
+  }, 'window');
 
   useUpdated(() => {
     const newClass = modalVisibility ? 'mt-12 opacity-100' : '';
