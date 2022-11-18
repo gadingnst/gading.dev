@@ -126,8 +126,10 @@ const Navbar: FunctionComponent<Props> = (props) => {
           <Link
             href="/"
             className={clsxm(
-              'hidden 2xs:flex hover:util--text-shadow-white justify-center items-center text-base xs:text-xl sm:text-2xl',
-              'transition-all duration-150 text-white dark:text-white hover:scale-105 hover:no-underline hover:text-light-50',
+              'hidden 2xs:flex hover:util--text-shadow-white',
+              'justify-center items-center text-base xs:text-xl sm:text-2xl',
+              'transition-all duration-150 text-white dark:text-white',
+              'hover:scale-105 hover:no-underline hover:text-light-50',
               textShadowClass
             )}
           >

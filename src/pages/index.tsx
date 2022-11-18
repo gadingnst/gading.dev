@@ -104,9 +104,9 @@ const HomePage: NextPage<Props> = (props) => {
               className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--homepage_see-portfolio`}
             />
           </div>
-          <h5 className="font-bold italic text-center mt-8">
+          <p className="font-bold text-lg sm:text-xl italic text-center mt-8">
             {locales.thansksVisit}.
-          </h5>
+          </p>
         </CardHero>
         <div className="flex justify-center items-center flex-col my-40 opacity-0 animate-[y-b-25_.5s_ease-in-out_.75s_1_normal_forwards]">
           <h3 className="font-courgette">
