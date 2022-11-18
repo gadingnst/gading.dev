@@ -110,6 +110,7 @@ const Share: FunctionComponent<Props> = (props) => {
       <div className="relative flex justify-center items-center flex-wrap">
         {socialShares.map((social) => (
           <Button
+            label={`Button to ${social.label}`}
             disableHover
             key={social.label}
             onClick={onShare(social)}

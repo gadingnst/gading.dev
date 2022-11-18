@@ -10,6 +10,7 @@ export interface Props {
   locale?: string;
   delay?: number;
   disableHover?: boolean;
+  label?: string;
   onClick?: <T>(event: MouseEvent<T, globalThis.MouseEvent>) => void;
 }
 
@@ -22,10 +23,13 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     onClick,
     locale,
     disableHover,
-    delay
+    delay,
+    label
   } = props;
 
   const withDelay = useDelayedAction(delay);
+
+  const ariaLabel = label || children?.toString() || text;
 
   const classes = useMemo(() => {
     let defaultClass = 'relative shadow-md cursor-pointer p-8 duration-150 transition-all active:scale-95 active:outline-1 active:outline-light dark:active:outline-white';
@@ -45,6 +49,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   if (href) {
     return (
       <Link
+        aria-label={`Aria ${ariaLabel}`}
         locale={locale}
         delay={delay}
         href={href}
@@ -59,7 +64,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <button
       role="button"
-      aria-label={`Aria ${children?.toString() || text}`}
+      aria-label={ariaLabel}
       className={clsxm(classes, className, 'text-white')}
       onClick={onClickBtn}
     >

@@ -28,7 +28,7 @@ export const BlogCard: FunctionComponent<CardProps> = (props) => {
       key={meta.slugOriginal}
       className="rounded-12 overflow-hidden"
     >
-      <NextLink href="/blog/[slug]" as={`/blog/${meta.slugOriginal}`}>
+      <NextLink aria-label={`Read ${meta.title}`} href="/blog/[slug]" as={`/blog/${meta.slugOriginal}`}>
         <div className="relative w-full overflow-hidden h-[200px] cursor-pointer">
           <Image
             src={meta.image}

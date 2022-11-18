@@ -101,10 +101,10 @@ const Pagination: FunctionComponent<Props> = (props) => {
           value === 1 ? styles.disabled : ''
         )}
       >
-        <NextLink href={handleHref(value - 1)}>
-          <a className={styles['page-link']}>
+        <NextLink aria-label={`Prev to page ${value - 1}`} href={handleHref(value - 1)}>
+          <span className={styles['page-link']}>
             <SVG fill="currentColor" size={16} src={IconArrowBack} />
-          </a>
+          </span>
         </NextLink>
       </li>
       {pages.map((page) => (
@@ -113,10 +113,10 @@ const Pagination: FunctionComponent<Props> = (props) => {
           onClick={handlePageChange(page)}
           className={clsxm(styles['page-item'], value === page ? styles.active : '')}
         >
-          <NextLink href={handleHref(page)}>
-            <a className={styles['page-link']}>
+          <NextLink aria-label={`Go to page ${page}`} href={handleHref(page)}>
+            <span className={styles['page-link']}>
               {page}
-            </a>
+            </span>
           </NextLink>
         </li>
       ))}
@@ -127,10 +127,10 @@ const Pagination: FunctionComponent<Props> = (props) => {
           value === totalPages ? styles.disabled : ''
         )}
       >
-        <NextLink href={handleHref(value + 1)}>
-          <a className={styles['page-link']}>
+        <NextLink aria-label={`Next to page ${value + 1}`} href={handleHref(value + 1)}>
+          <span className={styles['page-link']}>
             <SVG fill="currentColor" size={16} src={IconArrowForward} />
-          </a>
+          </span>
         </NextLink>
       </li>
     </ul>

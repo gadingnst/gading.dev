@@ -69,6 +69,7 @@ const Footer: FunctionComponent<Props> = (props) => {
         <div className="flex flex-wrap items-center my-20 lg:my-0">
           {socialLinks.map((socialLink) => (
             <Button
+              label={`Visit author ${socialLink.color.split(' ')[0].substring(3)}`}
               disableHover
               key={socialLink.url}
               href={socialLink.url}
