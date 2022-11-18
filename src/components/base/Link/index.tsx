@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import { AnchorHTMLAttributes, FunctionComponent, MouseEvent, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { isURL, sanitizeURL } from '@/utils/helpers/url';
@@ -72,7 +71,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [onClick, disabled, asPath, href, locale, title, target]);
 
   return (
-    <NextLink
+    <a
       aria-label={`Aria ${children?.toString()}`}
       role="link"
       {...anchorProps}
@@ -85,7 +84,7 @@ const Link: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       ])}
     >
       {children}
-    </NextLink>
+    </a>
   );
 };
 

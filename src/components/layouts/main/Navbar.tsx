@@ -8,7 +8,7 @@ import SVG from '@/components/base/Image/SVG';
 import Modal from '@/components/base/Modal';
 import Dropdown from '@/components/base/Dropdown';
 
-import { useToggler, useMounted, useUpdated } from '@/hooks';
+import { useToggler, useUpdated, useScrollListener } from '@/hooks';
 import { DEFAULT_LOCALE, SITE_NAME } from '@/configs/env';
 import clsxm from '@/utils/helpers/clsxm';
 
@@ -93,21 +93,13 @@ const Navbar: FunctionComponent<Props> = (props) => {
       : 'bg-primary shadow-md-bottom dark:bg-dark-60';
   }, [transparent]);
 
-  const onScroll = useCallback(() => {
-    setTransparent(window.scrollY < 5);
-  }, []);
+  useScrollListener(({ scrollY }) => {
+    setTransparent(scrollY < 5);
+  }, 'window');
 
   const localeChanges = useCallback((code: string) => {
     return onLocaleChange?.(code as I18nLocales) ?? {};
   }, [onLocaleChange]);
-
-  useMounted(() => {
-    setTransparent(window.scrollY < 5);
-    window.addEventListener('scroll', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  });
 
   useUpdated(() => {
     const newClass = modalVisibility ? 'mt-12 opacity-100' : '';

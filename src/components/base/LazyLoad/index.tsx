@@ -7,7 +7,7 @@ const LazyLoad: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const { children, ...otherProps } = props;
 
   return (
-    <LazyLoadComponent {...otherProps}>
+    <LazyLoadComponent useIntersectionObserver {...otherProps}>
       {children}
     </LazyLoadComponent>
   );
