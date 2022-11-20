@@ -9,4 +9,18 @@ interface Window {
       load: () => void;
     };
   };
+
+  umami?: {
+    trackEvent: <T>(
+      name: string,
+      data: Record<string, T>,
+      url?: string,
+      websiteId?: string
+    ) => void;
+    trackView: (
+      url: string,
+      referrer?: string,
+      websiteId?: string
+    ) => void;
+  };
 }
