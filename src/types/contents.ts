@@ -10,7 +10,7 @@ export interface Portfolio {
   category: string;
   description: string;
   github?: string;
-  website?: string;
+  link?: string;
   image: string;
   stacks: string[];
   isActive?: boolean;
