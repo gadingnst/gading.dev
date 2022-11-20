@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import { Fragment, useMemo } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 import { Portfolio } from '@/types/contents';
 import { DEFAULT_LOCALE } from '@/configs/env';
 import { LazyComponentProps, trackWindowScroll } from 'react-lazy-load-image-component';
@@ -8,6 +8,7 @@ import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/component
 import createContentLocales from '@/utils/helpers/locales';
 
 import IconGithub from '$/assets/icons/logo/octocat.svg';
+import clsxm from '@/utils/helpers/clsxm';
 
 type Props = {
   contents: Portfolio[];
@@ -25,25 +26,13 @@ const withLocales = createContentLocales({
   }
 });
 
-export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
-  const { locale = DEFAULT_LOCALE } = ctx;
-  const { default: contents } = await import(`@/contents/portfolio/${locale}`)
-    .catch((err) => {
-      if (err.code === 'MODULE_NOT_FOUND') {
-        return import(`@/contents/portfolio/en`);
-      }
-      throw err;
-    });
-  return {
-    props: {
-      contents,
-      locale
-    }
-  };
-};
-
 const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
   const { contents, scrollPosition } = props;
+
+  const getProjectSlug = useCallback((projectName: string) => (
+    projectName.replace(/\s+/g, '-').toLowerCase()
+  ), []);
+
   return (
     <div className="grid grid-cols-1 gap-28 w-full max-w-5xl sm:grid-cols-2 lg:grid-cols-3 -mt-80 min-h-[500px]">
       {contents.map((item, idx) => (
@@ -64,7 +53,13 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
           </div>
           <div className="flex flex-col pt-12 pb-16 px-16">
             <div className="flex justify-between items-start">
-              <Link href={item.website || ''} className="mb-4 text-primary dark:text-primary-2 hover:underline inline-block">
+              <Link
+                href={item.link || ''}
+                className={clsxm([
+                  'mb-4 text-primary dark:text-primary-2 hover:underline inline-block',
+                  item.link && `umami--click--portfolio_link-${getProjectSlug(item.name)}`
+                ])}
+              >
                 {item.name}
               </Link>
               <span className="mt-4 text-xs text-accent-1 dark:text-accent-1">{item.year}</span>
@@ -79,7 +74,10 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
                 disableHover
                 href={item.github}
                 delay={300}
-                className="bg-github shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-2"
+                className={clsxm([
+                  'bg-github shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-2',
+                  `umami--click--portfolio_github-${getProjectSlug(item.name)}`
+                ])}
               >
                 <SVG fill="white" size={14} src={IconGithub} />
               </Button>
@@ -90,6 +88,23 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
     </div>
   );
 });
+
+export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStaticPropsResult<Props>> => {
+  const { locale = DEFAULT_LOCALE } = ctx;
+  const { default: contents } = await import(`@/contents/portfolio/${locale}`)
+    .catch((err) => {
+      if (err.code === 'MODULE_NOT_FOUND') {
+        return import(`@/contents/portfolio/en`);
+      }
+      throw err;
+    });
+  return {
+    props: {
+      contents,
+      locale
+    }
+  };
+};
 
 const PortfolioPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
