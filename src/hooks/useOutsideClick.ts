@@ -1,4 +1,5 @@
 import { RefObject, useCallback, useEffect } from 'react';
+import useMounted from './useMounted';
 
 /**
  * React hook that listens for clicks outside of a given refs.
@@ -15,12 +16,12 @@ function useOutsideClick<T extends Node>(callback: (target: HTMLElement) => void
     });
     if (isOutsideRefs) callback(event.target as HTMLElement);
   }, []);
-  useEffect(() => {
+  useMounted(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  }, []);
+  });
 }
 
 export default useOutsideClick;
