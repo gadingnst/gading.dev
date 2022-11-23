@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { RefObject, useCallback } from 'react';
 import useMounted from './useMounted';
 
 /**
