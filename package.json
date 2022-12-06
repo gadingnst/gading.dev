@@ -42,7 +42,7 @@
     "autoprefixer": "^10.4.13",
     "cloudinary": "^1.32.0",
     "clsx": "^1.2.1",
-    "concurrent-manager": "^1.0.0",
+    "concurrent-manager": "^1.1.0",
     "dayjs": "^1.11.6",
     "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
