@@ -10,7 +10,7 @@ Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend**
 
 Saya bersemangat dalam mengeksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan *DX (Developer Experience)*, teknik, dan tren terbaru.
 
-Fokus utama saya adalah meningkatkan *DX* di tim Frontend, seperti menyiapkan *boilerplate*, standarisasi, membuat utilitas/pustaka, meneliti, dan meningkatkan kehandalan struktur di dalam *codebase*. Pekerjaan saya sebagian besar pada membangun layanan yang bukan produk *end-to-end* di sisi Frontend.
+Fokus utama saya adalah meningkatkan *DX* di tim Frontend, seperti menyiapkan *boilerplate*, arsitektur, standarisasi, membuat utilitas/pustaka, meneliti, dan meningkatkan kehandalan struktur di dalam *codebase*. Pekerjaan saya sebagian besar pada membangun layanan yang bukan produk *end-to-end* di sisi Frontend.
 
 Saya dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Dan juga, telah membuat beberapa proyek sampingan atau *sumber-terbuka* di [GitHub](https://github.com/gadingnst) untuk bersenang-senang, dan mungkin sudah berguna bagi orang-orang yang telah menggunakannya.
 

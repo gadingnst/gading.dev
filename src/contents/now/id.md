@@ -14,7 +14,7 @@ Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [
 Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak September, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
 
 #### 💼 Karir
-Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [SIRCLO](https://www.google.com/search?q=sirclo) dalam Tim Insinyur Inti [Orami](https://orami.co.id), yang berfokus pada membuat layanan yang bukan produk *end-to-end* di sisi *Frontend*.
+Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [Alterra](https://www.google.com/search?q=alterra) dalam Tim Insinyur 2p5, yang berfokus pada membuat arsitektur [Web3](https://www.google.com/search?q=web3).
 
 #### ☕️ Aktivitas
 - Berinvestasi, dan mempelajari Cryptocurrency
@@ -67,9 +67,9 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Core i7 3770 @ 3.40GHz
 - ASRock Radeon RX 6600 Challenger D 8GB GDDR6
 - HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel
-- SSD 512GB RX7 SATA + HDD 1TB
+- SSD 1TB VGEN SATA + HDD 1TB
 - Aerocool United Power 500W 80+ PSU Pure
 - Panasonic LED TV 32" FHD
 - CyberPower UPS UT1050E (1050VA/630W)
 
-*Terakhir diperbarui: Agustus, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+*Terakhir diperbarui: Desember, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

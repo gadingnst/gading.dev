@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Link from '@/components/base/Link';
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 describe('<Link /> component test', () => {
   render(<Link href="https://gading.dev">Hello World</Link>);
   render(<Link href="https://gading.dev" disabled>Hello World</Link>);
