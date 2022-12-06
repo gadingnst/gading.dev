@@ -67,9 +67,9 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Core i7 3770 @ 3.40GHz
 - ASRock Radeon RX 6600 Challenger D 8GB GDDR6
 - HYNIX DDR3 8x2GB PC12800/1600MHz Dual-Channel
-- SSD 512GB RX7 SATA + HDD 1TB
+- SSD 1TB VGEN SATA + HDD 1TB
 - Aerocool United Power 500W 80+ PSU Pure
 - Panasonic LED TV 32" FHD
 - CyberPower UPS UT1050E (1050VA/630W)
 
-*Terakhir diperbarui: Agustus, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+*Terakhir diperbarui: Desember, 2022. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
