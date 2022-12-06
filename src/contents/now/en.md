@@ -14,7 +14,7 @@ At first, I'll be thanking to [Derek Sivers](https://sive.rs/now), [Fariz Rizald
 I’m back in my hometown, Palembang, and working *remotely* since September, 2020 due to ***COVID-19*** situation. And, I still working *remotely* until now, because my company issued a ***remote-first*** work policy. Nevertheless, I will enjoy every moment with my family because of that.
 
 #### 💼 Careers
-Working full-time as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) at [SIRCLO](https://www.google.com/search?q=sirclo) on the [Orami's](https://orami.co.id) Core Engineering Team, that focusing on building services that not *end-to-end* product in the *Frontend* side.
+Working full-time as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) at [Alterra](https://www.google.com/search?q=alterra) on the 2p5 Engineering Team, that focusing on building [Web3](https://www.google.com/search?q=web3) architecture.
 
 #### ☕️ Activities
 - Investing, and Learning Cryptocurrency

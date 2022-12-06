@@ -10,7 +10,7 @@ I'm ***Software Engineer*** who specialized in ***Frontend*** on *Full-time* wor
 
 I'm passionate in exploring about modern mobile and web technology while taking into consideration about *DX (Developer Experience)*, the latest trends, and techniques.
 
-My main focus is on improving DX in the Frontend team, such as setup the boilerplate, standardization, creating utilities/libraries, research, and improving the reliability structure in codebases. My works is mostly on building services that are not *end-to-end products* on the Frontend side.
+My main focus is on improving DX in the Frontend team, such as setup the boilerplate, architecture, standardization, creating utilities/libraries, research, and improving the reliability structure in codebases. My works is mostly on building services that are not *end-to-end products* on the Frontend side.
 
 I would be a fast learner in doing new things and building good teamwork either. Also, made several side or *open-source* projects on [GitHub](https://github.com/gadingnst) for fun, and maybe already useful for people who have used it.
 

@@ -14,7 +14,7 @@ Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [
 Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak September, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
 
 #### 💼 Karir
-Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [SIRCLO](https://www.google.com/search?q=sirclo) dalam Tim Insinyur Inti [Orami](https://orami.co.id), yang berfokus pada membuat layanan yang bukan produk *end-to-end* di sisi *Frontend*.
+Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [Alterra](https://www.google.com/search?q=alterra) dalam Tim Insinyur 2p5, yang berfokus pada membuat arsitektur [Web3](https://www.google.com/search?q=web3).
 
 #### ☕️ Aktivitas
 - Berinvestasi, dan mempelajari Cryptocurrency
