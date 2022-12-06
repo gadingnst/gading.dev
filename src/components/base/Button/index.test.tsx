@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Button from '@/components/base/Button';
 
+jest.mock('next/router', () => require('next-router-mock'));
+
 describe('<Button /> component test', () => {
   render(<Button text="Hello World" />);
   render(<Button href="https://gading.dev" text="Hello World" />);
