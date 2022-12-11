@@ -14,7 +14,7 @@ Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now), [
 Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak September, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
 
 #### 💼 Karir
-Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) di [Alterra](https://www.google.com/search?q=alterra) dalam Tim Insinyur 2p5, yang berfokus pada membuat arsitektur [Web3](https://www.google.com/search?q=web3).
+Bekerja *full-time* sebagai [Insinyur Perangkat Lunak](https://www.google.com/search?q=apa+pekerjaan+software+engineer) ([*Platform Blockchain*](https://www.google.com/search?q=apa+itu+blockchain)) di [Alterra](https://www.google.com/search?q=alterra), yang berfokus dalam membangun arsitektur [Web3](https://www.google.com/search?q=apa+itu+web3) dan meningkatkan [*DX (Developer Experience)*](https://www.google.com/search?q=apa+itu+developer+experience)-nya.
 
 #### ☕️ Aktivitas
 - Berinvestasi, dan mempelajari Cryptocurrency
