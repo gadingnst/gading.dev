@@ -51,6 +51,10 @@
     @apply mr-2;
   }
 
+  p > code {
+    @apply bg-dark-30 text-white rounded-8 py-4 px-8;
+  }
+
   table {
     @apply mx-auto max-w-full text-sm sm:text-base;
     th, td {
