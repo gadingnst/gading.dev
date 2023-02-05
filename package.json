@@ -49,7 +49,7 @@
     "eslint-config-next": "^13.1.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "image-extensions": "^1.1.0",
     "isomorphic-fetch": "^3.0.0",
