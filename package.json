@@ -54,7 +54,7 @@
     "image-extensions": "^1.1.0",
     "isomorphic-fetch": "^3.0.0",
     "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest-environment-jsdom": "^29.4.1",
     "mdx-bundler": "^9.2.1",
     "next-router-mock": "^0.8.0",
     "next-sitemap": "^3.1.43",
