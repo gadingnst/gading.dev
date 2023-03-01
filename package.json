@@ -46,7 +46,7 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "eslint": "^8.29.0",
-    "eslint-config-next": "^13.1.6",
+    "eslint-config-next": "^13.2.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.3",
