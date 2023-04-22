@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageResponse } from '@vercel/og';
 import { type NextRequest } from 'next/server';
 import { type CSSProperties } from 'react';
+import { ImageResponse } from '@vercel/og';
 
 import { AUTHOR_NAME, BASE_URL, SITE_NAME } from '@/configs/env';
 import clsxm from '@/utils/helpers/clsxm';
@@ -10,7 +10,18 @@ export const config = {
   runtime: 'edge'
 };
 
+export const poppins400 = fetch(
+  new URL('../../assets/fonts/Poppins/Poppins-Regular.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
+
+export const poppins700 = fetch(
+  new URL('../../assets/fonts/Poppins/Poppins-Bold.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
+
 async function OpenGraphHandler(req: NextRequest) {
+  const poppinsRegular = await poppins400;
+  const poppinsBold = await poppins700;
+
   const { searchParams } = new URL(req.url);
 
   const title = searchParams.get('title');
@@ -33,68 +44,57 @@ async function OpenGraphHandler(req: NextRequest) {
 
   const Component = (
     <div
-      style={{
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '0 5rem',
-        position: 'relative',
-        backgroundColor: '#282F5E'
-      }}
+      tw={clsxm([
+        'relative flex flex-col justify-center items-center',
+        'w-full h-full',
+        'text-center',
+        'px-[4rem] bg-[#282F5E]'
+      ])}
     >
-      <img
-        style={{
-          width: query.logoWidth,
-          ...(query.logoHeight && { height: query.logoHeight })
-        }}
-        tw={clsxm(
-          'rounded-full shadow-lg'
-        )}
-        src={query.logo}
-        alt="Favicon"
-      />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <h1
+      <div tw={clsxm('flex flex-col justify-center items-center -mt-10')}>
+        <img
+          style={{
+            width: query.logoWidth,
+            ...(query.logoHeight && { height: query.logoHeight })
+          }}
           tw={clsxm(
-            'mt-8',
-            'text-6xl font-bold',
-            'text-white'
+            'rounded-full shadow-lg'
           )}
-        >
-          <span
-            style={{
-              backgroundImage: 'linear-gradient(90deg, #5E72E4, #B89BFF)',
-              backgroundClip: 'text',
-              '-webkit-background-clip': 'text',
-              color: 'transparent',
-              padding: '0.5rem 0'
-            } as CSSProperties}
+          src={query.logo}
+          alt="Favicon"
+        />
+        <div tw={clsxm('flex flex-col justify-center items-center')}>
+          <h1
+            tw={clsxm(
+              'mt-8',
+              'text-6xl font-bold',
+              'text-white'
+            )}
           >
-            {query.title}
-          </span>
-        </h1>
+            <span
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #5E72E4, #B89BFF)',
+                backgroundClip: 'text',
+                '-webkit-background-clip': 'text',
+                color: 'transparent',
+                padding: '0.5rem 0'
+              } as CSSProperties}
+            >
+              {query.title}
+            </span>
+          </h1>
+        </div>
+        {query.description && (
+          <p
+            tw={clsxm(
+              'text-3xl',
+              'text-gray-300'
+            )}
+          >
+            {query.description}
+          </p>
+        )}
       </div>
-      {query.description && (
-        <p
-          tw={clsxm(
-            'text-3xl',
-            'text-gray-300'
-          )}
-        >
-          {query.description}
-        </p>
-      )}
       <h3
         tw={clsxm(
           'text-2xl font-bold w-full absolute bottom-2 left-10',
@@ -103,7 +103,7 @@ async function OpenGraphHandler(req: NextRequest) {
       >
         {SITE_NAME}
       </h3>
-      <p tw={clsxm('text-gray-300 absolute bottom-2 right-10 font-semibold')}>
+      <p tw={clsxm('text-gray-300 absolute bottom-2 right-10 font-bold')}>
         {BASE_URL}
       </p>
     </div>
@@ -112,7 +112,19 @@ async function OpenGraphHandler(req: NextRequest) {
   return new ImageResponse(Component, {
     width: query.width,
     height: query.height,
-    emoji: 'twemoji'
+    emoji: 'twemoji',
+    fonts: [
+      {
+        name: 'Poppins',
+        data: poppinsRegular,
+        weight: 400
+      },
+      {
+        name: 'Poppins',
+        data: poppinsBold,
+        weight: 700
+      }
+    ]
   });
 }
 
