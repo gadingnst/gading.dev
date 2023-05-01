@@ -64,7 +64,7 @@
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.1.0",
-    "rehype-katex": "^6.0.2",
+    "rehype-katex": "^6.0.3",
     "rehype-prism-plus": "^1.5.0",
     "rehype-responsive-tables": "^2.0.6",
     "rehype-slug": "^5.1.0",
