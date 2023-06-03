@@ -24,7 +24,8 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     locale,
     disableHover,
     delay,
-    label
+    label,
+    ...otherProps
   } = props;
 
   const withDelay = useDelayedAction(delay);
@@ -49,6 +50,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   if (href) {
     return (
       <Link
+        {...otherProps}
         aria-label={`Aria ${ariaLabel}`}
         locale={locale}
         delay={delay}
@@ -63,6 +65,7 @@ const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
 
   return (
     <button
+      {...otherProps}
       role="button"
       aria-label={ariaLabel}
       className={clsxm(classes, className, 'text-white')}
