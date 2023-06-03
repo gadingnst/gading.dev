@@ -8,7 +8,6 @@ import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/component
 import createContentLocales from '@/utils/helpers/locales';
 
 import IconGithub from '$/assets/icons/logo/octocat.svg';
-import clsxm from '@/utils/helpers/clsxm';
 
 type Props = {
   contents: Portfolio[];
@@ -55,10 +54,10 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
             <div className="flex justify-between items-start">
               <Link
                 href={item.link || ''}
-                className={clsxm([
-                  'mb-4 text-primary dark:text-primary-2 hover:underline inline-block',
-                  item.link && `umami--click--portfolio_link-${getProjectSlug(item.name)}`
-                ])}
+                className="mb-4 text-primary dark:text-primary-2 hover:underline inline-block"
+                {...(!item.link ? {} : {
+                  'data-umami-event': `portfolio_link-${getProjectSlug(item.name)}`
+                })}
               >
                 {item.name}
               </Link>
@@ -74,10 +73,8 @@ const PortfolioList = trackWindowScroll((props: PortfolioListProps) => {
                 disableHover
                 href={item.github}
                 delay={300}
-                className={clsxm([
-                  'bg-github shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-2',
-                  `umami--click--portfolio_github-${getProjectSlug(item.name)}`
-                ])}
+                data-umami-event={`portfolio_github-${getProjectSlug(item.name)}`}
+                className="bg-github shadow-lg rounded-8 p-12 mx-4 my-4 hover:-translate-y-2"
               >
                 <SVG fill="white" size={14} src={IconGithub} />
               </Button>

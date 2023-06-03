@@ -66,14 +66,16 @@ const RightDesc = ({ className = 'hidden md:flex' }) => (
     <Button
       disableHover
       href="mailto:contact@gading.dev"
-      className={`${rightDescBtnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--about_contact`}
+      data-umami-event="about_contact"
+      className={`${rightDescBtnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2`}
     >
       <SVG size={16} className="mr-4" fill="white" src={IconMail} /> Contact
     </Button>
     <Button
       disableHover
       href={`${BASE_URL}/resume`}
-      className={`${rightDescBtnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--about_resume`}
+      data-umami-event="about_resume"
+      className={`${rightDescBtnClasses} bg-info active:shadow-info-2 hover:shadow-info-2`}
     >
       <SVG size={14} className="mr-4" fill="white" src={IconBriefcase} /> Resume
     </Button>
