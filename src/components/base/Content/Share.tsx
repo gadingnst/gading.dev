@@ -115,7 +115,8 @@ const Share: FunctionComponent<Props> = (props) => {
             key={social.label}
             onClick={onShare(social)}
             delay={300}
-            className={`${social.color} ${btnShareClasses} umami--click--share-${social.label.substring(9).toLocaleLowerCase()}`}
+            data-umami-event={`share-${social.label.substring(9).toLocaleLowerCase()}`}
+            className={`${social.color} ${btnShareClasses}`}
           >
             <SVG fill="white" size={24} src={social.logo} />
           </Button>

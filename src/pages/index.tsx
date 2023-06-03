@@ -89,19 +89,22 @@ const HomePage: NextPage<Props> = (props) => {
               disableHover
               text={locales.myBlog}
               href="/blog"
-              className={`${btnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2 umami--click--homepage_see-blog`}
+              data-umami-event="homepage_see-blog"
+              className={`${btnClasses} bg-primary active:shadow-primary-2 hover:shadow-primary-2`}
             />
             <Button
               disableHover
               text={locales.aboutMe}
               href="/about"
-              className={`${btnClasses} bg-accent active:shadow-accent-2 hover:shadow-accent-2 mx-8 umami--click--homepage_see-about`}
+              data-umami-event="homepage_see-about"
+              className={`${btnClasses} bg-accent active:shadow-accent-2 hover:shadow-accent-2 mx-8`}
             />
             <Button
               disableHover
               text={locales.myPortfolio}
               href="/portfolio"
-              className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2 umami--click--homepage_see-portfolio`}
+              data-umami-event="homepage_see-portfolio"
+              className={`${btnClasses} bg-info active:shadow-info-2 hover:shadow-info-2`}
             />
           </div>
           <p className="font-bold text-lg sm:text-xl italic text-center mt-8">
@@ -114,7 +117,11 @@ const HomePage: NextPage<Props> = (props) => {
           </h3>
           <hr className="w-full mt-16" />
           <BlogCardList contents={blogs} locale={locale} />
-          <Button href="/blog" className="text-white dark:text-white mt-36 bg-primary rounded-8 umami--click--homepage_more-posts">
+          <Button
+            href="/blog"
+            data-umami-event="homepage_more-posts"
+            className="text-white dark:text-white mt-36 bg-primary rounded-8"
+          >
             {locales.seeMore}...
           </Button>
         </div>
