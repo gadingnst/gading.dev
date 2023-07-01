@@ -44,7 +44,7 @@
     "cloudinary": "^1.33.0",
     "clsx": "^1.2.1",
     "concurrent-manager": "^1.1.0",
-    "dayjs": "^1.11.7",
+    "dayjs": "^1.11.8",
     "dotenv": "^16.0.3",
     "eslint": "^8.29.0",
     "eslint-config-next": "^13.2.4",
