@@ -14,3 +14,4 @@ export { default as Pagination } from './Pagination';
 export { default as SwitchTheme } from './Switch/Theme';
 
 export { default as LazyLoad } from './LazyLoad';
+export { default as NextImage } from 'next/image';

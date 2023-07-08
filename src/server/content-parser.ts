@@ -18,7 +18,7 @@ import remarkMath from 'remark-math';
 
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/configs/env';
 
-interface ContentSlug {
+export interface ContentSlug {
   en: string;
   id: string;
 }
@@ -172,12 +172,11 @@ export async function getBlogList(language = DEFAULT_LOCALE, limitOptions?: Blog
     offset = 0
   } = limitOptions || {};
   const blogs = await getAllBlogMeta(language);
-  const blogsSortedByDate = blogs
-    .sort((a, b) => {
-      const dateA = day(a.meta.date);
-      const dateB = day(b.meta.date);
-      return dateB.isBefore(dateA) ? -1 : 1;
-    });
+  const blogsSortedByDate = blogs.sort((a, b) => {
+    const dateA = day(a.meta.date);
+    const dateB = day(b.meta.date);
+    return dateB.isBefore(dateA) ? -1 : 1;
+  });
   const result = limit ? blogsSortedByDate.slice(offset, limit) : blogsSortedByDate;
   const contents = result.map(({ meta }) => meta);
   return {
@@ -212,11 +211,21 @@ export async function getContentMultiLanguage(contentPath: string, language = DE
 export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContent> {
   const filePath = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')
-    .catch((err) => {
+    .catch(async(err) => {
       if (err.code === 'ENOENT' && err.message.includes('.md')) {
-        return Fs.readFile(`${filePath}.mdx`, 'utf8');
+        try {
+          const _result = await Fs.readFile(`${filePath}.mdx`, 'utf8');
+          return _result;
+        } catch (_err: any) {
+          if (_err.code === 'ENOENT' && _err.message.includes('.mdx')) {
+            const _result = await Fs.readFile(`${filePath}.generated.mdx`, 'utf-8');
+            return _result;
+          }
+          return null;
+        }
       }
       throw err;
     });
-  return parseContent(fileContents, language);
+
+  return parseContent(fileContents ?? '', language);
 }

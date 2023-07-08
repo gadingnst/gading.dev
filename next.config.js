@@ -14,7 +14,20 @@ const nextConfig = {
     defaultLocale: 'en'
   },
   images: {
-    domains: ['raw.githubusercontent.com', 'res.cloudinary.com'],
+    domains: [
+      'raw.githubusercontent.com',
+      'res.cloudinary.com'
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '**.fbcdn.net'
+      }
+    ],
     minimumCacheTTL: 60 * 60 * 24
   }
 };

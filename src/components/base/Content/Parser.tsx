@@ -1,4 +1,5 @@
 import { Fragment, FunctionComponent, PropsWithChildren, useCallback, useId, useMemo } from 'react';
+import NextLink from 'next/link';
 import Script, { ScriptProps } from 'next/script';
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
 import * as SharedComponents from '@/components/base';
@@ -14,8 +15,11 @@ export interface Props extends MDXContentProps {
 }
 
 interface ContentImageProps {
+  width: number;
+  height: number;
   src: string;
   alt: string;
+  carousel?: string;
 }
 
 /**
@@ -37,6 +41,27 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
         {alt}
       </span>
     </Fragment>
+  );
+};
+
+/**
+ * handle Image showing in with NextImage
+ */
+const NextContentImage: FunctionComponent<ContentImageProps> = (props) => {
+  const { src, alt, width, height, carousel } = props;
+  return (
+    <NextLink href={src} target="_blank">
+      <SharedComponents.NextImage
+        src={src}
+        alt={alt}
+        width={carousel ? width / 3 : width}
+        height={carousel ? height / 3 : height}
+        className={clsxm([
+          'mx-auto rounded-8 cursor-pointer my-8',
+          carousel && 'mx-4'
+        ])}
+      />
+    </NextLink>
   );
 };
 
@@ -67,7 +92,6 @@ const TwitterScript: FunctionComponent<ScriptProps> = (props) => {
         {...props}
         id={scriptId}
         onLoad={handleLoad}
-        charSet="utf-8"
         src="https://platform.twitter.com/widgets.js"
       />
     </SharedComponents.LazyLoad>
@@ -91,7 +115,8 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
           State,
           TwitterScript,
           a: SharedComponents.Link,
-          img: ContentImage
+          img: ContentImage,
+          NextImage: NextContentImage
         } as any}
       />
     </div>
