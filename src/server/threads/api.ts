@@ -10,6 +10,9 @@ export function getContentImages(_singleImg: ImageVersions2, _carouselImg: any[]
   const singleImage = _singleImg.candidates;
   if (_carouselImg) {
     for (const _img of _carouselImg) {
+      _img.image_versions2.candidates[0].isCarousel = true;
+      _img.image_versions2.candidates[0].width = _img.original_width;
+      _img.image_versions2.candidates[0].height = _img.original_height;
       imgUrls.push(_img.image_versions2.candidates);
     }
   } else if (singleImage.length > 0) {
@@ -30,7 +33,9 @@ function getContents(_post: Post|QuotedPost) {
     const imgCandidates = getContentImages(_firstImage, _carouselMedia);
     if (imgCandidates.length > 0) {
       for (const _img of imgCandidates) {
-        imgs.push(`<NextImage src="${_img[0].url}" height={${_img[0].height}} width={${_img[0].width}} alt="Content Image" />`);
+        imgs.push(
+          `<NextImage ${(_img[0] as any).isCarousel ? 'carousel' : ''} src="${_img[0].url}" height={${_img[0].height ?? 250}} width={${_img[0].width ?? 250}} alt="Content Image" />`
+        );
       }
     }
   }

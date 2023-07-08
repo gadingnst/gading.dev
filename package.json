@@ -6,7 +6,7 @@
     "prepare": "husky install",
     "postbuild": "next-sitemap",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run app:generate:content:threads && next build",
     "start": "next start",
     "lint": "tsc --noEmit && eslint src --ignore-pattern 'src/public' --max-warnings 0",
     "lint:fix": "tsc --noEmit && eslint src --ignore-pattern 'src/public' --fix",
@@ -15,7 +15,8 @@
     "test:unit:coverage": "jest --ci --json --coverage --testLocationInResults --outputFile=report.json",
     "app:revalidate": "ts-node ./scripts/app:revalidate.ts",
     "cloudinary:sync": "ts-node ./scripts/cloudinary:sync.ts",
-    "ts-node": "sh -c 'ts-node ${0}'"
+    "ts-node": "sh -c 'ts-node ${0}'",
+    "app:generate:content:threads": "npm run ts-node src/server/threads/get-contents.ts"
   },
   "dependencies": {
     "@vercel/og": "^0.0.27",
