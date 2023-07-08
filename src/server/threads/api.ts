@@ -1,4 +1,4 @@
-import { ImageVersions2, Post, QuotedPost, ThreadsAPI } from 'threads-api';
+import { Candidate, ImageVersions2, Post, QuotedPost, ThreadsAPI, ThreadsHdProfilePicVersion } from 'threads-api';
 
 export const targetUsername = 'gadingnst';
 export const targetTag = '#gadingnst_blog';
@@ -6,14 +6,14 @@ export const targetTag = '#gadingnst_blog';
 export const threadsAPI = new ThreadsAPI();
 
 export function getContentImages(_singleImg: ImageVersions2, _carouselImg: any[]) {
-  const imgUrls: string[] = [];
+  const imgUrls: (Candidate[]| ThreadsHdProfilePicVersion[])[] = [];
   const singleImage = _singleImg.candidates;
   if (_carouselImg) {
     for (const _img of _carouselImg) {
-      imgUrls.push(_img.image_versions2.candidates[0].url);
+      imgUrls.push(_img.image_versions2.candidates);
     }
   } else if (singleImage.length > 0) {
-    imgUrls.push(singleImage[0].url);
+    imgUrls.push(singleImage);
   }
   return imgUrls;
 }
@@ -27,10 +27,10 @@ function getContents(_post: Post|QuotedPost) {
   const _carouselMedia = _post.carousel_media;
   if (_username === targetUsername) {
     caption = _caption ?? '';
-    const imgUrls = getContentImages(_firstImage, _carouselMedia);
-    if (imgUrls.length > 0) {
-      for (const _img of imgUrls) {
-        imgs.push(`![](${_img})`);
+    const imgCandidates = getContentImages(_firstImage, _carouselMedia);
+    if (imgCandidates.length > 0) {
+      for (const _img of imgCandidates) {
+        imgs.push(`<NextImage src="${_img[0].url}" height={${_img[0].height}} width={${_img[0].width}} alt="Content Image" />`);
       }
     }
   }

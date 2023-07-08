@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
+import Fs from 'fs/promises';
 import matter from 'gray-matter';
 import {
   threadsAPI,
   getThreads,
-  getContentImages,
   targetTag,
   targetUsername
 } from './api';
@@ -38,7 +38,7 @@ interface ThreadsFrontMatter {
  * tags: ["firstpost", "firstblog"]
  * ---
  */
-async function main() {
+async function getThreadsContents(locale?: I18nLocales) {
   const userID = await threadsAPI.getUserIDfromUsername(targetUsername);
   if (!userID) throw new Error('User not found');
 
@@ -53,6 +53,7 @@ async function main() {
   const blogPosts = filteredPosts.map(async(_post) => {
     const targetThread = _post.thread_items[0].post;
     const threads = await getThreads(targetThread.pk);
+
     const _header = targetThread.caption?.text ?? '';
     const header = _header?.replace(targetTag, '').trim();
     const frontMatter = matter(header);
@@ -62,33 +63,50 @@ async function main() {
       .replace(/\s+/gi, '-')
       .replace(/[^a-z0-9_-]/g, '');
 
-    const [image] = getContentImages(targetThread.image_versions2, targetThread.carousel_media);
+    // date can't work now
+    // const date = dayjs(targetThread.taken_at).format('YYYY-MM-DD');
+    const date = dayjs().format('YYYY-MM-DD');
+    const metadata = {
+      title: meta.title,
+      slug: { [meta.locale]: slug } as any,
+      slugOriginal: slug,
+      description: meta.desc ?? `${targetUsername} blog on ThreadsApp`,
+      keywords: meta.keywords ?? `${targetUsername}, threadsapp blog`,
+      tags: [...tags, ...(meta.tags ?? [])],
+      date: meta.date ?? date,
+      readTime: readingTime(threads.join('\n\n')),
+      image: '/media/banners/5.jpg'
+    } satisfies ContentMeta;
 
     return {
-      header,
       threads,
       locale: meta.locale,
-      full: [header, ...threads],
-      meta: {
-        title: meta.title,
-        slug: { [meta.locale]: slug } as any,
-        slugOriginal: slug,
-        description: meta.desc ?? `${targetUsername} blog on ThreadsApp`,
-        keywords: meta.keywords ?? `${targetUsername}, threadsapp blog`,
-        tags: [...tags, ...(meta.tags ?? [])],
-        date: meta.date ?? dayjs(targetThread.taken_at).format('YYYY-MM-DD'),
-        readTime: readingTime(threads.join('\n\n')),
-        image: image ?? '/media/banners/5.jpg'
-      } satisfies ContentMeta
+      meta: metadata,
+      contents: [
+        `---\ntitle: '${metadata.title}'\n` +
+        `slug: {\n` +
+        `\t${meta.locale}: '${metadata.slugOriginal}'\n` +
+        `}\n` +
+        `date: ${metadata.date}\n` +
+        `description: '${metadata.description}'\n` +
+        `keywords: '${metadata.keywords}'\n` +
+        `tags: ${JSON.stringify(metadata.tags)}\n` +
+        `image: '${metadata.image}'\n---`,
+        ...threads
+      ].join('\n\n')
     };
   });
 
-  await Promise.all(blogPosts.map(async(_p) => {
-    const { threads, meta } = await _p;
-    console.log(meta);
-    console.log(threads);
-  }));
+  const results = await Promise.all(blogPosts);
+  if (locale) return results.filter((_t) => _t.locale === locale);
+  return results;
+}
 
+async function main() {
+  const results = await getThreadsContents();
+  await Promise.all(results.map((_post) => {
+    return Fs.writeFile(`./src/contents/posts/${_post.locale}/${_post.meta.slugOriginal}.generated.mdx`, _post.contents);
+  }));
 }
 
 main();
