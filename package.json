@@ -14,7 +14,8 @@
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --ci --json --coverage --testLocationInResults --outputFile=report.json",
     "app:revalidate": "ts-node ./scripts/app:revalidate.ts",
-    "cloudinary:sync": "ts-node ./scripts/cloudinary:sync.ts"
+    "cloudinary:sync": "ts-node ./scripts/cloudinary:sync.ts",
+    "ts-node": "sh -c 'ts-node ${0}'"
   },
   "dependencies": {
     "@vercel/og": "^0.0.27",
@@ -72,6 +73,7 @@
     "remark-math": "^5.1.1",
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "^3.3.2",
+    "threads-api": "^1.0.9",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",

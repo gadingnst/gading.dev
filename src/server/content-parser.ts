@@ -18,7 +18,7 @@ import remarkMath from 'remark-math';
 
 import { BLOG_PAGINATION_LIMIT, DEFAULT_LOCALE } from '@/configs/env';
 
-interface ContentSlug {
+export interface ContentSlug {
   en: string;
   id: string;
 }
