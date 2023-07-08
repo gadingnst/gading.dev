@@ -56,6 +56,7 @@ export async function getThreads(_postPk: string) {
           threads.push(_img);
         }
       }
+      threads.push(`\n---\n`);
     }
   } else {
     const _tc = _tp.containing_thread;
@@ -68,11 +69,13 @@ export async function getThreads(_postPk: string) {
           threads.push(_img);
         }
       }
+      threads.push(`\n---\n`);
       const _res = await getThreads(q_t.pk);
       for (const _caption of _res) {
         threads.push(_caption);
       }
     }
+    threads.push('*this is auto generated content from [ThreadsApp](https://threads.net). see original at [@gadingnst](https://threads.net/@gadingnst)*');
   }
 
   return threads;

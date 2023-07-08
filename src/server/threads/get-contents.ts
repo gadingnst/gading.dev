@@ -83,15 +83,17 @@ async function getThreadsContents(locale?: I18nLocales) {
       locale: meta.locale,
       meta: metadata,
       contents: [
-        `---\ntitle: '${metadata.title}'\n` +
-        `slug: {\n` +
-        `\t${meta.locale}: '${metadata.slugOriginal}'\n` +
-        `}\n` +
-        `date: ${metadata.date}\n` +
-        `description: '${metadata.description}'\n` +
-        `keywords: '${metadata.keywords}'\n` +
-        `tags: ${JSON.stringify(metadata.tags)}\n` +
-        `image: '${metadata.image}'\n---`,
+        (
+          `---\ntitle: '${metadata.title}'\n` +
+          `slug: {\n` +
+          `\t${meta.locale}: '${metadata.slugOriginal}'\n` +
+          `}\n` +
+          `date: ${metadata.date}\n` +
+          `description: '${metadata.description}'\n` +
+          `keywords: '${metadata.keywords}'\n` +
+          `tags: ${JSON.stringify(metadata.tags)}\n` +
+          `image: '${metadata.image}'\n---`
+        ),
         ...threads
       ].join('\n\n')
     };
