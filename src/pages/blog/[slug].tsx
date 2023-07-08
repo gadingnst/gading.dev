@@ -57,7 +57,8 @@ const BlogDetailPage: NextPage<Props> = (props) => {
   const postPath = `${locale}/blog/${meta.slugOriginal}`;
 
   const localeChange = useMemo(() => {
-    return Object.values(meta.slug).every(Boolean);
+    const _allSlug = Object.values(meta.slug);
+    return _allSlug.length > 1 && _allSlug.every(Boolean);
   }, [meta.slug]);
 
   const onLocaleChange = useCallback((i18nLocale: I18nLocales) => ({
