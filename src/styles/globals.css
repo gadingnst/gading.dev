@@ -1,15 +1,26 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
 
-@import "fonts";
-@import "normalize";
-@import "utility";
-@import "dark";
-@import "katex";
-@import "prism";
-@import "image";
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.content-parser {
-  @apply text-dark-70 dark:text-white;
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
 }
