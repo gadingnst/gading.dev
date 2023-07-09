@@ -15,11 +15,11 @@ export const i18nList = new Map([
 function Navbar() {
   return (
     <div className="bg-base-300 shadow-md">
-      <nav className="navbar max-w-6xl mx-auto">
+      <nav className="navbar max-w-5xl mx-auto">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">
-
-          </a>
+          <NextLink href="/" className="font-courgette text-xl">
+            Gading&apos;s Hideout
+          </NextLink>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">

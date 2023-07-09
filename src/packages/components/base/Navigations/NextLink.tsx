@@ -1,5 +1,7 @@
-import Link, { type LinkProps } from 'next/link';
-import { AnchorHTMLAttributes, PropsWithChildren } from 'react';
+import type { LinkProps } from 'next/link';
+import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
+import Link from 'next-intl/link';
+
 import cxm from '@/packages/utils/cxm';
 
 type NextLinkProps = PropsWithChildren<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>
@@ -8,13 +10,14 @@ type NextLinkProps = PropsWithChildren<Omit<AnchorHTMLAttributes<HTMLAnchorEleme
 
 export interface Props extends NextLinkProps {
   disabled?: boolean;
+  locale?: string;
 }
 
 function NextLink(props: Props) {
-  const { disabled = false, className } = props;
+  const { disabled = false, className, ...otherProps } = props;
   return (
     <Link
-      {...props}
+      {...otherProps}
       className={cxm([
         disabled && 'opacity-60 cursor-not-allowed',
         className
