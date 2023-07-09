@@ -1,4 +1,4 @@
-import path from 'path';
+import Path from 'path';
 
 export const rootDir = process.cwd();
-export const contentsDir = path.join(rootDir, 'contents');
+export const contentsDir = Path.join(rootDir, 'contents');

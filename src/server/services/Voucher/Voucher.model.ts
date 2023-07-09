@@ -6,10 +6,10 @@ export interface VoucherFields<T = string|number> {
   expires: string;
 }
 
-class VoucherModelDTO extends Model<VoucherFields> {
+class VoucherM extends Model<VoucherFields> {
   protected collectionName = 'vouchers';
 }
 
-const VoucherModel = new VoucherModelDTO();
+const VoucherModel = new VoucherM();
 
 export default VoucherModel;
