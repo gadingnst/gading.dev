@@ -6,7 +6,7 @@ type NextLinkProps = PropsWithChildren<Omit<AnchorHTMLAttributes<HTMLAnchorEleme
   & LinkProps
   & React.RefAttributes<HTMLAnchorElement>>;
 
-interface Props extends NextLinkProps {
+export interface Props extends NextLinkProps {
   disabled?: boolean;
 }
 
@@ -16,7 +16,7 @@ function NextLink(props: Props) {
     <Link
       {...props}
       className={cxm([
-        disabled && 'opacity-60 pointer-events-none cursor-not-allowed',
+        disabled && 'opacity-60 cursor-not-allowed',
         className
       ])}
     />

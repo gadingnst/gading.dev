@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-const keyframes = require('./design/keyframes');
-
 /** @see https://tailwindcss.com/docs/configuration */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,12 +10,11 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
-      'serif': ['var(--font-inter)', 'ui-serif', 'Georgia'],
-      'mono': ['var(--font-inter)', 'ui-monospace', 'SFMono-Regular']
+      sans: ['var(--font-poppins)', 'ui-sans-serif', 'system-ui'],
+      courgette: ['var(--font-courgette)', 'cursive']
     },
     extend: {
-      keyframes,
+      keyframes: require('./design/keyframes'),
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -27,5 +22,6 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require('daisyui')],
+  daisyui: require('./daisy.config')
 };

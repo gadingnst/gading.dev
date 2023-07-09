@@ -1,13 +1,13 @@
 'use client';
 
 import { PropsWithChildren, useState } from 'react';
-import Link from 'next/link';
 
 import Image from '@/packages/components/base/Images/Image';
 
 import useMounted from '@/packages/hooks/useMounted';
 import { NextPageProps } from '@/@types/global';
 import styles from './AboutWrapper.client.module.css';
+import Link from '@/packages/components/base/Navigations/Link';
 
 interface Props {
   searchParams: NextPageProps['searchParams'];
@@ -51,7 +51,7 @@ function AboutWrapper(props: PropsWithChildren<Props>) {
           <p>
             {JSON.stringify(searchParams)}
           </p>
-          <Link href="/" className="text-fuchsia-400 text-center mt-5 hover:underline underline-offset-4">
+          <Link href="/" className="link-secondary text-center mt-5 hover:underline underline-offset-4">
             Back to Homepage
           </Link>
         </div>

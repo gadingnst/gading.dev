@@ -1,7 +1,7 @@
 'use client';
 
+import { type HTMLAttributes, type PropsWithChildren, forwardRef } from 'react';
 import cxm from '@/packages/utils/cxm';
-import { FunctionComponent, HTMLAttributes, PropsWithChildren } from 'react';
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -11,7 +11,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
 }
 
-export const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
+export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>((props, ref) => {
   const {
     children,
     className = '',
@@ -31,10 +31,11 @@ export const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     <button
       role="button"
       {...attrProps}
+      ref={ref}
       disabled={disabled}
       onClick={handleClick}
       className={cxm([
-        'bg-blue-500 text-white py-2 px-4 rounded-lg',
+        'btn btn-primary py-2 px-4 rounded-lg',
         'disabled:cursor-not-allowed disabled:opacity-60',
         'text-center relative',
         block && 'w-full',
@@ -44,6 +45,8 @@ export const Button: FunctionComponent<PropsWithChildren<Props>> = (props) => {
       {children || text}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

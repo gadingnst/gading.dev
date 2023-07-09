@@ -1,11 +1,24 @@
 import '@/styles/bundle.css';
 
 import { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Poppins, Courgette } from 'next/font/google';
 import { FC, PropsWithChildren } from 'react';
 import { SITE_NAME } from '@/configs/env';
+import cxm from '@/packages/utils/cxm';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', adjustFontFallback: false });
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  weight: ['100', '200', '300', '400', '600', '700', '800', '900'],
+  adjustFontFallback: false
+});
+
+const courgette = Courgette({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-courgette',
+  adjustFontFallback: false
+});
 
 /**
  * HTML Metadata in App Route
@@ -20,7 +33,7 @@ export const metadata = {
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={cxm([poppins.variable, courgette.variable])}>
       <body className="font-sans">
         {children}
       </body>
