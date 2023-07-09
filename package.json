@@ -28,11 +28,9 @@
   },
   "dependencies": {
     "dayjs": "^1.11.9",
-    "install": "^0.13.0",
     "mongodb": "^5.7.0",
     "next": "13.4.9",
     "next-intl": "^3.0.0-beta.7",
-    "npm": "^9.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lazy-load-image-component": "^1.6.0"
