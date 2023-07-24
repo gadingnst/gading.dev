@@ -12,7 +12,9 @@ function Footer({ className }: Props) {
         className
       ])}
     >
-      Hello Footer
+      <div className="base-container py-5">
+        Hello Footer
+      </div>
     </footer>
   );
 }
