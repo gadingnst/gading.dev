@@ -1,16 +1,20 @@
 'use client';
 
-import { type PropsWithChildren, useState } from 'react';
+import { type PropsWithChildren, type ReactNode, useState } from 'react';
 import useMounted from '@/packages/hooks/useMounted';
 
-function BrowserRender({ children }: PropsWithChildren) {
+interface Props {
+  placeholder?: ReactNode;
+}
+
+function BrowserRender({ children, placeholder }: PropsWithChildren<Props>) {
   const [onClient, setOnClient] = useState(false);
 
   useMounted(() => {
     setOnClient(true);
   });
 
-  return onClient ? children : null;
+  return onClient ? children : (placeholder ?? null);
 }
 
 export default BrowserRender;
