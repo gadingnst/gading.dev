@@ -1,4 +1,9 @@
 import NextLink from '@/packages/components/base/Navigations/NextLink';
+import cxm from '@/packages/utils/cxm';
+
+interface Props {
+  className?: string;
+}
 
 export const menus = [
   { label: 'Now', href: '/now' },
@@ -12,12 +17,17 @@ export const i18nList = new Map([
   ['id', '🇮🇩 ID']
 ]);
 
-function Navbar() {
+function Navbar({ className }: Props) {
   return (
-    <div className="bg-base-300 shadow-md">
-      <nav className="navbar max-w-5xl mx-auto">
+    <nav
+      className={cxm([
+        'header-primary shadow-md flex-shrink-0',
+        className
+      ])}
+    >
+      <div className="navbar base-container">
         <div className="flex-1">
-          <NextLink href="/" className="font-courgette text-xl">
+          <NextLink href="/" className="font-courgette text-xl hover:text-shadow-white">
             Gading&apos;s Hideout
           </NextLink>
         </div>
@@ -46,8 +56,8 @@ function Navbar() {
             </li>
           </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 

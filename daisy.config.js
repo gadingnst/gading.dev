@@ -1,44 +1,14 @@
-const baseTheme = {
-  'primary': '#5e72e4',
-  'primary-content': '#ffffff',
-  'secondary': '#ff50a5',
-  'secondary-content': '#ffffff',
-  'accent': '#b89bff',
-  'accent-content': '#ffffff',
-  'info': '#11cdef',
-  'info-content': '#ffffff',
-  'success': '#2dce89',
-  'success-content': '#ffffff',
-  'warning': '#fb6340',
-  'warning-content': '#ffffff',
-  'error': '#f5365c',
-  'error-content': '#ffffff',
-  'neutral': '#a1a1a3'
-};
+/* eslint-disable @typescript-eslint/no-var-requires */
+const darkTheme = require('./design/theme/dark');
+const lightTheme = require('./design/theme/light');
 
 /**
  * @see https://daisyui.com/docs/config/
  */
 module.exports = {
   themes: [
-    {
-      light: {
-        ...baseTheme,
-        'base-100': '#ffffff',
-        'base-200': '#f7f9fC',
-        'base-300': '#e6e8ee',
-        'base-content': '#313764'
-      }
-    },
-    {
-      dark: {
-        ...baseTheme,
-        'base-100': '#0e263a',
-        'base-200': '#0f2d44',
-        'base-300': '#282f5e',
-        'base-content': '#ffffff'
-      }
-    }
+    lightTheme,
+    darkTheme
   ],
   prefix: '', // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
   base: true, // applies background color and foreground color for root element by default

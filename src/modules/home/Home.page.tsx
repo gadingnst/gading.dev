@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 function HomePage() {
   const t = useTranslations('home');
   return (
-    <div>
+    <div className="base-container">
       Hello {t('title')}
     </div>
   );

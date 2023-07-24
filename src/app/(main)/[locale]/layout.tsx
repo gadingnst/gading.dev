@@ -5,6 +5,7 @@ import { NextPageProps } from '@/@types/global';
 
 import { withMainLayoutPage } from '@/packages/components/layouts/Pages/Main';
 import Navbar from '@/packages/components/layouts/Base/Navbar';
+import MainContent from '@/packages/components/layouts/Base/MainContent';
 import Footer from '@/packages/components/layouts/Base/Footer';
 
 function RootMainLayout({ children, params }: PropsWithChildren<NextPageProps>) {
@@ -16,7 +17,9 @@ function RootMainLayout({ children, params }: PropsWithChildren<NextPageProps>) 
   return (
     <Fragment>
       <Navbar />
-      {children}
+      <MainContent>
+        {children}
+      </MainContent>
       <Footer />
     </Fragment>
   );

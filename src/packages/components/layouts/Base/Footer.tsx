@@ -1,8 +1,19 @@
-function Footer() {
+import cxm from '@/packages/utils/cxm';
+
+interface Props {
+  className?: string;
+}
+
+function Footer({ className }: Props) {
   return (
-    <div>
+    <footer
+      className={cxm([
+        'flex-shrink-0',
+        className
+      ])}
+    >
       Hello Footer
-    </div>
+    </footer>
   );
 }
 

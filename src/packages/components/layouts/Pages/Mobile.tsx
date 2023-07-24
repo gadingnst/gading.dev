@@ -15,15 +15,14 @@ const MobileLayoutPage: FunctionComponent<PropsWithChildren<MobileLayoutConfigPr
     ...layoutWithPageProps
   } = props;
   return (
-    <MainLayoutPage {...layoutWithPageProps}>
-      <div
-        className={cxm([
-          'relative max-w-[500px] mx-auto w-full flex flex-col min-h-screen shadow-xl',
-          classNameMobile
-        ])}
-      >
-        {children}
-      </div>
+    <MainLayoutPage
+      {...layoutWithPageProps}
+      className={cxm([
+        'relative max-w-[500px] mx-auto w-full shadow-xl',
+        classNameMobile
+      ])}
+    >
+      {children}
     </MainLayoutPage>
   );
 };
