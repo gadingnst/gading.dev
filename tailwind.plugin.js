@@ -5,7 +5,7 @@ const stylePlugins = plugin(({ addUtilities, theme }) => {
   addUtilities({
     '.base-container': {
       width: theme('width.full'),
-      maxWidth: theme('maxWidth.5xl'),
+      maxWidth: theme('maxWidth.6xl'),
       paddingLeft: theme('spacing.4'),
       paddingRight: theme('spacing.4'),
       marginLeft: 'auto',
