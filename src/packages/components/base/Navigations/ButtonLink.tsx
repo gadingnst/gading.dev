@@ -23,7 +23,12 @@ export const ButtonLink: FunctionComponent<Props> = (props) => {
 
   if (disabled || !href) {
     return (
-      <Button {...otherProps} block={block} className={className} disabled={disabled}>
+      <Button
+        {...otherProps}
+        block={block}
+        className={className}
+        disabled={disabled}
+      >
         {children || text}
       </Button>
     );
