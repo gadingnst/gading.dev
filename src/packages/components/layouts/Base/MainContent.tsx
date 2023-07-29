@@ -1,5 +1,6 @@
-import cxm from '@/packages/utils/cxm';
 import { PropsWithChildren } from 'react';
+
+import cxm from '@/packages/utils/cxm';
 
 interface Props {
   className?: string;

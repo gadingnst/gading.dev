@@ -1,6 +1,6 @@
 import type { LinkProps } from 'next/link';
-import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 import Link from 'next-intl/link';
+import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 
 import cxm from '@/packages/utils/cxm';
 

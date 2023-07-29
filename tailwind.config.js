@@ -25,7 +25,7 @@ module.exports = {
   },
   plugins: [
     require('daisyui'),
-    require('./tailwind.plugin')
+    require('./design/tailwind.custom')
   ],
   daisyui: require('./daisy.config')
 };

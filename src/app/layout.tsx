@@ -3,6 +3,7 @@ import '@/styles/bundle.css';
 import { Metadata } from 'next';
 import { Poppins, Courgette } from 'next/font/google';
 import { FC, PropsWithChildren } from 'react';
+
 import { SITE_NAME } from '@/configs/env';
 import cxm from '@/packages/utils/cxm';
 

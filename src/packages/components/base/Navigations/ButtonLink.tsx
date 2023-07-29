@@ -1,6 +1,7 @@
 import { FunctionComponent, HTMLAttributeAnchorTarget } from 'react';
-import NextLink from '@/packages/components/base/Navigations/NextLink';
+
 import Button, { Props as ButtonProps } from '@/packages/components/base/Buttons/Button';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 import cxm from '@/packages/utils/cxm';
 
 export interface Props extends ButtonProps {

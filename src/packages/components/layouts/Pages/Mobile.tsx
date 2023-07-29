@@ -1,8 +1,9 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
+
+import { NextPageComponent } from '@/@types/global';
 import cxm from '@/packages/utils/cxm';
 
 import { MainLayoutPage, LayoutConfigProps, UnknownProps } from './Main';
-import { NextPageComponent } from '@/@types/global';
 
 interface MobileLayoutConfigProps extends LayoutConfigProps {
   classNameMobile?: string;

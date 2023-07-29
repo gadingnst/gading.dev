@@ -1,21 +1,22 @@
 import Fs from 'fs/promises';
 import Path from 'path';
+
 import Matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
-import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
+import rehypePrism from 'rehype-prism-plus';
 import rehypeResponsiveTables from 'rehype-responsive-tables';
+import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
-import dt from '@/packages/utils/dt';
 import { MDContent } from '@/@types/contents';
 import { DEFAULT_LOCALE } from '@/configs/env';
-import { contentsDir, rootDir } from '@/server/services/ContentParser/constants';
+import { contentsDir, rootDir } from '@/modules/ContentParser/services/constants';
+import dt from '@/packages/utils/dt';
 
 /**
  *

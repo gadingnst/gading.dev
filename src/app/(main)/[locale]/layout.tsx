@@ -1,12 +1,12 @@
-import { Fragment, PropsWithChildren } from 'react';
 import { notFound } from 'next/navigation';
 import { useLocale } from 'next-intl';
-import { NextPageProps } from '@/@types/global';
+import { Fragment, PropsWithChildren } from 'react';
 
-import { withMainLayoutPage } from '@/packages/components/layouts/Pages/Main';
-import Navbar from '@/packages/components/layouts/Base/Navbar';
-import MainContent from '@/packages/components/layouts/Base/MainContent';
+import { NextPageProps } from '@/@types/global';
 import Footer from '@/packages/components/layouts/Base/Footer';
+import MainContent from '@/packages/components/layouts/Base/MainContent';
+import Navbar from '@/packages/components/layouts/Base/Navbar';
+import { withMainLayoutPage } from '@/packages/components/layouts/Pages/Main';
 
 function RootMainLayout({ children, params }: PropsWithChildren<NextPageProps>) {
   const locale = useLocale();

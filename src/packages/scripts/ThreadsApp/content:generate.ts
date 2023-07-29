@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import Fs from 'fs/promises';
+
 import matter from 'gray-matter';
-import dayjs from 'dayjs';
 import readingTime from 'reading-time';
 
 import type { I18nLocales, ContentMeta } from '@/@types/contents';
+import dt from '@/packages/utils/dt';
 
 import {
   threadsAPI,
@@ -66,7 +67,7 @@ async function getThreadsContents(locale?: I18nLocales) {
 
     // date can't work now
     // const date = dayjs(targetThread.taken_at).format('YYYY-MM-DD');
-    const date = dayjs().format('YYYY-MM-DD');
+    const date = dt().format('YYYY-MM-DD');
     const metadata = {
       title: meta.title,
       slug: { [meta.locale]: slug } as any,

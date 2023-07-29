@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { RefObject, useCallback } from 'react';
+import { type RefObject, useCallback } from 'react';
+
 import useMounted from './useMounted';
 
 interface ScrollListenerParams {
@@ -20,7 +21,7 @@ const getReference = <T>(reference: Reference<T>) => {
  * @param callback - event to handle on element scroll
  * @param reference - The ref of element to listen
  */
-function useScrollListener<T extends Element>(callback: (scrollPosition: ScrollListenerParams) => void, reference: Reference<T>) {
+function useScrollListener<T extends Element>(callback: (scrollPosition: ScrollListenerParams) => void, reference: Reference<T> = 'window') {
   const handleScroll = useCallback(() => {
     const { isReactRef, element } = getReference(reference);
     const scrollY = (isReactRef ? element?.scrollTop : window.scrollY) ?? 0;

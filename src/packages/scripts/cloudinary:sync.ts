@@ -2,9 +2,10 @@
 
 import { readdir } from 'fs/promises';
 import Path from 'path';
-import imgExts from 'image-extensions';
+
 import CloudinaryInstance from 'cloudinary';
 import ConcurrentManager from 'concurrent-manager';
+import imgExts from 'image-extensions';
 
 import {
   CLOUDINARY_API_KEY,
