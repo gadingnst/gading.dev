@@ -29,7 +29,7 @@
     "react-medium-image-zoom": "^4.4.3",
     "react-nanny": "^2.15.0",
     "react-parallax": "^3.5.1",
-    "swr-global-state": "^2.1.1"
+    "swr-global-state": "^2.2.0"
   },
   "devDependencies": {
     "@jest/transform": "^29.5.0",
