@@ -47,7 +47,7 @@
     "clsx": "^1.2.1",
     "concurrent-manager": "^1.1.0",
     "dayjs": "^1.11.9",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
     "eslint": "^8.44.0",
     "eslint-config-next": "^13.2.4",
     "feed": "^4.2.2",
