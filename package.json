@@ -19,7 +19,7 @@
     "app:generate:content:threads": "npm run ts-node src/server/threads/get-contents.ts"
   },
   "dependencies": {
-    "@vercel/og": "^0.0.27",
+    "@vercel/og": "^0.5.9",
     "disqus-react": "^1.1.5",
     "next": "13.3.1",
     "nextjs-progressbar": "^0.0.16",
