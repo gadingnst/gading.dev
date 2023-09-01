@@ -26,7 +26,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lazy-load-image-component": "^1.5.6",
-    "react-medium-image-zoom": "^4.4.3",
+    "react-medium-image-zoom": "^5.1.8",
     "react-nanny": "^2.15.0",
     "react-parallax": "^3.5.1",
     "swr-global-state": "^2.1.1"
