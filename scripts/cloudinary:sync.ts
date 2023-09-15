@@ -64,7 +64,7 @@ async function syncMedia(): Promise<void> {
 
   try {
     console.log('> Deleting `media` folder in Cloudinary...');
-    await Cloudinary.api.delete_resources_by_prefix('gading.dev/media/');
+    await Cloudinary.api.delete_resources_by_prefix('nmdan.com/media/');
     console.log('> Uploading all files in local `media` folder to Cloudinary.');
     for await (const file of getFiles(mediaDir)) {
       const pathToUpload = Path.join('media', file.replace(mediaDir, ''));
@@ -76,7 +76,7 @@ async function syncMedia(): Promise<void> {
         concurrent.queue(async() => {
           const response = await Cloudinary.uploader.upload(file, {
             public_id: name,
-            folder: `gading.dev/${folderName}`,
+            folder: `nmdan.com/${folderName}`,
             overwrite: false
           });
           return response.public_id;

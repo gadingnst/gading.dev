@@ -41,13 +41,15 @@ export interface Props {
 export const menus = [
   { label: 'Now', href: '/now' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about' }
+  // { label: 'Portfolio', href: '/portfolio' },
+  { label: 'About Me', href: '/about' }
 ];
 
 export const i18nList = new Map([
   ['en', <>🇺🇸&nbsp;&nbsp;EN</>],
-  ['id', <>🇮🇩&nbsp;&nbsp;ID</>]
+  ['id', <>🇯🇵&nbsp;&nbsp;JP</>],
+  ['vn', <>🇻🇳&nbsp;&nbsp;VN</>]
+
 ]);
 
 const LocaleItem: FunctionComponent<PropsWithChildren<LocaleItemProps>> = (props) => {

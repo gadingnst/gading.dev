@@ -3,8 +3,7 @@ import { CardHero } from '@/components/base';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import ContentParser from '@/components/base/Content/Parser';
 import { MDContent, getContentMultiLanguage } from '@/server/content-parser';
-import { Fragment, Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import { Fragment } from 'react';
 import { DEFAULT_LOCALE } from '@/configs/env';
 
 type Props = {
@@ -25,12 +24,8 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
-const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
-  suspense: true
-});
-
 const NowPage: NextPage<Props> = (props) => {
-  const { contents, locale } = props;
+  const { contents } = props;
   const { meta, content } = contents;
   return (
     <Fragment>
@@ -54,22 +49,6 @@ const NowPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <Suspense
-          fallback={
-            <div className="container max-w-5xl mt-40 mx-auto">
-              <h4 className="text-center mb-12">
-                Loading Disqus...
-              </h4>
-            </div>
-          }
-        >
-          <Disqus
-            path="now"
-            identifier="now"
-            title={meta.title}
-            locale={locale}
-          />
-        </Suspense>
       </Content>
       <Footer />
     </Fragment>

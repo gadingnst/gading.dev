@@ -1,6 +1,5 @@
 import type { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import dynamic from 'next/dynamic';
-import { Fragment, Suspense } from 'react';
+import { Fragment } from 'react';
 import { CardHero, Image, Button, SVG } from '@/components/base';
 import { Banner, Content, Navbar, Footer, withMainLayoutPage } from '@/components/layouts';
 import ContentParser from '@/components/base/Content/Parser';
@@ -98,12 +97,8 @@ const PerformanceReportsImage = ({ src = imgReportDesktop, alt = 'Performance Re
 const PerformanceReportsDesktop = () => <PerformanceReportsImage />;
 const PerformanceReportsMobile = () => <PerformanceReportsImage src={imgReportMobile} />;
 
-const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
-  suspense: true
-});
-
 const AboutPage: NextPage<Props> = (props) => {
-  const { contents, locale } = props;
+  const { contents } = props;
   const { meta, content } = contents;
   return (
     <Fragment>
@@ -149,22 +144,6 @@ const AboutPage: NextPage<Props> = (props) => {
             </ContentParser>
           </div>
         </CardHero>
-        <Suspense
-          fallback={
-            <div className="container max-w-5xl mt-40 mx-auto">
-              <h4 className="text-center mb-12">
-                Loading Disqus...
-              </h4>
-            </div>
-          }
-        >
-          <Disqus
-            path="about"
-            identifier="about"
-            title={meta.title}
-            locale={locale}
-          />
-        </Suspense>
       </Content>
       <Footer />
     </Fragment>

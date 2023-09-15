@@ -18,7 +18,7 @@ function cloudinary(path: string, opts?: Options): string {
     const placeholderHandler = placeholder ? `e_blur:250${gifHandler}` : '';
     const scaling = scale ? `${placeholderHandler}c_scale,w_${scale},h_${scale}/` : '';
     const basePath =
-      `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${scaling}gading.dev${path}`;
+      `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${scaling}nmdan.com${path}`;
     return basePath;
   }
   return path;

@@ -1,7 +1,6 @@
 import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
-import dynamic from 'next/dynamic';
 import type { I18nLocales } from '@/types/contents';
-import { Fragment, Suspense, useCallback, useMemo } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 import { getAllBlogPaths, MDContent, getContent } from '@/server/content-parser';
 import CardHero from '@/components/base/Card/Hero';
 import ContentInfo from '@/components/base/Content/Info';
@@ -42,19 +41,9 @@ export const getStaticProps = async(ctx: GetStaticPropsContext): Promise<GetStat
   };
 };
 
-const Share = dynamic(() => import('@/components/base/Content/Share'), {
-  suspense: true
-});
-
-const Disqus = dynamic(() => import('@/components/base/Content/Disqus'), {
-  suspense: true
-});
-
 const BlogDetailPage: NextPage<Props> = (props) => {
   const { contents, locale } = props;
   const { meta, content } = contents;
-
-  const postPath = `${locale}/blog/${meta.slugOriginal}`;
 
   const localeChange = useMemo(() => {
     const _allSlug = Object.values(meta.slug);
@@ -98,38 +87,6 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             {content}
           </ContentParser>
         </CardHero>
-        <script async defer src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
-        <Suspense
-          fallback={
-            <div className="mt-40">
-              <h4 className="text-center mb-12">
-                Loading...
-              </h4>
-            </div>
-          }
-        >
-          <Share
-            path={postPath}
-            meta={meta}
-            locale={locale}
-          />
-        </Suspense>
-        <Suspense
-          fallback={
-            <div className="container max-w-5xl mt-40 mx-auto">
-              <h4 className="text-center mb-12">
-                Loading Disqus...
-              </h4>
-            </div>
-          }
-        >
-          <Disqus
-            title={meta.title}
-            identifier={`${locale}_${meta.slugOriginal}`}
-            path={postPath}
-            locale={locale}
-          />
-        </Suspense>
       </Content>
       <Footer />
     </Fragment>
