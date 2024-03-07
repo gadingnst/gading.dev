@@ -29,7 +29,8 @@
     "react-medium-image-zoom": "^4.4.3",
     "react-nanny": "^2.15.0",
     "react-parallax": "^3.5.1",
-    "swr-global-state": "^2.1.1"
+    "swr": "^2.2.5",
+    "swr-global-state": "^2.2.0"
   },
   "devDependencies": {
     "@jest/transform": "^29.5.0",
@@ -44,7 +45,7 @@
     "@typescript-eslint/parser": "^5.59.0",
     "autoprefixer": "^10.4.14",
     "cloudinary": "^1.33.0",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.0",
     "concurrent-manager": "^1.1.0",
     "dayjs": "^1.11.9",
     "dotenv": "^16.0.3",
