@@ -14,7 +14,7 @@ At first, I'll be thanking to [Derek Sivers](https://sive.rs/now), [Fariz Rizald
 I’m back in my hometown, Palembang, and working *remotely* since September, 2020 due to ***COVID-19*** situation. And, I still working *remotely* until now, because my company issued a ***remote-first*** work policy. Nevertheless, I will enjoy every moment with my family because of that.
 
 #### 💼 Careers
-Working full-time as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) ([Blockchain Platform](https://www.google.com/search?q=what+is+blockchain)) at [Alterra](https://www.google.com/search?q=alterra) that focusing on building [Web3](https://www.google.com/search?q=what+is+web3) architecture and improving its [DX *(Developer Experience)*](https://www.google.com/search?q=what+is+developer+experience).
+Working full-time as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) ([Blockchain Platform](https://www.google.com/search?q=what+is+blockchain)) that focusing on building [Web3](https://www.google.com/search?q=what+is+web3) architecture and improving its [DX *(Developer Experience)*](https://www.google.com/search?q=what+is+developer+experience).
 
 #### ☕️ Activities
 - Investing, and Learning Cryptocurrency
