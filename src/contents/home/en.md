@@ -6,7 +6,7 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/banners/1.jpg"
 ---
 
-I'm currently working full-time remotely at Indonesian Company.
+I'm currently working full-time remotely at Indonesian company.
 
 Passionate to explore about modern mobile and web technology while taking into consideration about *DX (Developer Experience)*, the latest trends, and techniques. And also, I would be a fast learner in doing new things and building good teamwork either.
 
