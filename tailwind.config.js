@@ -4,13 +4,13 @@ module.exports = {
   content: [
     './src/packages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/modules/**/*.{js,jsx,ts,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './contents/**/*.{md,mdx}'
   ],
   theme: {
     fontFamily: {
-      'sans': ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
-      'serif': ['var(--font-inter)', 'ui-serif', 'Georgia'],
-      'mono': ['var(--font-inter)', 'ui-monospace', 'SFMono-Regular']
+      sans: ['var(--font-poppins)', 'ui-sans-serif', 'system-ui'],
+      courgette: ['var(--font-courgette)', 'cursive']
     },
     extend: {
       keyframes: require('./design/tailwind/keyframes'),

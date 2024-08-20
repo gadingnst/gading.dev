@@ -1,15 +1,23 @@
 import '@/styles/bundle.css';
 
-import { Inter } from 'next/font/google';
+import { Metadata } from 'next';
+import { Poppins, Courgette } from 'next/font/google';
 import { FC, PropsWithChildren } from 'react';
 
 import { SITE_NAME } from '@/configs/env';
-import GitHubBadge from '@/packages/components/base/Floatings/GithubBadge';
-import { withMetadata } from '@/packages/utils/metadata';
+import cn from '@/packages/utils/cn';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-poppins',
+  weight: ['100', '200', '300', '400', '600', '700', '800', '900'],
+  adjustFontFallback: false
+});
+
+const courgette = Courgette({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-courgette',
   adjustFontFallback: false
 });
 
@@ -17,18 +25,17 @@ const inter = Inter({
  * HTML Metadata in App Route
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#basic-fields
  */
-export const metadata = withMetadata({
+export const metadata = {
   title: {
     default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`
+    template: `%s - ${SITE_NAME}`
   }
-});
+} satisfies Metadata;
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={cn([poppins.variable, courgette.variable])}>
       <body className="font-sans">
-        <GitHubBadge username="gadingnst" repoName="fullstack-next-template" />
         {children}
       </body>
     </html>

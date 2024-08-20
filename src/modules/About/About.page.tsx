@@ -3,9 +3,12 @@ import { Suspense } from 'react';
 import { type NextPageProps } from '@/@types/global';
 import AboutWrapper from '@/modules/About/components/AboutWrapper.client';
 import JokeList from '@/modules/Joke/components/JokeList';
+import { getLocale } from '@/packages/utils/i18n';
 
 function AboutPage(props: NextPageProps) {
-  const { searchParams } = props;
+  const { searchParams, params } = props;
+  getLocale(params);
+
   return (
     <AboutWrapper searchParams={searchParams}>
       {/* Exampe calling Server Component inside Client Component with Suspense */}
