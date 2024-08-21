@@ -1,3 +1,4 @@
+import LocaleLink from '@/packages/components/base/Navigations/LocaleLink';
 import UnstyledLink from '@/packages/components/base/Navigations/UnstyledLink';
 import cn from '@/packages/utils/cn';
 
@@ -41,9 +42,9 @@ function Navbar({ className }: Props) {
                 <ul className="p-2 bg-base-100">
                   {Array.from(i18nList).map(([code, label]) => (
                     <li key={code}>
-                      <UnstyledLink href={`${code}`}>
+                      <LocaleLink locale={code}>
                         {label}
-                      </UnstyledLink>
+                      </LocaleLink>
                     </li>
                   ))}
                 </ul>
