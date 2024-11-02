@@ -34,6 +34,8 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 #### 💡 Teknologi yang digunakan
 - Ekosistem Murni JavaScript/TypeScript
 - React Web/Native/NextJS, Vue/NuxtJS
+- Dart, Flutter
+- Golang, GORM, Protocol Buffer
 - Jest, React Testing Library
 - Storybook
 - Bot, Otomatisasi, Task Runner, Data Collection

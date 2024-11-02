@@ -34,6 +34,8 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 #### 💡 Technology that I'm using on
 - Pure JavaScript/TypeScript Environment
 - React Web/Native/NextJS, Vue/NuxtJS
+- Dart, Flutter
+- Golang, GORM, Protocol Buffer
 - Jest, React Testing Library
 - Storybook
 - Bots, Automation, Task Runner, Data Collection
