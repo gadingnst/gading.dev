@@ -54,7 +54,7 @@ So instead of outsourcing prompt work to a specialist, teams should **embed prom
 
 ### Closing Thoughts
 
-Instead of hiring “a prompt engineer,” focus on building a **prompting mindset** across your team. Teach people to think in instructions, not just outcomes. Because AI is only as good as **how we guide it**.
+> Instead of hiring “a prompt engineer,” focus on building a **prompting mindset** across your team. Teach people to think in instructions, not just outcomes. Because AI is only as good as **how we guide it**.
 
 ### References
 - [latent.space](https://www.latent.space) — great insights on modern AI culture
