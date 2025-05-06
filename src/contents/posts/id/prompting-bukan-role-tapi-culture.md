@@ -54,7 +54,7 @@ Jadi, prompting bukan role yang dikasih ke satu orang di tim. **Itu cara kerja s
 
 ### Penutup
 
-Daripada nyari “prompt engineer” buat tim lu, lebih baik bentuk **budaya prompting** yang solid. Ajari tim lu buat mikir dalam bentuk *instructional thinking*, bukan cuma output thinking. Karena AI cuma sejago *cara kita ngajarnya*.
+> Daripada nyari “prompt engineer” buat tim lu, lebih baik bentuk **budaya prompting** yang solid. Ajari tim lu buat mikir dalam bentuk *instructional thinking*, bukan cuma output thinking. Karena AI cuma sejago *cara kita ngajarnya*.
 
 ### Referensi
 - [latent.space](https://www.latent.space) — banyak insight soal budaya kerja AI modern
