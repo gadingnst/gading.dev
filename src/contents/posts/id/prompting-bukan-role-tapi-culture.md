@@ -1,5 +1,5 @@
 ---
-title: "Prompting is not a Role, it's Culture"
+title: "Prompting bukan Role, tapi Budaya"
 slug: {
   en: "prompting-not-role-but-culture",
   id: "prompting-bukan-role-tapi-culture"
@@ -8,55 +8,80 @@ date: 2025-05-06
 description: "Kenapa prompting bukan sekadar skill atau role, tapi mindset yang nempel di semua proses kerja modern"
 keywords: "prompting, prompt engineering, AI culture, generative AI, GPT"
 tags: ["prompting", "ai", "culture"]
-image: "/media/banners/prompting-culture.jpg"
+image: "/media/blog/prompting-not-role-but-culture/banner.png"
 ---
 
 ### Prompting Bukan Role, Tapi Budaya
 
-> “*Prompt engineering bukan kerjaan satu orang. Ini mindset kolaboratif yang nyatu di semua proses.*”
+> "*Prompting itu bukan kerjaan khusus. Tapi cara berpikir yang tertanam di setiap alur kerja modern.*"
 
-Di era AI generatif kayak sekarang, istilah **prompt engineering** sering banget disalahpahami. Banyak yang nganggep prompting itu role teknikal tertentu—kayak ada tim khusus yang tugasnya cuma nulis prompt. Padahal, **prompting itu udah jadi budaya kerja**.
+Di era AI generatif, prompting udah jadi bagian dari kerja harian. Mau lu engineer, designer, marketer, atau HR — lu pasti bakal berinteraksi sama AI, dan itu butuh **prompt**.
 
-Kenapa? Karena apapun posisi lu—developer, desainer, marketer, bahkan HR—lu pasti akan berhadapan sama AI yang minta *prompt* biar bisa kerja bareng lu. Jadi, ngerti cara nge-brief AI dengan jelas itu bukan bonus skill, tapi *core capability*.
+Dan gak perlu juga kita belajar prompting secara terpisah. Ini bukan skill langka yang harus dihafalin mati-matian. Cukup punya pola pikir yang jelas, instruktif, dan gak malas buat mikir dulu sebelum ngetik.
 
-### Prompt = Brief Buat Mesin
+---
 
-Bayangin prompt kayak brief buat tim. Kalau brief-nya ngambang, hasilnya juga ngawur. Sama kayak lu kasih tugas ke designer tapi cuma bilang “bikin yang estetik”. Tanpa konteks, arah, dan goal, AI juga bakal kasih jawaban asal.
+### Prompting itu Gampang
 
-Contoh prompt asal:
-> *"Bikinin desain buat poster."*
+Kalau cara mikir kita bener, prompting itu gampang. Masalahnya sering bukan di tools-nya, tapi di kitanya yang males mikir.
 
-Versus prompt yang bagus:
-> *"Bikinin desain poster konser indie dengan nuansa retro 80-an, dominan warna ungu neon, ada gambar gitar listrik, ukuran A3 untuk cetak."*
+> Prompting itu mudah, kalau kita gak malas mikir.  
+> Prompting itu mudah, kalau pola pikir kita bener.
 
-Perbedaannya? Yang satu nembak random, yang satu kasih **konteks, style, tone, output format**—alias elemen penting dari komunikasi efektif.
+---
 
-### Budaya Prompting di Workflow Modern
+### Prompting sebagai Budaya Tim
 
-Prompting bukan cuma soal bikin teks bagus. Ini soal **berpikir struktural**, ngerti tools yang dipakai, dan bisa iterate hasil bareng AI.
+Prompting bukan sekadar nulis kalimat yang keren. Tapi tentang **cara berpikir yang terstruktur**, ngerti perilaku tools-nya, dan nyaman buat iterasi bareng AI.
 
-Beberapa kebiasaan prompting yang jadi bagian budaya tim modern:
-- Bikin prompt library untuk task berulang.
-- Iterasi prompt bareng tim saat hasil AI kurang tepat.
-- Tahu kapan pakai *zero-shot*, *few-shot*, atau kasih *example* yang eksplisit.
-- Ngomong sama AI kayak ngomong ke teammate baru.
+Tim-tim AI modern biasanya:
+- Nyimpen prompt library buat task yang berulang.
+- Kolaborasi refining prompt kalau hasil AI kurang pas.
+- Tau kapan pakai *zero-shot*, *few-shot*, atau *contoh eksplisit*.
+- Memandang AI kayak rekan kerja junior yang perlu instruksi jelas.
 
-### Semua Orang Adalah Prompt Engineer
+---
 
-Kita udah masuk era di mana setiap orang adalah **co-pilot user**. Artinya: **lu prompt, lu nyetir**.
+### Semua Orang adalah Prompt Engineer
 
-Apakah lu harus jago teknik NLP? Nggak. Tapi lu harus bisa:
-- Ngerti cara kasih instruksi yang jelas dan terstruktur.
-- Punya kebiasaan refine output lewat feedback.
-- Adaptasi gaya komunikasi sesuai tools (ChatGPT beda sama Midjourney).
+Kita udah masuk zaman co-pilot. Artinya: **lu prompt, lu nyetir.**
 
-Jadi, prompting bukan role yang dikasih ke satu orang di tim. **Itu cara kerja semua orang di era AI**.
+Perlu jago NLP? Gak juga. Tapi lu butuh:
+- Ngasih instruksi yang jelas dan logis.
+- Mampu iterasi lewat feedback loop.
+- Adaptasi gaya prompting tergantung tools-nya (ChatGPT ≠ Midjourney).
+
+Jadi daripada ngasih label “prompt engineer” ke satu orang, lebih baik **bangun budaya prompting** yang tertanam di semua lini kerja.
+
+Daripada glorify role khusus, mending empower semua orang buat bisa mikir instruksional — kolaboratif, kontekstual, dan fleksibel.
+
+---
+
+### Bahkan Prompting Bisa Diotomatisasi
+
+Lucunya, sekarang AI juga bisa **bikin prompt-nya sendiri**. Lu tinggal masukin data mentah atau kebutuhan kasar, lalu AI yang susun jadi pertanyaan atau instruksi yang tepat.
+
+Contoh: prompt generator, AI agent, atau ChatGPT yang rewrite input biar hasilnya lebih presisi.
+
+---
+
+### Embed: Thought Thread
+
+<blockquote class="twitter-tweet">
+  <a href="https://x.com/gadingnstn/status/1919253686645080368"></a>
+</blockquote>
+
+---
 
 ### Penutup
 
-> Daripada nyari “prompt engineer” buat tim lu, lebih baik bentuk **budaya prompting** yang solid. Ajari tim lu buat mikir dalam bentuk *instructional thinking*, bukan cuma output thinking. Karena AI cuma sejago *cara kita ngajarnya*.
+Lu gak perlu jadi expert buat bisa prompting. Yang penting punya mindset mikir instruktif. Karena sekarang, *cara lu ngobrol ke AI = cara lu ngatur hasil kerja*.
+
+Daripada nyari “prompt engineer”, mending tanamkan budaya prompting ke dalam tim. Biar semua orang bisa mikir pakai instruksi, bukan cuma nunggu hasil.
+
+---
 
 ### Referensi
-- [latent.space](https://www.latent.space) — banyak insight soal budaya kerja AI modern
-- [OpenAI Cookbook](https://github.com/openai/openai-cookbook) — contoh prompt real-world
-- [UX Collective - Prompting as UX](https://uxdesign.cc) — prompting sebagai bagian dari desain interaksi
+- [latent.space](https://www.latent.space)
+- [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
+- [UX Collective - Prompting as UX](https://uxdesign.cc)
