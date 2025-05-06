@@ -35,7 +35,7 @@ const App: FunctionComponent<AppProps> = (props) => {
       <NProgress color={nprogressColor} />
       <Component {...pageProps} />
       {!IS_DEV && (
-        <Script async defer data-website-id={ANALYTICS_ID} src="https://analytics.gading.dev/script.js" />
+        <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
       )}
     </Fragment>
   );
