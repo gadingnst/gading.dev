@@ -8,6 +8,7 @@ import ContentInfo from '@/components/base/Content/Info';
 import ContentParser from '@/components/base/Content/Parser';
 import { Banner, Content, Footer, Navbar, withMainLayoutPage } from '@/components/layouts';
 import { DEFAULT_LOCALE } from '@/configs/env';
+import Support from '@/components/base/Content/Support';
 
 type Props = {
   contents: MDContent;
@@ -113,6 +114,17 @@ const BlogDetailPage: NextPage<Props> = (props) => {
             meta={meta}
             locale={locale}
           />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className="mt-40">
+              <h4 className="text-center mb-12">
+                Loading...
+              </h4>
+            </div>
+          }
+        >
+          <Support locale={locale} />
         </Suspense>
         <Suspense
           fallback={
