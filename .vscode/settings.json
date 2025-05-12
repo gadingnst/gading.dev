@@ -16,5 +16,10 @@
   },
   "files.associations": {
     "*.css": "postcss",
-  }
+  },
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "./.vscode/llms/daisyui.md"
+    }
+  ]
 }

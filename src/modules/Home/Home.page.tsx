@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div className="base-container min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-[#0b0e14] dark:via-[#0f131a] dark:to-[#11151d] text-foreground">
+    <div className="min-h-screen flex flex-col bg-base-200 text-base-content">
       {/* Hero */}
       <section className="flex-1 flex flex-col items-center justify-center text-center px-8 pt-24 pb-12 gap-6">
         <Image
@@ -31,7 +31,7 @@ export default function HomePage() {
             href="https://gading.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:no-underline"
+            className="link link-hover"
           >
             Gading&nbsp;Nasution
           </Link>
@@ -41,14 +41,14 @@ export default function HomePage() {
           <Link
             href="https://github.com/gadingnst/fullstack-next-template"
             target="_blank"
-            className="rounded-full bg-black text-white dark:bg-white dark:text-black px-6 py-3 text-sm font-medium hover:opacity-90 transition"
+            className="btn btn-primary"
           >
             ⭐ Star on GitHub
           </Link>
           <Link
             href="https://vercel.com/new/git/external?repository-url=https://github.com/gadingnst/fullstack-next-template"
             target="_blank"
-            className="rounded-full border border-black/10 dark:border-white/20 px-6 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 transition"
+            className="btn btn-outline"
           >
             🚀 Deploy
           </Link>
@@ -56,22 +56,22 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="px-8 sm:px-20 py-16 bg-white dark:bg-[#181c23]">
+      <section className="px-8 sm:px-20 py-16 bg-base-100">
         <h2 className="text-2xl font-semibold text-center mb-10">Key Features</h2>
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-sm leading-relaxed">
-          <li className="p-4 rounded-lg bg-black/5 dark:bg-white/5">
+          <li className="p-4 rounded-lg bg-base-200">
             ⚛️ Next.js App Dir + TypeScript
           </li>
-          <li className="p-4 rounded-lg bg-black/5 dark:bg-white/5">
+          <li className="p-4 rounded-lg bg-base-200">
             🎨 TailwindCSS pre-setup
           </li>
-          <li className="p-4 rounded-lg bg-black/5 dark:bg-white/5">
+          <li className="p-4 rounded-lg bg-base-200">
             🛠️ SVGR for SVG → React
           </li>
-          <li className="p-4 rounded-lg bg-black/5 dark:bg-white/5">
+          <li className="p-4 rounded-lg bg-base-200">
             🚦 ESLint preset & rules
           </li>
-          <li className="p-4 rounded-lg bg-black/5 dark:bg-white/5">
+          <li className="p-4 rounded-lg bg-base-200">
             🔗 @/ Path Alias
           </li>
         </ul>
@@ -82,7 +82,7 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold text-center mb-6">
           Getting Started
         </h2>
-        <pre className="bg-black text-white text-sm rounded-lg p-6 overflow-auto whitespace-pre-line">
+        <pre className="bg-neutral text-neutral-content text-sm rounded-lg p-6 overflow-auto whitespace-pre-line">
           git clone https://github.com/gadingnst/fullstack-next-template.git<br />
           cd fullstack-next-template<br />
           npm install<br />
@@ -92,7 +92,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="py-8 flex flex-wrap justify-center gap-6 text-sm opacity-70">
-        <Link href="https://nextjs.org/docs" target="_blank">
+        <Link href="https://nextjs.org/docs" target="_blank" className="link link-hover">
           📚 Next.js Docs
         </Link>
       </footer>

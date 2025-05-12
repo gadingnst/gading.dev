@@ -24,11 +24,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "clsx": "^2.1.1",
+    "daisyui": "^5.0.35",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4",
-    "typescript": "^5",
+    "gray-matter": "^4.0.3",
+    "mdx-bundler": "^9.2.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.1.0",
@@ -38,7 +38,8 @@
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "mdx-bundler": "^9.2.1",
-    "gray-matter": "^4.0.3"
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
