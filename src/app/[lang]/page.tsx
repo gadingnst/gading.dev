@@ -1,5 +1,6 @@
-import { isValidLanguage } from '@/packages/libs/I18n/utils';
+import { notFound } from 'next/navigation';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
+import { isValidLanguage } from '@/packages/libs/I18n/utils';
 import HomePage from '@/modules/Home/Home.page';
 import homePageLocales from '@/modules/Home/locales';
 import { withGenerateMetadata } from '@/packages/utils/metadata';
@@ -19,10 +20,7 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
   const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
-    return {
-      title: 'Page Not Found',
-      description: 'The requested page could not be found.'
-    };
+    notFound();
   }
 
   const currentLang = lang as I18nLocales;
@@ -39,4 +37,14 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
   };
 });
 
-export default HomePage;
+async function LangPage({ params }: { params: Promise<LangPageProps> }) {
+  const { lang } = await params;
+
+  if (!isValidLanguage(lang)) {
+    notFound();
+  }
+
+  return <HomePage />;
+}
+
+export default LangPage;

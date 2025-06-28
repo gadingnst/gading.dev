@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getLangugageFromPathnameWithFallback } from '@/packages/libs/I18n/utils';
+import { getLangugageFromPathnameWithFallback, isValidRoute } from '@/packages/libs/I18n/utils';
 import { HEADERS_REQUEST_DOMAIN_KEY, HEADERS_REQUEST_LANGUAGE_KEY, HEADERS_REQUEST_PATHNAME_KEY, HEADERS_REQUEST_SEARCH_KEY, HEADERS_REQUEST_URL_KEY } from '@/configs/headers';
 
 /**
@@ -19,6 +19,11 @@ export function middleware(request: NextRequest) {
     pathname.includes('.')
   ) {
     return NextResponse.next();
+  }
+
+  // Check if the route is valid, if not redirect to not-found
+  if (!isValidRoute(pathname)) {
+    return NextResponse.rewrite(new URL('/not-found', request.url));
   }
 
   // Set up request headers
