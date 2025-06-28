@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { I18nLocales, I18n } from '@/packages/libs/I18n/interface';
-import Header from '@/packages/components/Header';
+import Header from '@/modules/Common/components/Header';
 import '@/designs/styles/globals.css';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 
