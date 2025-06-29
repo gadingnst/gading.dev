@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import homePageLocales from './locales';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import ContentParser from '@/modules/ContentParser/components/Parser';
+import { NextLink } from '@/packages/components/base/Navigations';
 
 /**
  * HomePage component with internationalization support
@@ -38,31 +38,31 @@ export default async function HomePage() {
         {/* Credit */}
         <p className="text-xs sm:text-sm opacity-60">
           {content.creditBy}{' '}
-          <Link
+          <NextLink
             href="https://gading.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="link link-hover"
           >
             Gading&nbsp;Nasution
-          </Link>
+          </NextLink>
         </p>
 
         <div className="flex flex-wrap gap-4 mt-4">
-          <Link
+          <NextLink
             href="https://github.com/gadingnst/fullstack-next-template"
             target="_blank"
             className="btn btn-primary"
           >
             {content.starButton}
-          </Link>
-          <Link
+          </NextLink>
+          <NextLink
             href="https://vercel.com/new/git/external?repository-url=https://github.com/gadingnst/fullstack-next-template"
             target="_blank"
             className="btn btn-outline"
           >
             {content.deployButton}
-          </Link>
+          </NextLink>
         </div>
       </section>
 

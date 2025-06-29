@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { NextLink } from '@/packages/components/base/Navigations';
 
 /**
  * Global not-found page for invalid routes
@@ -14,12 +14,12 @@ export default function NotFound() {
           The page you are looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/" className="btn btn-primary">
+          <NextLink href="/" className="btn btn-primary">
             Go Home
-          </Link>
-          <Link href="/id" className="btn btn-outline">
+          </NextLink>
+          <NextLink href="/id" className="btn btn-outline">
             Beranda (ID)
-          </Link>
+          </NextLink>
         </div>
       </div>
     </div>

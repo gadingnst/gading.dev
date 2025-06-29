@@ -96,3 +96,36 @@ import cn from '@/designs/utils/cn';
 // ❌ Bad
 <button className={`custom-class ${condition && "extra-class"}`}>Click me</button>
 ```
+
+### Component Design Pattern Rules
+- **Always follow the established component patterns** in `@/packages/components/base/`
+- **Reuse existing base components** before creating new ones:
+  - Use `Button` from `@/packages/components/base/Buttons` for all button interactions
+  - Use `Link` from `@/packages/components/base/Navigations` for all navigation links
+  - Check existing components in `@/packages/components/base/` before implementing custom solutions
+- **Component Structure Standards**:
+  - Each component must have: `ComponentName.tsx`, `index.ts`, `ComponentName.example.tsx`, `README.md`
+  - Use consistent prop interfaces with proper TypeScript definitions
+  - Include comprehensive documentation and usage examples
+  - Follow the established variant, size, and styling patterns
+
+### Liquid Glass Design System
+- **Always integrate with liquid glass design** when creating UI components
+- **Use established liquid glass utilities**:
+  - `liquid-glass` - Primary glass effect with backdrop blur and transparency
+  - `liquid-glass-shadow` - Enhanced glass effect with shadow styling
+- **Glass Design Principles**:
+  - Backdrop blur and saturation effects for depth
+  - Transparent backgrounds with subtle borders
+  - Consistent shadow and elevation patterns
+  - Smooth transitions and hover effects
+- **Glass Component Integration**:
+  - Always provide a `glass` variant for components that support it
+  - Ensure glass effects work seamlessly with light/dark mode
+  - Maintain visual hierarchy with appropriate opacity levels
+  - Use glass effects for overlays, modals, navigation, and floating elements
+- **Glass Styling Guidelines**:
+  - Combine `liquid-glass` with appropriate DaisyUI classes
+  - Use `hover:bg-base-100/30` and `hover:border-primary/20` for interactive states
+  - Apply `hover:shadow-lg hover:shadow-primary/10` for elevation changes
+  - Include `hover:-translate-y-0.5` for subtle lift effects

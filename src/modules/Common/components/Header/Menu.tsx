@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu as MenuIcon, X, Home, User } from 'lucide-react';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
-import Dropdown from '@/packages/components/base/Dropdown';
+import Dropdown from '@/packages/components/base/Floatings';
 import cn from '@/designs/utils/cn';
+import { NextLink } from '@/packages/components/base/Navigations';
 
 interface MenuProps {
   isScrolled?: boolean;
@@ -80,7 +80,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
 
             return (
               <li key={item.route}>
-                <Link
+                <NextLink
                   href={item.href}
                   className={cn([
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
@@ -96,7 +96,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                   ])}
                 >
                   {item.label}
-                </Link>
+                </NextLink>
               </li>
             );
           })}
@@ -122,7 +122,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
 
             return (
               <li key={item.href}>
-                <Link
+                <NextLink
                   href={item.href}
                   className={cn([
                     'flex items-center gap-3 transition-all duration-300 rounded-lg p-3',
@@ -142,7 +142,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                     isActive ? 'text-primary drop-shadow-sm' : 'text-current'
                   ])} />
                   <span>{item.label}</span>
-                </Link>
+                </NextLink>
               </li>
             );
           })}

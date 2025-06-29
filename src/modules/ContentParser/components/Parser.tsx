@@ -1,7 +1,6 @@
 'use client';
 
 import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
-import NextLink from 'next/link';
 import Script, { ScriptProps } from 'next/script';
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
 import State from './StatefulMDX';
@@ -9,6 +8,7 @@ import State from './StatefulMDX';
 import './Parser.css';
 import 'katex/dist/katex.min.css';
 import cn from '@/designs/utils/cn';
+import { NextLink } from '@/packages/components/base/Navigations';
 
 export interface Props extends MDXContentProps {
   className?: string;
