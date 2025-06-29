@@ -8,4 +8,4 @@ export enum AppThemes {
 export type AppTheme = `${AppThemes}`;
 
 export const APP_THEME_KEY = 'app_theme_state';
-export const APP_THEME_IS_SYSTEM_DARK = 'app_theme_is_dark_state';
+export const APP_THEME_IS_SYSTEM_DARK_KEY = 'app_theme_is_dark_state';

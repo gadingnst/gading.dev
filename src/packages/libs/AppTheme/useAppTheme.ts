@@ -1,5 +1,5 @@
 import useMounted from '@/packages/hooks/useMounted';
-import { APP_THEME_IS_SYSTEM_DARK, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
+import {  APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
 import CookieStoragePersistor from '@/packages/libs/SWRGlobalState/Cookie.persistor';
 import { useCallback, useMemo } from 'react';
 import useStore from 'swr-global-state';
@@ -17,7 +17,7 @@ function useAppTheme(initial = AppThemes.SYSTEM) {
   });
 
   const [isSystemDark, setIsSystemDark] = useStore({
-    key: APP_THEME_IS_SYSTEM_DARK,
+    key: APP_THEME_IS_SYSTEM_DARK_KEY,
     initial: false
   });
 

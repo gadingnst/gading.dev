@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import homePageLocales from './locales';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
@@ -20,14 +19,6 @@ export default async function HomePage() {
     <div className="min-h-screen flex flex-col bg-base-200 text-base-content">
       {/* Hero */}
       <section className="flex-1 flex flex-col items-center justify-center text-center px-8 pt-24 pb-12 gap-6">
-        <Image
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={200}
-          height={42}
-          className="dark:invert"
-          priority
-        />
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
           {markdownContent.meta.title}
         </h1>
@@ -37,7 +28,6 @@ export default async function HomePage() {
 
         {/* Credit */}
         <p className="text-xs sm:text-sm opacity-60">
-          {content.creditBy}{' '}
           <NextLink
             href="https://gading.dev"
             target="_blank"

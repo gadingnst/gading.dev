@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useScrollListener from '@/packages/hooks/useScrollListener';
 import Menu from './Menu';
 import LanguageSelector from './LanguageSelector';
+import AppThemeSelector from './AppThemeSelector';
 import cn from '@/designs/utils/cn';
 
 /**
@@ -27,7 +28,8 @@ export default function Header() {
         <a
           className={cn([
             'btn btn-ghost text-xl md:text-2xl font-bold transition-all duration-300 liquid-glass font-courgette',
-            isScrolled ? 'shadow-xl text-base-content' : 'text-primary-content'
+            'text-base-content hover:text-base-content',
+            isScrolled && 'shadow-xl'
           ])}
         >
           Gading&apos;s Hideout
@@ -36,6 +38,7 @@ export default function Header() {
 
       <div className="navbar-end gap-x-2">
         <LanguageSelector isScrolled={isScrolled} />
+        <AppThemeSelector isScrolled={isScrolled} />
         <Menu isScrolled={isScrolled} />
       </div>
     </header>

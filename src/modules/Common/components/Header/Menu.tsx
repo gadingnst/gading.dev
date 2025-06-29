@@ -84,7 +84,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                   href={item.href}
                   className={cn([
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
-                    'hover:scale-105 hover:shadow-lg',
+                    'text-base-content hover:text-base-content hover:scale-105 hover:shadow-lg',
                     isActive && [
                       'bg-primary/20 text-primary border-primary/30',
                       'shadow-lg shadow-primary/20',

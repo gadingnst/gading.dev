@@ -75,6 +75,7 @@ export default function Dropdown({
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
+          'text-base-content hover:text-base-content',
           isScrolled && 'shadow-xl'
         ])}
         onClick={handleToggle}
