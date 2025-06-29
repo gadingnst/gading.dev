@@ -90,22 +90,29 @@ export function getLanguageFlag(lang: I18nLocales) {
  */
 export function isValidRoute(pathname: string): boolean {
   const segments = pathname.split('/').filter(Boolean);
-  
+
   // Root path is always valid
   if (segments.length === 0) {
     return true;
   }
-  
+
   const firstSegment = segments[0];
-  
+
   // If first segment is a valid language
   if (isValidLanguage(firstSegment)) {
     // Language routes like /en or /id are valid
     // Additional segments under language routes will be handled by Next.js routing
     return true;
   }
-  
-  // If first segment is not a language, it's invalid for our current routing structure
+
+  // Allow direct routes that have corresponding page.tsx files in app directory
+  // These routes include: /about
+  const allowedDirectRoutes = ['about'];
+  if (allowedDirectRoutes.includes(firstSegment)) {
+    return true;
+  }
+
+  // If first segment is not a language or allowed direct route, it's invalid
   return false;
 };
 

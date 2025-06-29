@@ -6,7 +6,7 @@ import Script, { ScriptProps } from 'next/script';
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
 import State from './StatefulMDX';
 
-import styles from './Parser.module.css';
+import './Parser.css';
 import 'katex/dist/katex.min.css';
 import cn from '@/designs/utils/cn';
 
@@ -89,7 +89,7 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [children]);
 
   return (
-    <div className={cn('content-parser', styles.parser, className)}>
+    <div className={cn('content-parser', 'parser', className)}>
       <Parser
         {...otherProps}
         components={{
