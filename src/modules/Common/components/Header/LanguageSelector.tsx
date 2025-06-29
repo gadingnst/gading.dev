@@ -8,11 +8,15 @@ import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import useUpdated from '@/packages/hooks/useUpdated';
 
+interface LanguageSelectorProps {
+  isScrolled?: boolean;
+}
+
 /**
  * Language selector dropdown component using DaisyUI 5
  * Handles language switching with proper routing
  */
-export default function LanguageSelector() {
+export default function LanguageSelector({ isScrolled = false }: LanguageSelectorProps) {
   const router = useRouter();
   const pathname = usePathname();
   const currentLang = useLangugage();
@@ -66,7 +70,9 @@ export default function LanguageSelector() {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-ghost btn-sm gap-2"
+        className={`btn btn-ghost btn-sm gap-2 transition-all duration-300 ${
+          isScrolled ? 'shadow-md bg-base-100/90 backdrop-blur-sm' : ''
+        }`}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <span className="text-lg">{getLanguageFlag(currentLang)}</span>

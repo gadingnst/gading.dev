@@ -30,7 +30,7 @@ async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={htmlLang}>
       <body
-        className={`${poppins.variable} ${courgette.variable} antialiased`}
+        className={`${poppins.variable} ${courgette.variable} antialiased pt-16`}
       >
         <Header />
         {children}

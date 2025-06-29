@@ -8,11 +8,15 @@ import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import useUpdated from '@/packages/hooks/useUpdated';
 import cn from '@/designs/utils/cn';
 
+interface MenuProps {
+  isScrolled?: boolean;
+}
+
 /**
  * Navigation menu component with Home and About links
  * Highlights active route and supports internationalization
  */
-export default function Menu() {
+export default function Menu({ isScrolled = false }: MenuProps) {
   const pathname = usePathname();
   const currentLang = useLangugage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -112,7 +116,9 @@ export default function Menu() {
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost btn-sm"
+            className={`btn btn-ghost btn-sm transition-all duration-300 ${
+              isScrolled ? 'shadow-md bg-base-100/90 backdrop-blur-sm' : ''
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
