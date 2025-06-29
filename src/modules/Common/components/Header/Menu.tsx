@@ -83,8 +83,15 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                 <Link
                   href={item.href}
                   className={cn([
-                    'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
-                    isActive && 'btn-active',
+                    'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
+                    'hover:scale-105 hover:shadow-lg',
+                    isActive && [
+                      'bg-primary/20 text-primary border-primary/30',
+                      'shadow-lg shadow-primary/20',
+                      'before:absolute before:inset-0 before:rounded-lg',
+                      'before:bg-gradient-to-r before:from-primary/10 before:to-primary/5',
+                      'before:blur-sm before:-z-10'
+                    ],
                     isScrolled && 'shadow-xl'
                   ])}
                 >
@@ -118,12 +125,22 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                 <Link
                   href={item.href}
                   className={cn([
-                    'flex items-center gap-3',
-                    isActive ? 'active cursor-default' : 'cursor-pointer'
+                    'flex items-center gap-3 transition-all duration-300 rounded-lg p-3',
+                    'hover:bg-base-200/50',
+                    isActive ? [
+                      'bg-primary/10 text-primary border-l-4 border-primary',
+                      'shadow-md shadow-primary/10 cursor-default',
+                      'before:absolute before:inset-0 before:rounded-lg',
+                      'before:bg-gradient-to-r before:from-primary/5 before:to-transparent',
+                      'relative'
+                    ] : 'cursor-pointer hover:scale-[1.02]'
                   ])}
                   onClick={handleMobileMenuClick}
                 >
-                  <item.icon className="w-4 h-4" />
+                  <item.icon className={cn([
+                    'w-4 h-4 transition-all duration-300',
+                    isActive ? 'text-primary drop-shadow-sm' : 'text-current'
+                  ])} />
                   <span>{item.label}</span>
                 </Link>
               </li>

@@ -26,7 +26,7 @@ export default function Header() {
       <div className="navbar-start">
         <a
           className={cn([
-            'btn btn-ghost text-xl font-bold transition-all duration-300 liquid-glass',
+            'btn btn-ghost text-xl md:text-2xl font-bold transition-all duration-300 liquid-glass font-courgette',
             isScrolled ? 'shadow-xl text-base-content' : 'text-primary-content'
           ])}
         >
