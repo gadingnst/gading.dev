@@ -113,13 +113,17 @@ export default function Menu({ isScrolled = false }: MenuProps) {
 
       {/* Mobile Menu Trigger */}
       <div className="md:hidden" ref={mobileMenuRef}>
-        <div className={`dropdown dropdown-end ${isMobileMenuOpen ? 'dropdown-open' : ''}`}>
+        <div className={cn([
+          'dropdown dropdown-end',
+          isMobileMenuOpen && 'dropdown-open'
+        ])}>
           <div
             tabIndex={0}
             role="button"
-            className={`btn btn-ghost btn-sm transition-all duration-300 ${
-              isScrolled ? 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10' : ''
-            }`}
+            className={cn([
+              'btn btn-ghost btn-sm transition-all duration-300',
+              isScrolled && 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10'
+            ])}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (

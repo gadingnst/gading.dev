@@ -7,6 +7,7 @@ import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import useUpdated from '@/packages/hooks/useUpdated';
+import cn from '@/designs/utils/cn';
 
 interface LanguageSelectorProps {
   isScrolled?: boolean;
@@ -66,13 +67,17 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
   };
 
   return (
-    <div className={`dropdown dropdown-end ${isDropdownOpen ? 'dropdown-open' : ''}`} ref={dropdownRef}>
+    <div className={cn([
+      'dropdown dropdown-end',
+      isDropdownOpen && 'dropdown-open'
+    ])} ref={dropdownRef}>
       <div
         tabIndex={0}
         role="button"
-        className={`btn btn-ghost btn-sm gap-2 transition-all duration-300 ${
-          isScrolled ? 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10' : ''
-        }`}
+        className={cn([
+          'btn btn-ghost btn-sm gap-2 transition-all duration-300',
+          isScrolled && 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10'
+        ])}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <span className="text-lg">{getLanguageFlag(currentLang)}</span>
@@ -88,7 +93,10 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
             <li key={locale}>
               <button
                 onClick={() => handleLanguageChange(locale)}
-                className={`flex items-center gap-3 ${isActive ? 'active cursor-default' : 'cursor-pointer'}`}
+                className={cn([
+                  'flex items-center gap-3',
+                  isActive ? 'active cursor-default' : 'cursor-pointer'
+                ])}
                 disabled={isActive}
               >
                 <span className="text-lg">{getLanguageFlag(locale)}</span>
