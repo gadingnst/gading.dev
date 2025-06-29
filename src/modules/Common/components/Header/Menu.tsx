@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useRef } from 'react';
-import { Menu as MenuIcon, X } from 'lucide-react';
+import { useState } from 'react';
+import { Menu as MenuIcon, X, Home, User } from 'lucide-react';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
-import useUpdated from '@/packages/hooks/useUpdated';
+import Dropdown from '@/packages/components/base/Dropdown';
 import cn from '@/designs/utils/cn';
 
 interface MenuProps {
@@ -20,7 +20,6 @@ export default function Menu({ isScrolled = false }: MenuProps) {
   const pathname = usePathname();
   const currentLang = useLangugage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   /**
    * Check if a route is currently active
@@ -53,30 +52,16 @@ export default function Menu({ isScrolled = false }: MenuProps) {
     {
       label: 'Home',
       route: '/',
-      href: getLocalizedRoute('/')
+      href: getLocalizedRoute('/'),
+      icon: Home
     },
     {
       label: 'About',
       route: '/about',
-      href: getLocalizedRoute('/about')
+      href: getLocalizedRoute('/about'),
+      icon: User
     }
   ];
-
-  useUpdated(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMobileMenuOpen]);
 
   /**
    * Handle mobile menu item click
@@ -98,9 +83,9 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                 <Link
                   href={item.href}
                   className={cn([
-                    'btn btn-ghost btn-sm transition-all duration-300',
+                    'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
                     isActive && 'btn-active',
-                    isScrolled && 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10'
+                    isScrolled && 'shadow-xl'
                   ])}
                 >
                   {item.label}
@@ -111,48 +96,40 @@ export default function Menu({ isScrolled = false }: MenuProps) {
         </ul>
       </nav>
 
-      {/* Mobile Menu Trigger */}
-      <div className="md:hidden" ref={mobileMenuRef}>
-        <div className={cn([
-          'dropdown dropdown-end',
-          isMobileMenuOpen && 'dropdown-open'
-        ])}>
-          <div
-            tabIndex={0}
-            role="button"
-            className={cn([
-              'btn btn-ghost btn-sm transition-all duration-300',
-              isScrolled && 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10'
-            ])}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
+      {/* Mobile Menu */}
+      <div className="md:hidden">
+        <Dropdown
+          isScrolled={isScrolled}
+          open={isMobileMenuOpen}
+          onOpenChange={setIsMobileMenuOpen}
+          trigger={
+            isMobileMenuOpen ? (
               <X className="w-5 h-5" />
             ) : (
               <MenuIcon className="w-5 h-5" />
-            )}
-          </div>
-          <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg border border-base-300">
-            {menuItems.map((item) => {
-              const isActive = isActiveRoute(item.route);
+            )
+          }
+        >
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
 
-              return (
-                <li key={item.route}>
-                  <Link
-                    href={item.href}
-                    onClick={handleMobileMenuClick}
-                    className={cn([
-                      'flex items-center gap-3',
-                      isActive && 'active cursor-default'
-                    ])}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn([
+                    'flex items-center gap-3',
+                    isActive ? 'active cursor-default' : 'cursor-pointer'
+                  ])}
+                  onClick={handleMobileMenuClick}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.label}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </Dropdown>
       </div>
     </>
   );

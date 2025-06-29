@@ -2,3 +2,15 @@
   max-width: 1600px;
   @apply w-full mx-auto px-6;
 }
+
+@utility liquid-glass {
+  @apply bg-base-100/20 backdrop-blur-xl backdrop-saturate-150 border border-base-content/10;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+@utility liquid-glass-shadow {
+  @apply bg-base-100/20 backdrop-blur-xl backdrop-saturate-150 border border-base-content/10 shadow-xl;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}

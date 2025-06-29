@@ -26,10 +26,8 @@ export default function Header() {
       <div className="navbar-start">
         <a
           className={cn([
-            'btn btn-ghost text-xl font-bold transition-all duration-300',
-            isScrolled
-              ? 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10 text-base-content'
-              : 'text-primary-content'
+            'btn btn-ghost text-xl font-bold transition-all duration-300 liquid-glass',
+            isScrolled ? 'shadow-xl text-base-content' : 'text-primary-content'
           ])}
         >
           Gading&apos;s Hideout
