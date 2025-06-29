@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import homePageLocales from './locales';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
+import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import ContentParser from '@/modules/ContentParser/components/Parser';
 
 /**
  * HomePage component with internationalization support
@@ -10,6 +12,9 @@ import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 export default async function HomePage() {
   const lang = await getLangugageServer();
   const content = homePageLocales(lang);
+
+  // Get markdown content from home directory
+  const markdownContent = await getContentMultiLanguage('home', lang);
 
   return (
     <div className="min-h-screen flex flex-col bg-base-200 text-base-content">
@@ -24,10 +29,10 @@ export default async function HomePage() {
           priority
         />
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
-          {content.title}
+          {markdownContent.meta.title}
         </h1>
         <p className="max-w-xl text-base sm:text-lg opacity-80">
-          {content.description}
+          {markdownContent.meta.description}
         </p>
 
         {/* Credit */}
@@ -59,6 +64,11 @@ export default async function HomePage() {
             {content.deployButton}
           </Link>
         </div>
+      </section>
+
+      {/* Markdown Content */}
+      <section className="max-w-4xl mx-auto px-8 py-12">
+        <ContentParser>{markdownContent.content}</ContentParser>
       </section>
 
       {/* Features */}
