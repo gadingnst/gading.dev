@@ -2,7 +2,8 @@ import cn from '@/designs/utils/cn';
 import NextLink, { type Props as NextLinkProps } from './NextLink';
 import type { ReactNode } from 'react';
 
-export interface LinkProps extends NextLinkProps {
+export interface ButtonLinkProps extends NextLinkProps {
+  variant?: 'button' | 'glass' | 'ghost' | 'outline' | 'accent';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
@@ -10,19 +11,48 @@ export interface LinkProps extends NextLinkProps {
 }
 
 const baseClasses = [
-  'inline-flex items-center gap-1 transition-all duration-300 ease-in-out',
-  'text-base-content hover:text-primary',
-  'underline-offset-4 hover:underline',
-  'decoration-primary/60 hover:decoration-primary',
-  'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+  'inline-flex items-center gap-2 transition-all duration-300 ease-in-out',
+  'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+  'active:scale-95'
 ];
 
+const variantClasses = {
+  button: [
+    'btn btn-primary',
+    'hover:shadow-lg hover:shadow-primary/25',
+    'hover:-translate-y-0.5'
+  ],
+  glass: [
+    'liquid-glass rounded-lg px-4 py-2',
+    'text-base-content hover:text-primary',
+    'hover:bg-base-100/30 hover:border-primary/20',
+    'hover:shadow-lg hover:shadow-primary/10',
+    'hover:-translate-y-0.5'
+  ],
+  ghost: [
+    'btn btn-ghost',
+    'hover:bg-primary/10 hover:text-primary',
+    'hover:shadow-md'
+  ],
+  outline: [
+    'btn btn-outline btn-primary',
+    'hover:shadow-lg hover:shadow-primary/25',
+    'hover:-translate-y-0.5'
+  ],
+  accent: [
+    'btn btn-accent',
+    'hover:shadow-lg hover:shadow-accent/25',
+    'hover:-translate-y-0.5'
+  ]
+};
+
 /**
- * Simple Link component for text-based navigation links
- * with external link icon support
+ * ButtonLink component with button-style variants using DaisyUI 5
+ * and liquid glass design integration
  */
-function Link(props: LinkProps) {
+function ButtonLink(props: ButtonLinkProps) {
   const {
+    variant = 'button',
     size = 'md',
     icon,
     iconPosition = 'left',
@@ -33,20 +63,20 @@ function Link(props: LinkProps) {
   } = props;
 
   const sizeClasses = {
-    xs: 'text-xs',
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg'
+    xs: 'btn-xs',
+    sm: 'btn-sm',
+    md: '',
+    lg: 'btn-lg'
   };
 
   const iconClasses = [
-    'transition-transform duration-300',
-    'group-hover:translate-x-0.5'
+    'transition-transform duration-300'
   ];
 
   const linkClasses = cn([
     'group',
     ...baseClasses,
+    ...variantClasses[variant],
     sizeClasses[size],
     className
   ]);
@@ -105,4 +135,4 @@ function Link(props: LinkProps) {
   );
 }
 
-export default Link;
+export default ButtonLink;

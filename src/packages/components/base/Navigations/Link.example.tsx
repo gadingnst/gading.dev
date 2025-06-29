@@ -1,58 +1,47 @@
 import Link from './Link';
 
 /**
- * Example usage of the Link component with various variants and configurations
+ * Example usage of the Link component for simple text-based navigation
  * This file demonstrates all available props and styling options
  */
 function LinkExamples() {
   return (
     <div className="space-y-8 p-6">
-      {/* Default Links */}
+      {/* Basic Text Links */}
       <section>
-        <h3 className="text-lg font-semibold mb-4">Default Links</h3>
+        <h3 className="text-lg font-semibold mb-4">Basic Text Links</h3>
         <div className="space-y-2">
           <Link href="/about">Simple link</Link>
           <Link href="/contact" size="sm">Small link</Link>
           <Link href="/portfolio" size="lg">Large link</Link>
+          <Link href="/blog" size="xs">Extra small link</Link>
         </div>
       </section>
 
-      {/* Button Variants */}
+      {/* Links with Different Sizes */}
       <section>
-        <h3 className="text-lg font-semibold mb-4">Button Variants</h3>
-        <div className="flex flex-wrap gap-4">
-          <Link href="/login" variant="button">Primary Button</Link>
-          <Link href="/signup" variant="ghost">Ghost Button</Link>
-          <Link href="/docs" variant="outline">Outline Button</Link>
-          <Link href="/premium" variant="accent">Accent Button</Link>
+        <h3 className="text-lg font-semibold mb-4">Link Sizes</h3>
+        <div className="space-y-2">
+          <Link href="/xs" size="xs">Extra Small Text Link</Link>
+          <Link href="/sm" size="sm">Small Text Link</Link>
+          <Link href="/md" size="md">Medium Text Link</Link>
+          <Link href="/lg" size="lg">Large Text Link</Link>
         </div>
       </section>
 
-      {/* Glass Effect */}
-      <section>
-        <h3 className="text-lg font-semibold mb-4">Liquid Glass Effect</h3>
-        <div className="flex flex-wrap gap-4">
-          <Link href="/dashboard" variant="glass">Glass Link</Link>
-          <Link href="/settings" variant="glass" size="sm">Small Glass</Link>
-          <Link href="/profile" variant="glass" size="lg">Large Glass</Link>
-        </div>
-      </section>
-
-      {/* With Icons */}
+      {/* Links with Icons */}
       <section>
         <h3 className="text-lg font-semibold mb-4">Links with Icons</h3>
         <div className="space-y-2">
-          <Link 
-            href="/home" 
-            variant="glass"
+          <Link
+            href="/home"
             icon={<HomeIcon />}
             iconPosition="left"
           >
             Home
           </Link>
-          <Link 
-            href="/search" 
-            variant="button"
+          <Link
+            href="/search"
             icon={<SearchIcon />}
             iconPosition="right"
           >
@@ -68,10 +57,9 @@ function LinkExamples() {
           <Link href="https://github.com" external>
             GitHub (external)
           </Link>
-          <Link 
-            href="https://twitter.com" 
-            external 
-            variant="glass"
+          <Link
+            href="https://twitter.com"
+            external
             icon={<TwitterIcon />}
           >
             Twitter
@@ -83,30 +71,44 @@ function LinkExamples() {
       <section>
         <h3 className="text-lg font-semibold mb-4">Disabled Links</h3>
         <div className="space-y-2">
-          <Link href="/disabled" disabled>Disabled link</Link>
-          <Link href="/disabled" disabled variant="button">Disabled button</Link>
-          <Link href="/disabled" disabled variant="glass">Disabled glass</Link>
+          <Link href="/disabled" disabled>Disabled text link</Link>
+          <Link href="/disabled" disabled icon={<HomeIcon />}>Disabled with icon</Link>
         </div>
       </section>
 
-      {/* Responsive Sizes */}
+      {/* Responsive Design */}
       <section>
         <h3 className="text-lg font-semibold mb-4">Responsive Design</h3>
         <div className="space-y-2">
-          <Link 
-            href="/responsive" 
-            variant="glass"
+          <Link
+            href="/responsive"
             className="text-sm md:text-base lg:text-lg"
           >
             Responsive text size
           </Link>
-          <Link 
-            href="/mobile" 
-            variant="button"
-            className="w-full sm:w-auto"
+          <Link
+            href="/mobile"
+            className="block sm:inline"
           >
-            Full width on mobile
+            Block on mobile, inline on desktop
           </Link>
+        </div>
+      </section>
+
+      {/* In Paragraph Context */}
+      <section>
+        <h3 className="text-lg font-semibold mb-4">In Paragraph Context</h3>
+        <div className="space-y-4">
+          <p className="text-base-content">
+            This is a paragraph with an <Link href="/inline">inline link</Link> that
+            flows naturally with the text. You can also have
+            <Link href="https://example.com" external>external links</Link> that
+            open in a new tab.
+          </p>
+          <p className="text-base-content">
+            Links can also have <Link href="/icon" icon={<SearchIcon />}>icons</Link>
+            when used inline, though this should be used sparingly for better readability.
+          </p>
         </div>
       </section>
     </div>

@@ -8,7 +8,10 @@ import State from './StatefulMDX';
 import './Parser.css';
 import 'katex/dist/katex.min.css';
 import cn from '@/designs/utils/cn';
-import { NextLink } from '@/packages/components/base/Navigations';
+import {
+  Link,
+  NextLink
+} from '@/packages/components/base/Navigations';
 
 export interface Props extends MDXContentProps {
   className?: string;
@@ -63,6 +66,19 @@ const NextContentImage: FunctionComponent<ContentImageProps> = (props) => {
   );
 };
 
+function ContentLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const { href, ...restProps } = props;
+  const isExternal = href?.startsWith('http') || href?.startsWith('//');
+
+  return (
+    <Link
+      href={href || '#'}
+      external={isExternal}
+      {...restProps}
+    />
+  );
+}
+
 /**
  * handle Twitter embed for SPA
  * @see https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-loading-and-initialization
@@ -96,7 +112,7 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
           ...components,
           State,
           TwitterScript,
-          a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a {...props} className="link link-primary" />,
+          a: ContentLink,
           img: ContentImage,
           NextImage: NextContentImage
         }}
