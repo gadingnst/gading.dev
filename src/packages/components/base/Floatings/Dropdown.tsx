@@ -83,7 +83,7 @@ export default function Dropdown({
         {trigger}
       </div>
       <ul className={cn([
-        'dropdown-content menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg',
+        'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg',
         dropdownClassName
       ])}>
         {children}
