@@ -10,7 +10,6 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
-// import rehypeResponsiveTables from 'rehype-responsive-tables'; // Temporarily disabled due to import issues
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
@@ -81,12 +80,6 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
         rehypeCodeTitles,
         rehypePrism,
         rehypeKatex,
-        // [
-        //   rehypeResponsiveTables,
-        //   {
-        //     up: ['*']
-        //   }
-        // ], // Temporarily disabled
         [
           rehypeAutolinkHeadings,
           {

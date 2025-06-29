@@ -98,8 +98,9 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                 <Link
                   href={item.href}
                   className={cn([
-                    'btn btn-ghost btn-sm',
-                    isActive && 'btn-active'
+                    'btn btn-ghost btn-sm transition-all duration-300',
+                    isActive && 'btn-active',
+                    isScrolled && 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10'
                   ])}
                 >
                   {item.label}
@@ -117,7 +118,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
             tabIndex={0}
             role="button"
             className={`btn btn-ghost btn-sm transition-all duration-300 ${
-              isScrolled ? 'shadow-md bg-base-100/90 backdrop-blur-sm' : ''
+              isScrolled ? 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10' : ''
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >

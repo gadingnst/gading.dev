@@ -71,7 +71,7 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
         tabIndex={0}
         role="button"
         className={`btn btn-ghost btn-sm gap-2 transition-all duration-300 ${
-          isScrolled ? 'shadow-md bg-base-100/90 backdrop-blur-sm' : ''
+          isScrolled ? 'shadow-xl bg-base-100/20 backdrop-blur-xl border border-base-content/10' : ''
         }`}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
