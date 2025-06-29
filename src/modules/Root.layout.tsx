@@ -1,18 +1,20 @@
 import { PropsWithChildren } from 'react';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Poppins, Courgette } from 'next/font/google';
 import { I18nLocales, I18n } from '@/packages/libs/I18n/interface';
 import Header from '@/modules/Common/components/Header';
 import '@/designs/styles/globals.css';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
+const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
+const courgette = Courgette({
+  variable: '--font-courgette',
+  subsets: ['latin'],
+  weight: ['400']
 });
 
 /**
@@ -28,7 +30,7 @@ async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={htmlLang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${courgette.variable} antialiased`}
       >
         <Header />
         {children}
