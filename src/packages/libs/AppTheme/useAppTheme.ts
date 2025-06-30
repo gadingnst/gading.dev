@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import useStore from 'swr-global-state';
 
 import useMounted from '@/packages/hooks/useMounted';
-import {  APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
+import { APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
 import CookieStoragePersistor from '@/packages/libs/SWRGlobalState/Cookie.persistor';
 
 /**
@@ -14,7 +14,10 @@ function useAppTheme(initial = AppThemes.SYSTEM) {
   const [theme, setAppTheme] = useStore<AppTheme>({
     key: APP_THEME_KEY,
     initial: initial,
-    persistor: CookieStoragePersistor()
+    persistor: CookieStoragePersistor({
+      maxAge: 365 * 24 * 60 * 60, // 1 year in seconds
+      path: '/'
+    })
   });
 
   const [isSystemDark, setIsSystemDark] = useStore({
