@@ -1,3 +1,5 @@
+'use client';
+
 import { ExternalLink } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -23,14 +25,14 @@ const variantClasses = {
   button: [
     'btn btn-primary',
     'hover:shadow-lg hover:shadow-primary/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   glass: [
     'liquid-glass rounded-lg px-4 py-2',
     'text-base-content hover:text-primary',
     'hover:bg-base-100/30 hover:border-primary/20',
     'hover:shadow-lg hover:shadow-primary/10',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   ghost: [
     'btn btn-ghost',
@@ -40,12 +42,12 @@ const variantClasses = {
   outline: [
     'btn btn-outline btn-primary',
     'hover:shadow-lg hover:shadow-primary/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   accent: [
     'btn btn-accent',
     'hover:shadow-lg hover:shadow-accent/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ]
 };
 
@@ -110,7 +112,7 @@ function ButtonLink(props: ButtonLinkProps) {
       <ExternalLink
         className={cn([
           'w-3 h-3 opacity-60 transition-all duration-300',
-          'group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
+          'group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-1'
         ])}
       />
     );

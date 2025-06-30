@@ -80,7 +80,7 @@ function Link(props: LinkProps) {
       <ExternalLink
         className={cn([
           'w-3 h-3 opacity-60 transition-all duration-300',
-          'group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
+          'group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-1'
         ])}
       />
     );

@@ -1,3 +1,5 @@
+'use client';
+
 import { Loader2 } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
@@ -24,17 +26,17 @@ const variantClasses = {
   primary: [
     'btn-primary',
     'hover:shadow-lg hover:shadow-primary/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   secondary: [
     'btn-secondary',
     'hover:shadow-lg hover:shadow-secondary/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   accent: [
     'btn-accent',
     'hover:shadow-lg hover:shadow-accent/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   ghost: [
     'btn-ghost',
@@ -46,32 +48,32 @@ const variantClasses = {
     'text-base-content hover:text-primary',
     'hover:bg-base-100/30 hover:border-primary/20',
     'hover:shadow-lg hover:shadow-primary/10',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   outline: [
     'btn-outline btn-primary',
     'hover:shadow-lg hover:shadow-primary/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   error: [
     'btn-error',
     'hover:shadow-lg hover:shadow-error/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   warning: [
     'btn-warning',
     'hover:shadow-lg hover:shadow-warning/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   success: [
     'btn-success',
     'hover:shadow-lg hover:shadow-success/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ],
   info: [
     'btn-info',
     'hover:shadow-lg hover:shadow-info/25',
-    'hover:-translate-y-0.5'
+    'hover:-translate-y-1'
   ]
 };
 
