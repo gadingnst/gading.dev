@@ -4,6 +4,10 @@
     @apply w-full mx-auto px-4;
   }
 
+  .font-poppins {
+    font-family: var(--font-poppins), sans-serif;
+  }
+
   .font-courgette {
     font-family: var(--font-courgette), cursive;
   }
