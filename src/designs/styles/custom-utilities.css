@@ -1,6 +1,6 @@
 @utility base-container {
-  max-width: 1600px;
-  @apply w-full mx-auto px-6;
+  max-width: 1200px;
+  @apply w-full mx-auto px-4;
 }
 
 @utility liquid-glass {
@@ -31,5 +31,5 @@
       absolute left-0 right-0 transition-colors duration-200
       bg-base-200 top-[150px] h-[2000px];
   }
-  @apply relative overflow-hidden p-4 mt-14;
+  @apply relative overflow-hidden mt-14;
 }

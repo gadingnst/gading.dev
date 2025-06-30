@@ -15,8 +15,8 @@ export default async function AboutPage() {
   return (
     <div className="min-h-screen bg-base-100 text-base-content">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
+        <div className="base-container text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             {markdownContent.meta.title}
           </h1>
@@ -27,8 +27,10 @@ export default async function AboutPage() {
       </section>
 
       {/* Content Section */}
-      <section className="max-w-4xl mx-auto px-4 py-12">
-        <ContentParser>{markdownContent.content}</ContentParser>
+      <section className="py-12">
+        <div className="base-container">
+          <ContentParser>{markdownContent.content}</ContentParser>
+        </div>
       </section>
     </div>
   );

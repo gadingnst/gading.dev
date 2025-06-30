@@ -19,47 +19,51 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-base-200 text-base-content">
       {/* Hero */}
-      <section className="flex-1 flex flex-col items-center justify-center text-center px-8 pt-24 pb-12 gap-6">
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
-          {markdownContent.meta.title}
-        </h1>
-        <p className="max-w-xl text-base sm:text-lg opacity-80">
-          {markdownContent.meta.description}
-        </p>
+      <section className="flex-1 flex flex-col items-center justify-center text-center pt-24 pb-12 gap-6">
+        <div className="base-container">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
+            {markdownContent.meta.title}
+          </h1>
+          <p className="text-base sm:text-lg opacity-80 mt-4">
+            {markdownContent.meta.description}
+          </p>
 
-        {/* Credit */}
-        <p className="text-xs sm:text-sm opacity-60">
-          <NextLink
-            href="https://gading.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link link-hover"
-          >
-            Gading&nbsp;Nasution
-          </NextLink>
-        </p>
+          {/* Credit */}
+          <p className="text-xs sm:text-sm opacity-60">
+            <NextLink
+              href="https://gading.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link link-hover"
+            >
+              Gading&nbsp;Nasution
+            </NextLink>
+          </p>
 
-        <div className="flex flex-wrap gap-4 mt-4">
-          <NextLink
-            href="https://github.com/gadingnst/fullstack-next-template"
-            target="_blank"
-            className="btn btn-primary"
-          >
-            {content.starButton}
-          </NextLink>
-          <NextLink
-            href="https://vercel.com/new/git/external?repository-url=https://github.com/gadingnst/fullstack-next-template"
-            target="_blank"
-            className="btn btn-outline"
-          >
-            {content.deployButton}
-          </NextLink>
+          <div className="flex flex-wrap gap-4 mt-4 justify-center items-center">
+            <NextLink
+              href="https://github.com/gadingnst/fullstack-next-template"
+              target="_blank"
+              className="btn btn-primary"
+            >
+              {content.starButton}
+            </NextLink>
+            <NextLink
+              href="https://vercel.com/new/git/external?repository-url=https://github.com/gadingnst/fullstack-next-template"
+              target="_blank"
+              className="btn btn-outline"
+            >
+              {content.deployButton}
+            </NextLink>
+          </div>
         </div>
       </section>
 
       {/* Markdown Content */}
-      <section className="max-w-4xl mx-auto px-8 py-12">
-        <ContentParser>{markdownContent.content}</ContentParser>
+      <section className="py-12">
+        <div className="base-container">
+          <ContentParser>{markdownContent.content}</ContentParser>
+        </div>
       </section>
     </div>
   );
