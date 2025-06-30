@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 export enum AppThemes {
+  SYSTEM = 'system',
   LIGHT = 'light',
   DARK = 'dark',
+  LIGHT_COLORBLIND = 'light-colorblind',
   DARK_COLORBLIND = 'dark-colorblind',
-  SYSTEM = 'system'
 };
 
 export type AppTheme = `${AppThemes}`;

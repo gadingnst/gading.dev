@@ -1,6 +1,5 @@
 'use client';
 
-import { Eye, Monitor, Moon, Sun } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -8,6 +7,7 @@ import cn from '@/designs/utils/cn';
 import Dropdown from '@/packages/components/base/Floatings';
 import { AppThemes } from '@/packages/libs/AppTheme/constants';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
+import { getThemeIcon, getThemeLabel, themeOptions } from '@/packages/libs/AppTheme/utils';
 
 interface AppThemeSelectorProps {
   isScrolled?: boolean;
@@ -23,46 +23,6 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   /**
-   * Get theme icon based on current theme
-   * @param theme - Theme to get icon for
-   * @returns Icon component
-   */
-  const getThemeIcon = (theme: string) => {
-    switch (theme) {
-      case AppThemes.LIGHT:
-        return Sun;
-      case AppThemes.DARK:
-        return Moon;
-      case AppThemes.DARK_COLORBLIND:
-        return Eye;
-      case AppThemes.SYSTEM:
-        return Monitor;
-      default:
-        return Monitor;
-    }
-  };
-
-  /**
-   * Get theme label for display
-   * @param theme - Theme to get label for
-   * @returns Theme label
-   */
-  const getThemeLabel = (theme: string) => {
-    switch (theme) {
-      case AppThemes.LIGHT:
-        return 'Light';
-      case AppThemes.DARK:
-        return 'Dark';
-      case AppThemes.DARK_COLORBLIND:
-        return 'Dark Colorblind';
-      case AppThemes.SYSTEM:
-        return 'System';
-      default:
-        return 'System';
-    }
-  };
-
-  /**
    * Handle theme change from dropdown
    * @param newTheme - Selected theme
    */
@@ -76,13 +36,6 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
     setIsDropdownOpen(false);
     router.refresh();
   };
-
-  const themeOptions = [
-    { value: AppThemes.LIGHT, label: 'Light', icon: Sun },
-    { value: AppThemes.DARK, label: 'Dark', icon: Moon },
-    { value: AppThemes.DARK_COLORBLIND, label: 'Dark Colorblind', icon: Eye },
-    { value: AppThemes.SYSTEM, label: 'System', icon: Monitor }
-  ];
 
   const CurrentIcon = getThemeIcon(appTheme);
 
