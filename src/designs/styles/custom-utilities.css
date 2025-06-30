@@ -24,15 +24,6 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
-@utility hover-float-1 {
-  @apply transition-margin hover:-mt-1 hover:mb-1;
-}
-
-@utility hover-float-2 {
-  @apply transition-margin hover:-mt-2 hover:mb-2;
-}
-
 @utility footer-custom {
   min-height: 200px;
   &::before {

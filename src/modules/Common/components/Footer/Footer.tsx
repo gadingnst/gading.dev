@@ -65,12 +65,12 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn([
-                  'p-2 rounded-lg text-white hover:text-white hover:-translate-y-1',
+                  'p-3 rounded-lg text-white hover:text-white hover:-translate-y-1',
                   social.className
                 ])}
                 aria-label={social.name}
               >
-                <social.icon className="w-5 h-5" />
+                <social.icon className="w-4 h-4" />
               </Link>
             ))}
           </div>
