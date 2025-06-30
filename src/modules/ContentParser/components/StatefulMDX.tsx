@@ -6,6 +6,7 @@ type StateValue = Record<string, unknown>;
 
 interface StateContextType {
   state: StateValue;
+  // eslint-disable-next-line no-unused-vars
   setState: (state: StateValue) => void;
 }
 
