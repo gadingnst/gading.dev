@@ -1,40 +1,35 @@
-@utility base-container {
-  max-width: 1200px;
-  @apply w-full mx-auto px-4;
-}
-
-@utility liquid-glass {
-  @apply bg-base-100/20 backdrop-blur-xl backdrop-saturate-150 border border-base-content/10;
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-}
-
-@utility liquid-glass-shadow {
-  @apply bg-base-100/20 backdrop-blur-xl backdrop-saturate-150 border border-base-content/10 shadow-xl;
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-}
-
-@utility font-courgette {
-  font-family: var(--font-courgette), cursive;
-}
-
-@utility transition-margin {
-  transition-property: margin;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-@utility footer-custom {
-  min-height: 200px;
-  &::before {
-    content: "";
-    transform: skew(0, -10.25deg);
-    @screen md {
-      transform: skew(0, -5.25deg);
-    }
-    @apply
-      absolute left-0 right-0 transition-colors duration-200
-      bg-base-200 top-[150px] h-[2000px];
+@layer utilities {
+  .base-container {
+    max-width: 1200px;
+    @apply w-full mx-auto px-4;
   }
-  @apply relative overflow-hidden mt-14;
+
+  .font-courgette {
+    font-family: var(--font-courgette), cursive;
+  }
+
+  .liquid-glass {
+    @apply backdrop-blur-xl backdrop-saturate-150 border border-base-content/10;
+    background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
+  }
+
+  .liquid-glass-shadow {
+    @apply backdrop-blur-xl backdrop-saturate-150 border border-base-content/10 shadow-2xl;
+    background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
+  }
+
+  .footer-custom {
+    min-height: 200px;
+    &::before {
+      content: "";
+      transform: skew(0, -10.25deg);
+      @screen md {
+        transform: skew(0, -5.25deg);
+      }
+      @apply
+        absolute left-0 right-0 transition-colors duration-200
+        bg-base-200 top-[150px] h-[2000px];
+    }
+    @apply relative overflow-hidden mt-14;
+  }
 }
