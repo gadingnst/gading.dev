@@ -1,5 +1,6 @@
+import { ArrowRight, Download, Heart, Plus, Share } from 'lucide-react';
+
 import Button from './Button';
-import { Plus, Heart, Download, ArrowRight, Share } from 'lucide-react';
 
 /**
  * Example usage of the Button component with various variants and configurations

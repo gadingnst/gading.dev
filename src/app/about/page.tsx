@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+
 import AboutPage from '@/modules/About/About.page';
 import aboutLocales from '@/modules/About/locales';
+import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 
 /**
  * Generate metadata for About page

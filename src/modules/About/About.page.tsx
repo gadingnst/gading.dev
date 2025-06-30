@@ -1,6 +1,6 @@
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import ContentParser from '@/modules/ContentParser/components/Parser';
+import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 
 /**
  * AboutPage component with internationalization support

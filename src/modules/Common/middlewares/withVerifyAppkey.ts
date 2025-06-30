@@ -1,6 +1,6 @@
-import { createMiddleware } from '@/packages/server/base/Middleware';
 import { SECRET_APP_KEY } from '@/configs/envs';
 import Controller from '@/packages/server/base/Controller';
+import { createMiddleware } from '@/packages/server/base/Middleware';
 
 /**
  * example to screate custom middleware with `createMiddleware HoF`

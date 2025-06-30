@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
-import { I18nLocales } from '@/packages/libs/I18n/interface';
-import { isValidLanguage } from '@/packages/libs/I18n/utils';
+
 import HomePage from '@/modules/Home/Home.page';
 import homePageLocales from '@/modules/Home/locales';
+import { I18nLocales } from '@/packages/libs/I18n/interface';
+import { isValidLanguage } from '@/packages/libs/I18n/utils';
 import { withGenerateMetadata } from '@/packages/utils/metadata';
 
 interface LangPageProps {

@@ -1,5 +1,6 @@
-import { APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 import { cookies } from 'next/headers';
+
+import { APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 
 async function getServerAppTheme() {
   const cookiesList = await cookies();

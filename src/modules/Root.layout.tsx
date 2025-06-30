@@ -1,10 +1,12 @@
-import { PropsWithChildren } from 'react';
-import { Poppins, Courgette } from 'next/font/google';
-import { I18nLocales, I18n } from '@/packages/libs/I18n/interface';
-import Header from '@/modules/Common/components/Header';
 import '@/designs/styles/globals.css';
+
+import { Courgette, Poppins } from 'next/font/google';
+import { PropsWithChildren } from 'react';
+
+import Header from '@/modules/Common/components/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import getServerAppTheme from '@/packages/libs/AppTheme/getServerAppTheme';
+import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
 const poppins = Poppins({
   variable: '--font-poppins',

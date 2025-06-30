@@ -1,6 +1,7 @@
-import cn from '@/designs/utils/cn';
 import Link, { type LinkProps } from 'next/link';
 import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
+
+import cn from '@/designs/utils/cn';
 
 type NextLinkProps = PropsWithChildren<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>
   & LinkProps

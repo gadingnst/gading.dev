@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef, ReactNode } from 'react';
-import useUpdated from '@/packages/hooks/useUpdated';
+import { ReactNode, useRef, useState } from 'react';
+
 import cn from '@/designs/utils/cn';
+import useUpdated from '@/packages/hooks/useUpdated';
 
 export interface DropdownProps {
   trigger: ReactNode;

@@ -1,6 +1,7 @@
-import cn from '@/designs/utils/cn';
 import { Loader2 } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+
+import cn from '@/designs/utils/cn';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'glass' | 'outline' | 'error' | 'warning' | 'success' | 'info';

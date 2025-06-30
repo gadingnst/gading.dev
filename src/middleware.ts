@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getLangugageFromPathnameWithFallback, isValidRoute } from '@/packages/libs/I18n/utils';
+
 import { HEADERS_REQUEST_DOMAIN_KEY, HEADERS_REQUEST_LANGUAGE_KEY, HEADERS_REQUEST_PATHNAME_KEY, HEADERS_REQUEST_SEARCH_KEY, HEADERS_REQUEST_URL_KEY } from '@/configs/headers';
+import { getLangugageFromPathnameWithFallback, isValidRoute } from '@/packages/libs/I18n/utils';
 
 /**
  * Middleware to handle internationalization routing and request headers

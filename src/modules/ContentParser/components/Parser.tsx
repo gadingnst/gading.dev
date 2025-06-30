@@ -1,17 +1,19 @@
 'use client';
 
-import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
-import Script, { ScriptProps } from 'next/script';
-import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
-import State from './StatefulMDX';
-
 import './Parser.css';
 import 'katex/dist/katex.min.css';
+
+import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
+import Script, { ScriptProps } from 'next/script';
+import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
+
 import cn from '@/designs/utils/cn';
 import {
   Link,
   NextLink
 } from '@/packages/components/base/Navigations';
+
+import State from './StatefulMDX';
 
 export interface Props extends MDXContentProps {
   className?: string;

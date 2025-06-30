@@ -1,15 +1,14 @@
-import type { GetStaticPathsResult } from 'next';
 import Fs from 'fs/promises';
-import path from 'path';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
+import type { GetStaticPathsResult } from 'next';
+import path from 'path';
 import readingTime, { ReadTimeResults } from 'reading-time';
-
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
-import rehypeSlug from 'rehype-slug';
 import rehypeKatex from 'rehype-katex';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 

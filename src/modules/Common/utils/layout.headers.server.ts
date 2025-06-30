@@ -1,12 +1,13 @@
 import { headers } from 'next/headers';
+
 import {
   HEADERS_REQUEST_DOMAIN_KEY,
   HEADERS_REQUEST_PATHNAME_KEY,
   HEADERS_REQUEST_SEARCH_KEY,
   HEADERS_REQUEST_URL_KEY
 } from '@/configs/headers';
-import { getLanguageFromPathnameStrict, getDefaultLanguage } from '@/packages/libs/I18n/utils';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
+import { getDefaultLanguage, getLanguageFromPathnameStrict } from '@/packages/libs/I18n/utils';
 
 export async function getRequestDomain() {
   const headerList = await headers();

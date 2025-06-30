@@ -1,6 +1,8 @@
+import { FlatCompat } from '@eslint/eslintrc';
+import importPlugin from 'eslint-plugin-import';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +14,29 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+      'import': importPlugin
+    },
     rules: {
+      // Import sorting rules
+      'simple-import-sort/imports': ['error', {
+        groups: [
+          // External packages come first
+          ['^\\u0000'],
+          ['^[^.]'],
+          // Internal packages (starting with @/)
+          ['^@/'],
+          // Relative imports
+          ['^\\.'],
+          // Side effect imports
+          ['^\\u0000']
+        ]
+      }],
+      'simple-import-sort/exports': 'error',
+      'import/first': 'error',
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
       'semi': ['error', 'always'], // Enforce semicolons at the end of statements
       'indent': ['error', 2, { 'SwitchCase': 1 }], // Enforce 2-space indentation, 1 for switch cases
       'comma-dangle': ['error', 'never'], // Disallow trailing commas

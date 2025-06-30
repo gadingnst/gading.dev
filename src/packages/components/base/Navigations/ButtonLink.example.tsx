@@ -1,5 +1,6 @@
+import { Download, FileText, Home, Search, Twitter } from 'lucide-react';
+
 import ButtonLink from './ButtonLink';
-import { Home, Search, Twitter, Download, FileText } from 'lucide-react';
 
 /**
  * Example usage of the ButtonLink component with various variants and configurations
@@ -45,16 +46,16 @@ function ButtonLinkExamples() {
         <h3 className="text-lg font-semibold mb-4">ButtonLinks with Icons</h3>
         <div className="space-y-2">
           <div className="flex flex-wrap gap-4">
-            <ButtonLink 
-              href="/home" 
+            <ButtonLink
+              href="/home"
               variant="glass"
               icon={<HomeIcon />}
               iconPosition="left"
             >
               Home
             </ButtonLink>
-            <ButtonLink 
-              href="/search" 
+            <ButtonLink
+              href="/search"
               variant="button"
               icon={<SearchIcon />}
               iconPosition="right"
@@ -73,9 +74,9 @@ function ButtonLinkExamples() {
             <ButtonLink href="https://github.com" external variant="outline">
               GitHub (external)
             </ButtonLink>
-            <ButtonLink 
-              href="https://twitter.com" 
-              external 
+            <ButtonLink
+              href="https://twitter.com"
+              external
               variant="glass"
               icon={<TwitterIcon />}
             >
@@ -101,15 +102,15 @@ function ButtonLinkExamples() {
       <section>
         <h3 className="text-lg font-semibold mb-4">Responsive Design</h3>
         <div className="space-y-2">
-          <ButtonLink 
-            href="/responsive" 
+          <ButtonLink
+            href="/responsive"
             variant="glass"
             className="text-sm md:text-base lg:text-lg"
           >
             Responsive text size
           </ButtonLink>
-          <ButtonLink 
-            href="/mobile" 
+          <ButtonLink
+            href="/mobile"
             variant="button"
             className="w-full sm:w-auto"
           >
@@ -123,16 +124,16 @@ function ButtonLinkExamples() {
         <h3 className="text-lg font-semibold mb-4">Mixed Usage Examples</h3>
         <div className="space-y-4">
           <div className="flex flex-wrap gap-4">
-            <ButtonLink 
-              href="/download" 
+            <ButtonLink
+              href="/download"
               variant="accent"
               icon={<DownloadIcon />}
               iconPosition="left"
             >
               Download
             </ButtonLink>
-            <ButtonLink 
-              href="https://docs.example.com" 
+            <ButtonLink
+              href="https://docs.example.com"
               external
               variant="outline"
               icon={<DocumentIcon />}

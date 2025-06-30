@@ -1,5 +1,5 @@
-import withPromise, { type IPromiseResult, isPromiseError } from './withPromise';
 import type { BaseHttpError } from '../BaseHttp/interfaces';
+import withPromise, { type IPromiseResult, isPromiseError } from './withPromise';
 
 type IRequestResult<T> = IPromiseResult<T, BaseHttpError>;
 

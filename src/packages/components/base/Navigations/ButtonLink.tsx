@@ -1,7 +1,9 @@
-import cn from '@/designs/utils/cn';
-import NextLink, { type Props as NextLinkProps } from './NextLink';
 import { ExternalLink } from 'lucide-react';
 import type { ReactNode } from 'react';
+
+import cn from '@/designs/utils/cn';
+
+import NextLink, { type Props as NextLinkProps } from './NextLink';
 
 export interface ButtonLinkProps extends NextLinkProps {
   variant?: 'button' | 'glass' | 'ghost' | 'outline' | 'accent';

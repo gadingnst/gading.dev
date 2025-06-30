@@ -1,4 +1,4 @@
-import type { StatePersistor, StateKey } from 'swr-global-state';
+import type { StateKey, StatePersistor } from 'swr-global-state';
 
 const LocalStoragePersistor: StatePersistor = {
   onSet<T>(key: StateKey, data: T) {

@@ -1,5 +1,6 @@
-import Link from './Link';
 import { Home, Search, Twitter } from 'lucide-react';
+
+import Link from './Link';
 
 /**
  * Example usage of the Link component for simple text-based navigation

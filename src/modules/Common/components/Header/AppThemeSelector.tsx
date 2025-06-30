@@ -1,12 +1,13 @@
 'use client';
 
+import { Monitor, Moon, Sun } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Sun, Moon, Monitor } from 'lucide-react';
+
+import cn from '@/designs/utils/cn';
+import Dropdown from '@/packages/components/base/Floatings';
 import { AppThemes } from '@/packages/libs/AppTheme/constants';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
-import Dropdown from '@/packages/components/base/Floatings';
-import cn from '@/designs/utils/cn';
-import { useRouter } from 'next/navigation';
 
 interface AppThemeSelectorProps {
   isScrolled?: boolean;

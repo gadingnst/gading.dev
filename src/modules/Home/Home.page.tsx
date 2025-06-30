@@ -1,8 +1,9 @@
-import homePageLocales from './locales';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import ContentParser from '@/modules/ContentParser/components/Parser';
+import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import { NextLink } from '@/packages/components/base/Navigations';
+
+import homePageLocales from './locales';
 
 /**
  * HomePage component with internationalization support

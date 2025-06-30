@@ -1,5 +1,5 @@
-import type { Portfolio } from '@/types/contents';
 import { AUTHOR_GITHUB } from '@/configs/env';
+import type { Portfolio } from '@/types/contents';
 
 const portfolio: Portfolio[] = [
   {

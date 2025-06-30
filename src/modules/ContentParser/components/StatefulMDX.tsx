@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, Component } from 'react';
+import { Component, createContext } from 'react';
 
 type StateValue = Record<string, unknown>;
 

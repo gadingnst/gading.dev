@@ -1,13 +1,13 @@
 'use client';
 
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
 
-import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
-import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
+import cn from '@/designs/utils/cn';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import Dropdown from '@/packages/components/base/Floatings';
-import cn from '@/designs/utils/cn';
+import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
+import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 
 interface LanguageSelectorProps {
   isScrolled?: boolean;

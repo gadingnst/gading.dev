@@ -1,8 +1,9 @@
 'use client';
 
-import { getLanguageFromPathnameStrict, getDefaultLanguage } from '@/packages/libs/I18n/utils';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
+
+import { getDefaultLanguage, getLanguageFromPathnameStrict } from '@/packages/libs/I18n/utils';
 
 function useLangugage() {
   const pathname = usePathname();

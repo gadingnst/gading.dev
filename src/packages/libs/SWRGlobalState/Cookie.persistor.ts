@@ -1,7 +1,7 @@
 'use client';
 
 import Cookies, { type ICookiesOptions } from 'next-cookies-universal';
-import { StatePersistor, StateKey } from 'swr-global-state';
+import { StateKey, StatePersistor } from 'swr-global-state';
 
 const CookieStoragePersistor = (config?: ICookiesOptions): StatePersistor => {
   return {

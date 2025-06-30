@@ -1,9 +1,8 @@
 import {
-  BaseHttpResponseJson,
   BaseHttpConfig,
   BaseHttpError,
-  BaseHttpMethod
-} from './interfaces';
+  BaseHttpMethod,
+  BaseHttpResponseJson } from './interfaces';
 
 export const DEFAULT_ERROR_STATUS = 'Unexpected Error.';
 export const DEFAULT_HTTP_ERROR_MESSAGE = 'An unknown error occurred.';

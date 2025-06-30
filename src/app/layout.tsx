@@ -1,4 +1,5 @@
 import '@/designs/styles/globals.css';
+
 import homePageLocales from '@/modules/Home/locales';
 import RootLayout from '@/modules/Root.layout';
 import { withMetadata } from '@/packages/utils/metadata';

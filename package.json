@@ -29,6 +29,8 @@
     "daisyui": "^5.0.35",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.2.1",
     "reading-time": "^1.5.0",
