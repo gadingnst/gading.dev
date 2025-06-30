@@ -44,7 +44,7 @@
 - Use `Button`, `Link` components instead of custom solutions
 - Follow established variant/size patterns
 
-### Glass Design
+### Liquid Glass Design
 - Use `liquid-glass` and `liquid-glass-shadow` utilities
 - Provide `glass` variant for applicable components
 - Combine with DaisyUI classes for light/dark compatibility
