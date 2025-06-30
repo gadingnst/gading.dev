@@ -3,6 +3,7 @@ import '@/designs/styles/globals.css';
 import { Courgette, Poppins } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 
+import { Footer } from '@/modules/Common/components';
 import Header from '@/modules/Common/components/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import getServerAppTheme from '@/packages/libs/AppTheme/getServerAppTheme';
@@ -36,6 +37,7 @@ async function RootLayout({ children }: PropsWithChildren) {
       <body data-theme={appTheme} className={`${poppins.variable} ${courgette.variable} antialiased pt-16`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
