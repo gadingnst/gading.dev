@@ -4,6 +4,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
+import useMounted from '@/packages/hooks/useMounted';
 
 export interface TopLoaderProps {
   /**
@@ -32,9 +33,19 @@ export interface TopLoaderProps {
   className?: string;
 }
 
+const colorClasses = {
+  primary: 'bg-primary',
+  secondary: 'bg-secondary',
+  accent: 'bg-accent',
+  info: 'bg-info',
+  success: 'bg-success',
+  warning: 'bg-warning',
+  error: 'bg-error'
+};
+
 /**
  * TopLoader component that shows a progress bar at the top of the page during route transitions
- * Automatically detects route changes and shows/hides the loader accordingly
+ * Automatically detects link clicks and route changes to show/hide the loader accordingly
  */
 function TopLoader({
   color = 'primary',
@@ -48,48 +59,56 @@ function TopLoader({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    let progressTimer: NodeJS.Timeout;
-    let completeTimer: NodeJS.Timeout;
+  // Handle link clicks to start loading immediately
+  useMounted(() => {
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a');
 
-    const startLoading = () => {
-      setIsLoading(true);
+      if (link && link.href && !link.href.startsWith('mailto:') && !link.href.startsWith('tel:')) {
+        const url = new URL(link.href);
+        const currentUrl = new URL(window.location.href);
+
+        // Only start loading for internal navigation
+        if (url.origin === currentUrl.origin && url.pathname !== currentUrl.pathname) {
+          startLoading();
+        }
+      }
+    };
+
+    document.addEventListener('click', handleLinkClick);
+    return () => document.removeEventListener('click', handleLinkClick);
+  });
+
+  const startLoading = () => {
+    setIsLoading(true);
+    setProgress(0);
+
+    const progressTimer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 90) {
+          clearInterval(progressTimer);
+          return 90;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, speed / 3);
+  };
+
+  const completeLoading = () => {
+    setProgress(100);
+    setTimeout(() => {
+      setIsLoading(false);
       setProgress(0);
+    }, 300);
+  };
 
-      // Simulate progress
-      progressTimer = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 90) {
-            clearInterval(progressTimer);
-            return 90;
-          }
-          const newProgress = prev + Math.random() * 10;
-          return newProgress;
-        });
-      }, speed / 4);
-    };
-
-    const completeLoading = () => {
-      setProgress(100);
-      completeTimer = setTimeout(() => {
-        setIsLoading(false);
-        setProgress(0);
-      }, speed);
-    };
-
-    startLoading();
-
-    // Complete loading after a longer delay to make it more visible
-    const finishTimer = setTimeout(() => {
+  // Complete loading when route actually changes
+  useEffect(() => {
+    if (isLoading) {
       completeLoading();
-    }, 1500);
-
-    return () => {
-      clearInterval(progressTimer);
-      clearTimeout(completeTimer);
-      clearTimeout(finishTimer);
-    };
-  }, [pathname, searchParams, speed]);
+    }
+  }, [isLoading, pathname, searchParams]);
 
   if (!isLoading) return null;
 
@@ -97,13 +116,13 @@ function TopLoader({
     <div
       className={cn([
         'fixed top-0 left-0 z-[9999] transition-all duration-300 ease-out',
+        colorClasses[color],
         showShadow && 'shadow-lg',
         className
       ])}
       style={{
         height: `${height}px`,
         width: `${progress}%`,
-        backgroundColor: '#3b82f6',
         pointerEvents: 'none'
       }}
     >

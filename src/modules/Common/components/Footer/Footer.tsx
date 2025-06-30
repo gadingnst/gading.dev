@@ -21,31 +21,31 @@ const socialLinks = [
     name: 'GitHub',
     href: `https://github.com/${AUTHOR_GITHUB}`,
     icon: Github,
-    className: 'bg-[#333]'
+    className: 'bg-[#333] shadow-gray-600'
   },
   {
     name: 'Twitter',
     href: `https://twitter.com/${AUTHOR_TWITTER}`,
     icon: Twitter,
-    className: 'bg-[#1DA1F2]'
+    className: 'bg-[#1DA1F2] shadow-blue-400'
   },
   {
     name: 'Instagram',
     href: `https://instagram.com/${AUTHOR_INSTAGRAM}`,
     icon: Instagram,
-    className: 'bg-gradient-to-r from-[#f09433] via-[#e6683c] via-[#dc2743] via-[#cc2366] to-[#bc1888]'
+    className: 'bg-gradient-to-r from-[#f09433] via-[#e6683c] via-[#dc2743] via-[#cc2366] to-[#bc1888] shadow-pink-500'
   },
   {
     name: 'LinkedIn',
     href: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`,
     icon: Linkedin,
-    className: 'bg-[#0077B5]'
+    className: 'bg-[#0077B5] shadow-blue-600'
   },
   {
     name: 'Facebook',
     href: `https://facebook.com/${AUTHOR_FACEBOOK}`,
     icon: Facebook,
-    className: 'bg-[#1877F2]'
+    className: 'bg-[#1877F2] shadow-blue-500'
   }
 ];
 
@@ -65,7 +65,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn([
-                  'p-3 rounded-lg text-white hover:text-white hover:-translate-y-1',
+                  'p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 hover:shadow-lg',
                   social.className
                 ])}
                 aria-label={social.name}
