@@ -2,6 +2,7 @@
 export enum AppThemes {
   LIGHT = 'light',
   DARK = 'dark',
+  DARK_COLORBLIND = 'dark-colorblind',
   SYSTEM = 'system'
 };
 

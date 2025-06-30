@@ -1,6 +1,6 @@
 'use client';
 
-import { Monitor, Moon, Sun } from 'lucide-react';
+import { Eye, Monitor, Moon, Sun } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -33,6 +33,8 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
         return Sun;
       case AppThemes.DARK:
         return Moon;
+      case AppThemes.DARK_COLORBLIND:
+        return Eye;
       case AppThemes.SYSTEM:
         return Monitor;
       default:
@@ -51,6 +53,8 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
         return 'Light';
       case AppThemes.DARK:
         return 'Dark';
+      case AppThemes.DARK_COLORBLIND:
+        return 'Dark Colorblind';
       case AppThemes.SYSTEM:
         return 'System';
       default:
@@ -76,6 +80,7 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
   const themeOptions = [
     { value: AppThemes.LIGHT, label: 'Light', icon: Sun },
     { value: AppThemes.DARK, label: 'Dark', icon: Moon },
+    { value: AppThemes.DARK_COLORBLIND, label: 'Dark Colorblind', icon: Eye },
     { value: AppThemes.SYSTEM, label: 'System', icon: Monitor }
   ];
 
