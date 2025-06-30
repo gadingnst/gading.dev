@@ -6,6 +6,7 @@ import { PropsWithChildren } from 'react';
 import { Footer } from '@/modules/Common/components';
 import Header from '@/modules/Common/components/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
+import TopLoader from '@/packages/components/base/Loaders/TopLoader';
 import getServerAppTheme from '@/packages/libs/AppTheme/getServerAppTheme';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
@@ -35,6 +36,7 @@ async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={htmlLang}>
       <body data-theme={appTheme} className={`${poppins.variable} ${courgette.variable} antialiased pt-16`}>
+        <TopLoader color="primary" height={3} showShadow />
         <Header />
         {children}
         <Footer />
