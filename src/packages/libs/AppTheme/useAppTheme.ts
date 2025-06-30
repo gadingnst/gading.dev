@@ -27,8 +27,8 @@ function useAppTheme(initial = AppThemes.SYSTEM) {
 
   // actual theme to use
   const appTheme = useMemo(() => {
-    if (theme === AppThemes.SYSTEM) {
-      return isSystemDark ? AppThemes.DARK : theme;
+    if (theme === AppThemes.SYSTEM && isSystemDark) {
+      return AppThemes.DARK;
     }
     return theme;
   }, [theme, isSystemDark]);
