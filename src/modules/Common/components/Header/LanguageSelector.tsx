@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { ChevronDown, Check } from 'lucide-react';
+
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
@@ -54,11 +54,11 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
       isScrolled={isScrolled}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
+      className="max-w-[100px]"
       trigger={
         <>
           <span className="text-lg">{getLanguageFlag(currentLang)}</span>
           <span className="hidden sm:inline">{getLanguageLabel(currentLang)}</span>
-          <ChevronDown className="w-4 h-4" />
         </>
       }
     >
@@ -71,16 +71,16 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
             <button
               onClick={() => handleLanguageChange(locale)}
               className={cn([
-                'flex items-center gap-3',
-                isActive ? 'active cursor-default' : 'cursor-pointer'
+                'flex items-center gap-3 transition-all duration-300',
+                isActive ? [
+                  'active cursor-default bg-primary/10 text-primary',
+                  'border-l-4 border-primary shadow-md shadow-primary/10'
+                ] : 'cursor-pointer hover:bg-base-200/50'
               ])}
               disabled={isActive}
             >
               <span className="text-lg">{getLanguageFlag(locale)}</span>
               <span>{getLanguageLabel(locale)}</span>
-              {isActive && (
-                <Check className="w-4 h-4 ml-auto" />
-              )}
             </button>
           </li>
         );

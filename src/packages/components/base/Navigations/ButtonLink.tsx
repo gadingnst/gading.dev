@@ -1,5 +1,6 @@
 import cn from '@/designs/utils/cn';
 import NextLink, { type Props as NextLinkProps } from './NextLink';
+import { ExternalLink } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export interface ButtonLinkProps extends NextLinkProps {
@@ -104,22 +105,12 @@ function ButtonLink(props: ButtonLinkProps) {
     if (!external) return null;
 
     return (
-      <svg
+      <ExternalLink
         className={cn([
           'w-3 h-3 opacity-60 transition-all duration-300',
           'group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5'
         ])}
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-        />
-      </svg>
+      />
     );
   };
 
