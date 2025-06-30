@@ -65,7 +65,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn([
-                  'p-2 rounded-lg text-white hover:text-white transition-transform hover:scale-110 hover:shadow-lg',
+                  'p-2 rounded-lg text-white hover:text-white hover-float-1',
                   social.className
                 ])}
                 aria-label={social.name}
