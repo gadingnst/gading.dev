@@ -1,11 +1,11 @@
-import { cookies } from 'next/headers';
+import Cookies from 'next-cookies-universal';
 
 import { APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 
 async function getServerAppTheme() {
-  const cookiesList = await cookies();
-  const appTheme = cookiesList.get(APP_THEME_KEY);
-  const appThemeValue = appTheme?.value.replace(/\"/gi, '');
+  const cookies = Cookies('server');
+  const appTheme = await cookies.get(APP_THEME_KEY);
+  const appThemeValue = appTheme?.replace(/\"/gi, '');
   return appThemeValue;
 }
 
