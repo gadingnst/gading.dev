@@ -1,11 +1,12 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import Dropdown from '@/packages/components/base/Floatings';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 
@@ -18,36 +19,28 @@ interface LanguageSelectorProps {
  * Handles language switching with proper routing
  */
 export default function LanguageSelector({ isScrolled = false }: LanguageSelectorProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const currentLang = useLangugage();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   /**
-   * Handle language change from dropdown
-   * @param newLang - Selected language
+   * Compute the URL for a given language
+   * @param newLang - Target language
+   * @returns Computed URL for the language
    */
-  const handleLanguageChange = (newLang: I18nLocales) => {
-    // Don't do anything if the same language is selected
-    if (newLang === currentLang) {
-      setIsDropdownOpen(false);
-      return;
-    }
-
+  const getLanguageUrl = useCallback((newLang: I18nLocales): string => {
     // Remove current language from pathname if exists
     const pathWithoutLang = pathname.replace(/^\/(en|id)/, '') || '/';
 
-    // Navigate to new language route
+    // Return URL based on language
     if (newLang === 'en') {
       // For English, use root path without lang prefix
-      router.push(pathWithoutLang === '/' ? '/' : pathWithoutLang);
+      return pathWithoutLang === '/' ? '/' : pathWithoutLang;
     } else {
       // For other languages, add lang prefix
-      router.push(`/${newLang}${pathWithoutLang}`);
+      return `/${newLang}${pathWithoutLang}`;
     }
-    router.refresh();
-    setIsDropdownOpen(false);
-  };
+  }, [pathname]);
 
   return (
     <Dropdown
@@ -68,8 +61,10 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
 
         return (
           <li key={locale}>
-            <button
-              onClick={() => handleLanguageChange(locale)}
+            <NextLink
+              href={getLanguageUrl(locale)}
+              disabled={isActive}
+              onClick={() => setIsDropdownOpen(false)}
               className={cn([
                 'flex items-center gap-3 transition-all duration-300',
                 isActive ? [
@@ -77,11 +72,10 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
                   'border-l-4 border-primary shadow-md shadow-primary/10'
                 ] : 'cursor-pointer hover:bg-base-200/50'
               ])}
-              disabled={isActive}
             >
               <span className="text-lg">{getLanguageFlag(locale)}</span>
               <span>{getLanguageLabel(locale)}</span>
-            </button>
+            </NextLink>
           </li>
         );
       })}

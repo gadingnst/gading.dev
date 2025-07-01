@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "./custom-utilities";
-
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
@@ -213,3 +211,5 @@
 body {
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
+
+@import "./custom-utilities";
