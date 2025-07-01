@@ -3,8 +3,8 @@ import '@/designs/styles/globals.css';
 import { Courgette, Poppins } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 
-import { Footer } from '@/modules/Common/components';
-import Header from '@/modules/Common/components/Header';
+import Footer from '@/modules/Common/components/Footer/Footer';
+import Header from '@/modules/Common/components/Header/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import TopLoader from '@/packages/components/base/Loaders/TopLoader';
 import getServerAppTheme from '@/packages/libs/AppTheme/getServerAppTheme';

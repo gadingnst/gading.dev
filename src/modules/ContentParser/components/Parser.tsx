@@ -8,10 +8,8 @@ import Script, { ScriptProps } from 'next/script';
 import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
-import {
-  Link,
-  NextLink
-} from '@/packages/components/base/Navigations';
+import Link from '@/packages/components/base/Navigations/Link';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 import State from './StatefulMDX';
 

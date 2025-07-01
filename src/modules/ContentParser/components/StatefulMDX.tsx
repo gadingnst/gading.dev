@@ -52,6 +52,7 @@ class State extends Component<StateProps, StateState> {
 }
 
 interface ObserveProps {
+  // eslint-disable-next-line no-unused-vars
   children: (state: StateValue) => React.ReactNode;
 }
 

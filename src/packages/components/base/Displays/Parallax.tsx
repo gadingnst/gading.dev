@@ -70,7 +70,7 @@ export function Background({ className, children }: BackgroundProps) {
  * Parallax component that creates smooth parallax scrolling effects
  * Based on react-parallax library implementation
  */
-export function Parallax({
+function Parallax({
   bgImage,
   bgImageAlt = '',
   bgImageSize,

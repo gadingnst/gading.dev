@@ -1,4 +1,4 @@
-import { NextLink } from '@/packages/components/base/Navigations';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 /**
  * Global not-found page for invalid routes

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Background, Parallax } from './Parallax';
+import Parallax, { Background } from '@/packages/components/base/Displays/Parallax';
 
 /**
  * Example usage of the Parallax component

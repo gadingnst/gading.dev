@@ -1,8 +1,8 @@
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
-import { Parallax } from '@/packages/components/base/Displays';
-import { NextLink } from '@/packages/components/base/Navigations';
+import Parallax from '@/packages/components/base/Displays/Parallax';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 import homePageLocales from './locales';
 

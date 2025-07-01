@@ -11,7 +11,7 @@ import IconInstagram from '@/designs/icons/logo/instagram.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
 import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import cn from '@/designs/utils/cn';
-import { Link } from '@/packages/components/base';
+import Link from '@/packages/components/base/Navigations/Link';
 
 const socialLinks = [
   {

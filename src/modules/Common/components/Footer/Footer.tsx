@@ -1,7 +1,7 @@
 import { AUTHOR_GITHUB, AUTHOR_NAME } from '@/configs/author';
 import { BASE_URL, SITE_NAME } from '@/configs/sites';
 import SocialLinks from '@/modules/Common/components/Footer/SocialLinks';
-import { Link } from '@/packages/components/base/Navigations';
+import Link from '@/packages/components/base/Navigations/Link';
 
 const currentYear = new Date().getFullYear();
 

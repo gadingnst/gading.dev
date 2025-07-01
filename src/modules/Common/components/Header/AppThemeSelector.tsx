@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import cn from '@/designs/utils/cn';
-import Dropdown from '@/packages/components/base/Floatings';
+import Dropdown from '@/packages/components/base/Floatings/Dropdown';
 import { AppThemes } from '@/packages/libs/AppTheme/constants';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 import { getThemeIcon, getThemeLabel, themeOptions } from '@/packages/libs/AppTheme/utils';
