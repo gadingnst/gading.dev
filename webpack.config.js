@@ -43,4 +43,4 @@ function webpack(config) {
   return config;
 }
 
-module.exports = webpack;
+export default webpack;
