@@ -45,7 +45,7 @@ export default function Header() {
             href="/"
             className={cn([
               'btn btn-ghost sm:text-xl md:text-2xl font-bold transition-all duration-300 liquid-glass font-serif relative',
-              'text-base-content hover:text-base-content hover:bg-base-200/50 hover:-translate-y-1 hover:shadow-lg text-contrast',
+              'text-base-content hover:text-base-content hover:bg-base-200/50 hover:-translate-y-1 hover:shadow-primary text-contrast',
               isHomeRoute() && [
                 'bg-primary/20 text-base-content font-bold border-2 border-primary/40',
                 'shadow-lg ring-2 ring-primary/30 ring-offset-1',

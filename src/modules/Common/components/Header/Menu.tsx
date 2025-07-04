@@ -79,7 +79,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                   href={item.href}
                   className={cn([
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
-                    'text-base-content hover:text-base-content hover:bg-base-200/50 hover:-translate-y-1 text-shadow',
+                    'text-base-content hover:text-base-content hover:bg-base-200/50 hover:-translate-y-1 hover:shadow-primary hover:shadow-xl text-shadow',
                     isActive && [
                       'bg-primary/20 text-base-content font-bold border-2 border-primary/40',
                       'shadow-lg shadow-base-content/20 ring-2 ring-primary/30 ring-offset-1',
@@ -128,7 +128,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                       'before:absolute before:inset-0 before:rounded-lg',
                       'before:bg-gradient-to-r before:from-base-content/5 before:to-transparent',
                       'relative'
-                    ] : 'cursor-pointer hover:bg-base-200/50 hover:-translate-y-1'
+                    ] : 'cursor-pointer hover:bg-base-200/50 hover:-translate-y-1 hover:shadow-primary'
                   ])}
                   onClick={handleMobileMenuClick}
                 >
