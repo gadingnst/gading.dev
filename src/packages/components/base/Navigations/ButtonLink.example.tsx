@@ -119,6 +119,41 @@ function ButtonLinkExamples() {
         </div>
       </section>
 
+      {/* Locale-Aware ButtonLinks */}
+      <section>
+        <h3 className="text-lg font-semibold mb-4">Locale-Aware ButtonLinks</h3>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-4">
+            <ButtonLink href="/dashboard" variant="button">Dashboard (no locale)</ButtonLink>
+            <ButtonLink href="/dashboard" withCurrentLocale variant="glass">
+              Dashboard (with current locale)
+            </ButtonLink>
+            <ButtonLink 
+              href="/settings" 
+              withCurrentLocale 
+              variant="outline"
+              icon={<HomeIcon />}
+            >
+              Settings (with locale and icon)
+            </ButtonLink>
+            <ButtonLink 
+              href="/external" 
+              withCurrentLocale 
+              external 
+              variant="accent"
+            >
+              External (with locale)
+            </ButtonLink>
+          </div>
+          <div className="mt-4 p-4 bg-base-200 rounded-lg">
+            <p className="text-sm text-base-content/70">
+              <strong>Note:</strong> When <code>withCurrentLocale=true</code>, the href will be automatically 
+              prefixed with the current language code (e.g., /en/dashboard, /id/settings).
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Mixed Usage */}
       <section>
         <h3 className="text-lg font-semibold mb-4">Mixed Usage Examples</h3>

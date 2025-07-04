@@ -13,6 +13,7 @@ export interface ButtonLinkProps extends NextLinkProps {
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
   external?: boolean;
+  withCurrentLocale?: boolean;
 }
 
 const baseClasses = [
@@ -53,7 +54,7 @@ const variantClasses = {
 
 /**
  * ButtonLink component with button-style variants using DaisyUI 5
- * and liquid glass design integration
+ * and liquid glass design integration with optional locale-aware routing
  */
 function ButtonLink(props: ButtonLinkProps) {
   const {
@@ -62,6 +63,7 @@ function ButtonLink(props: ButtonLinkProps) {
     icon,
     iconPosition = 'left',
     external = false,
+    withCurrentLocale = false,
     className,
     children,
     ...restProps
@@ -89,6 +91,7 @@ function ButtonLink(props: ButtonLinkProps) {
   const linkProps = {
     ...restProps,
     className: linkClasses,
+    withCurrentLocale,
     ...(external && {
       target: '_blank',
       rel: 'noopener noreferrer'

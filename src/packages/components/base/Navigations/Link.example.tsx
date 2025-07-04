@@ -97,6 +97,29 @@ function LinkExamples() {
         </div>
       </section>
 
+      {/* Locale-Aware Links */}
+      <section>
+        <h3 className="text-lg font-semibold mb-4">Locale-Aware Links</h3>
+        <div className="space-y-2">
+          <Link href="/about">About (no locale)</Link>
+          <Link href="/about" withCurrentLocale>About (with current locale)</Link>
+          <Link href="/contact" withCurrentLocale external>Contact (external with locale)</Link>
+          <Link 
+            href="/portfolio" 
+            withCurrentLocale 
+            icon={<HomeIcon />}
+          >
+            Portfolio (with locale and icon)
+          </Link>
+        </div>
+        <div className="mt-4 p-4 bg-base-200 rounded-lg">
+          <p className="text-sm text-base-content/70">
+            <strong>Note:</strong> When <code>withCurrentLocale=true</code>, the href will be automatically 
+            prefixed with the current language code (e.g., /en/about, /id/contact).
+          </p>
+        </div>
+      </section>
+
       {/* In Paragraph Context */}
       <section>
         <h3 className="text-lg font-semibold mb-4">In Paragraph Context</h3>

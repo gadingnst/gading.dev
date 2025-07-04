@@ -38,6 +38,7 @@ async function HomePage() {
           </ContentParser>
           <div className="flex justify-center items-center flex-wrap text-center my-4">
             <ButtonLink
+              withCurrentLocale
               href="/blog"
               data-umami-event="homepage_see-blog"
               className="bg-primary"
@@ -45,6 +46,7 @@ async function HomePage() {
               {content.myBlog}
             </ButtonLink>
             <ButtonLink
+              withCurrentLocale
               href="/about"
               data-umami-event="homepage_see-about"
               className="bg-accent mx-2"

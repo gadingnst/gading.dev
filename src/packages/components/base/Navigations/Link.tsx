@@ -10,6 +10,7 @@ export interface LinkProps extends NextLinkProps {
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
   external?: boolean;
+  withCurrentLocale?: boolean;
 }
 
 const baseClasses = [
@@ -22,7 +23,7 @@ const baseClasses = [
 
 /**
  * Simple Link component for text-based navigation links
- * with external link icon support
+ * with external link icon support and optional locale-aware routing
  */
 function Link(props: LinkProps) {
   const {
@@ -30,6 +31,7 @@ function Link(props: LinkProps) {
     icon,
     iconPosition = 'left',
     external = false,
+    withCurrentLocale = false,
     className,
     children,
     ...restProps
@@ -57,6 +59,7 @@ function Link(props: LinkProps) {
   const linkProps = {
     ...restProps,
     className: linkClasses,
+    withCurrentLocale,
     ...(external && {
       target: '_blank',
       rel: 'noopener noreferrer'
