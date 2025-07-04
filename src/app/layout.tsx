@@ -1,10 +1,10 @@
 import '@/designs/styles/globals.css';
 
-import homePageLocales from '@/modules/Home/locales';
+import withHomeLocales from '@/modules/Home/Home.locales';
 import RootLayout from '@/modules/Root.layout';
 import { withMetadata } from '@/packages/utils/metadata';
 
-const content = homePageLocales('en');
+const content = withHomeLocales('en');
 
 export const metadata = withMetadata({
   title: content.title,

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import withHomeLocales from '@/modules/Home/Home.locales';
 import HomePage from '@/modules/Home/Home.page';
-import homePageLocales from '@/modules/Home/locales';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { isValidLanguage } from '@/packages/libs/I18n/utils';
 import { withGenerateMetadata } from '@/packages/utils/metadata';
@@ -25,7 +25,7 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
   }
 
   const currentLang = lang as I18nLocales;
-  const content = homePageLocales(currentLang);
+  const content = withHomeLocales(currentLang);
 
   return {
     title: content.title,

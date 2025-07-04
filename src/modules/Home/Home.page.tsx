@@ -2,13 +2,14 @@ import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
+import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 
-export default async function HomePage() {
+async function HomePage() {
   const lang = await getLangugageServer();
-
-  // Get markdown content from home directory
   const markdownContent = await getContentMultiLanguage('home', lang);
+  const content = withHomeLocales(lang);
 
   return (
     <div className="min-h-screen flex flex-col text-base-content">
@@ -30,13 +31,34 @@ export default async function HomePage() {
       </Banner>
 
       {/* Markdown Content */}
-      <section className="py-12">
-        <div className="base-container">
-          <HeroCard>
-            <ContentParser>{markdownContent.content}</ContentParser>
-          </HeroCard>
-        </div>
+      <section className="base-container py-12">
+        <HeroCard className="text-center">
+          <ContentParser>
+            {markdownContent.content}
+          </ContentParser>
+          <div className="flex justify-center items-center flex-wrap text-center my-4">
+            <ButtonLink
+              href="/blog"
+              data-umami-event="homepage_see-blog"
+              className="bg-primary"
+            >
+              {content.myBlog}
+            </ButtonLink>
+            <ButtonLink
+              href="/about"
+              data-umami-event="homepage_see-about"
+              className="bg-accent mx-2"
+            >
+              {content.aboutMe}
+            </ButtonLink>
+          </div>
+          <p className="font-bold text-lg sm:text-xl italic text-center mt-8">
+            {content.thansksVisit}.
+          </p>
+        </HeroCard>
       </section>
     </div>
   );
 }
+
+export default HomePage;

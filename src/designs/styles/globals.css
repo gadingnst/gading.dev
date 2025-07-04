@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
@@ -213,3 +215,5 @@ body {
 }
 
 @import "./custom-utilities";
+@import "./katex";
+@import "./prism";

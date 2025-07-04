@@ -105,7 +105,12 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [children]);
 
   return (
-    <div className={cn('content-parser', 'parser', className)}>
+    <div
+      className={cn([
+        'w-full max-w-full prose parser',
+        className
+      ])}
+    >
       <Parser
         {...otherProps}
         components={{

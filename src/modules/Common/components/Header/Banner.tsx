@@ -34,7 +34,7 @@ function Banner(props: PropsWithChildren<Props>) {
         {...otherProps}
         bgImage={imageUrl}
         bgClassName={cn([
-          'object-cover w-full select-none',
+          'object-cover w-full select-none ',
           bgClassName
         ])}
       >
