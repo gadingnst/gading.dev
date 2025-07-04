@@ -35,7 +35,7 @@ async function RootLayout({ children }: PropsWithChildren) {
 
   return (
     <html lang={htmlLang}>
-      <body data-theme={appTheme} className={`${poppins.variable} ${courgette.variable} antialiased pt-16`}>
+      <body data-theme={appTheme} className={`${poppins.variable} ${courgette.variable} antialiased`}>
         <TopLoader color="primary" height={3} showShadow />
         <Header />
         {children}

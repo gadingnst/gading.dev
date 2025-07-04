@@ -1,5 +1,5 @@
 /** @see https://nextjs.org/docs/api-reference/next.config.js/headers */
-function headers() {
+async function headers() {
   return [
     {
       // Enable CORS
@@ -28,4 +28,4 @@ function headers() {
   ];
 }
 
-module.exports = headers;
+export default headers;

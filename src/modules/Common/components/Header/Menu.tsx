@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, Menu as MenuIcon, User, X } from 'lucide-react';
+import { Menu as MenuIcon, User, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -51,12 +51,6 @@ export default function Menu({ isScrolled = false }: MenuProps) {
 
   const menuItems = [
     {
-      label: 'Home',
-      route: '/',
-      href: getLocalizedRoute('/'),
-      icon: Home
-    },
-    {
       label: 'About',
       route: '/about',
       href: getLocalizedRoute('/about'),
@@ -87,11 +81,12 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
                     'text-base-content hover:text-base-content hover:scale-105 hover:shadow-lg',
                     isActive && [
-                      'bg-primary/20 text-primary border-primary/30',
-                      'shadow-lg shadow-primary/20',
-                      'before:absolute before:inset-0 before:rounded-lg',
-                      'before:bg-gradient-to-r before:from-primary/10 before:to-primary/5',
-                      'before:blur-sm before:-z-10'
+                      'bg-primary/20 text-base-content font-bold border-2 border-primary/40',
+                      'shadow-lg ring-2 ring-primary/30 ring-offset-1',
+                      'transform scale-105 backdrop-blur-sm',
+                      'after:absolute after:bottom-0 after:left-0 after:right-0',
+                      'after:h-1 after:bg-primary after:shadow-sm',
+                      'relative overflow-hidden'
                     ],
                     isScrolled && 'shadow-xl'
                   ])}

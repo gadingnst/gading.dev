@@ -3,7 +3,7 @@ title: "Hi 👋, I'm Gading!"
 date: 2022-06-01
 description: "Software Engineer from Palembang, Indonesia 🇮🇩"
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading's website, gading website"
-image: "/media/banners/1.jpg"
+image: "/media/default-banners/1.jpg"
 ---
 
 I'm currently working full-time remotely at Indonesian company.

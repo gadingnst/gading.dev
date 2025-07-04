@@ -1,15 +1,6 @@
 @layer utilities {
   .base-container {
-    max-width: 1200px;
-    @apply w-full mx-auto px-4;
-  }
-
-  .font-poppins {
-    font-family: var(--font-poppins), sans-serif;
-  }
-
-  .font-courgette {
-    font-family: var(--font-courgette), cursive;
+    @apply max-w-5xl w-full mx-auto px-4;
   }
 
   .liquid-glass {

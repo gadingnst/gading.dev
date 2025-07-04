@@ -43,7 +43,7 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }
 }
