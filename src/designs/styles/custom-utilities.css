@@ -13,36 +13,39 @@
     background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
   }
 
+  /* Text shadow utilities for better contrast on liquid glass */
   .text-shadow {
-    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-content) 50%, transparent);
+    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
   }
 
   .text-shadow-lg {
-    text-shadow: 
-      0 2px 4px color-mix(in oklab, var(--color-base-content) 60%, transparent),
-      0 1px 2px color-mix(in oklab, var(--color-base-content) 40%, transparent);
+    text-shadow: 2px 2px 4px color-mix(in srgb, var(--color-base-100) 40%, transparent),
+                 1px 1px 2px color-mix(in srgb, var(--color-base-100) 20%, transparent);
   }
 
+  /* Text stroke utilities for enhanced readability */
   .text-stroke {
-    -webkit-text-stroke: 1px color-mix(in oklab, var(--color-base-content) 30%, transparent);
-    text-stroke: 1px color-mix(in oklab, var(--color-base-content) 30%, transparent);
+    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
+    text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
   }
 
   .text-stroke-light {
-    -webkit-text-stroke: 1px color-mix(in oklab, var(--color-base-100) 80%, transparent);
-    text-stroke: 1px color-mix(in oklab, var(--color-base-100) 80%, transparent);
+    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
+    text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
   }
 
+  /* Combined text contrast utilities */
   .text-contrast {
-    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-content) 50%, transparent);
-    -webkit-text-stroke: 0.5px color-mix(in oklab, var(--color-base-content) 20%, transparent);
-    text-stroke: 0.5px color-mix(in oklab, var(--color-base-content) 20%, transparent);
+    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
+    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
+    text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
   }
 
   .text-contrast-light {
-    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-100) 80%, transparent);
-    -webkit-text-stroke: 0.5px color-mix(in oklab, var(--color-base-100) 30%, transparent);
-    text-stroke: 0.5px color-mix(in oklab, var(--color-base-100) 30%, transparent);
+    text-shadow: 1px 1px 3px color-mix(in srgb, var(--color-base-content) 50%, transparent),
+                 0px 0px 8px color-mix(in srgb, var(--color-base-content) 30%, transparent);
+    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
+    text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
   }
 
   .footer-custom {

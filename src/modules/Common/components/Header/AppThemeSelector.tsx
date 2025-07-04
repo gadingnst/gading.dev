@@ -64,7 +64,7 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
                 isActive ? [
                   'active cursor-default bg-base-200 text-base-content font-semibold',
                   'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-                ] : 'cursor-pointer hover:bg-base-200/50'
+                ] : 'cursor-pointer hover:bg-base-200/50 hover:-translate-y-1'
               ])}
               disabled={isActive}
             >
