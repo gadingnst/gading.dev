@@ -76,7 +76,7 @@ export default function Dropdown({
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
-          'text-base-content hover:text-base-content',
+          'text-base-content hover:text-base-content text-shadow',
           isScrolled && 'shadow-xl'
         ])}
         onClick={handleToggle}
@@ -84,7 +84,7 @@ export default function Dropdown({
         {trigger}
       </div>
       <ul className={cn([
-        'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg',
+        'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg text-contrast',
         dropdownClassName
       ])}>
         {children}

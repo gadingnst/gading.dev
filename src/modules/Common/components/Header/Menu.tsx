@@ -79,14 +79,14 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                   href={item.href}
                   className={cn([
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
-                    'text-base-content hover:text-base-content hover:scale-105 hover:shadow-lg',
+                    'text-base-content hover:text-base-content hover:bg-base-200/50 text-shadow',
                     isActive && [
                       'bg-primary/20 text-base-content font-bold border-2 border-primary/40',
-                      'shadow-lg ring-2 ring-primary/30 ring-offset-1',
+                      'shadow-lg shadow-base-content/20 ring-2 ring-primary/30 ring-offset-1',
                       'transform scale-105 backdrop-blur-sm',
                       'after:absolute after:bottom-0 after:left-0 after:right-0',
                       'after:h-1 after:bg-primary after:shadow-sm',
-                      'relative overflow-hidden'
+                      'relative overflow-hidden text-contrast'
                     ],
                     isScrolled && 'shadow-xl'
                   ])}
@@ -122,20 +122,19 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                   href={item.href}
                   className={cn([
                     'flex items-center gap-3 transition-all duration-300 rounded-lg p-3',
-                    'hover:bg-base-200/50',
                     isActive ? [
-                      'bg-primary/10 text-primary border-l-4 border-primary',
-                      'shadow-md shadow-primary/10 cursor-default',
+                      'bg-base-200 text-base-content font-semibold border-l-4 border-base-content/30',
+                      'shadow-lg shadow-base-content/20 cursor-default',
                       'before:absolute before:inset-0 before:rounded-lg',
-                      'before:bg-gradient-to-r before:from-primary/5 before:to-transparent',
+                      'before:bg-gradient-to-r before:from-base-content/5 before:to-transparent',
                       'relative'
-                    ] : 'cursor-pointer hover:scale-[1.02]'
+                    ] : 'cursor-pointer hover:bg-base-200/50'
                   ])}
                   onClick={handleMobileMenuClick}
                 >
                   <item.icon className={cn([
                     'w-4 h-4 transition-all duration-300',
-                    isActive ? 'text-primary drop-shadow-sm' : 'text-current'
+                    isActive ? 'text-base-content drop-shadow-sm' : 'text-current'
                   ])} />
                   <span>{item.label}</span>
                 </NextLink>

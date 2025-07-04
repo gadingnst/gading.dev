@@ -19,10 +19,10 @@ async function HomePage() {
         <section className="font-serif flex flex-col h-full items-center justify-center">
           <div className="base-container relative z-10">
             <div className="liquid-glass-shadow text-base-content rounded-2xl p-8 text-center">
-              <h1 className="text-shadow-lg">
+              <h1 className="text-contrast text-2xl md:text-4xl font-bold">
                 {markdownContent.meta.title}
               </h1>
-              <p className="text-base sm:text-lg mt-4 text-shadow-2xs">
+              <p className="text-base sm:text-lg mt-4 text-shadow">
                 {markdownContent.meta.description}
               </p>
             </div>

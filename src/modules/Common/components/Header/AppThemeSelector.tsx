@@ -62,15 +62,15 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
               className={cn([
                 'flex items-center gap-3 transition-all duration-300',
                 isActive ? [
-                  'active cursor-default bg-primary/10 text-primary',
-                  'border-l-4 border-primary shadow-md shadow-primary/10'
+                  'active cursor-default bg-base-200 text-base-content font-semibold',
+                  'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
                 ] : 'cursor-pointer hover:bg-base-200/50'
               ])}
               disabled={isActive}
             >
               <IconComponent className={cn([
                 'w-4 h-4 transition-all duration-300',
-                isActive ? 'text-primary drop-shadow-sm' : 'text-current'
+                isActive ? 'text-base-content drop-shadow-sm' : 'text-current'
               ])} />
               <span>{option.label}</span>
               {option.value === AppThemes.SYSTEM && (

@@ -13,6 +13,38 @@
     background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
   }
 
+  .text-shadow {
+    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 
+      0 2px 4px color-mix(in oklab, var(--color-base-content) 60%, transparent),
+      0 1px 2px color-mix(in oklab, var(--color-base-content) 40%, transparent);
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--color-base-content) 30%, transparent);
+    text-stroke: 1px color-mix(in oklab, var(--color-base-content) 30%, transparent);
+  }
+
+  .text-stroke-light {
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--color-base-100) 80%, transparent);
+    text-stroke: 1px color-mix(in oklab, var(--color-base-100) 80%, transparent);
+  }
+
+  .text-contrast {
+    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-content) 50%, transparent);
+    -webkit-text-stroke: 0.5px color-mix(in oklab, var(--color-base-content) 20%, transparent);
+    text-stroke: 0.5px color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  }
+
+  .text-contrast-light {
+    text-shadow: 0 1px 3px color-mix(in oklab, var(--color-base-100) 80%, transparent);
+    -webkit-text-stroke: 0.5px color-mix(in oklab, var(--color-base-100) 30%, transparent);
+    text-stroke: 0.5px color-mix(in oklab, var(--color-base-100) 30%, transparent);
+  }
+
   .footer-custom {
     min-height: 200px;
     &::before {
