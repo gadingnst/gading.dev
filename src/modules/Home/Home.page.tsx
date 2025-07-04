@@ -16,9 +16,9 @@ async function HomePage() {
       <Banner
         bgImage={markdownContent.meta.image}
       >
-        <section className="font-serif flex flex-col h-full items-center justify-center">
+        <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10">
-            <div className="liquid-glass-shadow text-base-content rounded-2xl p-8 text-center">
+            <div className="liquid-glass-shadow text-base-content rounded-2xl p-8">
               <h1 className="text-contrast text-2xl md:text-4xl font-bold">
                 {markdownContent.meta.title}
               </h1>
@@ -36,7 +36,7 @@ async function HomePage() {
           <ContentParser>
             {markdownContent.content}
           </ContentParser>
-          <div className="flex justify-center items-center flex-wrap text-center my-4">
+          <div className="flex justify-center items-center flex-wrap my-4">
             <ButtonLink
               withCurrentLocale
               href="/blog"
@@ -54,7 +54,7 @@ async function HomePage() {
               {content.aboutMe}
             </ButtonLink>
           </div>
-          <p className="font-bold text-lg sm:text-xl italic text-center mt-8">
+          <p className="font-bold text-lg sm:text-xl italic mt-8">
             {content.thansksVisit}.
           </p>
         </HeroCard>

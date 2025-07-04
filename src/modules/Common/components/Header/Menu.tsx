@@ -120,17 +120,15 @@ export default function Menu({ isScrolled = false }: MenuProps) {
               <li key={item.href}>
                 <NextLink
                   href={item.href}
+                  disabled={isActive}
+                  onClick={handleMobileMenuClick}
                   className={cn([
-                    'flex items-center gap-3 transition-all duration-300 rounded-lg p-3',
+                    'flex items-center gap-3 transition-all duration-300',
                     isActive ? [
-                      'bg-base-200 text-base-content font-semibold border-l-4 border-base-content/30',
-                      'shadow-lg shadow-base-content/20 cursor-default',
-                      'before:absolute before:inset-0 before:rounded-lg',
-                      'before:bg-gradient-to-r before:from-base-content/5 before:to-transparent',
-                      'relative'
+                      'active cursor-default bg-base-200 text-base-content font-semibold',
+                      'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
                     ] : 'cursor-pointer hover:bg-base-200/50 hover:-translate-y-1 hover:shadow-primary'
                   ])}
-                  onClick={handleMobileMenuClick}
                 >
                   <item.icon className={cn([
                     'w-4 h-4 transition-all duration-300',

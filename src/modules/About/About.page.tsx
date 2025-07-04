@@ -1,7 +1,10 @@
+import aboutLocales from '@/modules/About/About.locales';
+import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
-import Parallax from '@/packages/components/base/Displays/Parallax';
+import HeroCard from '@/packages/components/base/Displays/HeroCard';
+import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 
 /**
  * AboutPage component with internationalization support
@@ -9,37 +12,53 @@ import Parallax from '@/packages/components/base/Displays/Parallax';
  */
 export default async function AboutPage() {
   const lang = await getLangugageServer();
-
-  // Get markdown content from about directory
   const markdownContent = await getContentMultiLanguage('about', lang);
+  const content = aboutLocales(lang);
 
   return (
-    <div className="min-h-screen bg-base-100 text-base-content">
-      {/* Hero Section with Parallax */}
-      <Parallax
-        bgImage="/media/default-banners/1.jpg"
-        strength={400}
-        blur={{ min: -3, max: 10 }}
-        className="h-96 sm:h-[500px] lg:h-[600px]"
+    <div className="min-h-screen flex flex-col text-base-content">
+      <Banner
+        bgImage={markdownContent.meta.image}
       >
-        <div className="relative h-full flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-secondary/60"></div>
-          <div className="base-container text-center text-white relative z-10">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
-              {markdownContent.meta.title}
-            </h1>
-            <p className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto drop-shadow">
-              {markdownContent.meta.description}
-            </p>
+        <section className="font-serif flex flex-col h-full items-center justify-center text-center">
+          <div className="base-container relative z-10">
+            <div className="liquid-glass-shadow text-base-content rounded-2xl p-8">
+              <h1 className="text-contrast text-2xl md:text-4xl font-bold">
+                {markdownContent.meta.title}
+              </h1>
+              <p className="text-base sm:text-lg mt-4 text-shadow">
+                {markdownContent.meta.description}
+              </p>
+            </div>
           </div>
-        </div>
-      </Parallax>
+        </section>
+      </Banner>
 
-      {/* Content Section */}
-      <section className="py-12">
-        <div className="base-container">
-          <ContentParser>{markdownContent.content}</ContentParser>
-        </div>
+      {/* Markdown Content */}
+      <section className="base-container py-12">
+        <HeroCard>
+          <ContentParser>
+            {markdownContent.content}
+          </ContentParser>
+          <div className="flex justify-center items-center flex-wrap text-center my-4">
+            <ButtonLink
+              withCurrentLocale
+              href="/"
+              data-umami-event="aboutpage_back-home"
+              className="bg-primary"
+            >
+              {content.backToHome}
+            </ButtonLink>
+            <ButtonLink
+              withCurrentLocale
+              href="/contact"
+              data-umami-event="aboutpage_contact"
+              className="bg-accent mx-2"
+            >
+              {content.contactMe}
+            </ButtonLink>
+          </div>
+        </HeroCard>
       </section>
     </div>
   );
