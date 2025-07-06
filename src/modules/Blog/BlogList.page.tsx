@@ -2,7 +2,7 @@ import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
-import LazyImageExample from '@/packages/components/base/Displays/LazyImage/LazyImage.example';
+import LazyImageExample from '@/packages/components/base/Displays/LazyLoad/LazyImage.example';
 
 async function BlogListPage() {
   const lang = await getLangugageServer();
