@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 'use client';
 
-import './effects.css';
-
 import { Eye, Image as ImageIcon, Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
 

@@ -1,16 +1,12 @@
-import aboutLocales from '@/modules/About/About.locales';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
-import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
-import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import LazyImageExample from '@/packages/components/base/Displays/LazyImage/LazyImage.example';
 
-async function AboutPage() {
+async function BlogListPage() {
   const lang = await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('about', lang);
-  const content = aboutLocales(lang);
-
   return (
     <div className="min-h-screen flex flex-col text-base-content">
       <Banner
@@ -33,31 +29,11 @@ async function AboutPage() {
       {/* Markdown Content */}
       <section className="base-container py-12">
         <HeroCard>
-          <ContentParser>
-            {markdownContent.content}
-          </ContentParser>
-          <div className="flex justify-center items-center flex-wrap text-center my-4">
-            <ButtonLink
-              withCurrentLocale
-              href="/"
-              data-umami-event="aboutpage_back-home"
-              className="bg-primary"
-            >
-              {content.backToHome}
-            </ButtonLink>
-            <ButtonLink
-              withCurrentLocale
-              href="/contact"
-              data-umami-event="aboutpage_contact"
-              className="bg-accent mx-2"
-            >
-              {content.contactMe}
-            </ButtonLink>
-          </div>
+          <LazyImageExample />
         </HeroCard>
       </section>
     </div>
   );
 }
 
-export default AboutPage;
+export default BlogListPage;

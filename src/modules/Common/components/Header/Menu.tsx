@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, Menu as MenuIcon, User, X } from 'lucide-react';
+import { Clock, Menu as MenuIcon, PenTool, User, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -18,6 +18,11 @@ const menuItems = [
     label: 'Now',
     href: '/now',
     icon: Clock
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    icon: PenTool
   },
   {
     label: 'About',
