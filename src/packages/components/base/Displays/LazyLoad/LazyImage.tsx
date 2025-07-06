@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ReactEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 
@@ -126,9 +126,9 @@ function LazyImage({
   /**
    * Handle image load error
    */
-  const handleImageError = useCallback(() => {
+  const handleImageError: ReactEventHandler<HTMLImageElement> = useCallback((_ev) => {
     setState(prev => ({ ...prev, hasError: true, isLoading: false }));
-    onError?.();
+    onError?.(_ev);
   }, [onError]);
 
   /**

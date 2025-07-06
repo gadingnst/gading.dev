@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
-import React, { ImgHTMLAttributes, ReactNode } from 'react';
+import { ImgHTMLAttributes, ReactEventHandler, ReactNode } from 'react';
 
 // Base lazy loading effect types
 export type LazyImageEffect = 'blur' | 'black-and-white' | 'opacity' | 'none';
@@ -89,7 +89,7 @@ export interface LazyImageProps extends LazyLoadBaseProps, Omit<ImgHTMLAttribute
   /** Callback fired when image loads successfully */
   onLoad?: () => void;
   /** Callback fired when image fails to load */
-  onError?: () => void;
+  onError?: ReactEventHandler<HTMLImageElement>;
 }
 
 // Lazy load component props - avoiding HTMLAttributes conflict
