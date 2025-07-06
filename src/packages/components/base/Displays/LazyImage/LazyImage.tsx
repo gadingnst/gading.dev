@@ -92,6 +92,12 @@ function LazyImage({
   className,
   wrapperClassName,
   style,
+  beforeLoad,
+  afterLoad,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  scrollPosition,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isScrollTracking,
   ...imgProps
 }: LazyImageProps) {
   const [state, setState] = useState<LazyLoadState>({
@@ -111,8 +117,11 @@ function LazyImage({
    */
   const handleImageLoad = useCallback(() => {
     setState(prev => ({ ...prev, isLoaded: true, isLoading: false }));
+    if (afterLoad) {
+      afterLoad();
+    }
     onLoad?.();
-  }, [onLoad]);
+  }, [onLoad, afterLoad]);
 
   /**
    * Handle image load error
@@ -130,9 +139,12 @@ function LazyImage({
 
     const inView = isElementInViewport(wrapperRef.current, threshold);
     if (inView && (!state.isInView || !once)) {
+      if (beforeLoad) {
+        beforeLoad();
+      }
       setState(prev => ({ ...prev, isInView: true, isLoading: true }));
     }
-  }, [threshold, state.isInView, once]);
+  }, [threshold, state.isInView, once, beforeLoad]);
 
   /**
    * Setup IntersectionObserver
@@ -149,6 +161,9 @@ function LazyImage({
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && (!state.isInView || !once)) {
+          if (beforeLoad) {
+            beforeLoad();
+          }
           setState(prev => ({ ...prev, isInView: true, isLoading: true }));
           if (once && observerRef.current) {
             observerRef.current.disconnect();
@@ -158,6 +173,7 @@ function LazyImage({
     }, options);
 
     observerRef.current.observe(wrapperRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threshold, observerOptions, state.isInView, once]);
 
   /**

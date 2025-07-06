@@ -51,7 +51,7 @@ export interface LazyLoadBaseProps {
 }
 
 // Lazy image specific props
-export interface LazyImageProps extends LazyLoadBaseProps, Omit<ImgHTMLAttributes<HTMLImageElement>, 'onLoad' | 'onError' | 'referrerPolicy'> {
+export interface LazyImageProps extends LazyLoadBaseProps, Omit<ImgHTMLAttributes<HTMLImageElement>, 'onLoad' | 'onError' | 'referrerPolicy'>, Partial<TrackWindowScrollProps> {
   /** Image source URL */
   src: string;
   /** Alternative text for the image */
