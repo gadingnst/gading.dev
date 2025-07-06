@@ -3,7 +3,7 @@ title: "Now"
 date: 2022-06-01
 description: "What I'm doing right now?"
 keywords: "now, gading's activities, now page, gading now page, gading"
-image: "/media/banners/0.jpg"
+image: "/media/default-banners/0.jpg"
 ---
 
 At first, I'll be thanking to [Derek Sivers](https://sive.rs/now), [Fariz Rizaldy](https://faultable.dev/now/), [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now), [Afwa Bagas Wahuda](https://www.wahudamon.com/now), and [Iyan Saputra](https://iyansr.id/now). Because all of them, I was inspired to create and add new content on this page for describing about ***what I'm doing right now***. So, maybe you don't need to ask me frequently about that.

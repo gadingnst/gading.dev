@@ -3,7 +3,7 @@ title: "About"
 date: 2022-06-01
 description: "Hanya Lelaki biasa yang dapat mengubah ☕️ menjadi < /> yang cantik."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, who is gading, biodata gading, tentang gading"
-image: "/media/banners/1.jpg"
+image: "/media/default-banners/1.jpg"
 ---
 
 Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh-waktu*, dan juga dapat mengerjakan hal ***Fullstack*** dalam pekerjaan *Paruh-waktu/Freelance*.
