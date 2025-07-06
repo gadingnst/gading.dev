@@ -42,6 +42,7 @@ export default function Header() {
       <div className="base-container flex justify-between items-center">
         <div className="navbar-start">
           <NextLink
+            withCurrentLocale
             href="/"
             className={cn([
               'btn btn-ghost sm:text-xl md:text-2xl font-bold transition-all duration-300 liquid-glass font-serif relative',

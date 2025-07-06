@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu as MenuIcon, User, X } from 'lucide-react';
+import { Clock, Menu as MenuIcon, User, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -12,6 +12,19 @@ import NextLink from '@/packages/components/base/Navigations/NextLink';
 interface MenuProps {
   isScrolled?: boolean;
 }
+
+const menuItems = [
+  {
+    label: 'Now',
+    href: '/now',
+    icon: Clock
+  },
+  {
+    label: 'About',
+    href: '/about',
+    icon: User
+  }
+];
 
 /**
  * Navigation menu component with Home and About links
@@ -38,27 +51,6 @@ export default function Menu({ isScrolled = false }: MenuProps) {
   };
 
   /**
-   * Get the appropriate link for a route based on current language
-   * @param route - Base route
-   * @returns Localized route
-   */
-  const getLocalizedRoute = (route: string): string => {
-    if (route === '/') {
-      return currentLang === 'en' ? '/' : `/${currentLang}`;
-    }
-    return currentLang === 'en' ? route : `/${currentLang}${route}`;
-  };
-
-  const menuItems = [
-    {
-      label: 'About',
-      route: '/about',
-      href: getLocalizedRoute('/about'),
-      icon: User
-    }
-  ];
-
-  /**
    * Handle mobile menu item click
    */
   const handleMobileMenuClick = () => {
@@ -71,11 +63,12 @@ export default function Menu({ isScrolled = false }: MenuProps) {
       <nav className="hidden md:flex">
         <ul className="menu menu-horizontal px-1 gap-2">
           {menuItems.map((item) => {
-            const isActive = isActiveRoute(item.route);
+            const isActive = isActiveRoute(item.href);
 
             return (
-              <li key={item.route}>
+              <li key={item.href}>
                 <NextLink
+                  withCurrentLocale
                   href={item.href}
                   className={cn([
                     'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
