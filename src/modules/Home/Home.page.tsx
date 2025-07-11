@@ -31,7 +31,7 @@ async function HomePage() {
       </Banner>
 
       {/* Markdown Content */}
-      <section className="base-container py-12">
+      <section className="base-container py-12 -mt-36">
         <HeroCard className="text-center">
           <ContentParser>
             {markdownContent.content}

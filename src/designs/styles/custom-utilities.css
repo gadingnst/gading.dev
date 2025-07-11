@@ -3,6 +3,11 @@
     @apply max-w-5xl w-full mx-auto px-4;
   }
 
+  .text-2xs {
+    font-size: 0.625rem;
+    line-height: 0.65rem;
+  }
+
   .liquid-glass {
     @apply backdrop-blur-xl backdrop-saturate-150 border border-base-content/10;
     background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
