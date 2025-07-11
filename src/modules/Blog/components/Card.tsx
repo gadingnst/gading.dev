@@ -1,11 +1,11 @@
-import { Calendar, Clock, Tag } from 'lucide-react';
-import Link from 'next/link';
+import { Tag } from 'lucide-react';
 
 import cn from '@/designs/utils/cn';
+import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
 import type { ContentMeta } from '@/modules/ContentParser/services/content-parser';
 import Card from '@/packages/components/base/Displays/Card';
 import LazyImage from '@/packages/components/base/Displays/LazyLoad/LazyImage';
-import dt from '@/packages/libs/DayJS/dt';
+import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 export interface BlogCardProps {
   blog: ContentMeta;
@@ -20,13 +20,8 @@ export interface BlogCardProps {
 function BlogCard(_props: BlogCardProps) {
   const {
     blog,
-    className,
-    withCurrentLocale = false
+    className
   } = _props;
-
-  const formattedDate = dt(blog.date).format('MMM DD, YYYY');
-  const readTimeText = blog.readTime.text;
-  const blogUrl = withCurrentLocale ? `/blog/${blog.slugOriginal}` : `/${blog.slugOriginal}`;
 
   return (
     <Card
@@ -36,8 +31,11 @@ function BlogCard(_props: BlogCardProps) {
         className
       ])}
     >
-      {/* Image + Title - Clickable dalam satu group */}
-      <Link href={blogUrl} className="group block">
+      <NextLink
+        withCurrentLocale
+        className="group block"
+        href={`/blog/${blog.slugOriginal}`}
+      >
         {/* Blog Image */}
         {blog.image && (
           <div className="relative w-full h-48 rounded-t-lg overflow-hidden bg-base-300">
@@ -55,27 +53,17 @@ function BlogCard(_props: BlogCardProps) {
         <h2 className="text-center md:text-lg font-bold text-base-content group-hover:text-primary transition-colors duration-300 ease-in-out px-3 py-3">
           {blog.title}
         </h2>
-      </Link>
+      </NextLink>
 
       {/* Content Container - Not clickable */}
       <div className="flex flex-col flex-1 px-3 pb-4">
         {/* Meta Information */}
-        <div className="flex items-center justify-center text-xs text-base-content/60 gap-x-2">
-          <div className="flex items-center gap-x-1">
-            <Calendar className="w-3 h-3" />
-            <span>{formattedDate}</span>
-          </div>
-          •
-          <div className="flex items-center gap-x-1">
-            <Clock className="w-3 h-3" />
-            <span>{readTimeText}</span>
-          </div>
-        </div>
+        <BlogContentInfo meta={blog} />
 
         <div className="divider my-2" />
 
         {/* Description */}
-        <p className="text-neutral-content/60 text-xs md:text-sm mb-4 line-clamp-3 flex-1">
+        <p className="text-neutral-content/60 text-center text-xs md:text-sm mb-4 line-clamp-3 flex-1">
           {blog.description}
         </p>
 

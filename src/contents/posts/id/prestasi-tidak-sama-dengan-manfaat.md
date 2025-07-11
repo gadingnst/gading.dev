@@ -8,7 +8,7 @@ date: 2020-09-22
 description: 'Apakah tujuan kita meraih prestasi? Apakah bedanya prestasi dengan manfaat? Well, ga ada salahnya kamu mengejar prestasi. Namun, pastikan kalau kontribusimu juga bermanfaat buat orang lain.'
 keywords: 'prestasi, bermanfaat, menjadi orang yang berguna, meraih prestasi, kehidupan'
 tags: ['life', 'thoughts']
-image: '/media/banners/8.jpg'
+image: '/media/default-banners/8.jpg'
 ---
 
 Dari awal kita menginjak bangku pendidikan, entah itu TK ataupun SD, kita selalu dituntut untuk mengejar prestasi. Kita selalu ingin (atau dituntut?) untuk mendapat peringkat 1, kita ingin menang lomba ini, lomba itu, kegiatan itu, dan kegiatan ini. Ya, mungkin ketika kita masih kecil tujuan kita ga jauh dari hanya untuk buat orang tua senang, lalu meminta beliin sesuatu kepada mereka...
