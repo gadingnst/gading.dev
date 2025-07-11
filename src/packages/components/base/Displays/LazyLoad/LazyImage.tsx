@@ -261,7 +261,7 @@ function LazyImage({
       return (
         <div
           className={cn([
-            'lazy-image-shimmer',
+            'bg-base-300 animate-pulse',
             className
           ])}
           style={{
@@ -326,7 +326,7 @@ function LazyImage({
         overflow: 'hidden'
       }}
     >
-      {!state.isLoaded && renderPlaceholder()}
+      {(!state.isLoaded && !state.hasError) && renderPlaceholder()}
       {renderImage()}
     </div>
   );
