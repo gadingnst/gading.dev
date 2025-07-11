@@ -26,34 +26,39 @@ function BlogCard(_props: BlogCardProps) {
 
   const formattedDate = dt(blog.date).format('MMM DD, YYYY');
   const readTimeText = blog.readTime.text;
+  const blogUrl = withCurrentLocale ? `/blog/${blog.slugOriginal}` : `/${blog.slugOriginal}`;
 
   return (
     <Card
       hoverEffect
       className={cn([
-        'overflow-hidden',
+        'overflow-hidden flex flex-col h-full',
         className
       ])}
     >
-      <Link
-        href={withCurrentLocale ? `/blog/${blog.slugOriginal}` : `/${blog.slugOriginal}`}
-        className="group block h-full cursor-pointer"
-      >
+      {/* Image + Title - Clickable dalam satu group */}
+      <Link href={blogUrl} className="group block">
         {/* Blog Image */}
         {blog.image && (
-          <div className="relative w-full h-48 mb-4 rounded-t-lg overflow-hidden bg-base-300">
-            <LazyImage
-              src={blog.image}
-              alt={blog.title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+          <div className="relative w-full h-48 rounded-t-lg overflow-hidden bg-base-300">
+            <div className="transition-transform duration-300 ease-in-out group-hover:scale-110 w-full h-full">
+              <LazyImage
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         )}
-        <h2 className="text-center md:text-lg font-bold text-base-content group-hover:text-primary transition-colors px-3">
+
+        {/* Title */}
+        <h2 className="text-center md:text-lg font-bold text-base-content group-hover:text-primary transition-colors duration-300 ease-in-out px-3 py-3">
           {blog.title}
         </h2>
       </Link>
-      <div className="px-3 mt-2">
+
+      {/* Content Container - Not clickable */}
+      <div className="flex flex-col flex-1 px-3 pb-4">
         {/* Meta Information */}
         <div className="flex items-center justify-center text-xs text-base-content/60 gap-x-2">
           <div className="flex items-center gap-x-1">
@@ -67,15 +72,16 @@ function BlogCard(_props: BlogCardProps) {
           </div>
         </div>
 
-        <div className="divider" />
+        <div className="divider my-2" />
 
-        <p className="text-neutral-content/60 text-xs md:text-sm mb-4 line-clamp-3 flex-grow">
+        {/* Description */}
+        <p className="text-neutral-content/60 text-xs md:text-sm mb-4 line-clamp-3 flex-1">
           {blog.description}
         </p>
 
-        {/* Tags */}
+        {/* Tags - Always at bottom */}
         {blog.tags && blog.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mt-auto">
             {blog.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
@@ -87,7 +93,7 @@ function BlogCard(_props: BlogCardProps) {
             ))}
             {blog.tags.length > 3 && (
               <span className="text-xs text-base-content/60 px-2 py-1">
-                  +{blog.tags.length - 3} more
+                +{blog.tags.length - 3} more
               </span>
             )}
           </div>
