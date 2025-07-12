@@ -16,7 +16,7 @@ function BlogContentInfo({ meta }: Props) {
         <Calendar className="w-3 h-3" />
         <span>{formattedDate}</span>
       </div>
-          •
+      •
       <div className="flex items-center gap-x-1">
         <Clock className="w-3 h-3" />
         <span>{readTimeText}</span>
