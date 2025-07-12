@@ -6,10 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ts-node": "sh -c 'ts-node ${0}'",
+    "app:revalidate": "ts-node ./src/scripts/app:revalidate.ts",
+    "cloudinary:sync": "ts-node ./src/scripts/cloudinary:sync.ts"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
+    "disqus-react": "^1.1.7",
     "lucide-react": "^0.525.0",
     "next": "15.2.4",
     "next-cookies-universal": "^3.1.0",
@@ -26,13 +30,17 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/xml2js": "^0.4.14",
+    "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
+    "concurrent-manager": "^1.1.0",
     "daisyui": "^5.0.35",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "gray-matter": "^4.0.3",
+    "image-extensions": "^1.1.0",
     "mdx-bundler": "^9.2.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^6.1.1",
@@ -45,6 +53,8 @@
     "remark-math": "^5.1.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5",
+    "xml2js": "^0.6.2"
   }
 }

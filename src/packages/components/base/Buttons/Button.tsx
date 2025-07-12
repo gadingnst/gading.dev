@@ -14,6 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   wide?: boolean;
   block?: boolean;
+  label?: string;
 }
 
 const baseClasses = [
@@ -107,6 +108,7 @@ function Button(props: ButtonProps) {
     className,
     children,
     disabled,
+    label,
     ...restProps
   } = props;
 
@@ -181,6 +183,7 @@ function Button(props: ButtonProps) {
   return (
     <button
       {...restProps}
+      aria-label={label}
       className={buttonClasses}
       disabled={disabled || loading}
     >

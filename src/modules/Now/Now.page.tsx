@@ -1,3 +1,6 @@
+import { Suspense } from 'react';
+
+import Disqus from '@/modules/Common/components/Content/Disqus';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
@@ -7,10 +10,6 @@ import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 
 import nowLocales from './Now.locales';
 
-/**
- * Now page component displaying current activities and interests
- * Features markdown content with internationalization support
- */
 async function NowPage() {
   const lang = await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('now', lang);
@@ -62,6 +61,22 @@ async function NowPage() {
           </div>
         </HeroCard>
       </section>
+
+      <Suspense
+        fallback={
+          <div className="base-container mt-10 mx-auto">
+            <h4 className="text-center mb-3">
+              Loading Disqus...
+            </h4>
+          </div>
+        }
+      >
+        <Disqus
+          path="now"
+          identifier="now"
+          title={content.pageTitle}
+        />
+      </Suspense>
     </div>
   );
 }

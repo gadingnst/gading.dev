@@ -1,6 +1,15 @@
 import { Eye, Monitor, Moon, Sun } from 'lucide-react';
 
-import { AppThemes } from '@/packages/libs/AppTheme/constants';
+import { AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
+
+export const DARK_THEMES = [
+  AppThemes.DARK,
+  AppThemes.DARK_COLORBLIND
+];
+
+export function isThemeDark(theme: AppTheme) {
+  return DARK_THEMES.includes(theme as AppThemes);
+}
 
 /**
  * Get theme icon based on current theme

@@ -14,6 +14,7 @@ export interface ButtonLinkProps extends NextLinkProps {
   iconPosition?: 'left' | 'right';
   external?: boolean;
   withCurrentLocale?: boolean;
+  label?: string;
 }
 
 const baseClasses = [
@@ -65,6 +66,7 @@ function ButtonLink(props: ButtonLinkProps) {
     external = false,
     withCurrentLocale = false,
     className,
+    label,
     children,
     ...restProps
   } = props;
@@ -122,7 +124,7 @@ function ButtonLink(props: ButtonLinkProps) {
   };
 
   return (
-    <NextLink {...linkProps}>
+    <NextLink {...linkProps} aria-label={label}>
       {renderIcon('left')}
       <span className="transition-all duration-300">
         {children}
