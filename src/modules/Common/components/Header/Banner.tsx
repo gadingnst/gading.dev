@@ -27,10 +27,10 @@ function Banner(props: PropsWithChildren<Props>) {
   }, [bgImage]);
 
   return (
-    <div className="bg-gradient-to-tr from-primary to-accent">
+    <div className="relative bg-gradient-to-tr from-primary to-accent">
       <Parallax
         strength={300}
-        blur={{ min: -5, max: 15 }}
+        // blur={{ min: -5, max: 15 }}
         {...otherProps}
         bgImage={imageUrl}
         bgClassName={cn([
@@ -38,6 +38,7 @@ function Banner(props: PropsWithChildren<Props>) {
           bgClassName
         ])}
       >
+        <figure className="absolute bg-base-100/15 inset-0 z-[1]" />
         <div className={containerClassName} style={{ height }}>
           {children}
         </div>
