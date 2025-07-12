@@ -1,7 +1,7 @@
 'use client';
 
 import { DiscussionEmbed } from 'disqus-react';
-import { FunctionComponent, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { AUTHOR_NAME } from '@/configs/author';
 import { DISQUS_SHORTNAME, PRODUCTION_URL } from '@/configs/sites';
@@ -15,24 +15,21 @@ interface Props {
   identifier: string;
 }
 
-const Disqus: FunctionComponent<Props> = (props) => {
+function Disqus(props: Props) {
   const { title, path, identifier } = props;
   const language = useLangugage();
 
   const { appTheme } = useAppTheme();
-  const [showDisqus, setShowDisqus] = useState(true);
 
-  useEffect(() => {
-    setShowDisqus(false);
-    const timer = setTimeout(() => {
-      setShowDisqus(true);
-    }, 150);
-    return () => clearTimeout(timer);
-  }, [appTheme]);
+  const [showDisqus, setShowDisqus] = useState(false);
+
+  const handleAfterLoad = () => {
+    setShowDisqus(true);
+  };
 
   return (
-    <LazyLoadComponent>
-      <div className="base-container mt-10 mx-auto">
+    <LazyLoadComponent afterLoad={handleAfterLoad}>
+      <div className="base-container disqus-container mt-10 mx-auto">
         {showDisqus && (
           <DiscussionEmbed
             key={`${language}-${appTheme}`}
