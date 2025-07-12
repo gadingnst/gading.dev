@@ -10,18 +10,10 @@ import NextLink from '@/packages/components/base/Navigations/NextLink';
 export interface BlogCardProps {
   blog: ContentMeta;
   className?: string;
-  withCurrentLocale?: boolean;
 }
 
-/**
- * BlogCard component for displaying blog post information
- * Extends the base Card component with blog-specific styling and data
- */
 function BlogCard(_props: BlogCardProps) {
-  const {
-    blog,
-    className
-  } = _props;
+  const { blog, className } = _props;
 
   return (
     <Card
@@ -55,7 +47,6 @@ function BlogCard(_props: BlogCardProps) {
         </h2>
       </NextLink>
 
-      {/* Content Container - Not clickable */}
       <div className="flex flex-col flex-1 px-3 pb-4">
         {/* Meta Information */}
         <BlogContentInfo meta={blog} />

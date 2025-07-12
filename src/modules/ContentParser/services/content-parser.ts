@@ -21,9 +21,10 @@ export interface ContentSlug {
   id: string;
 }
 
-interface BlogLimit {
-  limit?: number;
-  offset?: number;
+interface Pagination {
+  total: number;
+  pageCount: number;
+  limit: number;
 }
 
 export interface ContentMeta {
@@ -40,7 +41,7 @@ export interface ContentMeta {
 
 export interface ContentBlogList {
   contents: ContentMeta[];
-  total: number;
+  pagination: Pagination;
 }
 
 export interface MDContent {
@@ -159,22 +160,26 @@ export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> 
  * @param language - language of the content (default: en)
  * @returns {Promise<MDContent[]>} - asynchronous all content meta
  */
-export async function getBlogList(language = DEFAULT_LOCALE, limitOptions?: BlogLimit): Promise<ContentBlogList> {
-  const {
-    limit = BLOG_PAGINATION_LIMIT,
-    offset = 0
-  } = limitOptions || {};
+export async function getBlogList(language = DEFAULT_LOCALE, pageCurrent = 1): Promise<ContentBlogList> {
   const blogs = await getAllBlogMeta(language);
+
   const blogsSortedByDate = blogs.sort((a, b) => {
     const dateA = dt(a.meta.date);
     const dateB = dt(b.meta.date);
     return dateB.isBefore(dateA) ? -1 : 1;
   });
-  const result = limit ? blogsSortedByDate.slice(offset, limit) : blogsSortedByDate;
+
+  const offset = (pageCurrent - 1) * BLOG_PAGINATION_LIMIT;
+  const result = blogsSortedByDate.slice(offset, offset + BLOG_PAGINATION_LIMIT);
+
   const contents = result.map(({ meta }) => meta);
   return {
     contents,
-    total: blogs.length
+    pagination: {
+      total: blogs.length,
+      pageCount: Math.ceil(blogs.length / BLOG_PAGINATION_LIMIT),
+      limit: BLOG_PAGINATION_LIMIT
+    }
   };
 }
 
