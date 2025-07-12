@@ -1,5 +1,5 @@
 import { NextPageProps } from '@/@types/global';
-import BlogList from '@/modules/Blog/components/BlogList';
+import BlogList from '@/modules/Blog/components/List';
 
 interface Params {
   page: string;

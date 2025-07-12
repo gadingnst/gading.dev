@@ -1,4 +1,4 @@
-import BlogList from '@/modules/Blog/components/BlogList';
+import BlogList from '@/modules/Blog/components/List';
 
 function BlogListPage() {
   return <BlogList />;

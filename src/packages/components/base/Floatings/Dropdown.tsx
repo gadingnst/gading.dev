@@ -12,6 +12,7 @@ export interface DropdownProps {
   dropdownClassName?: string;
   position?: 'start' | 'end';
   open?: boolean;
+  disabled?: boolean;
   // eslint-disable-next-line no-unused-vars
   onOpenChange?: (open: boolean) => void;
 }
@@ -27,6 +28,7 @@ export default function Dropdown({
   dropdownClassName,
   position = 'end',
   open: controlledOpen,
+  disabled = false,
   onOpenChange
 }: DropdownProps) {
   const [internalOpen, setInternalOpen] = useState(false);
@@ -56,6 +58,7 @@ export default function Dropdown({
    * Handle dropdown toggle
    */
   const handleToggle = () => {
+    if (disabled) return;
     setIsOpen(!isOpen);
   };
 
@@ -70,11 +73,12 @@ export default function Dropdown({
       ref={dropdownRef}
     >
       <div
-        tabIndex={0}
+        tabIndex={disabled ? -1 : 0}
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
-          'text-base-content hover:text-base-content hover:bg-base-200/50 hover:shadow-primary hover:shadow-xl text-shadow'
+          'text-base-content hover:text-base-content hover:bg-base-200/50 hover:shadow-primary hover:shadow-xl text-shadow',
+          disabled && 'btn-disabled'
         ])}
         onClick={handleToggle}
       >
