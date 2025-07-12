@@ -9,10 +9,6 @@ import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import Dropdown from '@/packages/components/base/Floatings/Dropdown';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 
-interface MenuProps {
-  isScrolled?: boolean;
-}
-
 const menuItems = [
   {
     label: 'Now',
@@ -35,7 +31,7 @@ const menuItems = [
  * Navigation menu component with Home and About links
  * Highlights active route and supports internationalization
  */
-export default function Menu({ isScrolled = false }: MenuProps) {
+export default function Menu() {
   const pathname = usePathname();
   const currentLang = useLangugage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -85,8 +81,7 @@ export default function Menu({ isScrolled = false }: MenuProps) {
                       'after:absolute after:bottom-0 after:left-0 after:right-0',
                       'after:h-1 after:bg-primary after:shadow-sm',
                       'relative overflow-hidden text-contrast'
-                    ],
-                    isScrolled && 'shadow-xl'
+                    ]
                   ])}
                 >
                   {item.label}
@@ -100,7 +95,6 @@ export default function Menu({ isScrolled = false }: MenuProps) {
       {/* Mobile Menu */}
       <div className="md:hidden">
         <Dropdown
-          isScrolled={isScrolled}
           open={isMobileMenuOpen}
           onOpenChange={setIsMobileMenuOpen}
           trigger={

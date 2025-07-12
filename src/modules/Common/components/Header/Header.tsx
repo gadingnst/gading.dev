@@ -12,10 +12,6 @@ import AppThemeSelector from './AppThemeSelector';
 import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 
-/**
- * Header component with navigation menu and language selector
- * Features scroll-based transparency effect
- */
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
@@ -63,9 +59,9 @@ export default function Header() {
         </div>
 
         <div className="navbar-end gap-x-2">
-          <LanguageSelector isScrolled={isScrolled} />
-          <AppThemeSelector isScrolled={isScrolled} />
-          <Menu isScrolled={isScrolled} />
+          <LanguageSelector />
+          <AppThemeSelector />
+          <Menu />
         </div>
       </div>
     </header>

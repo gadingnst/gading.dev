@@ -9,15 +9,7 @@ import { AppThemes } from '@/packages/libs/AppTheme/constants';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 import { getThemeIcon, getThemeLabel, themeOptions } from '@/packages/libs/AppTheme/utils';
 
-interface AppThemeSelectorProps {
-  isScrolled?: boolean;
-}
-
-/**
- * Theme selector dropdown component using DaisyUI 5
- * Handles theme switching between light, dark, and system
- */
-export default function AppThemeSelector({ isScrolled = false }: AppThemeSelectorProps) {
+export default function AppThemeSelector() {
   const router = useRouter();
   const { appTheme, setTheme, isSystemDark } = useAppTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -41,7 +33,6 @@ export default function AppThemeSelector({ isScrolled = false }: AppThemeSelecto
 
   return (
     <Dropdown
-      isScrolled={isScrolled}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
       trigger={

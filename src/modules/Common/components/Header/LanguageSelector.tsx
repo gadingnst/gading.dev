@@ -10,15 +10,7 @@ import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 
-interface LanguageSelectorProps {
-  isScrolled?: boolean;
-}
-
-/**
- * Language selector dropdown component using DaisyUI 5
- * Handles language switching with proper routing
- */
-export default function LanguageSelector({ isScrolled = false }: LanguageSelectorProps) {
+export default function LanguageSelector() {
   const pathname = usePathname();
   const currentLang = useLangugage();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -44,7 +36,6 @@ export default function LanguageSelector({ isScrolled = false }: LanguageSelecto
 
   return (
     <Dropdown
-      isScrolled={isScrolled}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
       className="max-w-[100px]"
