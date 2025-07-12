@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeftCircle, ArrowRightCircle } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import { useCallback, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
@@ -102,15 +102,15 @@ function Pagination(props: Props) {
       <li onClick={prevPage}>
         <NextLink withCurrentLocale aria-label={`Prev to page ${value - 1}`} href={handleHref(value - 1)}>
           <span
-            className={cn(
+            className={cn([
               'w-9 h-9 flex items-center justify-center text-base p-0 my-0 mx-1 rounded-full cursor-pointer',
               {
                 'pointer-events-none opacity-50': value === 1,
                 'hover:outline outline-primary dark:outline-accent': value !== 1
               }
-            )}
+            ])}
           >
-            <ArrowLeftCircle width={16} height={16} />
+            <ArrowLeftIcon width={16} height={16} />
           </span>
         </NextLink>
       </li>
@@ -118,13 +118,13 @@ function Pagination(props: Props) {
         <li key={page} onClick={handlePageChange(page)}>
           <NextLink withCurrentLocale aria-label={`Go to page ${page}`} href={handleHref(page)}>
             <span
-              className={cn(
+              className={cn([
                 'w-9 h-9 flex items-center justify-center text-base p-0 my-0 mx-1 rounded-full cursor-pointer',
                 {
                   'shadow-lg bg-primary text-white pointer-events-none': value === page,
                   'hover:outline outline-primary dark:outline-accent': value !== page
                 }
-              )}
+              ])}
             >
               {page}
             </span>
@@ -134,15 +134,15 @@ function Pagination(props: Props) {
       <li onClick={nextPage}>
         <NextLink withCurrentLocale aria-label={`Next to page ${value + 1}`} href={handleHref(value + 1)}>
           <span
-            className={cn(
+            className={cn([
               'w-9 h-9 flex items-center justify-center text-base p-0 my-0 mx-1 rounded-full cursor-pointer',
               {
                 'pointer-events-none opacity-50': value === totalPages,
                 'hover:outline outline-primary dark:outline-accent': value !== totalPages
               }
-            )}
+            ])}
           >
-            <ArrowRightCircle width={16} height={16} />
+            <ArrowRightIcon width={16} height={16} />
           </span>
         </NextLink>
       </li>

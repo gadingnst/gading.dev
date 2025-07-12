@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren, useMemo } from 'react';
 
 import { IS_DEV } from '@/configs/sites';
@@ -38,7 +40,7 @@ function Banner(props: PropsWithChildren<Props>) {
           bgClassName
         ])}
       >
-        <figure className="absolute bg-base-100/15 inset-0 z-[1]" />
+        <figure className="absolute bg-base-100/20 inset-0 z-[1]" />
         <div className={containerClassName} style={{ height }}>
           {children}
         </div>

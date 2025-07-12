@@ -69,10 +69,10 @@ function LanguageSelector() {
         );
       });
     }
-    return contentSlugByLanguages.map((_cSlug, _idx) => {
+    return contentSlugByLanguages.map((_cSlug) => {
       const isActive = _cSlug.code === currentLang;
       return (
-        <li key={_cSlug.code + _idx}>
+        <li key={_cSlug.code}>
           <NextLink
             href={_cSlug.href}
             disabled={isActive}

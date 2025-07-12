@@ -61,35 +61,27 @@ export default function Menu() {
   return (
     <>
       {/* Desktop Menu */}
-      <nav className="hidden md:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
-          {menuItems.map((item) => {
-            const isActive = isActiveRoute(item.href);
+      <nav className="hidden items-center rounded-full liquid-glass md:flex">
+        {menuItems.map((item) => {
+          const isActive = isActiveRoute(item.href);
 
-            return (
-              <li key={item.href}>
-                <NextLink
-                  withCurrentLocale
-                  href={item.href}
-                  className={cn([
-                    'btn btn-ghost btn-sm transition-all duration-300 liquid-glass relative',
-                    'text-base-content hover:text-base-content hover:bg-base-200/50 hover:shadow-primary hover:shadow-xl text-shadow',
-                    isActive && [
-                      'bg-primary/20 text-base-content font-bold border-2 border-primary/40',
-                      'shadow-lg shadow-base-content/20 ring-2 ring-primary/30 ring-offset-1',
-                      'transform scale-105 backdrop-blur-sm',
-                      'after:absolute after:bottom-0 after:left-0 after:right-0',
-                      'after:h-1 after:bg-primary after:shadow-sm',
-                      'relative overflow-hidden text-contrast'
-                    ]
-                  ])}
-                >
-                  {item.label}
-                </NextLink>
-              </li>
-            );
-          })}
-        </ul>
+          return (
+            <NextLink
+              key={item.href}
+              withCurrentLocale
+              href={item.href}
+              className={cn([
+                'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
+                'text-base-content text-shadow',
+                isActive
+                  ? 'bg-base-100/50 border-b-2 border-b-primary/50'
+                  : ''
+              ])}
+            >
+              {item.label}
+            </NextLink>
+          );
+        })}
       </nav>
 
       {/* Mobile Menu */}
