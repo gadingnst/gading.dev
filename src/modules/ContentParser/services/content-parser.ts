@@ -1,7 +1,6 @@
 import Fs from 'fs/promises';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
-import type { GetStaticPathsResult } from 'next';
 import path from 'path';
 import readingTime, { ReadTimeResults } from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -134,8 +133,14 @@ export async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Prom
 export async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
   const postsPath = path.join(contentsDir, 'posts', language);
   const slugPaths = await Fs.readdir(postsPath).catch(() => []);
-  const result = await Promise.all(slugPaths.map(async(slug) => {
-    const meta = await getBlogMeta(slug, language);
+  const result = await Promise.all(slugPaths.map(async(slugWithExtension) => {
+    // Remove file extension to get clean slug
+    const slug = slugWithExtension.replace(/\.(md|mdx)$/, '');
+    const meta = await getBlogMeta(slugWithExtension, language);
+    // Override slugOriginal with clean slug if meta.slug doesn't exist
+    if (!meta.slug || !meta.slug[language as keyof ContentSlug]) {
+      meta.slugOriginal = slug;
+    }
     return { meta, locale: language };
   }));
   return result;
@@ -145,13 +150,11 @@ export async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLoc
  * Get all blog static paths
  * @returns {Promise<GetStaticPathsResult['paths']>} - asynchronous next static paths
  */
-export async function getAllBlogPaths(): Promise<GetStaticPathsResult['paths']> {
+export async function getAllBlogPaths() {
   const paths = await Promise.all(Object.keys(I18n).map(getAllBlogMeta));
   return paths.flat(1).map(({ meta, locale }) => ({
-    params: {
-      slug: meta.slugOriginal
-    },
-    locale
+    lang: locale,
+    slug: meta.slugOriginal
   }));
 }
 

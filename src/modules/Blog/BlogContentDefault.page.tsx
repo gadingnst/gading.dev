@@ -1,23 +1,22 @@
-import { NextPageProps } from '@/@types/global';
 import BlogContentSlugInitializer from '@/modules/Blog/components/ContentSlugInitializer';
 import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
 import ContentParser from '@/modules/ContentParser/components/Parser';
-import { getAllBlogPaths, getContent } from '@/modules/ContentParser/services/content-parser';
+import { getContent } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
+import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Params {
-  lang: string;
   slug: string;
 }
 
-export async function generateStaticBlogPaths() {
-  const paths = await getAllBlogPaths();
-  return paths;
-}
-
-async function BlogContentPage({ params }: NextPageProps<Params>) {
-  const { slug, lang } = await params;
+/**
+ * Blog content page for routes without language prefix
+ * Uses default language (en) for content rendering
+ */
+async function BlogContentDefaultPage({ params }: { params: Promise<Params> }) {
+  const { slug } = await params;
+  const lang = getDefaultLanguage();
   const content = await getContent(slug, lang);
 
   return (
@@ -59,4 +58,4 @@ async function BlogContentPage({ params }: NextPageProps<Params>) {
   );
 }
 
-export default BlogContentPage;
+export default BlogContentDefaultPage;

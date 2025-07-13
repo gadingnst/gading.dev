@@ -7,10 +7,11 @@ import Pagination from '@/packages/components/base/Navigations/Pagination';
 
 interface Props {
   pageCurrent?: number;
+  lang?: string;
 }
 
-async function BlogList({ pageCurrent = 1 }: Props) {
-  const lang = await getLangugageServer();
+async function BlogList({ pageCurrent = 1, lang: propLang }: Props) {
+  const lang = propLang || await getLangugageServer();
   const blogList = await getBlogList(lang, pageCurrent);
   const content = withBlogListLocales(lang);
   const pageCount = blogList.pagination.pageCount;
@@ -48,7 +49,7 @@ async function BlogList({ pageCurrent = 1 }: Props) {
             Page {pageCurrent} of {pageCount}
           </h4>
           <Pagination
-            hrefPrefix="/blog/page/"
+            hrefPrefix={`/${lang}/blog/page/`}
             value={pageCurrent}
             pageCount={pageCount}
           />

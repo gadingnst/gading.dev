@@ -17,6 +17,7 @@ const StateContext = createContext<StateContextType>({
 
 interface StateProps {
   children: React.ReactNode;
+  initial?: StateValue;
 }
 
 interface StateState {
@@ -27,7 +28,7 @@ class State extends Component<StateProps, StateState> {
   constructor(props: StateProps) {
     super(props);
     this.state = {
-      state: {}
+      state: props.initial || {}
     };
   }
 
@@ -53,13 +54,13 @@ class State extends Component<StateProps, StateState> {
 
 interface ObserveProps {
   // eslint-disable-next-line no-unused-vars
-  children: (state: StateValue) => React.ReactNode;
+  children: (context: StateContextType) => React.ReactNode;
 }
 
 const Observe: React.FC<ObserveProps> = ({ children }) => {
   return (
     <StateContext.Consumer>
-      {({ state }) => children(state)}
+      {(context) => children(context)}
     </StateContext.Consumer>
   );
 };
