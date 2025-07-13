@@ -1,4 +1,3 @@
-import { Feed } from 'feed';
 import Fs from 'fs/promises';
 
 import { AUTHOR_EMAIL, AUTHOR_FULLNAME, AUTHOR_NAME, AUTHOR_TWITTER } from '@/configs/author';
@@ -12,6 +11,7 @@ import { I18n } from '@/packages/libs/I18n/interface';
  * @returns {Promise<void>}
  */
 async function generateRSSFeed(): Promise<void> {
+  const { Feed } = await import('feed');
   const blogList = await Promise.all(Object.keys(I18n).map(lang => getAllBlogMeta(lang)));
   const posts = blogList.flat(1).sort((a, b) => {
     const dateA = dt(a.meta.date);
