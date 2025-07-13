@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: "light";
+
+  /* ─── Base ─── */
+  --color-base-100: rgb(247, 249, 252);
+  --color-base-200: rgb(232, 237, 245);
+  --color-base-300: rgb(221, 228, 238);
+  --color-base-content: rgb(39, 39, 42);
+
+  /* ─── Brand ─── */
+  --color-primary: rgb(99, 102, 241);
+  --color-primary-content: rgb(255, 255, 255);
+
+  --color-secondary: rgb(168, 85, 247);
+  --color-secondary-content: rgb(255, 255, 255);
+
+  --color-accent: rgb(236, 72, 153);
+  --color-accent-content: rgb(255, 255, 255);
+
+  /* ─── Neutral ─── */
+  --color-neutral: rgb(238, 238, 239);
+  --color-neutral-content: rgb(39, 39, 42);
+
+  /* ─── State ─── */
+  --color-info: rgb(59, 130, 246);
+  --color-info-content: rgb(39, 39, 42);
+
+  --color-success: rgb(34, 197, 94);
+  --color-success-content: rgb(39, 39, 42);
+
+  --color-warning: rgb(251, 146, 60);
+  --color-warning-content: rgb(39, 39, 42);
+
+  --color-error: rgb(239, 68, 68);
+  --color-error-content: rgb(255, 255, 255);
+
+  /* ─── Misc ─── */
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* ─── Base ─── */
+  --color-base-100: rgb(14, 38, 58);
+  --color-base-200: rgb(35, 57, 93);
+  --color-base-300: rgb(49, 55, 100);
+  --color-base-content: rgb(250, 250, 250);
+
+  /* ─── Brand ─── */
+  --color-primary: rgb(99, 102, 241);
+  --color-primary-content: rgb(255, 255, 255);
+
+  --color-secondary: rgb(168, 85, 247);
+  --color-secondary-content: rgb(255, 255, 255);
+
+  --color-accent: rgb(236, 72, 153);
+  --color-accent-content: rgb(255, 255, 255);
+
+  /* ─── Neutral ─── */
+  --color-neutral: rgb(63, 63, 70);
+  --color-neutral-content: rgb(250, 250, 250);
+
+  /* ─── State ─── */
+  --color-info: rgb(59, 130, 246);
+  --color-info-content: rgb(250, 250, 250);
+
+  --color-success: rgb(34, 197, 94);
+  --color-success-content: rgb(250, 250, 250);
+
+  --color-warning: rgb(251, 146, 60);
+  --color-warning-content: rgb(250, 250, 250);
+
+  --color-error: rgb(239, 68, 68);
+  --color-error-content: rgb(255, 255, 255);
+
+  /* ─── Misc ─── */
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@theme inline {
+  --font-sans: var(--font-poppins);
+  --font-serif: var(--font-courgette);
+}
+
+body {
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+}
+
+.disqus-container *:not(:first-of-type), #disqus_thread *:not(:first-of-type) {
+  display: none !important;
+}
+
+@import "./custom-utilities";
+@import "./katex";
+@import "./prism";
+@import "./lazy-image";

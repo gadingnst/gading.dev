@@ -1,0 +1,5 @@
+.parser {
+  max-width: none;
+  line-height: 1.75;
+  color: hsl(var(--bc));
+}
