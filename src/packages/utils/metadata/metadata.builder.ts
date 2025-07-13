@@ -28,7 +28,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     title,
     slug,
     description = 'Software Engineer from Palembang, Indonesia 🇮🇩',
-    image = `${domain}/assets/images/authors/gading-talks.jpeg`,
+    image = `${domain}/media/authors/gading-talks.jpeg`,
     date = dt().format('YYYY-MM-DD'),
     keywords = '',
     tags = []

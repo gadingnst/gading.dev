@@ -20,19 +20,19 @@ function Footer() {
           <span className="inline-block">&copy;&nbsp;{currentYear}&nbsp;</span>
           <Link className="inline-block font-semibold" href={BASE_URL}>{SITE_NAME}</Link>
           <span className="inline-block mx-1">&bull;</span>
-          <Link className="inline-block mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
+          <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
           <span className="inline-block mx-0.5">with</span>
           <span className="inline-block border-b-2 border-dotted mx-0.5 leading-tight">Bullshit</span>
           <span className="inline-block mx-0.5">by</span>
-          <Link className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}`}>
+          <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}`}>
             {AUTHOR_NAME}
           </Link>
           <div className="text-base-content mt-2">
-            <Link className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
+            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
               Feed RSS
             </Link>
             <span className="inline-block mx-1">&bull;</span>
-            <Link className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
+            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
               Sitemap
             </Link>
           </div>
