@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 
+import { AUTHOR_NAME } from '@/configs/author';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HomePage, { generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
@@ -25,7 +26,7 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
     locale: lang,
     meta: {
       slug: '/',
-      title: meta.title,
+      title: AUTHOR_NAME,
       description: meta.description,
       keywords: meta.keywords,
       tags: meta.tags,

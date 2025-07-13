@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { AUTHOR_NAME } from '@/configs/author';
+import { AUTHOR_NAME, AUTHOR_TWITTER } from '@/configs/author';
 import { BASE_URL, GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
 import cloudinary from '@/packages/libs/Cloudinary/utils';
 import dt from '@/packages/libs/DayJS/dt';
@@ -43,7 +43,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
 
   const metaTags: Metadata = {
     metadataBase: new URL(domain),
-    title: title,
+    title: `${title} | ${SITE_NAME}`,
     description: description,
     keywords: combinedKeywords,
     authors: [{
@@ -51,7 +51,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       url: domain
     }],
     openGraph: {
-      title: title,
+      title: `${title} | ${SITE_NAME}`,
       description: description,
       url: url,
       images: [
@@ -59,7 +59,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
           url: featuredImage,
           width: 1200,
           height: 630,
-          alt: title
+          alt: `${title} | ${SITE_NAME}`
         }
       ],
       locale: locale,
@@ -70,10 +70,10 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: title,
+      title: `${title} | ${SITE_NAME}`,
       description: description,
-      creator: `@${AUTHOR_NAME}`,
-      site: `@${AUTHOR_NAME}`,
+      creator: `@${AUTHOR_TWITTER}`,
+      site: `@${AUTHOR_TWITTER}`,
       images: [featuredImage]
     },
     alternates: {
