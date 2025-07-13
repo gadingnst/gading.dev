@@ -1,12 +1,12 @@
 import { NextPageProps } from '@/@types/global';
 import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 import { I18n } from '@/packages/libs/I18n/interface';
+import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 import nowLocales from './Now.locales';
 
@@ -20,7 +20,7 @@ export async function generateNowPathsDefault() {
 
 async function NowPage(props: NextPageProps<{ lang?: string }>) {
   const params = await props.params;
-  const lang = params?.lang || await getLangugageServer();
+  const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('now', lang);
   const content = nowLocales(lang);
 

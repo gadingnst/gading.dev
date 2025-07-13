@@ -10,6 +10,10 @@ interface LangPageProps {
   lang: string;
 }
 
+export const dynamic = 'force-static';
+
+export const dynamicParams = false;
+
 export const generateStaticParams = generateHomePathsWithLang;
 
 export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ params }) => {
@@ -33,14 +37,4 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
   };
 });
 
-async function LangPage({ params }: { params: Promise<LangPageProps> }) {
-  const { lang } = await params;
-
-  if (!isValidLanguage(lang)) {
-    notFound();
-  }
-
-  return <HomePage params={{ lang }} />;
-}
-
-export default LangPage;
+export default HomePage;

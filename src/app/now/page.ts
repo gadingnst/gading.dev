@@ -1,12 +1,15 @@
 import { Metadata } from 'next';
 
-import BlogListPage from '@/modules/Blog/BlogList.page';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import nowLocales from '@/modules/Now/Now.locales';
+import NowPage, { generateNowPathsDefault } from '@/modules/Now/Now.page';
 
-/**
- * Generate metadata for Now page
- */
+export const dynamic = 'force-static';
+
+export const dynamicParams = false;
+
+export const generateStaticParams = generateNowPathsDefault;
+
 export async function generateMetadata(): Promise<Metadata> {
   const lang = 'en';
   const content = await getContentMultiLanguage('now', lang);
@@ -31,7 +34,4 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-/**
- * Now page route component
- */
-export default BlogListPage;
+export default NowPage;

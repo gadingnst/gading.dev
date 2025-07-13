@@ -1,19 +1,18 @@
 import { Metadata } from 'next';
 
-import aboutLocales from '@/modules/About/About.locales';
-import AboutPage, { generateAboutPathsWithLang } from '@/modules/About/About.page';
+import BlogListPage from '@/modules/Blog/BlogList.page';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import nowLocales from '@/modules/Now/Now.locales';
 
-export const generateStaticParams = generateAboutPathsWithLang;
+export const dynamic = 'force-static';
 
-/**
- * Generate metadata for About page
- */
+export const dynamicParams = false;
+
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getLangugageServer();
-  const content = await getContentMultiLanguage('about', lang);
-  const t = aboutLocales(lang);
+  const content = await getContentMultiLanguage('now', lang);
+  const t = nowLocales(lang);
 
   return {
     title: content.meta.title || t.pageTitle,
@@ -34,7 +33,4 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-/**
- * About page route component
- */
-export default AboutPage;
+export default BlogListPage;

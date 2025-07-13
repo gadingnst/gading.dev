@@ -1,12 +1,12 @@
 import { NextPageProps } from '@/@types/global';
 import Banner from '@/modules/Common/components/Header/Banner';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 import { I18n } from '@/packages/libs/I18n/interface';
+import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 /**
  * Generate static params for home page with language prefix
@@ -26,7 +26,7 @@ export async function generateHomePathsDefault() {
 
 async function HomePage(props: NextPageProps<{ lang?: string }>) {
   const params = await props.params;
-  const lang = params?.lang || await getLangugageServer();
+  const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('home', lang);
   const content = withHomeLocales(lang);
 

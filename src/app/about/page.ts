@@ -1,14 +1,19 @@
 import { Metadata } from 'next';
 
-import BlogListPage from '@/modules/Blog/BlogList.page';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
+import aboutLocales from '@/modules/About/About.locales';
+import AboutPage, { generateAboutPathsDefault } from '@/modules/About/About.page';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
-import nowLocales from '@/modules/Now/Now.locales';
+
+export const dynamic = 'force-static';
+
+export const dynamicParams = false;
+
+export const generateStaticParams = generateAboutPathsDefault;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const lang = await getLangugageServer();
-  const content = await getContentMultiLanguage('now', lang);
-  const t = nowLocales(lang);
+  const lang = 'en';
+  const content = await getContentMultiLanguage('about', lang);
+  const t = aboutLocales(lang);
 
   return {
     title: content.meta.title || t.pageTitle,
@@ -29,4 +34,4 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default BlogListPage;
+export default AboutPage;

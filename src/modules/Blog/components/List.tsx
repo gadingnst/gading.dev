@@ -1,9 +1,9 @@
 import withBlogListLocales from '@/modules/Blog/BlogList.locales';
 import BlogCard from '@/modules/Blog/components/Card';
 import Banner from '@/modules/Common/components/Header/Banner';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getBlogList } from '@/modules/ContentParser/services/content-parser';
 import Pagination from '@/packages/components/base/Navigations/Pagination';
+import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Props {
   pageCurrent?: number;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 async function BlogList({ pageCurrent = 1, lang: propLang }: Props) {
-  const lang = propLang || await getLangugageServer();
+  const lang = propLang || await getDefaultLanguage();
   const blogList = await getBlogList(lang, pageCurrent);
   const content = withBlogListLocales(lang);
   const pageCount = blogList.pagination.pageCount;
