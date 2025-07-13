@@ -26,7 +26,7 @@ export async function generateHomePathsDefault() {
   return [{}]; // Empty object for root path
 }
 
-async function HomePage(props: NextPageProps<{ lang?: string }>) {
+async function HomePage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('home', lang);

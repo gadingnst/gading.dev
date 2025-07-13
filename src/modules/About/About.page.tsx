@@ -17,7 +17,7 @@ export async function generateAboutPathsDefault() {
   return [{}];
 }
 
-async function AboutPage(props: NextPageProps<{ lang?: string }>) {
+async function AboutPage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('about', lang);

@@ -18,7 +18,7 @@ export async function generateNowPathsDefault() {
   return [{}];
 }
 
-async function NowPage(props: NextPageProps<{ lang?: string }>) {
+async function NowPage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('now', lang);

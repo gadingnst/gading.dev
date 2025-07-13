@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 
-import BlogListPage from '@/modules/Blog/BlogList.page';
+import BlogListPage, { generateBlogListPathsDefault } from '@/modules/Blog/BlogList.page';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import nowLocales from '@/modules/Now/Now.locales';
 
 export const dynamic = 'force-static';
 
 export const dynamicParams = false;
+
+export const generateStaticParams = generateBlogListPathsDefault;
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = 'en';

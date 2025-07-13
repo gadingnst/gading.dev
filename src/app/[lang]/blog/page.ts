@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import BlogListPage from '@/modules/Blog/BlogList.page';
+import BlogListPage, { generateBlogListPathsWithLang } from '@/modules/Blog/BlogList.page';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import nowLocales from '@/modules/Now/Now.locales';
@@ -8,6 +8,8 @@ import nowLocales from '@/modules/Now/Now.locales';
 export const dynamic = 'force-static';
 
 export const dynamicParams = false;
+
+export const generateStaticParams = generateBlogListPathsWithLang;
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getLangugageServer();
