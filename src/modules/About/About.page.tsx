@@ -6,6 +6,15 @@ import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import { I18n } from '@/packages/libs/I18n/interface';
+
+export async function generateAboutPathsWithLang() {
+  return Object.keys(I18n).map(lang => ({ lang }));
+}
+
+export async function generateAboutPathsDefault() {
+  return [{}];
+}
 
 async function AboutPage() {
   const lang = await getLangugageServer();

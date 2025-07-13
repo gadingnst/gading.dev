@@ -3,7 +3,9 @@ import { Metadata } from 'next';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import nowLocales from '@/modules/Now/Now.locales';
-import NowPage from '@/modules/Now/Now.page';
+import NowPage, { generateNowPathsWithLang } from '@/modules/Now/Now.page';
+
+export const generateStaticParams = generateNowPathsWithLang;
 
 /**
  * Generate metadata for Now page

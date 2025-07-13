@@ -5,9 +5,26 @@ import { getContentMultiLanguage } from '@/modules/ContentParser/services/conten
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import { I18n } from '@/packages/libs/I18n/interface';
 
-async function HomePage() {
-  const lang = await getLangugageServer();
+/**
+ * Generate static params for home page with language prefix
+ * Generates paths for all supported languages
+ */
+export async function generateHomePathsWithLang() {
+  return Object.keys(I18n).map(lang => ({ lang }));
+}
+
+/**
+ * Generate static params for home page without language prefix
+ * Only generates path for default language
+ */
+export async function generateHomePathsDefault() {
+  return [{}]; // Empty object for root path
+}
+
+async function HomePage({ params }: { params: { lang?: string } }) {
+  const lang = params?.lang || await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('home', lang);
   const content = withHomeLocales(lang);
 

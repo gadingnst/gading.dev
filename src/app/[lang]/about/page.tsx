@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 
 import aboutLocales from '@/modules/About/About.locales';
-import AboutPage from '@/modules/About/About.page';
+import AboutPage, { generateAboutPathsWithLang } from '@/modules/About/About.page';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+
+export const generateStaticParams = generateAboutPathsWithLang;
 
 /**
  * Generate metadata for About page

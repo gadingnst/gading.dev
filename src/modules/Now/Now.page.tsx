@@ -5,8 +5,17 @@ import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import { I18n } from '@/packages/libs/I18n/interface';
 
 import nowLocales from './Now.locales';
+
+export async function generateNowPathsWithLang() {
+  return Object.keys(I18n).map(lang => ({ lang }));
+}
+
+export async function generateNowPathsDefault() {
+  return [{}];
+}
 
 async function NowPage() {
   const lang = await getLangugageServer();

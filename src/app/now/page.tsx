@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import nowLocales from '@/modules/Now/Now.locales';
-import NowPage from '@/modules/Now/Now.page';
+import NowPage, { generateNowPathsDefault } from '@/modules/Now/Now.page';
+
+export const generateStaticParams = generateNowPathsDefault;
 
 /**
  * Generate metadata for Now page

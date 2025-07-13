@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import withHomeLocales from '@/modules/Home/Home.locales';
-import HomePage from '@/modules/Home/Home.page';
+import HomePage, { generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { isValidLanguage } from '@/packages/libs/I18n/utils';
 import { withGenerateMetadata } from '@/packages/utils/metadata';
@@ -10,12 +10,7 @@ interface LangPageProps {
   lang: string;
 }
 
-export async function generateStaticParams() {
-  return [
-    { lang: 'en' },
-    { lang: 'id' }
-  ];
-}
+export const generateStaticParams = generateHomePathsWithLang;
 
 export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ params }) => {
   const { lang } = await params;
@@ -45,7 +40,7 @@ async function LangPage({ params }: { params: Promise<LangPageProps> }) {
     notFound();
   }
 
-  return <HomePage />;
+  return <HomePage params={{ lang }} />;
 }
 
 export default LangPage;
