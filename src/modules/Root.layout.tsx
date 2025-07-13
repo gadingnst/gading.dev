@@ -7,7 +7,7 @@ import Footer from '@/modules/Common/components/Footer/Footer';
 import Header from '@/modules/Common/components/Header/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import TopLoader from '@/packages/components/base/Loaders/TopLoader';
-import getServerAppTheme from '@/packages/libs/AppTheme/getServerAppTheme';
+import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
 const poppins = Poppins({
@@ -28,18 +28,18 @@ const courgette = Courgette({
  */
 async function RootLayout({ children }: PropsWithChildren) {
   const lang = await getLangugageServer();
-  const appTheme = await getServerAppTheme();
 
   const currentLang = lang as I18nLocales;
   const htmlLang = I18n[currentLang].replace('_', '-').toLowerCase();
 
   return (
     <html lang={htmlLang}>
-      <body data-theme={appTheme} className={`${poppins.variable} ${courgette.variable} antialiased`}>
+      <body className={`${poppins.variable} ${courgette.variable} antialiased`}>
         <TopLoader color="primary" height={3} showShadow />
         <Header />
         {children}
         <Footer />
+        <AppThemeInitializer />
       </body>
     </html>
   );
