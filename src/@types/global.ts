@@ -3,10 +3,10 @@ import { type NextPage } from 'next';
 export type NextPageComponent<T> = NextPage<T>;
 
 export interface NextPageProps<T = Record<string, string>> {
-  params: T;
-  searchParams: {
+  params: Promise<T>;
+  searchParams: Promise<{
     [key: string]: string|string[]|undefined;
-  };
+  }>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
