@@ -15,7 +15,7 @@ interface Props {
   identifier: string;
 }
 
-function Disqus(props: Props) {
+function ContentDisqus(props: Props) {
   const { title, path, identifier } = props;
   const language = useLangugage();
 
@@ -33,7 +33,7 @@ function Disqus(props: Props) {
 
   return (
     <LazyLoadComponent>
-      <div className="base-container disqus-container mt-10 mx-auto">
+      <div className="base-container disqus-container mt-16 mx-auto">
         {!!disqusKey && (
           <DiscussionEmbed
             key={disqusKey}
@@ -51,4 +51,4 @@ function Disqus(props: Props) {
   );
 };
 
-export default Disqus;
+export default ContentDisqus;

@@ -1,5 +1,6 @@
 import { NextPageProps } from '@/@types/global';
 import BlogContentSlugInitializer from '@/modules/Blog/components/ContentSlugInitializer';
+import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
@@ -37,13 +38,18 @@ async function BlogContentPage({ params }: NextPageProps<Params>) {
         </Banner>
 
         {/* Markdown Content */}
-        <section className="base-container py-12 -mt-36">
+        <section className="base-container py-6 -mt-28">
           <HeroCard>
             <ContentParser>
               {content.content}
             </ContentParser>
           </HeroCard>
         </section>
+        <ContentInteraction
+          meta={content.meta}
+          identifier={`${lang}_${content.meta.slugOriginal}`}
+          path={`${lang}/blog/${content.meta.slugOriginal}`}
+        />
       </div>
     </>
   );

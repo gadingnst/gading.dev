@@ -1,4 +1,5 @@
 import aboutLocales from '@/modules/About/About.locales';
+import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
@@ -31,7 +32,7 @@ async function AboutPage() {
       </Banner>
 
       {/* Markdown Content */}
-      <section className="base-container py-12 -mt-36">
+      <section className="base-container py-6 -mt-28">
         <HeroCard>
           <ContentParser>
             {markdownContent.content}
@@ -56,6 +57,11 @@ async function AboutPage() {
           </div>
         </HeroCard>
       </section>
+      <ContentInteraction
+        path="about"
+        identifier="about"
+        meta={markdownContent.meta}
+      />
     </div>
   );
 }

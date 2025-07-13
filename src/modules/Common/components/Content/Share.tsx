@@ -1,15 +1,15 @@
 'use client';
 
-import IconFacebook from '$/assets/icons/logo/facebook.svg';
-import IconLinkedin from '$/assets/icons/logo/linkedin.svg';
-import IconTelegram from '$/assets/icons/logo/telegram.svg';
-import IconTumblr from '$/assets/icons/logo/tumblr.svg';
-import IconTwitter from '$/assets/icons/logo/twitter.svg';
-import IconWhatsapp from '$/assets/icons/logo/whatsapp.svg';
 import { FunctionComponent, SVGProps, useCallback, useMemo } from 'react';
 
 import { AUTHOR_TWITTER } from '@/configs/author';
 import { BASE_URL } from '@/configs/sites';
+import IconFacebook from '@/designs/icons/logo/facebook.svg';
+import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
+import IconTelegram from '@/designs/icons/logo/telegram.svg';
+import IconTumblr from '@/designs/icons/logo/tumblr.svg';
+import IconTwitter from '@/designs/icons/logo/twitter.svg';
+import IconWhatsapp from '@/designs/icons/logo/whatsapp.svg';
 import cn from '@/designs/utils/cn';
 import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import { ContentMeta } from '@/modules/ContentParser/services/content-parser';
@@ -30,32 +30,32 @@ interface SocialShare {
 
 const socialShares: SocialShare[] = [
   {
-    color: 'bg-facebook dark:hover:shadow-facebook',
+    color: 'bg-[#1877F2] shadow-blue-500',
     label: 'Share on Facebook',
     logo: IconFacebook
   },
   {
-    color: 'bg-linkedin dark:hover:shadow-linkedin',
+    color: 'bg-[#0077B5] shadow-blue-600',
     label: 'Share on Linkedin',
     logo: IconLinkedin
   },
   {
-    color: 'bg-twitter dark:hover:shadow-twitter',
+    color: 'bg-[#1DA1F2] shadow-blue-400',
     logo: IconTwitter,
     label: 'Share on Twitter'
   },
   {
-    color: 'bg-tumblr dark:hover:shadow-tumblr',
+    color: 'bg-[#36465D] shadow-gray-700',
     logo: IconTumblr,
     label: 'Share on Tumblr'
   },
   {
-    color: 'bg-whatsapp dark:hover:shadow-whatsapp',
+    color: 'bg-[#25D366] shadow-green-500',
     logo: IconWhatsapp,
     label: 'Share on Whatsapp'
   },
   {
-    color: 'bg-telegram dark:hover:shadow-telegram',
+    color: 'bg-[#26A5E4] shadow-sky-500',
     logo: IconTelegram,
     label: 'Share on Telegram'
   }
@@ -68,9 +68,9 @@ const withLocales = createContentLocales({
   }
 });
 
-function Share(props: Props) {
+function ContentShare(props: Props) {
   const { path, meta } = props;
-  const { title, description, tags } = meta;
+  const { title, description, tags = [] } = meta;
 
   const language = useLangugage();
   const locales = useMemo(() => withLocales(language), [language]);
@@ -107,10 +107,10 @@ function Share(props: Props) {
 
   return (
     <div className="mt-10">
-      <h4 className="text-center mb-3">
+      <h4 className="text-center font-semibold mb-3">
         {locales.share}
       </h4>
-      <div className="relative flex justify-center items-center flex-wrap">
+      <div className="relative flex justify-center items-center flex-wrap gap-2">
         {socialShares.map((social) => (
           <Button
             label={`Button to ${social.label}`}
@@ -119,7 +119,7 @@ function Share(props: Props) {
             data-umami-event={`share-${social.label.substring(9).toLocaleLowerCase()}`}
             className={cn([
               social.color,
-              'shadow-lg rounded-full p-3 mx-1 mb-3 hover:-mt-2 hover:scale-105'
+              'btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg'
             ])}
           >
             <social.logo className="w-6 h-6 text-white" />
@@ -130,4 +130,4 @@ function Share(props: Props) {
   );
 };
 
-export default Share;
+export default ContentShare;

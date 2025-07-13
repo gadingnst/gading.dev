@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
-
-import Disqus from '@/modules/Common/components/Content/Disqus';
+import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
@@ -35,7 +33,7 @@ async function NowPage() {
       </Banner>
 
       {/* Markdown Content */}
-      <section className="base-container py-12 -mt-36">
+      <section className="base-container py-6 -mt-28">
         <HeroCard>
           <ContentParser>
             {markdownContent.content}
@@ -61,22 +59,11 @@ async function NowPage() {
           </div>
         </HeroCard>
       </section>
-
-      <Suspense
-        fallback={
-          <div className="base-container mt-10 mx-auto">
-            <h4 className="text-center mb-3">
-              Loading Disqus...
-            </h4>
-          </div>
-        }
-      >
-        <Disqus
-          path="now"
-          identifier="now"
-          title={content.pageTitle}
-        />
-      </Suspense>
+      <ContentInteraction
+        path="now"
+        identifier="now"
+        meta={markdownContent.meta}
+      />
     </div>
   );
 }

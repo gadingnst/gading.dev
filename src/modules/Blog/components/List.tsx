@@ -33,7 +33,7 @@ async function BlogList({ pageCurrent = 1 }: Props) {
       </Banner>
 
       {/* Blog List */}
-      <section className="base-container py-12 -mt-36 grid grid-cols-1 sm:grid-cols-2 gap-7">
+      <section className="base-container py-6 -mt-28 grid grid-cols-1 sm:grid-cols-2 gap-7">
         {blogList.contents.map((_blog) => (
           <BlogCard
             key={_blog.slugOriginal}

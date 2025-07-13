@@ -11,22 +11,22 @@ const supportLinks = [
   {
     label: 'GitHub Sponsors',
     url: 'https://github.com/sponsors/gadingnst',
-    className: 'bg-github text-white dark:text-white'
+    className: 'bg-[#333] shadow-gray-600'
   },
   {
     label: 'Ko-fi',
     url: 'https://ko-fi.com/gadingnst',
-    className: 'bg-[#29ABE0] text-white dark:text-white'
+    className: 'bg-[#29ABE0] shadow-sky-400'
   },
   {
     label: 'Trakteer',
     url: 'https://trakteer.id/gadingnst',
-    className: 'bg-[#FF4646] text-white dark:text-white'
+    className: 'bg-[#FF4646] shadow-red-400'
   },
   {
     label: 'Karyakarsa',
     url: 'https://karyakarsa.com/gadingnst',
-    className: 'bg-[#FFB800] text-black dark:text-black'
+    className: 'bg-[#FFB800] shadow-yellow-400'
   }
 ];
 
@@ -37,22 +37,24 @@ const withLocales = createContentLocales({
   }
 });
 
-function Support() {
+function ContentSupport() {
   const language = useLangugage();
   const locales = useMemo(() => withLocales(language), [language]);
   return (
-    <div className="mt-24 text-center">
-      <h4 className="text-center mb-12">
+    <div className="mt-10 text-center">
+      <h4 className="text-center mb-3 font-semibold">
         {locales.support}
       </h4>
-      <div className="flex justify-center flex-wrap gap-8">
+      <div className="flex justify-center flex-wrap gap-2">
         {supportLinks.map(({ label, url, className }) => (
           <ButtonLink
+            target="_blank"
+            rel="noopener noreferrer"
             key={label}
             label={label}
             href={url}
             className={cn([
-              'px-1.5 py-1 rounded-md shadow-md',
+              'px-3 py-1 rounded-full border-0 outline-0 shadow-none hover:shadow-lg',
               className
             ])}
           >
@@ -64,4 +66,4 @@ function Support() {
   );
 };
 
-export default Support;
+export default ContentSupport;
