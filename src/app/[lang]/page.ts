@@ -18,7 +18,7 @@ export const dynamicParams = false;
 export const generateStaticParams = generateHomePathsWithLang;
 
 export const metadata = withGenerateMetadata<LangPageProps>(async({ params }) => {
-  const { lang } = params;
+  const { lang } = await params;
   if (!isValidLanguage(lang)) notFound();
   const { meta } = await getContentMultiLanguage('home', lang);
   return metadataBuilder({
