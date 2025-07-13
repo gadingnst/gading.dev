@@ -156,10 +156,10 @@ function Parallax({
    */
   const backgroundImageStyles: React.CSSProperties = {
     position: 'absolute',
-    top: 0,
+    top: `-${strength / 2}px`,
     left: 0,
     width: '100%',
-    height: '120%', // Extra height for parallax movement
+    height: `calc(100% + ${strength}px)`,
     objectFit: 'cover',
     transform: bgTransform,
     filter: bgBlur ? `blur(${Math.abs(bgBlur)}px)` : undefined,
