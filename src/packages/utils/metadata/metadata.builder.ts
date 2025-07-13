@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { AUTHOR_NAME } from '@/configs/author';
-import { BASE_URL, SITE_NAME } from '@/configs/sites';
+import { BASE_URL, GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
 import cloudinary from '@/packages/libs/Cloudinary/utils';
 import dt from '@/packages/libs/DayJS/dt';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
@@ -34,7 +34,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     tags = []
   } = meta;
 
-  const url = `${domain}/${locale ? `${locale}/` : ''}${slug}`;
+  const url = `${domain}${locale ? `/${locale}` : ''}${slug}`;
 
   const featuredImage = thumbnail(image);
 
@@ -80,7 +80,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       canonical: url
     },
     verification: {
-      google: 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4-v4okvoqNf4ZlQ'
+      google: GOOGLE_VERIFICATION_ID
     },
     robots: {
       index: true,

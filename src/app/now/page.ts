@@ -1,8 +1,7 @@
-import { Metadata } from 'next';
-
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
-import nowLocales from '@/modules/Now/Now.locales';
 import NowPage, { generateNowPathsDefault } from '@/modules/Now/Now.page';
+import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
+import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';
 
 export const dynamic = 'force-static';
 
@@ -10,28 +9,18 @@ export const dynamicParams = false;
 
 export const generateStaticParams = generateNowPathsDefault;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const lang = 'en';
-  const content = await getContentMultiLanguage('now', lang);
-  const t = nowLocales(lang);
-
-  return {
-    title: content.meta.title || t.pageTitle,
-    description: content.meta.description || t.metaDescription,
-    keywords: content.meta.keywords,
-    openGraph: {
-      title: content.meta.title || t.pageTitle,
-      description: content.meta.description || t.metaDescription,
-      images: content.meta.image ? [content.meta.image] : undefined,
-      type: 'website'
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: content.meta.title || t.pageTitle,
-      description: content.meta.description || t.metaDescription,
-      images: content.meta.image ? [content.meta.image] : undefined
+export const generateMetadata = withGenerateMetadata(async() => {
+  const content = await getContentMultiLanguage('now', 'en');
+  return metadataBuilder({
+    locale: 'en',
+    meta: {
+      slug: '/now',
+      title: content.meta.title,
+      description: content.meta.description,
+      keywords: content.meta.keywords,
+      image: content.meta.image
     }
-  };
-}
+  });
+});
 
 export default NowPage;
