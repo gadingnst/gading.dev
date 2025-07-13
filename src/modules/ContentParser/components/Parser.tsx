@@ -36,11 +36,12 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
       <LazyImage
         src={src}
         alt={alt}
-        className="mx-auto rounded-lg max-h-[500px] cursor-pointer"
+        className="mx-auto rounded-lg max-h-[500px] cursor-pointer mb-0"
         loading="lazy"
+        wrapperClassName="mx-auto"
       />
-      <span className="block text-center italic text-xs mt-2">
-        {alt}
+      <span className="block text-center italic text-xs">
+        [{alt}]
       </span>
     </Fragment>
   );

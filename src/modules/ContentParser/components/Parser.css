@@ -2,31 +2,30 @@
   max-width: none;
   line-height: 1.75;
   color: hsl(var(--bc));
-}
 
+  .twitter-tweet, .twitter-tweet-rendered {
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-.twitter-tweet, .twitter-tweet-rendered {
-  margin-right: auto;
-  margin-left: auto;
-}
+  .twitter-tweet {
+    padding: 16px;
+    border-radius: 16px;
+  }
 
-.twitter-tweet {
-  padding: 16px;
-  border-radius: 16px;
-}
+  .twitter-tweet[data-theme="dark"] {
+    color: white !important;
+  }
 
-.twitter-tweet[data-theme="dark"] {
-  color: white !important;
-}
+  .twitter-tweet[data-theme="dark"] a {
+    color: white !important;
+  }
 
-.twitter-tweet[data-theme="dark"] a {
-  color: white !important;
-}
+  .twitter-tweet[data-theme="light"] {
+    color: black !important;
+  }
 
-.twitter-tweet[data-theme="light"] {
-  color: black !important;
-}
-
-.twitter-tweet[data-theme="light"] a {
-  color: black !important;
+  .twitter-tweet[data-theme="light"] a {
+    color: black !important;
+  }
 }
