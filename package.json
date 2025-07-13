@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run rss:generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "ts-node": "sh -c 'ts-node -r tsconfig-paths/register ${0}'",
     "app:revalidate": "npm run ts-node ./src/scripts/app:revalidate.ts",
-    "cloudinary:sync": "npm run ts-node ./src/scripts/cloudinary:sync.ts",
-    "rss:generate": "npm run ts-node ./src/scripts/rss:generate.ts"
+    "cloudinary:sync": "npm run ts-node ./src/scripts/cloudinary:sync.ts"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
