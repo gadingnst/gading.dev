@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { NextConfig } from 'next';
 
-import headers from './headers.config';
-import webpack from './webpack.config';
+const headers = require('./headers.config');
+const webpack = require('./webpack.config');
 
 const nextConfig: NextConfig = {
   /* config options here */

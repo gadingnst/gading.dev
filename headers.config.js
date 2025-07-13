@@ -28,4 +28,4 @@ async function headers() {
   ];
 }
 
-export default headers;
+module.exports = headers;
