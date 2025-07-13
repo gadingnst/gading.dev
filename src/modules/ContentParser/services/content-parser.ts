@@ -46,6 +46,7 @@ export interface ContentBlogList {
 export interface MDContent {
   meta: ContentMeta;
   content: string;
+  source: string;
 }
 
 export interface MetaLocale {
@@ -101,7 +102,8 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
   }
   return {
     meta,
-    content
+    content,
+    source
   } as MDContent;
 }
 

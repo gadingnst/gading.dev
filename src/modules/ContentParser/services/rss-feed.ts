@@ -1,8 +1,10 @@
+import { Feed } from 'feed';
 import Fs from 'fs/promises';
+import { marked } from 'marked';
 
 import { AUTHOR_EMAIL, AUTHOR_FULLNAME, AUTHOR_NAME, AUTHOR_TWITTER } from '@/configs/author';
 import { BASE_URL, SITE_NAME } from '@/configs/sites';
-import { getAllBlogMeta } from '@/modules/ContentParser/services/content-parser';
+import { getAllBlogMeta, getContent } from '@/modules/ContentParser/services/content-parser';
 import dt from '@/packages/libs/DayJS/dt';
 import { I18n } from '@/packages/libs/I18n/interface';
 
@@ -11,7 +13,6 @@ import { I18n } from '@/packages/libs/I18n/interface';
  * @returns {Promise<void>}
  */
 async function generateRSSFeed(): Promise<void> {
-  const { Feed } = await import('feed');
   const blogList = await Promise.all(Object.keys(I18n).map(lang => getAllBlogMeta(lang)));
   const posts = blogList.flat(1).sort((a, b) => {
     const dateA = dt(a.meta.date);
@@ -42,17 +43,27 @@ async function generateRSSFeed(): Promise<void> {
     author
   });
 
-  posts.forEach((post) => {
-    const url = `${BASE_URL}/${post.locale}/blog/${post.meta.slugOriginal}`;
+  const feedItems = await Promise.all(
+    posts.map(async(post) => {
+      const url = `${BASE_URL}/${post.locale}/blog/${post.meta.slugOriginal}`;
+      const { source } = await getContent(post.meta.slugOriginal, post.locale);
+      return {
+        title: post.meta.title,
+        id: url,
+        link: url,
+        description: post.meta.description,
+        content: marked.parse(source),
+        author: [author],
+        contributor: [author],
+        date: dt(post.meta.date).toDate()
+      };
+    })
+  );
+
+  feedItems.forEach((item) => {
     feed.addItem({
-      title: post.meta.title,
-      id: url,
-      link: url,
-      description: post.meta.description,
-      // content: post.meta.description,
-      author: [author],
-      contributor: [author],
-      date: dt(post.meta.date).toDate()
+      ...item,
+      content: item.content.toString()
     });
   });
 
