@@ -43,7 +43,7 @@ async function generateRSSFeed(): Promise<void> {
   });
 
   posts.forEach((post) => {
-    const url = `${BASE_URL}/${post.locale}/${post.meta.slugOriginal}`;
+    const url = `${BASE_URL}/${post.locale}/blog/${post.meta.slugOriginal}`;
     feed.addItem({
       title: post.meta.title,
       id: url,
