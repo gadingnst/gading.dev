@@ -1,13 +1,14 @@
 import { notFound } from 'next/navigation';
 
-import withHomeLocales from '@/modules/Home/Home.locales';
+import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HomePage, { generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { isValidLanguage } from '@/packages/libs/I18n/utils';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
+import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';
 
 interface LangPageProps {
-  lang: string;
+  lang: I18nLocales;
 }
 
 export const dynamic = 'force-static';
@@ -16,25 +17,22 @@ export const dynamicParams = false;
 
 export const generateStaticParams = generateHomePathsWithLang;
 
-export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ params }) => {
-  const { lang } = await params;
-
-  if (!isValidLanguage(lang)) {
-    notFound();
-  }
-
-  const currentLang = lang as I18nLocales;
-  const content = withHomeLocales(currentLang);
-
-  return {
-    title: content.title,
-    description: content.description,
-    openGraph: {
-      title: content.title,
-      description: content.description,
-      locale: lang === 'id' ? 'id_ID' : 'en_US'
+export const metadata = withGenerateMetadata<LangPageProps>(async({ params }) => {
+  const { lang } = params;
+  if (!isValidLanguage(lang)) notFound();
+  const { meta } = await getContentMultiLanguage('home', lang);
+  return metadataBuilder({
+    locale: lang,
+    meta: {
+      slug: '/',
+      title: meta.title,
+      description: meta.description,
+      keywords: meta.keywords,
+      tags: meta.tags,
+      image: meta.image,
+      date: meta.date
     }
-  };
+  });
 });
 
 export default HomePage;

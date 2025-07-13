@@ -12,13 +12,14 @@ export const generateStaticParams = generateNowPathsDefault;
 export const generateMetadata = withGenerateMetadata(async() => {
   const content = await getContentMultiLanguage('now', 'en');
   return metadataBuilder({
-    locale: 'en',
     meta: {
       slug: '/now',
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image
+      image: content.meta.image,
+      tags: content.meta.tags,
+      date: content.meta.date
     }
   });
 });

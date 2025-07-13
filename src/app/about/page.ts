@@ -12,13 +12,14 @@ export const generateStaticParams = generateAboutPathsDefault;
 export const generateMetadata = withGenerateMetadata(async() => {
   const content = await getContentMultiLanguage('about', 'en');
   return metadataBuilder({
-    locale: 'en',
     meta: {
       slug: '/about',
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image
+      image: content.meta.image,
+      date: content.meta.date,
+      tags: content.meta.tags
     }
   });
 });
