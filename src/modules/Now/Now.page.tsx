@@ -1,3 +1,4 @@
+import { NextPageProps } from '@/@types/global';
 import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
@@ -17,8 +18,9 @@ export async function generateNowPathsDefault() {
   return [{}];
 }
 
-async function NowPage() {
-  const lang = await getLangugageServer();
+async function NowPage(props: NextPageProps<{ lang?: string }>) {
+  const params = await props.params;
+  const lang = params?.lang || await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('now', lang);
   const content = nowLocales(lang);
 

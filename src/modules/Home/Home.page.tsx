@@ -1,3 +1,4 @@
+import { NextPageProps } from '@/@types/global';
 import Banner from '@/modules/Common/components/Header/Banner';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import ContentParser from '@/modules/ContentParser/components/Parser';
@@ -23,7 +24,8 @@ export async function generateHomePathsDefault() {
   return [{}]; // Empty object for root path
 }
 
-async function HomePage({ params }: { params: { lang?: string } }) {
+async function HomePage(props: NextPageProps<{ lang?: string }>) {
+  const params = await props.params;
   const lang = params?.lang || await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('home', lang);
   const content = withHomeLocales(lang);

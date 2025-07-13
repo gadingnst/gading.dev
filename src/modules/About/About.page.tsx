@@ -1,3 +1,4 @@
+import { NextPageProps } from '@/@types/global';
 import aboutLocales from '@/modules/About/About.locales';
 import ContentInteraction from '@/modules/Common/components/Content/Interaction';
 import Banner from '@/modules/Common/components/Header/Banner';
@@ -16,8 +17,9 @@ export async function generateAboutPathsDefault() {
   return [{}];
 }
 
-async function AboutPage() {
-  const lang = await getLangugageServer();
+async function AboutPage(props: NextPageProps<{ lang?: string }>) {
+  const params = await props.params;
+  const lang = params?.lang || await getLangugageServer();
   const markdownContent = await getContentMultiLanguage('about', lang);
   const content = aboutLocales(lang);
 
