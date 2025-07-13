@@ -8,7 +8,7 @@ export const metadata = withMetadata({
   metadataBase: new URL('https://gading.dev'),
   title: {
     default: SITE_NAME,
-    template: `%s - ${SITE_NAME}`
+    template: `%s | ${SITE_NAME}`
   },
   manifest: '/site.webmanifest',
   robots: {

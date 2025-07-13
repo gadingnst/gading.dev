@@ -43,7 +43,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
 
   const metaTags: Metadata = {
     metadataBase: new URL(domain),
-    title: `${title} | ${AUTHOR_NAME}`,
+    title: title,
     description: description,
     keywords: combinedKeywords,
     authors: [{
@@ -51,7 +51,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       url: domain
     }],
     openGraph: {
-      title: `${title} | ${AUTHOR_NAME}`,
+      title: title,
       description: description,
       url: url,
       images: [
@@ -70,7 +70,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${AUTHOR_NAME}`,
+      title: title,
       description: description,
       creator: `@${AUTHOR_NAME}`,
       site: `@${AUTHOR_NAME}`,
