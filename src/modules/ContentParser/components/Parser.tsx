@@ -9,8 +9,8 @@ import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from '
 
 import cn from '@/designs/utils/cn';
 import Button from '@/packages/components/base/Buttons/Button';
+import LazyImage from '@/packages/components/base/Displays/LazyLoad/LazyImage';
 import Link from '@/packages/components/base/Navigations/Link';
-import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 import State from './StatefulMDX';
 
@@ -33,7 +33,7 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
   const { src, alt } = props;
   return (
     <Fragment>
-      <img
+      <LazyImage
         src={src}
         alt={alt}
         className="mx-auto rounded-lg max-h-[500px] cursor-pointer"
@@ -43,27 +43,6 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
         {alt}
       </span>
     </Fragment>
-  );
-};
-
-/**
- * handle Image showing in with NextImage
- */
-const NextContentImage: FunctionComponent<ContentImageProps> = (props) => {
-  const { src, alt, width, height, carousel } = props;
-  return (
-    <NextLink href={src} target="_blank">
-      <img
-        src={src}
-        alt={alt}
-        width={carousel ? width / 3 : width}
-        height={carousel ? height / 3 : height}
-        className={cn([
-          'mx-auto rounded-lg cursor-pointer my-2',
-          carousel && 'mx-1'
-        ])}
-      />
-    </NextLink>
   );
 };
 
@@ -120,8 +99,7 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
           State,
           TwitterScript,
           a: ContentLink,
-          img: ContentImage,
-          NextImage: NextContentImage
+          img: ContentImage
         }}
       />
     </div>

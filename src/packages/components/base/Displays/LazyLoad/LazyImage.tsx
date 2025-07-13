@@ -234,9 +234,7 @@ function LazyImage({
    * Render placeholder content
    */
   const renderPlaceholder = () => {
-    if (placeholder) {
-      return placeholder;
-    }
+    if (placeholder) return placeholder;
 
     if (placeholderSrc) {
       return (
