@@ -4,7 +4,7 @@ import withHomeLocales from '@/modules/Home/Home.locales';
 import HomePage, { generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { isValidLanguage } from '@/packages/libs/I18n/utils';
-import { withGenerateMetadata } from '@/packages/utils/metadata';
+import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
 
 interface LangPageProps {
   lang: string;
