@@ -1,0 +1,123 @@
+/* LazyImage Effects CSS */
+
+/* Blur Effect */
+.lazy-image-blur {
+  transition: filter 0.3s ease;
+}
+
+.lazy-image-blur-loading {
+  filter: blur(5px);
+}
+
+.lazy-image-blur-loaded {
+  filter: blur(0px);
+}
+
+.lazy-image-blur-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  transition: opacity 0.3s ease;
+}
+
+.lazy-image-wrapper-blur .lazy-image-blur-placeholder {
+  z-index: 1;
+}
+
+.lazy-image-wrapper-blur .lazy-image-blur {
+  z-index: 2;
+}
+
+/* Black and White Effect */
+.lazy-image-black-and-white {
+  transition: filter 0.3s ease;
+}
+
+.lazy-image-black-and-white-loading {
+  filter: grayscale(100%);
+}
+
+.lazy-image-black-and-white-loaded {
+  filter: grayscale(0%);
+}
+
+.lazy-image-black-and-white-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease;
+}
+
+.lazy-image-wrapper-black-and-white .lazy-image-black-and-white-placeholder {
+  z-index: 1;
+}
+
+.lazy-image-wrapper-black-and-white .lazy-image-black-and-white {
+  z-index: 2;
+}
+
+/* Opacity Effect */
+.lazy-image-opacity {
+  transition: opacity 0.3s ease;
+}
+
+.lazy-image-opacity-loading {
+  opacity: 0;
+}
+
+.lazy-image-opacity-loaded {
+  opacity: 1;
+}
+
+/* Wrapper Styles */
+.lazy-image-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.lazy-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive Images */
+.lazy-image-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-image-blur,
+  .lazy-image-black-and-white,
+  .lazy-image-opacity,
+  .lazy-image-blur-placeholder,
+  .lazy-image-black-and-white-placeholder {
+    transition: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.lazy-image-wrapper:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .lazy-image-blur-loading {
+    filter: blur(2px);
+  }
+
+  .lazy-image-blur-placeholder {
+    filter: blur(2px);
+  }
+}

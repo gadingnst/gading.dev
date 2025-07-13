@@ -8,7 +8,7 @@ date: 2019-05-07
 description: 'My bullshit motivation.'
 keywords: 'life, time, motivation'
 tags: ['time', 'motivation']
-image: '/media/banners/1.jpg'
+image: '/media/default-banners/1.jpg'
 ---
 
 The time when we feel perfect

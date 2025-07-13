@@ -8,7 +8,7 @@ date: 2019-08-03
 description: 'Apa yang harus aku lakukan pada bulan agustus ini ?'
 keywords: 'kampus, planning, rencana, wisuda, polsri'
 tags: ['campus', 'planning']
-image: '/media/banners/2.jpg'
+image: '/media/default-banners/2.jpg'
 ---
 
 Alih - alih masuk bulan agustus.. Ga terasa ini udah bulan agustus ke 3 ketika aku pertama kali masuk kampus, 3 tahun terasa lebih cepat. Namun banyak sekali pengalaman yang aku dapat dikampus ini, Coding, love, friends, knowledge dan lainnya.

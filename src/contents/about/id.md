@@ -3,7 +3,7 @@ title: "About"
 date: 2022-06-01
 description: "Hanya Lelaki biasa yang dapat mengubah ☕️ menjadi < /> yang cantik."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, who is gading, biodata gading, tentang gading"
-image: "/media/banners/1.jpg"
+image: "/media/default-banners/1.jpg"
 ---
 
 Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh-waktu*, dan juga dapat mengerjakan hal ***Fullstack*** dalam pekerjaan *Paruh-waktu/Freelance*.
@@ -43,12 +43,6 @@ Sebelum bertanya lebih lanjut, kamu bisa lihat-lihat halaman [Now](/now) untuk m
 Saya membangun situs ini menggunakan teknologi *JAMStack* dengan *Next.js*, kamu bisa melihat kode sumbernya [disini](https://github.com/gadingnst/gading.dev). Semua konten di situs ini sebagian besar ditulis menggunakan *Markdown* (tidak ada *database*). Jika kamu ingin membuat juga, saya menyarankan kamu untuk belajar tentang *JAMStack* terlebih dahulu, teknologi *JAMStack* sangat luas, ada banyak teknologi atau *framework* yang bisa kamu gunakan untuk membangun situs berbasis *JAMStack*, bukan hanya *Next.js* saja. *DYOR*.
 
 Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan dengan *performance* dan *SEO*. Oleh karena itu, saya akan menampilkan laporan *performance* website di halaman ini, dan akan selalu diperbarui secara berkala. Terima kasih kepada [Ankur Parihar](https://github.com/ankurparihar) karena telah membuat [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) yang dapat membuat laporan *performance* di situs ini secara otomatis. Berikut adalah laporan yang terakhir diupdate:
-
-##### Laporan *Performance* (Desktop)
-<PerformanceReportsDesktop />
-
-##### Laporan *Performance* (Mobile)
-<PerformanceReportsMobile />
 
 ---
 

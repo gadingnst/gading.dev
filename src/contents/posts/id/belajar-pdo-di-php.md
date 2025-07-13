@@ -8,7 +8,7 @@ date: 2018-10-26
 description: "Mengenal apa itu PDO dan bagaimana cara mengimplementasikannya"
 keywords: "php, pdo, belajar php, belajar PDO, PDO di PHP"
 tags: ["php", "pdo"]
-image: "/media/banners/2.jpg"
+image: "/media/default-banners/2.jpg"
 ---
 
 ### Apa itu PDO ?

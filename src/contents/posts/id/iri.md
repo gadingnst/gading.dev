@@ -8,7 +8,7 @@ date: 2020-04-22
 description: "Iri adalah sifat manusiawi, tidak ada yang salah dengan iri, tergantung konteks irinya. But just remember, we don't really know about others background."
 keywords: 'iri, thoughts, sifat manusiawi, programming, instagram, twitter'
 tags: ['iri', 'life', 'thoughts']
-image: '/media/banners/0.jpg'
+image: '/media/default-banners/0.jpg'
 ---
 
 ### Overview

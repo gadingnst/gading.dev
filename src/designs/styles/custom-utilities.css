@@ -1,0 +1,70 @@
+@layer utilities {
+  .base-container {
+    @apply max-w-5xl w-full mx-auto px-4;
+  }
+
+  .text-2xs {
+    font-size: 0.625rem;
+    line-height: 0.65rem;
+  }
+
+  .liquid-glass {
+    @apply backdrop-blur-xl backdrop-saturate-150 border border-base-content/10;
+    background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
+  }
+
+  .liquid-glass-shadow {
+    @apply backdrop-blur-xl backdrop-saturate-150 border border-base-content/10 shadow-2xl;
+    background-color: color-mix(in oklab, var(--color-base-100) 20%, transparent);
+  }
+
+  /* Text shadow utilities for better contrast on liquid glass */
+  .text-shadow {
+    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 2px 2px 4px color-mix(in srgb, var(--color-base-100) 40%, transparent),
+                 1px 1px 2px color-mix(in srgb, var(--color-base-100) 20%, transparent);
+  }
+
+  /* Text stroke utilities for enhanced readability */
+  .text-stroke {
+    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
+    text-stroke: 0.5px color-mix(in srgb, var(--color-base-100) 50%, transparent);
+  }
+
+  .text-stroke-light {
+    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
+    text-stroke: 0.3px color-mix(in srgb, var(--color-base-content) 70%, transparent);
+  }
+
+  /* Combined text contrast utilities */
+  .text-contrast {
+    text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-base-100) 30%, transparent);
+    -webkit-text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
+    text-stroke: 0.3px color-mix(in srgb, var(--color-base-100) 20%, transparent);
+  }
+
+  .text-contrast-light {
+    text-shadow: 1px 1px 3px color-mix(in srgb, var(--color-base-content) 50%, transparent),
+                 0px 0px 8px color-mix(in srgb, var(--color-base-content) 30%, transparent);
+    -webkit-text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
+    text-stroke: 0.5px color-mix(in srgb, var(--color-base-content) 40%, transparent);
+  }
+
+  .footer-custom {
+    min-height: 200px;
+    &::before {
+      content: "";
+      transform: skew(0, -10.25deg);
+      @screen md {
+        transform: skew(0, -5.25deg);
+      }
+      @apply
+        absolute left-0 right-0 transition-colors duration-200
+        bg-base-200 top-[150px] h-[2000px];
+    }
+    @apply relative overflow-hidden mt-14;
+  }
+}
