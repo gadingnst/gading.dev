@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run rss:generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "ts-node": "sh -c 'ts-node ${0}'",
-    "app:revalidate": "ts-node ./src/scripts/app:revalidate.ts",
-    "cloudinary:sync": "ts-node ./src/scripts/cloudinary:sync.ts"
+    "ts-node": "sh -c 'ts-node -r tsconfig-paths/register ${0}'",
+    "app:revalidate": "npm run ts-node ./src/scripts/app:revalidate.ts",
+    "cloudinary:sync": "npm run ts-node ./src/scripts/cloudinary:sync.ts",
+    "rss:generate": "npm run ts-node ./src/scripts/rss:generate.ts"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
@@ -55,6 +56,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.1.11",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5",
     "xml2js": "^0.6.2"
   }

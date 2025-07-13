@@ -28,10 +28,6 @@ function Footer() {
             {AUTHOR_NAME}
           </Link>
           <div className="text-base-content mt-2">
-            <Link className="inline-block text-primary" href="/docs/colors">
-              Colors System
-            </Link>
-            <span className="inline-block mx-1">&bull;</span>
             <Link className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
               Feed RSS
             </Link>
