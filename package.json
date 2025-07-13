@@ -39,6 +39,7 @@
     "eslint-config-next": "15.2.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "feed": "^5.1.0",
     "gray-matter": "^4.0.3",
     "image-extensions": "^1.1.0",
     "mdx-bundler": "^9.2.1",
