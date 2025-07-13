@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
 import Script, { ScriptProps } from 'next/script';
-import { Fragment, FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
+import { FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
 import Button from '@/packages/components/base/Buttons/Button';
@@ -31,19 +31,19 @@ interface ContentImageProps {
  */
 const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
   const { src, alt } = props;
+
   return (
-    <Fragment>
+    <figure className="flex flex-col items-center justify-center my-4">
       <LazyImage
         src={src}
         alt={alt}
-        className="mx-auto rounded-lg max-h-[500px] cursor-pointer mb-0"
+        className="rounded-lg max-h-[500px] cursor-pointer mb-0"
         loading="lazy"
-        wrapperClassName="mx-auto"
       />
-      <span className="block text-center italic text-xs">
+      <figcaption className="block text-center italic text-xs mt-2 text-base-content">
         [{alt}]
-      </span>
-    </Fragment>
+      </figcaption>
+    </figure>
   );
 };
 
