@@ -2,9 +2,7 @@
 export enum AppThemes {
   SYSTEM = 'system',
   LIGHT = 'light',
-  DARK = 'dark',
-  LIGHT_COLORBLIND = 'light-colorblind',
-  DARK_COLORBLIND = 'dark-colorblind',
+  DARK = 'dark'
 };
 
 export type AppTheme = `${AppThemes}`;

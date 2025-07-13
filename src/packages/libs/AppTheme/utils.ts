@@ -1,10 +1,9 @@
-import { Eye, Monitor, Moon, Sun } from 'lucide-react';
+import { Monitor, Moon, Sun } from 'lucide-react';
 
 import { AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
 
 export const DARK_THEMES = [
-  AppThemes.DARK,
-  AppThemes.DARK_COLORBLIND
+  AppThemes.DARK
 ];
 
 export function isThemeDark(theme: AppTheme) {
@@ -20,14 +19,8 @@ export function getThemeIcon(theme: string) {
   switch (theme) {
     case AppThemes.LIGHT:
       return Sun;
-    case AppThemes.LIGHT_COLORBLIND:
-      return Eye;
     case AppThemes.DARK:
       return Moon;
-    case AppThemes.DARK_COLORBLIND:
-      return Eye;
-    case AppThemes.SYSTEM:
-      return Monitor;
     default:
       return Monitor;
   }
@@ -44,12 +37,6 @@ export function getThemeLabel(theme: string) {
       return 'Light';
     case AppThemes.DARK:
       return 'Dark';
-    case AppThemes.LIGHT_COLORBLIND:
-      return 'Light Colorblind';
-    case AppThemes.DARK_COLORBLIND:
-      return 'Dark Colorblind';
-    case AppThemes.SYSTEM:
-      return 'System';
     default:
       return 'System';
   }
