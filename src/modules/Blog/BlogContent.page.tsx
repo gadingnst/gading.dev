@@ -5,19 +5,39 @@ import Banner from '@/modules/Common/components/Header/Banner';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getAllBlogPaths, getContent } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
+import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Params {
-  lang: string;
   slug: string;
 }
 
-export async function generateStaticBlogPaths() {
+interface ParamsWithLang extends Params {
+  lang: string;
+}
+
+export async function generateBlogPathsWithLang() {
   const paths = await getAllBlogPaths();
   return paths;
 }
 
-async function BlogContentPage({ params }: NextPageProps<Params>) {
-  const { slug, lang } = await params;
+export async function generateBlogPathsDefault() {
+  const paths = await generateBlogPathsWithLang();
+  return paths.reduce((acc, path) => {
+    if (path.lang === getDefaultLanguage()) {
+      acc.push({ slug: path.slug });
+    }
+    return acc;
+  }, [] as { slug: string }[]);
+}
+
+async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>) {
+  const resolvedParams = await params;
+
+  const lang = 'lang' in resolvedParams
+    ? resolvedParams.lang
+    : getDefaultLanguage();
+
+  const slug = resolvedParams.slug;
   const content = await getContent(slug, lang);
 
   return (

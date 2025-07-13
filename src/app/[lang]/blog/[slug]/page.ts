@@ -1,9 +1,9 @@
-import BlogContentPage, { generateStaticBlogPaths } from '@/modules/Blog/BlogContent.page';
+import BlogContentPage, { generateBlogPathsWithLang } from '@/modules/Blog/BlogContent.page';
 
 export const dynamic = 'force-static';
 
 export const dynamicParams = false;
 
-export const generateStaticParams = generateStaticBlogPaths;
+export const generateStaticParams = generateBlogPathsWithLang;
 
 export default BlogContentPage;
