@@ -21,7 +21,7 @@ interface IMetaBuilder {
 }
 
 const domain = BASE_URL;
-const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.5 });
+const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.3 });
 
 export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
   const {
