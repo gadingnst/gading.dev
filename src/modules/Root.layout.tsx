@@ -1,8 +1,10 @@
 import '@/designs/styles/globals.css';
 
 import { Courgette, Poppins } from 'next/font/google';
+import Script from 'next/script';
 import { PropsWithChildren } from 'react';
 
+import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
 import Footer from '@/modules/Common/components/Footer/Footer';
 import Header from '@/modules/Common/components/Header/Header';
 import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
@@ -40,6 +42,9 @@ async function RootLayout({ children }: PropsWithChildren) {
         {children}
         <Footer />
         <AppThemeInitializer />
+        {!IS_DEV && (
+          <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
+        )}
       </body>
     </html>
   );
