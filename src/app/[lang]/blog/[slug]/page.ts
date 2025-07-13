@@ -11,7 +11,7 @@ export const dynamicParams = false;
 export const generateStaticParams = generateBlogPathsWithLang;
 
 export const generateMetadata = withGenerateMetadata<{ slug: string; lang: I18nLocales; }>(async({ params }) => {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   const content = await getContent(slug, lang);
   return metadataBuilder({
     locale: lang,
