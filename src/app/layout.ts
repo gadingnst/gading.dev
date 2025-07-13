@@ -1,17 +1,29 @@
 import '@/designs/styles/globals.css';
 
-import withHomeLocales from '@/modules/Home/Home.locales';
+import { GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
 import RootLayout from '@/modules/Root.layout';
-import { withMetadata } from '@/packages/utils/metadata';
-
-const content = withHomeLocales('en');
+import { withMetadata } from '@/packages/utils/metadata/metadata';
 
 export const metadata = withMetadata({
-  title: content.title,
-  description: content.description,
-  openGraph: {
-    title: content.title,
-    description: content.description
+  metadataBase: new URL('https://gading.dev'),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`
+  },
+  manifest: '/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en',
+      'id-ID': '/id'
+    }
+  },
+  verification: {
+    google: GOOGLE_VERIFICATION_ID
   }
 });
 

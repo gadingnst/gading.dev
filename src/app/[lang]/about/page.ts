@@ -1,9 +1,8 @@
-import { Metadata } from 'next';
-
-import aboutLocales from '@/modules/About/About.locales';
 import AboutPage, { generateAboutPathsWithLang } from '@/modules/About/About.page';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { I18nLocales } from '@/packages/libs/I18n/interface';
+import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
+import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';
 
 export const dynamic = 'force-static';
 
@@ -11,28 +10,21 @@ export const dynamicParams = false;
 
 export const generateStaticParams = generateAboutPathsWithLang;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const lang = await getLangugageServer();
+export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales; }>(async({ params }) => {
+  const { lang } = params;
   const content = await getContentMultiLanguage('about', lang);
-  const t = aboutLocales(lang);
-
-  return {
-    title: content.meta.title || t.pageTitle,
-    description: content.meta.description || t.metaDescription,
-    keywords: content.meta.keywords,
-    openGraph: {
-      title: content.meta.title || t.pageTitle,
-      description: content.meta.description || t.metaDescription,
-      images: content.meta.image ? [content.meta.image] : undefined,
-      type: 'website'
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: content.meta.title || t.pageTitle,
-      description: content.meta.description || t.metaDescription,
-      images: content.meta.image ? [content.meta.image] : undefined
+  return metadataBuilder({
+    locale: lang,
+    meta: {
+      slug: '/about',
+      title: content.meta.title,
+      description: content.meta.description,
+      keywords: content.meta.keywords,
+      image: content.meta.image,
+      tags: content.meta.tags,
+      date: content.meta.date
     }
-  };
-}
+  });
+});
 
 export default AboutPage;

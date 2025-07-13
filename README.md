@@ -1,7 +1,6 @@
 # 👨‍💻 Gading's Hideout
 [![Lighthouse](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml)
 [![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
-[![Continuous Integration](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml/badge.svg)](https://github.com/gadingnst/gading.dev/actions/workflows/integration.yml)
 
 > My Personal Homepage & Blog site with NextJS : https://gading.dev
 
@@ -26,8 +25,7 @@
 - [x] [On Demand Revalidation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation-beta)
 - [x] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
-- [ ] Use `app` dir with RSC in Next 13
-- [ ] Push notifications support with [OneSignal](https://onesignal.com/pricing) and [Zapier](https://zapier.com/apps/onesignal/integrations/rss/8120/send-onesignal-push-notifications-for-new-items-in-an-rss-feed) Integration
+- [x] Use `app` dir with RSC in Next 13
 - [ ] PWA / Offline-first
 - [ ] Search posts
 - [ ] Sorting posts by date & tags

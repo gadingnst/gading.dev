@@ -1,14 +1,6 @@
 import createContentLocales from '@/packages/libs/I18n/locales';
 
 const withHomeLocales = createContentLocales({
-  title: {
-    en: 'Home',
-    id: 'Beranda'
-  },
-  description: {
-    en: 'Gading is a software engineer specialized in frontend development with passion for modern web technologies.',
-    id: 'Gading adalah software engineer yang berspesialisasi dalam pengembangan frontend dengan passion untuk teknologi web modern.'
-  },
   myBlog: {
     en: 'Read my blog',
     id: 'Baca blog saya'
