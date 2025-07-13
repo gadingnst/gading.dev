@@ -54,6 +54,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       title: `${title} | ${SITE_NAME}`,
       description: description,
       url: url,
+      siteName: SITE_NAME,
       images: [
         {
           url: featuredImage,
