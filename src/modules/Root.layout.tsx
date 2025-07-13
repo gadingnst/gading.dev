@@ -4,11 +4,14 @@ import { Courgette, Poppins } from 'next/font/google';
 import Script from 'next/script';
 import { PropsWithChildren } from 'react';
 
+import { NextPageProps } from '@/@types/global';
 import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
 import Footer from '@/modules/Common/components/Footer/Footer';
 import Header from '@/modules/Common/components/Header/Header';
+import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import TopLoader from '@/packages/components/base/Loaders/TopLoader';
 import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
+import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -26,9 +29,15 @@ const courgette = Courgette({
  * Layout for language-specific routes
  * Validates language parameter and renders header with language selector
  */
-async function RootLayout({ children }: PropsWithChildren) {
+async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProps>) {
+  const params = await props.params;
+  const lang = params.lang || await getLangugageServer();
+
+  const currentLang = lang as I18nLocales;
+  const htmlLang = I18n[currentLang].replace('_', '-').toLowerCase();
+
   return (
-    <html>
+    <html lang={htmlLang}>
       <body className={`${poppins.variable} ${courgette.variable} antialiased`}>
         <TopLoader color="primary" height={3} showShadow />
         <Header />
