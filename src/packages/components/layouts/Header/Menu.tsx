@@ -65,7 +65,7 @@ export default function Menu() {
               disabled={isActive}
               className={cn([
                 'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
-                'text-white hover:text-white hover:bg-white/10',
+                'text-white hover:text-white hover:bg-white/15',
                 isActive
                   ? 'bg-white/60 text-black border-b-2 border-b-primary/50'
                   : ''

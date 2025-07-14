@@ -79,8 +79,8 @@ export default function Dropdown({
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300',
-          liquidGlass && 'liquid-glass-shadow',
-          disabled && 'btn-disabled'
+          liquidGlass && 'liquid-glass-shadow hover:bg-white/15',
+          disabled && 'btn-disabled opacity-60 cursor-not-allowed'
         ])}
         onClick={handleToggle}
       >
