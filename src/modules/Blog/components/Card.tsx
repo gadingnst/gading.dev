@@ -49,7 +49,7 @@ function BlogCard(_props: BlogCardProps) {
 
       <div className="flex flex-col flex-1 px-3 pb-4">
         {/* Meta Information */}
-        <BlogContentInfo meta={blog} />
+        <BlogContentInfo meta={blog} className="text-base-content/60" />
 
         <div className="divider my-2" />
 

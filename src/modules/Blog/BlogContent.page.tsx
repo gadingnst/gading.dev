@@ -55,7 +55,7 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
                 <p className="text-sm sm:text-base mt-4">
                   {content.meta.description}
                 </p>
-                <BlogContentInfo className="mt-3 mb-0 text-base-content/70" meta={content.meta} />
+                <BlogContentInfo className="mt-3 mb-0 text-white/70" meta={content.meta} />
               </div>
             </div>
           </section>

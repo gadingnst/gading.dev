@@ -15,7 +15,7 @@ function BlogContentInfo({ meta, className }: Props) {
   return (
     <div
       className={cn([
-        'flex items-center justify-center text-xs text-base-content/60 gap-x-2',
+        'flex items-center justify-center text-xs gap-x-2',
         className
       ])}
     >
