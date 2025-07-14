@@ -3,6 +3,7 @@ import useStore from 'swr-global-state';
 
 import useMounted from '@/packages/hooks/useMounted';
 import { APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
+import { isThemeDark } from '@/packages/libs/AppTheme/utils';
 import CookieStoragePersistor from '@/packages/libs/SWRGlobalState/Cookie.persistor';
 
 /**
@@ -33,6 +34,10 @@ function useAppTheme(initial = AppThemes.SYSTEM) {
     return theme;
   }, [theme, isSystemDark]);
 
+  const isDark = useMemo(() => {
+    return isThemeDark(appTheme);
+  }, [appTheme]);
+
   const setTheme = useCallback((theme: AppTheme) => {
     setAppTheme(theme);
   }, [setAppTheme]);
@@ -55,7 +60,8 @@ function useAppTheme(initial = AppThemes.SYSTEM) {
   return {
     appTheme,
     setTheme,
-    isSystemDark
+    isSystemDark,
+    isDark
   };
 }
 

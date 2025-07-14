@@ -11,6 +11,35 @@ import useLangugage from '@/packages/libs/I18n/i18n.client';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 
+interface LanguageItemProps {
+  href: string;
+  isActive: boolean;
+  flag: string;
+  label: string;
+}
+
+function LanguageItem(_props: LanguageItemProps) {
+  const { href, isActive, flag, label } = _props;
+  return (
+    <li>
+      <NextLink
+        href={href}
+        disabled={isActive}
+        className={cn([
+          'flex items-center gap-3 transition-all duration-300',
+          isActive ? [
+            'active cursor-default bg-base-200 text-base-content font-semibold',
+            'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
+          ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
+        ])}
+      >
+        <span className="text-lg">{flag}</span>
+        <span>{label}</span>
+      </NextLink>
+    </li>
+  );
+}
+
 function LanguageSelector() {
   const pathname = usePathname();
   const currentLang = useLangugage();
@@ -47,48 +76,27 @@ function LanguageSelector() {
       return Object.keys(I18n).map((lang) => {
         const locale = lang as I18nLocales;
         const isActive = locale === currentLang;
-
         return (
-          <li key={locale}>
-            <NextLink
-              href={getLanguageUrl(locale)}
-              disabled={isActive}
-              onClick={() => setIsDropdownOpen(false)}
-              className={cn([
-                'flex items-center gap-3 transition-all duration-300',
-                isActive ? [
-                  'active cursor-default bg-base-200 text-base-content font-semibold',
-                  'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-                ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
-              ])}
-            >
-              <span className="text-lg">{getLanguageFlag(locale)}</span>
-              <span>{getLanguageLabel(locale)}</span>
-            </NextLink>
-          </li>
+          <LanguageItem
+            key={locale}
+            href={getLanguageUrl(locale)}
+            isActive={isActive}
+            flag={getLanguageFlag(locale)}
+            label={getLanguageLabel(locale)}
+          />
         );
       });
     }
     return contentSlugByLanguages.map((_cSlug) => {
       const isActive = _cSlug.code === currentLang;
       return (
-        <li key={_cSlug.code}>
-          <NextLink
-            href={_cSlug.href}
-            disabled={isActive}
-            onClick={() => setIsDropdownOpen(false)}
-            className={cn([
-              'flex items-center gap-3 transition-all duration-300',
-              isActive ? [
-                'active cursor-default bg-base-200 text-base-content font-semibold',
-                'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-              ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
-            ])}
-          >
-            <span className="text-lg">{_cSlug.flag}</span>
-            <span>{_cSlug.label}</span>
-          </NextLink>
-        </li>
+        <LanguageItem
+          key={_cSlug.code}
+          href={_cSlug.href}
+          isActive={isActive}
+          flag={_cSlug.flag}
+          label={_cSlug.label}
+        />
       );
     });;
   };
@@ -98,7 +106,7 @@ function LanguageSelector() {
       disabled={isSlugSingleLanguage}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
-      className="max-w-[100px]"
+      dropdownClassName="max-w-28"
       trigger={
         <>
           <span className="text-lg">{getLanguageFlag(currentLang)}</span>

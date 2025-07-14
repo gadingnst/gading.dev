@@ -31,7 +31,7 @@ function BlogCard(_props: BlogCardProps) {
         {/* Blog Image */}
         {blog.image && (
           <div className="relative w-full h-48 rounded-t-lg overflow-hidden bg-base-300">
-            <div className="transition-transform duration-300 ease-in-out group-hover:scale-110 w-full h-full">
+            <div className="w-full h-full">
               <LazyImage
                 src={blog.image}
                 alt={blog.title}
@@ -54,7 +54,7 @@ function BlogCard(_props: BlogCardProps) {
         <div className="divider my-2" />
 
         {/* Description */}
-        <p className="text-neutral-content/60 text-center text-xs md:text-sm mb-4 line-clamp-3 flex-1">
+        <p className="text-neutral-content/80 text-center text-xs md:text-sm mb-4 line-clamp-3 flex-1">
           {blog.description}
         </p>
 
@@ -64,7 +64,7 @@ function BlogCard(_props: BlogCardProps) {
             {blog.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-primary/10 text-primary rounded-full"
+                className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-accent/10 text-accent rounded-full"
               >
                 <Tag className="w-3 h-3" />
                 {tag}

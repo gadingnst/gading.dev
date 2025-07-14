@@ -52,10 +52,12 @@ export default function AppThemeSelector() {
               onClick={() => handleThemeChange(option.value)}
               className={cn([
                 'flex items-center gap-3 transition-all duration-300',
-                isActive ? [
+                'cursor-pointer hover:bg-base-200/50 hover:shadow-primary',
+                isActive && [
                   'active cursor-default bg-base-200 text-base-content font-semibold',
-                  'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-                ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
+                  'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20',
+                  'opacity-60 pointer-events-none cursor-not-allowed'
+                ]
               ])}
               disabled={isActive}
             >

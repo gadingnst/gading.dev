@@ -51,13 +51,6 @@ export default function Menu() {
     return pathname.includes(route);
   };
 
-  /**
-   * Handle mobile menu item click
-   */
-  const handleMobileMenuClick = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <>
       {/* Desktop Menu */}
@@ -70,6 +63,7 @@ export default function Menu() {
               key={item.href}
               withCurrentLocale
               href={item.href}
+              disabled={isActive}
               className={cn([
                 'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
                 'text-base-content text-shadow',
@@ -105,13 +99,13 @@ export default function Menu() {
                 <NextLink
                   href={item.href}
                   disabled={isActive}
-                  onClick={handleMobileMenuClick}
                   className={cn([
                     'flex items-center gap-3 transition-all duration-300',
-                    isActive ? [
+                    'cursor-pointer hover:bg-base-200/50 hover:shadow-primary',
+                    isActive && [
                       'active cursor-default bg-base-200 text-base-content font-semibold',
                       'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-                    ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
+                    ]
                   ])}
                 >
                   <item.icon className={cn([

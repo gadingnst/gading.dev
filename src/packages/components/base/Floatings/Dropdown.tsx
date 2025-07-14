@@ -84,10 +84,12 @@ export default function Dropdown({
       >
         {trigger}
       </div>
-      <ul className={cn([
-        'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg text-contrast',
-        dropdownClassName
-      ])}>
+      <ul
+        className={cn([
+          'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg text-contrast gap-y-1.5',
+          dropdownClassName
+        ])}
+      >
         {children}
       </ul>
     </div>
