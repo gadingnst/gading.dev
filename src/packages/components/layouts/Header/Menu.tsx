@@ -46,7 +46,6 @@ export default function Menu() {
       // For home route, check if pathname is exactly '/' or starts with language prefix only
       return pathname === '/' || pathname === `/${currentLang}` || pathname === '/en' || pathname === '/id';
     }
-
     // For other routes, check if pathname contains the route
     return pathname.includes(route);
   };
@@ -93,11 +92,11 @@ export default function Menu() {
           }
         >
           {menuItems.map((item) => {
-            const isActive = pathname === item.href;
-
+            const isActive = isActiveRoute(item.href);
             return (
               <li key={item.href}>
                 <NextLink
+                  withCurrentLocale
                   href={item.href}
                   disabled={isActive}
                   className={cn([
