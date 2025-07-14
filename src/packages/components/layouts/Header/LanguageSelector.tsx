@@ -27,10 +27,11 @@ function LanguageItem(_props: LanguageItemProps) {
         disabled={isActive}
         className={cn([
           'flex items-center gap-3 transition-all duration-300',
-          isActive ? [
-            'active cursor-default bg-base-200 text-base-content font-semibold',
-            'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
-          ] : 'cursor-pointer hover:bg-base-200/50 hover:shadow-primary'
+          'cursor-pointer hover:bg-white/35 hover:shadow-primary',
+          isActive && [
+            'active cursor-default bg-white text-black font-semibold',
+            'border-l-4 border-primary/75 shadow-lg shadow-white/20'
+          ]
         ])}
       >
         <span className="text-lg">{flag}</span>
@@ -103,6 +104,7 @@ function LanguageSelector() {
 
   return (
     <Dropdown
+      liquidGlass
       disabled={isSlugSingleLanguage}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}

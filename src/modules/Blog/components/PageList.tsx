@@ -21,11 +21,11 @@ async function BlogPageList({ pageCurrent = 1, lang: propLang }: Props) {
       <Banner bgImage="/media/default-banners/5.jpg">
         <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10">
-            <div className="liquid-glass-shadow text-base-content rounded-2xl p-8">
-              <h1 className="text-contrast text-2xl md:text-4xl font-bold">
+            <div className="liquid-glass-shadow rounded-2xl p-8">
+              <h1 className="text-2xl md:text-4xl font-bold">
                 Blog
               </h1>
-              <p className="text-base sm:text-lg mt-4 text-shadow">
+              <p className="text-base sm:text-lg mt-4">
                 {content.desc}
               </p>
             </div>

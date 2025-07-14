@@ -54,7 +54,7 @@ export default function Menu() {
   return (
     <>
       {/* Desktop Menu */}
-      <nav className="hidden items-center rounded-full liquid-glass md:flex">
+      <nav className="hidden items-center rounded-full liquid-glass-shadow md:flex">
         {menuItems.map((item) => {
           const isActive = isActiveRoute(item.href);
 
@@ -66,9 +66,9 @@ export default function Menu() {
               disabled={isActive}
               className={cn([
                 'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
-                'text-base-content text-shadow',
+                'text-white hover:text-white hover:bg-white/10',
                 isActive
-                  ? 'bg-base-100/50 border-b-2 border-b-primary/50'
+                  ? 'bg-white/60 text-black border-b-2 border-b-primary/50'
                   : ''
               ])}
             >
@@ -81,6 +81,7 @@ export default function Menu() {
       {/* Mobile Menu */}
       <div className="md:hidden">
         <Dropdown
+          liquidGlass
           open={isMobileMenuOpen}
           onOpenChange={setIsMobileMenuOpen}
           trigger={
@@ -101,16 +102,16 @@ export default function Menu() {
                   disabled={isActive}
                   className={cn([
                     'flex items-center gap-3 transition-all duration-300',
-                    'cursor-pointer hover:bg-base-200/50 hover:shadow-primary',
+                    'cursor-pointer hover:bg-white/35 hover:shadow-primary',
                     isActive && [
-                      'active cursor-default bg-base-200 text-base-content font-semibold',
-                      'border-l-4 border-base-content/30 shadow-lg shadow-base-content/20'
+                      'active cursor-default bg-white text-black font-semibold',
+                      'border-l-4 border-primary/75 shadow-lg shadow-white/20'
                     ]
                   ])}
                 >
                   <item.icon className={cn([
-                    'w-4 h-4 transition-all duration-300',
-                    isActive ? 'text-base-content drop-shadow-sm' : 'text-current'
+                    'w-4 h-4 transition-all duration-300 text-white',
+                    isActive ? 'text-black drop-shadow-sm' : 'text-current'
                   ])} />
                   <span>{item.label}</span>
                 </NextLink>

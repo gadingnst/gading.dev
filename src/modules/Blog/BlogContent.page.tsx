@@ -48,11 +48,11 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
         <Banner bgImage={content.meta.image}>
           <section className="font-serif flex flex-col h-full items-center justify-center text-center">
             <div className="base-container relative z-10">
-              <div className="liquid-glass-shadow text-base-content rounded-2xl p-8">
-                <h1 className="text-contrast text-xl md:text-2xl font-bold">
+              <div className="liquid-glass-shadow rounded-2xl p-8">
+                <h1 className="text-xl md:text-2xl font-bold">
                   {content.meta.title}
                 </h1>
-                <p className="text-sm sm:text-base mt-4 text-shadow">
+                <p className="text-sm sm:text-base mt-4">
                   {content.meta.description}
                 </p>
                 <BlogContentInfo className="mt-3 mb-0 text-base-content/70" meta={content.meta} />

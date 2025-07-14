@@ -13,6 +13,7 @@ export interface DropdownProps {
   position?: 'start' | 'end';
   open?: boolean;
   disabled?: boolean;
+  liquidGlass?: boolean;
   // eslint-disable-next-line no-unused-vars
   onOpenChange?: (open: boolean) => void;
 }
@@ -26,6 +27,7 @@ export default function Dropdown({
   children,
   className,
   dropdownClassName,
+  liquidGlass,
   position = 'end',
   open: controlledOpen,
   disabled = false,
@@ -76,8 +78,8 @@ export default function Dropdown({
         tabIndex={disabled ? -1 : 0}
         role="button"
         className={cn([
-          'btn btn-ghost btn-sm transition-all duration-300 liquid-glass',
-          'text-base-content hover:text-base-content hover:bg-base-200/50 hover:shadow-primary hover:shadow-xl text-shadow',
+          'btn btn-ghost btn-sm transition-all duration-300',
+          liquidGlass && 'liquid-glass-shadow',
           disabled && 'btn-disabled'
         ])}
         onClick={handleToggle}
@@ -86,7 +88,8 @@ export default function Dropdown({
       </div>
       <ul
         className={cn([
-          'dropdown-content mt-1 menu liquid-glass rounded-box z-[1] w-52 p-2 shadow-lg text-contrast gap-y-1.5',
+          'dropdown-content mt-1 menu rounded-box z-[1] w-52 p-2 shadow-lg gap-y-1.5',
+          liquidGlass && 'liquid-glass-shadow',
           dropdownClassName
         ])}
       >
