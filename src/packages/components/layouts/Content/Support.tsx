@@ -3,8 +3,8 @@
 import { useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
-import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
 
 const supportLinks = [

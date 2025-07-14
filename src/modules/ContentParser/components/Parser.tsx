@@ -1,6 +1,5 @@
 'use client';
 
-import './Parser.css';
 import 'katex/dist/katex.min.css';
 
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';

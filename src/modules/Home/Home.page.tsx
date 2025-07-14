@@ -1,11 +1,11 @@
 import { NextPageProps } from '@/@types/global';
-import Banner from '@/modules/Common/components/Header/Banner';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import generateRSSFeed from '@/modules/ContentParser/services/rss-feed';
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import Banner from '@/packages/components/layouts/Header/Banner';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 

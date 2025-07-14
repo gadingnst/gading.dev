@@ -6,11 +6,11 @@ import { PropsWithChildren } from 'react';
 
 import { NextPageProps } from '@/@types/global';
 import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
-import Footer from '@/modules/Common/components/Footer/Footer';
-import Header from '@/modules/Common/components/Header/Header';
-import { getLangugageServer } from '@/modules/Common/libs/i18n/i18n.server';
 import TopLoader from '@/packages/components/base/Loaders/TopLoader';
+import Footer from '@/packages/components/layouts/Footer/Footer';
+import Header from '@/packages/components/layouts/Header/Header';
 import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
+import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
 const poppins = Poppins({

@@ -4,7 +4,7 @@ import Link, { type LinkProps } from 'next/link';
 import type { AnchorHTMLAttributes, PropsWithChildren } from 'react';
 
 import cn from '@/designs/utils/cn';
-import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
+import useLangugage from '@/packages/libs/I18n/i18n.client';
 import { getLocalizedPathname } from '@/packages/libs/I18n/utils';
 
 type NextLinkProps = PropsWithChildren<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>

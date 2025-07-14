@@ -1,11 +1,11 @@
 import { NextPageProps } from '@/@types/global';
 import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
 import BlogContentSlugInitializer from '@/modules/Blog/components/ContentSlugInitializer';
-import ContentInteraction from '@/modules/Common/components/Content/Interaction';
-import Banner from '@/modules/Common/components/Header/Banner';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getAllBlogPaths, getContent } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
+import ContentInteraction from '@/packages/components/layouts/Content/Interaction';
+import Banner from '@/packages/components/layouts/Header/Banner';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Params {

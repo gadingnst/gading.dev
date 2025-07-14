@@ -1,10 +1,10 @@
 import { NextPageProps } from '@/@types/global';
-import ContentInteraction from '@/modules/Common/components/Content/Interaction';
-import Banner from '@/modules/Common/components/Header/Banner';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
+import ContentInteraction from '@/packages/components/layouts/Content/Interaction';
+import Banner from '@/packages/components/layouts/Header/Banner';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 

@@ -15,15 +15,15 @@ interface ContentSuspenseProps {
   fallback: ReactNode;
 }
 
-const ContentShare = dynamic(() => import('@/modules/Common/components/Content/Share'), {
+const ContentShare = dynamic(() => import('@/packages/components/layouts/Content/Share'), {
   ssr: false
 });
 
-const ContentSupport = dynamic(() => import('@/modules/Common/components/Content/Support'), {
+const ContentSupport = dynamic(() => import('@/packages/components/layouts/Content/Support'), {
   ssr: false
 });
 
-const ContentDisqus = dynamic(() => import('@/modules/Common/components/Content/Disqus'), {
+const ContentDisqus = dynamic(() => import('@/packages/components/layouts/Content/Disqus'), {
   ssr: false
 });
 

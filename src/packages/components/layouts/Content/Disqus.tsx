@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 
 import { AUTHOR_NAME } from '@/configs/author';
 import { DISQUS_SHORTNAME, PRODUCTION_URL } from '@/configs/sites';
-import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import LazyLoadComponent from '@/packages/components/base/Displays/LazyLoad/LazyLoadComponent';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
+import useLangugage from '@/packages/libs/I18n/i18n.client';
 
 interface Props {
   path: string;

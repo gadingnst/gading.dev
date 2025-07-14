@@ -120,6 +120,7 @@ body {
 }
 
 @import "./custom-utilities";
+@import "./lazy-image";
 @import "./katex";
 @import "./prism";
-@import "./lazy-image";
+@import "./content-parser";

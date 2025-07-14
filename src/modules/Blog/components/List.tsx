@@ -1,8 +1,8 @@
 import withBlogListLocales from '@/modules/Blog/BlogList.locales';
 import BlogCard from '@/modules/Blog/components/Card';
-import Banner from '@/modules/Common/components/Header/Banner';
 import { getBlogList } from '@/modules/ContentParser/services/content-parser';
 import Pagination from '@/packages/components/base/Navigations/Pagination';
+import Banner from '@/packages/components/layouts/Header/Banner';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 interface Props {

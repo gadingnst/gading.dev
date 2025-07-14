@@ -11,9 +11,9 @@ import IconTumblr from '@/designs/icons/logo/tumblr.svg';
 import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import IconWhatsapp from '@/designs/icons/logo/whatsapp.svg';
 import cn from '@/designs/utils/cn';
-import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import { ContentMeta } from '@/modules/ContentParser/services/content-parser';
 import Button from '@/packages/components/base/Buttons/Button';
+import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
 import createPopup from '@/packages/utils/helpers/createPopup';
 

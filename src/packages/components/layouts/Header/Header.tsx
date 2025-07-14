@@ -4,9 +4,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 import cn from '@/designs/utils/cn';
-import useLangugage from '@/modules/Common/libs/i18n/i18n.client';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import useScrollListener from '@/packages/hooks/useScrollListener';
+import useLangugage from '@/packages/libs/I18n/i18n.client';
 
 import AppThemeSelector from './AppThemeSelector';
 import LanguageSelector from './LanguageSelector';
