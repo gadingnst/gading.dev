@@ -10,12 +10,12 @@
 
   .liquid-glass {
     @apply backdrop-blur-xl backdrop-saturate-150 border border-white/10 text-white;
-    background-color: color-mix(in oklab, black 20%, transparent);
+    background-color: color-mix(in oklab, black 25%, transparent);
   }
 
   .liquid-glass-shadow {
     @apply backdrop-blur-xl backdrop-saturate-150 border border-white/10 text-white shadow-2xl;
-    background-color: color-mix(in oklab, black 20%, transparent);
+    background-color: color-mix(in oklab, black 25%, transparent);
   }
 
   /* Text shadow utilities for better contrast on liquid glass */
