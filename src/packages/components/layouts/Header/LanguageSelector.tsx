@@ -111,8 +111,15 @@ function LanguageSelector() {
       dropdownClassName="max-w-28"
       trigger={
         <>
-          <span className="text-lg">{getLanguageFlag(currentLang)}</span>
-          <span className="hidden sm:inline">{getLanguageLabel(currentLang)}</span>
+          <span className="text-lg">
+            {getLanguageFlag(currentLang)}
+          </span>
+          <span className="hidden sm:inline">
+            {getLanguageLabel(currentLang)}
+          </span>
+          {isSlugSingleLanguage && (
+            <span className="text-xs">(Only)</span>
+          )}
         </>
       }
     >
