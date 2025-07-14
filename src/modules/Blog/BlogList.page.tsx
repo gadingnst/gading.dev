@@ -1,5 +1,5 @@
 import { NextPageProps } from '@/@types/global';
-import BlogList from '@/modules/Blog/components/List';
+import BlogPageList from '@/modules/Blog/components/PageList';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
@@ -14,7 +14,7 @@ export async function generateBlogListPathsDefault() {
 async function BlogListPage(props: NextPageProps) {
   const params = await props.params;
   const lang = params.lang || getDefaultLanguage();
-  return <BlogList pageCurrent={1} lang={lang} />;
+  return <BlogPageList pageCurrent={1} lang={lang} />;
 }
 
 export default BlogListPage;

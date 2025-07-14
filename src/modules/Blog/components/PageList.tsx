@@ -1,5 +1,5 @@
 import withBlogListLocales from '@/modules/Blog/BlogList.locales';
-import BlogCard from '@/modules/Blog/components/Card';
+import BlogCardList from '@/modules/Blog/components/CardList';
 import { getBlogList } from '@/modules/ContentParser/services/content-parser';
 import Pagination from '@/packages/components/base/Navigations/Pagination';
 import Banner from '@/packages/components/layouts/Header/Banner';
@@ -10,9 +10,9 @@ interface Props {
   lang?: string;
 }
 
-async function BlogList({ pageCurrent = 1, lang: propLang }: Props) {
+async function BlogPageList({ pageCurrent = 1, lang: propLang }: Props) {
   const lang = propLang || await getDefaultLanguage();
-  const blogList = await getBlogList(lang, pageCurrent);
+  const blogList = await getBlogList(lang, { pageCurrent });
   const content = withBlogListLocales(lang);
   const pageCount = blogList.pagination.pageCount;
 
@@ -34,14 +34,7 @@ async function BlogList({ pageCurrent = 1, lang: propLang }: Props) {
       </Banner>
 
       {/* Blog List */}
-      <section className="base-container py-6 -mt-28 grid grid-cols-1 sm:grid-cols-2 gap-7">
-        {blogList.contents.map((_blog) => (
-          <BlogCard
-            key={_blog.slugOriginal}
-            blog={_blog}
-          />
-        ))}
-      </section>
+      <BlogCardList className="-mt-28" contents={blogList.contents} />
 
       {pageCount > 1 && (
         <div className="mt-10 text-center">
@@ -59,4 +52,4 @@ async function BlogList({ pageCurrent = 1, lang: propLang }: Props) {
   );
 }
 
-export default BlogList;
+export default BlogPageList;

@@ -1,5 +1,5 @@
 import { NextPageProps } from '@/@types/global';
-import BlogList from '@/modules/Blog/components/List';
+import BlogPageList from '@/modules/Blog/components/PageList';
 import { getBlogList } from '@/modules/ContentParser/services/content-parser';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
@@ -37,9 +37,7 @@ export async function generateBlogPaginationPathsDefault() {
  * 1. Dengan parameter lang (untuk rute /[lang]/blog/page/[page])
  * 2. Tanpa parameter lang (untuk rute /blog/page/[page] - menggunakan bahasa default)
  */
-async function BlogListPaginationPage({ params }:
-  NextPageProps<ParamsWithLang> | { params: Promise<ParamsWithoutLang> }
-) {
+async function BlogListPaginationPage({ params }: NextPageProps<ParamsWithLang|ParamsWithoutLang>) {
   const resolvedParams = await params;
 
   // Tentukan lang dan page berdasarkan parameter yang tersedia
@@ -49,7 +47,7 @@ async function BlogListPaginationPage({ params }:
   const pageNumber = Number(page);
   const pageCurrent = !isNaN(pageNumber) && pageNumber > 0 ? pageNumber : 1;
 
-  return <BlogList pageCurrent={pageCurrent} lang={lang} />;
+  return <BlogPageList pageCurrent={pageCurrent} lang={lang} />;
 }
 
 export default BlogListPaginationPage;

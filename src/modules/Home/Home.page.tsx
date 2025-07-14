@@ -1,6 +1,7 @@
 import { NextPageProps } from '@/@types/global';
+import BlogCardList from '@/modules/Blog/components/CardList';
 import ContentParser from '@/modules/ContentParser/components/Parser';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { getBlogList, getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import generateRSSFeed from '@/modules/ContentParser/services/rss-feed';
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
@@ -29,6 +30,7 @@ export async function generateHomePathsDefault() {
 async function HomePage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
+  const blogList = await getBlogList(lang, { limit: 4 });
   const markdownContent = await getContentMultiLanguage('home', lang);
   const content = withHomeLocales(lang);
 
@@ -57,7 +59,7 @@ async function HomePage(props: NextPageProps) {
           <ContentParser>
             {markdownContent.content}
           </ContentParser>
-          <div className="flex justify-center items-center flex-wrap my-4">
+          <div className="flex justify-center items-center flex-wrap gap-4">
             <ButtonLink
               withCurrentLocale
               href="/blog"
@@ -70,7 +72,7 @@ async function HomePage(props: NextPageProps) {
               withCurrentLocale
               href="/about"
               data-umami-event="homepage_see-about"
-              className="bg-accent mx-2"
+              className="bg-accent"
             >
               {content.aboutMe}
             </ButtonLink>
@@ -80,6 +82,22 @@ async function HomePage(props: NextPageProps) {
           </p>
         </HeroCard>
       </section>
+
+      <div className="flex justify-center items-center flex-col my-14">
+        <h3 className="font-serif text-2xl font-bold">
+          {content.recentPosts}
+        </h3>
+        <div className="divider w-full max-w-xl mx-auto my-2 px-4" />
+        <BlogCardList contents={blogList.contents} />
+        <ButtonLink
+          withCurrentLocale
+          href="/blog"
+          data-umami-event="homepage_more-posts"
+          className="mt-9 rounded-lg"
+        >
+          {content.seeMore}
+        </ButtonLink>
+      </div>
     </div>
   );
 }
