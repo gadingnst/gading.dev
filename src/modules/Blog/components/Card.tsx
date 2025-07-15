@@ -34,8 +34,8 @@ function BlogCard(_props: BlogCardProps) {
             <div className="w-full h-full">
               <Image
                 src={blog.image}
-                placeholderSrc=""
                 alt={blog.title}
+                placeholderScaling={0.1}
                 className="w-full h-full object-cover"
               />
             </div>
