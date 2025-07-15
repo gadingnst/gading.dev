@@ -88,6 +88,8 @@ function BaseImage(props: ImageProps) {
     setSource(imgSrc);
   }, [imgSrc]);
 
+  const isFillMode = !width && !height;
+
   return (
     <LazyImage
       useIntersectionObserver
@@ -103,13 +105,8 @@ function BaseImage(props: ImageProps) {
       afterLoad={handleAfterLoad}
       style={style}
       placeholderSrc={placeholder}
-      className={cn([
-        'object-contain',
-        className
-      ])}
-      wrapperClassName={cn([
-        wrapperClassName
-      ])}
+      className={cn(['object-contain', className])}
+      wrapperClassName={cn([isFillMode && 'w-full h-full', wrapperClassName])}
     />
   );
 };
