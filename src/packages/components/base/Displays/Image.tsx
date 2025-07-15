@@ -8,7 +8,7 @@ import trackWindowScroll from '@/packages/components/base/Displays/LazyLoad/trac
 import useDelayedAction from '@/packages/hooks/useDelayedAction';
 import useUpdated from '@/packages/hooks/useUpdated';
 import cloudinary from '@/packages/libs/Cloudinary/utils';
-import { calculateSize, DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Imaages/utils';
+import { DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Imaages/utils';
 
 import LazyImage from './LazyLoad/LazyImage';
 import type { LazyImageProps } from './LazyLoad/types';
@@ -31,14 +31,15 @@ function BaseImage(props: ImageProps) {
     src,
     fallbackSrc,
     effect = 'blur',
-    size,
+    height,
+    width,
     style = {},
     className = '',
     wrapperClassName,
     placeholderSrc,
+    delayLoad = 1000,
     scaling = 1,
-    delayLoad,
-    placeholderScaling,
+    placeholderScaling = 0.05,
     afterLoad,
     onError,
     onClick = () => void 0,
@@ -62,15 +63,12 @@ function BaseImage(props: ImageProps) {
   const [hasTriedFallback, setHasTriedFallback] = useState(false);
 
   const placeholder = useMemo(() => {
-    const _cloudinaryPlaceholder = cloudinary(imgSrc, { scale: placeholderScaling, placeholder: true });
-    const placeholderDefault = blurDataURL ?? DEFAULT_IMAGE_PLACEHOLDER;
-    return placeholderSrc === source ? placeholderDefault : (placeholderSrc || _cloudinaryPlaceholder);
-  }, [imgSrc, placeholderScaling, blurDataURL, placeholderSrc, source]);
-
-  const { width, height } = useMemo(() => calculateSize(size, {
-    height: lazyloadProps.height,
-    width: lazyloadProps.width
-  }), [lazyloadProps.height, lazyloadProps.width, size]);
+    if (placeholderSrc) return placeholderSrc;
+    if (blurDataURL) return blurDataURL;
+    const _cloudPath = cloudinary(imgSrc, { scale: placeholderScaling, placeholder: true });
+    if (_cloudPath !== imgSrc) return _cloudPath;
+    return DEFAULT_IMAGE_PLACEHOLDER;
+  }, [placeholderSrc, blurDataURL, imgSrc, placeholderScaling]);
 
   const handleAfterLoad = useCallback(() => {
     withDelay(() => {
@@ -103,18 +101,13 @@ function BaseImage(props: ImageProps) {
       width={width}
       height={height}
       afterLoad={handleAfterLoad}
-      style={{ ...style, height, width }}
-      placeholderSrc={placeholderSrc === '' ? undefined : placeholder}
+      style={style}
+      placeholderSrc={placeholder}
       className={cn([
-        'base-image object-contain',
-        height ? `h-[${height}px]` : 'h-auto',
-        width ? `w-[${width}px]` : 'w-auto',
+        'object-contain',
         className
       ])}
       wrapperClassName={cn([
-        'base-image-wrapper',
-        height ? `h-[${height}px]` : 'h-auto',
-        width ? `w-[${width}px]` : 'w-auto',
         wrapperClassName
       ])}
     />
