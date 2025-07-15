@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { type FunctionComponent, type ReactEventHandler, useCallback, useMemo, useState } from 'react';
+import { type ReactEventHandler, useCallback, useMemo, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
+import trackWindowScroll from '@/packages/components/base/Displays/LazyLoad/trackWindowScroll';
 import useUpdated from '@/packages/hooks/useUpdated';
 import { calculateSize, DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Imaages/utils';
 
@@ -20,7 +21,7 @@ export interface ImageProps extends LazyImageProps {
   onClick?: () => void;
 }
 
-const Image: FunctionComponent<ImageProps> = (props) => {
+function BaseImage(props: ImageProps) {
   const {
     src,
     fallbackSrc,
@@ -94,5 +95,7 @@ const Image: FunctionComponent<ImageProps> = (props) => {
     />
   );
 };
+
+const Image = trackWindowScroll(BaseImage);
 
 export default Image;

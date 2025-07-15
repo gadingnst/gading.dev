@@ -6,7 +6,7 @@ export const SITE_NAME = 'Gading\'s Hideout';
 export const PRODUCTION_URL = 'https://gading.dev';
 export const BASE_URL = IS_DEV ? 'http://localhost:3000' : PRODUCTION_URL;
 export const DEFAULT_LOCALE = 'en';
-export const BLOG_PAGINATION_LIMIT = 6;
+export const BLOG_PAGINATION_LIMIT = 10;
 
 export const GOOGLE_VERIFICATION_ID = 'eGOhdZjNeSLIBtMneyjMwoE3fg4c4';
 export const ANALYTICS_ID = '2cbe653a-beab-45ef-81d2-ebb51c23cf13';

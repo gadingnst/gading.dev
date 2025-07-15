@@ -4,7 +4,7 @@ import cn from '@/designs/utils/cn';
 import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
 import type { ContentMeta } from '@/modules/ContentParser/services/content-parser';
 import Card from '@/packages/components/base/Displays/Card';
-import LazyImage from '@/packages/components/base/Displays/LazyLoad/LazyImage';
+import Image from '@/packages/components/base/Displays/Image';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 export interface BlogCardProps {
@@ -32,8 +32,9 @@ function BlogCard(_props: BlogCardProps) {
         {blog.image && (
           <div className="relative w-full h-48 rounded-t-lg overflow-hidden bg-base-300">
             <div className="w-full h-full">
-              <LazyImage
+              <Image
                 src={blog.image}
+                placeholderSrc=""
                 alt={blog.title}
                 className="w-full h-full object-cover"
               />

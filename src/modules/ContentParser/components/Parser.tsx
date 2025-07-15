@@ -8,7 +8,7 @@ import { FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
 import Button from '@/packages/components/base/Buttons/Button';
-import LazyImage from '@/packages/components/base/Displays/LazyLoad/LazyImage';
+import Image from '@/packages/components/base/Displays/Image';
 import Link from '@/packages/components/base/Navigations/Link';
 
 import State from './StatefulMDX';
@@ -33,7 +33,7 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
 
   return (
     <figure className="flex flex-col items-center justify-center my-4">
-      <LazyImage
+      <Image
         src={src}
         alt={alt}
         className="rounded-lg max-h-[500px] cursor-pointer mb-0"
