@@ -105,7 +105,7 @@ function BaseImage(props: ImageProps) {
       afterLoad={handleAfterLoad}
       style={style}
       placeholderSrc={placeholder}
-      className={cn(['object-contain', className])}
+      className={cn([className])}
       wrapperClassName={cn([isFillMode && 'w-full h-full', wrapperClassName])}
     />
   );
