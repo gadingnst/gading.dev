@@ -40,7 +40,6 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
         height={height}
         className="rounded-lg max-h-[500px] cursor-pointer mb-0"
         loading="lazy"
-        placeholderScaling={0.1}
       />
       <figcaption className="block text-center italic text-xs mt-2 text-base-content">
         [Image] {alt}
