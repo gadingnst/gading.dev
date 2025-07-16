@@ -36,10 +36,10 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
       <Image
         src={src}
         alt={alt}
-        width="100%"
-        height="100%"
-        className="w-full h-full min-h-[540px] min-w-[800px] max-h-[540px] max-w-[800px] cursor-pointer mb-0"
-        wrapperClassName="w-full h-full min-h-[540px] min-w-[800px] max-h-[540px] max-w-[800px]"
+        width={1200}
+        height={720}
+        className="min-h-full min-w-full max-h-full max-w-full cursor-pointer mb-0 bg-black/70 rounded-lg"
+        wrapperClassName="min-h-full min-w-full max-h-full max-w-full rounded-lg overflow-hidden"
         loading="lazy"
       />
       <figcaption className="block text-center italic text-xs mt-2 text-base-content">
