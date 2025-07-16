@@ -1,7 +1,7 @@
 'use client';
 
 import { Download, ZoomIn, ZoomOut } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import useImageTools from '@/packages/libs/Images/useImageTools';
@@ -16,9 +16,9 @@ interface ImageWithToolsProps extends ImageProps {
 function ImageWithTools(props: ImageWithToolsProps) {
   const { src, enableZoom = true, enableDownload = true, className, ...imageProps } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+
   const {
-    zoom,
-    position,
     isPannable,
     isDragging,
     showZoomIn,
@@ -27,12 +27,12 @@ function ImageWithTools(props: ImageWithToolsProps) {
     handleZoomOut,
     handleDownload,
     panProps
-  } = useImageTools(src?.toString());
+  } = useImageTools(src?.toString(), imageRef);
 
   const imageStyle = {
-    transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
     cursor: isPannable ? (isDragging ? 'grabbing' : 'grab') : 'auto',
-    transition: isDragging ? 'none' : 'transform 0.2s ease-out'
+    transition: 'transform 0.2s ease-out',
+    touchAction: 'none'
   };
 
   return (
@@ -44,6 +44,7 @@ function ImageWithTools(props: ImageWithToolsProps) {
       <Image
         {...imageProps}
         {...panProps}
+        ref={imageRef}
         src={src}
         alt={imageProps.alt || ''}
         style={imageStyle}

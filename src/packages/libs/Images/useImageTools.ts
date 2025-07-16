@@ -1,4 +1,4 @@
-import { MouseEvent, TouchEvent, useCallback, useState } from 'react';
+import { MouseEvent, RefObject, TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { downloadFile } from '@/packages/libs/File/download';
 
@@ -11,47 +11,74 @@ interface Position {
   y: number;
 }
 
-function useImageTools(imageUrl?: string) {
+function useImageTools(imageUrl: string | undefined, imageRef: RefObject<HTMLImageElement|null>) {
   const [zoom, setZoom] = useState(MIN_ZOOM);
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
+  const position = useRef<Position>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const [startDragPosition, setStartDragPosition] = useState<Position>({ x: 0, y: 0 });
+  const startDragPosition = useRef<Position>({ x: 0, y: 0 });
+
+  const updateImageTransform = useCallback(
+    (currentZoom: number) => {
+      if (imageRef.current) {
+        const { x, y } = position.current;
+        imageRef.current.style.transform = `scale(${currentZoom}) translate(${x}px, ${y}px)`;
+      }
+    },
+    [imageRef]
+  );
+
+  useEffect(() => {
+    updateImageTransform(zoom);
+  }, [zoom, updateImageTransform]);
 
   const handleZoomIn = useCallback(() => {
-    setZoom((prevZoom) => Math.min(prevZoom + ZOOM_STEP, MAX_ZOOM));
-  }, []);
+    setZoom((prevZoom) => {
+      const newZoom = Math.min(prevZoom + ZOOM_STEP, MAX_ZOOM);
+      requestAnimationFrame(() => updateImageTransform(newZoom));
+      return newZoom;
+    });
+  }, [updateImageTransform]);
 
   const handleZoomOut = useCallback(() => {
     setZoom((prevZoom) => {
       const newZoom = Math.max(prevZoom - ZOOM_STEP, MIN_ZOOM);
       if (newZoom === MIN_ZOOM) {
-        setPosition({ x: 0, y: 0 });
+        position.current = { x: 0, y: 0 };
       }
+      requestAnimationFrame(() => updateImageTransform(newZoom));
       return newZoom;
     });
-  }, []);
+  }, [updateImageTransform]);
 
   const handleDragStart = (clientX: number, clientY: number) => {
     if (zoom > MIN_ZOOM) {
       setIsDragging(true);
-      setStartDragPosition({
-        x: clientX - position.x,
-        y: clientY - position.y
-      });
+      startDragPosition.current = {
+        x: clientX - position.current.x,
+        y: clientY - position.current.y
+      };
+      if (imageRef.current) {
+        imageRef.current.style.transition = 'none';
+      }
     }
   };
 
   const handleDragMove = (clientX: number, clientY: number) => {
     if (isDragging && zoom > MIN_ZOOM) {
-      const newX = clientX - startDragPosition.x;
-      const newY = clientY - startDragPosition.y;
-      setPosition({ x: newX, y: newY });
+      requestAnimationFrame(() => {
+        position.current.x = clientX - startDragPosition.current.x;
+        position.current.y = clientY - startDragPosition.current.y;
+        updateImageTransform(zoom);
+      });
     }
   };
 
   const handleDragEnd = () => {
     if (isDragging) {
       setIsDragging(false);
+      if (imageRef.current) {
+        imageRef.current.style.transition = 'transform 0.2s ease-out';
+      }
     }
   };
 
@@ -109,7 +136,6 @@ function useImageTools(imageUrl?: string) {
 
   return {
     zoom,
-    position,
     isPannable,
     isDragging,
     showZoomIn,
@@ -130,3 +156,4 @@ function useImageTools(imageUrl?: string) {
 }
 
 export default useImageTools;
+
