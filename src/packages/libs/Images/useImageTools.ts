@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useState } from 'react';
+import { MouseEvent, TouchEvent, useCallback, useState } from 'react';
 
 import { downloadFile } from '@/packages/libs/File/download';
 
@@ -31,38 +31,66 @@ function useImageTools(imageUrl?: string) {
     });
   }, []);
 
-  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
+  const handleDragStart = (clientX: number, clientY: number) => {
     if (zoom > MIN_ZOOM) {
-      e.preventDefault();
       setIsDragging(true);
       setStartDragPosition({
-        x: e.clientX - position.x,
-        y: e.clientY - position.y
+        x: clientX - position.x,
+        y: clientY - position.y
       });
     }
   };
 
-  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+  const handleDragMove = (clientX: number, clientY: number) => {
     if (isDragging && zoom > MIN_ZOOM) {
-      e.preventDefault();
-      const newX = e.clientX - startDragPosition.x;
-      const newY = e.clientY - startDragPosition.y;
+      const newX = clientX - startDragPosition.x;
+      const newY = clientY - startDragPosition.y;
       setPosition({ x: newX, y: newY });
     }
   };
 
-  const handleMouseUp = (e: MouseEvent<HTMLElement>) => {
+  const handleDragEnd = () => {
     if (isDragging) {
-      e.preventDefault();
       setIsDragging(false);
     }
   };
 
+  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    handleDragStart(e.clientX, e.clientY);
+  };
+
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    handleDragMove(e.clientX, e.clientY);
+  };
+
+  const handleMouseUp = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    handleDragEnd();
+  };
+
   const handleMouseLeave = (e: MouseEvent<HTMLElement>) => {
-    if (isDragging) {
-      e.preventDefault();
-      setIsDragging(false);
+    e.preventDefault();
+    handleDragEnd();
+  };
+
+  const handleTouchStart = (e: TouchEvent<HTMLElement>) => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      handleDragStart(touch.clientX, touch.clientY);
     }
+  };
+
+  const handleTouchMove = (e: TouchEvent<HTMLElement>) => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      handleDragMove(touch.clientX, touch.clientY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    handleDragEnd();
   };
 
   const handleDownload = useCallback(() => {
@@ -93,7 +121,10 @@ function useImageTools(imageUrl?: string) {
       onMouseDown: handleMouseDown,
       onMouseMove: handleMouseMove,
       onMouseUp: handleMouseUp,
-      onMouseLeave: handleMouseLeave
+      onMouseLeave: handleMouseLeave,
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
+      onTouchEnd: handleTouchEnd
     }
   };
 }
