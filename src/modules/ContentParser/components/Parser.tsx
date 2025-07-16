@@ -8,7 +8,7 @@ import { FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
 import Button from '@/packages/components/base/Buttons/Button';
-import Image from '@/packages/components/base/Displays/Image';
+import ImageWithTools from '@/packages/components/base/Displays/ImageWithTools';
 import Link from '@/packages/components/base/Navigations/Link';
 
 import State from './StatefulMDX';
@@ -33,7 +33,9 @@ const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
 
   return (
     <figure className="flex flex-col items-center min-h-[300px] w-full justify-center my-4 rounded-lg overflow-hidden">
-      <Image
+      <ImageWithTools
+        enableZoom
+        enableDownload
         src={src}
         alt={alt}
         width={1200}

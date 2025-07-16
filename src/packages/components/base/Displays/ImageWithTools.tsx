@@ -16,7 +16,7 @@ interface ImageWithToolsProps extends ImageProps {
 function ImageWithTools(props: ImageWithToolsProps) {
   const { src, enableZoom = true, enableDownload = true, ...imageProps } = props;
   const [isHovered, setIsHovered] = useState(false);
-  const { handleZoom, handleDownload } = useImageTools(src as string);
+  const { handleZoom, handleDownload } = useImageTools(src?.toString());
 
   return (
     <div
@@ -28,26 +28,26 @@ function ImageWithTools(props: ImageWithToolsProps) {
       {isHovered && (
         <div
           className={cn(
-            'absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300',
+            'absolute bottom-4 right-2 flex items-center gap-2 transition-opacity duration-300',
             isHovered ? 'opacity-100' : 'opacity-0'
           )}
         >
           {enableZoom && (
             <button
               onClick={handleZoom}
-              className="p-2 text-white rounded-full bg-gray-800 bg-opacity-75 hover:bg-opacity-100 mx-1"
+              className="rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
               aria-label="Zoom In"
             >
-              <ZoomIn size={24} />
+              <ZoomIn size={16} />
             </button>
           )}
           {enableDownload && (
             <button
               onClick={handleDownload}
-              className="p-2 text-white rounded-full bg-gray-800 bg-opacity-75 hover:bg-opacity-100 mx-1"
+              className="rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
               aria-label="Download Image"
             >
-              <Download size={24} />
+              <Download size={16} />
             </button>
           )}
         </div>

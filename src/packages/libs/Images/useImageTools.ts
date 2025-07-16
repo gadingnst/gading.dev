@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 
-function useImageTools(imageUrl: string | null | undefined) {
+import { downloadFile } from '@/packages/libs/File/download';
+
+function useImageTools(imageUrl?: string) {
   const handleZoom = useCallback(() => {
     if (imageUrl) {
       window.open(imageUrl, '_blank');
@@ -9,12 +11,11 @@ function useImageTools(imageUrl: string | null | undefined) {
 
   const handleDownload = useCallback(() => {
     if (imageUrl) {
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      downloadFile({
+        data: imageUrl,
+        fileName: imageUrl.substring(imageUrl.lastIndexOf('/') + 1),
+        fileType: 'image/png'
+      });
     }
   }, [imageUrl]);
 
