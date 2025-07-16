@@ -6,12 +6,13 @@ import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
 import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
-import ContentImage from '@/modules/ContentParser/components/ContentImage';
-import ContentLink from '@/modules/ContentParser/components/ContentLink';
-import TwitterScript from '@/modules/ContentParser/components/TwitterScript';
+import ContentCodeBlock from '@/modules/ContentParser/components/ContentCodeBlock';
 import Button from '@/packages/components/base/Buttons/Button';
 
+import ContentImage from './ContentImage';
+import ContentLink from './ContentLink';
 import State from './StatefulMDX';
+import TwitterScript from './TwitterScript';
 
 export interface Props extends MDXContentProps {
   className?: string;
@@ -25,12 +26,7 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   }, [children]);
 
   return (
-    <div
-      className={cn([
-        'w-full max-w-full prose parser',
-        className
-      ])}
-    >
+    <div className={cn(['w-full max-w-full prose parser', className])}>
       <Parser
         {...otherProps}
         components={{
@@ -39,7 +35,8 @@ const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
           State,
           TwitterScript,
           a: ContentLink,
-          img: ContentImage
+          img: ContentImage,
+          pre: ContentCodeBlock
         }}
       />
     </div>
