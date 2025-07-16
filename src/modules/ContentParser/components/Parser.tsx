@@ -29,16 +29,17 @@ interface ContentImageProps {
  * handle Image showing in Content
  */
 const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
-  const { src, alt, width, height } = props;
+  const { src, alt } = props;
 
   return (
-    <figure className="flex flex-col items-center justify-center my-4">
+    <figure className="flex flex-col items-center min-h-[300px] w-full justify-center my-4 rounded-lg overflow-hidden">
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
-        className="rounded-lg max-h-[500px] cursor-pointer mb-0"
+        width={1200}
+        height={720}
+        className="min-h-full min-w-full max-h-full max-w-full cursor-pointer mb-0 bg-black/70 rounded-lg"
+        wrapperClassName="min-h-full min-w-full max-h-full max-w-full rounded-lg overflow-hidden"
         loading="lazy"
       />
       <figcaption className="block text-center italic text-xs mt-2 text-base-content">
