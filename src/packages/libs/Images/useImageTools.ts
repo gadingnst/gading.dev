@@ -124,8 +124,7 @@ function useImageTools(imageUrl: string | undefined, imageRef: RefObject<HTMLIma
     if (imageUrl) {
       downloadFile({
         data: imageUrl,
-        fileName: imageUrl.substring(imageUrl.lastIndexOf('/') + 1),
-        fileType: 'image/png'
+        fileName: imageUrl.substring(imageUrl.lastIndexOf('/') + 1)
       });
     }
   }, [imageUrl]);
