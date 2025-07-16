@@ -8,7 +8,7 @@ import trackWindowScroll from '@/packages/components/base/Displays/LazyLoad/trac
 import useDelayedAction from '@/packages/hooks/useDelayedAction';
 import useUpdated from '@/packages/hooks/useUpdated';
 import cloudinary from '@/packages/libs/Cloudinary/utils';
-import { DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Imaages/utils';
+import { DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Images/utils';
 
 import LazyImage from './LazyLoad/LazyImage';
 import type { LazyImageProps } from './LazyLoad/types';
