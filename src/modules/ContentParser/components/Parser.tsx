@@ -3,84 +3,19 @@
 import 'katex/dist/katex.min.css';
 
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
-import Script, { ScriptProps } from 'next/script';
-import { FunctionComponent, PropsWithChildren, useId, useMemo } from 'react';
+import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
+import ContentImage from '@/modules/ContentParser/components/ContentImage';
+import ContentLink from '@/modules/ContentParser/components/ContentLink';
+import TwitterScript from '@/modules/ContentParser/components/TwitterScript';
 import Button from '@/packages/components/base/Buttons/Button';
-import ImageWithTools from '@/packages/components/base/Displays/ImageWithTools';
-import Link from '@/packages/components/base/Navigations/Link';
 
 import State from './StatefulMDX';
 
 export interface Props extends MDXContentProps {
   className?: string;
 }
-
-interface ContentImageProps {
-  width: number;
-  height: number;
-  src: string;
-  alt: string;
-  carousel?: string;
-}
-
-/**
- * handle Image showing in Content
- */
-const ContentImage: FunctionComponent<ContentImageProps> = (props) => {
-  const { src, alt } = props;
-
-  return (
-    <figure className="flex flex-col items-center min-h-[300px] w-full justify-center my-4 rounded-lg overflow-hidden">
-      <ImageWithTools
-        enableZoom
-        enableDownload
-        src={src}
-        alt={alt}
-        width={1200}
-        height={720}
-        className="min-h-full min-w-full max-h-full max-w-full cursor-pointer mb-0 bg-black/70 rounded-lg"
-        wrapperClassName="min-h-full min-w-full max-h-full max-w-full rounded-lg overflow-hidden"
-        loading="lazy"
-      />
-      <figcaption className="block text-center italic text-xs mt-2 text-base-content">
-        [Image] {alt}
-      </figcaption>
-    </figure>
-  );
-};
-
-function ContentLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
-  const { href, ...restProps } = props;
-  const isExternal = href?.startsWith('http') || href?.startsWith('//');
-
-  return (
-    <Link
-      href={href || '#'}
-      external={isExternal}
-      {...restProps}
-    />
-  );
-}
-
-/**
- * handle Twitter embed for SPA
- * @see https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-loading-and-initialization
- */
-const TwitterScript: FunctionComponent<ScriptProps> = (props) => {
-  const scriptId = useId();
-
-  return (
-    <Script
-      async
-      defer
-      {...props}
-      id={scriptId}
-      src="https://platform.twitter.com/widgets.js"
-    />
-  );
-};
 
 const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const { children, className = '', components, ...otherProps } = props;

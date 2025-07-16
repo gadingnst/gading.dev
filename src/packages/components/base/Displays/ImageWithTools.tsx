@@ -1,7 +1,7 @@
 'use client';
 
 import { Download, ZoomIn, ZoomOut } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { PropsWithChildren, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import useImageTools from '@/packages/libs/Images/useImageTools';
@@ -11,10 +11,12 @@ import Image, { ImageProps } from './Image';
 interface ImageWithToolsProps extends ImageProps {
   enableZoom?: boolean;
   enableDownload?: boolean;
+  figureClassName?: string;
+  toolsWrapperClassName?: string;
 }
 
-function ImageWithTools(props: ImageWithToolsProps) {
-  const { src, enableZoom = true, enableDownload = true, className, ...imageProps } = props;
+function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
+  const { src, enableZoom, enableDownload, figureClassName, toolsWrapperClassName, children, ...imageProps } = props;
   const [isHovered, setIsHovered] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -36,10 +38,13 @@ function ImageWithTools(props: ImageWithToolsProps) {
   };
 
   return (
-    <div
-      className="relative inline-block overflow-hidden"
+    <figure
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      className={cn([
+        'relative inline-block overflow-hidden',
+        figureClassName
+      ])}
     >
       <Image
         {...imageProps}
@@ -48,13 +53,13 @@ function ImageWithTools(props: ImageWithToolsProps) {
         src={src}
         alt={imageProps.alt || ''}
         style={imageStyle}
-        className={cn(className)}
       />
       {isHovered && (
         <div
           className={cn(
             'absolute bottom-4 right-2 flex items-center gap-2 transition-opacity duration-300',
-            isHovered ? 'opacity-100' : 'opacity-0'
+            isHovered ? 'opacity-100' : 'opacity-0',
+            toolsWrapperClassName
           )}
         >
           {enableZoom && showZoomOut && (
@@ -90,7 +95,8 @@ function ImageWithTools(props: ImageWithToolsProps) {
           )}
         </div>
       )}
-    </div>
+      {children}
+    </figure>
   );
 }
 
