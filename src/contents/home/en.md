@@ -1,7 +1,7 @@
 ---
 title: "Hi 👋, I'm Gading!"
 date: 2022-06-01
-description: "Gading is a Software Engineer from Palembang, Indonesia 🇮🇩 with passion for modern technologies."
+description: "I'm Software Engineer from Palembang, Indonesia 🇮🇩 with passion for modern technologies."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, gading's website, gading website"
 image: "/media/default-banners/1.jpg"
 ---
