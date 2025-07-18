@@ -8,18 +8,44 @@ import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 
 function ProfileInfo() {
   const { isDark } = useAppTheme();
+
+  const LeftDesc = ({ className }: { className?: string }) => (
+    <div
+      className={cn([
+        'items-center h-[30px] flex-1 justify-center text-center',
+        className
+      ])}
+    >
+      <ButtonLink href="/portfolio" variant="outline">
+        Portfolio
+      </ButtonLink>
+      <ButtonLink href="/profile" variant="outline" className="ml-4">
+        Profile
+      </ButtonLink>
+    </div>
+  );
+
+  const RightDesc = ({ className }: { className?: string }) => (
+    <div
+      className={cn([
+        'items-center h-[30px] flex-1 justify-center',
+        className
+      ])}
+    >
+      <ButtonLink href="/resume" variant="outline" external>
+        Resume
+      </ButtonLink>
+      <ButtonLink href="mailto:contact@gading.dev" variant="outline" className="ml-4">
+        Contact
+      </ButtonLink>
+    </div>
+  );
+
   return (
     <div>
-      <div className="relative flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0 mb-6 md:mb-8 md:-mx-9">
-        <div className="flex w-full md:w-1/4 flex-row justify-start items-center gap-4 order-2 md:order-1">
-          <ButtonLink href="/portfolio" variant="outline">
-            Portfolio
-          </ButtonLink>
-          <ButtonLink href="/profile" variant="outline">
-            Profile
-          </ButtonLink>
-        </div>
-        <div className="order-1 md:order-2">
+      <div className="relative flex justify-around items-start md:-mx-9">
+        <LeftDesc className="hidden md:flex" />
+        <div className="-mt-12 w-[180px] h-[180px] flex flex-1 items-center justify-center">
           <Image
             className="rounded-full max-w-[180px] max-h-[180px] cursor-grab active:cursor-grabbing"
             src="/media/authors/gading-talks.jpeg"
@@ -35,15 +61,17 @@ function ProfileInfo() {
             ])}
           />
         </div>
-        <div className="flex w-full md:w-1/4 flex-row justify-end items-center gap-4 order-3 md:order-3">
-          <ButtonLink href="/resume" variant="outline" external>
-            Resume
-          </ButtonLink>
-          <ButtonLink href="/contact" variant="outline">
-            Contact
-          </ButtonLink>
+        <RightDesc className="hidden md:flex" />
+      </div>
+      <div className="md:hidden">
+        <div className="mb-8 sm:-mt-16">
+          <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-8 mb-8" />
+          <LeftDesc className="flex h-[auto] justify-around" />
         </div>
       </div>
+      <h3 className="text-center text-2xl font-bold mb-9 -mt-6">
+        <span className={cn('hover:cursor-pointer hover:underline underline-offset-4', isDark ? 'text-accent' : 'text-primary')}>Gading</span> Nasution
+      </h3>
     </div>
   );
 }
