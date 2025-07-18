@@ -1,52 +1,48 @@
 ---
 title: "About"
 date: 2022-06-01
-description: "Hanya Lelaki biasa yang dapat mengubah ☕️ menjadi < /> yang cantik."
+description: "Mengeksplorasi AI, Web3, dan teknologi mutakhir sambil membangun frontend yang bersih dan skalabel."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, who is gading, biodata gading, tentang gading"
 image: "/media/default-banners/1.jpg"
 ---
 
-Saya adalah ***Insinyur Perangkat Lunak*** yang berspesialisasi di ***Frontend*** dalam pekerjaan *Penuh-waktu*, dan juga dapat mengerjakan hal ***Fullstack*** dalam pekerjaan *Paruh-waktu/Freelance*.
+Saya adalah seorang ***Software Engineer*** dengan pengalaman lebih dari 5 tahun, dan banyak bekerja menggunakan ***TypeScript*** dan ***React***.
 
-Saya bersemangat dalam mengeksplorasi tentang teknologi seluler dan web modern sambil mempertimbangkan *DX (Developer Experience)*, teknik, dan tren terbaru.
+Saya antusias mengeksplorasi teknologi yang sedang naik daun seperti ***AI***, ***Web3***, dan ***blockchain***, sambil terus mendalami teknologi web & mobile modern dengan fokus pada *Developer Experience (DX)*, performa, dan selalu mengikuti perkembangan terbaru.
 
-Fokus utama saya adalah meningkatkan *DX* di tim Frontend, seperti menyiapkan *boilerplate*, arsitektur, standarisasi, membuat utilitas/pustaka, meneliti, dan meningkatkan kehandalan struktur di dalam *codebase*. Pekerjaan saya sebagian besar pada membangun layanan yang bukan produk *end-to-end* di sisi Frontend.
+Saya cepat belajar, senang bekerja sama dalam tim, dan juga telah membuat beberapa proyek sampingan serta *open-source* yang bisa kamu lihat di [GitHub](https://github.com/gadingnst) — mungkin sudah bermanfaat buat developer lain di luar sana.
 
-Saya dapat menjadi pembelajar yang cepat dalam melakukan hal-hal baru dan membangun kerja tim yang baik. Dan juga, telah membuat beberapa proyek sampingan atau *sumber-terbuka* di [GitHub](https://github.com/gadingnst) untuk bersenang-senang, dan mungkin sudah berguna bagi orang-orang yang telah menggunakannya.
+#### Cara menyebut namaku
+Sebelum mengenal seseorang lebih jauh, hal pertama yang harus kamu tahu adalah cara menyebut namanya dengan benar.
 
-#### Menyebut namaku
-Sebelum mengenal seseorang lebih lanjut, yang pertama harus kamu lakukan adalah tahu cara menyebut namanya dengan benar.
-Berikut adalah nama yang bisa kamu gunakan untuk memanggilku:
-
-###### ✅ Berikut yang ***benar*** :
+✅ ***Benar***:
 - Sutan
-- Gading *(direkomendasikan)*
+- Gading *(paling direkomendasikan)*
 - Fadhillah
 - Nasution
 
-###### ❌ Berikut yang ***salah*** :
+❌ ***Salah***:
 - Sultan *(menambahkan `L`)*
-- Gilang *(Saya tidak tahu kenapa beberapa orang melesat begitu jauh ketika menyebut namaku)*
+- Gilang *(nggak nyambung sama sekali)*
 - Fadillah *(kurang `H`)*
 - Fadhilah *(kurang satu `L`)*
 - Fadilah *(kurang `H` dan satu `L`)*
 
-#### Cerita di balik "Gading"
-Saya adalah seorang *pembelajar seumur hidup*. Komunitas *developer* online, proyek sumber-terbuka, mentor-mentor yang berbagi pengetahuan (yang gratis & berbayar) di internet, rekan kerja, dan teman-teman, semua orang tersebut membantu saya sampai ke titik saat ini. Dan saya sangat bersyukur untuk itu. Sejak awal saya juga membantu orang, berkontribusi pada sedikit proyek sumber-terbuka dan menerbitkan proyek saya sendiri di [GitHub](https://github.com/gadingnst?tab=repositories). Begitulah cara saya menyadari bahwa saya menikmati *technical writing* seperti di blog atau dokumentasi perangkat lunak, serta membuat konten pendidikan & berinteraksi dengan developer lain.
+#### Cerita di balik “Gading”
+Saya percaya kalau belajar itu seumur hidup. Komunitas online, proyek open source, mentor, rekan kerja, dan teman-teman semuanya berperan besar dalam perjalanan saya. Dari situ juga saya mulai suka berbagi: nulis dokumentasi, bikin blog, open source, dan konten edukatif buat sesama developer.
 
-#### Pertanyaan lebih tentangku?
-Sebelum bertanya lebih lanjut, kamu bisa lihat-lihat halaman [Now](/now) untuk mengetahui tentang keseharianku, mungkin disana kamu akan menemukan jawabannya.
+#### Mau tahu saya lagi ngapain?
+Langsung cek ke halaman [Now](/now), siapa tahu pertanyaan kamu udah kejawab di situ.
 
 ---
 
 #### Tentang situs ini
-Saya membangun situs ini menggunakan teknologi *JAMStack* dengan *Next.js*, kamu bisa melihat kode sumbernya [disini](https://github.com/gadingnst/gading.dev). Semua konten di situs ini sebagian besar ditulis menggunakan *Markdown* (tidak ada *database*). Jika kamu ingin membuat juga, saya menyarankan kamu untuk belajar tentang *JAMStack* terlebih dahulu, teknologi *JAMStack* sangat luas, ada banyak teknologi atau *framework* yang bisa kamu gunakan untuk membangun situs berbasis *JAMStack*, bukan hanya *Next.js* saja. *DYOR*.
+Website ini saya bangun pakai teknologi *JAMStack* dengan *Next.js*. Kode sumbernya bisa dicek [di sini](https://github.com/gadingnst/gading.dev). Semua konten ditulis pakai *Markdown*, tanpa database. Kalau kamu pengin bikin kayak gini juga, saya saranin mulai kenalan dulu sama ekosistem *JAMStack* — banyak banget tools & framework yang bisa kamu pakai, nggak terbatas cuma *Next.js* doang.
 
-Dalam membangun situs ini, saya sangat memperhatikan segala aspek yang berkaitan dengan *performance* dan *SEO*. Oleh karena itu, saya akan menampilkan laporan *performance* website di halaman ini, dan akan selalu diperbarui secara berkala. Terima kasih kepada [Ankur Parihar](https://github.com/ankurparihar) karena telah membuat [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) yang dapat membuat laporan *performance* di situs ini secara otomatis. Berikut adalah laporan yang terakhir diupdate:
+Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan performa situs ini di halaman ini dan bakal selalu diperbarui. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) — tool yang otomatis generate laporan performa ini.
 
 ---
 
 <div className="text-center italic">
   Salam hangat, **Sutan Gading Fadhillah Nasution**.
 </div>
-
