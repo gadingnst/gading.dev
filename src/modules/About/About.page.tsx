@@ -1,9 +1,7 @@
 import { NextPageProps } from '@/@types/global';
-import aboutLocales from '@/modules/About/About.locales';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
-import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 import ContentInteraction from '@/packages/components/layouts/Content/Interaction';
 import Banner from '@/packages/components/layouts/Header/Banner';
 import { I18n } from '@/packages/libs/I18n/interface';
@@ -21,7 +19,6 @@ async function AboutPage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
   const markdownContent = await getContentMultiLanguage('about', lang);
-  const content = aboutLocales(lang);
 
   return (
     <div className="min-h-screen flex flex-col text-base-content">
@@ -48,24 +45,6 @@ async function AboutPage(props: NextPageProps) {
           <ContentParser>
             {markdownContent.content}
           </ContentParser>
-          <div className="flex justify-center items-center flex-wrap text-center my-4">
-            <ButtonLink
-              withCurrentLocale
-              href="/"
-              data-umami-event="aboutpage_back-home"
-              className="bg-primary"
-            >
-              {content.backToHome}
-            </ButtonLink>
-            <ButtonLink
-              withCurrentLocale
-              href="/contact"
-              data-umami-event="aboutpage_contact"
-              className="bg-accent mx-2"
-            >
-              {content.contactMe}
-            </ButtonLink>
-          </div>
         </HeroCard>
       </section>
       <ContentInteraction
