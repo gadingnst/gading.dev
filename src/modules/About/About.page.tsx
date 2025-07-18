@@ -1,4 +1,5 @@
 import { NextPageProps } from '@/@types/global';
+import ProfileInfo from '@/modules/About/components/ProfileInfo';
 import ContentParser from '@/modules/ContentParser/components/Parser';
 import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
@@ -42,6 +43,7 @@ async function AboutPage(props: NextPageProps) {
       {/* Markdown Content */}
       <section className="base-container py-6 -mt-28">
         <HeroCard>
+          <ProfileInfo />
           <ContentParser>
             {markdownContent.content}
           </ContentParser>
