@@ -1,4 +1,4 @@
-import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
+import { I18nLocales } from '@/packages/libs/I18n/interface';
 
 const locales = {
   en: {
