@@ -66,11 +66,15 @@ function ProfileInfo() {
         </div>
         <RightDesc className="hidden md:flex" />
       </div>
-      <div className="md:hidden -translate-y-8">
+      <div className="hidden sm:block md:hidden -translate-y-8">
         <div className="mb-8 sm:-mt-16">
           <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-8 mb-8" />
           <LeftDesc className="flex h-[auto] justify-around" />
         </div>
+      </div>
+      <div className="sm:hidden -translate-y-8 px-4 space-y-4 mt-8">
+        <RightDesc className="!flex !h-auto !justify-normal gap-4 [&>a]:!ml-0 [&>a]:flex-1" />
+        <LeftDesc className="!flex !h-auto !justify-normal gap-4 [&>a]:!ml-0 [&>a]:flex-1" />
       </div>
     </div>
   );
