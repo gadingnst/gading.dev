@@ -1,7 +1,7 @@
 ---
 title: "Hai 👋, Saya Gading!"
 date: 2022-06-01
-description: "Gading adalah seorang Insinyur Perangkat Lunak dari Palembang, Indonesia 🇮🇩 dengan minat pada teknologi modern."
+description: "Saya adalah seorang Insinyur Perangkat Lunak dari Palembang, Indonesia 🇮🇩 dengan minat pada teknologi modern."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, persembunyian gading, website gading"
 image: "/media/default-banners/1.jpg"
 ---
