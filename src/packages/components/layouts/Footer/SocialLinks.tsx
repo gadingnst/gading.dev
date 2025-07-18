@@ -12,6 +12,7 @@ import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
 import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import cn from '@/designs/utils/cn';
 import Link from '@/packages/components/base/Navigations/Link';
+import { dasherize } from '@/packages/utils/helpers/string';
 
 const socialLinks = [
   {
@@ -55,11 +56,12 @@ function SocialLinks() {
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={social.name}
+          data-umami-event={`footer_social-link_${dasherize(social.name)}`}
           className={cn([
             'p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 hover:shadow-lg',
             social.className
           ])}
-          aria-label={social.name}
         >
           <social.icon className="w-4 h-4 text-white" />
         </Link>

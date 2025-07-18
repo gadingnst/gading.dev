@@ -16,6 +16,7 @@ import Button from '@/packages/components/base/Buttons/Button';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
 import createPopup from '@/packages/utils/helpers/createPopup';
+import { dasherize } from '@/packages/utils/helpers/string';
 
 interface Props {
   path: string;
@@ -116,7 +117,7 @@ function ContentShare(props: Props) {
             label={`Button to ${social.label}`}
             key={social.label}
             onClick={onShare(social)}
-            data-umami-event={`share-${social.label.substring(9).toLocaleLowerCase()}`}
+            data-umami-event={`content_share-${dasherize(social.label.substring(9))}_${dasherize(path.replace(/\//g, '-'))}`}
             className={cn([
               social.color,
               'btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg'
