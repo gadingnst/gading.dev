@@ -1,18 +1,15 @@
-import { I18nLocales } from '@/packages/libs/I18n/interface';
+import { SITE_NAME } from '@/configs/sites';
+import createContentLocales from '@/packages/libs/I18n/locales';
 
-const locales = {
-  en: {
-    title: 'Color System',
-    description: 'Here is the color system used in this website. Based on DaisyUI color system.'
+const withColorsLocales = createContentLocales({
+  title: {
+    en: 'Color System',
+    id: 'Sistem Warna'
   },
-  id: {
-    title: 'Sistem Warna',
-    description: 'Berikut adalah sistem warna yang digunakan di website ini. Berdasarkan sistem warna DaisyUI.'
+  description: {
+    en: `A visual demonstration of color palette used in ${SITE_NAME}`,
+    id: `Demonstrasi visual dari palet warna yang digunakan di ${SITE_NAME}`
   }
-};
-
-const withColorsLocales = (lang: I18nLocales) => {
-  return locales[lang];
-};
+});
 
 export default withColorsLocales;
