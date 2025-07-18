@@ -18,7 +18,7 @@ export interface ButtonLinkProps extends NextLinkProps {
 }
 
 const baseClasses = [
-  'inline-flex items-center gap-2 transition-all duration-300 ease-in-out',
+  'inline-flex items-center gap-1 transition-all duration-300 ease-in-out',
   'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
   'active:scale-95'
 ];

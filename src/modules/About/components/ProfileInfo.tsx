@@ -1,6 +1,8 @@
 'use client';
 
-import { AUTHOR_NAME } from '@/configs/author';
+import { Briefcase, FileText, Mail, User } from 'lucide-react';
+
+import { AUTHOR_GITHUB, AUTHOR_LINKEDIN, AUTHOR_NAME } from '@/configs/author';
 import cn from '@/designs/utils/cn';
 import Image from '@/packages/components/base/Displays/Image';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
@@ -16,11 +18,23 @@ function ProfileInfo() {
         className
       ])}
     >
-      <ButtonLink href="/portfolio" variant="outline">
+      <ButtonLink
+        href={`https://github.com/${AUTHOR_GITHUB}`}
+        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-teal-500 shadow-teal-500/50 flex items-center gap-x-2"
+        icon={<User size={16} />}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Portfolio
       </ButtonLink>
-      <ButtonLink href="/profile" variant="outline" className="ml-4">
-        Profile
+      <ButtonLink
+        href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
+        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-indigo-500 shadow-indigo-500/50 flex items-center gap-x-2"
+        icon={<Briefcase size={16} />}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Career
       </ButtonLink>
     </div>
   );
@@ -32,10 +46,22 @@ function ProfileInfo() {
         className
       ])}
     >
-      <ButtonLink href="/resume" variant="outline" external>
+      <ButtonLink
+        href="/resume"
+        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-green-600 shadow-green-600/50 flex items-center gap-x-2"
+        icon={<FileText size={16} />}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Resume
       </ButtonLink>
-      <ButtonLink href="mailto:contact@gading.dev" variant="outline" className="ml-4">
+      <ButtonLink
+        href="mailto:contact@gading.dev"
+        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-orange-500 shadow-orange-500/50 flex items-center gap-x-2"
+        icon={<Mail size={16} />}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Contact
       </ButtonLink>
     </div>
@@ -61,7 +87,15 @@ function ProfileInfo() {
             ])}
           />
           <h3 className="text-center text-2xl font-bold mb-9 mt-4">
-            <span className={cn('hover:cursor-pointer hover:underline underline-offset-4', isDark ? 'text-accent' : 'text-primary')}>Gading</span> Nasution
+            <span
+              className={cn(
+                'hover:cursor-pointer hover:underline underline-offset-4',
+                isDark ? 'text-accent' : 'text-primary'
+              )}
+            >
+              Gading
+            </span>{' '}
+            Nasution
           </h3>
         </div>
         <RightDesc className="hidden md:flex" />
