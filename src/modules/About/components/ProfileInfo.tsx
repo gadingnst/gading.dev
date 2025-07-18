@@ -45,7 +45,7 @@ function ProfileInfo() {
     <div>
       <div className="relative flex justify-around items-start md:-mx-9">
         <LeftDesc className="hidden md:flex" />
-        <div className="-mt-12 w-[180px] h-[180px] flex flex-1 items-center justify-center">
+        <div className="-mt-6 flex flex-col flex-1 items-center justify-center">
           <Image
             className="rounded-full max-w-[180px] max-h-[180px] cursor-grab active:cursor-grabbing"
             src="/media/authors/gading-talks.jpeg"
@@ -60,6 +60,9 @@ function ProfileInfo() {
               isDark && 'hover:shadow-accent'
             ])}
           />
+          <h3 className="text-center text-2xl font-bold mb-9 mt-4">
+            <span className={cn('hover:cursor-pointer hover:underline underline-offset-4', isDark ? 'text-accent' : 'text-primary')}>Gading</span> Nasution
+          </h3>
         </div>
         <RightDesc className="hidden md:flex" />
       </div>
@@ -69,9 +72,6 @@ function ProfileInfo() {
           <LeftDesc className="flex h-[auto] justify-around" />
         </div>
       </div>
-      <h3 className="text-center text-2xl font-bold mb-9 -mt-6">
-        <span className={cn('hover:cursor-pointer hover:underline underline-offset-4', isDark ? 'text-accent' : 'text-primary')}>Gading</span> Nasution
-      </h3>
     </div>
   );
 }
