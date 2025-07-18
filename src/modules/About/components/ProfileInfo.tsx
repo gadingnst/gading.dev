@@ -45,18 +45,18 @@ function ProfileInfo() {
     <div>
       <div className="relative flex justify-around items-start md:-mx-9">
         <LeftDesc className="hidden md:flex" />
-        <div className="-mt-6 flex flex-col flex-1 items-center justify-center">
+        <div className="-mt-4 flex flex-col flex-1 items-center justify-center">
           <Image
-            className="rounded-full max-w-[180px] max-h-[180px] cursor-grab active:cursor-grabbing"
+            className="rounded-full cursor-grab active:cursor-grabbing"
             src="/media/authors/gading-talks.jpeg"
             alt={AUTHOR_NAME}
             width={180}
             height={180}
-            delayLoad={750}
             wrapperClassName={cn([
               '-mt-24 rounded-full overflow-hidden transition-all shadow-lg',
               'hover:shadow-xl hover:-translate-y-3',
               'active:shadow-md active:scale-95',
+              'min-w-[180px] min-h-[180px] max-w-[180px] max-h-[180px]',
               isDark && 'hover:shadow-accent'
             ])}
           />
@@ -66,7 +66,7 @@ function ProfileInfo() {
         </div>
         <RightDesc className="hidden md:flex" />
       </div>
-      <div className="md:hidden">
+      <div className="md:hidden -translate-y-8">
         <div className="mb-8 sm:-mt-16">
           <RightDesc className="flex h-[auto] justify-around sm:justify-between sm:px-8 mb-8" />
           <LeftDesc className="flex h-[auto] justify-around" />
