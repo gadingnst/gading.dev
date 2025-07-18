@@ -56,7 +56,7 @@ function ContentSupport() {
             href={url}
             data-umami-event={`support-${dasherize(label)}`}
             className={cn([
-              'px-3 py-1 rounded-full border-0 outline-0 shadow-none hover:shadow-lg',
+              'px-3 py-1 text-white rounded-full border-0 outline-0 shadow-none hover:shadow-lg',
               className
             ])}
           >

@@ -64,7 +64,7 @@ async function HomePage(props: NextPageProps) {
               withCurrentLocale
               href="/blog"
               data-umami-event="homepage_see-blog"
-              className="bg-primary"
+              className="bg-primary text-white shadow-primary shadow-sm"
             >
               {content.myBlog}
             </ButtonLink>
@@ -72,7 +72,7 @@ async function HomePage(props: NextPageProps) {
               withCurrentLocale
               href="/about"
               data-umami-event="homepage_see-about"
-              className="bg-accent"
+              className="bg-accent text-white shadow-accent shadow-sm"
             >
               {content.aboutMe}
             </ButtonLink>
