@@ -1,8 +1,9 @@
 'use client';
 
-import { Briefcase, FileText, Mail, User } from 'lucide-react';
+import { Briefcase, FileText, Mail } from 'lucide-react';
 
 import { AUTHOR_GITHUB, AUTHOR_LINKEDIN, AUTHOR_NAME } from '@/configs/author';
+import IconGithub from '@/designs/icons/logo/github.svg';
 import cn from '@/designs/utils/cn';
 import Image from '@/packages/components/base/Displays/Image';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
@@ -20,21 +21,23 @@ function ProfileInfo() {
     >
       <ButtonLink
         href={`https://github.com/${AUTHOR_GITHUB}`}
-        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-teal-500 shadow-teal-500/50 flex items-center gap-x-2"
-        icon={<User size={16} />}
+        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-[#333] shadow-gray-600 flex items-center gap-x-2"
+        icon={<IconGithub width={16} height={16} />}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="about_portfolio"
       >
         Portfolio
       </ButtonLink>
       <ButtonLink
         href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
-        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-indigo-500 shadow-indigo-500/50 flex items-center gap-x-2"
+        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-primary shadow-primary flex items-center gap-x-2"
         icon={<Briefcase size={16} />}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="about_careers"
       >
-        Career
+        Careers
       </ButtonLink>
     </div>
   );
@@ -48,19 +51,21 @@ function ProfileInfo() {
     >
       <ButtonLink
         href="/resume"
-        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-green-600 shadow-green-600/50 flex items-center gap-x-2"
+        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-info shadow-info flex items-center gap-x-2"
         icon={<FileText size={16} />}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="about_resume"
       >
         Resume
       </ButtonLink>
       <ButtonLink
         href="mailto:contact@gading.dev"
-        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-md hover:shadow-lg bg-orange-500 shadow-orange-500/50 flex items-center gap-x-2"
+        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-accent shadow-accent flex items-center gap-x-2"
         icon={<Mail size={16} />}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="about_contact"
       >
         Contact
       </ButtonLink>

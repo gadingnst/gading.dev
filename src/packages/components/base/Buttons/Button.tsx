@@ -19,14 +19,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const baseClasses = [
   'btn transition-all duration-300 ease-in-out',
-  'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+  'focus:outline-none',
   'active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed'
 ];
 
 const variantClasses = {
   primary: [
-    'btn-primary',
-    'hover:shadow-lg hover:shadow-primary/25',
+    'btn',
+    'hover:shadow-lg',
     'hover:-translate-y-1'
   ],
   secondary: [

@@ -19,14 +19,14 @@ export interface ButtonLinkProps extends NextLinkProps {
 
 const baseClasses = [
   'inline-flex items-center gap-1 transition-all duration-300 ease-in-out',
-  'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+  'focus:outline-none',
   'active:scale-95'
 ];
 
 const variantClasses = {
   button: [
-    'btn btn-primary',
-    'hover:shadow-lg hover:shadow-primary/25',
+    'btn',
+    'hover:shadow-lg',
     'hover:-translate-y-1'
   ],
   glass: [

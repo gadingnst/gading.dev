@@ -41,7 +41,7 @@ async function HomePage(props: NextPageProps) {
       >
         <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10">
-            <div className="liquid-glass-shadow rounded-2xl p-8">
+            <div className="liquid-glass-shadow rounded-2xl p-8 -translate-y-6">
               <h1 className="text-2xl md:text-4xl font-bold">
                 {markdownContent.meta.title}
               </h1>

@@ -6,6 +6,7 @@ import cn from '@/designs/utils/cn';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
+import { dasherize } from '@/packages/utils/helpers/string';
 
 const supportLinks = [
   {
@@ -53,6 +54,7 @@ function ContentSupport() {
             key={label}
             label={label}
             href={url}
+            data-umami-event={`support-${dasherize(label)}`}
             className={cn([
               'px-3 py-1 rounded-full border-0 outline-0 shadow-none hover:shadow-lg',
               className
