@@ -1,5 +1,3 @@
-'use client';
-
 import ColorCard from '@/modules/Docs/Colors/components/ColorCard';
 
 const colorGroups = [
