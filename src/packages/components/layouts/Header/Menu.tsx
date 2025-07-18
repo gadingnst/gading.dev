@@ -47,7 +47,7 @@ export default function Menu() {
       return pathname === '/' || pathname === `/${currentLang}` || pathname === '/en' || pathname === '/id';
     }
     // For other routes, check if pathname contains the route
-    return pathname.includes(route);
+    return pathname?.includes(route) || false;
   };
 
   return (

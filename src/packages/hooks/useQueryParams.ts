@@ -5,7 +5,7 @@ function useQueryParams() {
   const queryReader = useSearchParams();
 
   const queryModifier = useMemo(() => {
-    return new URLSearchParams(queryReader);
+    return new URLSearchParams(queryReader?.toString());
   }, [queryReader]);
 
   return { queryReader, queryModifier };

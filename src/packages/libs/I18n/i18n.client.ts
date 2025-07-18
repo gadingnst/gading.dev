@@ -10,7 +10,7 @@ function useLangugage() {
 
   const language = useMemo(() => {
     // Try to get language from pathname strictly (without fallback)
-    const langFromPath = getLanguageFromPathnameStrict(pathname);
+    const langFromPath = getLanguageFromPathnameStrict(pathname?.toString() ?? '');
     if (langFromPath) return langFromPath;
 
     // For root path, use default language

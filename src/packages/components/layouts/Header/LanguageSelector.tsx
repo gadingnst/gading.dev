@@ -59,7 +59,7 @@ function LanguageSelector() {
    */
   const getLanguageUrl = useCallback((newLang: I18nLocales): string => {
     // Remove current language from pathname if exists
-    const pathWithoutLang = pathname.replace(/^\/(en|id)/, '') || '/';
+    const pathWithoutLang = pathname?.replace(/^\/(en|id)/, '') || '/';
 
     // Return URL based on language
     if (newLang === 'en') {

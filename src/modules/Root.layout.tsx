@@ -6,10 +6,6 @@ import { PropsWithChildren } from 'react';
 
 import { NextPageProps } from '@/@types/global';
 import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
-import TopLoader from '@/packages/components/base/Loaders/TopLoader';
-import Footer from '@/packages/components/layouts/Footer/Footer';
-import Header from '@/packages/components/layouts/Header/Header';
-import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
 import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
@@ -39,11 +35,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
   return (
     <html lang={htmlLang}>
       <body className={`${poppins.variable} ${courgette.variable} antialiased`}>
-        <TopLoader color="primary" height={3} showShadow />
-        <Header />
         {children}
-        <Footer />
-        <AppThemeInitializer />
         {!IS_DEV && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
         )}
