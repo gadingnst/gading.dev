@@ -1,5 +1,6 @@
 import { NextPageProps } from '@/@types/global';
 import withColorsLocales from '@/modules/Docs/Colors/Colors.locales';
+import ColorList from '@/modules/Docs/Colors/components/ColorList';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
@@ -26,6 +27,8 @@ async function ColorsPage(props: NextPageProps<{ lang: I18nLocales }>) {
           {content.description}
         </p>
       </div>
+
+      <ColorList />
     </main>
   );
 }
