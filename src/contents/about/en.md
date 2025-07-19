@@ -41,6 +41,11 @@ This site is built with *JAMStack* using *Next.js*. You can peek the source-code
 
 I care a lot about performance and SEO, so I’m showcasing a live website performance report on this page. Shoutout to [Ankur Parihar](https://github.com/ankurparihar) for [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights)!
 
+<div className="max-w-[720px] flex flex-col gap-0 mx-auto">
+  ![*Performance* (Desktop) Report](/media/web-reports/pagespeed/desktop.svg)
+  ![*Performance* (Mobile) Report](/media/web-reports/pagespeed/mobile.svg)
+</div>
+
 ---
 
 <div className="text-center italic">
