@@ -48,4 +48,4 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 * * *
 
-Copyright © 2022 by Sutan Gading Fadhillah Nasution
+Copyright © 2022 by Gading Nasution

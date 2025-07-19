@@ -1,5 +1,6 @@
 'use client';
 
+import { SITE_NAME } from '@/configs/sites';
 import cn from '@/designs/utils/cn';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 
@@ -27,7 +28,7 @@ export default function Header() {
               'transition-all duration-300 hover:bg-white/80 hover:text-black hover:scale-105'
             ])}
           >
-            Gading&apos;s Hideout
+            {SITE_NAME}
           </NextLink>
         </div>
 

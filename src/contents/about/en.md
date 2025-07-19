@@ -49,5 +49,5 @@ I care a lot about performance and SEO, so I’m showcasing a live website perfo
 ---
 
 <div className="text-center italic">
-  Best regards, **Sutan Gading Fadhillah Nasution**.
+  Best regards, **Gading Nasution**.
 </div>

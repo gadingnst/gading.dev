@@ -49,5 +49,5 @@ Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan pe
 ---
 
 <div className="text-center italic">
-  Salam hangat, **Sutan Gading Fadhillah Nasution**.
+  Salam hangat, **Gading Nasution**.
 </div>
