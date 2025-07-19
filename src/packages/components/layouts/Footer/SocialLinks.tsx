@@ -49,7 +49,7 @@ const socialLinks = [
 
 function SocialLinks() {
   return (
-    <div className="flex gap-x-3 my-4 lg:my-0">
+    <div className="flex justify-end gap-x-3 mt-8 lg:my-0">
       {socialLinks.map((social) => (
         <Link
           key={social.name}
