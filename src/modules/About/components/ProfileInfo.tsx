@@ -9,68 +9,68 @@ import Image from '@/packages/components/base/Displays/Image';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 
+const LeftDesc = ({ className }: { className?: string }) => (
+  <div
+    className={cn([
+      'items-center h-[30px] flex-1 justify-center text-center',
+      className
+    ])}
+  >
+    <ButtonLink
+      href={`https://github.com/${AUTHOR_GITHUB}`}
+      className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-[#333] shadow-gray-600 flex items-center gap-x-2"
+      icon={<IconGithub width={16} height={16} />}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-umami-event="about_portfolio"
+    >
+        Portfolio
+    </ButtonLink>
+    <ButtonLink
+      href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
+      className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-primary shadow-primary flex items-center gap-x-2"
+      icon={<Briefcase size={16} />}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-umami-event="about_careers"
+    >
+        Careers
+    </ButtonLink>
+  </div>
+);
+
+const RightDesc = ({ className }: { className?: string }) => (
+  <div
+    className={cn([
+      'items-center h-[30px] flex-1 justify-center',
+      className
+    ])}
+  >
+    <ButtonLink
+      href="/resume"
+      className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-info shadow-info flex items-center gap-x-2"
+      icon={<FileText size={16} />}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-umami-event="about_resume"
+    >
+        Resume
+    </ButtonLink>
+    <ButtonLink
+      href="mailto:contact@gading.dev"
+      className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-accent shadow-accent flex items-center gap-x-2"
+      icon={<Mail size={16} />}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-umami-event="about_contact"
+    >
+        Contact
+    </ButtonLink>
+  </div>
+);
+
 function ProfileInfo() {
   const { isDark } = useAppTheme();
-
-  const LeftDesc = ({ className }: { className?: string }) => (
-    <div
-      className={cn([
-        'items-center h-[30px] flex-1 justify-center text-center',
-        className
-      ])}
-    >
-      <ButtonLink
-        href={`https://github.com/${AUTHOR_GITHUB}`}
-        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-[#333] shadow-gray-600 flex items-center gap-x-2"
-        icon={<IconGithub width={16} height={16} />}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-umami-event="about_portfolio"
-      >
-        Portfolio
-      </ButtonLink>
-      <ButtonLink
-        href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
-        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-primary shadow-primary flex items-center gap-x-2"
-        icon={<Briefcase size={16} />}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-umami-event="about_careers"
-      >
-        Careers
-      </ButtonLink>
-    </div>
-  );
-
-  const RightDesc = ({ className }: { className?: string }) => (
-    <div
-      className={cn([
-        'items-center h-[30px] flex-1 justify-center',
-        className
-      ])}
-    >
-      <ButtonLink
-        href="/resume"
-        className="p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-info shadow-info flex items-center gap-x-2"
-        icon={<FileText size={16} />}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-umami-event="about_resume"
-      >
-        Resume
-      </ButtonLink>
-      <ButtonLink
-        href="mailto:contact@gading.dev"
-        className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-accent shadow-accent flex items-center gap-x-2"
-        icon={<Mail size={16} />}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-umami-event="about_contact"
-      >
-        Contact
-      </ButtonLink>
-    </div>
-  );
 
   return (
     <div>
@@ -88,14 +88,13 @@ function ProfileInfo() {
               'hover:shadow-xl hover:-translate-y-3',
               'active:shadow-md active:scale-95',
               'min-w-[180px] min-h-[180px] max-w-[180px] max-h-[180px]',
-              isDark && 'hover:shadow-accent'
+              isDark && 'hover:shadow-primary'
             ])}
           />
           <h3 className="text-center text-2xl font-bold mb-9 mt-4">
             <span
               className={cn(
-                'hover:cursor-pointer hover:underline underline-offset-4',
-                isDark ? 'text-accent' : 'text-primary'
+                'hover:cursor-pointer hover:underline underline-offset-4 text-primary'
               )}
             >
               Gading

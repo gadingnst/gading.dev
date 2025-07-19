@@ -26,7 +26,7 @@ function Card(_props: PropsWithChildren<CardProps>) {
         'card bg-base-200 z-10 shadow-lg',
         'transition-all duration-300 ease-in-out',
         hoverEffect && 'hover:-translate-y-1 hover:shadow-xl',
-        isDark && 'shadow-primary',
+        isDark && 'shadow-secondary',
         className
       ])}
     >

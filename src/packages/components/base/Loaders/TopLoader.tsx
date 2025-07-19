@@ -48,7 +48,7 @@ const colorClasses = {
  * Automatically detects link clicks and route changes to show/hide the loader accordingly
  */
 function TopLoader({
-  color = 'primary',
+  color = 'accent',
   height = 3,
   speed = 200,
   showShadow = true,

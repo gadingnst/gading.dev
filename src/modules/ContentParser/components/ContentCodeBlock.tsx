@@ -27,7 +27,7 @@ function ContentCodeBlock({ children, className, ...props }: PropsWithChildren<C
         onClick={copyHandler}
         aria-label="Copy code to clipboard"
         className={cn([
-          'absolute top-2 right-2 z-10 p-1.5 rounded-md bg-gray-800/70 text-gray-300 hover:text-white hover:bg-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-200',
+          'absolute top-2 right-2 backdrop-blur z-10 p-1.5 rounded-md bg-gray-800/70 text-gray-300 hover:text-white hover:bg-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-200',
           !isCopied && 'cursor-pointer'
         ])}
       >

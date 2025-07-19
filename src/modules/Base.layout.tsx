@@ -8,7 +8,7 @@ import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
 function BaseLayout({ children }: PropsWithChildren) {
   return (
     <>
-      <TopLoader color="primary" height={3} showShadow />
+      <TopLoader height={3} showShadow />
       <Header />
       {children}
       <Footer />
