@@ -1,7 +1,7 @@
 import { Calendar, Clock } from 'lucide-react';
 
 import cn from '@/designs/utils/cn';
-import { ContentMeta } from '@/modules/ContentParser/services/content-parser';
+import { ContentMeta } from '@/modules/Content/services/content-parser';
 import dt from '@/packages/libs/DayJS/dt';
 
 interface Props {

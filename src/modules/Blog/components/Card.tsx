@@ -2,7 +2,7 @@ import { Tag } from 'lucide-react';
 
 import cn from '@/designs/utils/cn';
 import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
-import type { ContentMeta } from '@/modules/ContentParser/services/content-parser';
+import type { ContentMeta } from '@/modules/Content/services/content-parser';
 import Card from '@/packages/components/base/Displays/Card';
 import Image from '@/packages/components/base/Displays/Image';
 import NextLink from '@/packages/components/base/Navigations/NextLink';

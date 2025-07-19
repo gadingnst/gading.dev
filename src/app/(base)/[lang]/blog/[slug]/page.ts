@@ -1,5 +1,5 @@
 import BlogContentPage, { generateBlogPathsWithLang } from '@/modules/Blog/BlogContent.page';
-import { getContent } from '@/modules/ContentParser/services/content-parser';
+import { getContent } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
 import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';

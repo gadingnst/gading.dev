@@ -1,6 +1,6 @@
 import withBlogListLocales from '@/modules/Blog/BlogList.locales';
 import BlogCardList from '@/modules/Blog/components/CardList';
-import { getBlogList } from '@/modules/ContentParser/services/content-parser';
+import { getBlogList } from '@/modules/Content/services/content-parser';
 import Pagination from '@/packages/components/base/Navigations/Pagination';
 import Banner from '@/packages/components/layouts/Header/Banner';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';

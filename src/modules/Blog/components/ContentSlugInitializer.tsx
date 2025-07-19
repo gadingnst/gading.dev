@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 import useBlogContentLanguages from '@/modules/Blog/hooks/useBlogContentLanguages';
-import { ContentSlug } from '@/modules/ContentParser/services/content-parser';
+import { ContentSlug } from '@/modules/Content/services/content-parser';
 
 interface Props {
   contentSlug: ContentSlug;

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import useStore from 'swr-global-state';
 
-import { ContentSlug } from '@/modules/ContentParser/services/content-parser';
+import { ContentSlug } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { getLanguageFlag, getLanguageLabel } from '@/packages/libs/I18n/utils';
 

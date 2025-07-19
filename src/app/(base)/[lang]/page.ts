@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import { AUTHOR_NAME } from '@/configs/author';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import HomePage, { generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { isValidLanguage } from '@/packages/libs/I18n/utils';

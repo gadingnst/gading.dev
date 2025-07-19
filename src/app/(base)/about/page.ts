@@ -1,5 +1,5 @@
 import AboutPage, { generateAboutPathsDefault } from '@/modules/About/About.page';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
 import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';
 

@@ -4,7 +4,7 @@ import { marked } from 'marked';
 
 import { AUTHOR_EMAIL, AUTHOR_FULLNAME, AUTHOR_NAME, AUTHOR_TWITTER } from '@/configs/author';
 import { BASE_URL, SITE_NAME } from '@/configs/sites';
-import { getAllBlogMeta, getContent } from '@/modules/ContentParser/services/content-parser';
+import { getAllBlogMeta, getContent } from '@/modules/Content/services/content-parser';
 import dt from '@/packages/libs/DayJS/dt';
 import { I18n } from '@/packages/libs/I18n/interface';
 

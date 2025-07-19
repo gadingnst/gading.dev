@@ -1,5 +1,5 @@
 import { AUTHOR_NAME } from '@/configs/author';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import HomePage, { generateHomePathsDefault } from '@/modules/Home/Home.page';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
 import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';

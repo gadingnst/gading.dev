@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { PropsWithChildren, ReactNode, Suspense } from 'react';
 
-import { ContentMeta } from '@/modules/ContentParser/services/content-parser';
+import { ContentMeta } from '@/modules/Content/services/content-parser';
 
 interface ContentInteractionProps {
   path: string;
@@ -15,15 +15,15 @@ interface ContentSuspenseProps {
   fallback: ReactNode;
 }
 
-const ContentShare = dynamic(() => import('@/packages/components/layouts/Content/Share'), {
+const ContentShare = dynamic(() => import('@/modules/Content/components/Share'), {
   ssr: false
 });
 
-const ContentSupport = dynamic(() => import('@/packages/components/layouts/Content/Support'), {
+const ContentSupport = dynamic(() => import('@/modules/Content/components/Support'), {
   ssr: false
 });
 
-const ContentDisqus = dynamic(() => import('@/packages/components/layouts/Content/Disqus'), {
+const ContentDisqus = dynamic(() => import('@/modules/Content/components/Disqus'), {
   ssr: false
 });
 

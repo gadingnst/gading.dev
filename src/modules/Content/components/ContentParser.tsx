@@ -3,10 +3,10 @@
 import 'katex/dist/katex.min.css';
 
 import { getMDXComponent, MDXContentProps } from 'mdx-bundler/client';
-import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 
 import cn from '@/designs/utils/cn';
-import ContentCodeBlock from '@/modules/ContentParser/components/ContentCodeBlock';
+import ContentCodeBlock from '@/modules/Content/components/ContentCodeBlock';
 import Button from '@/packages/components/base/Buttons/Button';
 
 import ContentImage from './ContentImage';
@@ -18,7 +18,7 @@ export interface Props extends MDXContentProps {
   className?: string;
 }
 
-const ContentParser: FunctionComponent<PropsWithChildren<Props>> = (props) => {
+function ContentParser(props: PropsWithChildren<Props>) {
   const { children, className = '', components, ...otherProps } = props;
 
   const Parser = useMemo(() => {

@@ -1,5 +1,5 @@
 import AboutPage, { generateAboutPathsWithLang } from '@/modules/About/About.page';
-import { getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
+import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
 import { metadataBuilder } from '@/packages/utils/metadata/metadata.builder';

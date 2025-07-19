@@ -1,3 +1,3 @@
-import generateRobots from '@/modules/ContentParser/services/robots';
+import generateRobots from '@/modules/Content/services/robots';
 
 export default generateRobots;

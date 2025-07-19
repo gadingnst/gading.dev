@@ -1,8 +1,8 @@
 import { NextPageProps } from '@/@types/global';
 import BlogCardList from '@/modules/Blog/components/CardList';
-import ContentParser from '@/modules/ContentParser/components/Parser';
-import { getBlogList, getContentMultiLanguage } from '@/modules/ContentParser/services/content-parser';
-import generateRSSFeed from '@/modules/ContentParser/services/rss-feed';
+import ContentParser from '@/modules/Content/components/ContentParser';
+import { getBlogList, getContentMultiLanguage } from '@/modules/Content/services/content-parser';
+import generateRSSFeed from '@/modules/Content/services/rss-feed';
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import ButtonLink from '@/packages/components/base/Navigations/ButtonLink';

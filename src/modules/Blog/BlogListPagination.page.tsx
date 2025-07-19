@@ -1,6 +1,6 @@
 import { NextPageProps } from '@/@types/global';
 import BlogPageList from '@/modules/Blog/components/PageList';
-import { getBlogList } from '@/modules/ContentParser/services/content-parser';
+import { getBlogList } from '@/modules/Content/services/content-parser';
 import { I18n } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 import range from '@/packages/utils/helpers/range';

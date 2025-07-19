@@ -1,3 +1,3 @@
-import generateSitemap from '@/modules/ContentParser/services/sitemap';
+import generateSitemap from '@/modules/Content/services/sitemap';
 
 export default generateSitemap;

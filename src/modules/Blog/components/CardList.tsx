@@ -1,6 +1,6 @@
 import cn from '@/designs/utils/cn';
 import BlogCard from '@/modules/Blog/components/Card';
-import { ContentMeta } from '@/modules/ContentParser/services/content-parser';
+import { ContentMeta } from '@/modules/Content/services/content-parser';
 
 interface Props {
   contents: ContentMeta[]
