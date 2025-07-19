@@ -57,6 +57,10 @@ pre::-webkit-scrollbar-thumb {
   border-radius: 0 0 0.5em 0.5em;
 }
 
+code:not(.code-highlight) {
+  @apply bg-base-300;
+}
+
 /* Selection */
 
 pre,
@@ -474,4 +478,5 @@ pre[class*='language-'] {
 
 .code-line {
   display: block;
+  color: white;
 }
