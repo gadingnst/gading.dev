@@ -10,10 +10,10 @@ Saya adalah seorang ***Software Engineer*** dengan pengalaman lebih dari 5 tahun
 
 Saya antusias mengeksplorasi teknologi yang sedang naik daun seperti ***AI***, ***Web3***, dan ***blockchain***, sambil terus mendalami teknologi web & mobile modern dengan fokus pada *Developer Experience (DX)*, performa, dan selalu mengikuti perkembangan terbaru.
 
-Saya cepat belajar, senang bekerja sama dalam tim, dan juga telah membuat beberapa proyek sampingan serta *open-source* yang bisa kamu lihat di [GitHub](https://github.com/gadingnst) — mungkin sudah bermanfaat buat developer lain di luar sana.
+Saya cepat belajar, senang bekerja sama dalam tim, dan juga telah membuat beberapa proyek sampingan serta *open-source* yang bisa dilihat di [GitHub](https://github.com/gadingnst) (mungkin sudah bermanfaat buat developer lain di luar sana).
 
 #### Cara menyebut namaku
-Sebelum mengenal seseorang lebih jauh, hal pertama yang harus kamu tahu adalah cara menyebut namanya dengan benar.
+Sebelum mengenal seseorang lebih jauh, hal pertama yang harus diketahui adalah cara menyebut namanya dengan benar.
 
 ✅ ***Benar***:
 - Sutan
@@ -31,8 +31,8 @@ Sebelum mengenal seseorang lebih jauh, hal pertama yang harus kamu tahu adalah c
 #### Cerita di balik “Gading”
 Saya percaya kalau belajar itu seumur hidup. Komunitas online, proyek open source, mentor, rekan kerja, dan teman-teman semuanya berperan besar dalam perjalanan saya. Dari situ juga saya mulai suka berbagi: nulis dokumentasi, bikin blog, open source, dan konten edukatif buat sesama developer.
 
-#### Mau tahu saya lagi ngapain?
-Langsung cek ke halaman [Now](/now), siapa tahu pertanyaan kamu udah kejawab di situ.
+#### Mau tau saya ngapain?
+Langsung cek ke halaman [Now](/now), siapa tau pertanyaan kamu udah kejawab di situ.
 
 ---
 
@@ -40,6 +40,11 @@ Langsung cek ke halaman [Now](/now), siapa tahu pertanyaan kamu udah kejawab di 
 Website ini saya bangun pakai teknologi *JAMStack* dengan *Next.js*. Kode sumbernya bisa dicek [di sini](https://github.com/gadingnst/gading.dev). Semua konten ditulis pakai *Markdown*, tanpa database. Kalau kamu pengin bikin kayak gini juga, saya saranin mulai kenalan dulu sama ekosistem *JAMStack* — banyak banget tools & framework yang bisa kamu pakai, nggak terbatas cuma *Next.js* doang.
 
 Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan performa situs ini di halaman ini dan bakal selalu diperbarui. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) — tool yang otomatis generate laporan performa ini.
+
+<div className="max-w-[720px] flex flex-col gap-0 mx-auto">
+  ![Laporan *Performance* (Desktop)](/media/web-reports/pagespeed/desktop.svg)
+  ![Laporan *Performance* (Mobile)](/media/web-reports/pagespeed/mobile.svg)
+</div>
 
 ---
 

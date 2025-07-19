@@ -12,7 +12,7 @@ function ContentImage(props: ContentImageProps) {
   const { src, alt } = props;
   return (
     <ImageWithTools
-      figureClassName="flex flex-col items-center min-h-[300px] w-full justify-center my-4 rounded-lg"
+      figureClassName="flex flex-col items-center min-h-[200px] w-full justify-center my-4 rounded-lg"
       enableZoom
       enableDownload
       src={src}

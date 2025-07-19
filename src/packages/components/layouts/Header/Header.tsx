@@ -4,6 +4,7 @@ import cn from '@/designs/utils/cn';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 
 import AppThemeSelector from './AppThemeSelector';
+import BackButton from './BackButton';
 import LanguageSelector from './LanguageSelector';
 import Menu from './Menu';
 
@@ -15,7 +16,8 @@ export default function Header() {
       ])}
     >
       <div className="base-container flex justify-between items-center">
-        <div className="navbar-start">
+        <div className="navbar-start gap-2">
+          <BackButton />
           <NextLink
             withCurrentLocale
             href="/"
