@@ -28,4 +28,14 @@
   .twitter-tweet[data-theme="light"] a {
     color: black !important;
   }
+
+  blockquote {
+    @apply border-l-4 border-primary pl-4 italic;
+    & p:first-of-type::before {
+      @apply content-none;
+    }
+    & p:last-of-type::after {
+      @apply content-none;
+    }
+  }
 }
