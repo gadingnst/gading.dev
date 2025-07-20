@@ -15,9 +15,9 @@ function HeroCard(_props: PropsWithChildren<CardProps>) {
       {...cardProps}
       className={cn([
         'base-container card-body shadow-xl rounded-3xl mx-auto',
-        'py-6 px-7',
-        'sm:py-9 sm:px-10',
-        'md:py-11 md:px-14',
+        'py-6 px-7!',
+        'sm:py-8! sm:px-9!',
+        'md:py-10! md:px-11!',
         'min-h-[500px]',
         className
       ])}
