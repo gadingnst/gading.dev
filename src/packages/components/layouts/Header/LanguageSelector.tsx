@@ -118,7 +118,7 @@ function LanguageSelector() {
             {getLanguageLabel(currentLang)}
           </span>
           {isSlugSingleLanguage && (
-            <span className="text-xs">(Only)</span>
+            <span className="text-xs hidden sm:inline-block">(Only)</span>
           )}
         </>
       }
