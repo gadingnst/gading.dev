@@ -28,7 +28,7 @@ function Footer() {
             {AUTHOR_NAME}
           </Link>
           <div className="text-base-content mt-2">
-            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="https://eu.umami.is/share/ZCHEMPuhQlibZE6L/gading.dev">
+            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="https://analytic.gading.dev">
               Analytic
             </Link>
             <span className="inline-block mx-1">&bull;</span>
