@@ -28,7 +28,10 @@ function ContentDisqus(props: Props) {
     const timer = setTimeout(() => {
       setDisqusKey(`${language}-${appTheme}`);
     }, 1000);
-    return () => clearTimeout(timer);
+    return () => {
+      setDisqusKey('');
+      clearTimeout(timer);
+    };
   }, [language, appTheme]);
 
   return (

@@ -115,10 +115,6 @@ body {
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
 
-.disqus-container *:not(:first-of-type), #disqus_thread *:not(:first-of-type) {
-  display: none !important;
-}
-
 @import "./custom-utilities";
 @import "./lazy-image";
 @import "./katex";
