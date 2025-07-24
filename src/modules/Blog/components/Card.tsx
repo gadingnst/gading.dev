@@ -36,7 +36,7 @@ function BlogCard(_props: BlogCardProps) {
                 src={blog.image}
                 alt={blog.title}
                 className="w-full h-full object-cover"
-                wrapperClassName="flex items-center justify-center"
+                wrapperClassName="flex!"
               />
             </div>
           </div>
