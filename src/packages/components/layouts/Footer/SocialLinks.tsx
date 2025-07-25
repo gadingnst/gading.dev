@@ -2,14 +2,12 @@ import {
   AUTHOR_FACEBOOK,
   AUTHOR_GITHUB,
   AUTHOR_INSTAGRAM,
-  AUTHOR_LINKEDIN,
-  AUTHOR_TWITTER
+  AUTHOR_LINKEDIN
 } from '@/configs/author';
 import IconFacebook from '@/designs/icons/logo/facebook.svg';
 import IconGithub from '@/designs/icons/logo/github.svg';
 import IconInstagram from '@/designs/icons/logo/instagram.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
-import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import cn from '@/designs/utils/cn';
 import Link from '@/packages/components/base/Navigations/Link';
 import { dasherize } from '@/packages/utils/helpers/string';
@@ -20,12 +18,6 @@ const socialLinks = [
     href: `https://github.com/${AUTHOR_GITHUB}`,
     icon: IconGithub,
     className: 'bg-[#333] shadow-gray-600'
-  },
-  {
-    name: 'Twitter',
-    href: `https://twitter.com/${AUTHOR_TWITTER}`,
-    icon: IconTwitter,
-    className: 'bg-[#1DA1F2] shadow-blue-400'
   },
   {
     name: 'Instagram',
