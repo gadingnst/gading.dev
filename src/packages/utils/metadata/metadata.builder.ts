@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { AUTHOR_NAME, AUTHOR_TWITTER } from '@/configs/author';
+import { AUTHOR_NAME } from '@/configs/author';
 import { BASE_URL, GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
 import cloudinary from '@/packages/libs/Cloudinary/utils';
 import dt from '@/packages/libs/DayJS/dt';
@@ -72,8 +72,6 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       card: 'summary_large_image',
       title: `${title} | ${SITE_NAME}`,
       description: description,
-      creator: `@${AUTHOR_TWITTER}`,
-      site: `@${AUTHOR_TWITTER}`,
       images: [featuredImage]
     },
     alternates: {
