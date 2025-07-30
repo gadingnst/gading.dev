@@ -17,7 +17,7 @@ export const generateMetadata = withGenerateMetadata(async() => {
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image,
+      image: '/media/authors/gading-chibi-talk-signature.png',
       date: content.meta.date,
       tags: content.meta.tags
     }

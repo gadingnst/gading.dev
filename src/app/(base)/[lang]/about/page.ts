@@ -20,7 +20,7 @@ export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales; }>(asy
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image,
+      image: '/media/authors/gading-chibi-talk-signature.png',
       tags: content.meta.tags,
       date: content.meta.date
     }
