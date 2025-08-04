@@ -30,7 +30,6 @@ export const generateMetadata = withGenerateMetadata<LangPageProps>(async({ para
       description: meta.description,
       keywords: meta.keywords,
       tags: meta.tags,
-      image: meta.image,
       date: meta.date
     }
   });

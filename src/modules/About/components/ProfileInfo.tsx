@@ -24,7 +24,7 @@ const LeftDesc = ({ className }: { className?: string }) => (
       rel="noopener noreferrer"
       data-umami-event="about_portfolio"
     >
-        Portfolio
+      Portfolio
     </ButtonLink>
     <ButtonLink
       href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
@@ -34,7 +34,7 @@ const LeftDesc = ({ className }: { className?: string }) => (
       rel="noopener noreferrer"
       data-umami-event="about_careers"
     >
-        Careers
+      Careers
     </ButtonLink>
   </div>
 );
@@ -54,7 +54,7 @@ const RightDesc = ({ className }: { className?: string }) => (
       rel="noopener noreferrer"
       data-umami-event="about_resume"
     >
-        Resume
+      Resume
     </ButtonLink>
     <ButtonLink
       href="mailto:contact@gading.dev"
@@ -64,7 +64,7 @@ const RightDesc = ({ className }: { className?: string }) => (
       rel="noopener noreferrer"
       data-umami-event="about_contact"
     >
-        Contact
+      Contact
     </ButtonLink>
   </div>
 );
@@ -79,7 +79,7 @@ function ProfileInfo() {
         <div className="-mt-4 flex flex-col flex-1 items-center justify-center">
           <Image
             className="rounded-full cursor-grab active:cursor-grabbing"
-            src="/media/authors/gading-talks.jpeg"
+            src="/media/authors/gading-chibi-talk-signature.png"
             alt={AUTHOR_NAME}
             width={180}
             height={180}

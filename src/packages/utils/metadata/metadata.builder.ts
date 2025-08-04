@@ -20,21 +20,20 @@ interface IMetaBuilder {
   };
 }
 
-const domain = BASE_URL;
-const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.3 });
+const thumbnail = (imageUrl: string) => cloudinary(imageUrl, { scale: 0.5 });
 
 export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
   const {
     title,
     slug,
     description = 'Software Engineer from Palembang, Indonesia 🇮🇩',
-    image = `${domain}/media/authors/gading-talks.jpeg`,
+    image = '/media/authors/gading-chibi-close-signature.png',
     date = dt().format('YYYY-MM-DD'),
     keywords = '',
     tags = []
   } = meta;
 
-  const url = `${domain}${locale ? `/${locale}` : ''}${slug}`;
+  const url = `${BASE_URL}${locale ? `/${locale}` : ''}${slug}`;
 
   const featuredImage = thumbnail(image);
 
@@ -42,13 +41,13 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     + 'gading\'s hideout, gadingnst, gadingnstn, gadingdev, gading.dev, gading dev, gading fadhillah, gading developer, sutan nasution, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading\'s website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab';
 
   const metaTags: Metadata = {
-    metadataBase: new URL(domain),
+    metadataBase: new URL(BASE_URL),
     title: `${title} | ${SITE_NAME}`,
     description: description,
     keywords: combinedKeywords,
     authors: [{
       name: AUTHOR_NAME,
-      url: domain
+      url: BASE_URL
     }],
     openGraph: {
       title: `${title} | ${SITE_NAME}`,

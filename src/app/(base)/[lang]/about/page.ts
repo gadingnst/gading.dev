@@ -1,3 +1,4 @@
+import { AUTHOR_NAME } from '@/configs/author';
 import AboutPage, { generateAboutPathsWithLang } from '@/modules/About/About.page';
 import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
@@ -17,10 +18,10 @@ export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales; }>(asy
     locale: lang,
     meta: {
       slug: '/about',
-      title: content.meta.title,
+      title: `About ${AUTHOR_NAME}`,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image,
+      image: '/media/authors/gading-chibi-talk-signature.png',
       tags: content.meta.tags,
       date: content.meta.date
     }
