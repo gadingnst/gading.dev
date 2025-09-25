@@ -2,7 +2,6 @@
 
 import { FunctionComponent, SVGProps, useCallback, useMemo } from 'react';
 
-import { AUTHOR_TWITTER } from '@/configs/author';
 import { BASE_URL } from '@/configs/sites';
 import IconFacebook from '@/designs/icons/logo/facebook.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
@@ -84,7 +83,7 @@ function ContentShare(props: Props) {
     return {
       'facebook': `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=%22${encodedDesc}%22%0A%0A${tags}`,
       'linkedin': `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      'twitter': `https://twitter.com/intent/tweet?text=%22${encodedDesc}%22%20${url}%20via%20%40${AUTHOR_TWITTER}%0A%0A${hastags}`,
+      'twitter': `https://twitter.com/intent/tweet?text=%22${encodedDesc}%22%20${url}%20%0A%0A${hastags}`,
       'tumblr': `https://www.tumblr.com/widgets/share/tool/preview?posttype=link&canonicalUrl=${url}&title=${encodedTitle}&caption=${encodedDesc}`,
       'whatsapp': `https://api.whatsapp.com/send?text=%22${encodedDesc}%22%0A%0A${url}`,
       'telegram': `https://telegram.me/share/url?url=${url}&text=%0A%22${encodedDesc}%22`
