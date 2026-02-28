@@ -1,14 +1,14 @@
 ---
-title: "Beyond Basic RAG: Building Autonomous AI Agents with MCP and Graphiti"
+title: "Beyond Basic RAG: Building Autonomous AI Agents with MCP and GraphRAG"
 slug: {
-  en: "beyond-basic-rag-mcp-graphiti",
-  id: "rag-ke-agen-ai-mcp-graphiti"
+  en: "beyond-basic-rag-mcp-graphrag",
+  id: "rag-ke-agen-ai-mcp-graphrag"
 }
 date: 2026-02-24
-description: "Why traditional RAG is no longer enough and how to build autonomous agents with long-term memory using Model Context Protocol (MCP) and Graphiti."
-keywords: "RAG, AI Agents, MCP, Graphiti, Neo4j, GraphRAG, Long-term Memory"
-tags: ["ai", "rag", "mcp", "graphiti"]
-image: "/media/blog/beyond-basic-rag-mcp-graphiti/banner.png"
+description: "Why traditional RAG is no longer enough and how to build autonomous agents with long-term memory using Model Context Protocol (MCP) and GraphRAG."
+keywords: "RAG, AI Agents, MCP, GraphRAG, Neo4j, Graphiti, Long-term Memory"
+tags: ["ai", "rag", "mcp", "graphrag"]
+image: "/media/blog/beyond-basic-rag-mcp-graphrag/banner.png"
 ---
 
 Traditional RAG (Retrieval-Augmented Generation) has served us well, but as we move towards truly autonomous AI agents, the "stateless" nature of basic vector search is becoming a bottleneck. 
@@ -34,9 +34,9 @@ Instead of hard-coding integrations, MCP allows us to create a plug-and-play eco
 
 This turns the AI from a chatbot into an **operator**.
 
-### Graphiti: The Living Memory Graph
+### GraphRAG: The Living Memory Graph (via Graphiti)
 
-To solve the memory problem, I've been using **Graphiti**. Unlike a flat vector store, Graphiti builds a dynamic knowledge graph (backed by a graph database like **Neo4j**) that evolves as the agent interacts with the world.
+To solve the memory problem, I've been using **GraphRAG** powered by **Graphiti**. Unlike a flat vector store, GraphRAG builds a dynamic knowledge graph (backed by a graph database like **Neo4j**) that evolves as the agent interacts with the world.
 
 When the agent learns something new, it doesn't just store a string of text; it creates nodes and edges. For example: `[Gading] -> (LIKES) -> [Clean Code]`.
 
@@ -49,7 +49,7 @@ This structure allows for:
 
 We are shifting from "AI as a tool" to "AI as a partner." A partner needs to remember your preferences, your infrastructure (like my Proxmox setup), and even your family's needs (like reminders for Kak Rina).
 
-By combining **MCP** for tool execution and **Graphiti** for structured long-term memory, we are building agents that don't just answer questions—they anticipate needs and execute complex workflows autonomously.
+By combining **MCP** for tool execution and **GraphRAG** (via **Graphiti**) for structured long-term memory, we are building agents that don't just answer questions—they anticipate needs and execute complex workflows autonomously.
 
 ### Closing Thoughts
 

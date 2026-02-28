@@ -1,14 +1,14 @@
 ---
-title: "Lebih dari Sekadar RAG: Membangun Agen AI Otonom dengan MCP dan Graphiti"
+title: "Lebih dari Sekadar RAG: Membangun Agen AI Otonom dengan MCP dan GraphRAG"
 slug: {
-  en: "beyond-basic-rag-mcp-graphiti",
-  id: "rag-ke-agen-ai-mcp-graphiti"
+  en: "beyond-basic-rag-mcp-graphrag",
+  id: "rag-ke-agen-ai-mcp-graphrag"
 }
 date: 2026-02-24
-description: "Kenapa RAG tradisional mulai terasa kurang dan bagaimana cara membangun agen otonom dengan memori jangka panjang menggunakan Model Context Protocol (MCP) dan Graphiti."
-keywords: "RAG, AI Agents, MCP, Graphiti, Neo4j, GraphRAG, Memori Jangka Panjang"
-tags: ["ai", "rag", "mcp", "graphiti"]
-image: "/media/blog/beyond-basic-rag-mcp-graphiti/banner.png"
+description: "Kenapa RAG tradisional mulai terasa kurang dan bagaimana cara membangun agen otonom dengan memori jangka panjang menggunakan Model Context Protocol (MCP) dan GraphRAG."
+keywords: "RAG, AI Agents, MCP, GraphRAG, Neo4j, Graphiti, Memori Jangka Panjang"
+tags: ["ai", "rag", "mcp", "graphrag"]
+image: "/media/blog/beyond-basic-rag-mcp-graphrag/banner.png"
 ---
 
 RAG (Retrieval-Augmented Generation) tradisional udah ngebantu kita banyak hal, tapi seiring berjalannya waktu menuju agen AI yang bener-bener otonom, sifat "lupa ingatan" (stateless) dari vector search mulai jadi hambatan.
@@ -34,9 +34,9 @@ Daripada kita bikin integrasi manual satu-satu (hard-coding), MCP bikin ekosiste
 
 Ini ngerubah AI dari sekadar chatbot jadi seorang **operator**.
 
-### Graphiti: Graf Memori yang "Hidup"
+### GraphRAG: Graf Memori yang "Hidup" (via Graphiti)
 
-Buat nyelesein masalah memori, gue pakai **Graphiti**. Beda sama vector store yang datar, Graphiti ngebangun graf pengetahuan dinamis (yang didukung oleh graph database kayak **Neo4j**) yang berevolusi tiap kali agen berinteraksi.
+Buat nyelesein masalah memori, gue pakai **GraphRAG** yang didukung oleh **Graphiti**. Beda sama vector store yang datar, GraphRAG ngebangun graf pengetahuan dinamis (yang didukung oleh graph database kayak **Neo4j**) yang berevolusi tiap kali agen berinteraksi.
 
 Pas agen belajar hal baru, dia gak cuma nyimpen teks; dia bikin "node" dan "edge". Contohnya: `[Gading] -> (SUKA) -> [Clean Code]`.
 
@@ -49,7 +49,7 @@ Struktur ini memungkinkan:
 
 Kita lagi geser dari "AI sebagai alat" ke "AI sebagai partner". Seorang partner butuh inget preferensi lu, infrastruktur lu (kayak setup Proxmox gue), sampai kebutuhan keluarga (kayak reminder buat Kak Rina).
 
-Dengan gabungin **MCP** buat eksekusi tools dan **Graphiti** buat memori jangka panjang terstruktur, kita lagi bangun agen yang gak cuma jawab pertanyaan—tapi mengantisipasi kebutuhan dan jalanin workflow kompleks secara otonom.
+Dengan gabungin **MCP** buat eksekusi tools dan **GraphRAG** (via **Graphiti**) buat memori jangka panjang terstruktur, kita lagi bangun agen yang gak cuma jawab pertanyaan—tapi mengantisipasi kebutuhan dan jalanin workflow kompleks secara otonom.
 
 ### Penutup
 
