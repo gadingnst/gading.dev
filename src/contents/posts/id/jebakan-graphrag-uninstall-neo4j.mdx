@@ -1,0 +1,67 @@
+---
+title: "Jebakan GraphRAG: Kenapa Gw Uninstall Neo4j dari Asisten Pribadi Gw"
+slug: {
+  en: "the-graphrag-trap",
+  id: "jebakan-graphrag-uninstall-neo4j"
+}
+date: 2026-02-28
+description: "Kenapa GraphRAG seringkali overkill buat asisten AI pribadi dan alasan gw mutusin buat balik ke stack RAG + Memory yang lebih simpel buat Nouva."
+keywords: "GraphRAG, RAG, Neo4j, AI Agent, Personal Assistant, Knowledge Graph, AnythingLLM"
+tags: ["ai", "infrastructure", "rag", "nouverse"]
+image: "/media/blog/the-graphrag-trap/banner.png"
+---
+
+Kalau lu ngikutin perkembangan AI belakangan ini, pasti lu sering denger soal hype **GraphRAG**. Janjinya manis banget: dengan memetakan data lu ke dalam *knowledge graph* yang terstruktur, AI lu bisa "bernalar" ngelewatin hubungan-hubungan kompleks yang nggak bisa ditangkep sama *vector search* standar.
+
+Beberapa bulan terakhir, gw bener-bener "all-in" di sini. Gw nyiapin **Neo4j**, integrasiin **Graphitti**, dan bikin pipeline ekstraksi yang rumit buat **Nouva**, asisten AI pribadi gw.
+
+**Hari ini, gw uninstall semuanya.**
+
+Ini alasan kenapa GraphRAG itu jebakan buat 90% *usecase*—terutama buat asisten pribadi—dan kenapa stack "RAG + Memory" yang lebih simpel itu sebenernya jauh lebih unggul.
+
+### Daya Tarik Knowledge Graph
+
+RAG standar (*Retrieval-Augmented Generation*) itu jago nyari potongan teks yang mirip, tapi sifatnya "datar". Dia nggak bakal tau kalau *User A* kerja di *Company B* kecuali kata-kata itu ada di potongan teks yang ditarik.
+
+GraphRAG janjiin solusi buat masalah ini dengan bikin *node* dan *edge*. Kedengerannya kayak "Second Brain" yang sempurna. Tapi setelah gw jalanin di produksi buat Nouva, boroknya mulai keliatan.
+
+### 1. Pajak Maintenance
+
+Jalanin database graph kayak Neo4j itu bukan urusan "sekali pasang beres". Lu harus ngurusin skema, nanganin *entity disambiguation* (biar "Gading" sama "Gading Nasution" nggak dianggap orang beda), dan ngadepin *overhead* komputasi pas narik data.
+
+Buat asisten pribadi, tujuannya itu buat *ngurangin* gesekan, bukan malah nambah kerjaan sampingan jadi *Graph Database Administrator*.
+
+### 2. Paradoks "Banyak User" vs "Pribadi"
+
+Ini insight paling gede yang gw dapet: **GraphRAG itu alat buat multi-tenant yang dijual seolah-olah buat penggunaan pribadi.**
+
+Kalau lu bikin asisten buat satu korporasi gede di mana 1.000 karyawan sharing data, *Knowledge Graph* itu wajib hukumnya buat navigasi hubungan antar project, departemen, dan tim.
+
+Tapi buat **Asisten Pribadi** (satu-lawan-satu)? Lu adalah satu-satunya sumber kebenaran. "Hubungan" di hidup lu itu kemungkinan udah ada di kepala lu atau gampang banget dicatet di beberapa file Markdown yang rapi.
+
+### 3. Biaya Ekstraksi (Waktu dan Token)
+
+Biar graph-nya berguna, lu harus ekstraksi entitas dan relasinya. Ini butuh LLM buat proses tiap data berkali-kali.
+- **RAG:** Indexing itu murah dan cepet.
+- **GraphRAG:** Indexing itu 5-10x lebih mahal dan jauh lebih lambat.
+
+Gw sering nemu momen di mana gw harus nunggu beberapa menit cuma biar Nouva "inget" obrolan simpel, gara-gara pipeline ekstraksi graph-nya lagi kerja keras di background.
+
+### Kenapa Kita Pivot: RAG + Memory
+
+Tadi pagi di Nouverse, kita mutusin buat pivot. Kita ganti stack Neo4j/Graphitti pake pendekatan hybrid:
+
+1.  **Semantic RAG (via AnythingLLM):** Buat perpustakaan gede isinya dokumen teknis dan arsip. *Vector search* itu cepet, murah, dan "cukup bagus" buat 99% tugas retrieval.
+2.  **Structured Working Memory:** Kita pake file Markdown (kayak `MEMORY.md`) buat nyimpen konteks "sadar"—siapa gw, project apa yang lagi jalan, dan preferensi keluarga.
+
+### Hasilnya
+
+Nouva sekarang jauh lebih cepet, infrastrukturnya lebih enteng (kurang satu container Docker buat dipikirin!), dan jawabannya lebih stabil. Kita berhenti nyoba bikin "Otak Global" dan fokus bikin "Partner Fungsional".
+
+Kalau lu lagi bangun AI buat diri sendiri atau tim kecil, tanya ke diri sendiri: *Emang lu beneran butuh traversal graph cuma buat inget apa yang lu kerjain kemaren?*
+
+Kayaknya nggak. *Keep it simple*. Pake RAG buat *knowledge*, dan pake file-based memory buat konteks.
+
+---
+
+*Lu pake GraphRAG di produksi? Gw pengen denger pengalaman lu (dan tagihan cloud lu) di [Twitter/X](https://x.com/gadingnstn).*

@@ -1,0 +1,67 @@
+---
+title: "The GraphRAG Trap: Why I Uninstalled Neo4j for My Personal Assistant"
+slug: {
+  en: "the-graphrag-trap",
+  id: "jebakan-graphrag-uninstall-neo4j"
+}
+date: 2026-02-28
+description: "Why GraphRAG is often overkill for personal AI assistants and why I decided to pivot back to a simpler RAG + Memory stack for Nouva."
+keywords: "GraphRAG, RAG, Neo4j, AI Agent, Personal Assistant, Knowledge Graph, AnythingLLM"
+tags: ["ai", "infrastructure", "rag", "nouverse"]
+image: "/media/blog/the-graphrag-trap/banner.png"
+---
+
+If you've been following the AI space lately, you've probably seen the hype around **GraphRAG**. The promise is seductive: by mapping your data into a structured knowledge graph, your AI can "reason" across complex relationships that a standard vector search would miss.
+
+For the past few months, I went all-in on this. I set up **Neo4j**, integrated **Graphitti**, and built a complex extraction pipeline for **Nouva**, my personal AI assistant. 
+
+**Today, I uninstalled it all.**
+
+Here is why GraphRAG is a trap for 90% of use cases—especially for personal assistants—and why a simpler "RAG + Memory" stack is actually superior.
+
+### The Allure of the Knowledge Graph
+
+Standard RAG (Retrieval-Augmented Generation) is great at finding similar text snippets, but it's "flat." It doesn't know that *User A* works at *Company B* unless those exact words appear in the retrieved chunk.
+
+GraphRAG promises to fix this by creating nodes and edges. It sounds like the perfect "Second Brain." But after running it in production for Nouva, the cracks started to show.
+
+### 1. The Maintenance Tax
+
+Running a graph database like Neo4j isn't "set it and forget it." You have to manage schemas, handle entity disambiguation (making sure "Gading" and "Gading Nasution" are the same node), and deal with the compute overhead of graph traversals.
+
+For a personal assistant, the goal is to *reduce* friction, not add a part-time job as a Graph Database Administrator.
+
+### 2. The "Multi-User" vs. "Personal" Paradox
+
+This is the biggest insight I gained: **GraphRAG is a multi-tenant tool being sold as a personal one.**
+
+If you are building an assistant for an entire corporation where 1,000 employees are sharing data, a Knowledge Graph is essential to navigate the complex web of projects, departments, and cross-functional relationships. 
+
+But for a **Personal Assistant** (one-to-one)? You are the only source of truth. The "relationships" in your life are either already in your head or can be easily captured in a few well-structured Markdown files. 
+
+### 3. The Extraction Cost (in Time and Tokens)
+
+To make a graph useful, you have to extract entities and relations. This requires the LLM to process every single piece of data multiple times. 
+- **RAG:** Indexing is cheap and fast.
+- **GraphRAG:** Indexing is 5-10x more expensive and significantly slower.
+
+I found myself waiting for minutes just for Nouva to "remember" a simple conversation because the graph extraction pipeline was churning in the background.
+
+### Why We Pivot: RAG + Memory
+
+Earlier today at Nouverse, we decided to pivot. We replaced the Neo4j/Graphitti stack with a hybrid approach:
+
+1.  **Semantic RAG (via AnythingLLM):** For the big library of technical docs and archives. Vector search is fast, cheap, and "good enough" for 99% of retrieval tasks.
+2.  **Structured Working Memory:** We use curated Markdown files (like `MEMORY.md`) to store the "conscious" context—who I am, what my current projects are, and my family's preferences.
+
+### The Result
+
+Nouva is now faster, the infrastructure is leaner (one less Docker container to worry about!), and the responses are more predictable. We stopped trying to build a "Global Brain" and focused on building a "Functional Partner."
+
+If you're building an AI for yourself or a small team, ask yourself: *Do I really need to traverse a graph to remember what I did yesterday?* 
+
+Probably not. Keep it simple. Use RAG for knowledge, and a simple file-based memory for context.
+
+---
+
+*Are you using GraphRAG in production? I'd love to hear your experience (and your cloud bill) on [Twitter/X](https://x.com/gadingnstn).*
