@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
+    "build:static": "IS_STATIC=true next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "ts-node": "sh -c 'ts-node -r tsconfig-paths/register ${0}'",
