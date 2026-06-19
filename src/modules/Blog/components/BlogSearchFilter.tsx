@@ -1,7 +1,7 @@
 'use client';
 
-import { ArrowLeftIcon, ArrowRightIcon, Search, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { ArrowLeftIcon, ArrowRightIcon, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import BlogCardList from '@/modules/Blog/components/CardList';
@@ -29,6 +29,8 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [isMounted, setIsMounted] = useState(false);
+  
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync state from URL query parameters on mount
   useEffect(() => {
@@ -119,6 +121,16 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
       if (typeof window !== 'undefined') {
         window.scrollTo({ top: 300, behavior: 'smooth' });
       }
+    }
+  };
+
+  // Handle tags scroll navigation
+  const handleScroll = (scrollOffset: number) => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: scrollOffset,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -247,33 +259,59 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
                 </div>
               </div>
 
-              {/* Horizontal Scrollable Tag Pills inside the main banner card */}
-              <div className="w-full max-w-2xl mt-2 overflow-x-auto no-scrollbar flex flex-nowrap gap-2 py-1 px-1 justify-start md:justify-center">
+              {/* Horizontal Scrollable Tag Pills inside the main banner card with Arrow Navigation */}
+              <div className="relative w-full max-w-2xl mt-2 flex items-center px-9">
+                {/* Left Navigation Arrow */}
                 <button
-                  onClick={() => handleTagClick(null)}
-                  className={cn([
-                    'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium',
-                    !selectedTag
-                      ? 'bg-white/25 text-white border-white/40 shadow-sm'
-                      : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
-                  ])}
+                  type="button"
+                  onClick={() => handleScroll(-180)}
+                  className="absolute left-0 z-10 p-1.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/15 text-white cursor-pointer transition-all duration-300 shadow-md backdrop-blur-md flex items-center justify-center hover:scale-105"
+                  aria-label="Scroll tags left"
                 >
-                  {localeDesc.allTags}
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
-                {allTags.map((tag) => (
+
+                {/* Scrollable Tags Container (Always starts at scrollLeft = 0) */}
+                <div
+                  ref={scrollContainerRef}
+                  className="w-full flex flex-nowrap overflow-x-auto gap-2 py-1 no-scrollbar scroll-smooth justify-start"
+                >
                   <button
-                    key={tag}
-                    onClick={() => handleTagClick(tag)}
+                    onClick={() => handleTagClick(null)}
                     className={cn([
                       'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium',
-                      selectedTag === tag
+                      !selectedTag
                         ? 'bg-white/25 text-white border-white/40 shadow-sm'
                         : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
                     ])}
                   >
-                    #{tag}
+                    {localeDesc.allTags}
                   </button>
-                ))}
+                  {allTags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => handleTagClick(tag)}
+                      className={cn([
+                        'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium',
+                        selectedTag === tag
+                          ? 'bg-white/25 text-white border-white/40 shadow-sm'
+                          : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
+                      ])}
+                    >
+                      #{tag}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Right Navigation Arrow */}
+                <button
+                  type="button"
+                  onClick={() => handleScroll(180)}
+                  className="absolute right-0 z-10 p-1.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/15 text-white cursor-pointer transition-all duration-300 shadow-md backdrop-blur-md flex items-center justify-center hover:scale-105"
+                  aria-label="Scroll tags right"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
