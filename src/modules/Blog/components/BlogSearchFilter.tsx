@@ -320,7 +320,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
 
       {/* Blog Cards Grid */}
       {filteredBlogs.length > 0 ? (
-        <div className="flex flex-col flex-1 bg-base-300/30">
+        <div className="flex flex-col flex-1">
           <BlogCardList className="-mt-12 md:-mt-16 z-20" contents={pagedBlogs} />
           {totalPages > 1 && (
             <div className="mt-8 mb-12 text-center">

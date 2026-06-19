@@ -20,7 +20,7 @@ async function BlogPageList({ pageCurrent = 1, lang: propLang }: Props) {
   const content = withBlogListLocales(lang);
 
   return (
-    <div className="min-h-screen flex flex-col text-base-content bg-base-300/30">
+    <div className="min-h-screen flex flex-col text-base-content">
       {/* Interactive Search, Filter & Blog List */}
       <BlogSearchFilter
         blogs={allBlogs}
