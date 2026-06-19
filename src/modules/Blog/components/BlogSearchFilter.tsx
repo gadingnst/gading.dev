@@ -225,8 +225,8 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
       `}</style>
 
       {/* Banner with Embedded Search and Tags */}
-      <Banner bgImage="/media/default-banners/5.jpg" height="auto" containerClassName="py-16 md:py-24">
-        <section className="font-serif flex flex-col items-center justify-center text-center">
+      <Banner bgImage="/media/default-banners/5.jpg">
+        <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10 w-full max-w-3xl">
             <div className="liquid-glass-shadow rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4">
               <h1 className="text-3xl md:text-5xl font-bold text-white">
@@ -321,7 +321,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
       {/* Blog Cards Grid */}
       {filteredBlogs.length > 0 ? (
         <div className="flex flex-col flex-1">
-          <BlogCardList className="-mt-12 md:-mt-16 z-20" contents={pagedBlogs} />
+          <BlogCardList className="-mt-28 z-20" contents={pagedBlogs} />
           {totalPages > 1 && (
             <div className="mt-8 mb-12 text-center">
               <h4 className="mb-3 text-sm text-base-content/50">
