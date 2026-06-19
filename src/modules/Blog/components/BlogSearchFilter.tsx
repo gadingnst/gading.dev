@@ -229,7 +229,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
         <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10 w-full max-w-3xl">
             <div className="liquid-glass-shadow rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4">
-              <h1 className="text-3xl md:text-5xl font-bold text-white">
+              <h1 className="text-2xl md:text-4xl font-bold text-white">
                 Blog
               </h1>
               <p className="text-sm md:text-base text-white/80 max-w-xl">
