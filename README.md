@@ -27,8 +27,7 @@
 - [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [x] Use `app` dir with RSC in Next 13
 - [ ] PWA / Offline-first
-- [ ] Search posts
-- [ ] Sorting posts by date & tags
+- [x] Search posts & filter by tags
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
