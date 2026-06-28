@@ -11,7 +11,7 @@ tags: ["infrastructure", "homelab", "kubernetes", "proxmox", "devops"]
 image: "/media/default-banners/8.jpg"
 ---
 
-Setelah beberapa waktu lalu gue sempat bahas kenapa homelab itu penting, kali ini gue mau bedah lebih dalam soal **bagaimana gue membangun arsitektur homelab terbaru** dari level fisik (*bare metal*) sampai bisa diakses secara aman dari internet publik.
+Setelah beberapa waktu lalu gue sempat bahas [kenapa homelab itu penting](/blog/kenapa-homelab-penting), kali ini gue mau bedah lebih dalam soal **bagaimana gue membangun arsitektur homelab terbaru** dari level fisik (*bare metal*) sampai bisa diakses secara aman dari internet publik.
 
 Banyak orang yang ketika mulai homelab langsung hajar semua dideploy di dalam Kubernetes (K8s), atau sebaliknya, semuanya pakai Docker Compose lepasan di VM/LXC terpisah. Di sini, gue memilih pendekatan jalan tengah: menggabungkan kekuatan orkestrasi **Kubernetes (K3s)** untuk aplikasi *stateless* dan performa *native* **Standalone LXC** untuk layanan *stateful* (seperti database dan storage), semuanya berjalan di atas satu hypervisor fisik **Proxmox VE**.
 
