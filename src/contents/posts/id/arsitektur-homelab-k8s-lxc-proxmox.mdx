@@ -32,7 +32,7 @@ Sebagai fondasi paling bawah (*bare metal*), gue menginstall **Proxmox VE**. Ken
 
 Jawabannya singkat: **Ya, untuk skala homelab pribadi, Kubernetes itu sangat overkill.** 
 
-Mengelola cluster K8s butuh resource RAM tambahan untuk control plane, konfigurasi networking yang rumit, dan kurva belajar yang cukup curam. Tapi, gue punya satu kebutuhan mutlak yang membuat K8s menjadi pilihan paling logis: **Dynamic Client Provisioning (Multi-Tenancy)**.
+Mengelola cluster K8s butuh resource RAM tambahan untuk control plane, konfigurasi networking yang rumit, dan kurva belajar yang cukup curam. Di sini, gue sama sekali gak ngejar fitur High Availability (HA) atau *failover* canggih lainnya untuk sekadar homelab. Kebutuhan mutlak gue murni satu hal: **Dynamic Client Provisioning (Multi-Tenancy)**.
 
 Gue sedang membangun platform SaaS/multi-tenant di mana setiap kali ada client baru mendaftar, sistem harus secara otomatis:
 * Membuat instance aplikasi baru yang terisolasi secara resource dan network.
@@ -107,8 +107,6 @@ Berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke 
     │                                                                                                │
     ==================================================================================================
 ```
-
-*Catatan: Semua IP dan domain di atas sudah disanitasi menggunakan IP dummy kelas C (`192.168.1.x`) dan domain dummy (`mycloud.dev`) untuk menjaga keamanan sistem.*
 
 ---
 

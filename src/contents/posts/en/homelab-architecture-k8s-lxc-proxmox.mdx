@@ -32,7 +32,7 @@ At the lowest level (*bare metal*), I installed **Proxmox VE**. Why not just ins
 
 Short answer: **Yes, for a personal homelab scale, Kubernetes is absolutely overkill.**
 
-Managing a K8s cluster requires extra RAM for the control plane, complex network configuration, and a steep learning curve. However, I had one absolute requirement that made K8s the most logical choice: **Dynamic Client Provisioning (Multi-Tenancy)**.
+Managing a K8s cluster requires extra RAM for the control plane, complex network configuration, and a steep learning curve. In this setup, I am not chasing High Availability (HA) or advanced failover capabilities at all. My sole absolute requirement is **Dynamic Client Provisioning (Multi-Tenancy)**.
 
 I am building a SaaS/multi-tenant platform where every time a new client registers, the system must automatically:
 * Provision a new isolated application instance (isolated resources and network).
@@ -107,8 +107,6 @@ Here is a visualization of how traffic flows from the public internet down to th
     │                                                                                                │
     ==================================================================================================
 ```
-
-*Note: All IP addresses and domain names above have been sanitized using dummy Class C IPs (`192.168.1.x`) and a dummy domain name (`mycloud.dev`) to ensure system security.*
 
 ---
 
