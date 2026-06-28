@@ -101,7 +101,7 @@ Here is a visualization of how traffic flows from the public internet down to th
     │  │                                                                │                       │  │
     │  │  [ 100: staging-host ] ◄── (Builds / Staging / Docker) ────────┘                       │  │
     │  │  [ 102: agent-host ]   ◄── (AI Agent Workspace)                                         │  │
-    │  │  [ 103: db-cluster ]   ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
+    │  │  [ 103: db-host ]      ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
     │  │  [ 104: virtual-nas ]  ◄── (Shared NAS Storage)                                        │  │
     │  │  [ 105: vpn-gateway ]  ◄── (Private VPN Entrypoint) ──► [ Local Traffic to Traefik ]   │  │
     │  │                                                                                        │  │
@@ -180,7 +180,7 @@ For SaaS requirements or multi-tenant applications, we need to spin up new appli
 1. **Subscription Request**
    A user registers, and our backend (`core-backend`) processes the request.
 2. **Database Provisioning**
-   The backend contacts the `db-cluster` programmatically to create an isolated database and database user for the client:
+   The backend contacts the `db-host` programmatically to create an isolated database and database user for the client:
    * **Database Name**: `pod_db_<product_name>_<workspace_id>` (e.g., `pod_db_service_clientx`)
    * **Database User**: `pod_user_<product_name>_<workspace_id>` (e.g., `pod_user_service_clientx`)
 3. **K8s API Call**

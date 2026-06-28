@@ -101,7 +101,7 @@ Berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke 
     │  │                                                                │                       │  │
     │  │  [ 100: staging-host ] ◄── (Builds / Staging / Docker) ────────┘                       │  │
     │  │  [ 102: agent-host ]   ◄── (AI Agent Workspace)                                         │  │
-    │  │  [ 103: db-cluster ]   ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
+    │  │  [ 103: db-host ]      ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
     │  │  [ 104: virtual-nas ]  ◄── (Shared NAS Storage)                                        │  │
     │  │  [ 105: vpn-gateway ]  ◄── (Private VPN Entrypoint) ──► [ Local Traffic to Traefik ]   │  │
     │  │                                                                                        │  │
@@ -180,7 +180,7 @@ Untuk kebutuhan SaaS atau aplikasi multi-tenant, kita perlu membuat instance apl
 1. **Request Langganan**
    User mendaftar dan backend kita (`core-backend`) menerima request tersebut.
 2. **Database Provisioning**
-   Backend menghubungi `db-cluster` secara terprogram untuk membuat database dan user terisolasi khusus untuk client tersebut:
+   Backend menghubungi `db-host` secara terprogram untuk membuat database dan user terisolasi khusus untuk client tersebut:
    * **Database Name**: `pod_db_<product_name>_<workspace_id>` (e.g., `pod_db_service_clientx`)
    * **Database User**: `pod_user_<product_name>_<workspace_id>` (e.g., `pod_user_service_clientx`)
 3. **K8s API Call**
