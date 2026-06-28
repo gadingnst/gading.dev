@@ -59,6 +59,12 @@ pre::-webkit-scrollbar-thumb {
 
 code:not(.code-highlight) {
   @apply bg-base-300;
+  padding: 2px 6px;
+  border-radius: 0.3em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Selection */
@@ -249,9 +255,13 @@ pre[class*='language-'] {
 
 /* Inline code */
 :not(pre) > code[class*='language-'] {
-  padding: 4px 7px;
+  padding: 2px 6px;
   border-radius: 0.3em;
   white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Code box limit */
