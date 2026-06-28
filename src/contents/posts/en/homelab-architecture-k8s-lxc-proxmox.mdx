@@ -1,0 +1,206 @@
+---
+title: "How I Built My Homelab Architecture: From Bare Metal to the Public Internet"
+slug: {
+  en: "homelab-architecture-k8s-lxc-proxmox",
+  id: "arsitektur-homelab-k8s-lxc-proxmox"
+}
+date: 2026-06-28
+description: "A comprehensive guide to building a self-hosted homelab architecture from physical bare-metal servers, Proxmox virtualization, Kubernetes (K3s) orchestration, to exposing it securely to the public internet."
+keywords: "Homelab, Kubernetes, K3s, LXC, Proxmox, Cloudflare Tunnel, Traefik, IaC, Terraform, DevOps, Bare Metal"
+tags: ["infrastructure", "homelab", "kubernetes", "proxmox", "devops"]
+image: "/media/default-banners/8.jpg"
+---
+
+Following my previous post on why building a homelab still matters, this time I want to dive deeper into **how I built my latest homelab architecture**—starting from the physical hardware (*bare metal*) to exposing services securely to the public internet.
+
+Many people starting out with a homelab immediately deploy everything inside Kubernetes (K8s), or conversely, deploy everything using loose Docker Compose files on separate VMs/LXCs. Here, I chose a middle-ground approach: combining the orchestration power of **Kubernetes (K3s)** for *stateless* applications and the *native* performance of **Standalone LXC Containers** for *stateful* services (like databases and storage), all running on a single physical **Proxmox VE** hypervisor.
+
+---
+
+## 🛠️ Why Choose Proxmox VE?
+
+At the lowest level (*bare metal*), I installed **Proxmox VE**. Why not just install a standard Linux OS (like Ubuntu/Debian) and run Docker directly?
+
+1. **Type-1 Virtualization (Native Performance)**: Proxmox runs directly on the bare metal without desktop OS overhead.
+2. **VM vs. LXC Flexibility**: I can spin up Virtual Machines (VMs) for full OS environments requiring kernel isolation (like K8s nodes), and lightweight Linux Containers (LXCs) for simpler, RAM-friendly services (like databases).
+3. **Built-in Backups & Snapshots**: Before making risky experiments that could break the system, I can simply take a *Snapshot*. If things go wrong, I can *Rollback* in seconds.
+4. **Precise Resource Management**: I can monitor and restrict CPU, RAM, and disk I/O for each container to prevent them from choking each other out.
+
+---
+
+## ☸️ Why Kubernetes? Isn't it Overkill?
+
+Short answer: **Yes, for a personal homelab scale, Kubernetes is absolutely overkill.**
+
+Managing a K8s cluster requires extra RAM for the control plane, complex network configuration, and a steep learning curve. However, I had one absolute requirement that made K8s the most logical choice: **Dynamic Client Provisioning (Multi-Tenancy)**.
+
+I am building a SaaS/multi-tenant platform where every time a new client registers, the system must automatically:
+* Provision a new isolated application instance (isolated resources and network).
+* Set up a new database and user.
+* Configure subdomain routing and SSL/TLS automatically.
+
+If I used loose Docker Compose setups, my backend would have to manually SSH into the server, write dynamic compose files, and run shell commands. This is insecure and highly prone to race conditions.
+
+With Kubernetes, my backend simply targets the **Kube API** declaratively: *"Please create a new Namespace, create this Deployment, and attach this IngressRoute."* Kubernetes handles the rest (orchestration, node scheduling, auto-healing if a pod dies, etc.). K8s is not just a deployment tool; it is the **system engine** for my infrastructure automation.
+
+---
+
+## 🚀 Why K3s Instead of Standard K8s (Kubeadm)?
+
+Despite needing Kubernetes, I avoided the standard K8s distribution (like *kubeadm*). In a homelab environment where RAM is gold, **K3s (by Rancher)** is a lifesaver.
+
+1. **Extremely Lightweight**: K3s is packaged as a single small binary and consumes only about 512MB of RAM per node (compared to standard K8s which can consume gigabytes just for the control plane).
+2. **Resource-Efficient**: K3s strips out all cloud provider integrations (like AWS/GCP integrations) that are useless in a homelab, and replaces the heavy internal database etcd with SQLite (or external Postgres) which is far lighter.
+3. **100% Compatibility**: Despite being lightweight, K3s maintains full compatibility with the standard Kubernetes API. Any standard Kube YAML manifest can run here out of the box.
+4. **Built-in Traefik & Local Storage**: K3s includes Traefik as the default Ingress Controller and a Local Path Provisioner for storage, so we don't have to install them manually.
+
+---
+
+## 🗺️ Architectural Topology Map
+
+Here is a visualization of how traffic flows from the public internet down to the application pods inside the cluster, and how external components are connected:
+
+```text
+                                             [ Internet ]
+                                                  │
+                                                  ▼
+                                         [ Cloudflare Edge ]
+                                                  │ (Wildcard *.mycloud.dev)
+                                                  ▼
+    ====================================== PROXMOX VE HOST ===========================================
+    │                                                                                                │
+    │  ┌───────────────────────── KUBERNETES (K3s) CLUSTER (192.168.1.x) ────────────────────────┐  │
+    │  │                                                                                        │  │
+    │  │  [ kube-master (101) ] ── (Control Plane / API Server)                                 │  │
+    │  │                                                                                        │  │
+    │  │  [ kube-worker-1 (107) ]                        [ kube-worker-2 (108) ]                │  │
+    │  │  ┌───────────────────────────────┐              ┌───────────────────────────────┐      │  │
+    │  │  │  cloudflared (Tunnel Pod)     │              │  client-worker Pod            │      │  │
+    │  │  │        │                      │              │                               │      │  │
+    │  │  │        ▼                      │              │                               │      │  │
+    │  │  │  Traefik (Ingress Pod) ◄──────┼──────────────┼──────────────┐                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        ├─► app-service Pod    │              │              │                │      │  │
+    │  │  │        ├─► core-backend Pod   │              │              │                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        ├─► [Namespace: client]│              │              │                │      │  │
+    │  │  │        │    ├── client-a Pod  │              │              │                │      │  │
+    │  │  │        │    └── client-b Pod  │              │              │                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        └─► [Namespace: monitor]              │              │                │      │  │
+    │  │  │             ├── Grafana Pod   │              │              │                │      │  │
+    │  │  │             └── Prometheus Pod│              │              │                │      │  │
+    │  │  └───────────────────────────────┘              └──────────────┼────────────────┘      │  │
+    │  │                                                                │                       │  │
+    │  └───────────────────┬────────────────────────────────────────────┼───────────────────────┘  │
+    │                      ▲                                            │ (Local Routing)          │
+    │                      │ (Bind Mounts: /mnt/shared_nas)             │                          │
+    │  ┌───────────────────────────────── STANDALONE LXCs ──────────────────────────────────────┐  │
+    │  │                                                                │                       │  │
+    │  │  [ 100: staging-host ] ◄── (Builds / Staging / Docker) ────────┘                       │  │
+    │  │  [ 102: agent-host ]   ◄── (AI Agent Workspace)                                         │  │
+    │  │  [ 103: db-cluster ]   ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
+    │  │  [ 104: virtual-nas ]  ◄── (Shared NAS Storage)                                        │  │
+    │  │  [ 105: vpn-gateway ]  ◄── (Private VPN Entrypoint) ──► [ Local Traffic to Traefik ]   │  │
+    │  │                                                                                        │  │
+    │  └────────────────────────────────────────────────────────────────────────────────────────┘  │
+    │                                                                                                │
+    ==================================================================================================
+```
+
+*Note: All IP addresses and domain names above have been sanitized using dummy Class C IPs (`192.168.1.x`) and a dummy domain name (`mycloud.dev`) to ensure system security.*
+
+---
+
+## 🌐 Traffic Flow: From the Internet to the Application Pod (Public Access)
+
+How does a request from a user's browser reach our application inside the Kube cluster without having to configure port forwarding on our ISP router?
+
+Here is the path:
+
+1. **Cloudflare Edge (DNS & SSL)**
+   The user accesses `app.mycloud.dev`. This request is first received by the nearest Cloudflare Edge server. Cloudflare handles SSL/TLS termination automatically at their edge.
+2. **Cloudflare Tunnel (`cloudflared`)**
+   Inside the Kubernetes cluster, we run a **Cloudflare Tunnel (`cloudflared`)** deployment as a Pod. This pod establishes secure outbound connections (tunnels) to Cloudflare Edge. Because the connection is outbound, we do not need to open any inbound ports on our local firewall.
+3. **Traefik Ingress Controller**
+   Once the request passes through the tunnel, Cloudflare forwards it to our `cloudflared` Pod. This pod then throws the traffic to the internal Service of the **Traefik Ingress Controller** (acting as the main reverse proxy in the cluster).
+4. **Ingress Routing**
+   Traefik reads the registered `Ingress` or `IngressRoute` configurations. It matches the routing rule: *"If the host is `app.mycloud.dev`, route the traffic to Service `core-backend-service` on port `9000`"*.
+5. **Kube Service & Pod**
+   The traffic finally reaches the target application Pod securely and with minimal latency.
+
+---
+
+## 🔀 Out-of-Cluster Communication: Accessing Standalone LXCs
+
+One of the challenges of this architecture is **how pods inside Kubernetes can access databases or staging services residing outside the K8s cluster (on standalone LXCs)?**
+
+Kubernetes provides a clean native feature to handle this without having to hardcode physical IP addresses inside our application code:
+
+### 1. K8s Service Without Selector
+Normally, K8s Services distribute traffic to Pods based on a label selector. However, we can create a Service **without a selector**:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-cluster-svc
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+```
+
+### 2. K8s Endpoints Manual Definition
+Because the Service above has no selector, Kube will not create endpoints automatically. We must define the endpoint manually to point to the physical IP of the standalone LXC (e.g., `db-cluster` at IP `192.168.1.103`):
+
+```yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: db-cluster-svc
+  namespace: default
+subsets:
+  - addresses:
+      - ip: 192.168.1.103
+    ports:
+      - port: 5432
+```
+
+Using this method, our applications inside the Kube cluster can simply connect to the internal host `db-cluster-svc.default.svc.cluster.local:5432`. If the physical database IP changes in the future, we only need to update this `Endpoints` configuration file without modifying any application code.
+
+---
+
+## ⚙️ Dynamic Provisioning: Automating Client Pods
+
+For SaaS requirements or multi-tenant applications, we need to spin up new application instances dynamically when a new client registers. With this architecture, the flow is highly elegant:
+
+1. **Subscription Request**
+   A user registers, and our backend (`core-backend`) processes the request.
+2. **Database Provisioning**
+   The backend contacts the `db-cluster` programmatically to create an isolated database and database user for the client:
+   * **Database Name**: `pod_db_<product_name>_<workspace_id>` (e.g., `pod_db_service_clientx`)
+   * **Database User**: `pod_user_<product_name>_<workspace_id>` (e.g., `pod_user_service_clientx`)
+3. **K8s API Call**
+   The backend connects to the Kubernetes API Server via the internal domain **`k8s-api.mycloud.dev`** to provision new resources:
+   * Creates an isolated **Namespace**: `client-pod-<product_name>-<workspace_id>` (e.g., `client-pod-service-clientx`).
+   * Creates a **Secret** containing the client's unique database credentials.
+   * Creates the **Deployment**, **Service**, and **IngressRoute (Traefik)** to route the client's subdomain (`clientx.mycloud.dev`).
+
+### Why Isolate Per Namespace?
+By isolating each client instance in its own namespace:
+* **Strict Security Isolation**: Client A cannot inspect or access resources belonging to Client B internally.
+* **Resource Quota**: We can restrict CPU/RAM usage per client strictly using Kube `ResourceQuota`.
+* **Clean Deprovisioning**: If a client unsubscribes, the backend simply deletes the namespace. Kubernetes garbage collector automatically cleans up all resources inside it without leaving stray files on the host.
+
+---
+
+## 💡 Conclusion
+
+Separating responsibilities between **Kubernetes** (for dynamic and stateless applications) and **Standalone LXC** (for databases and storage) provides incredible stability to the homelab.
+
+We get all the benefits of modern orchestration from Kubernetes (such as auto-healing, easy scaling, and dynamic provisioning via API), without sacrificing the read-write disk performance of databases, which are typically slower if run inside Kubernetes virtual storage.
+
+The entire infrastructure is defined using **Terraform** for the Proxmox side, ensuring that if a server dies, we can re-provision our entire homelab in minutes!
