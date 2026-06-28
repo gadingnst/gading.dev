@@ -28,6 +28,11 @@
 - [x] Use `app` dir with RSC in Next 13
 - [ ] PWA / Offline-first
 - [x] Search posts & filter by tags
+- [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
+- [ ] Dynamic OG Image Generator using Next.js `ImageResponse`
+- [ ] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
+- [ ] Homelab Live Stats Dashboard or Spotify "Currently Playing" integration
+- [ ] Interactive MDX Components (React Playground / Sandpack) for tutorials
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
