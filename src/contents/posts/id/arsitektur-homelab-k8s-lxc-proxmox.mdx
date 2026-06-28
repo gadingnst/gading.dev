@@ -1,0 +1,168 @@
+---
+title: "Desain Arsitektur Homelab Modern: Integrasi K8s & Standalone LXC di Proxmox VE"
+slug: {
+  en: "homelab-architecture-k8s-lxc-proxmox",
+  id: "arsitektur-homelab-k8s-lxc-proxmox"
+}
+date: 2026-06-28
+description: "Bagaimana cara menggabungkan fleksibilitas Kubernetes (K3s) untuk aplikasi stateless dan performa native LXC untuk database di satu server fisik Proxmox secara aman dan rapi."
+keywords: "Homelab, Kubernetes, K3s, LXC, Proxmox, Cloudflare Tunnel, Traefik, IaC, Terraform, DevOps"
+tags: ["infrastructure", "homelab", "kubernetes", "proxmox", "devops"]
+image: "/media/default-banners/8.jpg"
+---
+
+Setelah beberapa waktu lalu gue sempat bahas kenapa homelab itu penting, kali ini gue mau bedah lebih dalam soal **desain arsitektur homelab terbaru** yang gue terapkan. 
+
+Banyak orang yang ketika mulai homelab langsung hajar semua dideploy di dalam Kubernetes (K8s), atau sebaliknya, semuanya pakai Docker Compose lepasan di VM/LXC terpisah. Di sini, gue memilih pendekatan jalan tengah alias **Hybrid Workload Architecture**: menggabungkan kekuatan orkestrasi **Kubernetes (K3s)** untuk aplikasi *stateless* dan performa *native* **Standalone LXC** untuk layanan *stateful* (seperti database dan storage), semuanya berjalan di atas satu hypervisor fisik **Proxmox VE**.
+
+---
+
+## 🗺️ Peta Topologi Arsitektur
+
+Biar gak abstrak, berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke pod aplikasi di dalam cluster, serta bagaimana komponen di luar cluster saling terhubung:
+
+```text
+                                             [ Internet ]
+                                                  │
+                                                  ▼
+                                         [ Cloudflare Edge ]
+                                                  │ (Wildcard *.mycloud.dev)
+                                                  ▼
+    ====================================== PROXMOX VE HOST ===========================================
+    │                                                                                                │
+    │  ┌───────────────────────── KUBERNETES (K3s) CLUSTER (192.168.1.x) ────────────────────────┐  │
+    │  │                                                                                        │  │
+    │  │  [ kube-master (101) ] ── (Control Plane / API Server)                                 │  │
+    │  │                                                                                        │  │
+    │  │  [ kube-worker-1 (107) ]                        [ kube-worker-2 (108) ]                │  │
+    │  │  ┌───────────────────────────────┐              ┌───────────────────────────────┐      │  │
+    │  │  │  cloudflared (Tunnel Pod)     │              │  client-worker Pod            │      │  │
+    │  │  │        │                      │              │                               │      │  │
+    │  │  │        ▼                      │              │                               │      │  │
+    │  │  │  Traefik (Ingress Pod) ◄──────┼──────────────┼──────────────┐                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        ├─► app-service Pod    │              │              │                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        ├─► core-backend Pod   │              │              │                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        ├─► [Namespace: client]│              │              │                │      │  │
+    │  │  │        │    ├── client-a Pod  │              │              │                │      │  │
+    │  │  │        │    └── client-b Pod  │              │              │                │      │  │
+    │  │  │        │                      │              │              │                │      │  │
+    │  │  │        └─► [Namespace: monitor]              │              │                │      │  │
+    │  │  │             ├── Grafana Pod   │              │              │                │      │  │
+    │  │  │             └── Prometheus Pod│              │              │                │      │  │
+    │  │  └───────────────────────────────┘              └──────────────┼────────────────┘      │  │
+    │  │                                                                │                       │  │
+    │  └───────────────────┬────────────────────────────────────────────┼───────────────────────┘  │
+    │                      ▲                                            │ (Local Routing)          │
+    │                      │ (Bind Mounts: /mnt/shared_nas)             │                          │
+    │  ┌───────────────────────────────── STANDALONE LXCs ──────────────────────────────────────┐  │
+    │  │                                                                │                       │  │
+    │  │  [ 100: staging-host ] ◄── (Builds / Staging / Docker) ────────┘                       │  │
+    │  │  [ 102: agent-host ]   ◄── (AI Agent Workspace)                                         │  │
+    │  │  [ 103: db-cluster ]   ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
+    │  │  [ 104: virtual-nas ]  ◄── (Shared NAS Storage)                                        │  │
+    │  │  [ 105: vpn-gateway ]  ◄── (Private VPN Entrypoint) ──► [ Local Traffic to Traefik ]   │  │
+    │  │                                                                                        │  │
+    │  └────────────────────────────────────────────────────────────────────────────────────────┘  │
+    │                                                                                                │
+    ==================================================================================================
+```
+
+*Catatan: Semua IP dan domain di atas sudah disanitasi menggunakan IP dummy kelas C (`192.168.1.x`) dan domain dummy (`mycloud.dev`) untuk menjaga keamanan sistem.*
+
+---
+
+## 🌐 Alur Trafik: Dari Internet ke Pod Aplikasi
+
+Bagaimana sebuah request dari browser user di internet luar bisa sampai ke aplikasi kita di dalam cluster Kube tanpa kita harus membuka port (port forwarding) di router ISP?
+
+Berikut adalah jalurnya:
+
+1. **Cloudflare Edge (DNS & SSL)**
+   User mengakses `app.mycloud.dev`. Request ini pertama kali diterima oleh server Cloudflare terdekat. Cloudflare menangani SSL/TLS handshake secara otomatis di edge mereka.
+2. **Cloudflare Tunnel (`cloudflared`)**
+   Di dalam cluster Kubernetes, kita menjalankan deployment **Cloudflare Tunnel (`cloudflared`)** sebagai Pod. Pod ini membuat koneksi outbound aman (tunnel) ke Cloudflare Edge. Karena koneksinya outbound, kita gak perlu buka port masuk di firewall lokal.
+3. **Traefik Ingress Controller**
+   Begitu request melewati tunnel, Cloudflare meneruskannya ke Pod `cloudflared` kita. Pod ini kemudian melempar trafik tersebut ke internal Service milik **Traefik Ingress Controller** (yang bertindak sebagai reverse proxy utama di dalam cluster).
+4. **Ingress Routing**
+   Traefik membaca konfigurasi `Ingress` atau `IngressRoute` yang terdaftar. Dia mencocokkan rule: *"Jika host adalah `app.mycloud.dev`, arahkan trafik ke Service `core-backend-service` di port `9000`"*.
+5. **Kube Service & Pod**
+   Trafik akhirnya sampai ke Pod aplikasi target secara aman dan dengan latensi minimal.
+
+---
+
+## 🔀 Komunikasi Keluar Cluster: Mengakses Standalone LXC
+
+Salah satu tantangan arsitektur ini adalah **bagaimana pod di dalam Kubernetes bisa mengakses database atau service staging yang berada di luar cluster K8s (pada LXC standalone)?**
+
+Di Kubernetes, ada fitur bawaan yang sangat bersih untuk mengatasi ini tanpa perlu melakukan hardcode IP fisik di dalam kode aplikasi kita:
+
+### 1. K8s Service Tanpa Selector
+Biasanya, Service di K8s mendistribusikan trafik ke Pod berdasarkan label selector. Tapi, kita bisa membuat Service **tanpa selector**:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-cluster-svc
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+```
+
+### 2. K8s Endpoints Manual
+Karena Service di atas tidak memiliki selector, Kube tidak akan membuat endpoint secara otomatis. Kita harus mendefinisikan endpoint-nya secara manual untuk mengarah ke IP fisik LXC standalone (misalnya `db-cluster` di IP `192.168.1.103`):
+
+```yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: db-cluster-svc
+  namespace: default
+subsets:
+  - addresses:
+      - ip: 192.168.1.103
+    ports:
+      - port: 5432
+```
+
+Dengan cara ini, aplikasi kita di dalam cluster Kube cukup menembak host internal `db-cluster-svc.default.svc.cluster.local:5432`. Jika suatu hari IP database fisik kita berubah, kita hanya perlu mengupdate file konfigurasi `Endpoints` ini saja tanpa perlu menyentuh kode aplikasi.
+
+---
+
+## ⚙️ Dynamic Provisioning: Otomatisasi Client Pod
+
+Untuk kebutuhan SaaS atau aplikasi multi-tenant, kita perlu membuat instance aplikasi baru secara dinamis ketika ada client baru yang mendaftar. Dengan arsitektur ini, alurnya menjadi sangat elegan:
+
+1. **Request Langganan**
+   User mendaftar dan backend kita (`core-backend`) menerima request tersebut.
+2. **Database Provisioning**
+   Backend menghubungi `db-cluster` secara terprogram untuk membuat database dan user terisolasi khusus untuk client tersebut:
+   * **Database Name**: `pod_db_<product_name>_<workspace_id>` (e.g., `pod_db_service_clientx`)
+   * **Database User**: `pod_user_<product_name>_<workspace_id>` (e.g., `pod_user_service_clientx`)
+3. **K8s API Call**
+   Backend menghubungi Kubernetes API Server via internal domain **`k8s-api.mycloud.dev`** untuk membuat resource baru:
+   * Membuat **Namespace** terisolasi: `client-pod-<product_name>-<workspace_id>` (e.g., `client-pod-service-clientx`).
+   * Membuat **Secret** berisi kredensial database unik milik client tersebut.
+   * Membuat **Deployment**, **Service**, dan **IngressRoute (Traefik)** khusus untuk meroute subdomain client (`clientx.mycloud.dev`).
+
+### Kenapa Dipisah Per Namespace?
+Dengan memisahkan setiap instance client ke namespace-nya masing-masing:
+* **Isolasi Keamanan Ketat**: Client A tidak akan bisa mengintip atau mengakses resource milik Client B secara internal.
+* **Resource Quota**: Kita bisa membatasi penggunaan CPU/RAM per client secara tegas menggunakan Kube `ResourceQuota`.
+* **Deprovisioning yang Bersih**: Jika client berhenti berlangganan, backend cukup menghapus namespace tersebut. Kubernetes akan otomatis membersihkan seluruh resource di dalamnya tanpa ada sisa file sampah di server.
+
+---
+
+## 💡 Kesimpulan
+
+Memisahkan tanggung jawab antara **Kubernetes** (untuk aplikasi dinamis dan stateless) dan **LXC Standalone** (untuk database dan storage) terbukti memberikan kestabilan yang luar biasa pada homelab. 
+
+Kita mendapatkan semua keuntungan orkestrasi modern dari Kubernetes (seperti auto-healing, easy scaling, dan dynamic provisioning via API), tanpa mengorbankan performa read-write database disk yang biasanya lambat jika dijalankan di dalam storage virtual Kubernetes.
+
+Semua infrastruktur ini didefinisikan menggunakan **Terraform** untuk sisi Proxmox-nya, sehingga jika server mati, kita bisa melakukan *re-provisioning* seluruh homelab ini dalam hitungan menit!
