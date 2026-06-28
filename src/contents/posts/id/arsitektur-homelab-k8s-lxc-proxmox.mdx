@@ -32,16 +32,18 @@ Sebagai fondasi paling bawah (*bare metal*), gue menginstall **Proxmox VE**. Ken
 
 Jawabannya singkat: **Ya, untuk skala homelab pribadi, Kubernetes itu sangat overkill.** 
 
-Mengelola cluster K8s butuh resource RAM tambahan untuk control plane, konfigurasi networking yang rumit, dan kurva belajar yang cukup curam. Di sini, gue sama sekali gak ngejar fitur High Availability (HA) atau *failover* canggih lainnya untuk sekadar homelab. Kebutuhan mutlak gue murni satu hal: **Dynamic Client Provisioning (Multi-Tenancy)**.
+Mengelola cluster K8s butuh resource RAM tambahan untuk control plane, konfigurasi networking yang rumit, dan kurva belajar yang cukup curam. Di sini, gue sama sekali gak ngejar fitur High Availability (HA) atau *failover* canggih lainnya untuk sekadar homelab. 
 
-Gue sedang membangun platform SaaS/multi-tenant di mana setiap kali ada client baru mendaftar, sistem harus secara otomatis:
-* Membuat instance aplikasi baru yang terisolasi secara resource dan network.
-* Menyiapkan database baru beserta user-nya.
-* Mengatur routing subdomain (SSL/TLS) secara otomatis.
+Ada dua alasan utama kenapa gue tetap nekat pakai Kubernetes:
 
-Jika menggunakan Docker Compose lepasan, backend gue harus melakukan SSH manual ke server, menulis file compose dinamis, lalu menjalankan perintah shell. Ini sangat tidak aman dan rawan error (*race condition*). 
+1. **Dynamic Client Provisioning (Multi-Tenancy)**: Gue sedang membangun platform SaaS/multi-tenant di mana setiap kali ada client baru mendaftaran diri, sistem harus secara otomatis:
+   * Membuat instance aplikasi baru yang terisolasi secara resource dan network.
+   * Menyiapkan database baru beserta user-nya.
+   * Mengatur routing subdomain (SSL/TLS) secara otomatis.
+   
+   Jika menggunakan Docker Compose lepasan, backend gue harus melakukan SSH manual ke server, menulis file compose dinamis, lalu menjalankan perintah shell. Ini sangat tidak aman dan rawan error (*race condition*). Dengan Kubernetes, backend gue cukup menembak **Kube API** secara deklaratif: *"Tolong buatkan Namespace baru, buat Deployment ini, dan pasang IngressRoute ini."* Kubernetes yang akan menangani sisanya. K8s bukan sekadar alat *deploy*, tapi adalah *system engine* untuk otomatisasi infrastruktur gue.
 
-Dengan Kubernetes, backend gue cukup menembak **Kube API** secara deklaratif: *"Tolong buatkan Namespace baru, buat Deployment ini, dan pasang IngressRoute ini."* Kubernetes yang akan menangani sisanya (orkestrasi, scheduling node, auto-healing jika pod mati, dll). K8s bukan sekadar alat *deploy*, tapi adalah **system engine** untuk otomatisasi infrastruktur gue.
+2. **Hands-on Learning (Belajar Praktis)**: Membaca dokumentasi Kubernetes itu satu hal, tapi mengelolanya langsung di atas mesin fisik (*bare metal*) adalah hal yang sama sekali berbeda. Homelab ini adalah tempat bermain gue untuk mempraktekkan langsung konsep-konsep *cloud-native* secara riil—mulai dari menangani *networking*, *storage provisioning*, *secrets management*, hingga *debugging* kegagalan pod di tingkat OS. Ini adalah cara terbaik untuk belajar dan memahami *pain points* yang biasa dihadapi oleh tim DevOps di dunia nyata, bukan sekadar teori di atas kertas.
 
 ---
 

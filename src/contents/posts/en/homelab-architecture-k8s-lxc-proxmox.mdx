@@ -32,16 +32,18 @@ At the lowest level (*bare metal*), I installed **Proxmox VE**. Why not just ins
 
 Short answer: **Yes, for a personal homelab scale, Kubernetes is absolutely overkill.**
 
-Managing a K8s cluster requires extra RAM for the control plane, complex network configuration, and a steep learning curve. In this setup, I am not chasing High Availability (HA) or advanced failover capabilities at all. My sole absolute requirement is **Dynamic Client Provisioning (Multi-Tenancy)**.
+Managing a K8s cluster requires extra RAM for the control plane, complex network configuration, and a steep learning curve. In this setup, I am not chasing High Availability (HA) or advanced failover capabilities at all. 
 
-I am building a SaaS/multi-tenant platform where every time a new client registers, the system must automatically:
-* Provision a new isolated application instance (isolated resources and network).
-* Set up a new database and user.
-* Configure subdomain routing and SSL/TLS automatically.
+There are two primary reasons why I decided to go with Kubernetes anyway:
 
-If I used loose Docker Compose setups, my backend would have to manually SSH into the server, write dynamic compose files, and run shell commands. This is insecure and highly prone to race conditions.
+1. **Dynamic Client Provisioning (Multi-Tenancy)**: I am building a SaaS/multi-tenant platform where every time a new client registers, the system must automatically:
+   * Provision a new isolated application instance (isolated resources and network).
+   * Set up a new database and user.
+   * Configure subdomain routing and SSL/TLS automatically.
+   
+   If I used loose Docker Compose setups, my backend would have to manually SSH into the server, write dynamic compose files, and run shell commands. This is insecure and highly prone to race conditions. With Kubernetes, my backend simply targets the **Kube API** declaratively: *"Please create a new Namespace, create this Deployment, and attach this IngressRoute."* Kubernetes handles the rest. K8s is not just a deployment tool; it is the *system engine* for my infrastructure automation.
 
-With Kubernetes, my backend simply targets the **Kube API** declaratively: *"Please create a new Namespace, create this Deployment, and attach this IngressRoute."* Kubernetes handles the rest (orchestration, node scheduling, auto-healing if a pod dies, etc.). K8s is not just a deployment tool; it is the **system engine** for my infrastructure automation.
+2. **Hands-on Learning**: Reading Kubernetes documentation is one thing, but managing it directly on bare-metal hardware is a completely different beast. This homelab is my personal playground to practice cloud-native concepts in real life—from handling networking, storage provisioning, and secrets management, to debugging pod failures at the OS level. It is the best way to learn and understand the actual pain points faced by DevOps teams in production, rather than just absorbing theory from a screen.
 
 ---
 
