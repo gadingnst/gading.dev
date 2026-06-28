@@ -8,7 +8,7 @@ image: "/media/default-banners/1.jpg"
 
 Saya adalah seorang ***Software Engineer*** dengan pengalaman lebih dari 5 tahun, dan banyak bekerja menggunakan ***TypeScript*** dan ***React***.
 
-Saya antusias mengeksplorasi teknologi yang sedang naik daun seperti ***AI***, ***Web3***, dan ***blockchain***, sambil terus mendalami teknologi web & mobile modern dengan fokus pada *Developer Experience (DX)*, performa, dan selalu mengikuti perkembangan terbaru.
+Saya antusias mengeksplorasi teknologi yang sedang naik daun seperti ***AI***, ***Web3***, dan ***blockchain***, mendalami otomatisasi infrastruktur (*DevOps & Infrastructure as Code*), sambil terus mendalami teknologi web & mobile modern dengan fokus pada *Developer Experience (DX)*, performa, dan selalu mengikuti perkembangan terbaru.
 
 Saya cepat belajar, senang bekerja sama dalam tim, dan juga telah membuat beberapa proyek sampingan serta *open-source* yang bisa dilihat di [GitHub](https://github.com/gadingnst) (mungkin sudah bermanfaat buat developer lain di luar sana).
 

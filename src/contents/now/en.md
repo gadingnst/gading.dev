@@ -1,6 +1,6 @@
 ---
 title: "Now"
-date: 2022-06-01
+date: 2026-06-28
 description: "What I'm doing right now?"
 keywords: "now, gading's activities, now page, gading now page, gading"
 image: "/media/default-banners/0.jpg"
@@ -17,7 +17,8 @@ I’m back in my hometown, Palembang, and working *remotely* since September, 20
 Working full-time as a [Software Engineer](https://www.google.com/search?q=what+is+software+engineer+do) at [AI Company](https://www.google.com/search?q=what+is+ai+company).
 
 #### ☕️ Activities
-- Investing, and Learning Cryptocurrency
+- Managing and experimenting with self-hosted homelab infrastructure (Kubernetes K3s & Standalone LXC on Proxmox VE).
+- Learning system architecture, networking, and Infrastructure as Code (IaC) automation using Terraform.
 - Exploring & Learning new technologies, including AI, Blockchain/Web3, and some technology stuff from the internet.
 - Social Media, gaming, coding, listening music, reading and blogging for fun.
 - Making quality time with the people closest to me every weekend.
@@ -34,6 +35,7 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 #### 💡 Technology that I'm using on
 - Pure JavaScript/TypeScript Environment
 - React Web/Native/NextJS, Vue/NuxtJS
+- DevOps & Infra: Proxmox VE, Kubernetes (K3s), Terraform, Traefik, Cloudflare Tunnels, Docker
 - Dart, Flutter
 - Golang, GORM, Protocol Buffer
 - Jest, React Testing Library
@@ -44,9 +46,9 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 #### 🛠 Some Software that I use in daily
 - Operating System: MacOS
 - Code Editor: Visual Studio Code, Trae
-- AI Tools: ChatGPT, Gemini CLI
-- Database GUI: DBEaver, PhpMyAdmin and Robo 3T
+- AI Tools: ChatGPT, Gemini CLI, OpenClaw (AI Agent)
+- Database GUI: Database GUI: DBeaver, PhpMyAdmin and Robo 3T
 - Browsers: Google Chrome, Brave and Safari
 - Others: Linear/Clickup, Postman, Spotify
 
-*Last updated at: July, 2025 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/en.md)*
+*Last updated at: June, 2026 from Palembang, South Sumatera. Indonesia. [History](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/en.md)*
