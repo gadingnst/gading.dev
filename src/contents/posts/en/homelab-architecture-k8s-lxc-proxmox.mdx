@@ -11,7 +11,7 @@ tags: ["infrastructure", "homelab", "kubernetes", "proxmox", "devops"]
 image: "/media/default-banners/8.jpg"
 ---
 
-Following my previous post on why building a homelab still matters, this time I want to dive deeper into **how I built my latest homelab architecture**—starting from the physical hardware (*bare metal*) to exposing services securely to the public internet.
+Following my previous post on [why building a homelab still matters](/blog/why-homelab-matters), this time I want to dive deeper into **how I built my latest homelab architecture**—starting from the physical hardware (*bare metal*) to exposing services securely to the public internet.
 
 Many people starting out with a homelab immediately deploy everything inside Kubernetes (K8s), or conversely, deploy everything using loose Docker Compose files on separate VMs/LXCs. Here, I chose a middle-ground approach: combining the orchestration power of **Kubernetes (K3s)** for *stateless* applications and the *native* performance of **Standalone LXC Containers** for *stateful* services (like databases and storage), all running on a single physical **Proxmox VE** hypervisor.
 
