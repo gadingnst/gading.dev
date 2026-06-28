@@ -2,12 +2,16 @@ import {
   AUTHOR_FACEBOOK,
   AUTHOR_GITHUB,
   AUTHOR_INSTAGRAM,
-  AUTHOR_LINKEDIN
+  AUTHOR_LINKEDIN,
+  AUTHOR_THREADS,
+  AUTHOR_TWITTER
 } from '@/configs/author';
 import IconFacebook from '@/designs/icons/logo/facebook.svg';
 import IconGithub from '@/designs/icons/logo/github.svg';
 import IconInstagram from '@/designs/icons/logo/instagram.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
+import IconThreads from '@/designs/icons/logo/threads.svg';
+import IconTwitter from '@/designs/icons/logo/twitter.svg';
 import cn from '@/designs/utils/cn';
 import Link from '@/packages/components/base/Navigations/Link';
 import { dasherize } from '@/packages/utils/helpers/string';
@@ -30,6 +34,18 @@ const socialLinks = [
     href: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`,
     icon: IconLinkedin,
     className: 'bg-[#0077B5] shadow-blue-600'
+  },
+  {
+    name: 'Twitter',
+    href: `https://x.com/${AUTHOR_TWITTER}`,
+    icon: IconTwitter,
+    className: 'bg-[#1DA1F2] shadow-blue-400'
+  },
+  {
+    name: 'Threads',
+    href: `https://threads.net/@${AUTHOR_THREADS}`,
+    icon: IconThreads,
+    className: 'bg-[#000] shadow-gray-800'
   },
   {
     name: 'Facebook',

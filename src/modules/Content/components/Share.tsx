@@ -4,6 +4,7 @@ import { FunctionComponent, SVGProps, useCallback, useMemo } from 'react';
 
 import { BASE_URL } from '@/configs/sites';
 import IconFacebook from '@/designs/icons/logo/facebook.svg';
+import IconCopy from '@/designs/icons/logo/copy.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
 import IconTelegram from '@/designs/icons/logo/telegram.svg';
 import IconTumblr from '@/designs/icons/logo/tumblr.svg';
@@ -12,6 +13,7 @@ import IconWhatsapp from '@/designs/icons/logo/whatsapp.svg';
 import cn from '@/designs/utils/cn';
 import { ContentMeta } from '@/modules/Content/services/content-parser';
 import Button from '@/packages/components/base/Buttons/Button';
+import useClipboard from '@/packages/hooks/useClipboard';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
 import createPopup from '@/packages/utils/helpers/createPopup';
@@ -65,6 +67,14 @@ const withLocales = createContentLocales({
   share: {
     en: 'Share',
     id: 'Bagikan'
+  },
+  copied: {
+    en: 'Copied!',
+    id: 'Tersalin!'
+  },
+  copy: {
+    en: 'Copy Link',
+    id: 'Salin Tautan'
   }
 });
 
@@ -74,6 +84,9 @@ function ContentShare(props: Props) {
 
   const language = useLangugage();
   const locales = useMemo(() => withLocales(language), [language]);
+
+  const url = useMemo(() => `${BASE_URL}/${path}`, [path]);
+  const { isCopied, copyHandler } = useClipboard(url);
 
   const socialShareUrl = useMemo(() => {
     const url = `${BASE_URL}/${path}`;
@@ -111,6 +124,21 @@ function ContentShare(props: Props) {
         {locales.share}
       </h4>
       <div className="relative flex justify-center items-center flex-wrap gap-2">
+        <Button
+          label={isCopied ? locales.copied : locales.copy}
+          onClick={copyHandler}
+          data-umami-event={`content_share-copy_${dasherize(path.replace(/\//g, '-'))}`}
+          className={cn([
+            isCopied ? 'bg-success shadow-green-500' : 'bg-zinc-600 shadow-zinc-500',
+            'btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg transition-all duration-200'
+          ])}
+        >
+          {isCopied ? (
+            <span className="text-xs font-bold text-white">✓</span>
+          ) : (
+            <IconCopy className="w-6 h-6 text-white" />
+          )}
+        </Button>
         {socialShares.map((social) => (
           <Button
             label={`Button to ${social.label}`}
