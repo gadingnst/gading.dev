@@ -119,7 +119,7 @@ function ContentShare(props: Props) {
   }, [socialShareUrl]);
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 base-container">
       <h4 className="text-center font-semibold mb-3">
         {locales.share}
       </h4>
