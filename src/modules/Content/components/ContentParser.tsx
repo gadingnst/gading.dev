@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/static-components */
 
 import 'katex/dist/katex.min.css';
 

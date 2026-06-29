@@ -3,8 +3,8 @@
 import { FunctionComponent, SVGProps, useCallback, useMemo } from 'react';
 
 import { BASE_URL } from '@/configs/sites';
-import IconFacebook from '@/designs/icons/logo/facebook.svg';
 import IconCopy from '@/designs/icons/logo/copy.svg';
+import IconFacebook from '@/designs/icons/logo/facebook.svg';
 import IconLinkedin from '@/designs/icons/logo/linkedin.svg';
 import IconTelegram from '@/designs/icons/logo/telegram.svg';
 import IconTumblr from '@/designs/icons/logo/tumblr.svg';
@@ -105,7 +105,7 @@ function ContentShare(props: Props) {
 
   const onShare = useCallback((social: SocialShare) => () => {
     const socialId = social.label.substring(9).toLocaleLowerCase();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const shareUrl = (socialShareUrl as any)[socialId] || null;
     if (shareUrl) {
       createPopup({
@@ -119,7 +119,7 @@ function ContentShare(props: Props) {
   }, [socialShareUrl]);
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 base-container">
       <h4 className="text-center font-semibold mb-3">
         {locales.share}
       </h4>

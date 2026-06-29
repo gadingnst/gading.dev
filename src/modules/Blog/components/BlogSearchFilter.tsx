@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect */
 
 import { ArrowLeftIcon, ArrowRightIcon, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -24,12 +25,12 @@ interface Props {
 
 const ITEMS_PER_PAGE = 10;
 
-function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
+function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [isMounted, setIsMounted] = useState(false);
-  
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync state from URL query parameters on mount
@@ -38,7 +39,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
       const params = new URLSearchParams(window.location.search);
       const q = params.get('q') || '';
       const tag = params.get('tag') || '';
-      
+
       if (q) setSearchQuery(q);
       if (tag) setSelectedTag(tag);
       setIsMounted(true);
@@ -51,7 +52,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, lang, localeDesc }: Props) {
       const params = new URLSearchParams();
       if (q) params.set('q', q);
       if (tag) params.set('tag', tag);
-      
+
       const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
       window.history.replaceState(null, '', newUrl);
     }

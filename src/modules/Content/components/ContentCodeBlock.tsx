@@ -9,7 +9,7 @@ import useClipboard from '@/packages/hooks/useClipboard';
 const getCodeString = (children: React.ReactNode): string => {
   if (typeof children === 'string') return children;
   if (Array.isArray(children)) return children.map(getCodeString).join('');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const _childrenProps = (children as any)?.props;
   if (isValidElement(children) && _childrenProps.children) {
     return getCodeString(_childrenProps.children);

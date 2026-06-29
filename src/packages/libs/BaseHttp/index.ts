@@ -53,8 +53,7 @@ class BaseHttp {
     }
     return response;
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   public getResponseJson<T = any>(res: Response): Promise<BaseHttpResponseJson<T>> {
     return res.json();
   }

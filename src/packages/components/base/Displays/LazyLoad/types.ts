@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 /* eslint-disable no-unused-vars */
 import { ImgHTMLAttributes, ReactEventHandler, ReactNode } from 'react';
 

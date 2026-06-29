@@ -42,7 +42,7 @@ function ContentSupport() {
   const language = useLangugage();
   const locales = useMemo(() => withLocales(language), [language]);
   return (
-    <div className="mt-10 text-center">
+    <div className="mt-10 text-center base-container">
       <h4 className="text-center mb-3 font-semibold">
         {locales.support}
       </h4>
