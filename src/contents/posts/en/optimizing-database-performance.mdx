@@ -6,7 +6,7 @@ slug: {
 }
 date: 2026-06-01
 description: "A behind-the-scenes look at optimizing PostgreSQL. From connection leaks in K3s, indexing overkill that killed bulk inserts, to stale cache disasters with Redis."
-keywords: "Database Optimization, PostgreSQL, Database Indexing, Query Tuning, Redis, Connection Pooling, Scaling, Nouverse, PgBouncer"
+keywords: "Database Optimization, PostgreSQL, Database Indexing, Query Tuning, Redis, Connection Pooling, Scaling, PgBouncer"
 tags: ["database", "postgresql", "performance", "backend"]
 image: "/media/blog/optimasi-performa-database/banner.png"
 ---
@@ -17,7 +17,7 @@ I was tempted by this shortcut too. When my PostgreSQL database running on Proxm
 
 The result? The app was still slow, and occasionally threw `FATAL: too many clients already` errors. Meanwhile, the database CPU usage was sitting comfortably under 10%. That was the exact moment I realized I had just performed a foolish *over-provisioning* workaround to mask a flawed database architecture.
 
-Database optimization isn't about how much RAM you throw at the server; it's about how efficiently your database engine runs under the hood. Here are some of the "engineering scars" and expensive lessons I gathered from tuning database performance in both my homelab and Nouverse production environments.
+Database optimization isn't about how much RAM you throw at the server; it's about how efficiently your database engine runs under the hood. Here are some of the "engineering scars" and expensive lessons I gathered from tuning database performance in both my homelab and the production environments of my previous company.
 
 ---
 
@@ -43,7 +43,7 @@ However, setting up PgBouncer has its own traps:
 
 Everyone knows that if a `SELECT` query is slow, you should throw an index at it. But I once got burned by being too index-happy.
 
-On a transaction log table in n8n that ingests millions of rows daily, I confidently created B-Tree indexes on almost every column I filtered (`status`, `created_at`, `user_id`, `amount`, `gateway`).
+On a transaction log table in n8n that ingests thousands of rows daily, I confidently created B-Tree indexes on almost every column I filtered (`status`, `created_at`, `user_id`, `amount`, `gateway`).
 
 #### The Consequence: Bulk Inserts Choked
 Read queries became blazingly fast (under 5ms). However, when n8n started running workflows that bulk-inserted thousands of transaction records at once, the database server CPU spiked to 100% and the insert rate slowed to a crawl.
@@ -72,7 +72,7 @@ This is a common issue with modern ORMs. You want to fetch a list of 50 transact
 
 ### 4. Caching: The Database's Shield (Watch Out for Stale Data)
 
-The fastest database query is the one you never make. At Nouverse, I set up **Redis** as a caching layer in front of the database for data that is frequently read but rarely changed (like product catalogs or system configurations).
+The fastest database query is the one you never make. At my previous company, I set up **Redis** as a caching layer in front of the database for data that is frequently read but rarely changed (like product catalogs or system configurations).
 
 I implemented the **Cache-Aside** pattern: the app checks Redis -> if found (Cache Hit), return immediately -> if not found (Cache Miss), query the database -> write to Redis -> return to user.
 

@@ -6,7 +6,7 @@ slug: {
 }
 date: 2026-06-01
 description: "Cerita di balik layar optimasi database PostgreSQL. Dari drama connection leak di K3s, index overkill yang bikin bulk insert tewas, sampai cache basi di Redis."
-keywords: "Optimasi Database, PostgreSQL, Database Indexing, Query Tuning, Redis, Connection Pooling, Scaling, Nouverse, PgBouncer"
+keywords: "Optimasi Database, PostgreSQL, Database Indexing, Query Tuning, Redis, Connection Pooling, Scaling, PgBouncer"
 tags: ["database", "postgresql", "performance", "backend"]
 image: "/media/blog/optimasi-performa-database/banner.png"
 ---
@@ -17,7 +17,7 @@ Gue juga dulu sempat tergoda pake cara instan ini. Pas database PostgreSQL gue d
 
 Hasilnya? Aplikasi tetep aja lemot, bahkan sesekali dapet error `FATAL: too many clients already`. Sementara itu, CPU usage di database malah adem ayem di bawah 10%. Di situlah gue sadar kalau gue baru aja melakukan *over-provisioning* bodoh untuk menutupi kelemahan arsitektur database gue sendiri.
 
-Optimasi database itu bukan soal seberapa gede RAM server lu, tapi seberapa efisien engine database lu bekerja di balik layar. Berikut adalah beberapa "bekas luka" dan pelajaran mahal yang gue dapet dari ngoprek performa database di homelab dan production Nouverse.
+Optimasi database itu bukan soal seberapa gede RAM server lu, tapi seberapa efisien engine database lu bekerja di balik layar. Berikut adalah beberapa \"bekas luka\" dan pelajaran mahal yang gue dapet dari ngoprek performa database di homelab dan di production tempat gue kerja sebelumnya.
 
 ---
 
@@ -43,7 +43,7 @@ Tapi setup PgBouncer ini ada jebakannya:
 
 Semua orang tahu kalau query `SELECT` lambat, solusinya tinggal kasih index. Tapi gue pernah kejedut karena terlalu rajin pasang index.
 
-Di satu tabel log transaksi n8n yang datanya masuk jutaan baris per hari, gue dengan songongnya masang index B-Tree di hampir semua kolom yang sering gue filter (`status`, `created_at`, `user_id`, `amount`, `gateway`). 
+Di satu tabel log transaksi n8n yang datanya masuk ribuan baris per hari, gue dengan songongnya masang index B-Tree di hampir semua kolom yang sering gue filter (`status`, `created_at`, `user_id`, `amount`, `gateway`). 
 
 #### Akibatnya: Bulk Insert Tewas
 Query baca emang jadi instan (di bawah 5ms). Tapi pas n8n mulai nge-run workflow bulk insert ribuan data transaksi sekaligus, CPU server database langsung spikes 100% dan proses insert-nya jadi lambat banget kayak siput. 
@@ -72,7 +72,7 @@ Ini penyakit bawaan ORM modern. Lu mau nampilin daftar 50 transaksi beserta data
 
 ### 4. Caching: Penyelamat Database (Tapi Awas Data Basi)
 
-Query database paling cepat adalah query yang gak pernah lu jalankan. Di Nouverse, gue pasang **Redis** sebagai caching layer di depan database untuk data yang sering dibaca tapi jarang berubah (seperti daftar produk atau konfigurasi sistem).
+Query database paling cepat adalah query yang gak pernah lu jalankan. Di tech company tempat gue kerja sebelumnya, gue pasang **Redis** sebagai caching layer di depan database untuk data yang sering dibaca tapi jarang berubah (seperti daftar produk atau konfigurasi sistem).
 
 Gue pake pola **Cache-Aside**: aplikasi cek Redis -> kalau ada (Cache Hit) langsung balikin -> kalau gak ada (Cache Miss) query ke database -> simpan ke Redis -> balikin ke user.
 
