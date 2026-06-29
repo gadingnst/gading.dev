@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+ 
 import type { NextConfig } from 'next';
 
 const webpack = require('./webpack.config');
@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   webpack,
   output: isStatic ? 'export' : undefined,
-  images: isStatic ? { unoptimized: true } : undefined,
+  images: isStatic ? { unoptimized: true } : undefined
 };
 
 if (!isStatic) {

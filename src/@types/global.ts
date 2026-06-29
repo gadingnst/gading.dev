@@ -8,8 +8,7 @@ export interface NextPageProps<T = Record<string, string>> {
     [key: string]: string|string[]|undefined;
   }>;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 export interface HttpResponseJson<T = any, E = string[]> {
   code: number;
   message?: string;

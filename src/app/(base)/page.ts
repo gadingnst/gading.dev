@@ -10,7 +10,7 @@ export const dynamicParams = false;
 
 export const generateStaticParams = generateHomePathsDefault;
 
-export const generateMetadata = withGenerateMetadata(async () => {
+export const generateMetadata = withGenerateMetadata(async() => {
   const { meta } = await getContentMultiLanguage('home', 'en');
   return metadataBuilder({
     meta: {

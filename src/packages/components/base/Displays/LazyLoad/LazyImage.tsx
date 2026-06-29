@@ -94,9 +94,9 @@ function LazyImage({
   style,
   beforeLoad,
   afterLoad,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   scrollPosition,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   isScrollTracking,
   ...imgProps
 }: LazyImageProps) {

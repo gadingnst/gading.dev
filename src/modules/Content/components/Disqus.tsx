@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect */
 
 import { DiscussionEmbed } from 'disqus-react';
 import { useEffect, useState } from 'react';

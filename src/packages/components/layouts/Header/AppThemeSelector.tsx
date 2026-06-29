@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/static-components */
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

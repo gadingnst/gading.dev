@@ -25,7 +25,7 @@ const imgExtensions = new Set(imgExts);
  * @param dir - directory to be read
  * @see https://stackoverflow.com/a/45130990
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 export async function* getFiles(dir: string): any {
   const dirents = await readdir(dir, { withFileTypes: true });
   for (const dirent of dirents) {
