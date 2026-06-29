@@ -1,6 +1,6 @@
 ---
 title: "Now"
-date: 2022-06-01
+date: 2026-06-28
 description: "Lagi sibuk apa sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
 image: "/media/default-banners/0.jpg"
@@ -17,8 +17,9 @@ Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak
 Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/search?q=apa+itu+software+engineer) di sebuah [perusahaan AI](https://www.google.com/search?q=apa+itu+perusahaan+AI).
 
 #### ☕️ Aktivitas
-- Berinvestasi dan belajar tentang dunia kripto.
-- Eksplorasi & belajar teknologi baru, termasuk AI, Blockchain/Web3, dan hal-hal teknologi lainnya dari internet.
+- Mengelola dan bereksperimen dengan infrastruktur homelab mandiri (Kubernetes K3s & Standalone LXC di Proxmox VE).
+- Mempelajari arsitektur sistem, jaringan, dan otomatisasi *Infrastructure as Code (IaC)* menggunakan Terraform.
+- Eksplorasi & belajar teknologi baru, termasuk AI, Web3/Blockchain, dan hal-hal teknologi lainnya dari internet.
 - Main media sosial, gaming, ngoding, dengerin musik, baca, dan nulis blog buat hiburan.
 - Menghabiskan waktu berkualitas bareng orang-orang terdekat setiap akhir pekan.
 
@@ -35,6 +36,7 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 #### 💡 Teknologi yang digunakan
 - Ekosistem Murni JavaScript/TypeScript
 - React Web/Native/NextJS, Vue/NuxtJS
+- DevOps & Infra: Proxmox VE, Kubernetes (K3s), Terraform, Traefik, Cloudflare Tunnels, Docker
 - Dart, Flutter
 - Golang, GORM, Protocol Buffer
 - Jest, React Testing Library
@@ -45,9 +47,9 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 #### 🛠 Beberapa Perangkat Lunak yang digunakan sehari-hari
 - Sistem Operasi: MacOS
 - Kode Editor: Visual Studio Code, Trae
-- AI Tool: ChatGPT, Gemini CLI
+- AI Tool: ChatGPT, Gemini CLI, OpenClaw (AI Agent)
 - GUI Basis Data: DBEaver, PhpMyAdmin dan Robo 3T
 - Peramban: Google Chrome, Brave dan Safari
 - Lain-lain: Linear/Clickup, Postman, Spotify
 
-*Terakhir diperbarui: Juli, 2025. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+*Terakhir diperbarui: Juni, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

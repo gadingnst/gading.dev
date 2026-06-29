@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 'use client';
 
 import { type ReactEventHandler, useCallback, useMemo, useState } from 'react';
@@ -13,8 +13,7 @@ import { DEFAULT_IMAGE_PLACEHOLDER } from '@/packages/libs/Images/utils';
 import LazyImage from './LazyLoad/LazyImage';
 import type { LazyImageProps } from './LazyLoad/types';
 import type { NextImageProps } from './NextImage';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+ 
 /** @ts-ignore */
 export interface ImageProps extends LazyImageProps {
   src?: NextImageProps['src']|null;

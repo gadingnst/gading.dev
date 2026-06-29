@@ -8,7 +8,7 @@ image: "/media/default-banners/1.jpg"
 
 I'm a ***Software Engineer*** with over 5 years of experience, mainly working with ***TypeScript*** and ***React***.
 
-I'm passionate about exploring emerging technologies like ***AI***, ***Web3***, and ***blockchain*** while also diving deep into modern mobile & web tech with a strong focus on *DX (Developer Experience)*, performance, and staying ahead of the curve.
+I'm passionate about exploring emerging technologies like ***AI***, ***Web3***, and ***blockchain***, diving into devops automation (*Infrastructure as Code*), while also diving deep into modern mobile & web tech with a strong focus on *DX (Developer Experience)*, performance, and staying ahead of the curve.
 
 I’m a fast learner and a team player. I’ve built several side and *open-source* projects on [GitHub](https://github.com/gadingnst), which may have helped fellow devs out there.
 

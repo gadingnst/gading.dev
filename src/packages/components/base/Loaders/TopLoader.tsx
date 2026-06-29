@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/immutability */
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';

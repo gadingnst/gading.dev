@@ -2,7 +2,7 @@ export const parseQuery = (url: string): Record<string, string> => {
   const query = url.split('?')[1];
   return query ? query.split('&').reduce((acc, item) => {
     const [key, value] = item.split('=');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     (acc as any)[key] = value;
     return acc;
   }, {}) : {};

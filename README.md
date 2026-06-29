@@ -27,8 +27,12 @@
 - [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [x] Use `app` dir with RSC in Next 13
 - [ ] PWA / Offline-first
-- [ ] Search posts
-- [ ] Sorting posts by date & tags
+- [x] Search posts & filter by tags
+- [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
+- [ ] Dynamic OG Image Generator using Next.js `ImageResponse`
+- [ ] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
+- [ ] Homelab Live Stats Dashboard or Spotify "Currently Playing" integration
+- [ ] Interactive MDX Components (React Playground / Sandpack) for tutorials
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -41,10 +45,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Support Me
 ### Global
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/gadingnst)
+- [Ko-Fi](https://ko-fi.com/gadingnst)
 ### Indonesia
-- [Trakteer](https://trakteer.id/sutanlab)
-- [Karyakarsa](https://karyakarsa.com/sutanlab)
+- [Trakteer](https://trakteer.id/gadingnst)
+- [Karyakarsa](https://karyakarsa.com/gadingnst)
 
 * * *
 

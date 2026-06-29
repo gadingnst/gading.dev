@@ -79,7 +79,7 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
         remarkMath
       ];
       options.rehypePlugins = [
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         ...(options?.rehypePlugins ?? []) as any[],
         rehypeSlug,
         rehypeCodeTitles,
@@ -224,7 +224,7 @@ export async function getContent(slug: string, language = DEFAULT_LOCALE): Promi
         try {
           const _result = await Fs.readFile(`${filePath}.mdx`, 'utf8');
           return _result;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         } catch (_err: any) {
           if (_err.code === 'ENOENT' && _err.message.includes('.mdx')) {
             const _result = await Fs.readFile(`${filePath}.generated.mdx`, 'utf-8');
