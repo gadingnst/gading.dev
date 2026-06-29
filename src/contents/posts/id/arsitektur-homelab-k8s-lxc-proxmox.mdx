@@ -62,53 +62,7 @@ Meskipun butuh Kubernetes, gue tidak menggunakan distribusi K8s standar (seperti
 
 Berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke pod aplikasi di dalam cluster, serta bagaimana komponen di luar cluster saling terhubung:
 
-```text
-                                             [ Internet ]
-                                                  │
-                                                  ▼
-                                         [ Cloudflare Edge ]
-                                                  │ (Wildcard *.mycloud.dev)
-                                                  ▼
-    ====================================== PROXMOX VE HOST ===========================================
-    │                                                                                                │
-    │  ┌───────────────────────── KUBERNETES (K3s) CLUSTER (192.168.1.x) ────────────────────────┐  │
-    │  │                                                                                        │  │
-    │  │  [ kube-master (101) ] ── (Control Plane / API Server)                                 │  │
-    │  │                                                                                        │  │
-    │  │  [ kube-worker-1 (107) ]                        [ kube-worker-2 (108) ]                │  │
-    │  │  ┌───────────────────────────────┐              ┌───────────────────────────────┐      │  │
-    │  │  │  cloudflared (Tunnel Pod)     │              │  client-worker Pod            │      │  │
-    │  │  │        │                      │              │                               │      │  │
-    │  │  │        ▼                      │              │                               │      │  │
-    │  │  │  Traefik (Ingress Pod) ◄──────┼──────────────┼──────────────┐                │      │  │
-    │  │  │        │                      │              │              │                │      │  │
-    │  │  │        ├─► app-service Pod    │              │              │                │      │  │
-    │  │  │        ├─► core-backend Pod   │              │              │                │      │  │
-    │  │  │        │                      │              │              │                │      │  │
-    │  │  │        ├─► [Namespace: client]│              │              │                │      │  │
-    │  │  │        │    ├── client-a Pod  │              │              │                │      │  │
-    │  │  │        │    └── client-b Pod  │              │              │                │      │  │
-    │  │  │        │                      │              │              │                │      │  │
-    │  │  │        └─► [Namespace: monitor]              │              │                │      │  │
-    │  │  │             ├── Grafana Pod   │              │              │                │      │  │
-    │  │  │             └── Prometheus Pod│              │              │                │      │  │
-    │  │  └───────────────────────────────┘              └──────────────┼────────────────┘      │  │
-    │  │                                                                │                       │  │
-    │  └───────────────────┬────────────────────────────────────────────┼───────────────────────┘  │
-    │                      ▲                                            │ (Local Routing)          │
-    │                      │ (Bind Mounts: /mnt/shared_nas)             │                          │
-    │  ┌───────────────────────────────── STANDALONE LXCs ──────────────────────────────────────┐  │
-    │  │                                                                │                       │  │
-    │  │  [ 100: staging-host ] ◄── (Builds / Staging / Docker) ────────┘                       │  │
-    │  │  [ 102: agent-host ]   ◄── (AI Agent Workspace)                                         │  │
-    │  │  [ 103: db-host ]      ◄── (Central PostgreSQL DB) ◄── [ K8s Pods / Apps ]              │  │
-    │  │  [ 104: virtual-nas ]  ◄── (Shared NAS Storage)                                        │  │
-    │  │  [ 105: vpn-gateway ]  ◄── (Private VPN Entrypoint) ──► [ Local Traffic to Traefik ]   │  │
-    │  │                                                                                        │  │
-    │  └────────────────────────────────────────────────────────────────────────────────────────┘  │
-    │                                                                                                │
-    ==================================================================================================
-```
+![Peta Topologi Arsitektur Homelab](/media/blog/homelab-architecture-k8s-lxc-proxmox/topology.svg)
 
 ---
 
