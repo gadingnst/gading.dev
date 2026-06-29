@@ -23,7 +23,7 @@ Dalam panduan pemula ini, kita akan membedah konsep inti dari LangGraph dan memb
 
 LangGraph dibangun di atas beberapa pilar utama:
 
-1. **State**: Sumber kebenaran tunggal (*single source of truth*) untuk graf Anda. Ini direpresentasikan sebagai skema bertipe (seperti `TypedDict` di Python atau model Pydantic) yang diteruskan dari satu node ke node lainnya. Setiap node dapat membaca dan menulis ke *state* ini.
+1. **State**: Sumber kebenaran tunggal (*single source of truth*) untuk graf lu. Ini direpresentasikan sebagai skema bertipe (seperti `TypedDict` di Python atau model Pydantic) yang diteruskan dari satu node ke node lainnya. Setiap node dapat membaca dan menulis ke *state* ini.
 2. **Nodes**: Fungsi Python atau komponen *runnable* yang melakukan pekerjaan. Sebuah node menerima `State` saat ini sebagai input, melakukan komputasi (seperti memanggil LLM atau melakukan query ke database), dan mengembalikan pembaruan (*update*) ke `State` tersebut.
 3. **Edges**: Panah yang menghubungkan antar node. Edge menentukan alur kontrol sistem.
    - **Normal Edges**: Jalur langsung dari satu node ke node lain (misalnya, node A selalu lanjut ke node B).
@@ -31,13 +31,13 @@ LangGraph dibangun di atas beberapa pilar utama:
 
 ---
 
-### Membangun Agen LangGraph Pertama Anda
+### Membangun Agen LangGraph Pertama Lu
 
 Mari kita buat agen chatbot sederhana yang bisa melakukan operasi matematika dasar menggunakan sebuah *tool*. Jika pengguna menanyakan pertanyaan matematika, agen akan mengarahkan permintaan ke tool kalkulator; jika tidak, agen akan langsung menjawabnya.
 
 #### 1. Instalasi
 
-Pertama, pastikan Anda sudah menginstal paket-paket yang diperlukan:
+Pertama, pastikan lu udah nginstal paket-paket yang diperlukan:
 
 ```bash
 pip install langgraph langchain-openai
@@ -163,13 +163,13 @@ for event in events:
 
 ### Mengapa Memilih LangGraph Dibandingkan Chains Biasa?
 
-- **Perulangan (Loops) adalah Fitur Utama**: Berbeda dengan chain sekuensial biasa, LangGraph memungkinkan Anda mendefinisikan siklus yang kompleks dengan sangat mudah.
-- **Manajemen State Bawaan**: Anda tidak perlu meneruskan riwayat percakapan secara manual lewat argumen fungsi Anda.
-- **Dukungan Human-in-the-Loop**: Anda bisa dengan mudah menjeda graf, meminta persetujuan manusia (misalnya, sebelum menjalankan tool penting), lalu melanjutkannya kembali.
+- **Perulangan (Loops) adalah Fitur Utama**: Berbeda dengan chain sekuensial biasa, LangGraph memungkinkan lu mendefinisikan siklus yang kompleks dengan sangat mudah.
+- **Manajemen State Bawaan**: Lu gak perlu meneruskan riwayat percakapan secara manual lewat argumen fungsi lu.
+- **Dukungan Human-in-the-Loop**: Lu bisa dengan mudah ngejeda graf, meminta persetujuan manusia (misalnya, sebelum menjalankan tool penting), lalu melanjutkannya kembali.
 - **Persistensi State**: Dukungan bawaan untuk memory saver guna menyimpan *state* obrolan antar sesi secara otomatis.
 
 ### Ringkasan
 
-LangGraph adalah alat yang luar biasa untuk membangun AI Agent yang andal. Dengan menstrukturkan alur kerja LLM Anda sebagai state, node, dan edge, Anda mendapatkan kendali penuh atas alur eksekusi program sembari tetap mempertahankan fleksibilitas pengambilan keputusan dari LLM.
+LangGraph adalah alat yang luar biasa untuk membangun AI Agent yang andal. Dengan menstrukturkan alur kerja LLM lu sebagai state, node, dan edge, lu dapet kendali penuh atas alur eksekusi program sembari tetap mempertahankan fleksibilitas pengambilan keputusan dari LLM.
 
-Untuk proyek Anda berikutnya, cobalah menambahkan node pemeriksaan database atau langkah persetujuan manusia ke dalam template dasar ini!
+Buat proyek lu berikutnya, cobalah menambahkan node pemeriksaan database atau langkah persetujuan manusia ke dalam template dasar ini!
