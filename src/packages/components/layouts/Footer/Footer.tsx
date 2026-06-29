@@ -36,13 +36,13 @@ function Footer() {
               Color System
             </Link>
             <span className="inline-block mx-1">&bull;</span>
-            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
+            <a target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
               Feed RSS
-            </Link>
+            </a>
             <span className="inline-block mx-1">&bull;</span>
-            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
+            <a target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
               Sitemap
-            </Link>
+            </a>
           </div>
         </div>
       </div>
