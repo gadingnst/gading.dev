@@ -1,0 +1,175 @@
+---
+title: "Pengenalan LangGraph: Membangun Workflow LLM Berbasis State"
+slug: {
+  en: "introduction-to-langgraph",
+  id: "pengenalan-langgraph"
+}
+date: 2026-06-29
+description: "Panduan awal belajar LangGraph untuk pemula, menjelaskan konsep StateGraph, node, edge, dan manajemen state dengan contoh kode Python praktis."
+keywords: "LangGraph, LangChain, StateGraph, AI Agents, Python, LLM workflows, Bahasa Indonesia"
+tags: ["ai", "python", "langgraph", "tutorial"]
+image: "/media/blog/introduction-to-langgraph/banner.png"
+---
+
+Ketika aplikasi LLM berkembang dari sekadar prompt sekali jalan menjadi sistem multi-langkah yang kompleks, pipeline linear tradisional (seperti chain standar di LangChain) mulai menemui batasannya. Tugas di dunia nyata sering kali membutuhkan perulangan (*loops*), perutean kondisional (*conditional routing*), dan persistensi *state*—misalnya, agen yang mencoba suatu tugas, memeriksa hasilnya, dan memperbaiki kesalahannya sendiri.
+
+Di sinilah **LangGraph** masuk. Dikembangkan oleh tim LangChain, LangGraph adalah sebuah library yang dirancang khusus untuk membangun aplikasi multi-aktor yang memiliki *state* dengan LLM. Berbeda dengan runner DAG (*Directed Acyclic Graph*) standar, LangGraph mendukung **cyclic graphs** (graf berulang), menjadikannya alat yang sempurna untuk membangun AI Agent tingkat lanjut.
+
+Dalam panduan pemula ini, kita akan membedah konsep inti dari LangGraph dan membuat sebuah agen sederhana yang berfungsi menggunakan Python.
+
+---
+
+### Konsep Inti LangGraph
+
+LangGraph dibangun di atas beberapa pilar utama:
+
+1. **State**: Sumber kebenaran tunggal (*single source of truth*) untuk graf Anda. Ini direpresentasikan sebagai skema bertipe (seperti `TypedDict` di Python atau model Pydantic) yang diteruskan dari satu node ke node lainnya. Setiap node dapat membaca dan menulis ke *state* ini.
+2. **Nodes**: Fungsi Python atau komponen *runnable* yang melakukan pekerjaan. Sebuah node menerima `State` saat ini sebagai input, melakukan komputasi (seperti memanggil LLM atau melakukan query ke database), dan mengembalikan pembaruan (*update*) ke `State` tersebut.
+3. **Edges**: Panah yang menghubungkan antar node. Edge menentukan alur kontrol sistem.
+   - **Normal Edges**: Jalur langsung dari satu node ke node lain (misalnya, node A selalu lanjut ke node B).
+   - **Conditional Edges**: Jalur yang ditentukan oleh sebuah fungsi yang mengevaluasi *state* saat ini dan memutuskan node mana yang harus dikunjungi berikutnya.
+
+---
+
+### Membangun Agen LangGraph Pertama Anda
+
+Mari kita buat agen chatbot sederhana yang bisa melakukan operasi matematika dasar menggunakan sebuah *tool*. Jika pengguna menanyakan pertanyaan matematika, agen akan mengarahkan permintaan ke tool kalkulator; jika tidak, agen akan langsung menjawabnya.
+
+#### 1. Instalasi
+
+Pertama, pastikan Anda sudah menginstal paket-paket yang diperlukan:
+
+```bash
+pip install langgraph langchain-openai
+```
+
+#### 2. Definisikan State
+
+Kita akan mendefinisikan *state* yang melacak pesan-pesan dalam percakapan kita. LangGraph menyediakan `MessagesState` bawaan untuk menyederhanakan hal ini, tetapi berikut adalah cara mendefinisikannya secara eksplisit:
+
+```python:state.py
+from typing import Annotated, Sequence
+from typing_extensions import TypedDict
+from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
+
+class AgentState(TypedDict):
+    # add_messages memberi tahu LangGraph untuk menambahkan pesan baru alih-alih menimpa daftar lama
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+```
+
+#### 3. Definisikan Tools dan Model
+
+Selanjutnya, kita definisikan LLM dan tool kalkulator kita.
+
+```python:agent.py
+from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+
+@tool
+def multiply(a: int, b: int) -> int:
+    """Mengalikan dua bilangan bulat."""
+    return a * b
+
+tools = [multiply]
+# Hubungkan tools ke model LLM
+model = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind_tools(tools)
+```
+
+#### 4. Definisikan Nodes
+
+Kita membutuhkan dua node: satu untuk memanggil model LLM, dan satu lagi untuk mengeksekusi tool jika diperlukan.
+
+```python:nodes.py
+from langchain_core.messages import ToolMessage
+from langgraph.prebuilt import ToolNode
+
+# Node untuk memanggil model
+def call_model(state: AgentState):
+    messages = state["messages"]
+    response = model.invoke(messages)
+    return {"messages": [response]}
+
+# Node untuk menjalankan tools
+tool_node = ToolNode(tools)
+```
+
+#### 5. Definisikan Logika Perutean (Conditional Edge)
+
+Kita butuh fungsi untuk memeriksa respons dari LLM. Jika respons mengandung panggilan tool (*tool calls*), kita arahkan ke node tool; jika tidak, kita hentikan workflow.
+
+```python:routing.py
+def should_continue(state: AgentState):
+    last_message = state["messages"][-1]
+    # Jika LLM meminta pemanggilan tool, arahkan ke "tools"
+    if last_message.tool_calls:
+        return "tools"
+    # Jika tidak, hentikan percakapan
+    return "__end__"
+```
+
+#### 6. Satukan Graf (Assemble Graph)
+
+Sekarang, kita satukan semua komponen tadi menggunakan `StateGraph`.
+
+```python:graph.py
+from langgraph.graph import StateGraph, START, END
+
+# Inisialisasi graf dengan definisi state kita
+workflow = StateGraph(AgentState)
+
+# Tambahkan node kita ke dalam graf
+workflow.add_node("agent", call_model)
+workflow.add_node("tools", tool_node)
+
+# Tentukan titik masuk (entry point)
+workflow.add_edge(START, "agent")
+
+# Tambahkan conditional edge
+workflow.add_conditional_edges(
+    "agent",
+    should_continue,
+    {
+        "tools": "tools",
+        "__end__": END
+    }
+)
+
+# Rute dari node tools kembali ke agent untuk memproses hasil tool
+workflow.add_edge("tools", "agent")
+
+# Compile workflow menjadi aplikasi siap pakai
+app = workflow.compile()
+```
+
+#### 7. Menjalankan Graf
+
+Mari kita uji aplikasi graf yang sudah kita compile:
+
+```python:main.py
+from langchain_core.messages import HumanMessage
+
+# Jalankan dengan pertanyaan matematika (akan memicu tool)
+events = app.stream(
+    {"messages": [HumanMessage(content="Berapa hasil dari 23 dikali 45?")]}
+)
+
+for event in events:
+    for value in event.values():
+        print("Assistant:", value["messages"][-1].content)
+```
+
+---
+
+### Mengapa Memilih LangGraph Dibandingkan Chains Biasa?
+
+- **Perulangan (Loops) adalah Fitur Utama**: Berbeda dengan chain sekuensial biasa, LangGraph memungkinkan Anda mendefinisikan siklus yang kompleks dengan sangat mudah.
+- **Manajemen State Bawaan**: Anda tidak perlu meneruskan riwayat percakapan secara manual lewat argumen fungsi Anda.
+- **Dukungan Human-in-the-Loop**: Anda bisa dengan mudah menjeda graf, meminta persetujuan manusia (misalnya, sebelum menjalankan tool penting), lalu melanjutkannya kembali.
+- **Persistensi State**: Dukungan bawaan untuk memory saver guna menyimpan *state* obrolan antar sesi secara otomatis.
+
+### Ringkasan
+
+LangGraph adalah alat yang luar biasa untuk membangun AI Agent yang andal. Dengan menstrukturkan alur kerja LLM Anda sebagai state, node, dan edge, Anda mendapatkan kendali penuh atas alur eksekusi program sembari tetap mempertahankan fleksibilitas pengambilan keputusan dari LLM.
+
+Untuk proyek Anda berikutnya, cobalah menambahkan node pemeriksaan database atau langkah persetujuan manusia ke dalam template dasar ini!

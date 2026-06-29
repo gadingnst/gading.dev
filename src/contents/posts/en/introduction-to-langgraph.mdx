@@ -1,0 +1,175 @@
+---
+title: "Introduction to LangGraph: Building State-driven LLM Workflows"
+slug: {
+  en: "introduction-to-langgraph",
+  id: "pengenalan-langgraph"
+}
+date: 2026-06-29
+description: "A beginner's guide to LangGraph, explaining StateGraph, nodes, edges, and state management with a practical Python code example."
+keywords: "LangGraph, LangChain, StateGraph, AI Agents, Python, LLM workflows"
+tags: ["ai", "python", "langgraph", "tutorial"]
+image: "/media/blog/introduction-to-langgraph/banner.png"
+---
+
+As LLM applications evolve from simple single-turn prompts to complex, multi-step systems, traditional linear pipelines (like LangChain's standard chains) start to hit their limits. Real-world tasks often require loops, conditional routing, and state persistence—such as an agent trying a task, checking the output, and correcting its own mistakes.
+
+This is where **LangGraph** comes in. Developed by the LangChain team, LangGraph is a library designed for building stateful, multi-actor applications with LLMs. Unlike standard DAG (Directed Acyclic Graph) runners, LangGraph supports **cyclic graphs**, making it the perfect tool for building advanced AI agents.
+
+In this beginner's guide, we will break down the core concepts of LangGraph and build a simple, working agent using Python.
+
+---
+
+### Core Concepts of LangGraph
+
+LangGraph is built on a few core pillars:
+
+1. **State**: The single source of truth for your graph. It is represented as a typed schema (like a Python `TypedDict` or Pydantic model) that is passed from node to node. Each node can read from and write to this state.
+2. **Nodes**: Python functions or runnable components that perform work. A node takes the current `State` as input, performs some computation (like calling an LLM or querying a database), and returns an update to the `State`.
+3. **Edges**: The arrows connecting the nodes. They define the control flow.
+   - **Normal Edges**: Direct paths from one node to another (e.g., node A always goes to node B).
+   - **Conditional Edges**: Paths determined by a function that evaluates the current state and decides which node to visit next.
+
+---
+
+### Building Your First LangGraph Agent
+
+Let's build a simple chatbot agent that can perform a basic math operation using a tool. If the user asks a math question, the agent routes the request to a calculator tool; otherwise, it answers directly.
+
+#### 1. Installation
+
+First, make sure you have the required packages installed:
+
+```bash
+pip install langgraph langchain-openai
+```
+
+#### 2. Define the State
+
+We will define a state that tracks the messages in our conversation. LangGraph provides a built-in `MessagesState` that simplifies this, but here is how you define one explicitly:
+
+```python:state.py
+from typing import Annotated, Sequence
+from typing_extensions import TypedDict
+from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
+
+class AgentState(TypedDict):
+    # add_messages tells LangGraph to append new messages instead of overwriting the list
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+```
+
+#### 3. Define the Tools and Model
+
+Next, we define our LLM and the calculator tool.
+
+```python:agent.py
+from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+
+@tool
+def multiply(a: int, b: int) -> int:
+    """Multiply two integers together."""
+    return a * b
+
+tools = [multiply]
+# Bind the tools to the model
+model = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind_tools(tools)
+```
+
+#### 4. Define the Nodes
+
+We need two nodes: one to call the model, and one to execute the tool if needed.
+
+```python:nodes.py
+from langchain_core.messages import ToolMessage
+from langgraph.prebuilt import ToolNode
+
+# Node to call the model
+def call_model(state: AgentState):
+    messages = state["messages"]
+    response = model.invoke(messages)
+    return {"messages": [response]}
+
+# Node to run tools
+tool_node = ToolNode(tools)
+```
+
+#### 5. Define Routing Logic (Conditional Edge)
+
+We need a function that inspects the LLM's response. If the response contains tool calls, we route to the tool node; otherwise, we end the workflow.
+
+```python:routing.py
+def should_continue(state: AgentState):
+    last_message = state["messages"][-1]
+    # If the LLM requested a tool call, route to "tools"
+    if last_message.tool_calls:
+        return "tools"
+    # Otherwise, stop
+    return "__end__"
+```
+
+#### 6. Assemble the Graph
+
+Now, we stitch everything together using `StateGraph`.
+
+```python:graph.py
+from langgraph.graph import StateGraph, START, END
+
+# Initialize the graph with our state definition
+workflow = StateGraph(AgentState)
+
+# Add our nodes
+workflow.add_node("agent", call_model)
+workflow.add_node("tools", tool_node)
+
+# Set the entry point
+workflow.add_edge(START, "agent")
+
+# Add the conditional edge
+workflow.add_conditional_edges(
+    "agent",
+    should_continue,
+    {
+        "tools": "tools",
+        "__end__": END
+    }
+)
+
+# Route from the tools node back to the agent to process the tool output
+workflow.add_edge("tools", "agent")
+
+# Compile the workflow
+app = workflow.compile()
+```
+
+#### 7. Running the Graph
+
+Let's test our compiled application:
+
+```python:main.py
+from langchain_core.messages import HumanMessage
+
+# Run with a math question (triggers the tool)
+events = app.stream(
+    {"messages": [HumanMessage(content="What is 23 multiplied by 45?")]}
+)
+
+for event in events:
+    for value in event.values():
+        print("Assistant:", value["messages"][-1].content)
+```
+
+---
+
+### Why Choose LangGraph over Chains?
+
+- **Loops are First-Class Citizens**: Unlike sequential chains, LangGraph allows you to define complex cycles easily.
+- **Built-in State Management**: You don't need to manually thread conversation history or outputs through your functions.
+- **Human-in-the-Loop Support**: You can easily pause the graph, ask for human approval (e.g., before running a tool), and resume.
+- **Persistence**: Out-of-the-box support for memory savers to persist conversation states across sessions.
+
+### Summary
+
+LangGraph is a game-changer for building reliable AI agents. By structuring your LLM workflows as states, nodes, and edges, you gain complete control over the execution flow while keeping the flexibility of LLM decision-making.
+
+For your next project, try adding a database check node or a human approval step to this basic template!
