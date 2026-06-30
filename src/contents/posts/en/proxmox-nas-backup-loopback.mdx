@@ -97,7 +97,7 @@ I decided to split the backup configurations in Terraform into two separate jobs
 *   **Retention:** `keep-last = 3`.
 *   *Why?* Heavy containers like `homelab-host` (~7.5GB) don't need daily backups since they are stateless. Weekly runs keep the SSD healthy and NAS space clean.
 
-I updated the `backup-job` module in Terraform to accept dynamic variables (`job_id`, `backup_schedule`, and `retention_count`), and ran `terraform apply`. The changes were committed to `feat/separate-daily-and-weekly-backups` and merged into the `homelab-infrastructure` repository.
+I updated the `backup-job` module in Terraform to accept dynamic variables (`job_id`, `backup_schedule`, and `retention_count`), and ran `terraform apply`.
 
 ---
 
