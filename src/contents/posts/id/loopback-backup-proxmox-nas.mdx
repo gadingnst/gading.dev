@@ -19,7 +19,7 @@ Tiba-tiba pas lagi santai ngecek status server, mata gue tertuju ke storage back
 
 Lho, anjir? Biasanya anteng di bawah 50GB. Kok tiba-tiba bengkak kayak dompet abis gajian? Dan yang lebih parah, server Proxmox gue sempet ngalamin *crash/reboot loop* misterius pas subuh sekitar jam 3 pagi.
 
-Setelah investigasi kilat via SSH, gue nemu biang keroknya. Ada file sampah raksasa ngegantung di storage backup: `vzdump-lxc-104-2026_06_28-03_09_23.tar.dat` sebesar **74GB**! Dan di sampingnya ada file backup lama LXC 104 (`virtual-nas`) berukuran 55GB dan 15GB.
+Setelah investigasi kilat via SSH, gue nemu biang keroknya. Ada file sampah raksasa ngegantung di storage backup sebesar **74GB**!
 
 Di sinilah gue sadar kalau gue baru aja kejedut tiang listrik infrastruktur paling epic minggu ini.
 

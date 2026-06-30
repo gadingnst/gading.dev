@@ -19,7 +19,7 @@ Out of nowhere, while casually checking the server status, my eyes caught the NA
 
 Wait, what? It usually sits comfortably below 50GB. Why did it suddenly balloon like a developer's wallet on payday? And to make things worse, my Proxmox host had gone through a mysterious *crash/reboot loop* around 3:00 AM.
 
-After a quick investigation via SSH, I found the culprit. A massive dangling temp file was sitting in the backup storage: `vzdump-lxc-104-2026_06_28-03_09_23.tar.dat` weighing in at **74GB**! Right next to it were older massive backups of LXC 104 (`virtual-nas`) at 55GB and 15GB.
+After a quick investigation via SSH, I found the culprit. There was a massive dangling temp file sitting in the backup storage weighing in at **74GB**!
 
 That was the exact moment I realized I had just run face-first into my biggest infrastructure facepalm of the week.
 
