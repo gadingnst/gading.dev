@@ -21,8 +21,6 @@ Wait, what? It usually sits comfortably below 50GB. Why did it suddenly balloon 
 
 After a quick investigation via SSH, I found the culprit. There was a massive dangling temp file sitting in the backup storage weighing in at **74GB**!
 
-That was the exact moment I realized I had just run face-first into my biggest infrastructure facepalm of the week.
-
 ---
 
 ### The Incident: An Infinite Backup Loop
