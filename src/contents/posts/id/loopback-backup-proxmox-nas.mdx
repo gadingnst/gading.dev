@@ -97,7 +97,7 @@ Akhirnya, gue mutusin buat nge-refactor konfigurasi backup di Terraform menjadi 
 *   **Retention:** `keep-last = 3`.
 *   *Kenapa?* Container besar kayak `homelab-host` (~7.5GB) gak perlu di-backup tiap hari karena isinya stateless. Cukup seminggu sekali biar SSD awet dan space NAS gak bengkak.
 
-Gue update modul `backup-job` di Terraform biar dukung parameter dinamis (`job_id`, `backup_schedule`, dan `retention_count`), lalu gue jalankan `terraform apply`. Perubahan ini sukses gue commit di branch `feat/separate-daily-and-weekly-backups` dan udah di-merge ke repo `homelab-infrastructure`.
+Gue update modul `backup-job` di Terraform biar dukung parameter dinamis (`job_id`, `backup_schedule`, dan `retention_count`), lalu gue jalankan `terraform apply`.
 
 ---
 
