@@ -1,0 +1,122 @@
+---
+title: "Understanding Docker and Kubernetes Philosophy Without Rigid Theories"
+slug: {
+  en: "understanding-docker-and-kubernetes-philosophy",
+  id: "memahami-filosofi-docker-dan-kubernetes"
+}
+date: 2026-06-30
+description: "Why were Docker and Kubernetes actually created? Instead of getting dizzy reading rigid theories about container orchestration, let's discuss the core philosophy behind solving stateful environments."
+keywords: "Docker, Kubernetes, K8s, DevOps, Containerization, Stateless, Stateful, Homelab"
+tags: ["devops", "docker", "kubernetes", "homelab"]
+image: "/media/blog/memahami-filosofi-docker-dan-kubernetes/banner.png"
+---
+
+If you search for Docker or Kubernetes (K8s) tutorials on the internet, chances are you'll immediately get bombarded with rigid, academic definitions.
+
+*"Docker is a containerization platform that isolates user-space instances..."* or *"Kubernetes is a container orchestration engine for managing microservices..."*
+
+Honestly, the first time I read those, my head spun and I couldn't grasp the core essence. High-level theories like that often leave us wondering: **"What real-world problem are these two things actually trying to solve?"**
+
+I wrote this because I myself had no clue about any of this back then. So instead of getting overwhelmed by rigid theories first, let's discuss from scratch, from the perspective of someone who's never heard these terms at all.
+
+---
+
+### Getting to Know "State" First
+
+Before jumping into Docker and K8s, let's get on the same page about one word that's going to keep coming up throughout this post: **State**.
+
+Think of *state* as the "current condition/mindset" of a system. Simple example: your phone. Once you start using your phone, installing apps, changing settings, saving photos, that phone has a unique *state*, different from someone else's phone even if it's the same model. If you lose your phone and buy a new one, the new phone won't automatically be identical to the old one, right? All the *state* (apps, settings, photos) has to be set up again manually.
+
+Now, **stateful** means the system "remembers" and depends on conditions that were built up previously. **Stateless** is the opposite: the system doesn't care about prior conditions, it can be thrown away and replaced with a new one anytime without issues, because everything important is already stored somewhere else.
+
+The key to understanding Docker and K8s is just this: **how do we transform a server that's originally complex and highly stateful into a stateless one.**
+
+---
+
+### The Classic Problem: Overly Stateful Server Environments
+
+Before Docker existed, a server was like that phone. The longer you use it, the "dirtier" it gets and the harder it becomes to replicate exactly.
+
+Imagine you deploy a Node.js version 16 application directly on the server's OS. A few months later, you want to deploy a new application that requires Node.js version 20 on the same machine. This is where the disaster begins:
+
+1. Node.js versions clash, because the server can only have one active version at a time.
+2. OS libraries (`glibc`, etc.) demand updates, but if you update them, the old application immediately breaks.
+3. You install this and that directly onto the host OS until the OS becomes dirty, full of junk, and if the server dies, you can never recreate that server in the exact same condition.
+
+This is what we call **Stateful OS Dependency**. Your server's OS stores a very fragile "state" (installed condition). One wrong bump, and everything falls apart.
+
+---
+
+### Docker's Solution: Making Application Runtimes Stateless
+
+Docker was born to solve the problem above. Its philosophy is simple: **wrap your application along with all its dependencies (a minimal OS, libraries, runtime) into a single box called a Container.**
+
+Think of a Container like a lunchbox that already has everything inside: rice, side dishes, a spoon, all packed in that one box. The lunchbox next to it (another application) will never mix its contents with yours, even though they're placed on the same table (server). And what makes it powerful is that you have a "recipe" (called a **Dockerfile**) that can recreate that box from scratch anytime with the exact same contents.
+
+With Docker, our applications become *stateless* and *disposable* (can be thrown away anytime):
+
+- You don't need to install Node.js, Python, or PHP on the main server. Just install Docker.
+- Your application runs in its own container without interfering with the app next door.
+- If your app breaks or needs an update, just stop the container, destroy it, and spin up a new one. Your host OS stays clean without any junk.
+
+**"So, what about the other data? Disposable too?"** Relax, the only "state" left from your application is just two things: **Database** (where structured data is stored) and **Volume/Disk** (where uploaded files are stored). Both of these live outside the container, so they're safe.
+
+The rest? Completely stateless. You can delete and recreate containers over and over without fear of losing data or application configurations.
+
+---
+
+### But Docker Alone Isn't Enough...
+
+Docker successfully made application runtimes stateless. But when your application starts growing and you need more than one server (multi-node), you'll run into new problems. This time not at the OS level, but at the infrastructure level.
+
+Imagine you have 3 physical servers. You deploy your application container on Server A. Suddenly, Server A loses power. What happens?
+
+1. Your application goes down with it.
+2. You have to manually SSH into Server B and run `docker run` there again.
+3. You have to change the IP configuration in your load balancer so traffic gets routed to Server B.
+4. Port 8080 on Server B turns out to be already occupied by another app, so you have to change ports again.
+
+Here, **your infrastructure and network are still very stateful**. You still care about the server's name, its physical IP, and which port is free on which server. The containers themselves are already stateless, but the "house" where they live (server & network) is still as messy as before.
+
+---
+
+### Kubernetes' Solution: Making Servers and Networks Stateless
+
+This is where Kubernetes (K8s) comes in as the savior. If Docker solves stateful problems at the OS/dependency level, K8s solves stateful problems one layer above: at the physical server and network level.
+
+In the Kubernetes world, your physical servers or VMs are treated as **"cattle, not pets"**, meaning livestock, not beloved household animals. If one cow in the pen dies, the farmer doesn't cry or go through the trouble of finding that exact same cow. They just grab another cow from the pen. Unlike a beloved pet that, when it dies, is irreplaceable.
+
+What this means: you no longer care about the name of your server, its detailed specs, or its localhost IP. Those servers are treated simply as a **resource pool**, a giant pool of CPU and RAM that can be shared together.
+
+Kubernetes abstracts three important things to make everything stateless for you:
+
+#### 1. Compute Abstraction: "Put it anywhere, as long as it runs"
+
+You don't have to worry about *"which server should my app run on?"*. You just tell K8s: *"Please run this container, minimum 3 replicas."* K8s (through a component called the **Scheduler**) will find which server still has free CPU/RAM, then automatically place your container there.
+
+If a server dies, K8s will immediately move that container to another server automatically, without you needing to wake up in the middle of the night to manually SSH like the Server A power outage example above.
+
+#### 2. Network Abstraction: "Call by name, not by address"
+
+In plain Docker, you worry about container IPs that change frequently or ports that collide. In K8s, each container gets its own unique internal IP, and more importantly: K8s has a concept called **Service**, a kind of "fixed phone number" for a group of containers.
+
+App A simply calls `http://app-b` (like calling a contact by name, not phone number) to communicate. K8s worries about finding which server App B's container is currently on, and automatically load balances traffic there. You don't need to know the physical server IP. That name stays the same even if the containers move between servers.
+
+#### 3. Storage Abstraction: "The disk follows wherever the container goes"
+
+If your container needs to store files (stateful storage), K8s has a system called CSI (Container Storage Interface). Your container just says *"I need a 10GB disk"*. K8s will mount that disk from your NAS or NFS to whichever server the container is currently running on. So even if the container gets moved to a different server, the disk "tags along" to that server too.
+
+---
+
+### Conclusion: The Abstraction Ladder of Peace of Mind
+
+So, to summarize in a simple sentence:
+
+> **Docker** makes our application not care about which OS is running on the server.
+> **Kubernetes** makes our application not care about which physical server it runs on.
+
+Both are actually solving the same problem, just at different layers. Docker cleans up the OS/dependency layer, K8s cleans up the server/network layer above it.
+
+By understanding this philosophy, you won't get dizzy anymore when looking at long Kubernetes YAML files. Because you'll know that every line of configuration is written for one purpose: telling Kubernetes how to manage our application automatically without us having to care about the physical state of the servers.
+
+Makes more sense than reading rigid textbook theories, right? If you're just getting started, try playing around with Docker first. Once you've felt how nice containers are, the transition to Kubernetes will feel much more natural.

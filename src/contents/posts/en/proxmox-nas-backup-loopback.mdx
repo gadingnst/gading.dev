@@ -1,0 +1,110 @@
+---
+title: "Loopback from Hell: When Proxmox Tried to Back Up the NAS Into the NAS Itself"
+slug: {
+  en: "proxmox-nas-backup-loopback",
+  id: "loopback-backup-proxmox-nas"
+}
+date: 2026-06-29
+description: "A classic homelab disaster story: how a misconfigured Terraform mount point backup triggered a crash loop, ate 200GB+ of storage, and caused massive SSD wear anxiety."
+keywords: "Proxmox, Backup, NAS, Terraform, Homelab, Loopback, DevOps, ZFS"
+tags: ["homelab", "infrastructure", "devops", "backup-fail"]
+image: "/media/blog/loopback-backup-proxmox-nas/banner.png"
+---
+
+Last Sunday was supposed to be a quiet day. My only plan was to lay back and monitor the K3s cluster I had just finished deploying. But then again, if you run a homelab and go a whole week without some sort of self-inflicted drama, did you even run a homelab?
+
+Out of nowhere, while casually checking the server status, my eyes caught the NAS backup storage (`nas-backup`).
+
+**Disk Usage: 83% (223GB used).**
+
+Wait, what? It usually sits comfortably below 50GB. Why did it suddenly balloon like a developer's wallet on payday? And to make things worse, my Proxmox host had gone through a mysterious *crash/reboot loop* around 3:00 AM.
+
+After a quick investigation via SSH, I found the culprit. There was a massive dangling temp file sitting in the backup storage weighing in at **74GB**!
+
+---
+
+### The Incident: An Infinite Backup Loop
+
+A few days ago, I was refactoring my homelab container configurations using **Terraform** (because doing *Infrastructure as Code* makes you look cool). In the Terraform file for the `virtual-nas` container (LXC ID 104), I mounted a **256GB** data disk to `/mnt/data`.
+
+And here is where the brain fart happened. Inside the mount point block, I set:
+
+```hcl
+# File: terraform/lxc-nas.tf (before the crash)
+mountfs {
+  volume  = "local-zfs:subvol-104-disk-1"
+  path    = "/mnt/data"
+  backup  = true # <--- THIS RIGHT HERE WAS THE CULPRIT!
+  size    = "256G"
+}
+```
+
+I completely forgot that my Proxmox backup target (`nas-backup`) physically points to a shared folder **inside that very same LXC 104 (`virtual-nas`)** via CIFS/NFS protocols.
+
+So, when the automatic daily backup job kicked off at 3:00 AM:
+1. Proxmox started backing up LXC 104 (`virtual-nas`).
+2. Because `backup = true` was set on the `/mnt/data` mount point, Proxmox attempted to compress the entire contents of the NAS (~214GB).
+3. The compressed output was written directly to the `nas-backup` storage.
+4. But `nas-backup` physically mapped back to a folder... inside `/mnt/data` on LXC 104!
+
+It was an **Infinite Loopback from Hell**. Proxmox was backing up the NAS into the NAS, which automatically caused the backup size to grow exponentially as the compression process ran.
+
+The result? The disk ran out of space, RAM got entirely choked up trying to buffer the compression, the server gasped for air, and Proxmox force-rebooted due to resource exhaustion.
+
+---
+
+### The Side Drama: SSD Wear Anxiety
+
+As homelab enthusiasts, our biggest fear after data loss is **SSD Wear**.
+
+Once I realized that this loopback had failed and written hundreds of gigabytes repeatedly, my mind immediately started spiraling: *"How long has this loopback been running? How many Terabytes (TB) of data have been written back and forth to my Geekom A5 SSD? Is the SSD crying in silicon tears?"*
+
+Fortunately, after doing the math, it only added a few TBs to the SSD's lifetime TBW (Terabytes Written). Still, watching your SSD's remaining lifespan drop because of a dumb config bug is a painful experience.
+
+After nuking the massive `.tar.dat` files and clearing the backup garbage from the NAS, I manually triggered `fstrim` to let the SSD controller clear the deleted blocks and restore write performance.
+
+---
+
+### The Fix: Refactoring via Terraform
+
+The immediate fix was obvious: **disable backups for the NAS data mount point**. NAS data should be backed up using dedicated file-level tools (like rclone or restic), not snapshot-style via Proxmox.
+
+```hcl
+# File: terraform/lxc-nas.tf (after the fix)
+mountfs {
+  volume  = "local-zfs:subvol-104-disk-1"
+  path    = "/mnt/data"
+  backup  = false # <--- Set to false to break the loop!
+  size    = "256G"
+}
+```
+
+But I didn't stop there. This incident forced me to rethink my entire homelab backup strategy. Previously, I had a single lazy daily backup job that backed up **every single container** at once. This was overkill and put unnecessary stress on the SSD.
+
+I decided to split the backup configurations in Terraform into two separate jobs:
+
+#### 1. Daily Backup (`backup-daily`)
+*   **Target:** Only backs up `db-host` (103) which contains the production PostgreSQL database.
+*   **Schedule:** Every day at 03:00 AM.
+*   **Retention:** `keep-last = 3` (keeps the last 3 backups).
+*   *Why?* The database backup is tiny (~340MB), so running it daily won't hurt the SSD or fill up the NAS, but our transaction data remains safe.
+
+#### 2. Weekly Backup (`backup-weekly`)
+*   **Target:** All other stateless LXCs (including `agent-host`, where my AI assistant Nouva lives).
+*   **Schedule:** Once a week (every Saturday at 03:00 AM).
+*   **Retention:** `keep-last = 3`.
+*   *Why?* Heavy containers like `homelab-host` (~7.5GB) don't need daily backups since they are stateless. Weekly runs keep the SSD healthy and NAS space clean.
+
+I updated the `backup-job` module in Terraform to accept dynamic variables (`job_id`, `backup_schedule`, and `retention_count`), and ran `terraform apply`.
+
+---
+
+### Lessons Learned
+
+1.  **Watch Your Mount Points:** If you use network storage (NFS/CIFS) as a Proxmox backup target, make sure the container hosting that storage has `backup = false` on its data disk.
+2.  **Split Your Backup Jobs:** Don't backup massive containers daily unless you want your server's SSD to retire early. Separate critical stateful data (databases) from weekly stateless system snapshots.
+3.  **Infrastructure as Code is a Lifesaver:** Since my entire infra is defined in Terraform, rolling back and changing the backup strategy took exactly 5 minutes of editing code and one `apply`. No clicking around the Proxmox GUI hoping you don't miss a setting.
+
+Now, my NAS space is back to normal (19% / 51GB used), my mind is at ease, and the SSD's lifespan has been saved.
+
+Ever had a loopback configuration disaster of your own? Share your engineering scars in the comments! wkwk

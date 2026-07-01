@@ -1,0 +1,110 @@
+---
+title: "Loopback dari Neraka: Pas Proxmox Mencoba Mem-backup NAS ke Dalam NAS Itu Sendiri"
+slug: {
+  en: "proxmox-nas-backup-loopback",
+  id: "loopback-backup-proxmox-nas"
+}
+date: 2026-06-29
+description: "Kisah kejedut tiang listrik infrastruktur paling epic minggu ini: salah konfigurasi mount point backup di Terraform yang bikin server crash loop dan SSD wear anxiety."
+keywords: "Proxmox, Backup, NAS, Terraform, Homelab, Loopback, DevOps, ZFS"
+tags: ["homelab", "infrastructure", "devops", "backup-fail"]
+image: "/media/blog/loopback-backup-proxmox-nas/banner.png"
+---
+
+Hari Minggu kemarin harusnya jadi hari yang damai. Rencananya cuma mau rebahan sambil mantau cluster K3s yang baru selesai dideploy. Tapi ya namanya juga punya homelab, kalau nggak ada drama dalam seminggu rasanya kayak ada yang kurang.
+
+Tiba-tiba pas lagi santai ngecek status server, mata gue tertuju ke storage backup NAS (`nas-backup`).
+
+**Penggunaan disk: 83% (223GB used).**
+
+Lho, anjir? Biasanya anteng di bawah 50GB. Kok tiba-tiba bengkak kayak dompet abis gajian? Dan yang lebih parah, server Proxmox gue sempet ngalamin *crash/reboot loop* misterius pas subuh sekitar jam 3 pagi.
+
+Setelah investigasi kilat via SSH, gue nemu biang keroknya. Ada file sampah raksasa ngegantung di storage backup sebesar **74GB**!
+
+---
+
+### Kronologi Kejadian: The Infinite Backup Loop
+
+Jadi ceritanya, beberapa hari lalu gue baru aja ngerapihin konfigurasi container homelab pake **Terraform** (karena ya, *Infrastructure as Code* biar keren). Di dalam file Terraform untuk LXC `virtual-nas` (LXC ID 104), gue nge-mount data disk sebesar **256GB** ke `/mnt/data`.
+
+Di sinilah kebodohan itu terjadi. Di block mount point Terraform-nya, gue nge-set parameter:
+
+```hcl
+# File: terraform/lxc-nas.tf (sebelum kejedut)
+mountfs {
+  volume  = "local-zfs:subvol-104-disk-1"
+  path    = "/mnt/data"
+  backup  = true # <--- INI DIA BIANG KEROKNYA!
+  size    = "256G"
+}
+```
+
+Gue lupa kalau storage target backup Proxmox (`nas-backup`) itu secara fisik nembak ke share folder **di dalam LXC 104 (`virtual-nas`) itu sendiri** lewat protokol CIFS/NFS.
+
+Jadi pas jam 3 pagi backup harian otomatis jalan:
+1. Proxmox mulai nge-backup LXC 104 (`virtual-nas`).
+2. Karena `backup = true` di-set di mount point `/mnt/data`, Proxmox mencoba mem-compress seluruh isi data NAS (~214GB).
+3. Hasil kompresinya ditulis langsung oleh Proxmox ke storage `nas-backup`.
+4. Tapi storage `nas-backup` itu secara fisik mengarah ke folder... di dalam `/mnt/data` di LXC 104!
+
+Jadilah **Infinite Loopback dari Neraka**. Proxmox mem-backup data NAS ke dalam NAS, yang otomatis bikin ukuran backup-nya membengkak secara eksponensial saat proses kompresi berjalan.
+
+Akhirnya? Disk space abis, RAM kesedot habis buat buffering kompresi, server megap-megap, dan Proxmox langsung *force restart* karena kehabisan resource.
+
+---
+
+### Drama Tambahan: SSD Wear Anxiety
+
+Sebagai anak homelab, ketakutan terbesar kita setelah kehilangan data adalah **SSD Wear**.
+
+Begitu sadar ada backup loopback sebesar ratusan gigabyte yang gagal dan ditulis berkali-kali, pikiran gue langsung traveling: *"Waduh, ini backup loopback udah jalan berapa lama ya? Berapa Terabyte (TB) data yang udah ditulis bolak-balik ke SSD Geekom A5 gue? SSD-nya berdarah-darah gak ya?"*
+
+Untungnya, setelah dihitung-hitung, dampaknya cuma nambah beberapa TB dari total kapasitas tulis (*TBW - Terabytes Written*) SSD. Tapi tetep aja, ngelihat sisa umur SSD berkurang gara-gara bug konfigurasi sendiri itu rasanya nyesek.
+
+Setelah gue hapus semua file `.tar.dat` raksasa dan backup sampah di NAS, gue langsung jalanin perintah `fstrim` biar kontroler SSD-nya nge-clear block memori yang udah kehapus dan performa nulisnya balik cepet lagi.
+
+---
+
+### Solusi & Refactoring via Terraform
+
+Solusi pertamanya jelas: **matikan backup untuk data mount point NAS**. Data NAS harusnya di-sync/backup pake tools tersendiri (kayak rclone atau restic), bukan ikut di-snapshot utuh lewat Proxmox backup.
+
+```hcl
+# File: terraform/lxc-nas.tf (setelah tobat)
+mountfs {
+  volume  = "local-zfs:subvol-104-disk-1"
+  path    = "/mnt/data"
+  backup  = false # <--- Set ke false biar ga loopback!
+  size    = "256G"
+}
+```
+
+Tapi gue gak berhenti di situ. Kejadian ini bikin gue mikir ulang soal strategi backup homelab gue. Sebelumnya, gue asal bikin satu job backup harian buat mem-backup **semua** container sekaligus. Ini overkill dan nyusahin SSD.
+
+Akhirnya, gue mutusin buat nge-refactor konfigurasi backup di Terraform menjadi dua job terpisah:
+
+#### 1. Daily Backup (`backup-daily`)
+*   **Target:** Cuma mem-backup `db-host` (103) yang berisi database PostgreSQL production.
+*   **Schedule:** Setiap hari jam 03:00 AM.
+*   **Retention:** `keep-last = 3` (menyimpan 3 backup terakhir).
+*   *Kenapa?* Karena ukuran database itu kecil (cuma ~340MB), jadi di-run tiap hari pun gak bakal nyiksa SSD dan gak makan space NAS. Tapi data transaksi kita tetep aman.
+
+#### 2. Weekly Backup (`backup-weekly`)
+*   **Target:** Semua LXC stateless lainnya (termasuk `agent-host` tempat tinggalnya asisten gue, Nouva).
+*   **Schedule:** Seminggu sekali (tiap hari Sabtu jam 03:00 AM).
+*   **Retention:** `keep-last = 3`.
+*   *Kenapa?* Container besar kayak `homelab-host` (~7.5GB) gak perlu di-backup tiap hari karena isinya stateless. Cukup seminggu sekali biar SSD awet dan space NAS gak bengkak.
+
+Gue update modul `backup-job` di Terraform biar dukung parameter dinamis (`job_id`, `backup_schedule`, dan `retention_count`), lalu gue jalankan `terraform apply`.
+
+---
+
+### Pelajaran yang Bisa Diambil
+
+1.  **Hati-hati sama Mount Point:** Kalau lu pake storage network (NFS/CIFS) sebagai target backup Proxmox, pastikan container yang nge-host storage tersebut di-set `backup = false` pada disk datanya.
+2.  **Pecah Backup Job Lu:** Gak usah sok-sokan backup harian semua container raksasa kalau lu gak mau SSD server lu pensiun dini. Pisahkan mana data stateful yang kritis (database) dan mana data stateless yang cukup di-backup mingguan.
+3.  **Infrastructure as Code itu Penyelamat:** Karena semua infra gue didefinisikan lewat Terraform, proses rollback dan perubahan strategi backup tadi cuma butuh waktu 5 menit edit kode dan sekali apply. Gak perlu nge-klik menu GUI Proxmox satu-satu yang rawan slip.
+
+Sekarang space NAS gue udah lega lagi (tinggal 19% / 51GB used), hati tenang, dan umur SSD terselamatkan.
+
+Pernah ngalamin konfigurasi loopback juga? Share dong bekas luka engineering lu di kolom komentar! wkwk

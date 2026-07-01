@@ -1,0 +1,122 @@
+---
+title: "Memahami Filosofi Docker dan Kubernetes Tanpa Teori Kaku"
+slug: {
+  en: "understanding-docker-and-kubernetes-philosophy",
+  id: "memahami-filosofi-docker-dan-kubernetes"
+}
+date: 2026-06-30
+description: "Kenapa sih Docker dan Kubernetes itu diciptakan? Daripada pusing baca teori kaku tentang container orchestration, mari kita bahas filosofi dasar di balik pemecahan masalah stateful environment."
+keywords: "Docker, Kubernetes, K8s, DevOps, Containerization, Stateless, Stateful, Homelab"
+tags: ["devops", "docker", "kubernetes", "homelab"]
+image: "/media/blog/memahami-filosofi-docker-dan-kubernetes/banner.png"
+---
+
+Kalau lu cari tutorial Docker atau Kubernetes (K8s) di internet, kemungkinan besar lu bakal langsung dihajar sama definisi akademis yang kaku banget.
+
+*"Docker adalah platform containerization yang mengisolasi user-space..."* atau *"Kubernetes adalah container orchestration engine untuk mengelola microservices..."*
+
+Jujur aja, pas pertama kali baca gituan, kepala gw langsung pusing dan gak dapet esensinya. Teori-teori *high-level* kayak gitu sering kali bikin kita bingung: **"Masalah nyata apa sih yang sebenernya mau diselesaiin sama dua barang ini?"**
+
+Tulisan ini gw buat karena gw sendiri dulu no clue soal ini. Jadi daripada mabok teori duluan, mari kita bahas dari nol, dengan POV orang awam yang belum pernah denger istilah-istilah itu sama sekali.
+
+---
+
+### Kenalan Dulu Sama "State"
+
+Sebelum masuk ke Docker dan K8s, kita samain persepsi soal satu kata yang bakal wara-wiri terus di tulisan ini: **State**.
+
+Anggap aja *state* itu "kondisi/isi kepala" dari sebuah sistem saat ini. Contoh gampangnya: HP lu. Begitu lu pake HP, install aplikasi, ubah setting, nyimpen foto, HP itu punya *state* yang unik, beda dari HP orang lain meski modelnya sama. Kalau HP lu ilang terus lu beli baru, HP baru itu gak bakal otomatis sama persis kayak yang lama, kan? Semua *state*-nya (app, setting, foto) harus di-setup ulang manual.
+
+Nah, **stateful** artinya sistem itu "inget" dan bergantung sama kondisi yang udah dibangun sebelumnya. **Stateless** artinya kebalikannya: sistem itu gak peduli kondisi sebelumnya, bisa dibuang dan diganti baru kapan aja tanpa masalah, karena semua yang penting udah disimpen di tempat lain.
+
+Kunci buat ngerti Docker dan K8s cuma ini: **gimana caranya kita ubah server yang awalnya ribet dan serba stateful, jadi stateless.**
+
+---
+
+### Masalah Klasik: Environment Server yang Terlalu Stateful
+
+Dulu sebelum ada Docker, server itu ibarat HP tadi. Makin lama dipake, makin "kotor" dan makin susah direplikasi sama persis.
+
+Bayangin lu deploy aplikasi Node.js versi 16 langsung di OS server. Beberapa bulan kemudian, lu mau deploy aplikasi baru yang butuh Node.js versi 20 di mesin yang sama. Di sinilah bencana dimulai:
+
+1. Versi Node.js tabrakan, karena server cuma bisa punya satu versi aktif dalam satu waktu.
+2. Library OS (`glibc` dll) minta di-update, tapi kalau di-update, aplikasi lama langsung pecah.
+3. Lu install ini-itu langsung ke OS host sampai akhirnya OS-nya kotor, penuh sampah, dan kalau servernya mati, lu gak bakal bisa nge-*recreate* server itu dengan kondisi yang 100% sama persis.
+
+Ini yang disebut **Stateful OS Dependency**. OS server lu nyimpen "state" (kondisi ter-install) yang rapuh banget. Sekali kesenggol, semuanya bubar.
+
+---
+
+### Solusi Docker: Membuat Runtime Aplikasi Menjadi Stateless
+
+Docker lahir buat nyelesain masalah di atas. Filosofinya sederhana: **bungkus aplikasi lu beserta semua dependency-nya (OS minimal, library, runtime) ke dalam satu wadah yang namanya Container.**
+
+Anggap Container itu kayak kotak makan siang yang udah lengkap isinya sendiri: nasi, lauk, sendok, semua ada di dalam kotak itu. Kotak lain di sebelahnya (aplikasi lain) gak akan pernah campur aduk isinya, walaupun ditaruh di meja (server) yang sama. Dan yang bikin powerful, lu punya "resep" (namanya **Dockerfile**) yang bisa bikin kotak itu dari nol kapan aja dengan isi yang persis sama.
+
+Dengan Docker, aplikasi kita jadi *stateless* dan *disposable* (bisa dibuang kapan aja):
+
+- Lu gak perlu install Node.js, Python, atau PHP di server utama. Cukup install Docker.
+- Aplikasi lu jalan di dalam container-nya sendiri tanpa mengganggu aplikasi sebelah.
+- Kalau aplikasi lu rusak atau mau di-update, tinggal matiin container-nya, buang, dan bikin yang baru. OS utama lu tetep bersih tanpa sampah.
+
+**"Nah, terus data yang lain kemana dong? Disposable juga?"** Tenang, satu-satunya "state" yang tersisa dari aplikasi lu cuma dua: **Database** (tempat nyimpen data terstruktur) dan **Volume/Disk** (tempat nyimpen file upload). Dua-duanya ini hidup di luar container, jadi aman.
+
+Sisanya? Stateless total. Lu bisa hapus dan bikin ulang container-nya berkali-kali tanpa takut kehilangan data atau konfigurasi aplikasi.
+
+---
+
+### Tapi, Docker Aja Gak Cukup...
+
+Docker sukses bikin runtime aplikasi jadi stateless. Tapi pas aplikasi lu mulai rame dan lu butuh lebih dari satu server (multi-node), lu bakal nemuin masalah baru. Kali ini bukan di level OS, tapi di level infrastruktur.
+
+Bayangin lu punya 3 server fisik. Lu deploy container aplikasi lu di Server A. Tiba-tiba Server A mati listrik. Apa yang terjadi?
+
+1. Aplikasi lu ikutan mati.
+2. Lu harus manual SSH ke Server B, jalanin `docker run` lagi di sana.
+3. Lu harus ubah konfigurasi IP di load balancer biar traffic di-*route* ke Server B.
+4. Port 8080 di Server B ternyata udah dipake aplikasi lain, jadi lu harus ganti port lagi.
+
+Di sini, **infrastruktur dan network lu masih sangat stateful**. Lu masih peduli nama servernya apa, IP fisiknya berapa, dan port mana yang kosong di server mana. Container-nya sendiri udah stateless, tapi "rumah" tempat dia tinggal (server & network) masih ribet kayak dulu.
+
+---
+
+### Solusi Kubernetes: Membuat Server dan Network Menjadi Stateless
+
+Di sinilah Kubernetes (K8s) masuk sebagai penyelamat. Kalau Docker memecahkan masalah stateful di level OS/dependencies, K8s memecahkan masalah stateful satu lapis di atasnya: di level server fisik dan network.
+
+Di dunia Kubernetes, server fisik atau VM lu diperlakukan sebagai **"cattle, not pets"**, alias hewan ternak, bukan hewan peliharaan kesayangan. Kalau salah satu sapi di kandang mati, peternak gak nangis dan gak repot nyari sapi itu lagi persis sama. Dia tinggal ambil sapi lain dari kandang. Beda sama peliharaan kesayangan (pets) yang kalau mati, gak tergantikan.
+
+Artinya: lu gak peduli lagi nama server lu apa, spek detailnya gimana, atau IP *local host*-nya berapa. Server-server itu cuma dianggap **kolam resource**, yaitu satu kolam CPU dan RAM raksasa yang bisa dipakai bareng-bareng.
+
+Kubernetes mengabstraksi tiga hal penting biar semuanya jadi stateless buat lu:
+
+#### 1. Compute Abstraction: "Taruh di mana aja, yang penting jalan"
+
+Lu gak perlu pusing mikirin *"aplikasi gw mau ditaruh di server mana ya?"*. Lu tinggal bilang ke K8s: *"Tolong jalanin container ini, minimal 3 replika."* K8s (lewat komponen yang namanya **Scheduler**) yang bakal nyari server mana yang CPU/RAM-nya masih lowong, terus otomatis naruh container lu di sana.
+
+Kalau salah satu server mati, K8s bakal langsung mindahin container itu ke server lain secara otomatis, tanpa lu perlu bangun tengah malem buat SSH manual kayak contoh Server A mati listrik di atas.
+
+#### 2. Network Abstraction: "Panggil pake nama, bukan alamat"
+
+Di Docker biasa, lu pusing mikirin IP container yang sering berubah atau port yang tabrakan. Di K8s, tiap container dapet IP internal uniknya sendiri, dan yang lebih penting: K8s punya konsep **Service**, semacam "nomor telepon tetap" buat sekelompok container.
+
+Aplikasi A cukup manggil `http://aplikasi-b` (kayak manggil kontak by nama, bukan nomor telepon) buat komunikasi. K8s yang pusing nyari container Aplikasi B itu lagi ada di server mana, dan otomatis nge-*load balance* traffic-nya ke sana. Lu gak perlu tau IP fisik servernya berapa. Nama itu tetap sama meskipun container-nya pindah-pindah server.
+
+#### 3. Storage Abstraction: "Disk-nya ikut ke mana pun container pergi"
+
+Kalau container lu butuh nyimpen file (stateful storage), K8s punya sistem yang namanya CSI (Container Storage Interface). Container lu tinggal bilang *"gw butuh disk 10GB"*. K8s yang bakal nge-*mount* disk itu dari NAS atau NFS lu ke server mana pun tempat container itu lagi jalan saat itu. Jadi biarpun container-nya dipindah ke server lain, disknya "ikut nempel" ke situ juga.
+
+---
+
+### Kesimpulan: Tangga Abstraksi Ketenangan Pikiran
+
+Jadi, kalau dirangkum dalam satu kalimat sederhana:
+
+> **Docker** membuat aplikasi kita tidak peduli dengan OS apa yang digunakan di server.
+> **Kubernetes** membuat aplikasi kita tidak peduli di server fisik mana ia dijalankan.
+
+Keduanya sebenarnya nyelesain masalah yang sama, cuma beda lapisan. Docker beresin lapisan OS/dependency, K8s beresin lapisan server/network di atasnya.
+
+Dengan memahami filosofi ini, lu gak bakal pusing lagi pas ngeliat file YAML Kubernetes yang panjang lebar. Karena lu tau, semua baris konfigurasi itu ditulis cuma untuk satu tujuan: memberi tahu Kubernetes bagaimana cara mengelola aplikasi kita secara otomatis tanpa kita harus peduli dengan keadaan fisik servernya.
+
+Gimana, lebih masuk akal kan dibanding baca teori kaku di buku teks? Kalau lu baru mulai, coba main-main sama Docker dulu aja. Begitu udah ngerasain enaknya container, nanti transisi ke Kubernetes bakal jauh lebih natural.
