@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HOST: https://gading.dev
-      PSURL: https://pagespeed-insights.herokuapp.com
+      PSURL: https://pgsi.nouverse.tech
       PSRDESKTOP: desktop
       PSRMOBILE: mobile
       RESULTSFOLDER: public/media/web-reports/pagespeed
@@ -24,8 +24,8 @@ jobs:
     - name: Create local changes
       run: | # Have to be sure a folder is present if not, make it
           mkdir -p ${RESULTSFOLDER}
-          curl "${PSURL}/?url=${HOST}" > ./${RESULTSFOLDER}/${PSRDESKTOP}.svg
-          curl "${PSURL}/?url=${HOST}&strategy=mobile" > ./${RESULTSFOLDER}/${PSRMOBILE}.svg
+          curl "${PSURL}/?url=${HOST}&key=${{ secrets.PAGESPEED_API_KEY }}" > ./${RESULTSFOLDER}/${PSRDESKTOP}.svg
+          curl "${PSURL}/?url=${HOST}&strategy=mobile&key=${{ secrets.PAGESPEED_API_KEY }}" > ./${RESULTSFOLDER}/${PSRMOBILE}.svg
     - name: Commit files
       run: |
         git add .
