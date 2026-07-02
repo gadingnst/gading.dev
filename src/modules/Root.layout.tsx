@@ -1,6 +1,6 @@
 import '@/designs/styles/globals.css';
 
-import { Courgette, Poppins } from 'next/font/google';
+import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { PropsWithChildren } from 'react';
 
@@ -9,16 +9,16 @@ import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
 import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
-const poppins = Poppins({
-  variable: '--font-poppins',
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-plus-jakarta-sans',
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+  weight: ['200', '300', '400', '500', '600', '700', '800']
 });
 
-const courgette = Courgette({
-  variable: '--font-courgette',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
-  weight: ['400']
+  weight: ['400', '500', '600', '700']
 });
 
 /**
@@ -34,7 +34,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
 
   return (
     <html lang={htmlLang}>
-      <body className={`${poppins.variable} ${courgette.variable} antialiased relative min-h-screen overflow-x-hidden`}>
+      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased relative min-h-screen overflow-x-hidden`}>
         {/* Ambient background glow for Liquid Glass effect (Dark mode only) */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none hidden dark:block">
           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px] transition-all duration-500" />
