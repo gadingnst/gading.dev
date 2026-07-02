@@ -9,13 +9,29 @@
   }
 
   .liquid-glass {
-    @apply backdrop-blur-md backdrop-saturate-150 border border-white/10 text-white;
-    background-color: color-mix(in oklab, black 25%, transparent);
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    border: 1px solid var(--glass-border);
+    background-color: var(--glass-bg);
+    color: var(--glass-text);
+    box-shadow: var(--glass-inset-shadow);
   }
 
   .liquid-glass-shadow {
-    @apply backdrop-blur-md backdrop-saturate-150 border border-white/10 text-white shadow-2xl;
-    background-color: color-mix(in oklab, black 25%, transparent);
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    border: 1px solid var(--glass-border);
+    background-color: var(--glass-bg);
+    color: var(--glass-text);
+    box-shadow: var(--glass-inset-shadow), var(--glass-shadow);
+  }
+
+  .theme-card {
+    backdrop-filter: blur(var(--card-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--card-blur)) saturate(150%);
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    box-shadow: var(--card-inset-shadow), var(--card-shadow);
   }
 
   /* Text shadow utilities for better contrast on liquid glass */

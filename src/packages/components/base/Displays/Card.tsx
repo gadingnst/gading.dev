@@ -3,7 +3,6 @@
 import type { PropsWithChildren } from 'react';
 
 import cn from '@/designs/utils/cn';
-import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 
 export interface CardProps {
   className?: string;
@@ -12,7 +11,6 @@ export interface CardProps {
 }
 
 function Card(_props: PropsWithChildren<CardProps>) {
-  const { isDark } = useAppTheme();
   const {
     children,
     className,
@@ -23,10 +21,9 @@ function Card(_props: PropsWithChildren<CardProps>) {
     <div
       style={style}
       className={cn([
-        'card bg-base-200 z-10 shadow-lg',
+        'card theme-card z-10',
         'transition-all duration-300 ease-in-out',
-        hoverEffect && 'hover:-translate-y-1 hover:shadow-xl',
-        isDark && 'shadow-secondary',
+        hoverEffect && 'hover:-translate-y-1 hover:shadow-2xl',
         className
       ])}
     >
