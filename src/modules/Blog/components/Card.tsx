@@ -1,4 +1,4 @@
-import { Tag } from 'lucide-react';
+import { Star, Tag } from 'lucide-react';
 
 import cn from '@/designs/utils/cn';
 import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
@@ -10,19 +10,26 @@ import NextLink from '@/packages/components/base/Navigations/NextLink';
 export interface BlogCardProps {
   blog: ContentMeta;
   className?: string;
+  isFeatured?: boolean;
 }
 
 function BlogCard(_props: BlogCardProps) {
-  const { blog, className } = _props;
+  const { blog, className, isFeatured } = _props;
 
   return (
     <Card
       hoverEffect
       className={cn([
-        'overflow-hidden flex flex-col h-full',
+        'relative overflow-hidden flex flex-col h-full',
         className
       ])}
     >
+      {isFeatured && (
+        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 bg-warning text-warning-content text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md shadow-md">
+          <Star className="w-3 h-3 fill-current" />
+          <span>Featured</span>
+        </div>
+      )}
       <NextLink
         withCurrentLocale
         className="group block"

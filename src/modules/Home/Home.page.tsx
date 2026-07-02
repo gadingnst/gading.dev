@@ -1,7 +1,7 @@
 import { NextPageProps } from '@/@types/global';
 import BlogCardList from '@/modules/Blog/components/CardList';
 import ContentParser from '@/modules/Content/components/ContentParser';
-import { getBlogList, getContentMultiLanguage } from '@/modules/Content/services/content-parser';
+import { getContentMultiLanguage, getFeaturedBlogList } from '@/modules/Content/services/content-parser';
 import generateRSSFeed from '@/modules/Content/services/rss-feed';
 import withHomeLocales from '@/modules/Home/Home.locales';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
@@ -30,7 +30,7 @@ export async function generateHomePathsDefault() {
 async function HomePage(props: NextPageProps) {
   const params = await props.params;
   const lang = params?.lang || getDefaultLanguage();
-  const blogList = await getBlogList(lang, { limit: 4 });
+  const featuredList = await getFeaturedBlogList(lang);
   const markdownContent = await getContentMultiLanguage('home', lang);
   const content = withHomeLocales(lang);
 
@@ -88,7 +88,7 @@ async function HomePage(props: NextPageProps) {
           {content.recentPosts}
         </h3>
         <div className="divider w-full max-w-xl mx-auto my-2 px-4" />
-        <BlogCardList contents={blogList.contents} />
+        <BlogCardList contents={featuredList} isFeatured />
         <ButtonLink
           withCurrentLocale
           href="/blog"

@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable react-hooks/set-state-in-effect */
 
-import { ArrowLeftIcon, ArrowRightIcon, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, ChevronLeft, ChevronRight, Search, Star, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
@@ -63,7 +63,11 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
     const tagsSet = new Set<string>();
     blogs.forEach((blog) => {
       if (blog.tags) {
-        blog.tags.forEach((tag) => tagsSet.add(tag));
+        blog.tags.forEach((tag) => {
+          if (tag.toLowerCase() !== 'featured') {
+            tagsSet.add(tag);
+          }
+        });
       }
     });
     return Array.from(tagsSet).sort();
@@ -77,7 +81,11 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         blog.description.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const matchesTag = !selectedTag || (blog.tags && blog.tags.includes(selectedTag));
+      const matchesTag =
+        !selectedTag ||
+        (selectedTag === 'featured'
+          ? !!blog.isFeatured
+          : blog.tags && blog.tags.includes(selectedTag));
 
       return matchesSearch && matchesTag;
     });
@@ -287,6 +295,18 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                     ])}
                   >
                     {localeDesc.allTags}
+                  </button>
+                  <button
+                    onClick={() => handleTagClick('featured')}
+                    className={cn([
+                      'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium flex items-center gap-1',
+                      selectedTag === 'featured'
+                        ? 'bg-warning/20 text-warning border-warning/40 shadow-sm font-bold'
+                        : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
+                    ])}
+                  >
+                    <Star className="w-3 h-3 fill-current" />
+                    Featured
                   </button>
                   {allTags.map((tag) => (
                     <button

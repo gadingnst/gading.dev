@@ -18,8 +18,8 @@ const withHomeLocales = createContentLocales({
     id: 'Terima kasih sudah berkunjung'
   },
   recentPosts: {
-    en: 'Recent posts',
-    id: 'Tulisan terbaru'
+    en: 'Featured posts',
+    id: 'Tulisan pilihan'
   },
   seeMore: {
     en: 'See more posts',

@@ -41,6 +41,7 @@ export interface ContentMeta {
   image: string;
   tags: string[];
   readTime: ReadTimeResults;
+  isFeatured?: boolean;
 }
 
 export interface ContentBlogList {
@@ -62,6 +63,21 @@ export interface MetaLocale {
 export const rootDir = path.join(process.cwd(), 'src');
 export const contentsDir = path.join(rootDir, 'contents');
 
+let cachedFeaturedSlugs: Record<string, string[]> | null = null;
+
+async function getFeaturedSlugs(language: string): Promise<string[]> {
+  if (!cachedFeaturedSlugs) {
+    try {
+      const featuredPath = path.join(contentsDir, 'posts', 'featured.json');
+      const featuredData = await Fs.readFile(featuredPath, 'utf8');
+      cachedFeaturedSlugs = JSON.parse(featuredData) as Record<string, string[]>;
+    } catch {
+      cachedFeaturedSlugs = {};
+    }
+  }
+  return cachedFeaturedSlugs[language] || [];
+}
+
 /**
  *
  * @param fileContents - string file content that have to be read
@@ -79,7 +95,7 @@ async function parseContent(fileContents: string, locale: string): Promise<MDCon
         remarkMath
       ];
       options.rehypePlugins = [
-         
+
         ...(options?.rehypePlugins ?? []) as any[],
         rehypeSlug,
         rehypeCodeTitles,
@@ -124,11 +140,17 @@ export async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Prom
   const date = dt(data.date).format('YYYY-MM-DD');
   const slugOriginal = data.slug[language];
   const readTime = readingTime(content);
+
+  const cleanSlug = slug.replace(/\.(md|mdx)$/, '');
+  const featuredSlugs = await getFeaturedSlugs(language);
+  const isFeatured = featuredSlugs.includes(cleanSlug);
+
   return {
     ...data,
     slugOriginal,
     date,
-    readTime
+    readTime,
+    isFeatured
   } as ContentMeta;
 }
 
@@ -140,7 +162,7 @@ export async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Prom
 export async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
   const postsPath = path.join(contentsDir, 'posts', language);
   const slugPaths = await Fs.readdir(postsPath).catch(() => []);
-  const result = await Promise.all(slugPaths.map(async(slugWithExtension) => {
+  const result = await Promise.all(slugPaths.map(async (slugWithExtension) => {
     // Remove file extension to get clean slug
     const slug = slugWithExtension.replace(/\.(md|mdx)$/, '');
     const meta = await getBlogMeta(slugWithExtension, language);
@@ -193,6 +215,52 @@ export async function getBlogList(language = DEFAULT_LOCALE, params?: BlogListPa
   };
 }
 
+export interface FeaturedConfig {
+  en?: string[];
+  id?: string[];
+}
+
+/**
+ * Get featured blog list by language
+ * @param language - language of the content (default: en)
+ * @returns {Promise<ContentMeta[]>} - asynchronous featured content meta
+ */
+export async function getFeaturedBlogList(language = DEFAULT_LOCALE): Promise<ContentMeta[]> {
+  try {
+    const featuredPath = path.join(contentsDir, 'posts', 'featured.json');
+    const featuredData = await Fs.readFile(featuredPath, 'utf8');
+    const featuredJson = JSON.parse(featuredData) as FeaturedConfig;
+    const slugs = featuredJson[language as keyof FeaturedConfig] || [];
+
+    // const limitedSlugs = slugs.slice(0, 4);
+
+    const posts = await Promise.all(
+      slugs.map(async (rawSlug) => {
+        try {
+          // Sanitize slug to prevent path traversal
+          const slug = path.basename(rawSlug);
+
+          let slugWithExt = `${slug}.md`;
+          try {
+            await Fs.access(path.join(contentsDir, 'posts', language, slugWithExt));
+          } catch {
+            slugWithExt = `${slug}.mdx`;
+          }
+          return await getBlogMeta(slugWithExt, language);
+        } catch (err) {
+          console.warn(`Featured post not found for slug: ${rawSlug}`, err);
+          return null;
+        }
+      })
+    );
+
+    return posts.filter((post): post is ContentMeta => post !== null);
+  } catch (error) {
+    console.error('Error fetching featured posts:', error);
+    return [];
+  }
+}
+
 /**
  * Get multi language content with one slug path
  * @param contentPath - path to content
@@ -219,12 +287,12 @@ export async function getContentMultiLanguage(contentPath: string, language = DE
 export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContent> {
   const filePath = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')
-    .catch(async(err) => {
+    .catch(async (err) => {
       if (err.code === 'ENOENT' && err.message.includes('.md')) {
         try {
           const _result = await Fs.readFile(`${filePath}.mdx`, 'utf8');
           return _result;
-         
+
         } catch (_err: any) {
           if (_err.code === 'ENOENT' && _err.message.includes('.mdx')) {
             const _result = await Fs.readFile(`${filePath}.generated.mdx`, 'utf-8');

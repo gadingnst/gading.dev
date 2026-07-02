@@ -5,9 +5,10 @@ import { ContentMeta } from '@/modules/Content/services/content-parser';
 interface Props {
   contents: ContentMeta[]
   className?: string;
+  isFeatured?: boolean;
 }
 
-function BlogCardList({ contents, className }: Props) {
+function BlogCardList({ contents, className, isFeatured }: Props) {
   return (
     <section
       className={cn([
@@ -19,6 +20,7 @@ function BlogCardList({ contents, className }: Props) {
         <BlogCard
           key={_blog.slugOriginal}
           blog={_blog}
+          isFeatured={_blog.isFeatured || isFeatured}
         />
       ))}
     </section>
