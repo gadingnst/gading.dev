@@ -1,7 +1,7 @@
 import {
-  AUTHOR_FACEBOOK,
+  // AUTHOR_FACEBOOK,
   AUTHOR_GITHUB,
-  AUTHOR_INSTAGRAM,
+  // AUTHOR_INSTAGRAM,
   AUTHOR_LINKEDIN,
   AUTHOR_THREADS,
   AUTHOR_TWITTER
@@ -23,12 +23,12 @@ const socialLinks = [
     icon: IconGithub,
     className: 'bg-[#333] shadow-gray-600'
   },
-  {
+  /* {
     name: 'Instagram',
     href: `https://instagram.com/${AUTHOR_INSTAGRAM}`,
     icon: IconInstagram,
     className: 'bg-gradient-to-r from-[#f09433] via-[#e6683c] via-[#dc2743] via-[#cc2366] to-[#bc1888] shadow-pink-500'
-  },
+  }, */
   {
     name: 'LinkedIn',
     href: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`,
@@ -47,12 +47,12 @@ const socialLinks = [
     icon: IconThreads,
     className: 'bg-[#000] shadow-gray-800'
   },
-  {
+  /* {
     name: 'Facebook',
     href: `https://facebook.com/${AUTHOR_FACEBOOK}`,
     icon: IconFacebook,
     className: 'bg-[#1877F2] shadow-blue-500'
-  }
+  } */
 ];
 
 function SocialLinks() {
