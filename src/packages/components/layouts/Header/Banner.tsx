@@ -36,8 +36,7 @@ function Banner(props: PropsWithChildren<Props>) {
   return (
     <div
       className={cn([
-        'relative overflow-hidden',
-        isDefaultBanner ? 'dark-mesh-gradient' : 'bg-gradient-to-tr from-primary to-accent'
+        'relative overflow-hidden dark-mesh-gradient'
       ])}
     >
       {/* Subtle grid pattern overlay for default banners (tech aesthetic) */}
