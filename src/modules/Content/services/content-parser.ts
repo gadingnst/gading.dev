@@ -162,7 +162,7 @@ export async function getBlogMeta(slug: string, language = DEFAULT_LOCALE): Prom
 export async function getAllBlogMeta(language = DEFAULT_LOCALE): Promise<MetaLocale[]> {
   const postsPath = path.join(contentsDir, 'posts', language);
   const slugPaths = await Fs.readdir(postsPath).catch(() => []);
-  const result = await Promise.all(slugPaths.map(async (slugWithExtension) => {
+  const result = await Promise.all(slugPaths.map(async(slugWithExtension) => {
     // Remove file extension to get clean slug
     const slug = slugWithExtension.replace(/\.(md|mdx)$/, '');
     const meta = await getBlogMeta(slugWithExtension, language);
@@ -235,7 +235,7 @@ export async function getFeaturedBlogList(language = DEFAULT_LOCALE): Promise<Co
     // const limitedSlugs = slugs.slice(0, 4);
 
     const posts = await Promise.all(
-      slugs.map(async (rawSlug) => {
+      slugs.map(async(rawSlug) => {
         try {
           // Sanitize slug to prevent path traversal
           const slug = path.basename(rawSlug);
@@ -287,7 +287,7 @@ export async function getContentMultiLanguage(contentPath: string, language = DE
 export async function getContent(slug: string, language = DEFAULT_LOCALE): Promise<MDContent> {
   const filePath = path.join(contentsDir, 'posts', language, slug);
   const fileContents = await Fs.readFile(`${filePath}.md`, 'utf8')
-    .catch(async (err) => {
+    .catch(async(err) => {
       if (err.code === 'ENOENT' && err.message.includes('.md')) {
         try {
           const _result = await Fs.readFile(`${filePath}.mdx`, 'utf8');

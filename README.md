@@ -28,6 +28,7 @@
 - [x] Use `app` dir with RSC in Next 13
 - [ ] PWA / Offline-first
 - [x] Search posts & filter by tags
+- [x] Featured posts (Homepage & Blog list/filter)
 - [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
 - [ ] Dynamic OG Image Generator using Next.js `ImageResponse`
 - [ ] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
