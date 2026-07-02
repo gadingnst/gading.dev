@@ -52,6 +52,21 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  /* ─── Liquid Glass (Original Dark Glass in Light Mode) ─── */
+  --glass-bg: rgba(0, 0, 0, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-text: #fff;
+  --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --glass-inset-shadow: none;
+  --glass-blur: 12px;
+
+  /* ─── Card styling (Original Flat Card in Light Mode) ─── */
+  --card-bg: var(--color-base-200);
+  --card-border: transparent;
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --card-inset-shadow: none;
+  --card-blur: 0px;
 }
 
 @plugin "daisyui/theme" {
@@ -104,6 +119,21 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+
+  /* ─── Liquid Glass (Revamped Navy Glass in Dark Mode) ─── */
+  --glass-bg: rgba(14, 38, 58, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-text: var(--color-base-content);
+  --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  --glass-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  --glass-blur: 40px;
+
+  /* ─── Card styling (Revamped Navy Glass in Dark Mode) ─── */
+  --card-bg: rgba(14, 38, 58, 0.45);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  --card-blur: 40px;
 }
 
 @theme inline {
