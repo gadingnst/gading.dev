@@ -15,7 +15,7 @@ function Footer() {
           </p>
           <SocialLinks />
         </div>
-        <hr className="relative z-10" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-base-content/15 to-transparent relative z-10" />
         <div className="relative z-10 my-12 text-sm text-center sm:text-left">
           <span className="inline-block">&copy;&nbsp;{currentYear}&nbsp;</span>
           <Link className="inline-block font-semibold" href={BASE_URL}>{SITE_NAME}</Link>

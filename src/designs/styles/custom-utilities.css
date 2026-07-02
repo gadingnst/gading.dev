@@ -80,17 +80,9 @@
   }
 
   .footer-custom {
-    min-height: 200px;
-    &::before {
-      content: "";
-      transform: skew(0, -10.25deg);
-      @screen md {
-        transform: skew(0, -5.25deg);
-      }
-      @apply
-        absolute left-0 right-0 transition-colors duration-200
-        bg-base-200 top-[150px] h-[2000px];
-    }
-    @apply relative overflow-hidden mt-14;
+    @apply relative mt-14 border-t border-base-300 dark:border-white/5;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
   }
 }
