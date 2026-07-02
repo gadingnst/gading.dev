@@ -65,9 +65,9 @@ export default function Menu() {
               disabled={isActive}
               className={cn([
                 'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
-                'text-white hover:text-black hover:bg-white/15',
+                'text-base-content/85 hover:text-base-content hover:bg-base-content/10',
                 isActive
-                  ? 'bg-white/60 text-black'
+                  ? 'bg-primary/20 text-primary dark:bg-white/20 dark:text-white font-semibold'
                   : ''
               ])}
             >
@@ -101,16 +101,16 @@ export default function Menu() {
                   disabled={isActive}
                   className={cn([
                     'flex items-center gap-3 transition-all duration-300',
-                    'cursor-pointer hover:bg-white/35 hover:shadow-primary',
+                    'cursor-pointer hover:bg-base-content/10',
                     isActive && [
-                      'active cursor-default bg-white text-black font-semibold',
+                      'active cursor-default bg-primary text-primary-content dark:bg-white dark:text-black font-semibold',
                       'border-l-4 border-primary/75 shadow-lg shadow-white/20'
                     ]
                   ])}
                 >
                   <item.icon className={cn([
-                    'w-4 h-4 transition-all duration-300 text-white',
-                    isActive ? 'text-black drop-shadow-sm' : 'text-current'
+                    'w-4 h-4 transition-all duration-300',
+                    isActive ? 'text-current drop-shadow-sm' : 'text-current'
                   ])} />
                   <span>{item.label}</span>
                 </NextLink>

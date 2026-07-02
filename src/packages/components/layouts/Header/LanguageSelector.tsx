@@ -27,9 +27,9 @@ function LanguageItem(_props: LanguageItemProps) {
         disabled={isActive}
         className={cn([
           'flex items-center gap-3 transition-all duration-300',
-          'cursor-pointer hover:bg-white/35 hover:shadow-primary',
+          'cursor-pointer hover:bg-base-content/10',
           isActive && [
-            'active cursor-default bg-white text-black font-semibold',
+            'active cursor-default bg-primary text-primary-content dark:bg-white dark:text-black font-semibold',
             'border-l-4 border-primary/75 shadow-lg shadow-white/20'
           ]
         ])}

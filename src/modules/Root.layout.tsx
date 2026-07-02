@@ -34,7 +34,13 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
 
   return (
     <html lang={htmlLang}>
-      <body className={`${poppins.variable} ${courgette.variable} antialiased`}>
+      <body className={`${poppins.variable} ${courgette.variable} antialiased relative min-h-screen overflow-x-hidden`}>
+        {/* Ambient background glow for Liquid Glass effect (Dark mode only) */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none hidden dark:block">
+          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px] transition-all duration-500" />
+          <div className="absolute bottom-[10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary/8 blur-[150px] transition-all duration-500" />
+          <div className="absolute top-[40%] right-[20%] w-[40vw] h-[40vw] rounded-full bg-accent/8 blur-[130px] transition-all duration-500" />
+        </div>
         {children}
         {!IS_DEV && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
