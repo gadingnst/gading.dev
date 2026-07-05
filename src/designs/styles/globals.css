@@ -150,3 +150,21 @@ body {
 @import "./katex";
 @import "./prism";
 @import "./content-parser";
+
+/* Mobile performance optimizations (reduces GPU load on Safari/iOS) */
+@media (max-width: 768px) {
+  :root {
+    --glass-blur: 8px;
+    --card-blur: 0px;
+    --card-bg: var(--color-base-200);
+  }
+
+  [data-theme="dark"] {
+    --glass-bg: rgba(14, 38, 58, 0.85); /* More opaque background for header/menu on mobile */
+    --glass-blur: 12px;
+    --card-blur: 0px;
+    --card-bg: rgb(35, 57, 93); /* fallback to base-200 on mobile dark mode */
+    --card-border: transparent;
+    --card-inset-shadow: none;
+  }
+}

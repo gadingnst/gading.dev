@@ -46,7 +46,7 @@ const socialLinks = [
     href: `https://threads.net/@${AUTHOR_THREADS}`,
     icon: IconThreads,
     className: 'bg-[#000] shadow-gray-800'
-  },
+  }
   /* {
     name: 'Facebook',
     href: `https://facebook.com/${AUTHOR_FACEBOOK}`,
