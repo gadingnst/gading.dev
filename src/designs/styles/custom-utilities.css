@@ -1,11 +1,11 @@
 @layer utilities {
   .base-container {
-    @apply max-w-5xl w-full mx-auto px-4;
+    @apply max-w-4xl w-full mx-auto px-4;
   }
 
   .dark-mesh-gradient {
     background-color: #0b1528;
-    background-image: 
+    background-image:
       radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
       radial-gradient(at 90% 10%, rgba(255, 100, 180, 0.15) 0px, transparent 50%),
       radial-gradient(at 50% 80%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
