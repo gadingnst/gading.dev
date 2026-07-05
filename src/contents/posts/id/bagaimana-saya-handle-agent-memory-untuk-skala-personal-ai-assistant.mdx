@@ -11,7 +11,7 @@ tags: ["ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/how-i-handle-agent-memory-for-personal-ai-assistant/banner.png"
 ---
 
-Di tulisan gw sebelumnya tentang [Jebakan GraphRAG: Kenapa Gw Uninstall Neo4j dari Asisten Pribadi Gw](/blog/jebakan-graphrag-uninstall-neo4j), gw sempet cerita panjang lebar soal kenapa gw mutusin buat ngebuang Neo4j dan Graphitti dari stack asisten AI gw, **Nouva**. Intinya: *overkill*, nyusahin diri sendiri, dan bikin boros token LLM cuma buat nge-traversal graph yang sebenernya ga rumit-rumit amat buat skala personal.
+Di tulisan gw sebelumnya tentang [Jebakan GraphRAG: Kenapa Gw Uninstall Neo4j dari Asisten Pribadi Gw](/id/blog/jebakan-graphrag-uninstall-neo4j), gw sempet cerita panjang lebar soal kenapa gw mutusin buat ngebuang Neo4j dan Graphitti dari stack asisten AI gw, **Nouva**. Intinya: *overkill*, nyusahin diri sendiri, dan bikin boros token LLM cuma buat nge-traversal graph yang sebenernya ga rumit-rumit amat buat skala personal.
 
 Tapi, setelah Neo4j di-uninstall, gw kebentur masalah baru: **Gimana cara ngelola memori jangka panjang (chat logs & history) Nouva biar tetep rapi, cepet, tapi ga bikin RAG-nya "mabok"?**
 
