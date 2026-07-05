@@ -155,16 +155,19 @@ body {
 @media (max-width: 768px) {
   :root {
     --glass-blur: 8px;
-    --card-blur: 0px;
-    --card-bg: var(--color-base-200);
+    --glass-bg: rgba(232, 237, 245, 0.65);
+    --card-blur: 8px;
+    --card-bg: rgba(232, 237, 245, 0.65);
+    --card-border: rgba(0, 0, 0, 0.08);
   }
 
   [data-theme="dark"] {
-    --glass-bg: rgba(14, 38, 58, 0.85); /* More opaque background for header/menu on mobile */
+    --glass-bg: rgba(14, 38, 58, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: 12px;
-    --card-blur: 0px;
-    --card-bg: rgb(35, 57, 93); /* fallback to base-200 on mobile dark mode */
-    --card-border: transparent;
-    --card-inset-shadow: none;
+    --card-blur: 12px;
+    --card-bg: rgba(14, 38, 58, 0.55);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
   }
 }
