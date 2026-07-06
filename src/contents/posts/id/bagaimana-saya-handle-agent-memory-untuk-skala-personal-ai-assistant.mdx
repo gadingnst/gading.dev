@@ -7,7 +7,7 @@ slug: {
 date: 2026-07-05
 description: "Peta perjalanan saya merombak sistem memori AI Agent Nouva dari yang tadinya berisik dan bikin RAG dilusi, menjadi skema Two-Tier Hybrid RAG + NAS Markdown yang 95% mengcover semua kebutuhan."
 keywords: "AI Agent, Agent Memory, RAG, AnythingLLM, NAS, Markdown, Personal AI Assistant, OpenClaw"
-tags: ["ai", "infrastructure", "rag", "nouverse"]
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/how-i-handle-agent-memory-for-personal-ai-assistant/banner.png"
 ---
 
@@ -119,6 +119,11 @@ Kembali ke dasar (*back to basics*) dan memahami core concept dari masalah yang 
 Skema flat RAG + NAS ini adalah fondasi awal yang solid. Namun, ketika jumlah catatan harian mulai menumpuk hingga ratusan hari, tantangan berikutnya adalah bagaimana kita mengatasi *index bloating*, *vector dilution*, dan melakukan *graph traversal* (menghubungkan chat yang bersambung antar hari) tanpa mengorbankan performa.
 
 Di tulisan selanjutnya, yaitu **Membangun Agent Memory dengan Vendor Lock-in Resistance (Part 2)**, gw bakal bedah kelanjutan dari arsitektur ini. Kita akan bahas bagaimana merombak sistem memori Nouva menggunakan pendekatan *Hierarchical Summary* dan rumus *Hybrid Scoring* sederhana agar pencarian memori tetap instan, rapi, dan tentu saja, tetap 100% bebas dari vendor lock-in.
+
+### Blog Terkait
+Biar dapet gambaran utuh kenapa gue sampai pada arsitektur memori lokal di tulisan ini, lu bisa baca perjalanan eksperimen gue sebelumnya:
+1. [Membangun GraphRAG untuk Agen Otonom dengan Neo4J and Graphitti](/id/blog/membangun-graphrag-neo4j-graphitti) (Fase awal nyoba GraphRAG)
+2. [Jebakan GraphRAG: Kenapa Gue Akhirnya Uninstall Neo4j](/id/blog/jebakan-graphrag-uninstall-neo4j) (Fase tersadar kalau ini overkill)
 
 ---
 

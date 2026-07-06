@@ -7,7 +7,7 @@ slug: {
 date: 2026-07-06
 description: "Kelanjutan eksperimen memori AI Agent Nouva: mengatasi index bloat dengan Two-Tier Hierarchical Summary, hybrid scoring (semantic + importance + recency), dan graph link validation."
 keywords: "AI Agent, Agent Memory, RAG, AnythingLLM, Hierarchical Memory, Hybrid Scoring, Obsidian, OpenClaw"
-tags: ["ai", "infrastructure", "rag", "nouverse"]
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/membangun-agent-memory-bebas-vendor/banner.png"
 ---
 
@@ -157,3 +157,9 @@ Tantangan terakhir adalah data lama yang udah keburu diarsipkan ke NAS sebelum s
 Jadi, apakah akhirnya gw butuh memory stack eksternal yang canggih dan berbayar? Ternyata jawabannya tetap **belum**. Gw masih bisa "ngakalin" approach-nya menggunakan file markdown lokal, sedikit script Python, dan matematika hybrid scoring sederhana untuk disesuaikan dengan kebutuhan riil gw, tanpa harus boros token LLM atau bergantung pada vendor pihak ketiga.
 
 Refactoring ini ngebuktiin kalau dengan struktur folder markdown yang rapi, YAML frontmatter, sedikit matematika hybrid scoring, dan tool visualisasi markdown standar seperti Obsidian, kita udah bisa bikin sistem memori AI Agent yang cerdas, cepat, dan 100% milik kita sendiri.
+
+### Blog Terkait
+Arsitektur memori ini gak lahir dalam semalam. Ini adalah hasil evolusi dari beberapa eksperimen dan kegagalan gue sebelumnya:
+1. [Membangun GraphRAG untuk Agen Otonom dengan Neo4J and Graphitti](/id/blog/membangun-graphrag-neo4j-graphitti) (Awal mula nyoba GraphRAG)
+2. [Jebakan GraphRAG: Kenapa Gue Akhirnya Uninstall Neo4j](/id/blog/jebakan-graphrag-uninstall-neo4j) (Keputusan uninstall karena overkill)
+3. [Bagaimana Saya Membangun Agent Memory yang Bebas Vendor Lock-in](/id/blog/bagaimana-saya-handle-agent-memory-untuk-skala-personal-ai-assistant) (Solusi awal pake flat RAG + NAS)
