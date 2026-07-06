@@ -1,0 +1,159 @@
+---
+title: "Membangun Agent Memory dengan Vendor Lock-in Resistance (Part 2)"
+slug: {
+  en: "building-agent-memory-free-vendor",
+  id: "membangun-agent-memory-bebas-vendor"
+}
+date: 2026-07-06
+description: "Kelanjutan eksperimen memori AI Agent Nouva: mengatasi index bloat dengan Two-Tier Hierarchical Summary, hybrid scoring (semantic + importance + recency), dan graph link validation."
+keywords: "AI Agent, Agent Memory, RAG, AnythingLLM, Hierarchical Memory, Hybrid Scoring, Obsidian, OpenClaw"
+tags: ["ai", "infrastructure", "rag", "nouverse"]
+image: "/media/blog/membangun-agent-memory-bebas-vendor/banner.png"
+---
+
+Di tulisan gw sebelumnya tentang [Bagaimana Saya Membangun Agent Memory yang Bebas Vendor Lock-in](/id/blog/bagaimana-saya-handle-agent-memory-untuk-skala-personal-ai-assistant), gw sempet pamer soal skema Two-Tier Hybrid RAG + NAS Markdown yang gw buat untuk asisten AI gw, **Nouva**. Pas awal dideploy, rasanya emang indah banget. Simpel, portable, dan ga overkill.
+
+Tapi ya namanya juga software engineering, ga ada solusi yang "sekali kelar langsung sempurna selamanya". Setelah skema tersebut gw pake, dan jalan beberapa minggu, gw kebentur kenyataan pahit lagi. Ada tiga masalah baru yang muncul dan bikin gw garuk-garuk kepala:
+
+1.  **Index Bloating:** File `MEMORY_INDEX.md` yang flat ternyata tumbuh terlalu cepet. Karena isinya daftar topik harian kumulatif dari awal waktu, file ini makin hari makin gemuk. Akibatnya, RAG AnythingLLM mulai kewalahan dan akurasi semantic search-nya melorot karena terlalu banyak noise.
+2.  **Vector Dilution:** Skor semantik dari vector database sering kali mirip-mirip antar tanggal. AI jadi gampang ketuker antara diskusi serius soal arsitektur server minggu lalu dengan obrolan santai di hari yang berbeda, cuma karena ada keyword yang mirip secara acak.
+3.  **Graph Traversal Tanpa Batas:** Pas kita nyoba nge-link chat yang nyambung (`continue_of` / `related_dates`), kalau ga dibatasi, dia bisa narik puluhan file markdown sekaligus dari NAS. Lemotnya minta ampun!
+
+Makanya, kemarin gw memutuskan buat ngelakuin refactoring besar-besaran pada sistem memori Nouva. Solusinya? **Two-Tier Hierarchical Summary & Hybrid Scoring**.
+
+---
+
+### Perbandingan Arsitektur: Sebelum vs Sesudah
+
+Untuk mempermudah visualisasi, berikut adalah perbandingan alur sistem memori Nouva sebelum dan sesudah perombakan ini:
+
+#### 1. Arsitektur Sebelumnya
+Di arsitektur awal, pencarian semantik langsung mengarah ke index flat `MEMORY_INDEX.md` yang tumbuh tanpa batas, lalu langsung mengambil transkrip mentah dari NAS tanpa re-ranking.
+
+![Arsitektur Sebelum](/media/blog/membangun-agent-memory-bebas-vendor/architecture-before.png)
+
+#### 2. Arsitektur Baru
+Di arsitektur baru, kita menyisipkan layer **Hybrid Scoring** (Semantic + Importance + Recency) dan **Graph Link Validation** (BFS dengan depth limit) untuk menyaring kandidat tanggal sebelum mengambil data dari NAS. Proses sinkronisasi juga disisipi dengan **Reconciliation Pass** dan **Daily Summary Generation**.
+
+![Arsitektur Sesudah](/media/blog/membangun-agent-memory-bebas-vendor/architecture-after.png)
+
+Mari kita bedah satu per satu perubahan pentingnya.
+
+---
+
+### 1. Menolak Bloat dengan Daily Summary & YAML Frontmatter
+
+Dulu, kita langsung nge-sync daily notes mentah ke RAG. Sekarang, sebelum daily notes diarsipkan ke NAS, script `auto-sync.py` bakal manggil LLM untuk men-generate file baru: `memory/summaries/YYYY-MM-DD.summary.md`.
+
+File summary ini super bersih dan dilengkapi dengan YAML frontmatter terstruktur:
+
+```yaml
+---
+schema_version: 1
+date: 2026-07-06
+people: [Gading, Rina, Freedy]
+projects: [Nouverse Core, Homelab]
+tags: [Kubernetes, Docker, RAG]
+importance: 7
+mood: excited
+continue_of: 2026-07-05
+related_dates: [2026-07-01]
+uncategorized:
+  technologies: []
+  libraries: [Pydantic]
+  projects: []
+---
+### Ringkasan Hari Ini
+- Menyelesaikan refactoring memori agen Nouva dengan skema hybrid scoring.
+- Diskusi dengan Freedy soal setup K3s cluster worker nodes.
+```
+
+*   **Controlled Vocabulary:** Field `projects`, `technologies`, dan `libraries` wajib dicocokkan dengan daftar baku di `memory_config.json`. Kalau ada term baru (misal library `Pydantic` yang belum terdaftar), LLM bakal masukin ke nested object `uncategorized` agar tidak mencemari vocabulary utama.
+
+    Mungkin lu bertanya-tanya, *"Kenapa controlled vocabulary dan parameter bobot ini di-hardcode di file `memory_config.json`?"* Jawabannya sederhana: karena sejauh ini sistem memori ini masih digunakan murni untuk kebutuhan personal gw. Dengan skala personal, konfigurasi statis yang dibaca ulang setiap run (per-invocation) jauh lebih dari cukup, aman, dan ga perlu nambah kompleksitas layer database dinamis atau hot-reload service yang nyusahin.
+*   **Idempotency & Reconciliation:** Gw menambahkan langkah `reconcile_missing_summaries()`. Kalau hari kemarin LLM proxy-nya timeout atau error di tengah jalan, cron job berikutnya bakal otomatis nge-scan mana summary yang bolong dan nge-generate ulang. Gak ada lagi cerita *silent data loss*.
+
+---
+
+### 2. Hybrid Scoring: Menyeimbangkan Semantik, Kepentingan, dan Waktu
+
+Kalau cuma mengandalkan skor semantik RAG, data lama yang penting sering kali tenggelam oleh data baru yang gak penting. Di sisi lain, data baru yang cuma berisi obrolan santai malah sering naik ke atas.
+
+Untuk mengatasi ini, gw nerapin rumus **Hybrid Scoring** di `query-memory.py`:
+
+$$\text{Final Score} = (w_{\text{semantic}} \times S_{\text{semantic}}) + (w_{\text{importance}} \times S_{\text{importance}}) + (w_{\text{recency}} \times e^{-c \times \text{days}})$$
+
+Di mana bobotnya gw set di `memory_config.json`:
+*   **Semantic (50%):** Skor kemiripan asli dari vector database AnythingLLM.
+*   **Importance (30%):** Skala 1-10 dari YAML metadata (catatan migrasi arsitektur dapet nilai 8-10, obrolan waifu dapet nilai 1-3).
+*   **Recency Decay (20%):** Peluruhan waktu menggunakan eksponensial. Catatan baru otomatis dapet nilai lebih tinggi.
+
+Dengan skema ini, diskusi penting 3 bulan lalu (importance tinggi) gak akan kalah bersaing dengan reminder skincare kemarin malam (importance rendah).
+
+---
+
+### 3. BFS Graph Traversal dengan Depth Limit
+
+Untuk menjaga agar agen bisa menarik konteks yang bersambung dari hari sebelumnya, kita membaca field `continue_of` dan `related_dates` di YAML metadata. Tapi biar gak kena masalah performa (narik puluhan file markdown sekaligus dari NAS), gw nerapin traversal menggunakan algoritma **Breadth-First Search (BFS)** dengan batas kedalaman (`max_graph_depth`):
+
+```python
+# Queue: (date, current_depth, current_semantic_score)
+queue = deque([(d, 0, date_scores[d]) for d in date_scores])
+visited_dates = {}
+
+while queue:
+    d, depth, score = queue.popleft()
+    if d in visited_dates:
+        continue
+        
+    final_score, metadata = calculate_hybrid_score(score, d, config)
+    visited_dates[d] = (final_score, metadata)
+    
+    if depth < max_depth:
+        linked_dates = ([metadata.get("continue_of")] if metadata.get("continue_of") else []) + metadata.get("related_dates", [])
+        for linked in linked_dates:
+            if linked and linked not in visited_dates:
+                # Skor semantik didecay 20% per level kedalaman graf
+                queue.append((linked, depth + 1, score * 0.8))
+```
+
+Batas `max_graph_depth` ini gw set di angka `2`. Jadi maksimal kita cuma menarik relasi sejauh 2 langkah, sangat aman dari context window bloating dan disk I/O yang lemot.
+
+---
+
+### 4. Obsidian Vault Compatibility (Bonus Indah)
+
+Karena filename convention kita (`YYYY-MM-DD.md`) dan format summary baru ini udah pake YAML frontmatter standar, gw dapet bonus yang gak disangka-sangka: **folder `memory/` bisa langsung di-mount sebagai vault Obsidian!**
+
+Gw tinggal nambahin sebaris instruksi di prompt generator summary untuk nge-append wikilinks di bagian bawah body markdown:
+
+```markdown
+---
+# YAML Frontmatter...
+---
+### Ringkasan Hari Ini
+- [Point 1]
+
+---
+**🔗 Links:** [[2026-07-05]] · [[Gading]] · [[Nouverse Core]]
+```
+
+Begitu di-mount ke Obsidian di laptop gw, gw langsung dapet **Graph View**, **Backlinks**, dan **Calendar Heatmap** secara gratis tanpa perlu nulis kode visualisasi satu baris pun. RAG-nya seneng karena dapet metadata bersih, gwnya juga seneng karena bisa browsing riwayat chat Nouva dengan visualisasi grafis yang estetik.
+
+Berikut penampakan graph view memori Nouva yang langsung kebentuk otomatis di Obsidian:
+
+![Obsidian Graph View](/media/blog/membangun-agent-memory-bebas-vendor/obsidian-graph.jpg)
+
+---
+
+### Backfill & Rencana Migrasi Data Lama
+
+Tantangan terakhir adalah data lama yang udah keburu diarsipkan ke NAS sebelum skema ini aktif. Untuk menyelaraskannya, gw bikin script migrasi sekali-jalan (`backfill-nas-memories.py`) yang alurnya:
+1.  Nge-scan dan membaca daily notes lama dari NAS.
+2.  Generate `.summary.md` baru via LLM secara bertahap (dikasih jeda `time.sleep(2)` biar LLM-nya ga mabok).
+3.  Simpan file summary-nya di folder lokal `memory/summaries/` (ukurannya super kecil, jadi ga membebani disk space local).
+4.  Sync semua summary baru tersebut ke AnythingLLM.
+
+Jadi, apakah akhirnya gw butuh memory stack eksternal yang canggih dan berbayar? Ternyata jawabannya tetap **belum**. Gw masih bisa "ngakalin" approach-nya menggunakan file markdown lokal, sedikit script Python, dan matematika hybrid scoring sederhana untuk disesuaikan dengan kebutuhan riil gw, tanpa harus boros token LLM atau bergantung pada vendor pihak ketiga.
+
+Refactoring ini ngebuktiin kalau dengan struktur folder markdown yang rapi, YAML frontmatter, sedikit matematika hybrid scoring, dan tool visualisasi markdown standar seperti Obsidian, kita udah bisa bikin sistem memori AI Agent yang cerdas, cepat, dan 100% milik kita sendiri.
