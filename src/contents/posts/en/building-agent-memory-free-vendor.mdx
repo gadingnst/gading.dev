@@ -56,6 +56,7 @@ projects: [Nouverse Core, Homelab]
 tags: [Kubernetes, Docker, RAG]
 importance: 7
 mood: excited
+related_dates: [2026-07-01]
 uncategorized:
   technologies: []
   libraries: [Pydantic]
@@ -90,15 +91,17 @@ With this math, a critical system design discussion from 3 months ago (high impo
 
 ---
 
-### 3. Keep it Simple: Dropping Graph Traversal & BFS
+### 3. Keep it Simple: Replacing BFS Traversal with Programmatic 1-Hop Expansion
 
-Initially, when designing this system, I went all-in on writing a graph traversal algorithm using **Breadth-First Search (BFS)** with a strict depth limit (`max_depth = 2`) to crawl the `continue_of` and `related_dates` fields in the YAML header. The goal was to automatically pull threaded daily notes.
+Initially, when designing this system, I wrote a complex graph traversal algorithm using **Breadth-First Search (BFS)** with a strict depth limit (`max_depth = 2`) to automatically crawl and pull threaded daily notes.
 
-However, after testing it in production, I realized this approach was *overkill* and highly prone to **date hallucination** by the LLM (the LLM frequently hallucinated past dates that didn't actually have logs).
+However, after testing it in production, I realized this recursive BFS traversal was slow and highly prone to **date hallucination** by the LLM (the LLM frequently hallucinated past dates that didn't actually have logs).
 
-Ultimately, I decided to **completely drop the graph traversal logic**. Why? Because the task of connecting related topics is **already handled naturally and automatically by Semantic RAG (pgvector/AnythingLLM)**. 
+Ultimately, I refactored this approach to make it much simpler and deterministic:
+1. **Programmatic Topic Detection (Sync-time):** During the daily sync process, our Python script automatically scans the new summary's metadata and matches it against keywords in the local `MEMORY_INDEX.md` file. The top 2 most relevant dates are injected into the YAML metadata as `related_dates`. This has *zero* LLM token cost and guarantees 100% valid dates.
+2. **1-Hop Expansion (Retrieval-time):** When the AI agent queries memory (`query-memory.py`), we no longer run a recursive BFS traversal. We simply take the candidate dates from the Semantic RAG and perform a **1-hop expansion** to their `related_dates`, decaying their semantic score by 30% (`score * 0.7`).
 
-If I ask *"How was the Docker setup yesterday?"*, the RAG automatically retrieves all daily summaries relevant to the keyword "Docker" without requiring manual wikilinks inside the markdown files. We don't need a complex graph database traversal for a personal assistant. *Keep it simple!*
+With this approach, we still get the benefits of document relationships (topic clusters), but the code remains lightweight, fast, and free from complex traversal bugs. *Keep it simple!*
 
 ---
 

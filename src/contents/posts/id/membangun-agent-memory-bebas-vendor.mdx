@@ -56,6 +56,7 @@ projects: [Nouverse Core, Homelab]
 tags: [Kubernetes, Docker, RAG]
 importance: 7
 mood: excited
+related_dates: [2026-07-01]
 uncategorized:
   technologies: []
   libraries: [Pydantic]
@@ -90,15 +91,17 @@ Dengan skema ini, diskusi penting 3 bulan lalu (importance tinggi) gak akan kala
 
 ---
 
-### 3. Keep it Simple: Membuang Graph Traversal & BFS
+### 3. Keep it Simple: Mengganti BFS Traversal dengan 1-Hop Expansion Programmatik
 
-Awalnya, pas merancang sistem ini, gw sempat all-in menulis kode traversal graf menggunakan algoritma **Breadth-First Search (BFS)** dengan batas kedalaman (`max_depth = 2`) untuk menelusuri field `continue_of` dan `related_dates` di YAML metadata. Idenya biar asisten AI bisa narik riwayat chat yang nyambung secara otomatis.
+Awalnya, pas merancang sistem ini, gw sempat menulis kode traversal graf yang kompleks menggunakan algoritma **Breadth-First Search (BFS)** dengan batas kedalaman (`max_depth = 2`) untuk menelusuri hubungan antar tanggal. Idenya biar asisten AI bisa narik riwayat chat yang nyambung secara otomatis.
 
-Tapi setelah diuji coba, gw sadar kalau pendekatan ini *overkill* dan rawan **halusinasi tanggal** dari LLM (LLM sering ngasal nebak tanggal masa lalu yang gak beneran ada lognya). 
+Tapi setelah diuji coba, gw sadar kalau BFS traversal rekursif ini lambat dan rawan **halusinasi tanggal** dari LLM (LLM sering ngasal nebak tanggal masa lalu yang gak beneran ada lognya). 
 
-Akhirnya, gw ambil keputusan buat **ngebuang seluruh logika graph traversal tersebut**. Kenapa? Karena fungsi menghubungkan topik yang sama itu **sudah ditangani secara alami dan otomatis oleh RAG Semantik (pgvector/AnythingLLM)**. 
+Akhirnya, gw merombak pendekatan ini menjadi jauh lebih simpel dan deterministik:
+1. **Deteksi Topik Pas Sync (Programmatik):** Pas proses sinkronisasi harian, script Python kita bakal nge-scan metadata summary baru dan mencocokkannya dengan keyword di file `MEMORY_INDEX.md` lokal secara otomatis. Top 2 tanggal yang paling relevan disuntikkan ke YAML metadata `related_dates`. Ini *zero cost* token LLM dan dijamin 100% tanggalnya valid.
+2. **Ekspansi 1-Hop (Retrieval):** Pas asisten AI nyari memori (`query-memory.py`), kita gak pake BFS traversal rekursif lagi. Kita cuma ngambil tanggal kandidat hasil RAG Semantik, lalu melakukan ekspansi **1-hop** ke tanggal-tanggal yang ada di `related_dates` dengan memotong skor semantiknya sebesar 30% (`score * 0.7`).
 
-Kalau gw nanya *"Setup Docker kemarin gimana?"*, RAG bakal otomatis narik semua tanggal summary yang relevan dengan keyword "Docker" tanpa perlu kita link secara manual di file markdown. Kita gak butuh traversal graph database yang kompleks cuma buat asisten personal. *Keep it simple!*
+Dengan cara ini, kita tetep dapet keuntungan relasi antar dokumen (graf topik), tapi kodenya super enteng, cepat, dan bebas dari bug traversal yang rumit. *Keep it simple!*
 
 ---
 
