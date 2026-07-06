@@ -1,5 +1,5 @@
 ---
-title: "Bagaimana Saya Handle Agent Memory untuk Skala Personal AI Assistant"
+title: "Bagaimana Saya Handle Agent Memory Tanpa Graph Database dan Stack Overkill"
 slug: {
   en: "how-i-handle-agent-memory-for-personal-ai-assistant",
   id: "bagaimana-saya-handle-agent-memory-untuk-skala-personal-ai-assistant"
@@ -43,6 +43,8 @@ Sisa 5% kebutuhan itu cuma kalau lu pengen bikin analisis abstrak jangka panjang
 ---
 
 ### Solusinya: Two-Tier Hybrid RAG + NAS Markdown
+
+> **TL;DR:** RAG di sini gw bikin sebagai memory index doang. Setiap keyword yang masuk bakal me-return beberapa kandidat tanggal log harian (format YYYY-MM-DD). Memory aslinya cuma berbasis file markdown, dengan nama file = tanggal itu tadi. Jadi setelah LLM dapet kandidat tanggal dari index, dia baru akses langsung file markdown-nya buat baca isi aslinya.
 
 Sebagai gantinya, gw nerapin arsitektur **Two-Tier Hybrid Memory** yang ngebagi tugas pencarian secara jelas dan efisien:
 

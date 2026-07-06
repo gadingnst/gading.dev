@@ -1,5 +1,5 @@
 ---
-title: "How I Handle Agent Memory for a Personal AI Assistant Scale"
+title: "How I Handle Agent Memory Without Graph Databases and Overkill Stacks"
 slug: {
   en: "how-i-handle-agent-memory-for-personal-ai-assistant",
   id: "bagaimana-saya-handle-agent-memory-untuk-skala-personal-ai-assistant"
@@ -43,6 +43,8 @@ The remaining 5% of use cases are only relevant if you want to run high-level, l
 ---
 
 ### The Solution: Two-Tier Hybrid RAG + NAS Markdown
+
+> **TL;DR:** I built the RAG here as a memory index only. Every incoming keyword will return several candidate daily log dates (in YYYY-MM-DD format). The actual memory is purely markdown file-based, with the file name being that date. So after the LLM gets the candidate dates from the index, it directly accesses the markdown file to read the original content.
 
 Instead, I implemented a **Two-Tier Hybrid Memory** architecture that separates the indexing layer from the raw storage layer:
 
