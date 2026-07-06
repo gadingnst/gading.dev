@@ -43,7 +43,7 @@ Mari kita bedah satu per satu perubahan pentingnya.
 
 ### 1. Menolak Bloat dengan Daily Summary & YAML Frontmatter
 
-Dulu, kita langsung nge-sync daily notes mentah ke RAG. Sekarang, sebelum daily notes diarsipkan ke NAS, script `auto-sync.py` bakal manggil LLM untuk men-generate file baru: `memory/summaries/YYYY-MM-DD.summary.md`.
+Dulu, kita mengandalkan daily notes mentah sebagai satu-satunya data memori di RAG. Sekarang, sebelum daily notes tersebut diarsipkan ke NAS, script `auto-sync.py` bakal manggil LLM untuk men-generate file baru: `memory/summaries/YYYY-MM-DD.summary.md`.
 
 File summary ini super bersih dan dilengkapi dengan YAML frontmatter terstruktur:
 
