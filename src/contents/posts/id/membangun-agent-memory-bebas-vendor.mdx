@@ -119,10 +119,15 @@ Gw tinggal nambahin sebaris instruksi di prompt generator summary untuk nge-appe
 - [Point 1]
 
 ---
-**🔗 Links:** [[Gading]] · [[Nouverse Core]] · [[2026-07-06]]
+**🔗 Links:** [[Gading]] · [[Nouverse Core]]
 ```
 
 Begitu di-mount ke Obsidian di laptop gw, gw langsung dapet **Graph View**, **Backlinks**, dan **Calendar Heatmap** secara gratis tanpa perlu nulis kode visualisasi satu baris pun. RAG-nya seneng karena dapet metadata bersih, gwnya juga seneng karena bisa browsing riwayat chat Nouva dengan visualisasi grafis yang estetik.
+
+Namun, biar visualisasi graf-nya rapi dan gak berujung jadi benang kusut (*spiderweb*), gw nerapin beberapa aturan main tambahan:
+1. **No Related Dates Wikilinks:** Hubungan antar tanggal (`related_dates`) sengaja **tidak** gw jadikan wikilink visual di body markdown. Cukup disimpan di YAML frontmatter agar dibaca programmatik oleh AI. Ini menjaga graf tetap bersih dari garis menyilang antar tanggal yang membingungkan.
+2. **Timeline Spine:** Setiap daily note otomatis nge-link ke catatan hari sebelumnya (misal: `« [[2026-07-05]] | Timeline Spine`). Ini ngebentuk satu garis lurus kronologis (tulang punggung) dari kiri ke kanan di graf.
+3. **Parent Link:** File transkrip chat mentah otomatis nge-link ke daily note induknya. Ini bikin sesi-sesi chat mengorbit rapi mengelilingi bulatan tanggalnya dan gak melayang sendirian sebagai *orphans* (anak yatim).
 
 Berikut penampakan graph view memori Nouva yang langsung kebentuk otomatis di Obsidian:
 

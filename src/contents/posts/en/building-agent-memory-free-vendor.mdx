@@ -119,10 +119,15 @@ I just added a quick instruction to the summary generator prompt to append wikil
 - [Point 1]
 
 ---
-**🔗 Links:** [[Gading]] · [[Nouverse Core]] · [[2026-07-06]]
+**🔗 Links:** [[Gading]] · [[Nouverse Core]]
 ```
 
 When opened in Obsidian on my laptop, I instantly get **Graph View**, **Backlinks**, and a **Calendar Heatmap** out-of-the-box, without writing a single line of visualization code. The RAG benefits from clean metadata, and I get a gorgeous UI to browse Nouva's memory history.
+
+However, to keep the graph clean and prevent it from turning into a chaotic spiderweb, I applied a few extra rules:
+1. **No Related Dates Wikilinks:** The relationships between dates (`related_dates`) are intentionally **not** rendered as visual wikilinks in the markdown body. They are kept only in the YAML frontmatter to be read programmatically by the AI. This keeps the graph free from confusing criss-crossing lines between dates.
+2. **Timeline Spine:** Each daily note automatically links to the previous day's note (e.g., `« [[2026-07-05]] | Timeline Spine`). This forms a straight chronological line (a spine) from left to right in the graph.
+3. **Parent Link:** Raw session transcripts automatically link to their parent daily note. This forces chat sessions to orbit neatly around their corresponding date node instead of floating around as orphans.
 
 Here is a preview of Nouva's memory graph view generated automatically in Obsidian:
 
