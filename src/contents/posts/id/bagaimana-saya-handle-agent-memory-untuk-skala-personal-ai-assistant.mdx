@@ -114,6 +114,12 @@ Tapi sebelum install, coba tanya dulu ke diri sendiri:
 
 Kembali ke dasar (*back to basics*) dan memahami core concept dari masalah yang mau diselesaikan itu jauh lebih penting dibanding numpuk dependency baru. Kadang, solusi terbaik cuma butuh file teks terstruktur (Markdown), sedikit regex, dan script automasi sederhana yang presisi. Lebih hemat token, hemat RAM, dan ga bikin pusing pas maintenance jangka panjang.
 
+### What's Next?
+
+Skema flat RAG + NAS ini adalah fondasi awal yang solid. Namun, ketika jumlah catatan harian mulai menumpuk hingga ratusan hari, tantangan berikutnya adalah bagaimana kita mengatasi *index bloating*, *vector dilution*, dan melakukan *graph traversal* (menghubungkan chat yang bersambung antar hari) tanpa mengorbankan performa.
+
+Di tulisan selanjutnya, yaitu **Membangun Agent Memory dengan Vendor Lock-in Resistance (Part 2)**, gw bakal bedah kelanjutan dari arsitektur ini. Kita akan bahas bagaimana merombak sistem memori Nouva menggunakan pendekatan *Hierarchical Summary* dan rumus *Hybrid Scoring* sederhana agar pencarian memori tetap instan, rapi, dan tentu saja, tetap 100% bebas dari vendor lock-in.
+
 ---
 
 *Gimana cara lu ngelola memori asisten AI lu? Yuk diskusi di [Threads](https://www.threads.net/@gadingnst).*

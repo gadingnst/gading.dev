@@ -114,6 +114,12 @@ But before running that install command, ask yourself:
 
 Going back to the basics and understanding the core mechanics of the problem you are trying to solve is far more valuable than stacking dependencies. Sometimes, the most robust solution is just a structured text file (Markdown), a bit of regex, and a simple, precise automation script. It saves tokens, saves RAM, and saves you from maintenance headaches down the road.
 
+### What's Next?
+
+This flat RAG + NAS scheme is a solid starting foundation. However, as the daily notes accumulate over hundreds of days, the next challenges are tackling *index bloating*, *vector dilution*, and handling *graph traversals* (linking threaded chats across days) without sacrificing performance.
+
+In the next post, **Building Agent Memory with Vendor Lock-in Resistance (Part 2)**, I will dissect the continuation of this architecture. We will discuss how to refactor Nouva's memory system using a *Hierarchical Summary* and a simple *Hybrid Scoring* approach to keep memory retrieval instant, tidy, and of course, 100% free from vendor lock-in.
+
 ---
 
 *How do you handle your AI assistant's memory? Let's discuss on [Threads](https://www.threads.net/@gadingnst).*
