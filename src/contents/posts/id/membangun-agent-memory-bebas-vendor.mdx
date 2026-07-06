@@ -33,7 +33,7 @@ Di arsitektur awal, pencarian semantik langsung mengarah ke index flat `MEMORY_I
 ![Arsitektur Sebelum](/media/blog/membangun-agent-memory-bebas-vendor/architecture-before.png)
 
 #### 2. Arsitektur Baru
-Di arsitektur baru, kita menyisipkan layer **Hybrid Scoring** (Semantic + Importance + Recency) dan **Graph Link Validation** (BFS dengan depth limit) untuk menyaring kandidat tanggal sebelum mengambil data dari NAS. Proses sinkronisasi juga disisipi dengan **Reconciliation Pass** dan **Daily Summary Generation**.
+Di arsitektur baru, kita menyisipkan layer **Hybrid Scoring** (Semantic + Importance + Recency) untuk menyaring kandidat tanggal sebelum mengambil data dari NAS. Proses sinkronisasi juga disisipi dengan **Reconciliation Pass** dan **Daily Summary Generation** agar data tetap rapi dan terindeks dengan baik.
 
 ![Arsitektur Sesudah](/media/blog/membangun-agent-memory-bebas-vendor/architecture-after.png)
 
@@ -56,8 +56,6 @@ projects: [Nouverse Core, Homelab]
 tags: [Kubernetes, Docker, RAG]
 importance: 7
 mood: excited
-continue_of: 2026-07-05
-related_dates: [2026-07-01]
 uncategorized:
   technologies: []
   libraries: [Pydantic]
@@ -92,32 +90,15 @@ Dengan skema ini, diskusi penting 3 bulan lalu (importance tinggi) gak akan kala
 
 ---
 
-### 3. BFS Graph Traversal dengan Depth Limit
+### 3. Keep it Simple: Membuang Graph Traversal & BFS
 
-Untuk menjaga agar agen bisa menarik konteks yang bersambung dari hari sebelumnya, kita membaca field `continue_of` dan `related_dates` di YAML metadata. Tapi biar gak kena masalah performa (narik puluhan file markdown sekaligus dari NAS), gw nerapin traversal menggunakan algoritma **Breadth-First Search (BFS)** dengan batas kedalaman (`max_graph_depth`):
+Awalnya, pas merancang sistem ini, gw sempat all-in menulis kode traversal graf menggunakan algoritma **Breadth-First Search (BFS)** dengan batas kedalaman (`max_depth = 2`) untuk menelusuri field `continue_of` dan `related_dates` di YAML metadata. Idenya biar asisten AI bisa narik riwayat chat yang nyambung secara otomatis.
 
-```python
-# Queue: (date, current_depth, current_semantic_score)
-queue = deque([(d, 0, date_scores[d]) for d in date_scores])
-visited_dates = {}
+Tapi setelah diuji coba, gw sadar kalau pendekatan ini *overkill* dan rawan **halusinasi tanggal** dari LLM (LLM sering ngasal nebak tanggal masa lalu yang gak beneran ada lognya). 
 
-while queue:
-    d, depth, score = queue.popleft()
-    if d in visited_dates:
-        continue
-        
-    final_score, metadata = calculate_hybrid_score(score, d, config)
-    visited_dates[d] = (final_score, metadata)
-    
-    if depth < max_depth:
-        linked_dates = ([metadata.get("continue_of")] if metadata.get("continue_of") else []) + metadata.get("related_dates", [])
-        for linked in linked_dates:
-            if linked and linked not in visited_dates:
-                # Skor semantik didecay 20% per level kedalaman graf
-                queue.append((linked, depth + 1, score * 0.8))
-```
+Akhirnya, gw ambil keputusan buat **ngebuang seluruh logika graph traversal tersebut**. Kenapa? Karena fungsi menghubungkan topik yang sama itu **sudah ditangani secara alami dan otomatis oleh RAG Semantik (pgvector/AnythingLLM)**. 
 
-Batas `max_graph_depth` ini gw set di angka `2`. Jadi maksimal kita cuma menarik relasi sejauh 2 langkah, sangat aman dari context window bloating dan disk I/O yang lemot.
+Kalau gw nanya *"Setup Docker kemarin gimana?"*, RAG bakal otomatis narik semua tanggal summary yang relevan dengan keyword "Docker" tanpa perlu kita link secara manual di file markdown. Kita gak butuh traversal graph database yang kompleks cuma buat asisten personal. *Keep it simple!*
 
 ---
 
@@ -135,7 +116,7 @@ Gw tinggal nambahin sebaris instruksi di prompt generator summary untuk nge-appe
 - [Point 1]
 
 ---
-**🔗 Links:** [[2026-07-05]] · [[Gading]] · [[Nouverse Core]]
+**🔗 Links:** [[Gading]] · [[Nouverse Core]] · [[2026-07-06]]
 ```
 
 Begitu di-mount ke Obsidian di laptop gw, gw langsung dapet **Graph View**, **Backlinks**, dan **Calendar Heatmap** secara gratis tanpa perlu nulis kode visualisasi satu baris pun. RAG-nya seneng karena dapet metadata bersih, gwnya juga seneng karena bisa browsing riwayat chat Nouva dengan visualisasi grafis yang estetik.
