@@ -43,7 +43,7 @@ Let's break down the key updates one by one.
 
 ### 1. Fighting Bloat with Daily Summary & YAML Frontmatter
 
-Previously, we synced raw daily notes directly to RAG. Now, before archiving daily notes to the NAS, the `auto-sync.py` script calls an LLM to generate a new file: `memory/summaries/YYYY-MM-DD.summary.md`.
+Previously, we relied on raw daily notes as the sole memory source in RAG. Now, before those daily notes are archived to the NAS, the `auto-sync.py` script calls an LLM to generate a new file: `memory/summaries/YYYY-MM-DD.summary.md`.
 
 This summary file is super clean and features a structured YAML frontmatter:
 
