@@ -7,7 +7,7 @@ slug: {
 date: 2026-07-06
 description: "The next step in my AI Agent's memory experiments: solving index bloat with Two-Tier Hierarchical Summary, hybrid scoring (semantic + importance + recency), and graph link validation."
 keywords: "AI Agent, Agent Memory, RAG, AnythingLLM, Hierarchical Memory, Hybrid Scoring, Obsidian, OpenClaw"
-tags: ["ai", "infrastructure", "rag", "nouverse"]
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/membangun-agent-memory-bebas-vendor/banner.png"
 ---
 
@@ -157,3 +157,9 @@ The final piece of the puzzle is historical data already archived on the NAS. To
 So, do I finally need an expensive, complex external memory stack? The answer remains **no**. I can still "hack" my way through using local markdown files, a few Python scripts, and simple hybrid scoring math to fit my real needs without wasting LLM tokens or depending on third-party vendors.
 
 This refactoring proves that with a well-structured markdown folder, YAML headers, a bit of hybrid scoring math, and standard markdown tools like Obsidian, you can build a smart, lightning-fast, and 100% self-owned AI Agent memory system.
+
+### Related Blogs
+This memory architecture didn't happen overnight. It is the evolution of several experiments and failures before it:
+1. [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti) (The initial phase of trying GraphRAG)
+2. [The GraphRAG Trap: Why I Uninstalled Neo4j for My Personal Assistant](/blog/the-graphrag-trap) (The decision to uninstall due to overkill)
+3. [How I Build Agent Memory Free from Vendor Lock-in](/blog/how-i-handle-agent-memory-for-personal-ai-assistant) (Initial solution using flat RAG + NAS)

@@ -7,7 +7,7 @@ slug: {
 date: 2026-02-28
 description: "Why GraphRAG is often overkill for personal AI assistants and why I decided to pivot back to a simpler RAG + Memory stack for Nouva."
 keywords: "GraphRAG, RAG, Neo4j, AI Agent, Personal Assistant, Knowledge Graph, AnythingLLM"
-tags: ["ai", "infrastructure", "rag", "nouverse"]
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/the-graphrag-trap/banner.png"
 ---
 
@@ -61,6 +61,10 @@ Nouva is now faster, the infrastructure is leaner (one less Docker container to 
 If you're building an AI for yourself or a small team, ask yourself: *Do I really need to traverse a graph to remember what I did yesterday?* 
 
 Probably not. Keep it simple. Use RAG for knowledge, and a simple file-based memory for context.
+
+### Related Blogs
+Before getting hit by the harsh reality in this post, here was the start of my experiments when I was still optimistic about GraphRAG:
+* [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti)
 
 ---
 
