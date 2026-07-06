@@ -97,6 +97,7 @@ Gw bikin script wrapper `query-memory.py`. Alurnya begini:
 *   **Zero Extra Dependencies:** Cuma modal script Python standar bawaan (`zipfile` & `requests`). Ga perlu install database graph baru atau library aneh-aneh.
 *   **Resource-Friendly:** `agent-host` gw yang cuma dapet jatah 4GB RAM di Proxmox tetep enteng jalannya karena beban berat embedding model `bge-m3` dititipin ke Ollama di backend.
 *   **100% Portable:** Karena formatnya cuma Markdown mentah dan file `.zip`, datanya aman dan gampang banget dipindahin kalau suatu saat gw mau migrasi asisten AI ini ke platform lain (tinggal import folder zip NAS ke Claude Project, kelar).
+*   **Bebas Vendor Lock-in (Jujur, Gw Udah Capek):** Banyak framework memory sekarang yang maksa kita pake database cloud mereka, API berbayar mereka, atau format proprietary yang bikin data kita tersandera. Gw udah capek dikunci sama satu ekosistem. Dengan format `.md` mentah dan `.zip` standar ini, datanya 100% milik gw. Kalau besok gw mau ganti LLM provider atau migrasi dari OpenClaw ke framework lain, gw tinggal copy-paste folder zip-nya aja tanpa pusing mikirin kompatibilitas.
 *   **Transparan & Mudah Di-debug:** Kalau AI salah inget fakta, gw tinggal buka file `.md`-nya dan edit baris yang salah. Ga perlu pusing nyari cara nge-wipe database vector/graph.
 
 *Keep it simple*. Kadang solusi terbaik buat masalah AI modern bukanlah dengan nambah teknologi baru yang makin kompleks, tapi dengan balik ke dasar: file teks terstruktur dan script automasi yang presisi.

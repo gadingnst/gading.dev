@@ -97,6 +97,7 @@ I wrote a unified wrapper script `query-memory.py` to bridge the two layers:
 *   **Zero Extra Dependencies:** It runs on standard Python libraries (`zipfile` & `requests`). No extra database containers or services to maintain.
 *   **Resource-Friendly:** The local agent host (running on a constrained 4GB RAM LXC) stays incredibly light because embedding workloads are delegated to Ollama in the backend.
 *   **100% Portable:** Because the data is stored in raw Markdown and standard ZIPs, it is completely vendor-agnostic. If I want to migrate my assistant to another LLM platform, I can import the NAS archives in seconds.
+*   **Vendor Lock-in Free (Honestly, I'm Tired of It):** Many modern memory frameworks force you to use their proprietary cloud databases, paid APIs, or custom formats that keep your data hostage. Honestly, I'm tired of being locked into a single ecosystem. With raw `.md` and standard `.zip` files, the data is 100% mine. If tomorrow I want to switch LLM providers or migrate from OpenClaw to another framework, I just copy-paste the zip files without worrying about compatibility.
 *   **Transparent & Debuggable:** If the AI remembers something incorrectly, I can simply open the markdown file and edit the line. No vector database queries or graph node deletions required.
 
 *Keep it simple*. Sometimes, the best solution to complex AI infrastructure problems is to step back and use structured text files glued together with precise automation scripts.
