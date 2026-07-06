@@ -1,14 +1,14 @@
 {
   "en": [
+    "building-agent-memory-free-vendor",
     "homelab-architecture-k8s-lxc-proxmox",
     "configure-gmail-alias-spf-dmarc",
-    "understanding-docker-and-kubernetes-philosophy",
-    "the-graphrag-trap"
+    "understanding-docker-and-kubernetes-philosophy"
   ],
   "id": [
+    "membangun-agent-memory-bebas-vendor",
     "arsitektur-homelab-k8s-lxc-proxmox",
     "gmail-alias-domain-sendiri-spf-dmarc",
-    "memahami-filosofi-docker-dan-kubernetes",
-    "jebakan-graphrag-uninstall-neo4j"
+    "memahami-filosofi-docker-dan-kubernetes"
   ]
 }
