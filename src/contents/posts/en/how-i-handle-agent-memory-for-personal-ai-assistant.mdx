@@ -58,11 +58,11 @@ Instead, I implemented a **Two-Tier Hybrid Memory** architecture that separates 
      │           Searches MEMORY_INDEX.md (The Map)
      │           Result: Finds Target Date (e.g., 2026-06-24)
      │
-     ├─► Step 2: Direct Read (NAS Zip Archive)
-     │           Reads raw transcript directly from zip on NAS
+     ├─► Step 2: Direct Read (NAS Folder Archive)
+     │           Reads raw transcript from daily folder on NAS
      │
-     └─► Fallback: Fast Keyword Search (Grep in NAS Zip)
-                   If RAG confidence is low or no matches found
+     └─► Parallel: Fast Keyword Search (Grep in NAS Summaries)
+                   Searches specific keywords in parallel
 ```
 
 #### Tier 1: Semantic Index Map (MEMORY_INDEX.md)
@@ -80,24 +80,24 @@ The `MEMORY_INDEX.md` is generated automatically by a weekly sync script. It con
 ```
 Because the file is clean and free of system error stack traces, the RAG embeds it perfectly using a local **`bge-m3`** model running on the homelab's CPU (Ryzen 7 5825U).
 
-#### Tier 2: Raw Archive (NAS Zip)
-All raw session logs (`YYYY-MM-DD-HHMM.md`) are zipped and transferred to our NAS (`virtual-nas`) after a 2-day grace period, keeping the local agent host disk footprint minimal.
+#### Tier 2: Raw Archive (NAS Folder)
+All raw session logs (`YYYY-MM-DD-HHMM.md`) are transferred to their respective daily folders (`daily_sessions/YYYY-MM-DD/`) on our NAS (`virtual-nas`) after a 2-day grace period, keeping the local agent host disk footprint minimal.
 
 #### Tier 3: The Glue (Unified Script)
 I wrote a unified wrapper script `query-memory.py` to bridge the two layers:
 1.  When I ask: *"Do you remember our discussion about ESG?"*, the script queries the RAG (AnythingLLM).
 2.  The RAG matches the query to the `MEMORY_INDEX.md` chunk and returns the date: **`2026-06-24`**.
-3.  The script automatically opens the corresponding ZIP archive on the NAS, reads the raw `2026-06-24.md` transcript directly into RAM, and feeds it to the AI Agent.
-4.  **Fallback:** If the semantic search returns low confidence, the script falls back to a fast regex keyword search across all zipped markdown files on the NAS.
+3.  The script automatically opens the corresponding folder on the NAS, reads the raw `2026-06-24.md` transcript directly into RAM, and feeds it to the AI Agent.
+4.  **Parallel Search:** Alongside semantic search, the script runs a fast parallel regex keyword search across all summary files on the NAS to ensure 100% accuracy for specific proper nouns.
 
 ---
 
 ### Why This Approach Wins
 
-*   **Zero Extra Dependencies:** It runs on standard Python libraries (`zipfile` & `requests`). No extra database containers or services to maintain.
+*   **Zero Extra Dependencies:** It runs on standard Python libraries (`requests` & standard file-handling). No extra database containers or services to maintain.
 *   **Resource-Friendly:** The local agent host (running on a constrained 4GB RAM LXC) stays incredibly light because embedding workloads are delegated to Ollama in the backend.
-*   **100% Portable:** Because the data is stored in raw Markdown and standard ZIPs, it is completely vendor-agnostic. If I want to migrate my assistant to another LLM platform, I can import the NAS archives in seconds.
-*   **Vendor Lock-in Free (Honestly, I'm Tired of It):** Many modern memory frameworks force you to use their proprietary cloud databases, paid APIs, or custom formats that keep your data hostage. Honestly, I'm tired of being locked into a single ecosystem. With raw `.md` and standard `.zip` files, the data is 100% mine. If tomorrow I want to switch LLM providers or migrate from OpenClaw to another framework, I just copy-paste the zip files without worrying about compatibility.
+*   **100% Portable:** Because the data is stored in raw Markdown and standard folder structures, it is completely vendor-agnostic. If I want to migrate my assistant to another LLM platform, I can import the NAS archives in seconds.
+*   **Vendor Lock-in Free (Honestly, I'm Tired of It):** Many modern memory frameworks force you to use their proprietary cloud databases, paid APIs, or custom formats that keep your data hostage. Honestly, I'm tired of being locked into a single ecosystem. With raw `.md` and standard folder structures, the data is 100% mine. If tomorrow I want to switch LLM providers or migrate from OpenClaw to another framework, I just copy-paste the NAS folder without worrying about compatibility.
 *   **Transparent & Debuggable:** If the AI remembers something incorrectly, I can simply open the markdown file and edit the line. No vector database queries or graph node deletions required.
 
 *Keep it simple*. Sometimes, the best solution to complex AI infrastructure problems is to step back and use structured text files glued together with precise automation scripts.

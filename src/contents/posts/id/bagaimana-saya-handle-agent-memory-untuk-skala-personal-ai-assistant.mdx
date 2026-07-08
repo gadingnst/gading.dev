@@ -80,24 +80,24 @@ File `MEMORY_INDEX.md` ini di-generate otomatis via script sync mingguan. Isinya
 ```
 Karena filenya bersih dari log error dan chat berisik, RAG bisa nge-embed ini dengan akurat pake model **`bge-m3`** secara lokal lewat Ollama di server homelab (Ryzen 7 5825U).
 
-#### Tier 2: Raw Archive (NAS Zip)
-Semua chat log mentah per sesi (`YYYY-MM-DD-HHMM.md`) otomatis di-zip dan ditransfer ke NAS (`virtual-nas`) setelah grace period H-2, lalu file lokalnya dihapus biar disk agent-host ga penuh.
+#### Tier 2: Raw Archive (NAS Folder)
+Semua chat log mentah per sesi (`YYYY-MM-DD-HHMM.md`) otomatis ditransfer ke subfolder tanggal (`daily_sessions/YYYY-MM-DD/`) di NAS (`virtual-nas`) setelah grace period H-2, lalu file lokalnya dihapus biar disk agent-host ga penuh.
 
 #### Tier 3: The Glue (Unified Script)
 Gw bikin script wrapper `query-memory.py`. Alurnya begini:
 1.  Pas gw nanya *"Inget ga bahasan ESG kita?"*, script bakal nanya ke RAG (AnythingLLM).
 2.  RAG bakal nemu kecocokan di file `MEMORY_INDEX.md` dan mengembalikan potongan teks yang berisi tanggal target: **`2026-06-24`**.
-3.  Script secara otomatis langsung ngebuka file zip di NAS yang meng-cover tanggal tersebut, membaca file `2026-06-24.md` langsung ke RAM, dan menyajikan transkrip full-nya ke AI Agent.
-4.  **Fallback:** Kalau RAG gagal nemu secara semantik, script otomatis nge-run *keyword search* cepat (grep-like) langsung ke seluruh arsip ZIP di NAS.
+3.  Script secara otomatis langsung ngebuka folder di NAS yang meng-cover tanggal tersebut, membaca file `2026-06-24.md` langsung ke RAM, dan menyajikan transkrip full-nya ke AI Agent.
+4.  **Parallel Search:** Selain pencarian semantik, script secara paralel melakukan pencarian kata kunci (*keyword search*) cepat (grep-like) langsung ke seluruh file summary di NAS untuk menjamin keakuratan kata benda spesifik.
 
 ---
 
 ### Kenapa Skema Ini Indah Banget?
 
-*   **Zero Extra Dependencies:** Cuma modal script Python standar bawaan (`zipfile` & `requests`). Ga perlu install database graph baru atau library aneh-aneh.
+*   **Zero Extra Dependencies:** Cuma modal script Python standar bawaan (`requests` & standard file-handling). Ga perlu install database graph baru atau library aneh-aneh.
 *   **Resource-Friendly:** `agent-host` gw yang cuma dapet jatah 4GB RAM di Proxmox tetep enteng jalannya karena beban berat embedding model `bge-m3` dititipin ke Ollama di backend.
-*   **100% Portable:** Karena formatnya cuma Markdown mentah dan file `.zip`, datanya aman dan gampang banget dipindahin kalau suatu saat gw mau migrasi asisten AI ini ke platform lain (tinggal import folder zip NAS ke Claude Project, kelar).
-*   **Bebas Vendor Lock-in (Jujur, Gw Udah Capek):** Banyak framework memory sekarang yang maksa kita pake database cloud mereka, API berbayar mereka, atau format proprietary yang bikin data kita tersandera. Gw udah capek dikunci sama satu ekosistem. Dengan format `.md` mentah dan `.zip` standar ini, datanya 100% milik gw. Kalau besok gw mau ganti LLM provider atau migrasi dari OpenClaw ke framework lain, gw tinggal copy-paste folder zip-nya aja tanpa pusing mikirin kompatibilitas.
+*   **100% Portable:** Karena formatnya cuma Markdown mentah dan struktur folder standar, datanya aman dan gampang banget dipindahin kalau suatu saat gw mau migrasi asisten AI ini ke platform lain (tinggal import folder NAS ke Claude Project, kelar).
+*   **Bebas Vendor Lock-in (Jujur, Gw Udah Capek):** Banyak framework memory sekarang yang maksa kita pake database cloud mereka, API berbayar mereka, atau format proprietary yang bikin data kita tersandera. Gw udah capek dikunci sama satu ekosistem. Dengan format `.md` mentah dan struktur folder standar ini, datanya 100% milik gw. Kalau besok gw mau ganti LLM provider atau migrasi dari OpenClaw ke framework lain, gw tinggal copy-paste folder NAS-nya aja tanpa pusing mikirin kompatibilitas.
 *   **Transparan & Mudah Di-debug:** Kalau AI salah inget fakta, gw tinggal buka file `.md`-nya dan edit baris yang salah. Ga perlu pusing nyari cara nge-wipe database vector/graph.
 
 *Keep it simple*. Kadang solusi terbaik buat masalah AI modern bukanlah dengan nambah teknologi baru yang makin kompleks, tapi dengan balik ke dasar: file teks terstruktur dan script automasi yang presisi.

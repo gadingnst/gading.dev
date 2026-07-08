@@ -58,8 +58,7 @@ importance: 7
 mood: excited
 related_dates: [2026-07-01]
 uncategorized:
-  technologies: []
-  libraries: [Pydantic]
+  technologies: [Pydantic]
   projects: []
 ---
 ### Ringkasan Hari Ini
@@ -67,7 +66,7 @@ uncategorized:
 - Diskusi dengan Freedy soal setup K3s cluster worker nodes.
 ```
 
-*   **Controlled Vocabulary:** Field `projects`, `technologies`, dan `libraries` wajib dicocokkan dengan daftar baku di `memory_config.json`. Kalau ada term baru (misal library `Pydantic` yang belum terdaftar), LLM bakal masukin ke nested object `uncategorized` agar tidak mencemari vocabulary utama.
+*   **Controlled Vocabulary:** Field `projects` dan `technologies` wajib dicocokkan dengan daftar baku di `memory_config.json`. Kategori `libraries` (seperti React, Next.js, LangChain) sekarang digabungkan langsung ke dalam `technologies` agar metadata lebih ringkas. Kalau ada term baru (misal library/teknologi `Pydantic` yang belum terdaftar), LLM bakal masukin ke nested object `uncategorized` agar tidak mencemari vocabulary utama.
 
     Mungkin lu bertanya-tanya, *"Kenapa controlled vocabulary dan parameter bobot ini di-hardcode di file `memory_config.json`?"* Jawabannya sederhana: karena sejauh ini sistem memori ini masih digunakan murni untuk kebutuhan personal gw. Dengan skala personal, konfigurasi statis yang dibaca ulang setiap run (per-invocation) jauh lebih dari cukup, aman, dan ga perlu nambah kompleksitas layer database dinamis atau hot-reload service yang nyusahin.
 *   **Idempotency & Reconciliation:** Gw menambahkan langkah `reconcile_missing_summaries()`. Kalau hari kemarin LLM proxy-nya timeout atau error di tengah jalan, cron job berikutnya bakal otomatis nge-scan mana summary yang bolong dan nge-generate ulang. Gak ada lagi cerita *silent data loss*.
@@ -100,6 +99,8 @@ Tapi setelah diuji coba, gw sadar kalau BFS traversal rekursif ini lambat dan ra
 Akhirnya, gw merombak pendekatan ini menjadi jauh lebih simpel dan deterministik:
 1. **Deteksi Topik Pas Sync (Programmatik):** Pas proses sinkronisasi harian, script Python kita bakal nge-scan metadata summary baru dan mencocokkannya dengan keyword di file `MEMORY_INDEX.md` lokal secara otomatis. Top 2 tanggal yang paling relevan disuntikkan ke YAML metadata `related_dates`. Ini *zero cost* token LLM dan dijamin 100% tanggalnya valid.
 2. **Ekspansi 1-Hop (Retrieval):** Pas asisten AI nyari memori (`query-memory.py`), kita gak pake BFS traversal rekursif lagi. Kita cuma ngambil tanggal kandidat hasil RAG Semantik, lalu melakukan ekspansi **1-hop** ke tanggal-tanggal yang ada di `related_dates` dengan memotong skor semantiknya sebesar 30% (`score * 0.7`).
+
+Selain itu, hasil output dari `query-memory.py` juga kita buat seefisien mungkin menggunakan pendekatan **Lazy Loading**. Daripada men-dump transkrip chat mentah yang panjang dan boros token LLM, script ini sekarang hanya me-return ringkasan bersih dari file `.summary.md` yang relevan, disertai dengan `Path` dinamis ke subfolder transkrip mentah di NAS (`daily_sessions/YYYY-MM-DD/`) dan `Links` entitas terkait. LLM kemudian bisa membaca transkrip mentah secara *on-demand* hanya jika membutuhkan detail percakapan yang lebih spesifik.
 
 Dengan cara ini, kita tetep dapet keuntungan relasi antar dokumen (graf topik), tapi kodenya super enteng, cepat, dan bebas dari bug traversal yang rumit. *Keep it simple!*
 

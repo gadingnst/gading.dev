@@ -58,8 +58,7 @@ importance: 7
 mood: excited
 related_dates: [2026-07-01]
 uncategorized:
-  technologies: []
-  libraries: [Pydantic]
+  technologies: [Pydantic]
   projects: []
 ---
 ### Today's Summary
@@ -67,7 +66,7 @@ uncategorized:
 - Discussed K3s cluster worker nodes setup with Freedy.
 ```
 
-*   **Controlled Vocabulary:** The `projects`, `technologies`, and `libraries` fields must match a pre-defined list in `memory_config.json`. If a new term appears (like the `Pydantic` library which isn't registered yet), the LLM places it under `uncategorized` to keep the main vocabulary clean.
+*   **Controlled Vocabulary:** The `projects` and `technologies` fields must match a pre-defined list in `memory_config.json`. The `libraries` category (like React, Next.js, LangChain) has now been merged directly into `technologies` to keep metadata compact. If a new term appears (like a library or technology `Pydantic` which isn't registered yet), the LLM places it under `uncategorized` to keep the main vocabulary clean.
 
     You might wonder, *"Why hardcode the controlled vocabulary and scoring weights in a static `memory_config.json` file?"* The answer is simple: because this memory system is purely for my personal use. At a personal scale, a static configuration that is re-read per invocation is more than enough, highly secure, and avoids adding the unnecessary complexity of a dynamic database layer or a hot-reloaded service.
 *   **Idempotency & Reconciliation:** I added a `reconcile_missing_summaries()` pass. If the LLM proxy timeouts or crashes mid-sync, the next cron job automatically scans for missing summaries and regenerates them. No more silent data loss.
@@ -100,6 +99,8 @@ However, after testing it in production, I realized this recursive BFS traversal
 Ultimately, I refactored this approach to make it much simpler and deterministic:
 1. **Programmatic Topic Detection (Sync-time):** During the daily sync process, our Python script automatically scans the new summary's metadata and matches it against keywords in the local `MEMORY_INDEX.md` file. The top 2 most relevant dates are injected into the YAML metadata as `related_dates`. This has *zero* LLM token cost and guarantees 100% valid dates.
 2. **1-Hop Expansion (Retrieval-time):** When the AI agent queries memory (`query-memory.py`), we no longer run a recursive BFS traversal. We simply take the candidate dates from the Semantic RAG and perform a **1-hop expansion** to their `related_dates`, decaying their semantic score by 30% (`score * 0.7`).
+
+Additionally, we designed the output of `query-memory.py` to be highly efficient using a **Lazy Loading** approach. Instead of dumping long, token-heavy raw chat transcripts, the script now only returns clean summaries from the relevant `.summary.md` files, accompanied by a dynamic `Path` to the raw transcripts subfolder on the NAS (`daily_sessions/YYYY-MM-DD/`) and `Links` to associated entities. The LLM can then read raw transcripts on-demand only when specific conversational details are required.
 
 With this approach, we still get the benefits of document relationships (topic clusters), but the code remains lightweight, fast, and free from complex traversal bugs. *Keep it simple!*
 
