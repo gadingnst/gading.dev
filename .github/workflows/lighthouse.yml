@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HOST: https://gading.dev
-      PSURL: https://pgsi.nouverse.tech
+      PSURL: https://pgsi.nouverse.com
       PSRDESKTOP: desktop
       PSRMOBILE: mobile
       RESULTSFOLDER: public/media/web-reports/pagespeed
