@@ -59,7 +59,7 @@ This newly saved raw transcript file (`2026-07-19-1037.md`) resides on the local
 
 ![Transcript Saved on Local Server](/media/blog/membangun-agent-memory-part-3/memory-md.png)
 
-These raw transcript files are kept locally for a brief grace period (H-1) before eventually being summarized, semantically indexed, and permanently archived to the NAS by the daily background sync pipeline.
+These raw transcript files are kept in active storage (local agent-host, non-NAS) for a brief grace period (H-1) before eventually being summarized, semantically indexed, and permanently archived to the NAS by the daily background sync pipeline.
 
 ---
 
@@ -111,9 +111,9 @@ How does all this data stay in sync? I have a background cron job (`auto_sync.py
 
 ### Conclusion
 
-Transitioning from AnythingLLM to a Python-based FastMCP and splitting the memory search workflow into **Dual-Lane (Semantic vs. SQL Analytics)** has significantly reduced homelab resource usage while dramatically increasing the AI assistant's query accuracy.
+Transitioning to a **Unified Memory Engine** based on FastMCP and splitting the memory search workflow into **Dual-Lane (Semantic vs. SQL Analytics)** has significantly reduced homelab resource usage. The biggest benefit is high portability; now I have a dedicated, standardized memory service that can be directly plugged in and accessed by any agent supporting the MCP protocol.
 
-Now, my assistant's memory engine can not only "remember" past conversations contextually but also provide precise and honest analytical data about my daily habits, productivity, and technical obstacles.
+With this architecture, my AI assistant doesn't just contextually "remember" past conversations (chat history recall). Far beyond that, it can perform deep analysis, aggregate structured metadata with precision, and track my daily habits, productivity, and technical obstacles with absolute accuracy.
 
 *Keep it lean, keep it portable, and keep it yours!*
 

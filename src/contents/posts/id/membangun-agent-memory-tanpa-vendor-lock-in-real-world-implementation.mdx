@@ -59,7 +59,7 @@ File transkrip mentah yang baru disimpan ini (`2026-07-19-1037.md`) bakal nangkr
 
 ![Transkrip Tersimpan di Server Lokal](/media/blog/membangun-agent-memory-part-3/memory-md.png)
 
-File-file transkrip mentah ini sengaja ditaruh di lokal dulu (grace period H-1) sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
+File-file transkrip mentah ini sengaja ditaruh di active storage (lokal agent-host, non-NAS) dulu selama grace period H-1 sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
 
 ---
 
@@ -111,9 +111,9 @@ Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync
 
 ### Kesimpulan
 
-Beralih dari AnythingLLM ke FastMCP berbasis Python dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs. SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan sekaligus meningkatkan akurasi asisten AI hingga berkali-kali lipat. 
+Beralih ke **Unified Memory Engine** berbasis FastMCP dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs. SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan. Keuntungan terbesarnya adalah portabilitas tinggi; sekarang gw punya dedicated memory service terstandar yang bisa langsung dicolok dan diakses oleh agent apapun yang mendukung protokol MCP.
 
-Sekarang, memori asisten gw gak cuma bisa "mengingat" obrolan masa lalu secara romantis, tapi juga bisa memberikan data analitik yang presisi dan jujur tentang kebiasaan, produktivitas, dan kendala teknis yang gw hadapi sehari-hari.
+Dengan arsitektur ini, asisten AI gw gak cuma sekadar "mengingat" obrolan masa lalu secara semantik (recall history chat). Lebih jauh dari itu, dia bisa melakukan analisis mendalam, melakukan agregasi data terstruktur secara presisi, dan melacak tren kebiasaan, produktivitas, hingga kendala teknis harian gw dengan sangat akurat.
 
 *Keep it lean, keep it portable, and keep it yours!*
 
