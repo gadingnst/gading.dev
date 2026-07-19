@@ -1,8 +1,8 @@
 ---
 title: "Membangun Agent Memory Tanpa Vendor Lock-in: Implementasi Riil (Part 3)"
 slug: {
-  id: "membangun-agent-memory-tanpa-vendor-lock-in-real-world-implementation",
-  en: "building-agent-memory-without-vendor-lock-in-real-world-implementation"
+  en: "building-agent-memory-without-vendor-lock-in-real-world-implementation",
+  id: "membangun-agent-memory-tanpa-vendor-lock-in-real-world-implementation"
 }
 date: 2026-07-19
 description: "Bagian ketiga dari seri memori agen. Kali ini kita bedah implementasi riil: membangun unified memory engine yang dibungkus dalam MCP, serta merancang Dual-Lane Memory (RAG + SQL Analytics)."
@@ -51,15 +51,15 @@ Sebagai gantinya, gw bikin **Unified Memory Engine** berbasis **FastMCP (Python)
 
 Bagaimana sebuah interaksi bisa berubah jadi memori? Prosesnya dimulai langsung dari workspace coding atau chat harian.
 
-Sebagai contoh, saat gw lagi ngoding di **Zed Editor** dan meminta asisten AI untuk menyimpan sesi diskusi penting, asisten bakal memicu tool `session_write` (FastMCP tool). Tool ini secara instan merekam jalannya obrolan, mengemasnya dalam format JSON terstruktur, dan menyimpannya sebagai file transkrip mentah berformat Markdown di server lokal:
+Sebagai contoh, saat gw lagi ngoding di **Zed Editor** dan meminta asisten AI untuk menyimpan sesi diskusi penting, asisten bakal memicu tool `session_write` (FastMCP tool). Tool ini secara instan merekam jalannya obrolan, mengemasnya dalam format JSON terstruktur, dan menyimpannya sebagai file transkrip mentah berformat Markdown di server agent gw:
 
 ![Menyimpan Sesi Diskusi dari Zed Editor](/media/blog/membangun-agent-memory-part-3/store.png)
 
-File transkrip mentah yang baru disimpan ini (`2026-07-19-1037.md`) bakal nangkring di server lokal (`agent-host` di Proxmox) dan langsung dikaitkan dengan tanggal induknya (`Parent Day: [[2026-07-19]]`):
+File transkrip mentah yang baru disimpan ini (`2026-07-19-1037.md`) bakal nangkring di server agent gw (`agent-host` di Proxmox) dan langsung dikaitkan dengan tanggal induknya (`Parent Day: [[2026-07-19]]`):
 
-![Transkrip Tersimpan di Server Lokal](/media/blog/membangun-agent-memory-part-3/memory-md.png)
+![Transkrip Tersimpan di Server Agent](/media/blog/membangun-agent-memory-part-3/memory-md.png)
 
-File-file transkrip mentah ini sengaja ditaruh di active storage (lokal agent-host, non-NAS) dulu selama grace period H-1 sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
+File-file transkrip mentah ini sengaja ditaruh di active storage (server agent gw, non-NAS) dulu selama grace period H-1 sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
 
 ---
 
@@ -106,6 +106,10 @@ Jawabannya: Kita mensimulasikan struktur graf waktu secara implisit (**Implicit 
 Dalam sistem ini, struktur datanya didefinisikan seperti ini:
 *   **Node (Titik)**: Direpresentasikan oleh entitas tanggal unik (misalnya dokumen harian `2026-07-08`).
 *   **Edge (Garis Hubung)**: Direpresentasikan oleh array `related_dates` di dalam YAML metadata summary.
+
+Berikut visualisasi graph view memori Nouva yang langsung terbentuk secara otomatis di Obsidian:
+
+![Obsidian Memory Graph View](/media/blog/membangun-agent-memory-part-3/obsidian-graph.png)
 
 Sebagai contoh nyata, ini adalah potongan metadata YAML dari file `.summary.md` yang disimpan di NAS:
 
@@ -159,6 +163,10 @@ Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync
 Beralih ke **Unified Memory Engine** berbasis FastMCP dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs. SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan. Keuntungan terbesarnya adalah portabilitas tinggi; sekarang gw punya dedicated memory service terstandar yang bisa langsung dicolok dan diakses oleh agent apapun yang mendukung protokol MCP.
 
 Dengan arsitektur ini, asisten AI gw gak cuma sekadar "mengingat" obrolan masa lalu secara semantik (recall history chat). Lebih jauh dari itu, dia bisa melakukan analisis mendalam, melakukan agregasi data terstruktur secara presisi, dan melacak tren kebiasaan, produktivitas, hingga kendala teknis harian gw dengan sangat akurat.
+
+Sebagai contoh, ini visualisasi persentase produktivitas gw di bulan Juli 2026 yang di-generate langsung oleh asisten AI gw menggunakan data dari SQL Lane:
+
+![July 2026 Productivity Chart](/media/blog/membangun-agent-memory-part-3/productivity-chart.png)
 
 *Keep it lean, keep it portable, and keep it yours!*
 
