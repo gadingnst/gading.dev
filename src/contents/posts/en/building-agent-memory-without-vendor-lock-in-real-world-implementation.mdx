@@ -107,6 +107,30 @@ In this system, the data structure is defined as follows:
 *   **Node**: Represented by a unique date entity (e.g., the daily document `2026-07-08`).
 *   **Edge**: Represented by the `related_dates` array inside the summary YAML metadata.
 
+As a real-world example, here is a snippet of the YAML metadata from a `.summary.md` file stored on the NAS:
+
+```yaml
+schema_version: 1
+date: 2026-06-24
+people:
+- Gading
+- Kak Rina
+projects:
+- Homelab
+tags:
+- anythingllm-migration
+- proxmox-config
+technologies:
+- Docker
+- Terraform
+- PostgreSQL
+importance: 7
+mood: reflective
+related_dates:
+- '2026-06-23'
+- '2026-06-28'
+```
+
 Logically, this is a temporal graph because it connects entities/documents across time/dates. Physically, however, it is stored as standard relational data.
 
 The nature of our data is highly efficient:

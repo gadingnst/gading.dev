@@ -107,6 +107,30 @@ Dalam sistem ini, struktur datanya didefinisikan seperti ini:
 *   **Node (Titik)**: Direpresentasikan oleh entitas tanggal unik (misalnya dokumen harian `2026-07-08`).
 *   **Edge (Garis Hubung)**: Direpresentasikan oleh array `related_dates` di dalam YAML metadata summary.
 
+Sebagai contoh nyata, ini adalah potongan metadata YAML dari file `.summary.md` yang disimpan di NAS:
+
+```yaml
+schema_version: 1
+date: 2026-06-24
+people:
+- Gading
+- Kak Rina
+projects:
+- Homelab
+tags:
+- anythingllm-migration
+- proxmox-config
+technologies:
+- Docker
+- Terraform
+- PostgreSQL
+importance: 7
+mood: reflective
+related_dates:
+- '2026-06-23'
+- '2026-06-28'
+```
+
 Secara logis, ini adalah graf temporal karena menghubungkan entitas/dokumen antar waktu/tanggal. Namun secara fisik, dia disimpan sebagai data relasional biasa. 
 
 Sifat datanya pun sangat efisien:
