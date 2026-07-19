@@ -76,6 +76,12 @@ Ini jalur RAG konvensional. Data dari file markdown utama (`MEMORY.md`, `MEMORY_
 Setiap kali script sinkronisasi harian (`auto_sync.py`) jalan, dia gak cuma bikin file markdown summary, tapi juga mem-parsing YAML frontmatter di summary tersebut (seperti `mood`, `importance`, `projects`, `technologies`, `date`) dan menyimpannya sebagai baris data (SQL rows) di tabel `daily_summaries` PostgreSQL.
 *   **Guna:** Menjawab pertanyaan agregatif/tren secara deterministik, misal: *"Berapa kali gw ngoding pake Next.js bulan ini?"* atau *"Berapa persen hari produktif gw di bulan Juni?"*
 
+Kenapa Postgres? Karena pada akhirnya, semua jalan ninja arsitektur homelab kita bakal berujung pada satu kesimpulan mutlak: **Just Use Postgres.**
+
+![Just Use Postgres Meme](/media/blog/membangun-agent-memory-part-3/just-use-postgres.jpg)
+
+Daripada lu pusing nge-deploy database time-series khusus, graph database aneh-aneh, atau document store terpisah cuma buat nyimpen data summary personal, Postgres dengan kombinasi `pgvector` (untuk Lane 1) dan tabel relasional biasa (untuk Lane 2) udah lebih dari cukup untuk nge-handle semuanya sendirian secara efisien.
+
 Saat asisten AI nerima pertanyaan kuantitatif, dia gak nge-run vector search. Dia bakal mem-parsing parameter query menjadi parameter terstruktur (misal: `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) lewat tools MCP `memory_analyze`, lalu mengeksekusi query SQL agregasi murni langsung ke database.
 
 Hasilnya? AI gak cuma bisa me-recall ingatan secara semantik, tapi juga bisa melakukan agregasi data dan tren secara 100% presisi layaknya database analitik:

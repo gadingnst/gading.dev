@@ -76,6 +76,12 @@ This is the conventional RAG pathway. Data from main markdown files (`MEMORY.md`
 Every time the daily sync script (`auto_sync.py`) runs, it not only generates a markdown summary but also parses the YAML frontmatter of that summary (such as `mood`, `importance`, `projects`, `technologies`, `date`) and saves it as a structured SQL row in the `daily_summaries` PostgreSQL table.
 *   **Use Case:** Answering aggregation/trend questions deterministically, e.g., *"How many times did I code in Next.js this month?"* or *"What percentage of my days were productive in June?"*
 
+Why Postgres? Because in the end, every path in our homelab architecture leads to one absolute conclusion: **Just Use Postgres.**
+
+![Just Use Postgres Meme](/media/blog/membangun-agent-memory-part-3/just-use-postgres.jpg)
+
+Instead of fussing with deploying dedicated time-series databases, complicated graph databases, or separate document stores just to keep personal summary data, Postgres with the combination of `pgvector` (for Lane 1) and standard relational tables (for Lane 2) is more than enough to handle everything efficiently on its own.
+
 When the AI assistant receives a quantitative question, it does not run a vector search. Instead, it parses the query parameters into structured arguments (e.g., `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) via the `memory_analyze` MCP tool, and executes a raw SQL aggregation query directly on the database.
 
 The result? The AI is not only capable of semantic context recall but can also perform aggregations and trend analysis with 100% precision just like an analytical database:
