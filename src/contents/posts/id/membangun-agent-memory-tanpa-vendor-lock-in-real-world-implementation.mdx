@@ -1,0 +1,101 @@
+---
+title: "Membangun Agent Memory Tanpa Vendor Lock-in: Implementasi Riil (Part 3)"
+slug: {
+  en: "building-agent-memory-without-vendor-lock-in-real-world-implementation"
+}
+date: 2026-07-19
+description: "Bagian ketiga dari seri memori agen. Kali ini kita bedah implementasi riil: membuang AnythingLLM untuk memangkas resource, beralih ke FastMCP terpadu, dan merancang Dual-Lane Memory (RAG + SQL Analytics)."
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse", "mcp"]
+image: "/media/blog/membangun-agent-memory-part-3/diagram.png"
+---
+
+Di tulisan sebelumnya ([Part 2](/id/blog/membangun-agent-memory-bebas-vendor)), gw udah cerita panjang lebar soal teori *Hybrid Scoring* dan *1-Hop Related Dates Expansion* buat nyederhanain relasi memori asisten AI gw, **Nouva**. Secara konsep di atas kertas, semuanya kelihatan cantik banget. 
+
+Tapi pas masuk ke fase implementasi riil di homelab, gw langsung nabrak kenyataan pahit: **AnythingLLM yang gw pake sebagai RAG interface ternyata boros resource dan kegedean buat kebutuhan personal.** 
+
+Akhirnya, gw mutusin buat ngerombak total arsitekturnya. Gw buang AnythingLLM dari cluster K3s, nge-decommission container-nya, dan membangun **Nouva Memory Engine** yang ramping menggunakan **FastMCP (Python)** yang dicolok langsung ke Postgres + `pgvector` serta database relasional biasa untuk kebutuhan analisis deterministik.
+
+Berikut bedah arsitektur dan lika-liku implementasinya.
+
+---
+
+### Arsitektur Baru: Dual-Lane Memory Engine
+
+Sebelum masuk ke detail kode, ini gambaran umum alur memori Nouva yang baru:
+
+![Nouva Memory Engine Architecture](/media/blog/membangun-agent-memory-part-3/diagram.svg)
+
+Inti dari arsitektur ini adalah **pemisahan jalur pencarian** berdasarkan tipe pertanyaan yang masuk (Dual-Lane). Jalur semantik (RAG) dan jalur analisis kuantitatif (SQL) gak bisa dicampur aduk kalau lu mau dapet hasil yang akurat dan hemat token.
+
+---
+
+### 1. Decommissioning AnythingLLM & Beralih ke FastMCP
+
+Awalnya, AnythingLLM kerasa ngebantu banget karena dia nyediain API instan buat nge-manage dokumen dan vector database. Tapi pas dipikir-pikir, AnythingLLM itu *bloated* buat asisten pribadi yang jalan di homelab. Dia makan resource RAM dan CPU yang lumayan di cluster K3s gw, padahal gw cuma butuh:
+1. Nyimpen dokumen markdown (`MEMORY.md`, index harian).
+2. Ngedapetin embedding vector-nya.
+3. Melakukan cosine distance query.
+
+Akhirnya, gw decommission AnythingLLM secara permanen. Container-nya gw matiin, volume di server gw hapus, dan ingress routing-nya gw cabut dari manifes Kubernetes. 
+
+Sebagai gantinya, gw bikin **Unified Memory Engine** berbasis **FastMCP (Python)**. Kenapa MCP (Model Context Protocol)? Karena protokol ini sekarang udah jadi standar industri yang didukung sama banyak AI Agent client (seperti OpenClaw, Cursor, Zed, dll.). Cukup sekali buat server MCP, lu bisa colok memori ini ke editor kode lu, asisten Telegram lu, atau CLI agent mana pun tanpa perlu bikin API wrapper baru.
+
+---
+
+### 2. Dual-Lane Memory: RAG Semantik vs Deterministic SQL Analytics
+
+Masalah terbesar yang sering dilupakan orang pas bikin RAG adalah memaksakan pencarian semantik untuk pertanyaan kuantitatif.
+
+Misalnya lu nanya ke AI: *"Berapa persen tingkat produktivitas gw di bulan Juli ini?"* 
+
+Kalau lu pake RAG semantik biasa, LLM bakal nyari dokumen yang secara kosinus mirip dengan kata "produktivitas Juli". Dia bakal narik 2 atau 3 summary harian acak, lalu mencoba "mengarang" persentase berdasarkan dokumen yang ditarik secara terbatas itu. Hasilnya? **Pasti salah atau ngaco.**
+
+Untuk menyelesaikan ini, gw ngebagi pemrosesan memori menjadi dua jalur (*Dual-Lane*):
+
+#### Lane 1: Semantic Recall (pgvector)
+Ini jalur RAG konvensional. Data dari file markdown utama (`MEMORY.md`, `MEMORY_INDEX.md`) dipotong-potong menjadi chunks, di-embed menggunakan model `bge-m3` secara lokal, dan disimpan ke tabel `memory_vectors` di PostgreSQL dengan ekstensi `pgvector`.
+*   **Guna:** Menjawab pertanyaan berbasis konteks, misal: *"Gimana setup boot order server homelab kemarin?"* atau *"Apa kesepakatan gw sama Kak Rina soal reminder sahur?"*
+
+#### Lane 2: Deterministic Analytics (Postgres SQL)
+Setiap kali script sinkronisasi harian (`auto_sync.py`) jalan, dia gak cuma bikin file markdown summary, tapi juga mem-parsing YAML frontmatter di summary tersebut (seperti `mood`, `importance`, `projects`, `technologies`, `date`) dan menyimpannya sebagai baris data (SQL rows) di tabel `daily_summaries` PostgreSQL.
+*   **Guna:** Menjawab pertanyaan agregatif/tren secara deterministik, misal: *"Berapa kali gw ngoding pake Next.js bulan ini?"* atau *"Berapa persen hari produktif gw di bulan Juni?"*
+
+Saat asisten AI nerima pertanyaan kuantitatif, dia gak nge-run vector search. Dia bakal mem-parsing parameter query menjadi parameter terstruktur (misal: `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) lewat tools MCP `memory_analyze`, lalu mengeksekusi query SQL agregasi murni langsung ke database:
+
+```sql
+SELECT mood, COUNT(*) 
+FROM daily_summaries 
+WHERE date BETWEEN '2026-07-01' AND '2026-07-19' 
+GROUP BY mood;
+```
+
+Hasilnya 100% akurat, instan, dan hanya memakan hitungan milidetik tanpa membuang-buang token LLM untuk membaca transkrip chat yang panjang.
+
+---
+
+### 3. Alur Kerja Sync Pipeline (`auto_sync.py`)
+
+Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync.py`) yang berjalan otomatis setiap hari dengan alur kerja sebagai berikut:
+
+1.  **Reconcile & Summarize:** Membaca transkrip chat mentah hari sebelumnya yang masih aktif di host lokal, lalu menyuruh LLM lokal membuat summary ringkas dalam format `.summary.md` lengkap dengan YAML frontmatter terstruktur.
+2.  **Archive to NAS:** Memindahkan file transkrip chat mentah asli ke subfolder NAS (`daily_sessions/YYYY-MM-DD/`) agar penyimpanan SSD di host asisten tetap low-space.
+3.  **Database Sync:** 
+    *   Membaca YAML frontmatter dari summary baru dan memasukkannya ke tabel `daily_summaries` di PostgreSQL (Lane 2).
+    *   Meng-update file indeks `MEMORY_INDEX.md`, memotongnya menjadi chunks, membuat embedding-nya, lalu memperbarui tabel `memory_vectors` (Lane 1).
+
+---
+
+### Kesimpulan
+
+Beralih dari AnythingLLM ke FastMCP berbasis Python dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan sekaligus meningkatkan akurasi asisten AI hingga berkali-kali lipat. 
+
+Sekarang, memori asisten gw gak cuma bisa "mengingat" obrolan masa lalu secara romantis, tapi juga bisa memberikan data analitik yang presisi dan jujur tentang kebiasaan, produktivitas, dan kendala teknis yang gw hadapi sehari-hari.
+
+*Keep it lean, keep it portable, and keep it yours!*
+
+### Blog Terkait
+Perjalanan arsitektur memori ini bisa lu ikuti secara lengkap di sini:
+1. [Membangun GraphRAG untuk Agen Otonom dengan Neo4J and Graphitti](/id/blog/membangun-graphrag-neo4j-graphitti) (Awal eksperimen GraphRAG)
+2. [Jebakan GraphRAG: Kenapa Gue Akhirnya Uninstall Neo4j](/id/blog/jebakan-graphrag-uninstall-neo4j) (Kenapa GraphRAG dibuang)
+3. [Bagaimana Saya Membangun Agent Memory yang Bebas Vendor Lock-in](/id/blog/bagaimana-saya-handle-agent-memory-untuk-skala-personal-ai-assistant) (Awal mula Two-Tier Architecture)
+4. [Membangun Agent Memory dengan Vendor Lock-in Resistance (Part 2)](/id/blog/membangun-agent-memory-bebas-vendor) (Optimasi metadata & Hybrid Scoring)

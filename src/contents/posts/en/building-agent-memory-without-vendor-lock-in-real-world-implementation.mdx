@@ -1,0 +1,101 @@
+---
+title: "Building Agent Memory Without Vendor Lock-in: Real-world Implementation (Part 3)"
+slug: {
+  en: "building-agent-memory-without-vendor-lock-in-real-world-implementation"
+}
+date: 2026-07-19
+description: "The third part of the agent memory series. This time we dissect the real-world implementation: decommissioning AnythingLLM to save resources, migrating to a unified FastMCP, and designing a Dual-Lane Memory (RAG + SQL Analytics)."
+tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse", "mcp"]
+image: "/media/blog/membangun-agent-memory-part-3/diagram.png"
+---
+
+In the previous post ([Part 2](/blog/building-agent-memory-free-vendor)), I discussed the theory of *Hybrid Scoring* and *1-Hop Related Dates Expansion* to simplify memory relationships for my AI assistant, **Nouva**. Conceptually, everything looked beautiful on paper.
+
+But when it came to real-world implementation in my homelab, I hit a harsh reality: **AnythingLLM, which I used as the RAG interface, was too resource-heavy and bloated for personal scale.**
+
+Eventually, I decided to completely overhaul the architecture. I decommissioned AnythingLLM from my K3s cluster, deleted its containers, and built a lean **Nouva Memory Engine** using **FastMCP (Python)** directly connected to Postgres + `pgvector` and a standard relational database for deterministic analytical queries.
+
+Here is the architectural breakdown and implementation journey.
+
+---
+
+### New Architecture: Dual-Lane Memory Engine
+
+Before diving into the code details, here is a high-level overview of Nouva's new memory workflow:
+
+![Nouva Memory Engine Architecture](/media/blog/membangun-agent-memory-part-3/diagram.svg)
+
+The core of this architecture is the **separation of search pathways** based on the type of incoming query (Dual-Lane). The semantic path (RAG) and the quantitative analysis path (SQL) cannot be mixed if you want accurate results and token efficiency.
+
+---
+
+### 1. Decommissioning AnythingLLM & Moving to FastMCP
+
+Initially, AnythingLLM felt very helpful because it provided an instant API for document management and vector database operations. However, upon reflection, AnythingLLM was bloated for a personal assistant running in a homelab. It consumed significant RAM and CPU on my K3s cluster, while I only needed:
+1. Storing markdown documents (`MEMORY.md`, daily indexes).
+2. Generating embeddings for them.
+3. Performing cosine distance queries.
+
+Consequently, I decommissioned AnythingLLM permanently. I stopped its containers, deleted the volumes on my server, and removed its ingress routing from the Kubernetes manifests.
+
+In its place, I built a **Unified Memory Engine** based on **FastMCP (Python)**. Why MCP (Model Context Protocol)? Because this protocol has now become an industry standard supported by many AI Agent clients (such as OpenClaw, Cursor, Zed, etc.). By building a single MCP server, you can plug this memory into your code editors, Telegram assistants, or any CLI agent without building custom API wrappers.
+
+---
+
+### 2. Dual-Lane Memory: Semantic RAG vs. Deterministic SQL Analytics
+
+The biggest issue often forgotten when building RAG systems is forcing semantic search to answer quantitative questions.
+
+For example, if you ask the AI: *"What percentage of my days were productive this July?"*
+
+If you use standard semantic RAG, the LLM will search for documents that are cosine-similar to the phrase "July productivity". It might pull 2 or 3 random daily summaries, and then try to "hallucinate" a percentage based on those limited documents. The result? **Guaranteed to be wrong or inaccurate.**
+
+To solve this, I split memory processing into two pathways (*Dual-Lane*):
+
+#### Lane 1: Semantic Recall (pgvector)
+This is the conventional RAG pathway. Data from main markdown files (`MEMORY.md`, `MEMORY_INDEX.md`) are chunked, embedded locally using the `bge-m3` model, and stored in the `memory_vectors` table in PostgreSQL with the `pgvector` extension.
+*   **Use Case:** Answering context-based questions, e.g., *"How was the server boot order set up yesterday?"* or *"What was my agreement with Kak Rina regarding sahur reminders?"*
+
+#### Lane 2: Deterministic Analytics (Postgres SQL)
+Every time the daily sync script (`auto_sync.py`) runs, it not only generates a markdown summary but also parses the YAML frontmatter of that summary (such as `mood`, `importance`, `projects`, `technologies`, `date`) and saves it as a structured SQL row in the `daily_summaries` PostgreSQL table.
+*   **Use Case:** Answering aggregation/trend questions deterministically, e.g., *"How many times did I code in Next.js this month?"* or *"What percentage of my days were productive in June?"*
+
+When the AI assistant receives a quantitative question, it does not run a vector search. Instead, it parses the query parameters into structured arguments (e.g., `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) via the `memory_analyze` MCP tool, and executes a raw SQL aggregation query directly on the database:
+
+```sql
+SELECT mood, COUNT(*) 
+FROM daily_summaries 
+WHERE date BETWEEN '2026-07-01' AND '2026-07-19' 
+GROUP BY mood;
+```
+
+The result is 100% accurate, instant, and takes only milliseconds without wasting LLM tokens reading through long chat transcripts.
+
+---
+
+### 3. Sync Pipeline Workflow (`auto_sync.py`)
+
+How does all this data stay in sync? I have a background cron job (`auto_sync.py`) that runs automatically every day with the following workflow:
+
+1.  **Reconcile & Summarize:** Reads the raw chat transcripts from the previous day still active on the local host, then instructs a local LLM to generate a concise summary in `.summary.md` format with structured YAML frontmatter.
+2.  **Archive to NAS:** Moves the original raw chat transcripts to the NAS subfolders (`daily_sessions/YYYY-MM-DD/`) to keep the assistant host's SSD storage usage low.
+3.  **Database Sync:**
+    *   Parses the YAML frontmatter of the new summary and inserts it into the `daily_summaries` table in PostgreSQL (Lane 2).
+    *   Updates the local index file `MEMORY_INDEX.md`, chunks it, embeds it, and updates the `memory_vectors` table (Lane 1).
+
+---
+
+### Conclusion
+
+Transitioning from AnythingLLM to a Python-based FastMCP and splitting the memory search workflow into **Dual-Lane (Semantic vs. SQL Analytics)** has significantly reduced homelab resource usage while dramatically increasing the AI assistant's query accuracy.
+
+Now, my assistant's memory engine can not only "remember" past conversations contextually but also provide precise and honest analytical data about my daily habits, productivity, and technical obstacles.
+
+*Keep it lean, keep it portable, and keep it yours!*
+
+### Related Blogs
+You can follow the full journey of this memory architecture evolution here:
+1. [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti) (Initial GraphRAG experiment)
+2. [The GraphRAG Trap: Why I Decided to Uninstall Neo4j](/blog/the-graphrag-trap) (Why GraphRAG was discarded)
+3. [How I Handle Agent Memory for Personal AI Assistant](/blog/how-i-handle-agent-memory-for-personal-ai-assistant) (Beginning of the Two-Tier Architecture)
+4. [Building Agent Memory with Vendor Lock-in Resistance (Part 2)](/blog/building-agent-memory-free-vendor) (Metadata optimization & Hybrid Scoring)
