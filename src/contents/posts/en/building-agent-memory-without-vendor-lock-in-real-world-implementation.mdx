@@ -140,7 +140,11 @@ Logically, this is a temporal graph because it connects entities/documents acros
 The nature of our data is highly efficient:
 1. **Immutable Historical Logs**: Daily data past the grace period (H-1) is read-only and archived on the NAS.
 2. **Declarative Relationships**: Links between days are declared programmatically during sync, rather than dynamically at query runtime.
-3. **Decayed Traversal**: During semantic search (RAG), our query engine performs a *1-hop expansion* to the dates listed in `related_dates` while decaying their semantic score by 30% (`score * 0.7`) to mark them as secondary/supporting context.
+3. **Decayed Traversal**: During semantic search (RAG), our query engine performs a *1-hop expansion* to the dates listed in `related_dates` while decaying their semantic score by 30% using the decay formula:
+
+   $$S_{\text{decayed}} = S_{\text{parent}} \times 0.7$$
+
+   Where $S_{\text{parent}}$ is the original semantic score of the parent date found by RAG. This marks the expanded date as secondary/supporting context.
 
 This way, we get the benefits of Graph/Temporal traversal without the resource overhead and complexity of a physical graph database.
 

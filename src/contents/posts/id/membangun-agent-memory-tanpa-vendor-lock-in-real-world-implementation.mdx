@@ -140,7 +140,11 @@ Secara logis, ini adalah graf temporal karena menghubungkan entitas/dokumen anta
 Sifat datanya pun sangat efisien:
 1. **Immutable Historical Logs**: Data harian yang sudah lewat grace period (H-1) bersifat read-only dan disimpan di NAS.
 2. **Declarative Relationships**: Hubungan antar hari dideklarasikan secara programmatik saat sync, bukan secara dinamis saat runtime query.
-3. **Decayed Traversal**: Saat melakukan pencarian semantik (RAG), query engine kita akan melakukan *1-hop expansion* ke tanggal yang terdaftar di `related_dates` dengan memotong skor semantiknya sebesar 30% (`score * 0.7`) sebagai penanda bahwa itu adalah informasi sekunder/konteks pendukung.
+3. **Decayed Traversal**: Saat melakukan pencarian semantik (RAG), query engine kita akan melakukan *1-hop expansion* ke tanggal yang terdaftar di `related_dates` dengan memotong skor semantiknya sebesar 30% menggunakan rumus peluruhan:
+
+   $$S_{\text{decayed}} = S_{\text{parent}} \times 0.7$$
+
+   Di mana $S_{\text{parent}}$ adalah skor semantik asli dari tanggal induk yang ditemukan oleh RAG. Ini berfungsi sebagai penanda bahwa tanggal hasil ekspansi tersebut adalah informasi sekunder/konteks pendukung.
 
 Dengan cara ini, kita tetap mendapatkan keuntungan dari Graph/Temporal traversal tanpa overhead resource dan kompleksitas database graf fisik.
 
