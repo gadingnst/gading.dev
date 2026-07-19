@@ -42,7 +42,23 @@ Sebagai gantinya, gw bikin **Unified Memory Engine** berbasis **FastMCP (Python)
 
 ---
 
-### 2. Dual-Lane Memory: RAG Semantik vs Deterministic SQL Analytics
+### 2. Dari Zed Editor Langsung ke Server (Lifecycle Memori)
+
+Bagaimana sebuah interaksi bisa berubah jadi memori? Prosesnya dimulai langsung dari workspace coding atau chat harian.
+
+Sebagai contoh, saat gw lagi ngoding di **Zed Editor** dan meminta asisten AI untuk menyimpan sesi diskusi penting, asisten bakal memicu tool `session_write` (FastMCP tool). Tool ini secara instan merekam jalannya obrolan, mengemasnya dalam format JSON terstruktur, dan menyimpannya sebagai file transkrip mentah berformat Markdown di server lokal:
+
+![Menyimpan Sesi Diskusi dari Zed Editor](/media/blog/membangun-agent-memory-part-3/store.png)
+
+File transkrip mentah yang baru disimpan ini (`2026-07-19-1037.md`) bakal nangkring di server lokal (`agent-host` di Proxmox) dan langsung dikaitkan dengan tanggal induknya (`Parent Day: [[2026-07-19]]`):
+
+![Transkrip Tersimpan di Server Lokal](/media/blog/membangun-agent-memory-part-3/memory-md.png)
+
+File-file transkrip mentah ini sengaja ditaruh di lokal dulu (grace period H-2) sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
+
+---
+
+### 3. Dual-Lane Memory: RAG Semantik vs Deterministic SQL Analytics
 
 Masalah terbesar yang sering dilupakan orang pas bikin RAG adalah memaksakan pencarian semantik untuk pertanyaan kuantitatif.
 
@@ -60,20 +76,17 @@ Ini jalur RAG konvensional. Data dari file markdown utama (`MEMORY.md`, `MEMORY_
 Setiap kali script sinkronisasi harian (`auto_sync.py`) jalan, dia gak cuma bikin file markdown summary, tapi juga mem-parsing YAML frontmatter di summary tersebut (seperti `mood`, `importance`, `projects`, `technologies`, `date`) dan menyimpannya sebagai baris data (SQL rows) di tabel `daily_summaries` PostgreSQL.
 *   **Guna:** Menjawab pertanyaan agregatif/tren secara deterministik, misal: *"Berapa kali gw ngoding pake Next.js bulan ini?"* atau *"Berapa persen hari produktif gw di bulan Juni?"*
 
-Saat asisten AI nerima pertanyaan kuantitatif, dia gak nge-run vector search. Dia bakal mem-parsing parameter query menjadi parameter terstruktur (misal: `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) lewat tools MCP `memory_analyze`, lalu mengeksekusi query SQL agregasi murni langsung ke database:
+Saat asisten AI nerima pertanyaan kuantitatif, dia gak nge-run vector search. Dia bakal mem-parsing parameter query menjadi parameter terstruktur (misal: `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) lewat tools MCP `memory_analyze`, lalu mengeksekusi query SQL agregasi murni langsung ke database.
 
-```sql
-SELECT mood, COUNT(*) 
-FROM daily_summaries 
-WHERE date BETWEEN '2026-07-01' AND '2026-07-19' 
-GROUP BY mood;
-```
+Hasilnya? AI gak cuma bisa me-recall ingatan secara semantik, tapi juga bisa melakukan agregasi data dan tren secara 100% presisi layaknya database analitik:
 
-Hasilnya 100% akurat, instan, dan hanya memakan hitungan milidetik tanpa membuang-buang token LLM untuk membaca transkrip chat yang panjang.
+![Analisis Mood dan Produktivitas Menggunakan SQL Lane](/media/blog/membangun-agent-memory-part-3/memory-analyze.png)
+
+Hasil kalkulasi di atas murni ditarik menggunakan query SQL agregasi, sangat cepat, akurat, dan tanpa membuang-buang token LLM untuk membaca ratusan baris transkrip obrolan.
 
 ---
 
-### 3. Alur Kerja Sync Pipeline (`auto_sync.py`)
+### 4. Alur Kerja Sync Pipeline (`auto_sync.py`)
 
 Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync.py`) yang berjalan otomatis setiap hari dengan alur kerja sebagai berikut:
 
@@ -87,7 +100,7 @@ Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync
 
 ### Kesimpulan
 
-Beralih dari AnythingLLM ke FastMCP berbasis Python dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan sekaligus meningkatkan akurasi asisten AI hingga berkali-kali lipat. 
+Beralih dari AnythingLLM ke FastMCP berbasis Python dan memisahkan alur pencarian memori menjadi **Dual-Lane (Semantic vs. SQL Analytics)** terbukti memangkas penggunaan resource homelab secara signifikan sekaligus meningkatkan akurasi asisten AI hingga berkali-kali lipat. 
 
 Sekarang, memori asisten gw gak cuma bisa "mengingat" obrolan masa lalu secara romantis, tapi juga bisa memberikan data analitik yang presisi dan jujur tentang kebiasaan, produktivitas, dan kendala teknis yang gw hadapi sehari-hari.
 

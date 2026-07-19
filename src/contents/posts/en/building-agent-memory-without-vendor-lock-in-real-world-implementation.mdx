@@ -42,7 +42,23 @@ In its place, I built a **Unified Memory Engine** based on **FastMCP (Python)**.
 
 ---
 
-### 2. Dual-Lane Memory: Semantic RAG vs. Deterministic SQL Analytics
+### 2. From Zed Editor Straight to the Server (Memory Lifecycle)
+
+How does an interaction transform into memory? The process begins directly from the daily coding workspace or chat sessions.
+
+For instance, when I am coding in **Zed Editor** and request the AI assistant to save an important discussion session, the assistant triggers the `session_write` tool (FastMCP tool). This tool instantly records the conversation history, packages it into a structured JSON payload, and writes it as a raw Markdown transcript file on the local server:
+
+![Saving Discussion Session from Zed Editor](/media/blog/membangun-agent-memory-part-3/store.png)
+
+This newly saved raw transcript file (`2026-07-19-1037.md`) resides on the local server (`agent-host` in Proxmox) and is immediately linked to its parent day (`Parent Day: [[2026-07-19]]`):
+
+![Transcript Saved on Local Server](/media/blog/membangun-agent-memory-part-3/memory-md.png)
+
+These raw transcript files are kept locally for a brief grace period (H-2) before eventually being summarized, semantically indexed, and permanently archived to the NAS by the daily background sync pipeline.
+
+---
+
+### 3. Dual-Lane Memory: Semantic RAG vs. Deterministic SQL Analytics
 
 The biggest issue often forgotten when building RAG systems is forcing semantic search to answer quantitative questions.
 
@@ -60,20 +76,17 @@ This is the conventional RAG pathway. Data from main markdown files (`MEMORY.md`
 Every time the daily sync script (`auto_sync.py`) runs, it not only generates a markdown summary but also parses the YAML frontmatter of that summary (such as `mood`, `importance`, `projects`, `technologies`, `date`) and saves it as a structured SQL row in the `daily_summaries` PostgreSQL table.
 *   **Use Case:** Answering aggregation/trend questions deterministically, e.g., *"How many times did I code in Next.js this month?"* or *"What percentage of my days were productive in June?"*
 
-When the AI assistant receives a quantitative question, it does not run a vector search. Instead, it parses the query parameters into structured arguments (e.g., `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) via the `memory_analyze` MCP tool, and executes a raw SQL aggregation query directly on the database:
+When the AI assistant receives a quantitative question, it does not run a vector search. Instead, it parses the query parameters into structured arguments (e.g., `start_date="2026-07-01", end_date="2026-07-19", intent="mood_timeseries"`) via the `memory_analyze` MCP tool, and executes a raw SQL aggregation query directly on the database.
 
-```sql
-SELECT mood, COUNT(*) 
-FROM daily_summaries 
-WHERE date BETWEEN '2026-07-01' AND '2026-07-19' 
-GROUP BY mood;
-```
+The result? The AI is not only capable of semantic context recall but can also perform aggregations and trend analysis with 100% precision just like an analytical database:
 
-The result is 100% accurate, instant, and takes only milliseconds without wasting LLM tokens reading through long chat transcripts.
+![Mood and Productivity Analysis Using SQL Lane](/media/blog/membangun-agent-memory-part-3/memory-analyze.png)
+
+The calculation results above are pulled purely using SQL aggregation queries—extremely fast, accurate, and without wasting LLM tokens reading through hundreds of raw chat lines.
 
 ---
 
-### 3. Sync Pipeline Workflow (`auto_sync.py`)
+### 4. Sync Pipeline Workflow (`auto_sync.py`)
 
 How does all this data stay in sync? I have a background cron job (`auto_sync.py`) that runs automatically every day with the following workflow:
 
