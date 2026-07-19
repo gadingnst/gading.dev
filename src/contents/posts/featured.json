@@ -1,12 +1,12 @@
 {
   "en": [
-    "building-agent-memory-free-vendor",
+    "building-agent-memory-without-vendor-lock-in-real-world-implementation",
     "homelab-architecture-k8s-lxc-proxmox",
     "configure-gmail-alias-spf-dmarc",
     "understanding-docker-and-kubernetes-philosophy"
   ],
   "id": [
-    "membangun-agent-memory-bebas-vendor",
+    "membangun-agent-memory-tanpa-vendor-lock-in-real-world-implementation",
     "arsitektur-homelab-k8s-lxc-proxmox",
     "gmail-alias-domain-sendiri-spf-dmarc",
     "memahami-filosofi-docker-dan-kubernetes"
