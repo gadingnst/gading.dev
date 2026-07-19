@@ -97,7 +97,28 @@ Hasil kalkulasi di atas murni ditarik menggunakan query SQL agregasi, sangat cep
 
 ---
 
-### 4. Alur Kerja Sync Pipeline (`auto_sync.py`)
+### 4. Struktur Data: Implicit Temporal Graph
+
+Mungkin ada yang penasaran, *"Kalau kita gak pakai database graf fisik kayak Neo4j, gimana caranya kita menghubungkan ingatan yang bersambung antar hari (temporal relationship)?"*
+
+Jawabannya: Kita mensimulasikan struktur graf waktu secara implisit (**Implicit Temporal Graph**) langsung di atas flat Markdown dan PostgreSQL biasa. 
+
+Dalam sistem ini, struktur datanya didefinisikan seperti ini:
+*   **Node (Titik)**: Direpresentasikan oleh entitas tanggal unik (misalnya dokumen harian `2026-07-08`).
+*   **Edge (Garis Hubung)**: Direpresentasikan oleh array `related_dates` di dalam YAML metadata summary.
+
+Secara logis, ini adalah graf temporal karena menghubungkan entitas/dokumen antar waktu/tanggal. Namun secara fisik, dia disimpan sebagai data relasional biasa. 
+
+Sifat datanya pun sangat efisien:
+1. **Immutable Historical Logs**: Data harian yang sudah lewat grace period (H-1) bersifat read-only dan disimpan di NAS.
+2. **Declarative Relationships**: Hubungan antar hari dideklarasikan secara programmatik saat sync, bukan secara dinamis saat runtime query.
+3. **Decayed Traversal**: Saat melakukan pencarian semantik (RAG), query engine kita akan melakukan *1-hop expansion* ke tanggal yang terdaftar di `related_dates` dengan memotong skor semantiknya sebesar 30% (`score * 0.7`) sebagai penanda bahwa itu adalah informasi sekunder/konteks pendukung.
+
+Dengan cara ini, kita tetap mendapatkan keuntungan dari Graph/Temporal traversal tanpa overhead resource dan kompleksitas database graf fisik.
+
+---
+
+### 5. Alur Kerja Sync Pipeline (`auto_sync.py`)
 
 Bagaimana semua data ini tetap sinkron? Gw punya cron job background (`auto_sync.py`) yang berjalan otomatis setiap hari dengan alur kerja sebagai berikut:
 
