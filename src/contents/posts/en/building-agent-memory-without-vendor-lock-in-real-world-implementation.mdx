@@ -11,7 +11,7 @@ image: "/media/blog/membangun-agent-memory-part-3/diagram.png"
 
 In the previous post ([Part 2](/blog/building-agent-memory-free-vendor)), I discussed the theory of *Hybrid Scoring* and *1-Hop Related Dates Expansion* to simplify memory relationships for my AI assistant, **Nouva**. Conceptually, everything looked beautiful on paper.
 
-But when it came to real-world implementation in my homelab, I hit a harsh reality: **AnythingLLM, which I used as the RAG interface, was too resource-heavy and bloated for personal scale.**
+But when it came to real-world implementation in my homelab, I realized: it seemed like AnythingLLM wasn't really that useful.
 
 Eventually, I decided to completely overhaul the architecture. I decommissioned AnythingLLM from my K3s cluster, deleted its containers, and built a lean **Nouva Memory Engine** using **FastMCP (Python)** directly connected to Postgres + `pgvector` and a standard relational database for deterministic analytical queries.
 
@@ -54,7 +54,7 @@ This newly saved raw transcript file (`2026-07-19-1037.md`) resides on the local
 
 ![Transcript Saved on Local Server](/media/blog/membangun-agent-memory-part-3/memory-md.png)
 
-These raw transcript files are kept locally for a brief grace period (H-2) before eventually being summarized, semantically indexed, and permanently archived to the NAS by the daily background sync pipeline.
+These raw transcript files are kept locally for a brief grace period (H-1) before eventually being summarized, semantically indexed, and permanently archived to the NAS by the daily background sync pipeline.
 
 ---
 
@@ -76,7 +76,7 @@ This is the conventional RAG pathway. Data from main markdown files (`MEMORY.md`
 Every time the daily sync script (`auto_sync.py`) runs, it not only generates a markdown summary but also parses the YAML frontmatter of that summary (such as `mood`, `importance`, `projects`, `technologies`, `date`) and saves it as a structured SQL row in the `daily_summaries` PostgreSQL table.
 *   **Use Case:** Answering aggregation/trend questions deterministically, e.g., *"How many times did I code in Next.js this month?"* or *"What percentage of my days were productive in June?"*
 
-Why Postgres? Because in the end, every path in our homelab architecture leads to one absolute conclusion: **Just Use Postgres.**
+Why Postgres? Because in the end, every developer's spiritual journey eventually leads to one absolute conclusion: **Just Use Postgres.**
 
 ![Just Use Postgres Meme](/media/blog/membangun-agent-memory-part-3/just-use-postgres.jpg)
 

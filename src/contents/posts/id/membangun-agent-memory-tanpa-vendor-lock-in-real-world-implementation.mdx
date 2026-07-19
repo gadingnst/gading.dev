@@ -11,7 +11,7 @@ image: "/media/blog/membangun-agent-memory-part-3/diagram.png"
 
 Di tulisan sebelumnya ([Part 2](/id/blog/membangun-agent-memory-bebas-vendor)), gw udah cerita panjang lebar soal teori *Hybrid Scoring* dan *1-Hop Related Dates Expansion* buat nyederhanain relasi memori asisten AI gw, **Nouva**. Secara konsep di atas kertas, semuanya kelihatan cantik banget. 
 
-Tapi pas masuk ke fase implementasi riil di homelab, gw langsung nabrak kenyataan pahit: **AnythingLLM yang gw pake sebagai RAG interface ternyata boros resource dan kegedean buat kebutuhan personal.** 
+Tapi pas masuk ke fase implementasi riil di homelab, gw sadar: kayaknya AnythingLLM gak begitu berguna deh.
 
 Akhirnya, gw mutusin buat ngerombak total arsitekturnya. Gw buang AnythingLLM dari cluster K3s, nge-decommission container-nya, dan membangun **Nouva Memory Engine** yang ramping menggunakan **FastMCP (Python)** yang dicolok langsung ke Postgres + `pgvector` serta database relasional biasa untuk kebutuhan analisis deterministik.
 
@@ -54,7 +54,7 @@ File transkrip mentah yang baru disimpan ini (`2026-07-19-1037.md`) bakal nangkr
 
 ![Transkrip Tersimpan di Server Lokal](/media/blog/membangun-agent-memory-part-3/memory-md.png)
 
-File-file transkrip mentah ini sengaja ditaruh di lokal dulu (grace period H-2) sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
+File-file transkrip mentah ini sengaja ditaruh di lokal dulu (grace period H-1) sebelum nantinya di-ingest, dibuat summary-nya, di-index secara semantik, dan diarsipkan secara permanen ke NAS oleh pipeline sinkronisasi otomatis harian.
 
 ---
 
@@ -76,7 +76,7 @@ Ini jalur RAG konvensional. Data dari file markdown utama (`MEMORY.md`, `MEMORY_
 Setiap kali script sinkronisasi harian (`auto_sync.py`) jalan, dia gak cuma bikin file markdown summary, tapi juga mem-parsing YAML frontmatter di summary tersebut (seperti `mood`, `importance`, `projects`, `technologies`, `date`) dan menyimpannya sebagai baris data (SQL rows) di tabel `daily_summaries` PostgreSQL.
 *   **Guna:** Menjawab pertanyaan agregatif/tren secara deterministik, misal: *"Berapa kali gw ngoding pake Next.js bulan ini?"* atau *"Berapa persen hari produktif gw di bulan Juni?"*
 
-Kenapa Postgres? Karena pada akhirnya, semua jalan ninja arsitektur homelab kita bakal berujung pada satu kesimpulan mutlak: **Just Use Postgres.**
+Kenapa Postgres? Karena pada akhirnya, perjalanan spiritual setiap developer bakal selalu berujung pada satu kesimpulan mutlak: **Just Use Postgres.**
 
 ![Just Use Postgres Meme](/media/blog/membangun-agent-memory-part-3/just-use-postgres.jpg)
 
