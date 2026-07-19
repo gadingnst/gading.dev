@@ -29,8 +29,8 @@ Before diving into the code details, here is a high-level overview of Nouva's ne
 The core of this architecture is the **separation of search pathways** based on the type of incoming query (Dual-Lane). The semantic path (RAG) and the quantitative analysis path (SQL) cannot be mixed if you want accurate results and token efficiency.
 
 Within this system, memory data is categorized into two main states:
-1. **Active Memory (Local)**: Stores ongoing or recent data from today (such as active chat transcripts and unfinished daily notes). This data is written directly to the local server (`active_memory_dir`) for fast write access.
-2. **Archived Memory (NAS)**: After a grace period (e.g., H-1), the sync pipeline automatically moves final data (raw transcripts, daily summaries, and indexes) to a permanent, read-only archive on the NAS (`archived_memory_dir`), keeping local SSD storage lean.
+1. **Active Memory (Local)**: Stores ongoing or recent data from today (such as active chat transcripts and unfinished daily notes). This data is written directly to my agent server (`active_memory_dir`) for fast write access.
+2. **Archived Memory (NAS)**: After a grace period (e.g., H-1), the sync pipeline automatically moves final data (raw transcripts, daily summaries, and indexes) to a permanent, read-only archive on the NAS (`archived_memory_dir`), keeping my agent server's SSD storage lean.
 
 ---
 

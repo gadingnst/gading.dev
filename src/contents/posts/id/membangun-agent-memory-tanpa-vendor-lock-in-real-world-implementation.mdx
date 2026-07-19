@@ -29,8 +29,8 @@ Sebelum masuk ke detail kode, ini gambaran umum alur memori Nouva yang baru:
 Inti dari arsitektur ini adalah **pemisahan jalur pencarian** berdasarkan tipe pertanyaan yang masuk (Dual-Lane). Jalur semantik (RAG) dan jalur analisis kuantitatif (SQL) gak bisa dicampur aduk kalau lu mau dapet hasil yang akurat dan hemat token.
 
 Di dalam sistem ini, data memori dibagi menjadi dua status utama:
-1. **Active Memory (Lokal)**: Menyimpan data yang sedang berjalan atau baru terjadi hari ini (seperti transkrip chat aktif harian dan catatan harian yang belum selesai). Data ini disimpan langsung di server lokal (`active_memory_dir`) untuk proses penulisan cepat.
-2. **Archived Memory (NAS)**: Setelah melewati *grace period* (misal H-1), pipeline otomatis akan memindahkan data yang sudah final (transkrip mentah, summary harian, dan indeks) ke penyimpanan terpisah di NAS (`archived_memory_dir`) secara permanen dan read-only, sehingga penyimpanan SSD lokal tetap hemat.
+1. **Active Memory (Lokal)**: Menyimpan data yang sedang berjalan atau baru terjadi hari ini (seperti transkrip chat aktif harian dan catatan harian yang belum selesai). Data ini disimpan langsung di server lokal agent gw (`active_memory_dir`) untuk proses penulisan cepat.
+2. **Archived Memory (NAS)**: Setelah melewati *grace period* (misal H-1), pipeline otomatis akan memindahkan data yang sudah final (transkrip mentah, summary harian, dan indeks) ke penyimpanan terpisah di NAS (`archived_memory_dir`) secara permanen dan read-only, sehingga penyimpanan SSD server agent gw tetap hemat.
 
 ---
 
