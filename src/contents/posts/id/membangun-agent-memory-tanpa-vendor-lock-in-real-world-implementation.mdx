@@ -14,7 +14,7 @@ Di tulisan sebelumnya ([Part 2](/id/blog/membangun-agent-memory-bebas-vendor)), 
 
 Tapi pas masuk ke fase implementasi riil di homelab, gw sadar: kayaknya AnythingLLM gak begitu berguna deh.
 
-Akhirnya, gw mutusin buat ngerombak total arsitekturnya. Gw buang AnythingLLM dari cluster K3s, nge-decommission container-nya, dan membangun **Nouva Memory Engine** yang ramping menggunakan **FastMCP (Python)** yang dicolok langsung ke Postgres + `pgvector` serta database relasional biasa untuk kebutuhan analisis deterministik.
+Akhirnya, gw mutusin mencabut AnythingLLM dari arsitektur memori gw dan membangun **Nouva Memory Engine** yang ramping menggunakan **FastMCP (Python)** yang dicolok langsung ke Postgres + `pgvector` serta database relasional biasa untuk kebutuhan analisis deterministik.
 
 Berikut bedah arsitektur dan lika-liku implementasinya.
 

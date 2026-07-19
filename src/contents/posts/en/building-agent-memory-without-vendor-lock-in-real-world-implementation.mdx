@@ -14,7 +14,7 @@ In the previous post ([Part 2](/blog/building-agent-memory-free-vendor)), I disc
 
 But when it came to real-world implementation in my homelab, I realized: it seemed like AnythingLLM wasn't really that useful.
 
-Eventually, I decided to completely overhaul the architecture. I decommissioned AnythingLLM from my K3s cluster, deleted its containers, and built a lean **Nouva Memory Engine** using **FastMCP (Python)** directly connected to Postgres + `pgvector` and a standard relational database for deterministic analytical queries.
+Eventually, I decided to remove AnythingLLM from my memory architecture and built a lean **Nouva Memory Engine** using **FastMCP (Python)** directly connected to Postgres + `pgvector` and a standard relational database for deterministic analytical queries.
 
 Here is the architectural breakdown and implementation journey.
 
