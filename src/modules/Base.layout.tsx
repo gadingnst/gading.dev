@@ -7,13 +7,13 @@ import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
 
 function BaseLayout({ children }: PropsWithChildren) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <TopLoader height={3} showShadow />
       <Header />
-      {children}
+      <div className="flex-1">{children}</div>
       <Footer />
       <AppThemeInitializer />
-    </>
+    </div>
   );
 }
 
