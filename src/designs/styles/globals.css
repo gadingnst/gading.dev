@@ -3,6 +3,24 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
+/**
+ * `dark:` utilities must follow the app theme (`data-theme` on <html>), not the
+ * OS preference. Otherwise picking "Light" while the OS is dark leaves dark-only
+ * styles active (dark footer border, dark ambient background, etc).
+ * The `prefers-color-scheme` branch only kicks in when no theme is set yet
+ * (theme = "system"), matching daisyUI's own `:root:not([data-theme])` fallback.
+ */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+      @slot;
+    }
+  }
+}
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
@@ -54,6 +72,7 @@
   --noise: 0;
 
   /* ─── Liquid Glass (Original Dark Glass in Light Mode) ─── */
+  /* Same values on every viewport, so mobile and desktop render identically. */
   --glass-bg: rgba(0, 0, 0, 0.25);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-text: #fff;
@@ -64,9 +83,15 @@
   /* ─── Card styling (Original Flat Card in Light Mode) ─── */
   --card-bg: var(--color-base-200);
   --card-border: transparent;
-  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* single layer on purpose: daisyUI splits comma separated token values */
+  --card-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.15);
   --card-inset-shadow: none;
   --card-blur: 0px;
+
+  /* ─── Footer surface ─── */
+  --footer-bg: var(--color-base-200);
+  --footer-border: var(--color-base-300);
+  --footer-blur: 0px;
 }
 
 @plugin "daisyui/theme" {
@@ -121,19 +146,38 @@
   --noise: 0;
 
   /* ─── Liquid Glass (Revamped Navy Glass in Dark Mode) ─── */
-  --glass-bg: rgba(14, 38, 58, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  /*
+   * Same values on every viewport. The blur radius stays moderate on purpose:
+   * huge radii (40px+) are expensive and get dropped by some desktop GPU
+   * pipelines, which is why the blur used to disappear on desktop only.
+   */
+  --glass-bg: rgba(14, 38, 58, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --glass-text: var(--color-base-content);
   --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-  --glass-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
-  --glass-blur: 40px;
+  --glass-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-blur: 14px;
 
   /* ─── Card styling (Revamped Navy Glass in Dark Mode) ─── */
-  --card-bg: rgba(14, 38, 58, 0.45);
-  --card-border: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(14, 38, 58, 0.55);
+  --card-border: rgba(255, 255, 255, 0.1);
   --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-  --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
-  --card-blur: 40px;
+  --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+  --card-blur: 14px;
+
+  /* ─── Footer surface ─── */
+  --footer-bg: var(--glass-bg);
+  --footer-border: rgba(255, 255, 255, 0.05);
+  --footer-blur: var(--glass-blur);
+
+  /*
+   * ─── Ambient background glow (dark mode only) ───
+   * One gradient per token: daisyUI splits comma separated values into separate
+   * declarations, so a single multi-layer token would keep only its last layer.
+   */
+  --ambient-glow-1: radial-gradient(60vw 60vh at 5% 0%, rgba(255, 100, 180, 0.1), transparent 70%);
+  --ambient-glow-2: radial-gradient(70vw 70vh at 100% 95%, rgba(99, 102, 241, 0.1), transparent 70%);
+  --ambient-glow-3: radial-gradient(50vw 50vh at 85% 45%, rgba(168, 85, 247, 0.08), transparent 70%);
 }
 
 @theme inline {
@@ -145,29 +189,28 @@ body {
   font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
 }
 
+/*
+ * Ambient glow for the Liquid Glass look, painted straight onto the page canvas
+ * instead of a fixed layer of `filter: blur()` blobs. Those blobs were their own
+ * composited layers, which is what made Chromium drop `backdrop-filter` on the
+ * glass in front of them on desktop; they were also heavy on mobile GPUs.
+ * The canvas always sits at the bottom of the backdrop root, so glass elements
+ * can blur it safely — and it now behaves the same on mobile and desktop.
+ */
+html {
+  background-image: var(--ambient-glow-1, none), var(--ambient-glow-2, none), var(--ambient-glow-3, none);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 @import "./custom-utilities";
 @import "./lazy-image";
 @import "./katex";
 @import "./prism";
 @import "./content-parser";
 
-/* Mobile performance optimizations (reduces GPU load on Safari/iOS) */
-@media (max-width: 768px) {
-  :root {
-    --glass-blur: 8px;
-    --glass-bg: rgba(232, 237, 245, 0.65);
-    --card-blur: 8px;
-    --card-bg: rgba(232, 237, 245, 0.65);
-    --card-border: rgba(0, 0, 0, 0.08);
-  }
-
-  [data-theme="dark"] {
-    --glass-bg: rgba(14, 38, 58, 0.55);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-blur: 12px;
-    --card-blur: 12px;
-    --card-bg: rgba(14, 38, 58, 0.55);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-  }
-}
+/*
+ * NOTE: glass/card tokens are intentionally NOT overridden per breakpoint.
+ * Every viewport reads the same values from the theme blocks above so the
+ * glass effects look identical on mobile and desktop.
+ */

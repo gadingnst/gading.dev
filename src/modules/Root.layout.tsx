@@ -6,6 +6,7 @@ import { PropsWithChildren } from 'react';
 
 import { NextPageProps } from '@/@types/global';
 import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
+import { APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
@@ -22,6 +23,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 /**
+ * Reads the persisted theme cookie and applies it to <html> before first paint.
+ * Kept inline (not a module) so it runs ahead of hydration, and cookie based so
+ * it keeps working on the static export build where the server has no request.
+ */
+const APPLY_THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|; )${APP_THEME_KEY}=([^;]*)/);var v=m?decodeURIComponent(m[1]).replace(/^"|"$/g,''):'';if(v==='light'||v==='dark'){document.documentElement.setAttribute('data-theme',v)}}catch(e){}})();`;
+
+/**
  * Layout for language-specific routes
  * Validates language parameter and renders header with language selector
  */
@@ -34,13 +42,21 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
 
   return (
     <html lang={htmlLang}>
+      {/* `next/head` is Pages Router only; App Router layouts render <head> directly */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <head>
+        {/*
+          * `data-theme` belongs on <html>, not <body>: daisyUI paints the page
+          * canvas from `:root` and, while <html> carries no theme, falls back to
+          * `prefers-color-scheme` — that mismatch is what leaked a dark strip
+          * below the footer in light mode. Applying it here, before first paint,
+          * also avoids a theme flash. "system" is left unset on purpose so the
+          * CSS media-query fallback stays in charge.
+          */}
+        <script dangerouslySetInnerHTML={{ __html: APPLY_THEME_SCRIPT }} />
+      </head>
       <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased relative min-h-screen overflow-x-hidden`}>
-        {/* Ambient background glow for Liquid Glass effect (Dark mode only, hidden on mobile for performance) */}
-        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none hidden md:dark:block">
-          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px] transition-all duration-500" />
-          <div className="absolute bottom-[10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary/8 blur-[150px] transition-all duration-500" />
-          <div className="absolute top-[40%] right-[20%] w-[40vw] h-[40vw] rounded-full bg-accent/8 blur-[130px] transition-all duration-500" />
-        </div>
+        {/* Ambient background glow is painted on the page canvas (see globals.css) */}
         {children}
         {!IS_DEV && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
