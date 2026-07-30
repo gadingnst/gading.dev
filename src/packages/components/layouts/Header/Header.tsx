@@ -3,6 +3,7 @@
 import { SITE_NAME } from '@/configs/sites';
 import cn from '@/designs/utils/cn';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
+import { APP_THEME_SELECTION_ENABLED } from '@/packages/libs/AppTheme/constants';
 
 import AppThemeSelector from './AppThemeSelector';
 import BackButton from './BackButton';
@@ -34,7 +35,7 @@ export default function Header() {
 
         <div className="navbar-end gap-x-2">
           <LanguageSelector />
-          <AppThemeSelector />
+          {APP_THEME_SELECTION_ENABLED && <AppThemeSelector />}
           <Menu />
         </div>
       </div>

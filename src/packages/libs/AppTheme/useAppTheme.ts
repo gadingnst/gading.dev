@@ -2,16 +2,16 @@ import { useCallback, useMemo } from 'react';
 import useStore from 'swr-global-state';
 
 import useMounted from '@/packages/hooks/useMounted';
-import { APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
+import { APP_THEME_DEFAULT, APP_THEME_IS_SYSTEM_DARK_KEY, APP_THEME_KEY, APP_THEME_SELECTION_ENABLED, AppTheme, AppThemes } from '@/packages/libs/AppTheme/constants';
 import { isThemeDark } from '@/packages/libs/AppTheme/utils';
 import CookieStoragePersistor from '@/packages/libs/SWRGlobalState/Cookie.persistor';
 
 /**
  * Custom hook untuk mengelola tema aplikasi dengan dukungan deteksi sistem
- * @param initial - Tema awal (default: DARK)
+ * @param initial - Tema awal (default: APP_THEME_DEFAULT)
  * @returns Object dengan currentTheme, setTheme, dan isSystemDark
  */
-function useAppTheme(initial = AppThemes.DARK) {
+function useAppTheme(initial = APP_THEME_DEFAULT) {
   const [theme, setAppTheme] = useStore<AppTheme>({
     key: APP_THEME_KEY,
     initial: initial,
@@ -28,17 +28,23 @@ function useAppTheme(initial = AppThemes.DARK) {
 
   // actual theme to use
   const appTheme = useMemo(() => {
+    // theme selection disabled => always lock to the initial theme,
+    // ignoring any previously persisted cookie value
+    if (!APP_THEME_SELECTION_ENABLED) {
+      return initial;
+    }
     if (theme === AppThemes.SYSTEM && isSystemDark) {
       return AppThemes.DARK;
     }
     return theme;
-  }, [theme, isSystemDark]);
+  }, [theme, isSystemDark, initial]);
 
   const isDark = useMemo(() => {
     return isThemeDark(appTheme);
   }, [appTheme]);
 
   const setTheme = useCallback((theme: AppTheme) => {
+    if (!APP_THEME_SELECTION_ENABLED) return;
     setAppTheme(theme);
   }, [setAppTheme]);
 
