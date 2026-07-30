@@ -108,10 +108,7 @@ export default function Menu() {
                     ]
                   ])}
                 >
-                  <item.icon className={cn([
-                    'w-4 h-4 transition-all duration-300 text-white',
-                    isActive ? 'text-black drop-shadow-sm' : 'text-current'
-                  ])} />
+                  <item.icon className="w-4 h-4 transition-all duration-300 text-current" />
                   <span>{item.label}</span>
                 </NextLink>
               </li>
