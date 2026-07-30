@@ -210,7 +210,14 @@ html {
 @import "./content-parser";
 
 /*
- * NOTE: glass/card tokens are intentionally NOT overridden per breakpoint.
- * Every viewport reads the same values from the theme blocks above so the
- * glass effects look identical on mobile and desktop.
+ * Desktop-only glass surface refinement: higher opacity background on desktop
+ * for higher legibility over high-resolution desktop banners and complex diagrams.
  */
+@media (min-width: 768px) {
+  :root {
+    --glass-bg: rgba(0, 0, 0, 0.65);
+  }
+  :root[data-theme="dark"], [data-theme="dark"] {
+    --glass-bg: rgba(14, 38, 58, 0.88);
+  }
+}
