@@ -8,6 +8,7 @@ function ContentLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     <Link
       href={href || '#'}
       external={isExternal}
+      size="inherit"
       className={className}
       {...restProps}
     />

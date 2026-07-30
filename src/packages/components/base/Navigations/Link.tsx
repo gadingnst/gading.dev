@@ -6,7 +6,7 @@ import cn from '@/designs/utils/cn';
 import NextLink, { type Props as NextLinkProps } from './NextLink';
 
 export interface LinkProps extends NextLinkProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'inherit' | 'xs' | 'sm' | 'md' | 'lg';
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
   external?: boolean;
@@ -38,6 +38,7 @@ function Link(props: LinkProps) {
   } = props;
 
   const sizeClasses = {
+    inherit: '',
     xs: 'text-xs',
     sm: 'text-sm',
     md: 'text-base',
