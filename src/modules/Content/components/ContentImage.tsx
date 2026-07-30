@@ -15,6 +15,7 @@ function ContentImage(props: ContentImageProps) {
       figureClassName="flex flex-col items-center min-h-[200px] w-full justify-center my-4 rounded-lg"
       enableZoom
       enableDownload
+      enableFullscreen
       src={src}
       alt={alt}
       width={1200}

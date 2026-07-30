@@ -1,23 +1,26 @@
 'use client';
 
-import { Download, ZoomIn, ZoomOut } from 'lucide-react';
+import { Download, Maximize, ZoomIn, ZoomOut } from 'lucide-react';
 import { PropsWithChildren, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import useImageTools from '@/packages/libs/Images/useImageTools';
 
 import Image, { ImageProps } from './Image';
+import ImageFullscreenModal from './ImageFullscreenModal';
 
 interface ImageWithToolsProps extends ImageProps {
   enableZoom?: boolean;
   enableDownload?: boolean;
+  enableFullscreen?: boolean;
   figureClassName?: string;
   toolsWrapperClassName?: string;
 }
 
 function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
-  const { src, enableZoom, enableDownload, figureClassName, toolsWrapperClassName, children, ...imageProps } = props;
+  const { src, enableZoom, enableDownload, enableFullscreen, figureClassName, toolsWrapperClassName, children, ...imageProps } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
 
   const {
@@ -95,6 +98,28 @@ function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
           )}
         </div>
       )}
+      {isHovered && enableFullscreen && (
+        <div
+          className={cn(
+            'absolute bottom-4 left-2 flex items-center gap-2 transition-opacity duration-300',
+            isHovered ? 'opacity-100' : 'opacity-0'
+          )}
+        >
+          <button
+            onClick={() => setIsFullscreenOpen(true)}
+            className="rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
+            aria-label="Fullscreen"
+          >
+            <Maximize size={16} />
+          </button>
+        </div>
+      )}
+      <ImageFullscreenModal
+        src={src?.toString() || ''}
+        alt={imageProps.alt || ''}
+        isOpen={isFullscreenOpen}
+        onClose={() => setIsFullscreenOpen(false)}
+      />
       {children}
     </figure>
   );
