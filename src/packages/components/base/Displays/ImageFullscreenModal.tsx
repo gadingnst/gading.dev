@@ -233,7 +233,7 @@ function ImageFullscreenModal({ src, alt, isOpen, onClose }: ImageFullscreenModa
           className="max-h-[85vh] max-w-[90vw] select-none object-contain"
           style={{
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-            transition: isDragging.current ? 'none' : 'transform 0.2s ease-out'
+            transition: 'transform 0.2s ease-out'
           }}
           draggable={false}
         />
