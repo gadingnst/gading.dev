@@ -278,10 +278,6 @@ function LazyImage({
    * Render the actual image
    */
   const renderImage = () => {
-    if (!state.isInView && !state.isLoaded) {
-      return null;
-    }
-
     return (
       <img
         ref={imgRef}
@@ -289,6 +285,7 @@ function LazyImage({
         alt={alt}
         width={width}
         height={height}
+        loading="lazy"
         onLoad={handleImageLoad}
         onError={handleImageError}
         className={cn([
