@@ -65,6 +65,15 @@ function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
             toolsWrapperClassName
           )}
         >
+          {enableFullscreen && (
+            <button
+              onClick={() => setIsFullscreenOpen(true)}
+              className="rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
+              aria-label="Fullscreen"
+            >
+              <Maximize size={16} />
+            </button>
+          )}
           {enableZoom && showZoomOut && (
             <button
               onClick={handleZoomOut}
@@ -98,22 +107,7 @@ function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
           )}
         </div>
       )}
-      {isHovered && enableFullscreen && (
-        <div
-          className={cn(
-            'absolute bottom-4 left-2 flex items-center gap-2 transition-opacity duration-300',
-            isHovered ? 'opacity-100' : 'opacity-0'
-          )}
-        >
-          <button
-            onClick={() => setIsFullscreenOpen(true)}
-            className="rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
-            aria-label="Fullscreen"
-          >
-            <Maximize size={16} />
-          </button>
-        </div>
-      )}
+
       <ImageFullscreenModal
         src={src?.toString() || ''}
         alt={imageProps.alt || ''}
