@@ -179,7 +179,7 @@ function ImageFullscreenModal({ src, alt, isOpen, onClose }: ImageFullscreenModa
       {/* Close button */}
       <button
         onClick={handleClose}
-        className="absolute top-4 right-4 z-10 cursor-pointer rounded-full bg-white/10 p-2 text-white backdrop-blur-sm hover:bg-white/20"
+        className="absolute top-4 right-4 z-10 cursor-pointer rounded-full bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60"
         aria-label="Close"
       >
         <X size={24} />
@@ -191,21 +191,21 @@ function ImageFullscreenModal({ src, alt, isOpen, onClose }: ImageFullscreenModa
           onClick={handleZoomOut}
           disabled={scale <= MIN_ZOOM}
           className={cn(
-            'rounded-full cursor-pointer bg-white/10 p-2 text-white backdrop-blur-sm hover:bg-white/20',
+            'rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60',
             scale <= MIN_ZOOM && 'opacity-30 cursor-not-allowed'
           )}
           aria-label="Zoom Out"
         >
           <ZoomOut size={20} />
         </button>
-        <span className="min-w-[3rem] text-center text-sm text-white/80">
+        <span className="min-w-[3rem] text-center text-sm rounded-full bg-black/30 px-2 py-1 text-white backdrop-blur-sm">
           {Math.round(scale * 100)}%
         </span>
         <button
           onClick={handleZoomIn}
           disabled={scale >= MAX_ZOOM}
           className={cn(
-            'rounded-full cursor-pointer bg-white/10 p-2 text-white backdrop-blur-sm hover:bg-white/20',
+            'rounded-full cursor-pointer bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/60',
             scale >= MAX_ZOOM && 'opacity-30 cursor-not-allowed'
           )}
           aria-label="Zoom In"
