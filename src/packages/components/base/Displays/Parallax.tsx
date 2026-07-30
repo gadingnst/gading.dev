@@ -57,7 +57,7 @@ export function Background({ className, children }: BackgroundProps) {
         className
       ])}
       style={{
-        zIndex: -1
+        zIndex: 0
       }}
     >
       {children}
@@ -163,7 +163,7 @@ function Parallax({
     transform: bgTransform,
     willChange: 'transform',
     filter: bgBlur ? `blur(${Math.abs(bgBlur)}px)` : undefined,
-    zIndex: -1,
+    zIndex: 0,
     ...bgImageStyle,
     ...bgStyle
   };
@@ -176,6 +176,7 @@ function Parallax({
         className
       ])}
       style={{
+        isolation: 'isolate',
         ...style
       }}
     >
