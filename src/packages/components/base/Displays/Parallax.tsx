@@ -187,6 +187,7 @@ function Parallax({
           alt={bgImageAlt}
           sizes={bgImageSize}
           srcSet={bgImageSrcSet}
+          crossOrigin="anonymous"
           className={cn([
             'absolute inset-0 w-full h-full object-cover',
             bgClassName
