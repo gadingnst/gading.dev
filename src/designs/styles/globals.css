@@ -209,4 +209,8 @@ html {
 @import "./prism";
 @import "./content-parser";
 
-
+/*
+ * NOTE: glass/card tokens are intentionally NOT overridden per breakpoint.
+ * Every viewport reads the same values from the theme blocks above so the
+ * glass effects look identical on mobile and desktop.
+ */

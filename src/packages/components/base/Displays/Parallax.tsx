@@ -57,7 +57,8 @@ export function Background({ className, children }: BackgroundProps) {
         className
       ])}
       style={{
-        zIndex: 0
+        transform: 'translate3d(0, 0, 0)',
+        zIndex: -1
       }}
     >
       {children}
@@ -89,7 +90,7 @@ function Parallax({
 }: ParallaxProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [percentage, setPercentage] = useState(0);
-  const [bgTransform, setBgTransform] = useState('translateY(0px)');
+  const [bgTransform, setBgTransform] = useState('translate3d(0, 0, 0)');
   const [bgBlur, setBgBlur] = useState(0);
 
   /**
@@ -115,7 +116,7 @@ function Parallax({
 
     // Calculate parallax transform
     const yPos = -(scrollPercentage - 0.5) * strength;
-    setBgTransform(`translateY(${yPos}px)`);
+    setBgTransform(`translate3d(0, ${yPos}px, 0)`);
 
     // Calculate blur if dynamic
     if (typeof blur === 'object') {
@@ -162,7 +163,7 @@ function Parallax({
     objectFit: 'cover',
     transform: bgTransform,
     filter: bgBlur ? `blur(${Math.abs(bgBlur)}px)` : undefined,
-    zIndex: 0,
+    zIndex: -1,
     ...bgImageStyle,
     ...bgStyle
   };
@@ -175,6 +176,7 @@ function Parallax({
         className
       ])}
       style={{
+        transform: 'translate3d(0, 0, 0)',
         ...style
       }}
     >
