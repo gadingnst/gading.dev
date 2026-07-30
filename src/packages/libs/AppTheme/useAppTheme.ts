@@ -8,10 +8,10 @@ import CookieStoragePersistor from '@/packages/libs/SWRGlobalState/Cookie.persis
 
 /**
  * Custom hook untuk mengelola tema aplikasi dengan dukungan deteksi sistem
- * @param initial - Tema awal (default: SYSTEM)
+ * @param initial - Tema awal (default: DARK)
  * @returns Object dengan currentTheme, setTheme, dan isSystemDark
  */
-function useAppTheme(initial = AppThemes.SYSTEM) {
+function useAppTheme(initial = AppThemes.DARK) {
   const [theme, setAppTheme] = useStore<AppTheme>({
     key: APP_THEME_KEY,
     initial: initial,

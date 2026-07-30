@@ -27,7 +27,7 @@ const spaceGrotesk = Space_Grotesk({
  * Kept inline (not a module) so it runs ahead of hydration, and cookie based so
  * it keeps working on the static export build where the server has no request.
  */
-const APPLY_THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|; )${APP_THEME_KEY}=([^;]*)/);var v=m?decodeURIComponent(m[1]).replace(/^"|"$/g,''):'';if(v==='light'||v==='dark'){document.documentElement.setAttribute('data-theme',v)}}catch(e){}})();`;
+const APPLY_THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|; )${APP_THEME_KEY}=([^;]*)/);var v=m?decodeURIComponent(m[1]).replace(/^"|"$/g,''):'';if(v==='light'||v==='dark'){document.documentElement.setAttribute('data-theme',v)}else if(v==='system'){document.documentElement.removeAttribute('data-theme')}else{document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();`;
 
 /**
  * Layout for language-specific routes
@@ -41,7 +41,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
   const htmlLang = I18n[currentLang].replace('_', '-').toLowerCase();
 
   return (
-    <html lang={htmlLang}>
+    <html lang={htmlLang} data-theme="dark">
       {/* `next/head` is Pages Router only; App Router layouts render <head> directly */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
