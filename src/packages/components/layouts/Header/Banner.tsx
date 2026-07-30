@@ -18,12 +18,10 @@ function Banner(props: PropsWithChildren<Props>) {
     children,
     bgClassName,
     /**
-     * `svh` (small viewport height) instead of `vh`: it is measured with the
-     * mobile browser chrome expanded and never changes while scrolling, so the
-     * banner — and the gap between the title card and the content card below
-     * it — stays put when the address bar shows/hides. `vh` reflows on that.
+     * Fixed pixel height for consistent banner size across viewports/devices,
+     * instead of dynamic vh/svh which changes gap spacing based on screen height.
      */
-    height = '70svh',
+    height = '500px',
     bgImage,
     containerClassName,
     ...otherProps
