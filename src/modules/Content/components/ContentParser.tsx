@@ -27,7 +27,7 @@ function ContentParser(props: PropsWithChildren<Props>) {
   }, [children]);
 
   return (
-    <div className={cn(['w-full max-w-full prose parser', className])}>
+    <div className={cn(['w-full max-w-full prose prose-sm sm:prose-base parser', className])}>
       <Parser
         {...otherProps}
         components={{
