@@ -34,7 +34,7 @@ function ImageWithTools(props: PropsWithChildren<ImageWithToolsProps>) {
   const imageStyle = {
     cursor: isPannable ? (isDragging ? 'grabbing' : 'grab') : 'auto',
     transition: 'transform 0.2s ease-out',
-    touchAction: 'none'
+    touchAction: isPannable ? 'none' : 'auto'
   };
 
   return (
