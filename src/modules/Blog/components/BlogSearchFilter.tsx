@@ -191,7 +191,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
               onClick={() => handlePageChange(page)}
               aria-label={`Go to page ${page}`}
               className={cn([
-                'w-9 h-9 flex items-center justify-center text-sm md:text-base rounded-full transition-all duration-300 mx-1 border border-transparent font-medium',
+                'w-9 h-9 flex items-center justify-center text-base rounded-full transition-all duration-300 mx-1 border border-transparent font-medium',
                 currentPage === page
                   ? 'shadow-lg bg-primary text-white pointer-events-none scale-105'
                   : 'hover:outline outline-primary dark:outline-accent cursor-pointer text-base-content/85'
@@ -241,7 +241,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
               <h1 className="text-2xl md:text-4xl font-bold text-white">
                 Blog
               </h1>
-              <p className="text-sm md:text-base text-white/80 max-w-xl">
+              <p className="text-base text-white/80 max-w-xl">
                 {localeDesc.desc}
               </p>
 
@@ -254,7 +254,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                     placeholder={localeDesc.searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => handleSearchChange(e.target.value)}
-                    className="input input-ghost w-full focus:outline-none focus:bg-transparent text-white placeholder-white/40 text-sm md:text-base border-none bg-transparent h-11 px-3 focus:ring-0 focus:border-none outline-none"
+                    className="input input-ghost w-full focus:outline-none focus:bg-transparent text-white placeholder-white/40 text-base border-none bg-transparent h-11 px-3 focus:ring-0 focus:border-none outline-none"
                   />
                   {searchQuery && (
                     <button
@@ -355,7 +355,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
       ) : (
         <div className="text-center py-20 px-4 z-10 flex-1">
           <div className="max-w-md mx-auto p-8 rounded-2xl bg-base-100/25 border border-base-content/5 backdrop-blur-md shadow-xl">
-            <p className="text-base-content/80 text-sm md:text-base font-medium">
+            <p className="text-base-content/80 text-base font-medium">
               {localeDesc.emptyState}
             </p>
             <button
