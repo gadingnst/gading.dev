@@ -161,7 +161,6 @@ function Parallax({
     height: `calc(100% + ${strength}px)`,
     objectFit: 'cover',
     transform: bgTransform,
-    willChange: 'transform',
     filter: bgBlur ? `blur(${Math.abs(bgBlur)}px)` : undefined,
     zIndex: 0,
     ...bgImageStyle,
@@ -176,7 +175,6 @@ function Parallax({
         className
       ])}
       style={{
-        isolation: 'isolate',
         ...style
       }}
     >
