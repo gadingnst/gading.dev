@@ -26,11 +26,11 @@ function LanguageItem(_props: LanguageItemProps) {
         href={href}
         disabled={isActive}
         className={cn([
-          'flex items-center gap-3 transition-all duration-300',
-          'cursor-pointer hover:bg-white/35 hover:shadow-primary',
+          'flex items-center gap-3 transition-all duration-300 text-white/90 hover:text-white',
+          'cursor-pointer hover:bg-white/15',
           isActive && [
-            'active cursor-default bg-white text-black font-semibold',
-            'border-l-4 border-primary/75 shadow-lg shadow-white/20'
+            'active cursor-default bg-white/20 text-white font-semibold',
+            'border-l-4 border-primary shadow-md'
           ]
         ])}
       >

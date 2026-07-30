@@ -79,7 +79,7 @@ export default function Dropdown({
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300',
-          liquidGlass && 'liquid-glass-shadow hover:bg-white/15 hover:text-black dark:hover:text-white',
+          liquidGlass && 'liquid-glass-shadow text-white hover:bg-white/20',
           disabled && 'btn-disabled opacity-60 cursor-not-allowed'
         ])}
         onClick={handleToggle}
@@ -88,8 +88,10 @@ export default function Dropdown({
       </div>
       <ul
         className={cn([
-          'dropdown-content mt-1 menu rounded-box z-[1] w-52 p-2 shadow-lg gap-y-1.5',
-          liquidGlass && 'liquid-glass-shadow',
+          'dropdown-content mt-1 menu rounded-2xl z-50 w-52 p-2 shadow-2xl gap-y-1.5 backdrop-blur-xl transition-all duration-200',
+          liquidGlass
+            ? 'bg-slate-900/80 dark:bg-slate-900/85 text-white border border-white/15 shadow-black/50'
+            : 'bg-base-100 text-base-content',
           dropdownClassName
         ])}
       >

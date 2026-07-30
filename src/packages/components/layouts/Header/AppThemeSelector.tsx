@@ -53,21 +53,18 @@ export default function AppThemeSelector() {
             <button
               onClick={() => handleThemeChange(option.value)}
               className={cn([
-                'flex items-center gap-3 transition-all duration-300',
-                'cursor-pointer hover:bg-white/35 hover:shadow-primary',
+                'flex items-center gap-3 transition-all duration-300 text-white/90 hover:text-white',
+                'cursor-pointer hover:bg-white/15',
                 isActive && [
                   'opacity-60 pointer-events-none cursor-not-allowed',
-                  'active cursor-default bg-white text-black font-semibold',
-                  'border-l-4 border-primary/75 shadow-lg shadow-white/20'
+                  'active cursor-default bg-white/20 text-white font-semibold',
+                  'border-l-4 border-primary shadow-md'
                 ]
               ])}
               disabled={isActive}
             >
               <IconComponent
-                className={cn([
-                  'w-4 h-4 transition-all duration-300',
-                  isActive ? 'text-base-content drop-shadow-sm' : 'text-current'
-                ])}
+                className="w-4 h-4 transition-all duration-300 text-current"
               />
               <span>{option.label}</span>
               {option.value === AppThemes.SYSTEM && (
