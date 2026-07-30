@@ -59,6 +59,7 @@ pre::-webkit-scrollbar-thumb {
 
 code:not(.code-highlight) {
   @apply bg-base-300;
+  font-size: inherit;
   padding: 2px 6px;
   border-radius: 0.3em;
   word-break: break-word;
