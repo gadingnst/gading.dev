@@ -2,10 +2,8 @@
 
 import { PropsWithChildren, useMemo } from 'react';
 
-import { IS_DEV } from '@/configs/sites';
 import cn from '@/designs/utils/cn';
 import Parallax, { ParallaxProps } from '@/packages/components/base/Displays/Parallax';
-import cloudinary from '@/packages/libs/Cloudinary/utils';
 
 interface Props extends ParallaxProps {
   bgImage: string;
@@ -33,8 +31,7 @@ function Banner(props: PropsWithChildren<Props>) {
 
   const imageUrl = useMemo(() => {
     if (isDefaultBanner) return undefined;
-    if (IS_DEV) return bgImage;
-    return cloudinary(bgImage, { scale: 0.75 });
+    return bgImage;
   }, [bgImage, isDefaultBanner]);
 
   return (
