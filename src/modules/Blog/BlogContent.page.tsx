@@ -47,7 +47,7 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
       <div className="min-h-screen flex flex-col text-base-content">
         <Banner bgImage={content.meta.image}>
           <section className="font-serif flex flex-col h-full items-center justify-center text-center">
-            <div className="base-container relative z-10">
+            <div className="base-container w-full relative z-10">
               <div className="liquid-glass-shadow rounded-2xl p-8 -translate-y-6">
                 <h1 className="text-xl md:text-2xl font-bold">
                   {content.meta.title}
