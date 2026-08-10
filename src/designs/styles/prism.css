@@ -59,6 +59,7 @@ pre::-webkit-scrollbar-thumb {
 
 code:not(.code-highlight) {
   @apply bg-base-300;
+  font-size: inherit;
   padding: 2px 6px;
   border-radius: 0.3em;
   word-break: break-word;
@@ -206,6 +207,7 @@ pre[class*='language-'] {
   text-shadow: none;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.875em;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
