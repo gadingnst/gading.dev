@@ -1,0 +1,83 @@
+---
+title: "Not the Fastest or the Trendiest, but the One with the Lowest Trade-offs"
+slug: {
+  en: "minimizing-tradeoffs-in-tech-choices",
+  id: "memilih-tech-stack-dengan-trade-off-minim"
+}
+date: 2026-08-27
+description: "Why the longer I code, the more tired I get of 'bleeding-edge fast' or 'hyped' tech stacks, and why I choose technologies that minimize total regret."
+keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
+tags: ["architecture", "engineering", "philosophy", "devops"]
+image: "/media/default-banners/9.jpg"
+---
+
+When I first started taking programming seriously years ago, I suffered from a condition almost every young developer catches: **Shiny Object Syndrome**.
+
+Whenever a new tool went viral on tech Twitter, I immediately wanted to plug it into my projects. If a framework claimed to be "100x faster," my gut reaction was: *"This is the future, we must migrate now!"* If I saw an academic Clean Architecture tutorial with 15 nested folder layers, I felt my code was amateurish if I didn't mirror the exact same structure.
+
+But after years of getting slapped by production reality—being woken up at 3 AM because a complex container died, pulling my hair out debugging through dozens of empty interface layers, or waiting minutes for a compiler just to fix a single-line typo—my perspective did a complete 180-degree flip.
+
+Today, my core rule when evaluating any technology is simple: **Pick the option with the lowest overall trade-offs, not the one pushed to an extreme spectrum.**
+
+---
+
+### The 3 Extreme Traps
+
+In software engineering, I frequently see teams fall into one of three extreme corners:
+
+#### 1. The "Maximum Performance" Purist
+This is the camp that insists on writing everything in Rust, C++, or Zig.
+
+Their pitch is always identical: *"Ultra-fast, zero overhead, binary uses only 5MB of RAM!"*
+
+Yes, the runtime performance is blisteringly fast. But during daily development? **It is pure friction.**
+Adding a single JSON field means fighting the borrow checker. Every minor change requires minutes of recompilation. Hot module reloading is painfully slow. 80% of your mental bandwidth is spent appeasing low-level compiler quirks instead of solving the actual product problem.
+
+If you are building a game engine, video codec, or OS kernel, this makes total sense. But for an orchestration daemon, CRUD backend, or homelab automation? It is overkill that slows you down.
+
+#### 2. The "Maximum Hype" Fashion Victim
+This is the camp whose architecture is dictated by whatever is trending this month.
+
+Before they even have 100 active users, their database layer is already fractured into five dedicated systems: GraphDB for relationships, dedicated VectorDB for AI, TimeSeries for metrics, Redis for cache, and DocumentDB for configurations—all orchestrated across a 20-microservice Kubernetes cluster.
+
+It looks magnificent on conference slides. But in production? **It is operational hell.** A minor network blip causes data sync headaches, cloud bills skyrocket, and when a request breaks midway, nobody knows which service dropped the ball.
+
+#### 3. The "Pure Dogmatic Clean Architecture" Academic
+This is the camp intoxicated by enterprise textbook theory.
+
+To implement something as trivial as `getUserById`, the flow must pass through: `Entity` -> `DTO` -> `RepositoryInterface` -> `RepositoryImpl` -> `UseCaseInterface` -> `UseCaseImpl` -> `Controller` -> `Presenter` -> `Mapper`.
+
+The result? A codebase drowning in boilerplate. Finding where the actual SQL query lives requires `Cmd + Clicking` through 8 hollow interface files. When a critical bug occurs, the stack trace spans 50 wrapper lines. It looks pristine in diagrams, but it makes developers dread writing new features.
+
+---
+
+### Embracing "The Golden Middle"
+
+Having suffered the consequences of all three extremes, I now actively look for the **Sweet Spot**—the choice that delivers 90% of the benefits with the least amount of friction.
+
+Here are a few real-world decisions from my recent projects (including when building my personal AI agent engine, **Nourun**):
+
+#### A. TypeScript on Bun (Not Rust, Not Slow Python)
+* **Why not Rust?** Too much compilation friction for rapid feature iteration.
+* **Why not Python?** Slow startup latency, brittle virtualenv collisions, and excessive idle memory (~400MB–800MB).
+* **The Golden Middle:** TypeScript on Bun. Minimal memory footprint (~70MB), fast runtime execution, instant HMR with zero build delays, and access to the vast npm ecosystem.
+
+#### B. PostgreSQL + pgvector (Not Dedicated Vector/Graph DBs)
+* **Why not ChromaDB / Pinecone / Neo4j?** I refuse to operate yet another standalone database in my homelab that requires separate backups, monitoring, and network configuration.
+* **The Golden Middle:** A single PostgreSQL instance. It handles relational tables, executes deterministic SQL analytics, and provides semantic RAG retrieval via the `pgvector` extension. Reliable, unified, and battle-tested for decades.
+
+#### C. Pragmatic Architecture (Not 20 Layers of Indirection)
+* In Nourun, I isolated runtime dependencies behind a single boundary (`packages/runtime`) specifically to avoid Bun/Node vendor lock-in.
+* The rest of the engine? **Direct, procedural, async TypeScript functions.** No artificial class ceremonies, no DTO wrappers. Clean architectural boundaries are enforced via a custom CI lint script (`check-arch.ts`) rather than dozens of empty interface files.
+
+---
+
+### Conclusion: Engineering Maturity
+
+I used to believe that an engineer's caliber was measured by how complex their architecture looked or how low-level their stack was.
+
+I now know the opposite is true.
+
+As your experience deepens, you learn to respect simplicity. You realize that great software is not the one with the highest synthetic benchmark score, nor the one with the most buzzwords on GitHub, nor the purest textbook design.
+
+Great software is software that **ships on time, runs reliably while you sleep, is effortless to debug when things break, and leaves you with the least amount of regret.**
