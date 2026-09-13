@@ -1,0 +1,100 @@
+---
+title: "Implementasi Konsep Spilling dalam Memanage Context di AI Agent"
+slug: {
+  en: "spilling-concept-for-managing-ai-agent-context"
+}
+date: 2026-09-13
+description: "Pengalaman gw bikin sistem tool output spilling di Nouride supaya agent gak gampang amnesia atau crash saat output command terminalnya kepanjangan."
+tags: ["ai", "agent", "nouride", "system-design", "engineering"]
+image: "/media/blog/konsep-spilling-dalam-memanage-context-di-ai-agent/banner.jpg"
+---
+
+Kalau lu sering ngoprek atau pakai coding agent yang punya akses tool terminal (eg: `exec`, etc2), lu mungkin pernah ngalamin momen di mana si agent awalnya nurut dan enak diajak mikir, tapi tiba-tiba di turn ke-20 atau ke-30 mendadak bego, halu, atau malah error `context length exceeded`.
+
+Masalah ini biasanya bukan karena model LLM-nya yang payah, tapi karena **manajemen I/O tool-nya yang berantakan**.
+
+Cukup satu perintah terminal yang output-nya gak kekontrol—misalnya `docker logs`, `git diff` monorepo, atau build script yang nge-print stack trace ribuan baris—ribuan baris teks mentah itu bisa langsung ngebanjirin context window. Sekali log berukuran 4 MB sampai 6 MB masuk mentah-mentah ke payload prompt, efek buruknya langsung beruntun:
+1. Context window langsung mentok.
+2. Token input di tiap turn berikutnya membengkak drastis.
+3. Modelnya kena *attention drift*. Instruksi penting dan konteks kerjaan yang lu bahas di awal sesi tenggelam ketutup tumpukan log terminal yang sebenarnya gak penting-penting amat.
+
+Waktu gw bangun **[Nouride](https://nouride.com)** (daemon multi-agent buat kebutuhan homelab), masalah ini jadi salah satu prioritas pertama yang harus beres. Gw butuh agent kayak Nouva bisa nemenin gw seharian ngoding nembus puluhan sampai ratusan turn tanpa mogok di tengah jalan.
+
+Berikut beberapa eksperimen yang sempat gw coba dan gimana solusi akhirnya gw bikin lewat konsep yang gw sebut **Tool Output Spilling**.
+
+---
+
+### Trial-Error, tapi Kurang Pas
+
+Sebelum nemu pola yang enak, gw sempat nyoba pendekatan yang lumrah dipake orang tapi ternyata nyusahin di lapangan:
+
+#### 1. Titip Aturan di System Prompt
+Gw sempat mikir solusinya cukup dikasih tahu lewat prompt: *"Kalau output terminal kira-kira bakal panjang, redirect ke file ya, terus kasih tahu path-nya aja."*
+
+Pendekatan ini gak jalan konsisten. Model LLM itu gak tahu seberapa panjang output dari sebuah program sebelum programnya dieksekusi. Pas dia manggil `journalctl` atau `npm test`, dia gak bisa nebak apakah hasilnya bakal 5 baris atau 10.000 baris. Menyerahkan beban kontrol memori ke intuisi model sebelum perintah berjalan itu rapuh banget.
+
+#### 2. Truncation Kasar (Potong Depan)
+Solusi berikutnya gw coba pasang limit karakter di backend. Kalau output lebih dari batas tertentu, potong aja dan ambil 2.000 karakter pertama.
+
+Ternyata cara ini bikin masalah baru. Di dunia programming, sinyal penting dari sebuah log eksekusi hampir selalu ada di ujung akhir (*tail*): baris error terakhir, summary compiler, atau exit code failure. Kalau yang diambil cuma bagian depan (*head*), agent bakal ngeliat log konfigurasi awal yang sukses, terus dia ngira semuanya jalan lancar padahal proses aslinya gagal di baris ke-5.000.
+
+#### 3. Marker "Jalanin Lagi Kalau Butuh"
+Ada juga pola agent yang cuma ngasih teks pendek: `[output 5MB dipotong, jalankan lagi perintahnya kalau mau lihat detail]`.
+
+Pola ini gak masuk akal kalau perintah yang dijalankan itu proses compile atau build yang makan waktu 2 menit. Masa si agent harus nungguin 2 menit lagi cuma buat ngintip baris tengah yang tadi gak kebaca?
+
+---
+
+### Baru Sadar Konsep Spilling ke Filesystem
+
+Akhirnya gw adaptasi konsep yang udah lama ada di sistem operasi: **memory spilling / paging to disk**. Kalau RAM terbatas, OS bakal nge-swap halaman memori yang belum dipake ke disk daripada langsung mematikan prosesnya.
+
+Di Nouride, harness daemon duduk di tengah antara hasil eksekusi tool dan payload prompt yang bakal dikirim ke LLM. Alurnya gw bikin deterministik:
+
+#### 1. Capping Berdasarkan Budget Turn
+Satu hasil tool call gak boleh ngabisin context window. Di Nouride, satu tool result dijatah maksimal **25% dari total conversation budget** (dengan floor 2.000 token). Tujuannya supaya kalau agent manggil 3 atau 4 tool sekaligus dalam satu turn, masih ada sisa ruang 50% buat prompt persona, memory, dan chat history.
+
+#### 2. Tulis Full Output ke Disk
+Kalau panjang karakter dari tool result ngelewatin batas budget tadi:
+- Teks utuh gak dibuang, melainkan langsung ditulis secara atomic ke disk di path `$DATA_DIR/tool-output/<session_id>/<call_id>.txt`.
+- File ini langsung diset permission aman `0600` (karena bisa aja ada log environment atau credential yang kebaca).
+- Folder spill ini otomatis masuk ke whitelist path sandbox read-only si agent, jadi agent punya hak akses buat ngebaca file tersebut kalau emang dibutuhkan.
+
+#### 3. Kirim Excerpt Terstruktur (Head & Tail)
+Yang disuapin ke context LLM bukan 5 MB teks mentah tadi, tapi teks ringkas yang dipotong dengan pembagian:
+- **Head (65%):** Bagian awal perintah, biar model paham inisialisasi dan konfigurasi perintah yang jalan.
+- **Tail (35%):** Bagian akhir log, biar model bisa langsung baca summary sukses atau pesan error fatalnya.
+- **Metadata:** Jumlah baris dan ukuran asli (KB), serta berapa baris yang disembunyikan di tengah.
+- **Pointer Path:** Lokasi file fisik di disk, lengkap dengan petunjuk: *"Open it with `read` and an offset, or narrow it with `grep`."*
+
+Format yang diterima sama agent kelihatan seperti ini:
+
+```text
+[output too large for the context — 14,200 lines, ~2,840KB.
+The first 65 and last 35 lines are below; 14,100 in the middle are not.]
+Full output: /srv/nouride/.nouride/data/tool-output/s_019/call_exec_42.txt
+Open it with `read` and an offset, or narrow it with `grep` — it is a normal file and it is readable.
+
+... (baris awal perintah) ...
+
+... (baris akhir / exit error) ...
+```
+
+---
+
+### Hasilnya
+
+Dengan mekanisme ini, ada beberapa benefit yang gw rasain:
+
+1. **Agent Gak Pernah Kehilangan Konteks Error:** Karena tail selalu dikirim, agent langsung tahu apa error utamanya tanpa halusinasi.
+2. **Investigation-Ready:** Kalau agent ngerasa butuh ngecek stack trace yang ada di tengah-tengah log, dia gak perlu rerun command berat. Dia tinggal manggil tool `grep` atau `read` dengan offset ke path file spill yang udah dikasih tadi.
+3. **Ukuran Context Stabil:** Biaya token per turn tetap ramping dan stabil dari turn pertama sampai turn ke-100+. Gak ada lonjakan jutaan token cuma gara-gara satu perintah ceroboh.
+4. **Retention Otomatis:** File-file hasil spill ini punya retention lifecycle otomatis berdasarkan mtime sesi chat. Kalau sesinya udah selesai lewat beberapa hari, filenya bakal di-sweep bersih sama daemon.
+
+---
+
+### Penutup
+
+Membuat agent AI yang fungsional seringkali bukan soal seberapa canggih model LLM yang kita pilih, tapi seberapa disiplin runtime harness kita nge-handle I/O.
+
+LLM punya limitasi kapasitas perhatian dan memori jangka pendek. Memastikan output terminal yang ukurannya masif gak mencemari context window—sambil tetap menyediakannya dalam bentuk file pointer yang bisa dibaca kapan saja—adalah kunci kenapa agent bisa kerja stabil dalam sesi yang panjang.
