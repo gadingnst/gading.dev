@@ -1,30 +1,30 @@
 ---
-title: "Konsep Spilling dalam Memanage Context di AI Agent"
+title: "Implementasi Konsep Spilling dalam Memanage Context di AI Agent"
 slug: {
   en: "spilling-concept-for-managing-ai-agent-context"
 }
 date: 2026-09-13
 description: "Pengalaman gw bikin sistem tool output spilling di Nouride supaya agent gak gampang amnesia atau crash saat output command terminalnya kepanjangan."
 tags: ["ai", "agent", "nouride", "system-design", "engineering"]
-image: "/media/default-banners/1.jpg"
+image: "/media/blog/konsep-spilling-dalam-memanage-context-di-ai-agent/banner.jpg"
 ---
 
-Kalau lu sering ngoprek atau pakai coding agent yang punya akses tool terminal (`exec`), lu mungkin pernah ngalamin momen di mana si agent awalnya nurut dan enak diajak mikir, tapi tiba-tiba di turn ke-20 atau ke-30 mendadak bego, halu, atau malah mental error `context length exceeded`.
+Kalau lu sering ngoprek atau pakai coding agent yang punya akses tool terminal (eg: `exec`, etc2), lu mungkin pernah ngalamin momen di mana si agent awalnya nurut dan enak diajak mikir, tapi tiba-tiba di turn ke-20 atau ke-30 mendadak bego, halu, atau malah error `context length exceeded`.
 
-Masalah klasik ini biasanya bukan karena model LLM-nya yang payah, tapi karena **manajemen I/O tool-nya yang berantakan**.
+Masalah ini biasanya bukan karena model LLM-nya yang payah, tapi karena **manajemen I/O tool-nya yang berantakan**.
 
 Cukup satu perintah terminal yang output-nya gak kekontrol—misalnya `docker logs`, `git diff` monorepo, atau build script yang nge-print stack trace ribuan baris—ribuan baris teks mentah itu bisa langsung ngebanjirin context window. Sekali log berukuran 4 MB sampai 6 MB masuk mentah-mentah ke payload prompt, efek buruknya langsung beruntun:
 1. Context window langsung mentok.
-2. Token input di tiap turn berikutnya membengkak drastis (tagihan API langsung lompat).
+2. Token input di tiap turn berikutnya membengkak drastis.
 3. Modelnya kena *attention drift*. Instruksi penting dan konteks kerjaan yang lu bahas di awal sesi tenggelam ketutup tumpukan log terminal yang sebenarnya gak penting-penting amat.
 
-Waktu gw bangun **Nouride** (daemon multi-agent buat kebutuhan homelab dan internal Nouverse), masalah ini jadi salah satu prioritas pertama yang harus beres. Gw butuh agent kayak Nouva bisa nemenin gw seharian ngoding nembus puluhan sampai ratusan turn tanpa mogok di tengah jalan.
+Waktu gw bangun **[Nouride](https://nouride.com)** (daemon multi-agent buat kebutuhan homelab), masalah ini jadi salah satu prioritas pertama yang harus beres. Gw butuh agent kayak Nouva bisa nemenin gw seharian ngoding nembus puluhan sampai ratusan turn tanpa mogok di tengah jalan.
 
 Berikut beberapa eksperimen yang sempat gw coba dan gimana solusi akhirnya gw bikin lewat konsep yang gw sebut **Tool Output Spilling**.
 
 ---
 
-### Eksperimen yang Kurang Pas
+### Trial-Error, tapi Kurang Pas
 
 Sebelum nemu pola yang enak, gw sempat nyoba pendekatan yang lumrah dipake orang tapi ternyata nyusahin di lapangan:
 
@@ -45,7 +45,7 @@ Pola ini gak masuk akal kalau perintah yang dijalankan itu proses compile atau b
 
 ---
 
-### Konsep Spilling ke Filesystem
+### Baru Sadar Konsep Spilling ke Filesystem
 
 Akhirnya gw adaptasi konsep yang udah lama ada di sistem operasi: **memory spilling / paging to disk**. Kalau RAM terbatas, OS bakal nge-swap halaman memori yang belum dipake ke disk daripada langsung mematikan prosesnya.
 
@@ -82,9 +82,9 @@ Open it with `read` and an offset, or narrow it with `grep` — it is a normal f
 
 ---
 
-### Hasilnya di Lapangan
+### Hasilnya
 
-Dengan mekanisme ini, ada beberapa benefit nyata yang gw rasain:
+Dengan mekanisme ini, ada beberapa benefit yang gw rasain:
 
 1. **Agent Gak Pernah Kehilangan Konteks Error:** Karena tail selalu dikirim, agent langsung tahu apa error utamanya tanpa halusinasi.
 2. **Investigation-Ready:** Kalau agent ngerasa butuh ngecek stack trace yang ada di tengah-tengah log, dia gak perlu rerun command berat. Dia tinggal manggil tool `grep` atau `read` dengan offset ke path file spill yang udah dikasih tadi.
@@ -95,6 +95,6 @@ Dengan mekanisme ini, ada beberapa benefit nyata yang gw rasain:
 
 ### Penutup
 
-Membuat agent AI yang fungsional di dunia nyata seringkali bukan soal seberapa canggih model LLM yang kita pilih, tapi seberapa disiplin runtime harness kita nge-handle I/O. 
+Membuat agent AI yang fungsional seringkali bukan soal seberapa canggih model LLM yang kita pilih, tapi seberapa disiplin runtime harness kita nge-handle I/O.
 
 LLM punya limitasi kapasitas perhatian dan memori jangka pendek. Memastikan output terminal yang ukurannya masif gak mencemari context window—sambil tetap menyediakannya dalam bentuk file pointer yang bisa dibaca kapan saja—adalah kunci kenapa agent bisa kerja stabil dalam sesi yang panjang.
