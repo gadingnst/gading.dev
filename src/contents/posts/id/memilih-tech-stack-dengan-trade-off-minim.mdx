@@ -1,0 +1,83 @@
+---
+title: "Bukan yang Paling Keren atau Paling Kencang, tapi yang Trade-off-nya Paling Minim"
+slug: {
+  en: "minimizing-tradeoffs-in-tech-choices",
+  id: "memilih-tech-stack-dengan-trade-off-minim"
+}
+date: 2026-08-27
+description: "Kenapa makin lama ngoding, gw makin muak sama teknologi yang 'paling kencang mentok' atau 'paling keren mentok', dan lebih milih stack yang trade-off-nya paling minim."
+keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
+tags: ["architecture", "engineering", "philosophy", "devops"]
+image: "/media/default-banners/9.jpg"
+---
+
+Dulu pas awal-awal getol ngoding, gw punya penyakit yang kayaknya dialami hampir semua developer muda: **Shiny Object Syndrome**.
+
+Tiap ada teknologi baru yang lagi viral di Twitter, bawaannya pengen langsung gw coba dan pasang di proyek. Kalau ada framework yang klaimnya "100x faster", langsung mikir: *"Wah, ini masa depan nih, harus migrasi sekarang!"* Kalau liat tutorial Clean Architecture yang punya 15 lapis folder, gw ngerasa arsitektur gw kotor kalau gak niru pola yang sama.
+
+Tapi setelah bertahun-tahun kena tampar realita *production*—dibangunin jam 3 pagi gara-gara container hang, pusing nge-debug puluhan lapis interface kosong, atau stres nunggu kompilasi yang lama cuma buat benerin typo 1 baris—cara pandang gw berubah 180 derajat.
+
+Sekarang, prinsip gw waktu milih teknologi cuma satu: **Cari yang trade-off-nya paling minim, bukan yang ekstrem di satu spektrum.**
+
+---
+
+### 3 Jebakan Spektrum Ekstrem
+
+Di dunia software engineering, gw sering liat orang kejebak di 3 sudut ekstrem ini:
+
+#### 1. Ekstrem "Paling Kencang Mentok" (The Performance Purist)
+Ini kubu yang apa-apa mau dibikin pake Rust, C++, atau Zig. 
+
+Argumennya selalu sama: *"Biar ultra-fast, zero-overhead, memory footprint-nya cuma 5MB!"*
+
+Iya, pas jalan emang kencang gila. Tapi pas *development*? **Sengsara.**
+Mau nambah satu field JSON aja harus berantem dulu sama *borrow checker*. Tiap kali ganti kode nunggu kompilasi bermenit-menit. HMR / hot-reload lambat. Waktu lu yang harusnya dipake buat mikirin logika produk malah abis 80% buat ngurusin ritual bahasa tingkat rendah. 
+
+Kalau lu bikin game engine atau kernel OS, masuk akal. Tapi kalau cuma buat CRUD API atau automasi homelab? *Overkill* dan nyusahin diri sendiri.
+
+#### 2. Ekstrem "Paling Keren / Hype Mentok" (The Tech Fashion Victim)
+Ini kubu yang arsitekturnya didikte oleh tren media sosial.
+
+Belum punya 100 user, tapi databasenya udah dipisah 5: GraphDB buat relasi, VectorDB dedicated buat AI, TimeSeries buat log, Redis buat cache, DocumentDB buat config. Ditambah lagi pake arsitektur microservices 20 service dan Kubernetes cluster.
+
+Keliatan keren banget pas dipamerin di slide presentasi. Tapi pas masuk production? **Neraka operasional.** Mati lampu dikit pusing mikirin konsistensi data, tagihan cloud boncos, dan kalau ada bug putus di tengah jalan, gak ada yang tau salahnya di service mana.
+
+#### 3. Ekstrem "Clean Architecture Mentok" (The Dogmatic Academic)
+Ini kubu yang mabok teori buku.
+
+Mau bikin fitur sesimpel `getUserById`, kodenya harus lewat: `Entity` -> `DTO` -> `RepositoryInterface` -> `RepositoryImpl` -> `UseCaseInterface` -> `UseCaseImpl` -> `Controller` -> `Presenter` -> `Mapper`.
+
+Hasilnya? Repositori penuh sama file *boilerplate* kosong. Mau nyari logika aslinya di mana harus pencet `Cmd + Click` 8 kali nembus interface gak jelas. Pas ada bug kritis, stack trace-nya 50 baris wrapper. Arsitekturnya "suci" di atas kertas, tapi bikin developer pengen banting laptop pas disuruh nambah fitur baru.
+
+---
+
+### Memilih "The Golden Middle"
+
+Karena gw udah ngerasain pahitnya ketiga jurang di atas, sekarang gw selalu nyari titik tengah (*The Sweet Spot*) yang ngasih hasil optimal dengan rasa sakit paling minim.
+
+Ini beberapa contoh keputusan teknis gw belakangan ini (termasuk pas ngebangun engine asisten pribadi gw, **Nourun**):
+
+#### A. TypeScript di atas Bun (Bukan Rust, Bukan Python Lambat)
+* **Kenapa gak Rust?** Terlalu lambat buat iterasi harian dan nambah fitur cepet.
+* **Kenapa gak Python?** Startup-nya lambat, dependency management venv sering tabrakan, dan boros RAM (400MB–800MB).
+* **Pilihan Tengah:** TypeScript di atas Bun. Memory footprint-nya enteng banget (~70MB), eksekusi kencang, tapi DX-nya instan—Hot Module Reload super ngebut, no-compile wait, dan ekosistem library melimpah.
+
+#### B. Postgres + pgvector (Bukan Dedicated Vector DB)
+* **Kenapa gak ChromaDB / Pinecone / Neo4j?** Gw gak mau nambah 1 lagi database baru di homelab yang harus di-backup dan di-monitor terpisah.
+* **Pilihan Tengah:** Cukup 1 instance PostgreSQL. Query relasional dapet, SQL analytics kuantitatif dapet, dan semantic search RAG dapet lewat ekstensi `pgvector`. Simpel, stabil, dan terbukti tahan banting puluhan tahun.
+
+#### C. Pragmatic Architecture (Bukan 20 Layer Interface)
+* Di Nourun, gw bikin abstraction cuma di 1 tempat yang emang beneran rawan *vendor lock-in* (misal `packages/runtime` buat ngurung API Bun/Node biar gampang migrasi).
+* Sisanya? **Tulis fungsi biasa secara direct dan to-the-point.** Gak ada class hierarchy aneh-aneh, gak ada DTO-DTOan ghaib. Tapi arsitekturnya tetap dijaga otomatis lewat script linter CI (`check-arch.ts`).
+
+---
+
+### Penutup: Karakter Development
+
+Dulu gw kira tanda kehebatan seorang engineer itu diukur dari seberapa rumit arsitektur yang dia bikin, atau seberapa low-level bahasa yang dia pake.
+
+Ternyata kebalik.
+
+Semakin matang jam terbang lu, lu bakal makin menghargai kesederhanaan. Lu bakal sadar bahwa software terbaik itu bukan yang paling kencang mentok di benchmark sintetis, bukan yang paling keren di forum, dan bukan yang paling murni secara teori akademis.
+
+Software terbaik adalah software yang **selesai tepat waktu, stabil pas ditinggal tidur, gampang di-debug pas rusak, dan trade-off-nya paling minim buat hidup lu.**
