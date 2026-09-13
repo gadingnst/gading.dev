@@ -1,0 +1,100 @@
+---
+title: "The Spilling Concept: Managing AI Agent Context Without Losing Signals"
+slug: {
+  id: "konsep-spilling-dalam-memanage-context-di-ai-agent"
+}
+date: 2026-09-13
+description: "How we implemented deterministic tool output spilling in Nouride to keep agents running stably across hundreds of turns without context blowups."
+tags: ["ai", "agent", "nouride", "system-design", "engineering"]
+image: "/media/default-banners/1.jpg"
+---
+
+If you frequently build or work with coding agents that have direct shell access (`exec`), you have likely hit the point where an agent starts off sharp and responsive, only to become erratic, forgetful, or crash outright with `context length exceeded` around turn 25 or 30.
+
+This issue is rarely a fault of the underlying language model. In most cases, the culprit is **unmanaged tool I/O**.
+
+A single command run in the terminal—such as `docker logs`, a broad `git diff` across a monorepo, or a verbose test suite—can easily produce 4 MB to 6 MB of raw stdout. Dumping that volume of text directly into the prompt payload causes immediate compounding problems:
+1. The model's context ceiling is reached or severely crowded.
+2. Token consumption on every subsequent turn skyrockets.
+3. The model suffers from attention degradation. Important project instructions and task state established earlier in the conversation get buried beneath thousands of lines of uninformative terminal output.
+
+When designing **Nouride** (an ultra-lightweight multi-agent daemon for our homelab and internal infrastructure), handling this cleanly was an early requirement. Agents need to pair-program across dozens or hundreds of turns without crashing or losing focus midway through a workflow.
+
+Here is a breakdown of what did not work, and how we solved it using **Tool Output Spilling**.
+
+---
+
+### What Did Not Work
+
+Before arriving at a deterministic solution, we explored approaches that seemed reasonable on paper but fell short in practice:
+
+#### 1. Relying on System Prompt Instructions
+We initially tried instructing the model via prompt: *"If a command's output is expected to be lengthy, redirect it to a file and provide the file path instead."*
+
+This proved unreliable. An LLM cannot accurately forecast the size of a command's output before executing it. When running `journalctl` or `npm test`, it cannot determine whether the output will be 10 lines or 20,000 lines. Offloading memory management to model foresight before runtime introduces too much variance.
+
+#### 2. Naive Head Truncation
+Another common method is cutting the output at a fixed character threshold and returning the first few thousand characters.
+
+In practice, this discards critical diagnostic data. In development workflows, the most vital signals in terminal output almost always reside at the **tail**: compiler summaries, stack traces, and exit failure statuses. Retaining only the initial portion often leaves the agent with successful setup logs, causing it to assume the operation succeeded when it actually failed thousands of lines later.
+
+#### 3. Ephemeral "Re-run If Needed" Markers
+Some agent frameworks simply replace oversized output with a short stub: `[output truncated, run the command again if needed]`.
+
+This breaks down when the command involves a 90-second build process. Forcing an agent to re-execute a heavy job just to inspect intermediate lines is inefficient and wasteful.
+
+---
+
+### Spilling to the Local Filesystem
+
+We adapted a foundational pattern from operating systems: **memory spilling and paging to disk**. When physical RAM is constrained, the kernel pages inactive memory to disk rather than killing the process.
+
+In Nouride, the daemon harness sits directly between the execution environment and the outgoing LLM request. The process operates deterministically:
+
+#### 1. Turn-Budget Sizing
+A single tool result is capped so it cannot overwhelm the working context. We enforce a budget where one tool output may occupy at most **25% of the turn's token budget** (with a sensible floor of 2,000 tokens). This ensures that even if an agent runs multiple tools in parallel, half the context remains dedicated to persona instructions, durable memory, and conversation history.
+
+#### 2. Atomic Disk Persistence
+When a tool output exceeds this budget:
+- The full, unaltered output is written atomically to `$DATA_DIR/tool-output/<session_id>/<call_id>.txt`.
+- File permissions are immediately restricted to `0600` to safeguard potential environment variables or sensitive output.
+- The spill directory is automatically mounted as an authorized read-only sandbox root for the agent.
+
+#### 3. Structured Excerpt (Head & Tail)
+Instead of feeding megabytes of raw text into the model, the harness returns a structured excerpt:
+- **Head (65%):** Captures invocation details, flags, and startup configurations.
+- **Tail (35%):** Captures the conclusion, failure traces, and exit status.
+- **Metadata:** Reports exact line counts, estimated size in KB, and the number of omitted middle lines.
+- **Pointer Path:** Provides the absolute path on disk alongside actionable instructions: *"Open it with `read` and an offset, or narrow it with `grep`."*
+
+The rendered payload seen by the agent looks like this:
+
+```text
+[output too large for the context — 14,200 lines, ~2,840KB.
+The first 65 and last 35 lines are below; 14,100 in the middle are not.]
+Full output: /srv/nouride/.nouride/data/tool-output/s_019/call_exec_42.txt
+Open it with `read` and an offset, or narrow it with `grep` — it is a normal file and it is readable.
+
+... (initial command output) ...
+
+... (final summary / error output) ...
+```
+
+---
+
+### Practical Benefits
+
+This pattern yields several concrete advantages in production:
+
+1. **Unbroken Error Visibility:** Because the tail is preserved, the agent immediately perceives the actual failure condition without hallucinating.
+2. **Investigation on Demand:** When an agent needs to examine an error buried in the middle of a build log, it does not re-run the job. It inspects the spilled file directly using targeted `grep` or paginated `read` calls.
+3. **Stable Context Consumption:** Token expenditure remains flat and predictable across dozens of turns. Single commands no longer introduce sudden multi-million token spikes.
+4. **Lifecycle Sweeps:** Spilled outputs are tied to session timestamps and automatically pruned by the daemon's daily retention sweeps once a conversation concludes.
+
+---
+
+### Summary
+
+Building resilient AI agents for real-world development is often less about model parameters and more about **disciplined runtime I/O**.
+
+LLMs have finite attention budgets. Ensuring large terminal outputs never flood the prompt payload—while remaining accessible via disk pointers when deeper inspection is needed—is what keeps an agent reliable over extended coding sessions.
