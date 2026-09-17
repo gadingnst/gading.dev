@@ -1,0 +1,76 @@
+---
+title: "Not the Fastest or Trendiest, but the One with the Lowest Trade-offs"
+slug: {
+  en: "minimizing-tradeoffs-in-tech-choices",
+  id: "memilih-tech-stack-dengan-trade-off-minim"
+}
+date: 2026-09-17
+description: "Why the longer I write software, the more I avoid chasing extreme benchmarks or tech trends, opting instead for stacks that minimize operational friction."
+keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
+tags: ["architecture", "engineering", "philosophy", "devops"]
+image: "/media/blog/minimizing-tradeoffs-in-tech-choices/banner.jpg"
+---
+
+When I first started writing software seriously, I was easily seduced by whatever was buzzing on my timeline. A new framework claimed to be "100x faster than Node"? I immediately wanted to rewrite our backend. A post showed a pristine Clean Architecture with fifteen nested folders? I felt my code was amateurish if I did not copy the exact same pattern.
+
+Then production reality hit.
+
+After getting woken up at 2 AM for stalled services, tracing through eight empty interface layers just to find a single database query, and waiting on sluggish compiler passes for a one-line fix, my priorities shifted.
+
+My rule for choosing tools is straightforward: pick the technology with the lowest total trade-offs for the specific problem at hand, rather than the one sitting at an extreme end of the spectrum.
+
+---
+
+### Three Common Traps
+
+In practice, tech stack decisions often get pulled into one of these three corners:
+
+#### 1. Obsessing Over Maximum Performance
+The intention is good: chasing tiny binaries and sub-10MB RAM usage by writing everything in Rust or C++.
+
+This is not about being anti-Rust or hating low-level languages. Rust, C++, or Zig are unmatched when used for their intended purpose: building core runtime engines, database storage engines, video/audio codecs, or OS drivers. But for regular business applications, automations, or day-to-day backends, the development trade-off and cognitive overhead are rarely worth it.
+
+Adding a field to a JSON payload takes longer because you have to satisfy strict compile-time checks. Compilation and build passes slow down. Energy that should go toward solving product problems is spent managing language ceremonies.
+
+#### 2. Chasing Trends
+This happens when architecture is driven by whatever is popular on social media this month.
+
+Before reaching a hundred active users, data storage is already split across five systems: a relational database, a dedicated vector store, a document store, a cache layer, and a time-series database. Everything runs on a multi-node Kubernetes cluster.
+
+It looks impressive on paper. In operations, it is a maintenance headache. A brief network partition on a homelab node means spending hours resolving synchronization mismatches. When a request fails midway, finding where it dropped requires navigating an entangled web of services.
+
+#### 3. Over-Abstracting from Textbooks
+This is the habit of wrapping simple operations in excessive abstraction layers just to satisfy Clean Architecture rules word-for-word.
+
+To fetch a user record by ID, the request has to travel through a Controller, Presenter, UseCaseInterface, UseCaseImpl, RepositoryInterface, RepositoryImpl, DTO, and Mapper.
+
+The code looks neat in theory, but reading it is exhausting. Debugging means clicking through multiple empty interface files that only pass parameters forward. Error stack traces grow long and noisy without providing actionable context.
+
+---
+
+### Pragmatic Middle Grounds
+
+Having experienced the fallout from those patterns, I lean toward choices that deliver sufficient efficiency without operational complexity.
+
+A few recent stack choices illustrate this:
+
+#### TypeScript on Bun
+* Instead of forcing Rust onto application layers where rapid iteration matters, or using standard Python where startup is slow and idle memory easily exceeds 400MB.
+* The base Bun runtime footprint is already compact (a single lightweight binary with idle memory in the tens of megabytes).
+* When paired with dependency discipline—writing code with minimal third-party packages—the performance and resource efficiency feel remarkably close to compiled software, while retaining instant feedback loops and the breadth of the TypeScript ecosystem.
+
+#### PostgreSQL with pgvector
+* Instead of running a standalone vector database that requires separate backup procedures, monitoring, and networking in my homelab.
+* A single PostgreSQL instance handles relational tables, structured analytical queries, and semantic search for agent retrieval via pgvector. Maintenance is simple and operational reliability has decades of track record.
+
+#### Direct and Minimal Architecture
+* Dependency isolation is applied only at boundaries where lock-in risk is real (such as filesystem access or network wrappers).
+* The rest of the codebase consists of standard async TypeScript functions that do their job directly. Boundaries are enforced with CI lint rules rather than dozens of hollow interfaces.
+
+---
+
+### The Takeaway
+
+The longer you run systems that have to stay up continuously, the more you appreciate simplicity.
+
+Low-level languages have their rightful place powering engines under the hood. But for the applications built on top of them, good code is software that meets the requirement, remains straightforward for someone else (or your future self) to modify, and rarely wakes you up in the middle of the night.

@@ -1,0 +1,76 @@
+---
+title: "Bukan yang Paling Keren atau Paling Kencang, tapi yang Trade-off-nya Paling Minim"
+slug: {
+  en: "minimizing-tradeoffs-in-tech-choices",
+  id: "memilih-tech-stack-dengan-trade-off-minim"
+}
+date: 2026-09-17
+description: "Alasan mengapa semakin lama menulis kode, saya semakin menghindari teknologi yang mengejar performa ekstrem atau tren semata, dan lebih memilih arsitektur dengan total friksi paling rendah."
+keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
+tags: ["architecture", "engineering", "philosophy", "devops"]
+image: "/media/blog/minimizing-tradeoffs-in-tech-choices/banner.jpg"
+---
+
+Waktu awal-awal getol ngoding, gw gampang banget tergiur sama apa pun yang lagi ramai di linimasa. Ada framework baru dengan klaim "100x faster than Node", bawaannya pengen langsung rewrite. Liat postingan arsitektur berlapis-lapis lengkap dengan diagram kotak-kotak rapi, gw langsung merasa kode gw amatir kalau ga menerapkan struktur yang sama.
+
+Lalu realita produksi masuk.
+
+Setelah beberapa kali dibangunin jam 2 pagi karena service macet, pusing menelusuri delapan lapis interface kosong cuma buat nemu satu query SQL, atau menunggu proses build yang lama hanya demi memperbaiki typo satu baris, cara pandang gw bergeser total.
+
+Sekarang patokan gw sederhana: cari teknologi yang trade-off keseluruhannya paling kecil untuk problem yang lagi diselesaikan, bukan yang paling ekstrem di satu sisi.
+
+---
+
+### Tiga Sudut yang Sering Bikin Repot
+
+Di lapangan, pilihan stack sering kali ditarik ke salah satu dari tiga sudut ini:
+
+#### 1. Terlalu Terobsesi Performa Maksimal
+Niatnya bagus: mengejar binary kecil dan pemakaian RAM di bawah 10MB dengan menulis semua hal pakai Rust atau C++.
+
+Bukan berarti gw anti-Rust atau benci bahasa tingkat rendah. Rust, C++, atau Zig itu luar biasa kalau ditempatkan di porsinya: bikin core runtime engine, database storage engine, codec video/audio, atau driver sistem operasi. Tapi kalau dipakai buat bangun aplikasi normal sehari-hari, automasi, atau backend bisnis, trade-off waktu development dan mental overhead-nya sering kali ga sebanding.
+
+Menambah satu field di payload JSON butuh waktu lebih lama karena harus berurusan dengan compile-time checks yang ketat. Proses kompilasi dan build lambat. Energi yang harusnya dipakai buat menyelesaikan logika produk malah habis buat mengurus ritual bahasa.
+
+#### 2. Terlalu Terbawa Arus Tren
+Sudut ini biasanya diisi oleh proyek yang arsitekturnya disusun berdasarkan apa yang sedang populer bulan ini.
+
+User aktif belum sampai seratus, tapi penyimpanan sudah dipecah ke lima tempat: database relasional, vector database khusus, document store, cache layer, dan time-series database. Semuanya dipasang di cluster Kubernetes multi-node.
+
+Kelihatannya canggih di atas kertas. Tapi begitu masuk operasional, pemeliharaannya jadi mimpi buruk. Begitu ada network partition di server atau koneksi drop di homelab, waktu lu habis buat memastikan data antar-database tidak keluar jalur. Saat ada request gagal di tengah jalan, mencari titik putusnya butuh investigasi berbelit-belit.
+
+#### 3. Terlalu Kaku Menerapkan Teori Buku
+Ini kebiasaan membungkus kode sederhana ke dalam lapisan abstraksi yang berlebihan demi mengikuti pola Clean Architecture secara tekstual.
+
+Untuk fungsi sesederhana mengambil data user berdasarkan ID, alurnya harus melewati Controller, Presenter, UseCaseInterface, UseCaseImpl, RepositoryInterface, RepositoryImpl, DTO, dan Mapper.
+
+Kodenya rapi secara teori, tapi sulit dinavigasi. Saat ada bug, kita harus klik berkali-kali melewati interface yang isinya cuma melempar parameter ke file berikutnya. Stack trace saat error jadi panjang dan penuh wrapper yang tidak memberi informasi baru.
+
+---
+
+### Memilih Titik Tengah yang Masuk Akal
+
+Setelah beberapa kali terjebak di pola-pola tadi, gw lebih memilih opsi yang memberikan efisiensi cukup tanpa menambah kerumitan operasional.
+
+Beberapa keputusan di proyek belakangan ini (termasuk saat menyusun runtime agent):
+
+#### TypeScript di atas Bun
+* Daripada memaksakan Rust untuk aplikasi tingkat atas yang butuh iterasi cepat, atau memakai Python murni yang startup-nya lambat dan idle memory-nya gampang bengkak di atas 400MB.
+* Base runtime Bun sendiri secara footprint sudah sangat efisien (single binary ukuran ringkas dan idle memory hanya puluhan MB).
+* Kuncinya ada di disiplin dependensi: kalau kita bangun aplikasi di atas Bun dengan dependensi minimal (tidak asal pasang ratusan library pihak ketiga), performa dan efisiensi resource-nya terasa hampir setara aplikasi compiled language, tapi dengan kecepatan feedback loop instan dan kenyamanan ekosistem TypeScript.
+
+#### PostgreSQL dengan Ekstensi pgvector
+* Daripada menjalankan vector database terpisah yang butuh prosedur backup, monitoring, dan port sendiri di homelab.
+* Cukup satu instance PostgreSQL. Tabel relasional tertampung, query analitik terstruktur jalan, dan semantic search untuk kebutuhan retrieval agent bisa ditangani lewat pgvector. Operasionalnya ringkas dan reliabilitasnya teruji puluhan tahun.
+
+#### Arsitektur Langsung dan Secukupnya
+* Isolasi dependensi hanya dibuat pada bagian yang memang berisiko lock-in (misalnya layer filesystem atau wrapper network).
+* Bagian selebihnya ditulis sebagai fungsi TypeScript biasa yang langsung mengeksekusi tugasnya. Batasan antar modul dijaga lewat script linting di CI, bukan dengan membuat puluhan interface kosong.
+
+---
+
+### Intinya
+
+Makin lama berkutat dengan sistem yang harus jalan terus-menerus, semakin kita menghargai kesederhanaan.
+
+Bahasa low-level punya tempatnya sendiri sebagai fondasi engine di balik layar. Namun untuk aplikasi di atasnya, kode yang baik adalah kode yang selesai sesuai kebutuhan, gampang dipahami orang lain (atau diri sendiri beberapa bulan ke depan), dan jarang bikin panik saat ditinggal tidur.
