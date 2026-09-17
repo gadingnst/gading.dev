@@ -4,7 +4,7 @@ slug: {
   en: "minimizing-tradeoffs-in-tech-choices",
   id: "memilih-tech-stack-dengan-trade-off-minim"
 }
-date: 2026-08-27
+date: 2026-09-17
 description: "Why the longer I write software, the more I avoid chasing extreme benchmarks or tech trends, opting instead for stacks that minimize operational friction."
 keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
 tags: ["architecture", "engineering", "philosophy", "devops"]
@@ -28,9 +28,9 @@ In practice, tech stack decisions often get pulled into one of these three corne
 #### 1. Obsessing Over Maximum Performance
 The intention is good: chasing tiny binaries and sub-10MB RAM usage by writing everything in Rust or C++.
 
-Runtime speed is undeniable. But for standard business logic, automation tasks, or everyday CLIs, development friction is rarely worth it. Adding a field to a JSON payload takes longer because you have to satisfy strict compile-time checks. Builds and hot reloads slow down. Energy that should go toward solving product problems is spent managing language ceremonies.
+This is not about being anti-Rust or hating low-level languages. Rust, C++, or Zig are unmatched when used for their intended purpose: building core runtime engines, database storage engines, video/audio codecs, or OS drivers. But for regular business applications, automations, or day-to-day backends, the development trade-off and cognitive overhead are rarely worth it.
 
-If you are writing a game engine, an audio processor, or a kernel driver, this makes complete sense. But for CRUD backends or service glue code, it turns into dead weight that drags iteration down.
+Adding a field to a JSON payload takes longer because you have to satisfy strict compile-time checks. Compilation and build passes slow down. Energy that should go toward solving product problems is spent managing language ceremonies.
 
 #### 2. Chasing Trends
 This happens when architecture is driven by whatever is popular on social media this month.
@@ -54,17 +54,10 @@ Having experienced the fallout from those patterns, I lean toward choices that d
 
 A few recent stack choices illustrate this:
 
-#### TypeScript on Bun (Why Not Rust?)
-When architecting my personal AI agent daemon and homelab automation services, the temptation to write everything in Rust was strong. The pitch is alluring: a self-contained 15MB binary, 10MB idle RAM, and zero runtime overhead.
-
-In practice, the marginal resource savings of Rust did not justify the daily friction during rapid iteration:
-* Most of a daemon's workload revolves around I/O orchestration: parsing dynamic JSON payloads from third-party APIs, formatting chat streams, handling string-heavy Markdown transforms, and executing CLI tools. Writing this type of dynamic glue code in Rust meant spending 70% of engineering time dealing with borrow checker semantics, lifetime constraints, and repetitive compile cycles for minor logic changes.
-* On the other end of the spectrum, standard Python felt too sluggish on cold starts and easily consumed 400MB+ in idle memory.
-
-The pragmatic middle ground was **Bun (especially with Bun 1.4)**.
-Bun's engine is built with Rust and Zig under the hood, bundling built-in SQLite, a Redis client, and a native HTTP runtime without needing separate bundler configurations. Running TypeScript on Bun keeps daemon idle memory lean at around 60-80MB RAM with negligible CPU usage.
-
-Saving an extra 50MB of RAM at the expense of a significantly slower development feedback loop is a bad trade-off. Bun delivers the runtime performance needed while keeping developer velocity high.
+#### TypeScript on Bun
+* Instead of forcing Rust onto application layers where rapid iteration matters, or using standard Python where startup is slow and idle memory easily exceeds 400MB.
+* The base Bun runtime footprint is already compact (a single lightweight binary with idle memory in the tens of megabytes).
+* When paired with dependency discipline—writing code with minimal third-party packages—the performance and resource efficiency feel remarkably close to compiled software, while retaining instant feedback loops and the breadth of the TypeScript ecosystem.
 
 #### PostgreSQL with pgvector
 * Instead of running a standalone vector database that requires separate backup procedures, monitoring, and networking in my homelab.
@@ -80,4 +73,4 @@ Saving an extra 50MB of RAM at the expense of a significantly slower development
 
 The longer you run systems that have to stay up continuously, the more you appreciate simplicity.
 
-Good code is not defined by architectural complexity or industry hype. Good code is software that meets the requirement, remains straightforward for someone else (or your future self) to modify, and rarely wakes you up in the middle of the night.
+Low-level languages have their rightful place powering engines under the hood. But for the applications built on top of them, good code is software that meets the requirement, remains straightforward for someone else (or your future self) to modify, and rarely wakes you up in the middle of the night.

@@ -4,7 +4,7 @@ slug: {
   en: "minimizing-tradeoffs-in-tech-choices",
   id: "memilih-tech-stack-dengan-trade-off-minim"
 }
-date: 2026-08-27
+date: 2026-09-17
 description: "Alasan mengapa semakin lama menulis kode, saya semakin menghindari teknologi yang mengejar performa ekstrem atau tren semata, dan lebih memilih arsitektur dengan total friksi paling rendah."
 keywords: "software architecture, engineering trade-offs, tech stack choices, pragmatic engineering, clean architecture, boring technology"
 tags: ["architecture", "engineering", "philosophy", "devops"]
@@ -28,9 +28,9 @@ Di lapangan, pilihan stack sering kali ditarik ke salah satu dari tiga sudut ini
 #### 1. Terlalu Terobsesi Performa Maksimal
 Niatnya bagus: mengejar binary kecil dan pemakaian RAM di bawah 10MB dengan menulis semua hal pakai Rust atau C++.
 
-Di runtime memang kencang. Tapi untuk aplikasi bisnis biasa, automasi, atau CLI harian, friksi saat development sering kali tidak sebanding. Menambah satu field di payload JSON butuh waktu lebih lama karena harus berurusan dengan compile-time checks yang ketat. Proses build dan live reload jadi lambat. Energi yang harusnya dipakai buat menyelesaikan logika fitur malah habis buat mengurus ritual bahasa.
+Bukan berarti gw anti-Rust atau benci bahasa tingkat rendah. Rust, C++, atau Zig itu luar biasa kalau ditempatkan di porsinya: bikin core runtime engine, database storage engine, codec video/audio, atau driver sistem operasi. Tapi kalau dipakai buat bangun aplikasi normal sehari-hari, automasi, atau backend bisnis, trade-off waktu development dan mental overhead-nya sering kali ga sebanding.
 
-Kalau yang dibangun adalah game engine, audio processor, atau driver kernel, pendekatan ini tepat. Tapi kalau cuma CRUD API atau glue code antar-service, ini sering jadi beban yang memperlambat iterasi.
+Menambah satu field di payload JSON butuh waktu lebih lama karena harus berurusan dengan compile-time checks yang ketat. Proses kompilasi dan build lambat. Energi yang harusnya dipakai buat menyelesaikan logika produk malah habis buat mengurus ritual bahasa.
 
 #### 2. Terlalu Terbawa Arus Tren
 Sudut ini biasanya diisi oleh proyek yang arsitekturnya disusun berdasarkan apa yang sedang populer bulan ini.
@@ -54,17 +54,10 @@ Setelah beberapa kali terjebak di pola-pola tadi, gw lebih memilih opsi yang mem
 
 Beberapa keputusan di proyek belakangan ini (termasuk saat menyusun runtime agent):
 
-#### TypeScript di atas Bun (Kenapa Bukan Rust?)
-Waktu merancang daemon asisten AI dan sistem automasi homelab, opsi menulis ulang semuanya dengan Rust sempat sangat menggoda. Bayangannya manis: binary mandiri di bawah 15MB, konsumsi RAM cuma 10MB, dan zero overhead.
-
-Tapi pas dihitung realistis, penghematan resource dari Rust tidak sebanding sama rasa sakit saat iterasi harian:
-* Sebagian besar beban kerja daemon adalah orkestrasi I/O: parsing JSON dinamis dari puluhan API, formatting pesan chat, manipulasi string Markdown, dan integrasi proses CLI. Menulis hal-hal dinamis seperti ini di Rust berarti menghabiskan 70% waktu buat berurusan dengan *borrow checker*, lifetime types, dan menunggu kompilasi ulang setiap ada perubahan logika kecil.
-* Di sisi lain, runtime Python standar terlalu lambat waktu cold start dan idle memory-nya gampang bengkak di atas 400MB.
-
-Titik temunya ada di **Bun (terutama sejak Bun 1.4)**.
-Bun sendiri dibangun di atas Rust dan Zig, punya built-in SQLite, Redis client, server HTTP cepat, dan tooling bawaan tanpa perlu setup bundler yang rumit. Di TypeScript + Bun, idle memory daemon gw cuma anteng di kisaran 60-80MB RAM dengan CPU hampir 0%.
-
-Menghemat selisih 50MB RAM kalau harus dibayar dengan kecepatan iterasi yang jauh lebih lambat adalah trade-off yang buruk. Dengan Bun, eksekusi tetap kencang, start instan, dan proses menambah fitur atau memperbaiki bug tetap cepat.
+#### TypeScript di atas Bun
+* Daripada memaksakan Rust untuk aplikasi tingkat atas yang butuh iterasi cepat, atau memakai Python murni yang startup-nya lambat dan idle memory-nya gampang bengkak di atas 400MB.
+* Base runtime Bun sendiri secara footprint sudah sangat efisien (single binary ukuran ringkas dan idle memory hanya puluhan MB).
+* Kuncinya ada di disiplin dependensi: kalau kita bangun aplikasi di atas Bun dengan dependensi minimal (tidak asal pasang ratusan library pihak ketiga), performa dan efisiensi resource-nya terasa hampir setara aplikasi compiled language, tapi dengan kecepatan feedback loop instan dan kenyamanan ekosistem TypeScript.
 
 #### PostgreSQL dengan Ekstensi pgvector
 * Daripada menjalankan vector database terpisah yang butuh prosedur backup, monitoring, dan port sendiri di homelab.
@@ -80,4 +73,4 @@ Menghemat selisih 50MB RAM kalau harus dibayar dengan kecepatan iterasi yang jau
 
 Makin lama berkutat dengan sistem yang harus jalan terus-menerus, semakin kita menghargai kesederhanaan.
 
-Kode yang baik bukan yang paling rumit arsitekturnya atau yang paling ramai dibicarakan. Kode yang baik adalah kode yang selesai sesuai kebutuhan, gampang dipahami orang lain (atau diri sendiri beberapa bulan ke depan), dan jarang bikin panik saat ditinggal tidur.
+Bahasa low-level punya tempatnya sendiri sebagai fondasi engine di balik layar. Namun untuk aplikasi di atasnya, kode yang baik adalah kode yang selesai sesuai kebutuhan, gampang dipahami orang lain (atau diri sendiri beberapa bulan ke depan), dan jarang bikin panik saat ditinggal tidur.
