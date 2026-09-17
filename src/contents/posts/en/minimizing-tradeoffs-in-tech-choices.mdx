@@ -54,10 +54,17 @@ Having experienced the fallout from those patterns, I lean toward choices that d
 
 A few recent stack choices illustrate this:
 
-#### TypeScript on Bun
-* I avoided Rust because rapid iteration and instant feedback loops matter more for day-to-day feature development.
-* I avoided pure Python for persistent daemons because startup latency is slow and idle memory quickly climbs past 400MB.
-* The balance: TypeScript running on Bun. Memory stays light (around 60-80MB), execution is quick, hot reloads are instant without a separate build step, and the mature npm package ecosystem remains accessible.
+#### TypeScript on Bun (Why Not Rust?)
+When architecting my personal AI agent daemon and homelab automation services, the temptation to write everything in Rust was strong. The pitch is alluring: a self-contained 15MB binary, 10MB idle RAM, and zero runtime overhead.
+
+In practice, the marginal resource savings of Rust did not justify the daily friction during rapid iteration:
+* Most of a daemon's workload revolves around I/O orchestration: parsing dynamic JSON payloads from third-party APIs, formatting chat streams, handling string-heavy Markdown transforms, and executing CLI tools. Writing this type of dynamic glue code in Rust meant spending 70% of engineering time dealing with borrow checker semantics, lifetime constraints, and repetitive compile cycles for minor logic changes.
+* On the other end of the spectrum, standard Python felt too sluggish on cold starts and easily consumed 400MB+ in idle memory.
+
+The pragmatic middle ground was **Bun (especially with Bun 1.4)**.
+Bun's engine is built with Rust and Zig under the hood, bundling built-in SQLite, a Redis client, and a native HTTP runtime without needing separate bundler configurations. Running TypeScript on Bun keeps daemon idle memory lean at around 60-80MB RAM with negligible CPU usage.
+
+Saving an extra 50MB of RAM at the expense of a significantly slower development feedback loop is a bad trade-off. Bun delivers the runtime performance needed while keeping developer velocity high.
 
 #### PostgreSQL with pgvector
 * Instead of running a standalone vector database that requires separate backup procedures, monitoring, and networking in my homelab.

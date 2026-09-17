@@ -54,10 +54,17 @@ Setelah beberapa kali terjebak di pola-pola tadi, gw lebih memilih opsi yang mem
 
 Beberapa keputusan di proyek belakangan ini (termasuk saat menyusun runtime agent):
 
-#### TypeScript di atas Bun
-* Tidak pakai Rust karena gw butuh kecepatan iterasi dan siklus feedback instan saat nambah fitur.
-* Tidak pakai Python murni untuk daemon karena startup time lambat dan idle memory gampang bengkak di atas 400MB.
-* Titik tengahnya: TypeScript dengan Bun. Konsumsi memori tetap ringan (sekitar 60-80MB), runtime kencang, start instan tanpa build step terpisah, dan tetap bisa memakai ekosistem pustaka npm yang matang.
+#### TypeScript di atas Bun (Kenapa Bukan Rust?)
+Waktu merancang daemon asisten AI dan sistem automasi homelab, opsi menulis ulang semuanya dengan Rust sempat sangat menggoda. Bayangannya manis: binary mandiri di bawah 15MB, konsumsi RAM cuma 10MB, dan zero overhead.
+
+Tapi pas dihitung realistis, penghematan resource dari Rust tidak sebanding sama rasa sakit saat iterasi harian:
+* Sebagian besar beban kerja daemon adalah orkestrasi I/O: parsing JSON dinamis dari puluhan API, formatting pesan chat, manipulasi string Markdown, dan integrasi proses CLI. Menulis hal-hal dinamis seperti ini di Rust berarti menghabiskan 70% waktu buat berurusan dengan *borrow checker*, lifetime types, dan menunggu kompilasi ulang setiap ada perubahan logika kecil.
+* Di sisi lain, runtime Python standar terlalu lambat waktu cold start dan idle memory-nya gampang bengkak di atas 400MB.
+
+Titik temunya ada di **Bun (terutama sejak Bun 1.4)**.
+Bun sendiri dibangun di atas Rust dan Zig, punya built-in SQLite, Redis client, server HTTP cepat, dan tooling bawaan tanpa perlu setup bundler yang rumit. Di TypeScript + Bun, idle memory daemon gw cuma anteng di kisaran 60-80MB RAM dengan CPU hampir 0%.
+
+Menghemat selisih 50MB RAM kalau harus dibayar dengan kecepatan iterasi yang jauh lebih lambat adalah trade-off yang buruk. Dengan Bun, eksekusi tetap kencang, start instan, dan proses menambah fitur atau memperbaiki bug tetap cepat.
 
 #### PostgreSQL dengan Ekstensi pgvector
 * Daripada menjalankan vector database terpisah yang butuh prosedur backup, monitoring, dan port sendiri di homelab.
