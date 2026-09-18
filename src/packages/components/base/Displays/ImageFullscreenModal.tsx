@@ -45,11 +45,13 @@ function ImageFullscreenModal({ src, alt, isOpen, onClose }: ImageFullscreenModa
     }, 200);
   }, [onClose, resetState]);
 
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setIsVisible(true);
     }
-  }, [isOpen]);
+  }
 
   useEffect(() => {
     if (!isVisible) return;
@@ -225,7 +227,7 @@ function ImageFullscreenModal({ src, alt, isOpen, onClose }: ImageFullscreenModa
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
-        style={{ touchAction: 'none', cursor: scale > 1 ? (isDragging.current ? 'grabbing' : 'grab') : 'default' }}
+        style={{ touchAction: 'none', cursor: scale > 1 ? 'grab' : 'default' }}
       >
         <img
           src={src}

@@ -5,64 +5,64 @@ slug: {
   id: "konsep-spilling-dalam-memanage-context-di-ai-agent"
 }
 date: 2026-09-13
-description: "How we implemented deterministic tool output spilling in Nouride to keep agents running stably across hundreds of turns without context blowups."
+description: "How I built deterministic tool output spilling in Nouride to prevent context blowups and keep long agent sessions stable."
 tags: ["ai", "agent", "nouride", "system-design", "engineering"]
 image: "/media/blog/konsep-spilling-dalam-memanage-context-di-ai-agent/banner.jpg"
 ---
 
-If you frequently build or work with coding agents that have direct shell access (eg: `exec`, etc2), you have likely hit the point where an agent starts off sharp and responsive, only to become erratic, forgetful, or crash outright with `context length exceeded` around turn 20 or 30.
+If you frequently build or run coding agents with terminal access (like an `exec` tool), you have probably seen them start sharp and responsive, only to hallucinate, repeat themselves, or crash with `context length exceeded` around turn 20 or 30.
 
-This issue is usually not a fault of the underlying language model, but **messy tool I/O management**.
+The culprit is almost always **unmanaged tool I/O**, rather than the model itself.
 
-A single unconstrained terminal command—such as `docker logs`, a broad `git diff` across a monorepo, or a build script dumping thousands of stack trace lines—can easily flood the context window with raw text. Dumping 4 MB to 6 MB of logs directly into the prompt payload triggers a cascade of issues:
+A single unconstrained terminal command—such as `docker logs`, a broad `git diff` across a monorepo, or a build script dumping thousands of stack trace lines—can easily flood the context window with raw text. Dumping 4 MB to 6 MB of logs directly into the prompt payload triggers several cascading issues:
 1. The context window is immediately maxed out.
-2. Token input on subsequent turns balloons drastically.
-3. The model suffers from *attention drift*. Essential instructions and task context established at the start of the session get buried beneath a mountain of irrelevant terminal logs.
+2. Token input on subsequent turns balloons, increasing latency and operational cost.
+3. The model suffers from *attention drift*. Essential instructions and task context established early in the session get buried under thousands of lines of terminal noise.
 
-When building **[Nouride](https://nouride.com)** (an ultra-lightweight multi-agent daemon for homelab needs), resolving this was an early priority. I needed an agent like Nouva to pair-program with me through dozens or hundreds of turns without crashing or stalling midway.
+When building **[Nouride](https://nouride.com)** (a lightweight multi-agent daemon for homelab workflows), resolving this was an early priority. I needed an agent like Nouva to pair-program across dozens or hundreds of turns without crashing midway.
 
-Here are a few trial-and-error approaches I explored, and how the final solution took shape through what I call **Tool Output Spilling**.
+Here are a few approaches I tested, and the solution that stuck: **Tool Output Spilling**.
 
 ---
 
-### Trial and Error, but Not Quite Right
+### Initial Approaches That Fell Short
 
-Before settling on a clean pattern, I tried several common approaches that proved troublesome in practice:
+Before finding a workable pattern, I tried several common approaches that proved troublesome in practice:
 
 #### 1. Instructions in the System Prompt
 I initially thought a prompt instruction would suffice: *"If a terminal output is expected to be long, redirect it to a file and provide the file path instead."*
 
-This rarely worked consistently. An LLM cannot predict the output length of a command before running it. When executing `journalctl` or `npm test`, it cannot foresee whether the output will be 5 lines or 10,000 lines. Leaving memory management to model intuition before execution is simply too fragile.
+This rarely worked consistently. An LLM cannot predict the output volume of a command before running it. When executing `journalctl` or `npm test`, it cannot foresee whether the output will be 5 lines or 10,000 lines. Leaving memory management to model intuition before execution is too fragile.
 
 #### 2. Naive Head Truncation
-Next, I placed a hard character limit on the backend. If the output exceeded a threshold, it got truncated to keep only the first 2,000 characters.
+Next, I placed a hard character limit on the backend. If the output exceeded a threshold, it was truncated to keep only the first 2,000 characters.
 
-This introduced a worse problem. In programming, the critical signal in an execution log almost always lives at the **tail**: the final error line, compiler summary, or exit failure code. Keeping only the head led the agent to see successful initial setup lines, assume everything succeeded, and report that all went smoothly while the process actually failed at line 5,000.
+This introduced a worse problem. In execution logs, the critical signal almost always lives at the **tail**: the final error line, compiler summary, or exit failure code. Keeping only the head caused the agent to see successful initial setup lines, assume everything succeeded, and report success while the process actually failed at line 5,000.
 
 #### 3. Short Marker: "Run Again If Needed"
 Another common pattern is returning a short stub: `[output 5MB truncated, re-run command if you need the details]`.
 
-This makes little sense when the command is a 2-minute build process. Forcing the agent to wait another 2 minutes just to peek at intermediate lines is inefficient and frustrating.
+This makes little sense when the command is a 2-minute build or test suite. Forcing the agent to wait another 2 minutes just to peek at intermediate lines is inefficient.
 
 ---
 
-### Realizing the Spilling Concept on Filesystem
+### The Solution: Filesystem Spilling
 
-Eventually, I adapted a concept operating systems have used for decades: **memory spilling / paging to disk**. When RAM is constrained, the OS swaps unused memory pages to disk rather than killing the process.
+Eventually, I adapted a concept operating systems have used for decades: **memory spilling / paging to disk**. When fast memory (RAM) is constrained, the OS swaps unused pages to disk rather than terminating the process.
 
-In Nouride, the daemon harness sits squarely between tool execution results and the outgoing prompt payload sent to the LLM. The pipeline is deterministic:
+In Nouride, the daemon harness sits squarely between tool execution results and the outgoing prompt payload sent to the LLM. The pipeline runs deterministically:
 
 #### 1. Capping by Turn Budget
 A single tool result must not exhaust the context window. In Nouride, each tool result is capped at a maximum of **25% of the total conversation budget** (with a floor of 2,000 tokens). This ensures that even if an agent invokes 3 or 4 tools concurrently in one turn, 50% of the context remains available for persona instructions, memory, and chat history.
 
 #### 2. Writing Full Output to Disk
 If the character count of a tool result exceeds the budget:
-- The full raw text is preserved and written atomically to disk at `$DATA_DIR/tool-output/<session_id>/<call_id>.txt`.
-- Permissions are immediately locked down to `0600` (to safeguard potential environment variables or credentials).
-- The spill directory is automatically added to the agent's authorized read-only sandbox roots, allowing the agent to read the file if needed.
+- The harness preserves the raw text and writes it atomically to disk at `$DATA_DIR/tool-output/<session_id>/<call_id>.txt`.
+- Permissions are immediately locked to `0600` (to safeguard potential environment variables or credentials).
+- The spill directory is automatically added to the agent's authorized read-only sandbox roots, allowing the agent to read the file when needed.
 
 #### 3. Sending a Structured Excerpt (Head & Tail)
-Instead of feeding 5 MB of raw text to the model, the harness sends a structured excerpt:
+Instead of feeding 5 MB of raw text, the harness passes a structured excerpt:
 - **Head (65%):** The beginning of the command output, providing initialization context and configuration details.
 - **Tail (35%):** The end of the log, giving immediate visibility into compilation summaries or fatal exit codes.
 - **Metadata:** Exact line count, estimated size in KB, and the number of omitted lines in between.
@@ -83,9 +83,9 @@ Open it with `read` and an offset, or narrow it with `grep` — it is a normal f
 
 ---
 
-### The Results
+### Tangible Results
 
-In practice, this mechanism delivers immediate tangible benefits:
+This spilling pattern directly addressed several operational issues:
 
 1. **Unbroken Error Visibility:** Because the tail is always included, the agent recognizes the core failure reason without guessing or hallucinating.
 2. **Investigation-Ready:** If the agent needs to trace a specific warning buried in the middle of a log, it does not re-run a slow command. It calls `grep` or `read` with an offset directly against the spilled file path.
@@ -94,8 +94,6 @@ In practice, this mechanism delivers immediate tangible benefits:
 
 ---
 
-### Closing Thoughts
+### Takeaway
 
-Building functional AI agents is often less about how sophisticated the chosen LLM is, but how disciplined the runtime harness handles I/O.
-
-LLMs have finite attention and short-term memory limits. Ensuring massive terminal outputs never pollute the context window—while keeping them accessible as file pointers whenever deeper inspection is required—is the secret to keeping an agent reliable over extended sessions.
+Reliable long-running agents depend on disciplined I/O control in the runtime harness. By offloading verbose command logs to disk and passing structured excerpts with file pointers, the model keeps its focus without blowing up token budgets.
