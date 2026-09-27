@@ -48,11 +48,11 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
         <Banner bgImage={content.meta.image}>
           <section className="font-serif flex flex-col h-full items-center justify-center text-center">
             <div className="base-container relative z-10">
-              <div className="liquid-glass-shadow rounded-2xl p-5 sm:p-7 md:p-8 -translate-y-2 sm:-translate-y-4 md:-translate-y-6">
+              <div className="liquid-glass-shadow rounded-2xl p-5 sm:p-7 md:p-8 -translate-y-4 sm:-translate-y-6">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold leading-snug">
                   {content.meta.title}
                 </h1>
-                <p className="text-xs sm:text-sm md:text-base mt-3 sm:mt-4 leading-relaxed line-clamp-3 sm:line-clamp-none">
+                <p className="text-xs sm:text-sm md:text-base mt-3 sm:mt-4 leading-relaxed">
                   {content.meta.description}
                 </p>
                 <BlogContentInfo className="mt-3 mb-0 text-white/70" meta={content.meta} />
@@ -62,7 +62,7 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
         </Banner>
 
         {/* Markdown Content */}
-        <section className="base-container py-6 -mt-12 sm:-mt-16 md:-mt-24">
+        <section className="base-container py-6 -mt-20 sm:-mt-24 md:-mt-28">
           <HeroCard>
             <ContentParser>
               {content.content}
