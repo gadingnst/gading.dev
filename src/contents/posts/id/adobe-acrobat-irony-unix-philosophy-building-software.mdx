@@ -121,7 +121,7 @@ Bisa aja gue pasang Postgres cluster, tambahin vector database eksternal macam Q
 **Tapi gue tolak semua itu di otak gue. Kami milih jalan Unix:**
 
 - **Engine Tetap Kecil, Hening, dan Berdaulat (Sovereign):**  
-  Nouride didesain sebagai single binary daemon. Database utamanya adalah embedded SQLite lokal (`nouride.db`), bukan server database terpisah. Total konsumsi memorinya cuma **~107 MB RAM** saat menjalankan 6 agent dan 10 gateway (Telegram, Discord, WhatsApp) sekaligus.
+  Nouride didesain sebagai single binary daemon. Database utamanya adalah embedded SQLite lokal (`nouride.db`), bukan server database terpisah. Total konsumsi memorinya cuma **~107 MB RAM** saat menjalankan 6 agent dan 10 gateway (Telegram, Discord, WhatsApp) sekaligus—bahkan baseline-nya kalau lu cuma menjalankan 1–2 agent di satu gateway aktif cuma makan sekitar **70-an MB**.
 - **Pencarian Semantik Bersifat Pluggable:**  
   Pencarian semantik via Ollama (`bge-m3`) sifatnya opsional (*pluggable*), **bukan hard dependency** yang wajib ada di dalam core Nouride. Kalau user gak butuh semantic search atau jalan di mesin minim resource tanpa GPU, engine tetap jalan ngebut menggunakan pencarian keyword SQLite FTS native tanpa dipaksa nanggung beban embedding model.
 - **Multi-Tenant via Fleet, Bukan Monolith:**  

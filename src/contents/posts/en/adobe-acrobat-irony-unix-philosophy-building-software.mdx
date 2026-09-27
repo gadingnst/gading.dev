@@ -123,7 +123,7 @@ We could easily have provisioned a PostgreSQL cluster, attached external vector 
 **But I rejected all of that in my head. We chose the Unix path:**
 
 - **A Lean, Sovereign Engine:**  
-  Nouride runs as a single-binary sovereign daemon. Its primary datastore is an embedded SQLite instance (`nouride.db`), not an external database service. Its baseline memory footprint sits at **~107 MB RAM** while coordinating 6 active agents across 10 concurrent gateway connections (Telegram, Discord, WhatsApp).
+  Nouride runs as a single-binary sovereign daemon. Its primary datastore is an embedded SQLite instance (`nouride.db`), not an external database service. Its baseline memory footprint sits at **~107 MB RAM** while coordinating 6 active agents across 10 concurrent gateway connections (Telegram, Discord, WhatsApp)—and in a minimal setup with 1–2 agents on a single active gateway, the baseline footprint drops to just around **~70 MB**.
 - **Pluggable Semantic Search:**  
   Semantic retrieval via Ollama (`bge-m3`) is completely optional and **pluggable**, not a mandatory hard dependency baked into the core engine. If a user doesn't require semantic search or runs on hardware without a dedicated GPU, the engine operates on native SQLite FTS keyword search with zero memory penalty.
 - **Multi-Tenancy via Fleets, Not Monoliths:**  
