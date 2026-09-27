@@ -25,7 +25,7 @@ export default function Header() {
             href="/"
             className={cn([
               'liquid-glass-shadow btn btn-ghost relative',
-              'font-bold font-serif text-xs sm:text-xl md:text-2xl',
+              'font-bold font-serif text-xs sm:text-base md:text-lg',
               'transition-all duration-300 hover:bg-white/80 hover:text-black hover:scale-105'
             ])}
           >
