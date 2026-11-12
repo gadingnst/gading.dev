@@ -27,7 +27,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
     title,
     slug,
     description = 'Software Engineer from Palembang, Indonesia 🇮🇩',
-    image = '/media/authors/gading-chibi-close-signature.png',
+    image = '/media/og/og-default-dark.png',
     date = dt().format('YYYY-MM-DD'),
     keywords = '',
     tags = []
@@ -94,8 +94,15 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       language: languageLabel[locale]
     },
     icons: {
-      icon: '/favicon.ico',
-      shortcut: '/favicon.ico'
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' }
+      ],
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+      ]
     }
   };
 
