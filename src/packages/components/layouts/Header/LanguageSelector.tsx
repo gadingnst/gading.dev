@@ -26,12 +26,8 @@ function LanguageItem(_props: LanguageItemProps) {
         href={href}
         disabled={isActive}
         className={cn([
-          'flex items-center gap-3 transition-all duration-300 text-white/90 hover:text-white',
-          'cursor-pointer hover:bg-white/15',
-          isActive && [
-            'active cursor-default bg-white/20 text-white font-semibold',
-            'border-l-4 border-primary shadow-md'
-          ]
+          'flex items-center gap-3 rounded-xl font-semibold transition-colors duration-200',
+          isActive ? 'bg-brand-soft text-brand' : 'text-base-content hover:bg-base-200'
         ])}
       >
         <span className="text-lg">{flag}</span>
@@ -104,23 +100,15 @@ function LanguageSelector() {
 
   return (
     <Dropdown
-      liquidGlass
       disabled={isSlugSingleLanguage}
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
-      dropdownClassName="max-w-28"
+      dropdownClassName="max-w-32"
+      triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 border-0 bg-card p-0 text-sm font-semibold shadow-soft"
       trigger={
-        <>
-          <span className="text-lg">
-            {getLanguageFlag(currentLang)}
-          </span>
-          <span className="hidden sm:inline">
-            {getLanguageLabel(currentLang)}
-          </span>
-          {isSlugSingleLanguage && (
-            <span className="text-xs hidden sm:inline-block">(Only)</span>
-          )}
-        </>
+        <span aria-label={isSlugSingleLanguage ? `${getLanguageLabel(currentLang)} only` : 'Change language'}>
+          {getLanguageLabel(currentLang)}
+        </span>
       }
     >
       {renderLanguages()}
