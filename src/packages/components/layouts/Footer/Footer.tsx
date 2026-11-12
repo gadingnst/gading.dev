@@ -10,7 +10,7 @@ function Footer() {
     <footer className="footer-custom w-full">
       <div className="wide-container pb-12 pt-16 text-center text-sm text-muted">
         <span className="font-hand text-[22px] text-brand">thanks for stopping by ✌️</span>
-        <code className="mt-1.5 block font-mono text-[13px]">gading@palembang:~$ exit</code>
+        <span className="mt-1.5 block font-mono text-[13px]">gading@palembang:~$ exit</span>
 
         <div className="mt-8">
           <SocialLinks />
