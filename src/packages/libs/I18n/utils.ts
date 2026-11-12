@@ -106,8 +106,8 @@ export function isValidRoute(pathname: string): boolean {
   }
 
   // Allow direct routes that have corresponding page.tsx files in app directory
-  // These routes include: /about, /now, /blog and their sub-routes
-  const allowedDirectRoutes = ['about', 'now', 'blog', 'resume', 'docs'];
+  // These routes include: /about, /now, /portfolio, /blog and their sub-routes
+  const allowedDirectRoutes = ['about', 'now', 'portfolio', 'blog', 'resume', 'docs'];
   if (allowedDirectRoutes.includes(firstSegment)) {
     return true;
   }
