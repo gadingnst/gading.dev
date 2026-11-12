@@ -74,6 +74,44 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    id: 'nouclip',
+    tone: 'rose',
+    tag: 'nouclip',
+    title: {
+      en: 'Video to shorts, from the terminal.',
+      id: 'Video jadi shorts, dari terminal.'
+    },
+    summary: {
+      en: 'A CLI that cuts videos into vertical clips: reframing, word-by-word subtitles, silence trimming and music ducking. **FFmpeg** does the cutting and **Whisper** the transcripts; nouclip wires them together so an agent can drive it.',
+      id: 'CLI untuk memotong video jadi klip vertikal: reframe, subtitle per kata, potong jeda diam, dan ducking musik. **FFmpeg** yang memotong dan **Whisper** yang mentranskripsi; nouclip merangkai keduanya supaya bisa dijalankan oleh agen.'
+    },
+    chips: ['CLI', 'FFmpeg', 'Whisper', 'Bun'],
+    link: {
+      label: { en: 'github.com/nouverse/nouclip ↗', id: 'github.com/nouverse/nouclip ↗' },
+      target: { type: 'external', href: 'https://github.com/nouverse/nouclip' }
+    },
+    home: true
+  },
+  {
+    id: 'swr-global-state',
+    tone: 'teal',
+    tag: 'swr-global-state',
+    title: {
+      en: 'Global state that feels like useState.',
+      id: 'Global state yang terasa seperti useState.'
+    },
+    summary: {
+      en: 'A small React library for sharing state between components with a hook that reads like useState, built on **SWR**. Open source and on npm.',
+      id: 'Library React kecil untuk berbagi state antar komponen lewat hook yang dipakai seperti useState, dibangun di atas **SWR**. Open source dan ada di npm.'
+    },
+    chips: ['React', 'SWR', 'npm'],
+    link: {
+      label: { en: 'github.com/gadingnst/swr-global-state ↗', id: 'github.com/gadingnst/swr-global-state ↗' },
+      target: { type: 'external', href: 'https://github.com/gadingnst/swr-global-state' }
+    },
+    home: true
+  },
+  {
     id: 'nouverse',
     tone: 'teal',
     tag: 'nouverse',
@@ -88,8 +126,7 @@ export const PROJECTS: Project[] = [
     link: {
       label: { en: 'nouverse.com ↗', id: 'nouverse.com ↗' },
       target: { type: 'external', href: 'https://nouverse.com' }
-    },
-    home: true
+    }
   },
   {
     id: 'homelab',

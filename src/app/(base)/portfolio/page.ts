@@ -16,7 +16,7 @@ export const generateMetadata = withGenerateMetadata(async() => {
       slug: '/portfolio',
       title: content.title,
       description: content.desc,
-      keywords: 'gading portfolio, nouride, nouverse technologies, homelab',
+      keywords: 'gading portfolio, nouride, nouverse technologies, homelab, nouclip, swr-global-state',
       tags: ['portfolio', 'nouride', 'nouverse'],
       date: '2026-11-13'
     }
