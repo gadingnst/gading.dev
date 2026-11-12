@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
     },
     home: true,
     chat: {
-      user: { en: 'cek disk homelab dong', id: 'cek disk homelab dong' },
+      user: { en: 'check the homelab disk, please', id: 'cek disk homelab dong' },
       agentName: 'nouva',
       agent: {
         en: 'LXC 105 at 81%, mostly old PDF jobs. Clean them up?',
