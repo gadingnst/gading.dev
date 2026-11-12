@@ -18,7 +18,6 @@ export const generateMetadata = withGenerateMetadata(async() => {
       title: content.title,
       description: content.description,
       keywords: 'color, system, design',
-      image: '/media/default-banners/6.jpg',
       tags: ['daisyui', 'color', 'system'],
       date: dt().format('YYYY-MM-DD')
     }

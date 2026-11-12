@@ -13,7 +13,7 @@ export const generateMetadata = withGenerateMetadata(async() => {
       slug: '/resume',
       title: 'Gading\'s Resume',
       description: 'Gading\'s Resume',
-      image: '/media/authhors/gading-talks.jpeg',
+      image: '/media/authors/gading-talks.jpeg',
       date: dt().format('YYYY-MM-DD')
     }
   });

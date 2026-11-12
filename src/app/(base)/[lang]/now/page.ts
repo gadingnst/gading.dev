@@ -20,7 +20,6 @@ export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales }>(asyn
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image,
       tags: content.meta.tags,
       date: content.meta.date
     }
