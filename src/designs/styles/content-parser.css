@@ -1,7 +1,37 @@
 .parser {
   max-width: none;
   line-height: 1.75;
-  color: hsl(var(--bc));
+
+  /* typography plugin colours, bound to the active theme */
+  --tw-prose-body: var(--color-base-content);
+  --tw-prose-headings: var(--color-base-content);
+  --tw-prose-lead: var(--gd-muted);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-base-content);
+  --tw-prose-counters: var(--gd-muted);
+  --tw-prose-bullets: var(--gd-muted);
+  --tw-prose-hr: var(--gd-line);
+  --tw-prose-quotes: var(--color-base-content);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--gd-muted);
+  --tw-prose-code: var(--color-base-content);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--gd-terminal);
+  --tw-prose-th-borders: var(--gd-line);
+  --tw-prose-td-borders: var(--gd-line);
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  th {
+    font-family: var(--font-display);
+  }
+
+  img {
+    border-radius: 1rem;
+  }
 
   .twitter-tweet, .twitter-tweet-rendered {
     margin-right: auto;
@@ -30,7 +60,7 @@
   }
 
   blockquote {
-    @apply border-l-4 border-primary pl-4 italic;
+    @apply border-l-4 border-primary pl-4 italic rounded-r-lg;
     p {
       @apply mt-0;
       &:first-of-type::before {

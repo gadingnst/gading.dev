@@ -28,10 +28,11 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
 /* Scrollbars */
 
 :root {
-  --background: #282a36;
-  --comment: #6272a4;
-  --foreground: #f8f8f2;
-  --selection: #44475a;
+  /* code blocks sit on the terminal colour of the active theme */
+  --background: var(--gd-terminal, #2A2420);
+  --comment: #7f8aa8;
+  --foreground: #f3ece2;
+  --selection: #4a4037;
 
   --cyan: #8be9fd;
   --green: #50fa7b;
@@ -58,7 +59,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 code:not(.code-highlight) {
-  @apply bg-base-300;
+  @apply bg-brand-soft font-mono;
   font-size: inherit;
   padding: 2px 6px;
   border-radius: 0.3em;
@@ -205,8 +206,8 @@ pre[class*='language-'] {
   color: var(--foreground);
   background: var(--background);
   text-shadow: none;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-size: 0.875em;
   text-align: left;
   white-space: pre;
@@ -233,17 +234,17 @@ pre > code {
 
 pre, pre[class*='language-'] {
   background: var(--background);
-  border-radius: 0.5em;
+  border-radius: 1rem;
   padding: 1em;
   overflow: auto;
   height: auto;
 }
 
 div.rehype-code-title {
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: 1rem 1rem 0 0;
   padding: 0.75em 1em;
   color: var(--foreground);
-  background-color: #3E4672;
+  background-color: color-mix(in srgb, var(--gd-terminal) 78%, #f3ece2);
   @apply mb-0;
   & + pre {
     @apply mt-0 rounded-t-none;

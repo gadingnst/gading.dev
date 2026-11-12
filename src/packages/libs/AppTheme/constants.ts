@@ -10,5 +10,12 @@ export type AppTheme = `${AppThemes}`;
 export const APP_THEME_KEY = 'app_theme_state';
 export const APP_THEME_IS_SYSTEM_DARK_KEY = 'app_theme_is_dark_state';
 
-export const APP_THEME_SELECTION_ENABLED = false;
-export const APP_THEME_DEFAULT = AppThemes.DARK;
+/**
+ * daisyUI theme names are `gading-light` / `gading-dark`; the persisted value
+ * (cookie) stays the short `light` / `dark` / `system`.
+ */
+export const APP_THEME_ATTRIBUTE_PREFIX = 'gading-';
+
+export const APP_THEME_SELECTION_ENABLED = true;
+/** `system` follows the OS until the visitor picks one with the toggle */
+export const APP_THEME_DEFAULT = AppThemes.SYSTEM;

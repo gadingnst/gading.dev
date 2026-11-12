@@ -3,14 +3,18 @@
     @apply max-w-4xl w-full mx-auto px-4;
   }
 
-  .dark-mesh-gradient {
-    background-color: #0b1528;
+  /* wide layout of the header, Home, Portfolio and the blog list (1120px) */
+  .wide-container {
+    @apply w-full max-w-[1120px] mx-auto px-5 sm:px-10;
+  }
+
+  /* default (image-less) page banner: the avatar gradient of the Home hero, spread wide */
+  .soft-gradient {
+    background-color: var(--color-base-100);
     background-image:
-      radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
-      radial-gradient(at 90% 10%, rgba(255, 100, 180, 0.15) 0px, transparent 50%),
-      radial-gradient(at 50% 80%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-      radial-gradient(at 80% 90%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
-      radial-gradient(at 20% 80%, rgba(255, 100, 180, 0.1) 0px, transparent 50%);
+      radial-gradient(at 12% 20%, color-mix(in srgb, var(--gd-brand-soft) 90%, transparent) 0px, transparent 55%),
+      radial-gradient(at 88% 30%, color-mix(in srgb, var(--gd-lilac-soft) 90%, transparent) 0px, transparent 55%),
+      radial-gradient(at 50% 100%, color-mix(in srgb, var(--gd-teal-soft) 70%, transparent) 0px, transparent 60%);
   }
 
   .text-2xs {
@@ -90,5 +94,25 @@
     background-color: var(--footer-bg);
     backdrop-filter: blur(var(--footer-blur)) saturate(150%);
     -webkit-backdrop-filter: blur(var(--footer-blur)) saturate(150%);
+  }
+
+  /*
+   * Card hover: lifts and tilts a little. The tilt is skipped for people who
+   * ask for reduced motion; they still get the deeper shadow.
+   */
+  .lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .lift:hover,
+  .lift:focus-within {
+    box-shadow: var(--gd-shadow-lift);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lift:hover,
+    .lift:focus-within {
+      transform: translateY(-5px) rotate(-0.8deg);
+    }
   }
 }
