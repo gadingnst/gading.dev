@@ -20,8 +20,7 @@ const socialLinks = [
   {
     name: 'GitHub',
     href: `https://github.com/${AUTHOR_GITHUB}`,
-    icon: IconGithub,
-    className: 'bg-[#333] shadow-gray-600'
+    icon: IconGithub
   },
   /* {
     name: 'Instagram',
@@ -32,20 +31,17 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     href: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`,
-    icon: IconLinkedin,
-    className: 'bg-[#0077B5] shadow-blue-600'
+    icon: IconLinkedin
   },
   {
     name: 'Twitter',
     href: `https://x.com/${AUTHOR_TWITTER}`,
-    icon: IconTwitter,
-    className: 'bg-[#1DA1F2] shadow-blue-400'
+    icon: IconTwitter
   },
   {
     name: 'Threads',
     href: `https://threads.net/@${AUTHOR_THREADS}`,
-    icon: IconThreads,
-    className: 'bg-[#000] shadow-gray-800'
+    icon: IconThreads
   }
   /* {
     name: 'Facebook',
@@ -57,7 +53,7 @@ const socialLinks = [
 
 function SocialLinks() {
   return (
-    <div className="flex justify-end gap-x-3 mt-8 lg:my-0">
+    <div className="flex justify-center gap-x-3">
       {socialLinks.map((social) => (
         <Link
           key={social.name}
@@ -67,11 +63,11 @@ function SocialLinks() {
           aria-label={social.name}
           data-umami-event={`footer_social-link_${dasherize(social.name)}`}
           className={cn([
-            'p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 hover:shadow-lg',
-            social.className
+            'grid h-10 w-10 place-items-center rounded-full bg-card text-base-content shadow-soft',
+            'transition-all duration-200 hover:-translate-y-0.5 hover:text-brand'
           ])}
         >
-          <social.icon className="w-4 h-4 text-white" />
+          <social.icon className="h-4 w-4" />
         </Link>
       ))}
     </div>

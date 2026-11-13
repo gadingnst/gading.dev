@@ -6,6 +6,7 @@ import { generateBlogPathsDefault, generateBlogPathsWithLang } from '@/modules/B
 import { generateBlogPaginationPathsDefault, generateBlogPaginationPathsWithLang } from '@/modules/Blog/BlogListPagination.page';
 import { generateHomePathsDefault, generateHomePathsWithLang } from '@/modules/Home/Home.page';
 import { generateNowPathsDefault, generateNowPathsWithLang } from '@/modules/Now/Now.page';
+import { generatePortfolioPathsDefault, generatePortfolioPathsWithLang } from '@/modules/Portfolio/Portfolio.page';
 
 async function generateSitemap(): Promise<MetadataRoute.Sitemap> {
   const routes: MetadataRoute.Sitemap = [];
@@ -17,6 +18,8 @@ async function generateSitemap(): Promise<MetadataRoute.Sitemap> {
     aboutPathsDefault,
     nowPaths,
     nowPathsDefault,
+    portfolioPaths,
+    portfolioPathsDefault,
     blogPaths,
     blogPathsDefault,
     blogPaginationPaths,
@@ -28,6 +31,8 @@ async function generateSitemap(): Promise<MetadataRoute.Sitemap> {
     generateAboutPathsDefault(),
     generateNowPathsWithLang(),
     generateNowPathsDefault(),
+    generatePortfolioPathsWithLang(),
+    generatePortfolioPathsDefault(),
     generateBlogPathsWithLang(),
     generateBlogPathsDefault(),
     generateBlogPaginationPathsWithLang(),
@@ -72,6 +77,20 @@ async function generateSitemap(): Promise<MetadataRoute.Sitemap> {
   nowPaths.forEach(path => {
     routes.push({
       url: `${BASE_URL}/${path.lang}/now`,
+      lastModified: new Date()
+    });
+  });
+
+  // Portfolio
+  portfolioPathsDefault.forEach(() => {
+    routes.push({
+      url: `${BASE_URL}/portfolio`,
+      lastModified: new Date()
+    });
+  });
+  portfolioPaths.forEach(path => {
+    routes.push({
+      url: `${BASE_URL}/${path.lang}/portfolio`,
       lastModified: new Date()
     });
   });

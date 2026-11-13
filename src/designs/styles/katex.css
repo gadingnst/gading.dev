@@ -18,11 +18,15 @@ div.math-display {
     @apply text-sm sm:text-base;
   }
 
-  @apply overflow-x-auto mb-2 rounded bg-base-200;
+  @apply overflow-x-auto mb-2 rounded-xl bg-base-200;
 }
 
-html.dark {
-  div.math-display {
-    background-color: var(--selection);
+[data-theme="gading-dark"] div.math-display {
+  background-color: var(--gd-line);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) div.math-display {
+    background-color: var(--gd-line);
   }
 }

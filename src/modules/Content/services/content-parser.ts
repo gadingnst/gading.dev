@@ -40,6 +40,8 @@ export interface ContentMeta {
   keywords: string;
   image: string;
   tags: string[];
+  /** shorter title for the share image, when the real one is too long for a card */
+  ogTitle?: string;
   readTime: ReadTimeResults;
   isFeatured?: boolean;
 }

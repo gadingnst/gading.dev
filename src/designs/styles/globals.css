@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+}
 
 /**
  * `dark:` utilities must follow the app theme (`data-theme` on <html>), not the
@@ -11,7 +13,7 @@
  * (theme = "system"), matching daisyUI's own `:root:not([data-theme])` fallback.
  */
 @custom-variant dark {
-  &:where([data-theme="dark"], [data-theme="dark"] *) {
+  &:where([data-theme="gading-dark"], [data-theme="gading-dark"] *) {
     @slot;
   }
   @media (prefers-color-scheme: dark) {
@@ -22,185 +24,204 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: "gading-light";
   default: true;
   color-scheme: "light";
 
-  /* ─── Base ─── */
-  --color-base-100: rgb(247, 249, 252);
-  --color-base-200: rgb(232, 237, 245);
-  --color-base-300: rgb(221, 228, 238);
-  --color-base-content: rgb(39, 39, 42);
+  /* ─── Base: bg / card / line ─── */
+  --color-base-100: #FAF6EF;
+  --color-base-200: #F3EBDD;
+  --color-base-300: #ECE4D8;
+  --color-base-content: #2A2420;
 
-  /* ─── Brand ─── */
-  --color-primary: rgb(99, 102, 241);
-  --color-primary-content: rgb(255, 255, 255);
+  /* ─── Brand: amber accent, teal, lilac ─── */
+  --color-primary: #C9822E;
+  --color-primary-content: #FFFFFF;
 
-  --color-secondary: rgb(255, 100, 180);
-  --color-secondary-content: rgb(255, 255, 255);
+  --color-secondary: #2F9E8F;
+  --color-secondary-content: #FFFFFF;
 
-  --color-accent: rgb(168, 85, 247);
-  --color-accent-content: rgb(255, 255, 255);
+  --color-accent: #7C6CD9;
+  --color-accent-content: #FFFFFF;
 
   /* ─── Neutral ─── */
-  --color-neutral: rgb(238, 238, 239);
-  --color-neutral-content: rgb(39, 39, 42);
+  --color-neutral: #2A2420;
+  --color-neutral-content: #F3ECE2;
 
   /* ─── State ─── */
-  --color-info: rgb(59, 130, 246);
-  --color-info-content: rgb(39, 39, 42);
+  --color-info: #3B82C4;
+  --color-info-content: #FFFFFF;
 
-  --color-success: rgb(34, 197, 94);
-  --color-success-content: rgb(39, 39, 42);
+  --color-success: #2F9E8F;
+  --color-success-content: #FFFFFF;
 
-  --color-warning: rgb(251, 146, 60);
-  --color-warning-content: rgb(39, 39, 42);
+  --color-warning: #C9822E;
+  --color-warning-content: #FFFFFF;
 
-  --color-error: rgb(239, 68, 68);
-  --color-error-content: rgb(255, 255, 255);
+  --color-error: #D9636B;
+  --color-error-content: #FFFFFF;
 
   /* ─── Misc ─── */
-  --radius-selector: 1rem;
+  --radius-selector: 999px;
   --radius-field: 1rem;
-  --radius-box: 1rem;
+  --radius-box: 1.5rem;
 
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
 
   --border: 1px;
-  --depth: 1;
+  --depth: 0;
   --noise: 0;
 
-  /* ─── Liquid Glass (Original Dark Glass in Light Mode) ─── */
-  /* Same values on every viewport, so mobile and desktop render identically. */
-  --glass-bg: rgba(0, 0, 0, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-text: #fff;
-  --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* ─── Soft tokens (see SPEC: "soft + a little fun") ─── */
+  --gd-card: #FFFFFF;
+  --gd-line: #ECE4D8;
+  --gd-muted: #7A6F64;
+  --gd-brand-soft: #FBEBD3;
+  --gd-teal: #2F9E8F;
+  --gd-teal-soft: #DDF2EE;
+  --gd-rose: #D9636B;
+  --gd-rose-soft: #FBE3E3;
+  --gd-lilac: #7C6CD9;
+  --gd-lilac-soft: #ECE8FB;
+  --gd-terminal: #2A2420;
+  --gd-shadow: 0 1px 2px rgba(60, 40, 20, 0.04), 0 8px 24px rgba(60, 40, 20, 0.06);
+  --gd-shadow-lift: 0 16px 36px rgba(60, 40, 20, 0.13);
+
+  /* ─── Surfaces used by .liquid-glass / .theme-card / footer ─── */
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: var(--gd-line);
+  --glass-text: var(--color-base-content);
+  --glass-shadow: var(--gd-shadow);
   --glass-inset-shadow: none;
   --glass-blur: 12px;
 
-  /* ─── Card styling (Original Flat Card in Light Mode) ─── */
-  --card-bg: var(--color-base-200);
-  --card-border: transparent;
+  --card-bg: var(--gd-card);
+  --card-border: var(--gd-line);
   /* single layer on purpose: daisyUI splits comma separated token values */
-  --card-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.15);
+  --card-shadow: 0 8px 24px rgba(60, 40, 20, 0.06);
   --card-inset-shadow: none;
   --card-blur: 0px;
 
-  /* ─── Footer surface ─── */
-  --footer-bg: var(--color-base-200);
-  --footer-border: var(--color-base-300);
+  --footer-bg: transparent;
+  --footer-border: var(--gd-line);
   --footer-blur: 0px;
 }
 
 @plugin "daisyui/theme" {
-  name: "dark";
+  name: "gading-dark";
   prefersdark: true;
   color-scheme: "dark";
 
-  /* ─── Base ─── */
-  --color-base-100: rgb(14, 38, 58);
-  --color-base-200: rgb(35, 57, 93);
-  --color-base-300: rgb(49, 55, 100);
-  --color-base-400: rgb(56, 56, 63);
-  --color-base-content: rgb(250, 250, 250);
+  /* ─── Base: bg / card / line ─── */
+  --color-base-100: #17130F;
+  --color-base-200: #201B16;
+  --color-base-300: #2F2821;
+  --color-base-content: #F3ECE2;
 
-  /* ─── Brand ─── */
-  --color-primary: rgb(255, 100, 180);
-  --color-primary-content: rgb(255, 255, 255);
+  /* ─── Brand: amber accent, teal, lilac ─── */
+  --color-primary: #E8A55A;
+  --color-primary-content: #17130F;
 
-  --color-secondary: rgb(99, 102, 241);
-  --color-secondary-content: rgb(255, 255, 255);
+  --color-secondary: #5CC7B8;
+  --color-secondary-content: #17130F;
 
-  --color-accent: rgb(168, 85, 247);
-  --color-accent-content: rgb(255, 255, 255);
+  --color-accent: #A89CF0;
+  --color-accent-content: #17130F;
 
   /* ─── Neutral ─── */
-  --color-neutral: rgb(63, 63, 70);
-  --color-neutral-content: rgb(250, 250, 250);
+  --color-neutral: #F3ECE2;
+  --color-neutral-content: #17130F;
 
   /* ─── State ─── */
-  --color-info: rgb(59, 130, 246);
-  --color-info-content: rgb(250, 250, 250);
+  --color-info: #6FB0E8;
+  --color-info-content: #17130F;
 
-  --color-success: rgb(34, 197, 94);
-  --color-success-content: rgb(250, 250, 250);
+  --color-success: #5CC7B8;
+  --color-success-content: #17130F;
 
-  --color-warning: rgb(251, 146, 60);
-  --color-warning-content: rgb(250, 250, 250);
+  --color-warning: #E8A55A;
+  --color-warning-content: #17130F;
 
-  --color-error: rgb(239, 68, 68);
-  --color-error-content: rgb(255, 255, 255);
+  --color-error: #E98A8F;
+  --color-error-content: #17130F;
 
   /* ─── Misc ─── */
-  --radius-selector: 1rem;
+  --radius-selector: 999px;
   --radius-field: 1rem;
-  --radius-box: 1rem;
+  --radius-box: 1.5rem;
 
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
 
   --border: 1px;
-  --depth: 1;
+  --depth: 0;
   --noise: 0;
 
-  /* ─── Liquid Glass (Revamped Navy Glass in Dark Mode) ─── */
-  /*
-   * Same values on every viewport. The blur radius stays moderate on purpose:
-   * huge radii (40px+) are expensive and get dropped by some desktop GPU
-   * pipelines, which is why the blur used to disappear on desktop only.
-   */
-  --glass-bg: rgba(14, 38, 58, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  /* ─── Soft tokens ─── */
+  --gd-card: #201B16;
+  --gd-line: #2F2821;
+  --gd-muted: #A89C8E;
+  --gd-brand-soft: #3A2B1B;
+  --gd-teal: #5CC7B8;
+  --gd-teal-soft: #1C302C;
+  --gd-rose: #E98A8F;
+  --gd-rose-soft: #3A2224;
+  --gd-lilac: #A89CF0;
+  --gd-lilac-soft: #2A2640;
+  --gd-terminal: #0F0C0A;
+  --gd-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --gd-shadow-lift: 0 16px 36px rgba(0, 0, 0, 0.4);
+
+  /* ─── Surfaces used by .liquid-glass / .theme-card / footer ─── */
+  --glass-bg: rgba(32, 27, 22, 0.9);
+  --glass-border: var(--gd-line);
   --glass-text: var(--color-base-content);
-  --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-  --glass-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-  --glass-blur: 14px;
+  --glass-shadow: var(--gd-shadow);
+  --glass-inset-shadow: none;
+  --glass-blur: 12px;
 
-  /* ─── Card styling (Revamped Navy Glass in Dark Mode) ─── */
-  --card-bg: rgba(14, 38, 58, 0.55);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-  --card-inset-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-  --card-blur: 14px;
+  --card-bg: var(--gd-card);
+  --card-border: var(--gd-line);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --card-inset-shadow: none;
+  --card-blur: 0px;
 
-  /* ─── Footer surface ─── */
-  --footer-bg: var(--glass-bg);
-  --footer-border: rgba(255, 255, 255, 0.05);
-  --footer-blur: var(--glass-blur);
-
-  /*
-   * ─── Ambient background glow (dark mode only) ───
-   * One gradient per token: daisyUI splits comma separated values into separate
-   * declarations, so a single multi-layer token would keep only its last layer.
-   */
-  --ambient-glow-1: radial-gradient(60vw 60vh at 5% 0%, rgba(255, 100, 180, 0.1), transparent 70%);
-  --ambient-glow-2: radial-gradient(70vw 70vh at 100% 95%, rgba(99, 102, 241, 0.1), transparent 70%);
-  --ambient-glow-3: radial-gradient(50vw 50vh at 85% 45%, rgba(168, 85, 247, 0.08), transparent 70%);
+  --footer-bg: transparent;
+  --footer-border: var(--gd-line);
+  --footer-blur: 0px;
 }
 
+/*
+ * Soft tokens as Tailwind colours: `bg-card`, `text-muted`, `bg-brand-soft`,
+ * `text-teal`, `border-line`, `bg-terminal`... They point at the variables of the
+ * active theme, so light/dark switching needs no `dark:` variants.
+ */
 @theme inline {
-  --font-sans: var(--font-plus-jakarta-sans);
-  --font-serif: var(--font-space-grotesk);
+  --color-card: var(--gd-card);
+  --color-line: var(--gd-line);
+  --color-muted: var(--gd-muted);
+  --color-brand: var(--color-primary);
+  --color-brand-soft: var(--gd-brand-soft);
+  --color-teal: var(--gd-teal);
+  --color-teal-soft: var(--gd-teal-soft);
+  --color-rose: var(--gd-rose);
+  --color-rose-soft: var(--gd-rose-soft);
+  --color-lilac: var(--gd-lilac);
+  --color-lilac-soft: var(--gd-lilac-soft);
+  --color-terminal: var(--gd-terminal);
+
+  --shadow-soft: var(--gd-shadow);
+
+  --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: var(--font-caveat), cursive;
 }
 
 body {
   font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
-}
-
-/*
- * Ambient glow for the Liquid Glass look, painted straight onto the page canvas
- * instead of a fixed layer of `filter: blur()` blobs. Those blobs were their own
- * composited layers, which is what made Chromium drop `backdrop-filter` on the
- * glass in front of them on desktop; they were also heavy on mobile GPUs.
- * The canvas always sits at the bottom of the backdrop root, so glass elements
- * can blur it safely — and it now behaves the same on mobile and desktop.
- */
-html {
-  background-image: var(--ambient-glow-1, none), var(--ambient-glow-2, none), var(--ambient-glow-3, none);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 
 @import "./custom-utilities";
@@ -208,18 +229,3 @@ html {
 @import "./katex";
 @import "./prism";
 @import "./content-parser";
-
-/*
- * Desktop-only surface refinement: higher opacity background on desktop
- * for higher legibility over high-resolution desktop banners and complex diagrams.
- */
-@media (min-width: 768px) {
-  :root {
-    --glass-bg: rgba(0, 0, 0, 0.65);
-    --card-bg: rgba(232, 237, 245, 0.95);
-  }
-  :root[data-theme="dark"], [data-theme="dark"] {
-    --glass-bg: rgba(14, 38, 58, 0.88);
-    --card-bg: rgba(14, 38, 58, 0.88);
-  }
-}

@@ -19,7 +19,6 @@ export const generateMetadata = withGenerateMetadata<{ page: string; }>(async({ 
       description: content.desc,
       keywords: 'gadings writing, technical writing, blog gading, gading blog',
       tags: ['blog', 'writing', 'technical writing', 'gadings'],
-      image: '/media/default-banners/5.jpg',
       date: '2022-06-01'
     }
   });

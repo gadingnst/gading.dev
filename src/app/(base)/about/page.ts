@@ -18,7 +18,6 @@ export const generateMetadata = withGenerateMetadata(async() => {
       title: `About ${AUTHOR_NAME}`,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: '/media/authors/gading-chibi-talk-signature.png',
       date: content.meta.date,
       tags: content.meta.tags
     }

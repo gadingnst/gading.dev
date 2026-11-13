@@ -22,8 +22,7 @@ function Card(_props: PropsWithChildren<CardProps>) {
       style={style}
       className={cn([
         'card theme-card z-10',
-        'transition-all duration-300 ease-in-out',
-        hoverEffect && 'hover:-translate-y-1 hover:shadow-2xl',
+        hoverEffect && 'lift',
         className
       ])}
     >

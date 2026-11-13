@@ -17,7 +17,6 @@ export const generateMetadata = withGenerateMetadata(async() => {
       title: content.meta.title,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: content.meta.image,
       tags: content.meta.tags,
       date: content.meta.date
     }

@@ -1,42 +1,40 @@
 'use client';
 
-import { SITE_NAME } from '@/configs/sites';
-import cn from '@/designs/utils/cn';
+import { Moon } from 'lucide-react';
+
+import { SITE_DOMAIN } from '@/configs/sites';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { APP_THEME_SELECTION_ENABLED } from '@/packages/libs/AppTheme/constants';
 
 import AppThemeSelector from './AppThemeSelector';
 import BackButton from './BackButton';
 import LanguageSelector from './LanguageSelector';
-import Menu from './Menu';
+import { DesktopMenu, MobileMenu } from './Menu';
 
 export default function Header() {
   return (
-    <header
-      className={cn([
-        'navbar px-0 py-2 fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-transparent'
-      ])}
-    >
-      <div className="base-container flex justify-between items-center">
-        <div className="navbar-start gap-2">
+    <header className="sticky top-0 z-40 bg-base-100/85 backdrop-blur-md">
+      <div className="wide-container grid grid-cols-[1fr_auto] items-center gap-3 py-4 md:grid-cols-[1fr_auto_1fr] md:py-[22px]">
+        <div className="flex items-center gap-2">
           <BackButton />
           <NextLink
             withCurrentLocale
             href="/"
-            className={cn([
-              'liquid-glass-shadow btn btn-ghost relative',
-              'font-bold font-serif text-xs sm:text-base md:text-lg',
-              'transition-all duration-300 hover:bg-white/80 hover:text-black hover:scale-105'
-            ])}
+            className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight md:text-[19px]"
           >
-            {SITE_NAME}
+            <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-brand-soft text-brand">
+              <Moon className="h-[15px] w-[15px]" />
+            </span>
+            {SITE_DOMAIN}
           </NextLink>
         </div>
 
-        <div className="navbar-end gap-x-2">
+        <DesktopMenu />
+
+        <div className="flex items-center justify-end gap-2">
           <LanguageSelector />
           {APP_THEME_SELECTION_ENABLED && <AppThemeSelector />}
-          <Menu />
+          <MobileMenu />
         </div>
       </div>
     </header>

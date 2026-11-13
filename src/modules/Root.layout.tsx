@@ -1,25 +1,39 @@
 import '@/designs/styles/globals.css';
 
-import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { Caveat, JetBrains_Mono, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { PropsWithChildren } from 'react';
 
 import { NextPageProps } from '@/@types/global';
 import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
-import { APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
+import { APP_THEME_ATTRIBUTE_PREFIX, APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
   subsets: ['latin'],
-  weight: ['200', '300', '400', '500', '600', '700', '800']
+  weight: ['400', '500', '600', '700']
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700']
+  weight: ['500', '600', '700']
+});
+
+/** labels, dates, chips, terminal */
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+  weight: ['400', '500']
+});
+
+/** hand-written accents only (doodles, stickers, sign-off) */
+const caveat = Caveat({
+  variable: '--font-caveat',
+  subsets: ['latin'],
+  weight: ['600']
 });
 
 /**
@@ -27,7 +41,7 @@ const spaceGrotesk = Space_Grotesk({
  * Kept inline (not a module) so it runs ahead of hydration, and cookie based so
  * it keeps working on the static export build where the server has no request.
  */
-const APPLY_THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|; )${APP_THEME_KEY}=([^;]*)/);var v=m?decodeURIComponent(m[1]).replace(/^"|"$/g,''):'';if(v==='light'||v==='dark'){document.documentElement.setAttribute('data-theme',v)}else if(v==='system'){document.documentElement.removeAttribute('data-theme')}else{document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();`;
+const APPLY_THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|; )${APP_THEME_KEY}=([^;]*)/);var v=m?decodeURIComponent(m[1]).replace(/^"|"$/g,''):'';if(v==='light'||v==='dark'){document.documentElement.setAttribute('data-theme','${APP_THEME_ATTRIBUTE_PREFIX}'+v)}else{document.documentElement.removeAttribute('data-theme')}}catch(e){}})();`;
 
 /**
  * Layout for language-specific routes
@@ -41,7 +55,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
   const htmlLang = I18n[currentLang].replace('_', '-').toLowerCase();
 
   return (
-    <html lang={htmlLang} data-theme="dark">
+    <html lang={htmlLang} suppressHydrationWarning>
       {/* `next/head` is Pages Router only; App Router layouts render <head> directly */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
@@ -55,8 +69,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
           */}
         <script dangerouslySetInnerHTML={{ __html: APPLY_THEME_SCRIPT }} />
       </head>
-      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} antialiased relative min-h-screen overflow-x-hidden`}>
-        {/* Ambient background glow is painted on the page canvas (see globals.css) */}
+      <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased relative min-h-screen overflow-x-hidden`}>
         {children}
         {!IS_DEV && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />

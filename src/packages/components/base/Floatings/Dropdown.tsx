@@ -10,16 +10,16 @@ export interface DropdownProps {
   children: ReactNode;
   className?: string;
   dropdownClassName?: string;
+  triggerClassName?: string;
   position?: 'start' | 'end';
   open?: boolean;
   disabled?: boolean;
-  liquidGlass?: boolean;
   // eslint-disable-next-line no-unused-vars
   onOpenChange?: (open: boolean) => void;
 }
 
 /**
- * Reusable dropdown component with liquid glass effect
+ * Reusable dropdown component, styled with the soft card tokens
  * Supports controlled and uncontrolled modes
  */
 export default function Dropdown({
@@ -27,7 +27,7 @@ export default function Dropdown({
   children,
   className,
   dropdownClassName,
-  liquidGlass,
+  triggerClassName,
   position = 'end',
   open: controlledOpen,
   disabled = false,
@@ -79,12 +79,8 @@ export default function Dropdown({
         role="button"
         className={cn([
           'btn btn-ghost btn-sm transition-all duration-300',
-          liquidGlass && [
-            'liquid-glass-shadow text-white',
-            'hover:bg-white/80 hover:text-black focus:bg-white/80 focus:text-black focus-visible:bg-white/80 focus-visible:text-black',
-            isOpen && 'bg-white/80 text-black'
-          ],
-          disabled && 'btn-disabled opacity-60 cursor-not-allowed'
+          disabled && 'btn-disabled opacity-60 cursor-not-allowed',
+          triggerClassName
         ])}
         onClick={handleToggle}
       >
@@ -92,10 +88,8 @@ export default function Dropdown({
       </div>
       <ul
         className={cn([
-          'dropdown-content mt-1 menu rounded-2xl z-50 w-52 p-2 shadow-2xl gap-y-1.5 backdrop-blur-xl transition-all duration-200',
-          liquidGlass
-            ? 'bg-slate-900/80 dark:bg-slate-900/85 text-white border border-white/15 shadow-black/50'
-            : 'bg-base-100 text-base-content',
+          'dropdown-content mt-2 menu rounded-2xl z-50 w-52 p-2 gap-y-1 transition-all duration-200',
+          'bg-card text-base-content border border-line shadow-soft',
           dropdownClassName
         ])}
       >

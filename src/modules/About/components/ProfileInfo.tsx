@@ -78,8 +78,8 @@ function ProfileInfo() {
         <LeftDesc className="hidden md:flex" />
         <div className="-mt-4 flex flex-col flex-1 items-center justify-center">
           <Image
-            className="rounded-full cursor-grab active:cursor-grabbing"
-            src="/media/authors/gading-chibi-talk-signature.png"
+            className="h-[180px]! w-[180px]! rounded-full object-cover object-[50%_25%] cursor-grab active:cursor-grabbing"
+            src="/media/authors/gading-illustrated.png"
             alt={AUTHOR_NAME}
             width={180}
             height={180}

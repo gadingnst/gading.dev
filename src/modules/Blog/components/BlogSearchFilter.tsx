@@ -193,7 +193,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
               className={cn([
                 'w-9 h-9 flex items-center justify-center text-base rounded-full transition-all duration-300 mx-1 border border-transparent font-medium',
                 currentPage === page
-                  ? 'shadow-lg bg-primary text-white pointer-events-none scale-105'
+                  ? 'shadow-lg bg-primary text-primary-content pointer-events-none scale-105'
                   : 'hover:outline outline-primary dark:outline-accent cursor-pointer text-base-content/85'
               ])}
             >
@@ -238,28 +238,28 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
         <section className="font-serif flex flex-col h-full items-center justify-center text-center">
           <div className="base-container relative z-10 w-full max-w-3xl">
             <div className="liquid-glass-shadow rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4">
-              <h1 className="text-2xl md:text-4xl font-bold text-white">
+              <h1 className="text-2xl md:text-4xl font-bold">
                 Blog
               </h1>
-              <p className="text-base text-white/80 max-w-xl">
+              <p className="text-base text-muted max-w-xl">
                 {localeDesc.desc}
               </p>
 
               {/* Premium Glassmorphic Search Bar inside the main banner card */}
               <div className="w-full max-w-xl mt-4">
-                <div className="rounded-xl p-0.5 bg-white/10 backdrop-blur-md border border-white/20 flex items-center shadow-lg transition-all duration-300 focus-within:border-white/40 focus-within:ring-2 focus-within:ring-white/10">
-                  <Search className="w-5 h-5 text-white/60 ml-4 flex-shrink-0" />
+                <div className="rounded-full p-0.5 bg-card border border-line flex items-center shadow-soft transition-all duration-300 focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-primary/15">
+                  <Search className="w-5 h-5 text-muted ml-4 flex-shrink-0" />
                   <input
                     type="text"
                     placeholder={localeDesc.searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => handleSearchChange(e.target.value)}
-                    className="input input-ghost w-full focus:outline-none focus:bg-transparent text-white placeholder-white/40 text-base border-none bg-transparent h-11 px-3 focus:ring-0 focus:border-none outline-none"
+                    className="input input-ghost w-full focus:outline-none focus:bg-transparent text-base-content placeholder:text-muted text-base border-none bg-transparent h-11 px-3 focus:ring-0 focus:border-none outline-none"
                   />
                   {searchQuery && (
                     <button
                       onClick={handleClearSearch}
-                      className="btn btn-ghost btn-circle btn-sm mr-2 text-white/60 hover:text-white flex-shrink-0"
+                      className="btn btn-ghost btn-circle btn-sm mr-2 text-muted hover:text-base-content flex-shrink-0"
                       aria-label="Clear search"
                     >
                       <X className="w-4 h-4" />
@@ -274,7 +274,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                 <button
                   type="button"
                   onClick={() => handleScroll(-180)}
-                  className="absolute left-0 z-10 p-1.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/15 text-white cursor-pointer transition-all duration-300 shadow-md backdrop-blur-md flex items-center justify-center hover:scale-105"
+                  className="absolute left-0 z-10 p-1.5 rounded-full bg-card hover:bg-brand-soft border border-line text-base-content cursor-pointer transition-all duration-300 shadow-soft flex items-center justify-center hover:scale-105"
                   aria-label="Scroll tags left"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -288,10 +288,10 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                   <button
                     onClick={() => handleTagClick(null)}
                     className={cn([
-                      'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium',
+                      'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium',
                       !selectedTag
-                        ? 'bg-white/25 text-white border-white/40 shadow-sm'
-                        : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
+                        ? 'bg-brand-soft text-brand border-brand/30 shadow-sm'
+                        : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
                     ])}
                   >
                     {localeDesc.allTags}
@@ -299,10 +299,10 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                   <button
                     onClick={() => handleTagClick('featured')}
                     className={cn([
-                      'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium flex items-center gap-1',
+                      'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium flex items-center gap-1',
                       selectedTag === 'featured'
-                        ? 'bg-warning/20 text-warning border-warning/40 shadow-sm font-bold'
-                        : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
+                        ? 'bg-brand-soft text-brand border-brand/40 shadow-sm font-bold'
+                        : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
                     ])}
                   >
                     <Star className="w-3 h-3 fill-current" />
@@ -313,10 +313,10 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                       key={tag}
                       onClick={() => handleTagClick(tag)}
                       className={cn([
-                        'px-4 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 backdrop-blur-sm border flex-shrink-0 font-medium',
+                        'px-4 py-1.5 font-mono text-xs md:text-sm rounded-full transition-all duration-300 border flex-shrink-0 font-medium',
                         selectedTag === tag
-                          ? 'bg-white/25 text-white border-white/40 shadow-sm'
-                          : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/15 hover:text-white cursor-pointer'
+                          ? 'bg-brand-soft text-brand border-brand/30 shadow-sm'
+                          : 'bg-card text-muted border-line hover:text-base-content cursor-pointer'
                       ])}
                     >
                       #{tag}
@@ -328,7 +328,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
                 <button
                   type="button"
                   onClick={() => handleScroll(180)}
-                  className="absolute right-0 z-10 p-1.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/15 text-white cursor-pointer transition-all duration-300 shadow-md backdrop-blur-md flex items-center justify-center hover:scale-105"
+                  className="absolute right-0 z-10 p-1.5 rounded-full bg-card hover:bg-brand-soft border border-line text-base-content cursor-pointer transition-all duration-300 shadow-soft flex items-center justify-center hover:scale-105"
                   aria-label="Scroll tags right"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -354,7 +354,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
         </div>
       ) : (
         <div className="text-center py-20 px-4 z-10 flex-1">
-          <div className="max-w-md mx-auto p-8 rounded-2xl bg-base-100/25 border border-base-content/5 backdrop-blur-md shadow-xl">
+          <div className="max-w-md mx-auto p-8 rounded-3xl bg-card border border-line shadow-soft">
             <p className="text-base-content/80 text-base font-medium">
               {localeDesc.emptyState}
             </p>

@@ -7,39 +7,39 @@ const currentYear = new Date().getFullYear();
 
 function Footer() {
   return (
-    <footer className="footer-custom w-full h-full">
-      <div className="base-container">
-        <div className="relative z-10 flex my-16 flex-col justify-between lg:items-center lg:flex-row">
-          <p className="text-2xl text-left mx-1">
-            Let&lsquo;s get in touch on my social.
-          </p>
+    <footer className="footer-custom w-full">
+      <div className="wide-container pb-12 pt-16 text-center text-sm text-muted">
+        <span className="font-hand text-[22px] text-brand">thanks for stopping by ✌️</span>
+        <span className="mt-1.5 block font-mono text-[13px]">gading@palembang:~$ exit</span>
+
+        <div className="mt-8">
           <SocialLinks />
         </div>
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-base-content/15 to-transparent relative z-10" />
-        <div className="relative z-10 my-12 text-sm text-center sm:text-left">
+
+        <div className="mt-8">
           <span className="inline-block">&copy;&nbsp;{currentYear}&nbsp;</span>
-          <Link className="inline-block font-semibold" href={BASE_URL}>{SITE_NAME}</Link>
-          <span className="inline-block mx-1">&bull;</span>
-          <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
-          <span className="inline-block mx-0.5">with</span>
-          <span className="inline-block border-b-2 border-dotted mx-0.5 leading-tight">Bullshit</span>
-          <span className="inline-block mx-0.5">by</span>
-          <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}`}>
+          <Link size="inherit" className="inline-block font-semibold" href={BASE_URL}>{SITE_NAME}</Link>
+          <span className="mx-1 inline-block">&bull;</span>
+          <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}/gading.dev`}>Built</Link>
+          <span className="mx-0.5 inline-block">with</span>
+          <span className="mx-0.5 inline-block border-b-2 border-dotted leading-tight">Bullshit</span>
+          <span className="mx-0.5 inline-block">by</span>
+          <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary mx-0.5" href={`https://github.com/${AUTHOR_GITHUB}`}>
             {AUTHOR_NAME}
           </Link>
-          <div className="text-base-content mt-2">
-            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="https://analytic.gading.dev">
+          <div className="mt-2">
+            <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="https://analytic.gading.dev">
               Analytic
             </Link>
-            <span className="inline-block mx-1">&bull;</span>
-            <Link target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="/docs/colors">
+            <span className="mx-1 inline-block">&bull;</span>
+            <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="/docs/colors">
               Color System
             </Link>
-            <span className="inline-block mx-1">&bull;</span>
+            <span className="mx-1 inline-block">&bull;</span>
             <a target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
               Feed RSS
             </a>
-            <span className="inline-block mx-1">&bull;</span>
+            <span className="mx-1 inline-block">&bull;</span>
             <a target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/sitemap.xml`}>
               Sitemap
             </a>

@@ -21,7 +21,6 @@ export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales; }>(asy
       title: `About ${AUTHOR_NAME}`,
       description: content.meta.description,
       keywords: content.meta.keywords,
-      image: '/media/authors/gading-chibi-talk-signature.png',
       tags: content.meta.tags,
       date: content.meta.date
     }

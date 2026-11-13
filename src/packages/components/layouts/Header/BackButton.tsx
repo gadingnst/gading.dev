@@ -3,7 +3,6 @@
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import cn from '@/designs/utils/cn';
 import useBlogContentLanguages from '@/modules/Blog/hooks/useBlogContentLanguages';
 
 export default function BackButton() {
@@ -15,14 +14,12 @@ export default function BackButton() {
 
   return (
     <button
+      type="button"
       onClick={router.back}
-      className={cn([
-        'liquid-glass-shadow btn btn-ghost btn-circle',
-        'transition-all duration-300 hover:bg-white/80 hover:text-black hover:scale-105'
-      ])}
+      className="grid h-[38px] w-[38px] shrink-0 cursor-pointer place-items-center rounded-full bg-card shadow-soft transition-transform duration-200 hover:scale-105"
       aria-label="Back"
     >
-      <ChevronLeft className="w-5 h-5" />
+      <ChevronLeft className="h-[18px] w-[18px]" />
     </button>
   );
 }

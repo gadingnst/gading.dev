@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, Menu as MenuIcon, PenTool, User, X } from 'lucide-react';
+import { Briefcase, Clock, Home, Menu as MenuIcon, PenTool, User, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -11,14 +11,24 @@ import useLangugage from '@/packages/libs/I18n/i18n.client';
 
 const menuItems = [
   {
-    label: 'Now',
-    href: '/now',
-    icon: Clock
+    label: 'Home',
+    href: '/',
+    icon: Home
+  },
+  {
+    label: 'Portfolio',
+    href: '/portfolio',
+    icon: Briefcase
   },
   {
     label: 'Blog',
     href: '/blog',
     icon: PenTool
+  },
+  {
+    label: 'Now',
+    href: '/now',
+    icon: Clock
   },
   {
     label: 'About',
@@ -28,94 +38,97 @@ const menuItems = [
 ];
 
 /**
- * Navigation menu component with Home and About links
- * Highlights active route and supports internationalization
+ * Whether `route` is the page being viewed
+ * @param pathname - current pathname, language prefix included
+ * @param route - menu route, without language prefix
  */
-export default function Menu() {
+function useIsActiveRoute() {
   const pathname = usePathname();
   const currentLang = useLangugage();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  /**
-   * Check if a route is currently active
-   * @param route - Route to check
-   * @returns true if route is active
-   */
-  const isActiveRoute = (route: string): boolean => {
+  return (route: string): boolean => {
     if (route === '/') {
-      // For home route, check if pathname is exactly '/' or starts with language prefix only
       return pathname === '/' || pathname === `/${currentLang}` || pathname === '/en' || pathname === '/id';
     }
-    // For other routes, check if pathname contains the route
     return pathname?.includes(route) || false;
   };
+}
+
+/**
+ * Pill navigation shown from the `md` breakpoint up
+ */
+export function DesktopMenu() {
+  const isActiveRoute = useIsActiveRoute();
 
   return (
-    <>
-      {/* Desktop Menu */}
-      <nav className="hidden items-center rounded-full liquid-glass-shadow md:flex">
+    <nav
+      aria-label="Main"
+      className="hidden items-center gap-1 rounded-full bg-card p-[5px] shadow-soft md:flex"
+    >
+      {menuItems.map((item) => {
+        const isActive = isActiveRoute(item.href);
+
+        return (
+          <NextLink
+            key={item.href}
+            withCurrentLocale
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+            className={cn([
+              'rounded-full px-3.5 py-[7px] text-sm font-semibold transition-colors duration-200',
+              isActive
+                ? 'bg-brand-soft text-brand'
+                : 'text-muted hover:text-base-content'
+            ])}
+          >
+            {item.label}
+          </NextLink>
+        );
+      })}
+    </nav>
+  );
+}
+
+/**
+ * Hamburger menu shown below the `md` breakpoint
+ */
+export function MobileMenu() {
+  const isActiveRoute = useIsActiveRoute();
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="md:hidden">
+      <Dropdown
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 border-0 bg-card p-0 shadow-soft"
+        trigger={
+          <span aria-label={isOpen ? 'Close menu' : 'Open menu'}>
+            {isOpen ? <X className="h-[18px] w-[18px]" /> : <MenuIcon className="h-[18px] w-[18px]" />}
+          </span>
+        }
+      >
         {menuItems.map((item) => {
           const isActive = isActiveRoute(item.href);
-
           return (
-            <NextLink
-              key={item.href}
-              withCurrentLocale
-              href={item.href}
-              disabled={isActive}
-              className={cn([
-                'btn btn-sm btn-ghost bg-transparent border-0 transition-all duration-300',
-                'text-white hover:text-white hover:bg-white/15',
-                isActive
-                  ? 'bg-white/60 text-black'
-                  : ''
-              ])}
-            >
-              {item.label}
-            </NextLink>
+            <li key={item.href}>
+              <NextLink
+                withCurrentLocale
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                aria-current={isActive ? 'page' : undefined}
+                className={cn([
+                  'flex items-center gap-3 rounded-xl font-semibold transition-colors duration-200',
+                  isActive ? 'bg-brand-soft text-brand' : 'text-base-content hover:bg-base-200'
+                ])}
+              >
+                <item.icon className="h-4 w-4" />
+                <span>{item.label}</span>
+              </NextLink>
+            </li>
           );
         })}
-      </nav>
-
-      {/* Mobile Menu */}
-      <div className="md:hidden">
-        <Dropdown
-          liquidGlass
-          open={isMobileMenuOpen}
-          onOpenChange={setIsMobileMenuOpen}
-          trigger={
-            isMobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <MenuIcon className="w-5 h-5" />
-            )
-          }
-        >
-          {menuItems.map((item) => {
-            const isActive = isActiveRoute(item.href);
-            return (
-              <li key={item.href}>
-                <NextLink
-                  withCurrentLocale
-                  href={item.href}
-                  disabled={isActive}
-                  className={cn([
-                    'flex items-center gap-3 transition-all duration-300 text-white/90 hover:text-white',
-                    'cursor-pointer hover:bg-white/15',
-                    isActive && [
-                      'active cursor-default bg-white/20 text-white font-semibold',
-                      'border-l-4 border-primary shadow-md'
-                    ]
-                  ])}
-                >
-                  <item.icon className="w-4 h-4 transition-all duration-300 text-current" />
-                  <span>{item.label}</span>
-                </NextLink>
-              </li>
-            );
-          })}
-        </Dropdown>
-      </div>
-    </>
+      </Dropdown>
+    </div>
   );
 }

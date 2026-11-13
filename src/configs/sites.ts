@@ -3,6 +3,8 @@ import { NODE_ENV } from './envs';
 export const IS_DEV = NODE_ENV !== 'production';
 
 export const SITE_NAME = 'Gading\'s Hideout';
+/** text of the logo in the header */
+export const SITE_DOMAIN = 'gading.dev';
 export const PRODUCTION_URL = 'https://gading.dev';
 export const BASE_URL = IS_DEV ? 'http://localhost:3000' : PRODUCTION_URL;
 export const DEFAULT_LOCALE = 'en';

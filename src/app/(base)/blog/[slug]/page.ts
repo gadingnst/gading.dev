@@ -1,3 +1,4 @@
+import { BASE_URL, DEFAULT_LOCALE } from '@/configs/sites';
 import BlogContentPage, { generateBlogPathsDefault } from '@/modules/Blog/BlogContent.page';
 import { getContent } from '@/modules/Content/services/content-parser';
 import { withGenerateMetadata } from '@/packages/utils/metadata/metadata';
@@ -15,6 +16,8 @@ export const generateMetadata = withGenerateMetadata<{ slug: string; }>(async({ 
   return metadataBuilder({
     meta: {
       ...content.meta,
+      // English share image, generated at build time (see [lang]/blog/[slug]/og.png/route.tsx)
+      image: `${BASE_URL}/${DEFAULT_LOCALE}/blog/${slug}/og.png`,
       slug: `/blog/${content.meta.slugOriginal}`
     }
   });
