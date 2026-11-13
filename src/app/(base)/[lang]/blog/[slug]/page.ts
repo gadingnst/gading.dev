@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/configs/sites';
 import BlogContentPage, { generateBlogPathsWithLang } from '@/modules/Blog/BlogContent.page';
 import { getContent } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
@@ -17,6 +18,8 @@ export const generateMetadata = withGenerateMetadata<{ slug: string; lang: I18nL
     locale: lang,
     meta: {
       ...content.meta,
+      // share image generated at build time, see ./og.png/route.tsx
+      image: `${BASE_URL}/${lang}/blog/${slug}/og.png`,
       slug: `/blog/${content.meta.slugOriginal}`
     }
   });
