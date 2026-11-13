@@ -3,15 +3,15 @@ import createContentLocales from '@/packages/libs/I18n/locales';
 const withHomeLocales = createContentLocales({
   greeting: {
     en: 'hey, I\'m Gading 👋',
-    id: 'halo, saya Gading 👋'
+    id: 'hey, I\'m Gading 👋'
   },
   headlineStart: {
     en: 'I build systems, then write about ',
-    id: 'Saya membangun sistem, lalu menulis soal '
+    id: 'I build systems, then write about '
   },
   headlineAccent: {
     en: 'what broke.',
-    id: 'apa yang rusak.'
+    id: 'what broke.'
   },
   lead: {
     en: 'Software engineer from Palembang. I make **Nouride**, run **Nouverse**, and keep a homelab around mostly so I have something to break.',
