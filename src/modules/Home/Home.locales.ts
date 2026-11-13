@@ -31,7 +31,7 @@ const withHomeLocales = createContentLocales({
   },
   statusNow: {
     en: 'Hardening Nouride v0.8',
-    id: 'Mengeraskan Nouride v0.8'
+    id: 'Hardening Nouride v0.8'
   },
   statusNowLabel: {
     en: 'now',
