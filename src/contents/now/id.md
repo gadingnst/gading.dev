@@ -41,15 +41,15 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Golang, GORM, Protocol Buffer
 - Jest, React Testing Library
 - Storybook
-- Bot, Otomatisasi, Task Runner, Data Collection
-> *Dan saya bisa terbuka untuk mempelajari Stack Teknologi lain jika dibutuhkan.*
+- Bot, Automation, Task Runner, Data Collection
+> *Dan saya bisa terbuka untuk mempelajari Tech Stack lain jika dibutuhkan.*
 
-#### 🛠 Beberapa Perangkat Lunak yang digunakan sehari-hari
-- Sistem Operasi: MacOS
-- Kode Editor: Visual Studio Code, Trae
+#### 🛠 Beberapa Software yang digunakan sehari-hari
+- OS: MacOS
+- Code Editor: Visual Studio Code, Trae
 - AI Tool: ChatGPT, Gemini CLI, OpenClaw (AI Agent)
-- GUI Basis Data: DBEaver, PhpMyAdmin dan Robo 3T
-- Peramban: Google Chrome, Brave dan Safari
+- Database GUI: DBEaver, PhpMyAdmin dan Robo 3T
+- Browser: Google Chrome, Brave dan Safari
 - Lain-lain: Linear/Clickup, Postman, Spotify
 
 *Terakhir diperbarui: Juni, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

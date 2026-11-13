@@ -2,7 +2,7 @@
 
 import { Moon } from 'lucide-react';
 
-import { SITE_DOMAIN } from '@/configs/sites';
+import { SITE_NAME } from '@/configs/sites';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { APP_THEME_SELECTION_ENABLED } from '@/packages/libs/AppTheme/constants';
 
@@ -25,7 +25,7 @@ export default function Header() {
             <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-brand-soft text-brand">
               <Moon className="h-[15px] w-[15px]" />
             </span>
-            {SITE_DOMAIN}
+            {SITE_NAME}
           </NextLink>
         </div>
 

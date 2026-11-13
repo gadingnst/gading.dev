@@ -3,19 +3,19 @@ import createContentLocales from '@/packages/libs/I18n/locales';
 const withHomeLocales = createContentLocales({
   greeting: {
     en: 'hey, I\'m Gading 👋',
-    id: 'halo, saya Gading 👋'
+    id: 'hey, I\'m Gading 👋'
   },
   headlineStart: {
     en: 'I build systems, then write about ',
-    id: 'Saya membangun sistem, lalu menulis soal '
+    id: 'I build systems, then write about '
   },
   headlineAccent: {
     en: 'what broke.',
-    id: 'apa yang rusak.'
+    id: 'what broke.'
   },
   lead: {
-    en: 'Software engineer from Palembang. I make **Nouride**, run **Nouverse**, and keep a homelab around mostly so I have something to break.',
-    id: 'Software engineer dari Palembang. Saya membuat **Nouride**, menjalankan **Nouverse**, dan memelihara homelab, sebagian besar supaya ada yang bisa saya rusak.'
+    en: 'Software engineer from Palembang. I built [Nouride](https://nouride.com), founded [Nouverse](https://nouverse.com), and work at an AI company. I tinker with my homelab, and it breaks more often than not because I can\'t leave it alone.',
+    id: 'Software engineer dari Palembang. Bikin [Nouride](https://nouride.com), bangun [Nouverse](https://nouverse.com), dan kerja di AI company. Suka ngoprek homelab, tapi lebih sering rusak gara-gara ngulik sendiri.'
   },
   seeWork: {
     en: 'See my work',
@@ -31,7 +31,7 @@ const withHomeLocales = createContentLocales({
   },
   statusNow: {
     en: 'Hardening Nouride v0.8',
-    id: 'Mengeraskan Nouride v0.8'
+    id: 'Hardening Nouride v0.8'
   },
   statusNowLabel: {
     en: 'now',
