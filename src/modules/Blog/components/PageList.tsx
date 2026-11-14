@@ -31,7 +31,8 @@ async function BlogPageList({ pageCurrent = 1, lang: propLang }: Props) {
           searchPlaceholder: content.searchPlaceholder,
           allTags: content.allTags,
           emptyState: content.emptyState,
-          clearSearch: content.clearSearch
+          clearSearch: content.clearSearch,
+          readFeatured: content.readFeatured
         }}
       />
     </div>
