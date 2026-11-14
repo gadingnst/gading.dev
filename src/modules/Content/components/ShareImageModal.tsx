@@ -158,11 +158,11 @@ function ShareImageModal(props: Props) {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className={cn(['mt-4 grid gap-2', file ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'])}>
           <a
             href={src}
             download={fileName}
-            className="btn btn-primary flex-1"
+            className="btn btn-primary whitespace-nowrap"
             data-umami-event={`content_share-image-download-${format.id}_${umamiSuffix}`}
           >
             <Download className="w-4 h-4" aria-hidden />
@@ -172,7 +172,7 @@ function ShareImageModal(props: Props) {
             <button
               type="button"
               onClick={onShare}
-              className="btn btn-outline flex-1"
+              className="btn btn-outline whitespace-nowrap"
               data-umami-event={`content_share-image-share-${format.id}_${umamiSuffix}`}
             >
               <Share2 className="w-4 h-4" aria-hidden />
@@ -182,7 +182,11 @@ function ShareImageModal(props: Props) {
           <button
             type="button"
             onClick={copyHandler}
-            className={cn(['btn flex-1', isCopied ? 'btn-success' : 'btn-ghost border border-[var(--gd-line)]'])}
+            className={cn([
+              'btn whitespace-nowrap',
+              file && 'col-span-2 sm:col-span-1',
+              isCopied ? 'btn-success' : 'btn-ghost border border-[var(--gd-line)]'
+            ])}
             data-umami-event={`content_share-image-copy-link_${umamiSuffix}`}
           >
             {isCopied ? <Check className="w-4 h-4" aria-hidden /> : <LinkIcon className="w-4 h-4" aria-hidden />}
