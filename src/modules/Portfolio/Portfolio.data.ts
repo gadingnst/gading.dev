@@ -34,6 +34,8 @@ export interface Project {
   chips?: string[];
   /** left out for work that has no public page: the card says `internal` */
   link?: ProjectLink;
+  /** where the work was based, shown top right of the card (professional work) */
+  location?: Localized;
   /** shown in "Things I'm building" on Home, in this order, the first one as the big card */
   home?: boolean;
   /** chat mock shown on the big Home card */
@@ -159,6 +161,7 @@ export const PROJECTS: Project[] = [
 export const WORK: Project[] = [
   {
     id: 'agp',
+    location: { en: 'Singapore', id: 'Singapura' },
     tone: 'teal',
     tag: 'agp',
     title: { en: 'AGP Group', id: 'AGP Group' },
@@ -174,6 +177,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'codi',
+    location: { en: 'United States', id: 'Amerika Serikat' },
     tone: 'rose',
     tag: 'codi',
     title: { en: 'Codi', id: 'Codi' },
@@ -189,6 +193,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'simplexity',
+    location: { en: 'United States', id: 'Amerika Serikat' },
     tone: 'lilac',
     tag: 'simplexity',
     title: { en: 'Simplexity Legal', id: 'Simplexity Legal' },
@@ -204,6 +209,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'laindiemovie',
+    location: { en: 'Indonesia', id: 'Indonesia' },
     tone: 'brand',
     tag: 'lazone',
     title: { en: 'La Indie Movie', id: 'La Indie Movie' },
@@ -219,6 +225,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'heypico',
+    location: { en: 'Singapore', id: 'Singapura' },
     tone: 'teal',
     tag: 'heypico',
     title: { en: 'HeyPico', id: 'HeyPico' },
@@ -234,6 +241,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'avatara',
+    location: { en: 'Indonesia', id: 'Indonesia' },
     tone: 'rose',
     tag: 'avatara',
     title: { en: 'Avatara Labs', id: 'Avatara Labs' },
@@ -249,6 +257,7 @@ export const WORK: Project[] = [
   },
   {
     id: 'orami',
+    location: { en: 'Indonesia', id: 'Indonesia' },
     tone: 'lilac',
     tag: 'orami',
     title: { en: 'Orami', id: 'Orami' },
