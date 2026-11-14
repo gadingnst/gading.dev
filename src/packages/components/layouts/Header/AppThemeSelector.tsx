@@ -19,7 +19,7 @@ export default function AppThemeSelector() {
       type="button"
       onClick={() => setTheme(isDark ? AppThemes.LIGHT : AppThemes.DARK)}
       aria-label="Toggle light and dark theme"
-      className="grid h-[38px] w-[38px] cursor-pointer place-items-center rounded-full bg-card shadow-soft transition-transform duration-200 hover:scale-105"
+      className="grid h-[38px] w-[38px] cursor-pointer place-items-center rounded-full floating-glass transition-transform duration-200 hover:scale-105"
     >
       <Moon className="h-[18px] w-[18px] dark:hidden" />
       <Sun className="hidden h-[18px] w-[18px] dark:block" />

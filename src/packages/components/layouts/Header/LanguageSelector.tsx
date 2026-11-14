@@ -104,7 +104,7 @@ function LanguageSelector() {
       open={isDropdownOpen}
       onOpenChange={setIsDropdownOpen}
       dropdownClassName="max-w-32"
-      triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 border-0 bg-card p-0 text-sm font-semibold shadow-soft"
+      triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 floating-glass p-0 text-sm font-semibold"
       trigger={
         <span aria-label={isSlugSingleLanguage ? `${getLanguageLabel(currentLang)} only` : 'Change language'}>
           {getLanguageLabel(currentLang)}
