@@ -1,9 +1,14 @@
 import { NextPageProps } from '@/@types/global';
+import withBlogContentLocales from '@/modules/Blog/BlogContent.locales';
 import BlogContentInfo from '@/modules/Blog/components/ContentInfo';
 import BlogContentSlugInitializer from '@/modules/Blog/components/ContentSlugInitializer';
+import ReadingProgress from '@/modules/Blog/components/ReadingProgress';
+import SeriesNav from '@/modules/Blog/components/SeriesNav';
+import TableOfContents from '@/modules/Blog/components/TableOfContents';
+import { getTableOfContents } from '@/modules/Blog/services/toc';
 import ContentParser from '@/modules/Content/components/ContentParser';
 import ContentInteraction from '@/modules/Content/components/Interaction';
-import { getAllBlogPaths, getContent } from '@/modules/Content/services/content-parser';
+import { getAllBlogPaths, getContent, getSeriesParts } from '@/modules/Content/services/content-parser';
 import HeroCard from '@/packages/components/base/Displays/HeroCard';
 import Banner from '@/packages/components/layouts/Header/Banner';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
@@ -40,10 +45,14 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
 
   const slug = resolvedParams.slug;
   const content = await getContent(slug, lang);
+  const seriesParts = await getSeriesParts(content.meta, lang);
+  const toc = getTableOfContents(content.source);
+  const labels = withBlogContentLocales(lang);
 
   return (
     <>
       <BlogContentSlugInitializer contentSlug={content.meta.slug} />
+      <ReadingProgress targetId="post-body" />
       <div className="min-h-screen flex flex-col text-base-content">
         <Banner bgImage={content.meta.image}>
           <section className="font-serif flex flex-col h-full items-center justify-center text-center">
@@ -62,12 +71,32 @@ async function BlogContentPage({ params }: NextPageProps<ParamsWithLang|Params>)
         </Banner>
 
         {/* Markdown Content */}
-        <section className="base-container py-6 -mt-20 sm:-mt-24 md:-mt-28">
-          <HeroCard>
-            <ContentParser>
-              {content.content}
-            </ContentParser>
+        <section
+          className={[
+            'w-full mx-auto px-4 py-6 -mt-20 sm:-mt-24 md:-mt-28',
+            'max-w-4xl xl:max-w-6xl xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-8'
+          ].join(' ')}
+        >
+          <HeroCard className="w-full">
+            <SeriesNav
+              className="mb-6"
+              current={content.meta}
+              parts={seriesParts}
+              labels={labels}
+            />
+            <div id="post-body">
+              <ContentParser>
+                {content.content}
+              </ContentParser>
+            </div>
           </HeroCard>
+          <aside className="hidden xl:block">
+            <TableOfContents
+              className="sticky top-28 mt-32 max-h-[calc(100vh-9rem)] overflow-y-auto pr-1"
+              items={toc}
+              title={labels.toc}
+            />
+          </aside>
         </section>
         <ContentInteraction
           meta={content.meta}
