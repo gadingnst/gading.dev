@@ -19,5 +19,6 @@ export const WORKED_WITH: WorkedWithCompany[] = [
   { id: 'sirclo', name: 'SIRCLO', url: 'https://sirclo.com', logo: '/media/companies/sirclo.png' },
   { id: 'orami', name: 'Orami', url: 'https://orami.co.id', logo: '/media/companies/orami.png' },
   { id: 'lazone', name: 'LaZone', url: 'https://lazone.id', logo: '/media/companies/lazone.svg' },
-  { id: 'surd', name: 'SURD Studio', url: 'https://surd.studio', logo: '/media/companies/surd.png' }
+  { id: 'surd', name: 'SURD Studio', url: 'https://surd.studio', logo: '/media/companies/surd.png' },
+  { id: 'jetdesigns', name: 'JetDesigns', url: 'https://jet.studio', logo: '/media/companies/jetdesigns.png' }
 ];
