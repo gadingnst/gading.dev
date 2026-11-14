@@ -18,12 +18,12 @@ const withPortfolioLocales = createContentLocales({
     id: 'Produk dan proyek sampingan, kurang lebih berurutan begitu.'
   },
   workTitle: {
-    en: 'Built with teams',
-    id: 'Dibangun bersama tim'
+    en: 'Professional work',
+    id: 'Proyek profesional'
   },
   workDesc: {
-    en: 'Products I worked on at other companies.',
-    id: 'Produk yang saya kerjakan di perusahaan lain.'
+    en: 'Products I built for the companies I\'ve worked with.',
+    id: 'Produk yang saya bangun untuk perusahaan tempat saya bekerja.'
   }
 });
 
