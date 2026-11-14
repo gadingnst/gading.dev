@@ -20,13 +20,14 @@ function BlogCard(_props: BlogCardProps) {
     <Card
       hoverEffect
       className={cn([
-        'relative overflow-hidden flex flex-col h-full',
+        'relative flex flex-col h-full',
         className
       ])}
     >
       {isFeatured && (
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 bg-brand-soft text-brand font-mono text-[10px] font-medium tracking-wider uppercase px-2.5 py-1 rounded-full shadow-soft">
-          <Star className="w-3 h-3 fill-current" />
+        // sticker on the card's top edge, same shape as Home's "my baby"
+        <div className="absolute -top-3 right-4 z-20 flex rotate-6 items-center gap-1.5 rounded-xl bg-brand-soft px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-brand shadow-soft sm:right-6">
+          <Star className="h-3.5 w-3.5 fill-current" />
           <span>Featured</span>
         </div>
       )}
@@ -37,7 +38,7 @@ function BlogCard(_props: BlogCardProps) {
       >
         {/* Blog Image */}
         {blog.image && (
-          <div className="relative w-full h-48 overflow-hidden bg-base-300">
+          <div className="relative w-full h-48 overflow-hidden rounded-t-[var(--radius-box)] bg-base-300">
             <div className="w-full h-full">
               <Image
                 src={blog.image}

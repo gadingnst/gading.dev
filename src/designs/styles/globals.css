@@ -229,3 +229,19 @@ body {
 @import "./katex";
 @import "./prism";
 @import "./content-parser";
+
+/* Homepage "Worked with" strip: the list is rendered twice, so -50% loops seamlessly */
+@keyframes worked-with-scroll {
+  to { transform: translateX(calc(-50% - 1.25rem)); }
+}
+.worked-with-track {
+  animation: worked-with-scroll 45s linear infinite;
+}
+.worked-with-mask {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .worked-with-track { animation: none; flex-wrap: wrap; width: auto; row-gap: 1rem; }
+  .worked-with-track > [aria-hidden] { display: none; }
+  .worked-with-mask { mask-image: none; }
+}

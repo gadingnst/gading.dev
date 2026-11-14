@@ -21,7 +21,7 @@ const TONES: Record<ProjectTone, { label: string; link: string }> = {
 };
 
 function ProjectCard({ project, lang, variant = 'standard', className }: Props) {
-  const { tone, tag, title, summary, chips, link, chat } = project;
+  const { tone, tag, title, summary, chips, link, chat, location } = project;
   const isFeature = variant === 'feature';
   const linkClassName = cn(['mt-auto font-mono text-sm font-medium', TONES[tone].link]);
 
@@ -39,9 +39,14 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
         </span>
       )}
 
-      <span className={cn(['self-start rounded-full px-[11px] py-1 font-mono text-xs font-medium', TONES[tone].label])}>
-        {tag}
-      </span>
+      <div className="flex items-center justify-between gap-3">
+        <span className={cn(['rounded-full px-[11px] py-1 font-mono text-xs font-medium', TONES[tone].label])}>
+          {tag}
+        </span>
+        {location && (
+          <span className="font-mono text-xs text-muted">{location[lang]}</span>
+        )}
+      </div>
 
       <h3
         className={cn([
@@ -81,7 +86,9 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
         </ul>
       )}
 
-      {link.target.type === 'external' ? (
+      {!link ? (
+        <span className="mt-auto font-mono text-sm font-medium text-muted">internal</span>
+      ) : link.target.type === 'external' ? (
         <a
           href={link.target.href}
           target="_blank"
