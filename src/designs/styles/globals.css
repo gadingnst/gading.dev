@@ -245,3 +245,11 @@ body {
   .worked-with-track > [aria-hidden] { display: none; }
   .worked-with-mask { mask-image: none; }
 }
+
+/* command palette: backdrop fade and a small drop-in (motion-safe only) */
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+@keyframes palette-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
