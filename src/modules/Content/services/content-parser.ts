@@ -52,6 +52,8 @@ export interface ContentMeta {
   readTime: ReadTimeResults;
   isFeatured?: boolean;
   series?: ContentSeries;
+  /** Now page only: one line shown as "Currently" on the home hero */
+  currently?: string;
 }
 
 export interface ContentBlogList {

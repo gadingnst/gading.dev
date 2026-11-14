@@ -8,6 +8,8 @@ import withHomeLocales from '../Home.locales';
 
 interface Props {
   lang: I18nLocales;
+  /** From the Now page frontmatter, so updating Now updates the hero */
+  currently?: string;
 }
 
 /** Wavy underline under the accent words of the headline (fun element 1) */
@@ -43,7 +45,7 @@ function DoodleArrow() {
 const PILL = 'absolute z-10 flex items-center gap-2 whitespace-nowrap rounded-[14px] bg-card px-[11px] py-[7px] text-xs font-semibold shadow-soft sm:px-3.5 sm:py-2.5 sm:text-[13px]';
 const PILL_SMALL = 'block font-mono text-[11px] font-normal text-muted';
 
-function Hero({ lang }: Props) {
+function Hero({ lang, currently }: Props) {
   const content = withHomeLocales(lang);
 
   return (
@@ -60,6 +62,20 @@ function Hero({ lang }: Props) {
         <p className="max-w-[520px] text-[16.5px] text-muted lg:text-lg">
           <Emphasis text={content.lead} />
         </p>
+        {currently && (
+          <NextLink
+            withCurrentLocale
+            href="/now"
+            className="mt-4 inline-flex max-w-full items-center gap-2 text-[15px] text-muted transition-colors hover:text-base-content"
+            data-umami-event="homepage_currently"
+          >
+            <span className="h-2 w-2 shrink-0 rounded-full bg-teal shadow-[0_0_0_4px_var(--gd-teal-soft)]" />
+            <span className="truncate">
+              <span className="font-semibold text-base-content">{content.currentlyLabel}</span> {currently}
+            </span>
+            <span aria-hidden>→</span>
+          </NextLink>
+        )}
         <div className="mt-[30px] flex flex-wrap gap-3">
           <NextLink
             withCurrentLocale
@@ -93,13 +109,15 @@ function Hero({ lang }: Props) {
           />
         </div>
 
-        <NextLink withCurrentLocale href="/now" className={`${PILL} left-[-34px] top-[18px] lg:left-[-110px] lg:top-9`}>
-          <span className="h-2 w-2 shrink-0 rounded-full bg-teal shadow-[0_0_0_4px_var(--gd-teal-soft)]" />
-          <div>
-            {content.statusNow}
-            <small className={PILL_SMALL}>{content.statusNowLabel}</small>
-          </div>
-        </NextLink>
+        {currently && (
+          <NextLink withCurrentLocale href="/now" className={`${PILL} left-[-34px] top-[18px] lg:left-[-110px] lg:top-9`}>
+            <span className="h-2 w-2 shrink-0 rounded-full bg-teal shadow-[0_0_0_4px_var(--gd-teal-soft)]" />
+            <div>
+              {currently}
+              <small className={PILL_SMALL}>{content.statusNowLabel}</small>
+            </div>
+          </NextLink>
+        )}
 
         <div className={`${PILL} right-[-30px] top-[190px] sm:top-[250px] lg:bottom-[70px] lg:right-[-40px] lg:top-auto`}>
           <span aria-hidden>☕</span>
