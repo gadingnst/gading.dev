@@ -230,8 +230,8 @@ export const WORK: Project[] = [
     tag: 'heypico',
     title: { en: 'HeyPico', id: 'HeyPico' },
     summary: {
-      en: 'A personal AI assistant on web, Android and iOS. I built its **GraphRAG** memory on Neo4j, the MCP integrations and the Stripe and Midtrans payments, then shipped it through App Store review.',
-      id: 'Asisten AI personal di web, Android, dan iOS. Saya membangun memory **GraphRAG** di Neo4j, integrasi MCP, dan pembayaran Stripe serta Midtrans, lalu merilisnya sampai lolos review App Store.'
+      en: 'A personal AI assistant on web, Android and iOS. I built its **GraphRAG** memory on Neo4j, the MCP integrations and Stripe payments, then shipped it through App Store review.',
+      id: 'Asisten AI personal di web, Android, dan iOS. Saya membangun memory **GraphRAG** di Neo4j, integrasi MCP, dan pembayaran Stripe, lalu merilisnya sampai lolos review App Store.'
     },
     chips: ['Neo4j', 'MCP', 'Stripe'],
     link: {
