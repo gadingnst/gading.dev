@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "build:static": "IS_STATIC=true next build --webpack",
+    "build:static": "IS_STATIC=true next build --webpack && node src/scripts/check-build-limits.mjs out",
     "start": "next start",
     "lint": "eslint .",
     "ts-node": "sh -c 'ts-node -r tsconfig-paths/register ${0}'",

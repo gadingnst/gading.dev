@@ -1,6 +1,7 @@
 'use client';
 
-import { FunctionComponent, SVGProps, useCallback, useMemo } from 'react';
+import { Image as IconImage } from 'lucide-react';
+import { FunctionComponent, SVGProps, useCallback, useMemo, useState } from 'react';
 
 import { BASE_URL } from '@/configs/sites';
 import IconCopy from '@/designs/icons/logo/copy.svg';
@@ -18,6 +19,8 @@ import useLangugage from '@/packages/libs/I18n/i18n.client';
 import createContentLocales from '@/packages/libs/I18n/locales';
 import createPopup from '@/packages/utils/helpers/createPopup';
 import { dasherize } from '@/packages/utils/helpers/string';
+
+import ShareImageModal from './ShareImageModal';
 
 interface Props {
   path: string;
@@ -75,8 +78,15 @@ const withLocales = createContentLocales({
   copy: {
     en: 'Copy Link',
     id: 'Salin Tautan'
+  },
+  shareImage: {
+    en: 'Share image',
+    id: 'Bagikan gambar'
   }
 });
+
+/** share images exist for blog posts only: `{lang}/blog/{slug}` */
+const BLOG_POST_PATH = /^[a-z]{2}\/blog\/([^/]+)$/;
 
 function ContentShare(props: Props) {
   const { path, meta } = props;
@@ -87,6 +97,9 @@ function ContentShare(props: Props) {
 
   const url = useMemo(() => `${BASE_URL}/${path}`, [path]);
   const { isCopied, copyHandler } = useClipboard(url);
+  const [isImageOpen, setImageOpen] = useState(false);
+  const postSlug = useMemo(() => BLOG_POST_PATH.exec(path)?.[1], [path]);
+  const umamiSuffix = dasherize(path.replace(/\//g, '-'));
 
   const socialShareUrl = useMemo(() => {
     const url = `${BASE_URL}/${path}`;
@@ -153,7 +166,31 @@ function ContentShare(props: Props) {
             <social.logo className="w-6 h-6 text-white" />
           </Button>
         ))}
+        {postSlug && (
+          <Button
+            label={locales.shareImage}
+            title={locales.shareImage}
+            onClick={() => setImageOpen(true)}
+            aria-haspopup="dialog"
+            data-umami-event={`content_share-image_${umamiSuffix}`}
+            className="bg-[#C9822E] shadow-amber-600 btn-circle btn-lg text-white shadow-none outline-0 border-0 hover:-translate-y-1 hover:shadow-lg"
+          >
+            <IconImage className="w-6 h-6 text-white" aria-hidden />
+          </Button>
+        )}
       </div>
+      {postSlug && (
+        <ShareImageModal
+          open={isImageOpen}
+          onClose={() => setImageOpen(false)}
+          path={path}
+          slug={postSlug}
+          url={url}
+          title={title}
+          language={language}
+          umamiSuffix={umamiSuffix}
+        />
+      )}
     </div>
   );
 };
