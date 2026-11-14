@@ -63,7 +63,7 @@ export function DesktopMenu() {
   return (
     <nav
       aria-label="Main"
-      className="hidden items-center gap-1 rounded-full bg-card p-[5px] shadow-soft md:flex"
+      className="hidden items-center gap-1 rounded-full floating-glass p-[5px] md:flex"
     >
       {menuItems.map((item) => {
         const isActive = isActiveRoute(item.href);
@@ -101,7 +101,7 @@ export function MobileMenu() {
       <Dropdown
         open={isOpen}
         onOpenChange={setIsOpen}
-        triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 border-0 bg-card p-0 shadow-soft"
+        triggerClassName="btn-circle h-[38px] w-[38px] min-h-0 floating-glass p-0"
         trigger={
           <span aria-label={isOpen ? 'Close menu' : 'Open menu'}>
             {isOpen ? <X className="h-[18px] w-[18px]" /> : <MenuIcon className="h-[18px] w-[18px]" />}

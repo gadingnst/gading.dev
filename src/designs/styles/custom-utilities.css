@@ -40,6 +40,16 @@
     box-shadow: var(--glass-inset-shadow), var(--glass-shadow);
   }
 
+  /* floating header pills and circles: the same frost the old full-width header bar had
+     (base-100 at 85% + 12px blur), so they read as floating over any content */
+  .floating-glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: color-mix(in srgb, var(--color-base-100) 85%, transparent);
+    border: 1px solid var(--gd-line);
+    box-shadow: var(--gd-shadow);
+  }
+
   .theme-card {
     backdrop-filter: blur(var(--card-blur)) saturate(150%);
     -webkit-backdrop-filter: blur(var(--card-blur)) saturate(150%);
