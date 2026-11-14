@@ -1,5 +1,7 @@
 import '@/designs/styles/globals.css';
 
+import type { Viewport } from 'next';
+
 import { AUTHOR_NAME } from '@/configs/author';
 import { GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
 import RootLayout from '@/modules/Root.layout';
@@ -8,6 +10,12 @@ import { withMetadata } from '@/packages/utils/metadata/metadata';
 export const metadata = withMetadata({
   metadataBase: new URL('https://gading.dev'),
   title: `${AUTHOR_NAME} | ${SITE_NAME}`,
+  applicationName: SITE_NAME,
+  appleWebApp: {
+    capable: true,
+    title: SITE_NAME,
+    statusBarStyle: 'default'
+  },
   manifest: '/site.webmanifest',
   robots: {
     index: true,
@@ -24,5 +32,12 @@ export const metadata = withMetadata({
     google: GOOGLE_VERIFICATION_ID
   }
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAF6EF' },
+    { media: '(prefers-color-scheme: dark)', color: '#17130F' }
+  ]
+};
 
 export default RootLayout;
