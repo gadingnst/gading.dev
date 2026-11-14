@@ -6,6 +6,7 @@ import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 import Hero from './components/Hero';
 import LatestWriting from './components/LatestWriting';
 import Projects from './components/Projects';
+import WorkedWith from './components/WorkedWith';
 
 /**
  * Generate static params for home page with language prefix
@@ -32,6 +33,7 @@ async function HomePage(props: NextPageProps) {
     <div className="min-h-screen text-base-content">
       <div className="wide-container">
         <Hero lang={lang} />
+        <WorkedWith lang={lang} />
         <Projects lang={lang} />
         <LatestWriting lang={lang} />
       </div>

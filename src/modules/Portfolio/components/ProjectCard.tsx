@@ -81,7 +81,9 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
         </ul>
       )}
 
-      {link.target.type === 'external' ? (
+      {!link ? (
+        <span className="mt-auto font-mono text-sm font-medium text-muted">internal</span>
+      ) : link.target.type === 'external' ? (
         <a
           href={link.target.href}
           target="_blank"

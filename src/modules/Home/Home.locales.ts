@@ -72,6 +72,10 @@ const withHomeLocales = createContentLocales({
   allPosts: {
     en: 'All posts →',
     id: 'Semua tulisan →'
+  },
+  workedWith: {
+    en: 'Worked with',
+    id: 'Pernah bekerja dengan'
   }
 });
 

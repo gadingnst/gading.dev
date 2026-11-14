@@ -3,7 +3,7 @@ import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
 
 import ProjectCard from './components/ProjectCard';
-import { PROJECTS } from './Portfolio.data';
+import { PROJECTS, WORK } from './Portfolio.data';
 import withPortfolioLocales from './Portfolio.locales';
 
 export async function generatePortfolioPathsWithLang() {
@@ -29,11 +29,26 @@ async function PortfolioPage(props: NextPageProps) {
           <p className="mt-4 text-base text-muted md:text-lg">{content.desc}</p>
         </header>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} lang={lang} />
-          ))}
-        </div>
+        <section className="mb-16">
+          <h2 className="font-display text-2xl font-bold tracking-tight md:text-[32px]">{content.buildingTitle}</h2>
+          <p className="mt-1.5 text-muted">{content.buildingDesc}</p>
+          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {PROJECTS.map((project) => (
+              <ProjectCard key={project.id} project={project} lang={lang} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="font-display text-2xl font-bold tracking-tight md:text-[32px]">{content.workTitle}</h2>
+          <p className="mt-1.5 text-muted">{content.workDesc}</p>
+
+          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {WORK.map((project) => (
+              <ProjectCard key={project.id} project={project} lang={lang} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
