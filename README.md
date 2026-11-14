@@ -29,8 +29,7 @@
 - [ ] PWA / Offline-first
 - [x] Search posts & filter by tags
 - [x] Featured posts (Homepage & Blog list/filter)
-- [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
-- [ ] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
+- [x] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
 - [ ] Homelab Live Stats Dashboard or Spotify "Currently Playing" integration
 - [ ] Interactive MDX Components (React Playground / Sandpack) for tutorials
 

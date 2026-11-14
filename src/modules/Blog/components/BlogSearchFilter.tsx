@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import BlogCardList from '@/modules/Blog/components/CardList';
+import { matchesPostQuery } from '@/modules/Blog/utils/search';
 import type { ContentMeta } from '@/modules/Content/services/content-parser';
 import Banner from '@/packages/components/layouts/Header/Banner';
 import range from '@/packages/utils/helpers/range';
@@ -76,10 +77,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
   // Handle filtering logic
   const filteredBlogs = useMemo(() => {
     return blogs.filter((blog) => {
-      const matchesSearch =
-        !searchQuery ||
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = matchesPostQuery(blog, searchQuery);
 
       const matchesTag =
         !selectedTag ||

@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 
 import TopLoader from '@/packages/components/base/Loaders/TopLoader';
+import CommandPalette from '@/packages/components/layouts/CommandPalette/CommandPalette';
 import Footer from '@/packages/components/layouts/Footer/Footer';
 import Header from '@/packages/components/layouts/Header/Header';
 import AppThemeInitializer from '@/packages/libs/AppTheme/AppThemeInitializer';
@@ -12,6 +13,7 @@ function BaseLayout({ children }: PropsWithChildren) {
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />
+      <CommandPalette />
       <AppThemeInitializer />
     </div>
   );
