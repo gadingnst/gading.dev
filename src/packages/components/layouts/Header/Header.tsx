@@ -1,6 +1,6 @@
 'use client';
 
-import { Moon } from 'lucide-react';
+import Image from 'next/image';
 
 import { SITE_NAME } from '@/configs/sites';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
@@ -22,10 +22,14 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight md:text-[19px]"
           >
-            <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-brand-soft text-brand">
-              <Moon className="h-[15px] w-[15px]" />
-            </span>
-            {SITE_NAME}
+            <Image
+              src="/android-chrome-192x192.png"
+              alt={SITE_NAME}
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full"
+            />
+            <span className="hidden md:inline">{SITE_NAME}</span>
           </NextLink>
         </div>
 

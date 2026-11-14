@@ -3,6 +3,7 @@ import Fs from 'fs/promises';
 import { ImageResponse } from 'next/og';
 import path from 'path';
 
+import { SITE_NAME } from '@/configs/sites';
 import { getContent } from '@/modules/Content/services/content-parser';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 
@@ -108,7 +109,7 @@ export async function renderPostOgImage(slug: string, lang: I18nLocales) {
           <div style={{ display: 'flex', alignItems: 'center', marginTop: 36 }}>
             <img alt="" src={avatar} width={56} height={56} style={{ width: 56, height: 56, borderRadius: 28, border: `2px solid ${COLORS.amber}` }} />
             <div style={{ display: 'flex', marginLeft: 18, fontFamily: 'JetBrains Mono', fontWeight: 500, fontSize: 28, color: COLORS.amber }}>
-              gading.dev
+              {SITE_NAME}
             </div>
           </div>
         </div>
