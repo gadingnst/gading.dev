@@ -15,6 +15,7 @@
 - [x] Synchronizing media images to [Cloudinary](https://cloudinary.com) CDN
 - [x] Optimized image scaling & Lazyload with blur effect like Instagram
 - [x] Reading-time prediction like Medium
+- [x] Post series navigation, reading progress bar & sticky table of contents
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
