@@ -29,9 +29,9 @@ const withHomeLocales = createContentLocales({
     en: 'Illustrated portrait of Gading with a cat in a cap next to him',
     id: 'Ilustrasi Gading dengan seekor kucing bertopi di sampingnya'
   },
-  statusNow: {
-    en: 'Hardening Nouride v0.8',
-    id: 'Hardening Nouride v0.8'
+  currentlyLabel: {
+    en: 'Currently:',
+    id: 'Sekarang:'
   },
   statusNowLabel: {
     en: 'now',

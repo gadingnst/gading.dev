@@ -1,4 +1,5 @@
 import { NextPageProps } from '@/@types/global';
+import { getContentMultiLanguage } from '@/modules/Content/services/content-parser';
 import generateRSSFeed from '@/modules/Content/services/rss-feed';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
 import { getDefaultLanguage } from '@/packages/libs/I18n/utils';
@@ -28,11 +29,12 @@ export async function generateHomePathsDefault() {
 async function HomePage(props: NextPageProps) {
   const params = await props.params;
   const lang = (params?.lang || getDefaultLanguage()) as I18nLocales;
+  const { meta: nowMeta } = await getContentMultiLanguage('now', lang);
 
   return (
     <div className="min-h-screen text-base-content">
       <div className="wide-container">
-        <Hero lang={lang} />
+        <Hero lang={lang} currently={nowMeta.currently} />
         <WorkedWith lang={lang} />
         <Projects lang={lang} />
         <LatestWriting lang={lang} />

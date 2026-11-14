@@ -44,6 +44,8 @@ export interface ContentMeta {
   ogTitle?: string;
   readTime: ReadTimeResults;
   isFeatured?: boolean;
+  /** Now page only: one line shown as "Currently" on the home hero */
+  currently?: string;
 }
 
 export interface ContentBlogList {
