@@ -26,7 +26,7 @@
 - [x] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [x] Use `app` dir with RSC in Next 13
-- [ ] PWA / Offline-first
+- [x] PWA / Offline-first (minimal: installable, network-first service worker, offline page)
 - [x] Search posts & filter by tags
 - [x] Featured posts (Homepage & Blog list/filter)
 - [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
