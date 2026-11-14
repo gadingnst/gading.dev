@@ -31,6 +31,13 @@ interface BlogListParam {
   limit?: number;
 }
 
+/** optional frontmatter: `series: { id: "agent-memory", title: "Building Agent Memory", part: 2 }` */
+export interface ContentSeries {
+  id: string;
+  title: string;
+  part: number;
+}
+
 export interface ContentMeta {
   title: string;
   slug: ContentSlug;
@@ -44,6 +51,9 @@ export interface ContentMeta {
   ogTitle?: string;
   readTime: ReadTimeResults;
   isFeatured?: boolean;
+  series?: ContentSeries;
+  /** Now page only: one line shown as "Currently" on the home hero */
+  currently?: string;
 }
 
 export interface ContentBlogList {
@@ -307,4 +317,19 @@ export async function getContent(slug: string, language = DEFAULT_LOCALE): Promi
     });
 
   return parseContent(fileContents ?? '', language);
+}
+
+/**
+ * Get every part of the series a post belongs to, in part order
+ * @param meta - meta of the current post
+ * @param language - language of the content (default: en)
+ * @returns {Promise<ContentMeta[]>} - the parts, or an empty list when the post is not in a series
+ */
+export async function getSeriesParts(meta: ContentMeta, language = DEFAULT_LOCALE): Promise<ContentMeta[]> {
+  if (!meta.series?.id) return [];
+  const all = await getAllBlogMeta(language);
+  return all
+    .map(({ meta: m }) => m)
+    .filter((m) => m.series?.id === meta.series?.id)
+    .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0));
 }

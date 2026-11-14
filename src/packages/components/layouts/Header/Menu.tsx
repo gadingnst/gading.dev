@@ -1,6 +1,6 @@
 'use client';
 
-import { Briefcase, Clock, Home, Menu as MenuIcon, PenTool, User, X } from 'lucide-react';
+import { Briefcase, Clock, Home, Menu as MenuIcon, PenTool, Search, User, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -8,6 +8,8 @@ import cn from '@/designs/utils/cn';
 import Dropdown from '@/packages/components/base/Floatings/Dropdown';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
+
+import useCommandPalette from '../CommandPalette/useCommandPalette';
 
 const menuItems = [
   {
@@ -95,6 +97,8 @@ export function DesktopMenu() {
 export function MobileMenu() {
   const isActiveRoute = useIsActiveRoute();
   const [isOpen, setIsOpen] = useState(false);
+  const { setIsOpen: setPaletteOpen } = useCommandPalette();
+  const lang = useLangugage();
 
   return (
     <div className="md:hidden">
@@ -128,6 +132,19 @@ export function MobileMenu() {
             </li>
           );
         })}
+        <li className="mt-1 border-t border-line pt-1">
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              setPaletteOpen(true);
+            }}
+            className="flex items-center gap-3 rounded-xl font-semibold text-base-content transition-colors duration-200 hover:bg-base-200"
+          >
+            <Search className="h-4 w-4" />
+            <span>{lang === 'id' ? 'Cari' : 'Search'}</span>
+          </button>
+        </li>
       </Dropdown>
     </div>
   );

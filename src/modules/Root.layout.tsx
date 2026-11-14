@@ -9,6 +9,7 @@ import { ANALYTICS_ID, IS_DEV } from '@/configs/sites';
 import { APP_THEME_ATTRIBUTE_PREFIX, APP_THEME_KEY } from '@/packages/libs/AppTheme/constants';
 import { getLangugageServer } from '@/packages/libs/I18n/i18n.server';
 import { I18n, I18nLocales } from '@/packages/libs/I18n/interface';
+import ServiceWorkerRegister from '@/packages/libs/PWA/ServiceWorkerRegister';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
@@ -71,6 +72,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
       </head>
       <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased relative min-h-screen overflow-x-hidden`}>
         {children}
+        {!IS_DEV && <ServiceWorkerRegister />}
         {!IS_DEV && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
         )}

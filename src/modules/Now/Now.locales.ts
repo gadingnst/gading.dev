@@ -13,6 +13,14 @@ const nowLocales = createContentLocales({
     en: 'Back to Home',
     id: 'Kembali ke Beranda'
   },
+  currentlyLabel: {
+    en: 'Currently',
+    id: 'Sekarang'
+  },
+  lastUpdated: {
+    en: 'Last updated',
+    id: 'Terakhir diperbarui'
+  },
   contactMe: {
     en: 'Contact Me',
     id: 'Hubungi Saya'

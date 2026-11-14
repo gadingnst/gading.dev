@@ -1,47 +1,30 @@
-'use client';
+import { getBlogList } from '@/modules/Content/services/content-parser';
+import NotFoundView, { type NotFoundPost } from '@/modules/NotFound/NotFoundView';
+import { I18n } from '@/packages/libs/I18n/interface';
 
-import { useMemo } from 'react';
+const LATEST_POSTS_LIMIT = 3;
 
-import NextLink from '@/packages/components/base/Navigations/NextLink';
-import useLangugage from '@/packages/libs/I18n/i18n.client';
-import createContentLocales from '@/packages/libs/I18n/locales';
+async function getLatestPosts(language: string): Promise<NotFoundPost[]> {
+  const { contents } = await getBlogList(language, { limit: LATEST_POSTS_LIMIT });
+  return contents.map(({ title, slugOriginal, date, readTime }) => ({
+    title,
+    slug: slugOriginal,
+    date,
+    readTime: readTime.text
+  }));
+}
 
-const withLocales = createContentLocales({
-  title: {
-    en: 'Page Not Found',
-    id: 'Halaman Tidak Ditemukan'
-  },
-  description: {
-    en: 'The page you are looking for doesn\'t exist or has been moved.',
-    id: 'Halaman yang Anda cari tidak ditemukan atau telah dipindahkan.'
-  },
-  button: {
-    en: 'Go Home',
-    id: 'Kembali ke Beranda'
-  }
-});
-
-function NotFoundPage() {
-  const language = useLangugage();
-
-  const locales = useMemo(() => withLocales(language), [language]);
-
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-base-content px-8">
-      <div className="text-center space-y-6">
-        <h1 className="text-6xl font-bold text-error">404</h1>
-        <h2 className="text-2xl font-semibold">{locales.title}</h2>
-        <p className="text-base opacity-80 max-w-md">
-          {locales.description}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <NextLink withCurrentLocale href="/" className="btn btn-primary">
-            {locales.button}
-          </NextLink>
-        </div>
-      </div>
-    </div>
-  );
+/**
+ * One not-found page for every invalid route (root, /en and /id).
+ * The static export only renders the root not-found, so the latest posts of
+ * every language are read at build time and the view picks the current one.
+ */
+async function NotFoundPage() {
+  const languages = Object.keys(I18n);
+  const entries = await Promise.all(languages.map(async(language) => (
+    [language, await getLatestPosts(language)] as const
+  )));
+  return <NotFoundView postsByLanguage={Object.fromEntries(entries)} />;
 }
 
 export default NotFoundPage;

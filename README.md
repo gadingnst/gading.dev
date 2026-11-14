@@ -15,6 +15,7 @@
 - [x] Synchronizing media images to [Cloudinary](https://cloudinary.com) CDN
 - [x] Optimized image scaling & Lazyload with blur effect like Instagram
 - [x] Reading-time prediction like Medium
+- [x] Post series navigation, reading progress bar & sticky table of contents
 - [x] I18n (Internationalization) content.
 - [x] Page transition and effect
 - [x] Posts pagination (For limiting blog list load to improve performance)
@@ -26,11 +27,10 @@
 - [x] Comment & Reaction System with [Disqus](https://disqus.com) plugin
 - [x] Social share (FB, Linkedin, Twitter, Tumblr, WA, Telegram)
 - [x] Use `app` dir with RSC in Next 13
-- [ ] PWA / Offline-first
+- [x] PWA / Offline-first (minimal: installable, network-first service worker, offline page)
 - [x] Search posts & filter by tags
 - [x] Featured posts (Homepage & Blog list/filter)
-- [ ] Dedicated Projects/Showcase Page (`/projects`) with dynamic GitHub stats & case studies
-- [ ] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
+- [x] Command Palette (`Cmd + K` / `Ctrl + K`) for instant search & navigation
 - [ ] Homelab Live Stats Dashboard or Spotify "Currently Playing" integration
 - [ ] Interactive MDX Components (React Playground / Sandpack) for tutorials
 

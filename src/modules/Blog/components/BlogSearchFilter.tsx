@@ -6,6 +6,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import cn from '@/designs/utils/cn';
 import BlogCardList from '@/modules/Blog/components/CardList';
+import FeaturedHero from '@/modules/Blog/components/FeaturedHero';
+import { matchesPostQuery } from '@/modules/Blog/utils/search';
 import type { ContentMeta } from '@/modules/Content/services/content-parser';
 import Banner from '@/packages/components/layouts/Header/Banner';
 import range from '@/packages/utils/helpers/range';
@@ -20,6 +22,7 @@ interface Props {
     allTags: string;
     emptyState: string;
     clearSearch: string;
+    readFeatured: string;
   };
 }
 
@@ -73,13 +76,19 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
     return Array.from(tagsSet).sort();
   }, [blogs]);
 
+  // Latest featured post (blogs arrive sorted by date desc). Shown as the hero
+  // only on the unfiltered list, and removed from the grid so it is not listed twice.
+  const heroBlog = useMemo(() => blogs.find((blog) => blog.isFeatured), [blogs]);
+  const isUnfiltered = !searchQuery && !selectedTag;
+
   // Handle filtering logic
   const filteredBlogs = useMemo(() => {
     return blogs.filter((blog) => {
-      const matchesSearch =
-        !searchQuery ||
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.description.toLowerCase().includes(searchQuery.toLowerCase());
+      if (isUnfiltered && heroBlog && blog.slugOriginal === heroBlog.slugOriginal) {
+        return false;
+      }
+
+      const matchesSearch = matchesPostQuery(blog, searchQuery);
 
       const matchesTag =
         !selectedTag ||
@@ -89,7 +98,7 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
 
       return matchesSearch && matchesTag;
     });
-  }, [blogs, searchQuery, selectedTag]);
+  }, [blogs, searchQuery, selectedTag, isUnfiltered, heroBlog]);
 
   // Reset pagination when filter changes
   useEffect(() => {
@@ -98,10 +107,12 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
 
   // Compute pagination bounds
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE) || 1;
+  const activePage = Math.min(currentPage, totalPages);
   const pagedBlogs = useMemo(() => {
-    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+    const offset = (activePage - 1) * ITEMS_PER_PAGE;
     return filteredBlogs.slice(offset, offset + ITEMS_PER_PAGE);
-  }, [filteredBlogs, currentPage]);
+  }, [filteredBlogs, activePage]);
+  const showHero = isUnfiltered && activePage === 1 && !!heroBlog;
 
   const handleSearchChange = (val: string) => {
     setSearchQuery(val);
@@ -342,7 +353,14 @@ function BlogSearchFilter({ blogs, initialPage = 1, localeDesc }: Props) {
       {/* Blog Cards Grid */}
       {filteredBlogs.length > 0 ? (
         <div className="flex flex-col flex-1">
-          <BlogCardList className="-mt-14 z-20" contents={pagedBlogs} />
+          {showHero && heroBlog && (
+            <FeaturedHero
+              className="-mt-14 z-20"
+              blog={heroBlog}
+              readLabel={localeDesc.readFeatured}
+            />
+          )}
+          <BlogCardList className={showHero ? 'pt-8' : '-mt-14 z-20'} contents={pagedBlogs} />
           {totalPages > 1 && (
             <div className="mt-8 mb-12 text-center">
               <h4 className="mb-3 text-sm text-base-content/50">

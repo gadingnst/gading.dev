@@ -1,20 +1,25 @@
 {
-  "name": "gading.dev",
-  "short_name": "gading.dev",
-  "description": "Personal website of Gading Nasution.",
+  "id": "/",
+  "name": "Gading's Hideout",
+  "short_name": "Gading's Hideout",
+  "description": "Personal website and blog of Gading Nasution.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "theme_color": "#17130F",
-  "background_color": "#17130F",
-  "display": "standalone"
+  "background_color": "#17130F"
 }

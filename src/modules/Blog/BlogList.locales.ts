@@ -20,6 +20,10 @@ const withBlogListLocales = createContentLocales({
   clearSearch: {
     en: 'Clear Search',
     id: 'Reset Pencarian'
+  },
+  readFeatured: {
+    en: 'Read post',
+    id: 'Baca tulisan'
   }
 });
 
