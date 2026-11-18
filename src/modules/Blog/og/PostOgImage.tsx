@@ -93,7 +93,7 @@ function StoryLayout({ card }: { card: PostCard }) {
         <TagBadges tags={card.tags} fontSize={28} maxWidth={904} />
         <Title text={card.title} fontSize={titleSize(card.title, [[80, 66], [60, 72]], 80)} maxLines={5} marginTop={card.tags.length ? 34 : 0} />
         <Wave width={176} marginTop={36} />
-        {card.description && <MonoText text={card.description} fontSize={32} marginTop={32} color={MUTED} maxLines={4} />}
+        {card.description && <MonoText text={card.description} fontSize={32} marginTop={32} color={MUTED} maxLines={7} />}
         <MonoText text={card.readTime} fontSize={30} marginTop={40} color={OG_COLORS.amber} lineHeight={1.2} />
       </div>
     </div>
