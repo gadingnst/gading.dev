@@ -21,16 +21,17 @@ export default function Header() {
           <NextLink
             withCurrentLocale
             href="/"
-            className="flex h-[38px] items-center gap-2.5 rounded-full floating-glass p-1 font-display text-lg font-bold tracking-tight transition-transform duration-200 hover:scale-105 md:h-[46px] md:py-[5px] md:pl-[5px] md:pr-4 md:text-[17px] md:hover:scale-100"
+            className="flex h-[38px] items-center gap-2.5 rounded-full floating-glass p-1 font-display text-lg font-bold tracking-tight transition-transform duration-200 hover:scale-105 xl:h-[46px] xl:py-[5px] xl:pl-[5px] xl:pr-4 xl:text-[17px] xl:hover:scale-100"
           >
             <Image
               src="/android-chrome-192x192.png"
               alt={SITE_NAME}
               width={36}
               height={36}
-              className="h-[30px] w-[30px] rounded-full md:h-9 md:w-9"
+              className="h-[30px] w-[30px] rounded-full xl:h-9 xl:w-9"
             />
-            <span className="hidden md:inline">{SITE_NAME}</span>
+            {/* name only from xl, the breakpoint the blog TOC appears at: between md and xl the pill nav needs the room */}
+            <span className="hidden xl:inline">{SITE_NAME}</span>
           </NextLink>
         </div>
 
