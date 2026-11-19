@@ -237,6 +237,11 @@ body {
 .worked-with-track {
   animation: worked-with-scroll 45s linear infinite;
 }
+/* pause on hover (and on keyboard focus) so a logo can be read and clicked */
+.worked-with-mask:hover .worked-with-track,
+.worked-with-mask:focus-within .worked-with-track {
+  animation-play-state: paused;
+}
 .worked-with-mask {
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }

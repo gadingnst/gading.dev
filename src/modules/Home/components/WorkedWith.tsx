@@ -46,8 +46,8 @@ function WorkedWith({ lang }: Props) {
   return (
     <section className="mb-[88px] border-y border-base-content/10 py-8">
       <h2 className="mb-5 font-mono text-xs uppercase tracking-[0.14em] text-muted">{content.workedWith}</h2>
-      <div className="worked-with-mask group overflow-hidden">
-        <ul className="worked-with-track flex w-max gap-10 group-hover:[animation-play-state:paused]">
+      <div className="worked-with-mask overflow-hidden">
+        <ul className="worked-with-track flex w-max gap-10">
           {WORKED_WITH.map((company) => <Item key={company.id} company={company} />)}
           {WORKED_WITH.map((company) => <Item key={`${company.id}-dup`} company={company} hidden />)}
         </ul>
