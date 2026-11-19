@@ -38,8 +38,8 @@ export interface Project {
   location?: Localized;
   /** shown in "Things I'm building" on Home, in this order, the first one as the big card */
   home?: boolean;
-  /** chat mock shown on the big Home card */
-  chat?: ProjectChat;
+  /** chat mock shown on the big Home card, played in a loop one scenario at a time */
+  chat?: ProjectChat[];
 }
 
 /**
@@ -66,15 +66,35 @@ export const PROJECTS: Project[] = [
       target: { type: 'external', href: 'https://nouride.com' }
     },
     home: true,
-    chat: {
-      user: { en: 'check the homelab disk, please', id: 'cek disk homelab dong' },
-      agentName: 'nouva',
-      agent: {
-        en: 'LXC 105 at 81%, mostly old PDF jobs. Clean them up?',
-        id: 'LXC 105 di 81%, kebanyakan sisa job PDF lama. Dibersihkan?'
+    chat: [
+      {
+        user: { en: 'check the homelab disk, please', id: 'cek disk homelab dong' },
+        agentName: 'nouva',
+        agent: {
+          en: 'LXC 105 at 81%, mostly old PDF jobs. Clean them up?',
+          id: 'LXC 105 di 81%, kebanyakan sisa job PDF lama. Dibersihkan?'
+        },
+        time: '00:12'
       },
-      time: '00:12'
-    }
+      {
+        user: { en: 'deploy the blog, the PR is merged', id: 'deploy blog dong, PR-nya udah merge' },
+        agentName: 'nouva',
+        agent: {
+          en: 'Build passed, deployed. 3 posts changed, cache purged.',
+          id: 'Build lolos, sudah deploy. 3 post berubah, cache sudah di-purge.'
+        },
+        time: '09:41'
+      },
+      {
+        user: { en: 'remind me to renew the domain', id: 'ingetin perpanjang domain ya' },
+        agentName: 'nouva',
+        agent: {
+          en: 'Set for Friday 09:00. It expires in 12 days.',
+          id: 'Sudah, Jumat jam 09:00. Expired 12 hari lagi.'
+        },
+        time: '21:07'
+      }
+    ]
   },
   {
     id: 'nouclip',

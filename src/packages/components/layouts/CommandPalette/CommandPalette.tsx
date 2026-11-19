@@ -8,6 +8,7 @@ import type { SearchIndex } from '@/app/search-index.json/route';
 import cn from '@/designs/utils/cn';
 import useBlogContentLanguages from '@/modules/Blog/hooks/useBlogContentLanguages';
 import { matchesPostQuery } from '@/modules/Blog/utils/search';
+import { loadSearchIndex } from '@/modules/Blog/utils/search-index';
 import { AppThemes } from '@/packages/libs/AppTheme/constants';
 import useAppTheme from '@/packages/libs/AppTheme/useAppTheme';
 import useLangugage from '@/packages/libs/I18n/i18n.client';
@@ -37,23 +38,6 @@ const PAGES: { label: string; href: string; icon: LucideIcon; localized: boolean
 ];
 
 const MAX_POSTS = 8;
-
-/** index is fetched once per page load and shared by every open */
-let searchIndexPromise: Promise<SearchIndex> | null = null;
-function loadSearchIndex() {
-  if (!searchIndexPromise) {
-    searchIndexPromise = fetch('/search-index.json')
-      .then((res) => {
-        if (!res.ok) throw new Error(`search index: ${res.status}`);
-        return res.json() as Promise<SearchIndex>;
-      })
-      .catch((err) => {
-        searchIndexPromise = null;
-        throw err;
-      });
-  }
-  return searchIndexPromise;
-}
 
 /**
  * Cmd+K / Ctrl+K palette: search posts, jump to a page, toggle the theme, switch language.

@@ -1,10 +1,10 @@
-import Image from 'next/image';
-
 import Emphasis from '@/packages/components/base/Displays/Emphasis';
 import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 
 import withHomeLocales from '../Home.locales';
+import HeroPortrait from './HeroPortrait';
+import HeroTerminal from './HeroTerminal';
 
 interface Props {
   lang: I18nLocales;
@@ -98,26 +98,14 @@ function Hero({ lang, currently }: Props) {
 
       {/* Portrait: status pills and doodle sit on the edges, the face stays clear */}
       <div className="relative mt-10 flex flex-col items-center justify-self-center lg:mt-0">
-        <div className="relative h-[260px] w-[230px] overflow-hidden rounded-[160px_160px_28px_28px] border-[6px] border-card bg-gradient-to-b from-brand-soft to-lilac-soft shadow-soft sm:h-[340px] sm:w-[300px] dark:border-[#2A231D]">
-          <Image
-            src="/media/authors/gading-illustrated.png"
-            alt={content.portraitAlt}
-            fill
-            priority
-            sizes="(min-width: 640px) 300px, 230px"
-            className="object-cover object-[50%_30%]"
-          />
-        </div>
-
-        {currently && (
-          <NextLink withCurrentLocale href="/now" className={`${PILL} left-[-34px] top-[18px] lg:left-[-110px] lg:top-9`}>
-            <span className="h-2 w-2 shrink-0 rounded-full bg-teal shadow-[0_0_0_4px_var(--gd-teal-soft)]" />
-            <div>
-              {currently}
-              <small className={PILL_SMALL}>{content.statusNowLabel}</small>
-            </div>
-          </NextLink>
-        )}
+        <HeroPortrait
+          lang={lang}
+          alt={content.portraitAlt}
+          moodLabel={content.moodLabel}
+          moodHint={content.moodHint}
+          pillClassName={PILL}
+          pillSmallClassName={PILL_SMALL}
+        />
 
         <div className={`${PILL} right-[-30px] top-[190px] sm:top-[250px] lg:bottom-[70px] lg:right-[-40px] lg:top-auto`}>
           <span aria-hidden>☕</span>
@@ -128,15 +116,11 @@ function Hero({ lang, currently }: Props) {
         </div>
 
         {/* Terminal card (fun element 2): below the portrait on small screens so it never covers the face */}
-        <div
-          aria-hidden
-          className="z-10 mt-[30px] -rotate-2 self-center rounded-[14px] bg-terminal px-4 py-3 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2] shadow-soft lg:absolute lg:-bottom-[22px] lg:-left-[70px] lg:mt-0 lg:-rotate-3"
-        >
-          <span className="text-[#5CC7B8]">$</span> whoami<br />
-          gading<br />
-          <span className="text-[#5CC7B8]">$</span> cat mood.txt<br />
-          ngulik ☕<span className="text-[#A89C8E]"> # as usual</span>
-        </div>
+        <HeroTerminal
+          lang={lang}
+          currently={currently}
+          className="z-10 mt-[30px] -rotate-2 self-center lg:absolute lg:-bottom-[22px] lg:-left-[70px] lg:mt-0 lg:-rotate-3"
+        />
 
         <div
           aria-hidden
