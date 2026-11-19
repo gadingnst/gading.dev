@@ -149,3 +149,24 @@ export function MobileMenu() {
     </div>
   );
 }
+
+/**
+ * Search button shown from the `md` breakpoint up: opens the same palette as Cmd+K
+ */
+export function DesktopSearchButton() {
+  const { setIsOpen } = useCommandPalette();
+  const lang = useLangugage();
+  const label = lang === 'id' ? 'Cari (Ctrl+K)' : 'Search (Ctrl+K)';
+
+  return (
+    <button
+      type="button"
+      onClick={() => setIsOpen(true)}
+      aria-label={label}
+      title={label}
+      className="btn btn-circle hidden h-[38px] w-[38px] min-h-0 floating-glass p-0 md:inline-flex"
+    >
+      <Search className="h-[18px] w-[18px]" />
+    </button>
+  );
+}

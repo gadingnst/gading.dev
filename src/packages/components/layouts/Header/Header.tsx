@@ -9,7 +9,7 @@ import { APP_THEME_SELECTION_ENABLED } from '@/packages/libs/AppTheme/constants'
 import AppThemeSelector from './AppThemeSelector';
 import BackButton from './BackButton';
 import LanguageSelector from './LanguageSelector';
-import { DesktopMenu, MobileMenu } from './Menu';
+import { DesktopMenu, DesktopSearchButton, MobileMenu } from './Menu';
 
 export default function Header() {
   return (
@@ -40,6 +40,7 @@ export default function Header() {
         </div>
 
         <div className="pointer-events-auto flex items-center justify-end gap-2 justify-self-end">
+          <DesktopSearchButton />
           <LanguageSelector />
           {APP_THEME_SELECTION_ENABLED && <AppThemeSelector />}
           <MobileMenu />
