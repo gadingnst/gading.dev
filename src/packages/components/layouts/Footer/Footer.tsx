@@ -1,6 +1,7 @@
 import { AUTHOR_GITHUB, AUTHOR_NAME } from '@/configs/author';
 import { BASE_URL, SITE_NAME } from '@/configs/sites';
 import Link from '@/packages/components/base/Navigations/Link';
+import FooterExit from '@/packages/components/layouts/Footer/FooterExit';
 import SocialLinks from '@/packages/components/layouts/Footer/SocialLinks';
 
 const currentYear = new Date().getFullYear();
@@ -10,9 +11,9 @@ function Footer() {
     <footer className="footer-custom w-full">
       <div className="wide-container pb-12 pt-16 text-center text-sm text-muted">
         <span className="font-hand text-[22px] text-brand">thanks for stopping by ✌️</span>
-        <span className="mt-1.5 block font-mono text-[13px]">gading@palembang:~$ exit</span>
+        <FooterExit />
 
-        <div className="mt-8">
+        <div className="mt-6">
           <SocialLinks />
         </div>
 

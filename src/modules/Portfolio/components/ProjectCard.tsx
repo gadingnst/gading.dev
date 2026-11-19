@@ -4,6 +4,7 @@ import NextLink from '@/packages/components/base/Navigations/NextLink';
 import { I18nLocales } from '@/packages/libs/I18n/interface';
 
 import type { Project, ProjectTone } from '../Portfolio.data';
+import ChatLoop from './ChatLoop';
 
 interface Props {
   project: Project;
@@ -28,13 +29,13 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
   return (
     <article
       className={cn([
-        'relative flex flex-col gap-3 rounded-3xl bg-card p-7 shadow-soft',
+        'group/card relative flex flex-col gap-3 rounded-3xl bg-card p-7 shadow-soft',
         className
       ])}
     >
       {isFeature && (
         // the one sticker of the page, kept on the Home card only
-        <span className="absolute -top-3.5 right-4 rotate-6 rounded-xl bg-lilac-soft px-3.5 py-px font-hand text-[22px] text-lilac shadow-soft sm:right-6">
+        <span className="sticker-wiggle absolute -top-3.5 right-4 z-[2] rotate-6 rounded-xl bg-lilac-soft px-3.5 py-px font-hand text-[22px] text-lilac shadow-soft sm:right-6">
           my baby ♡
         </span>
       )}
@@ -61,20 +62,7 @@ function ProjectCard({ project, lang, variant = 'standard', className }: Props) 
         <Emphasis text={summary[lang]} />
       </p>
 
-      {isFeature && chat && (
-        <div className="flex flex-col gap-2.5 rounded-[18px] bg-base-100 p-4 text-sm">
-          <div className="max-w-[82%] self-end rounded-2xl rounded-br-[4px] bg-base-content px-3.5 py-[9px] text-base-100">
-            {chat.user[lang]}
-            <small className="mt-0.5 block font-mono text-[11px] opacity-60">{chat.time}</small>
-          </div>
-          <div className="max-w-[82%] rounded-2xl rounded-bl-[4px] bg-card px-3.5 py-[9px] shadow-soft">
-            {chat.agent[lang]}
-            <small className="mt-0.5 block font-mono text-[11px] opacity-60">
-              {chat.agentName} · {chat.time}
-            </small>
-          </div>
-        </div>
-      )}
+      {isFeature && chat && chat.length > 0 && <ChatLoop chats={chat} lang={lang} />}
 
       {chips && chips.length > 0 && (
         <ul className="flex flex-wrap gap-2">

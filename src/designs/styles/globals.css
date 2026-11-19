@@ -258,3 +258,100 @@ body {
 @keyframes palette-in {
   from { opacity: 0; transform: translateY(-8px) scale(0.98); }
 }
+
+/* ---------- Home interactive pass ---------- */
+
+/* hero terminal: its own thin scrollbar, the page never moves while typing */
+.hero-terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #4A3F37 transparent;
+}
+
+/* hero portrait: eases back after the cursor tilt */
+.hero-portrait {
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+.hero-portrait:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/*
+ * The cat of the portrait peeks out from behind the frame's right edge, briefly
+ * and rarely: the chat loop on the Nouride card is the page's ambient motion.
+ * Cropped from the same illustration, so there is no extra asset.
+ */
+.hero-cat-peek {
+  position: absolute;
+  z-index: 0;
+  top: 46%;
+  right: 6px;
+  width: 64px;
+  height: 58px;
+  border-radius: 999px 999px 14px 14px;
+  background-image: url('/media/authors/gading-illustrated.png');
+  background-size: 243px 260px;
+  background-position: -174px -92px;
+  box-shadow: var(--gd-shadow);
+  opacity: 0;
+}
+@keyframes hero-cat-peek {
+  0%, 88%, 100% { transform: translateX(0) rotate(0deg); opacity: 0; }
+  90% { opacity: 1; }
+  92%, 97% { transform: translateX(46px) rotate(8deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-cat-peek { animation: hero-cat-peek 16s ease-in-out 6s infinite; }
+  .hero-portrait-wrap:hover .hero-cat-peek { animation-duration: 1.6s; animation-iteration-count: 1; animation-delay: 0s; }
+}
+
+/* mood pill: the new emoji pops in once */
+@keyframes hero-mood-pop {
+  from { transform: scale(0.4) rotate(-20deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-mood-emoji { animation: hero-mood-pop 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+}
+
+/* "my baby" sticker: wiggles while the Nouride card (or the sticker) is hovered */
+@keyframes sticker-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-7deg); }
+  75% { transform: rotate(5deg); }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .group\/card:hover .sticker-wiggle,
+  .sticker-wiggle:hover {
+    animation: sticker-wiggle 0.5s ease-in-out 2;
+  }
+}
+
+/* Nouride chat loop: bubbles slide up, older ones fade out at the top */
+.chat-loop-mask {
+  mask-image: linear-gradient(to bottom, transparent, #000 22%);
+}
+@keyframes chat-bubble-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+}
+@keyframes chat-typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+.chat-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--gd-muted);
+  opacity: 0.6;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chat-bubble { animation: chat-bubble-in 0.32s ease-out both; }
+  .chat-typing span { animation: chat-typing-dot 1.1s ease-in-out infinite; }
+  .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait { transition: none; transform: none !important; }
+  .hero-cat-peek { display: none; }
+}

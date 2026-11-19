@@ -33,9 +33,13 @@ const withHomeLocales = createContentLocales({
     en: 'Currently:',
     id: 'Sekarang:'
   },
-  statusNowLabel: {
-    en: 'now',
-    id: 'sekarang'
+  moodLabel: {
+    en: 'mood · click me',
+    id: 'mood · klik aku'
+  },
+  moodHint: {
+    en: 'Change mood',
+    id: 'Ganti mood'
   },
   statusPlace: {
     en: 'Palembang, WIB',
