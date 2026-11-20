@@ -11,7 +11,7 @@ const withHeroTerminalLocales = createContentLocales({
   },
   asUsual: {
     en: '# as usual',
-    id: '# seperti biasa'
+    id: '# as usual'
   },
   help: {
     en: 'commands: whoami, cat now.txt, cat mood.txt, ls posts, open <slug|number>, clear',
