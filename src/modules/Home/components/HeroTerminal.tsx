@@ -160,7 +160,7 @@ function HeroTerminal({ lang, currently, className }: Props) {
   return (
     <div
       className={cn(
-        'hero-terminal flex h-[184px] w-[292px] max-w-full cursor-text flex-col rounded-[14px] bg-terminal px-4 py-3 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2] shadow-soft',
+        'hero-terminal flex h-[184px] w-[292px] max-w-full lg:h-[150px] lg:w-[264px] cursor-text flex-col rounded-[14px] bg-terminal px-4 py-3 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2] shadow-soft',
         className
       )}
       onClick={() => inputRef.current?.focus({ preventScroll: true })}
