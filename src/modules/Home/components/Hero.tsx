@@ -119,7 +119,7 @@ function Hero({ lang, currently }: Props) {
         <HeroTerminal
           lang={lang}
           currently={currently}
-          className="z-10 mt-[30px] -rotate-2 self-center lg:absolute lg:-bottom-[22px] lg:-left-[70px] lg:mt-0 lg:-rotate-3"
+          className="z-10 mt-[30px] -rotate-2 self-center lg:absolute lg:-bottom-[72px] lg:-left-[96px] lg:mt-0 lg:-rotate-3"
         />
 
         <div
