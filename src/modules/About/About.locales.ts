@@ -6,8 +6,8 @@ const aboutLocales = createContentLocales({
     id: 'Tentang'
   },
   metaDescription: {
-    en: 'Learn more about Gading - Software Engineer specialized in Frontend development with passion for modern web technologies.',
-    id: 'Pelajari lebih lanjut tentang Gading - Software Engineer yang berspesialisasi dalam pengembangan Frontend dengan passion untuk teknologi web modern.'
+    en: 'Learn more about Syahrul Arifuddin.',
+    id: 'Kenali lebih jauh Syahrul Arifuddin.'
   },
   backToHome: {
     en: 'Back to Home',

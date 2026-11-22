@@ -36,7 +36,7 @@ function line(kind: Line['kind'], text = ''): Line {
 }
 
 function welcomeLines(): Line[] {
-  return [line('cmd', 'whoami'), line('out', 'gading'), line('cmd', 'cat mood.txt'), line('mood')];
+  return [line('cmd', 'whoami'), line('out', 'syahrul'), line('cmd', 'cat mood.txt'), line('mood')];
 }
 
 /**
@@ -117,7 +117,7 @@ function HeroTerminal({ lang, currently, className }: Props) {
       case 'help':
         return print(line('out', content.help));
       case 'whoami':
-        return print(line('out', 'gading'));
+        return print(line('out', 'syahrul'));
       case 'cat':
         if (arg === 'now.txt') return print(line('out', currently || content.nowEmpty));
         if (arg === 'mood.txt') return print(line('mood'));

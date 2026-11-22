@@ -26,7 +26,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
   const {
     title,
     slug,
-    description = 'Software Engineer from Palembang, Indonesia 🇮🇩',
+    description = 'Personal site and blog of Syahrul Arifuddin.',
     image = '/media/og/og-default-dark.png',
     date = dt().format('YYYY-MM-DD'),
     keywords = '',
@@ -38,7 +38,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
   const featuredImage = thumbnail(image);
 
   const combinedKeywords = [...tags, keywords].join(', ')
-    + 'gading\'s hideout, gadingnst, gadingnstn, gadingdev, gading.dev, gading dev, gading fadhillah, gading developer, sutan nasution, sutan nst, gading nst, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading\'s website, gading website, developer, developer services, programmer, frontend, fullstack, sutanlab';
+    + ', syahrul arifuddin, syahrul, halo syahrul, halosyahrul, halosyahrul.com, developer, programmer';
 
   const metaTags: Metadata = {
     metadataBase: new URL(BASE_URL),
@@ -78,7 +78,7 @@ export function metadataBuilder({ meta, locale = 'en' }: IMetaBuilder) {
       canonical: url
     },
     verification: {
-      google: GOOGLE_VERIFICATION_ID
+      google: GOOGLE_VERIFICATION_ID || undefined
     },
     robots: {
       index: true,

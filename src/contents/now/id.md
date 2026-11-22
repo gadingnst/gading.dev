@@ -1,56 +1,14 @@
 ---
 title: "Now"
-date: 2026-06-28
+date: 2026-11-23
 description: "Lagi sibuk apa sekarang?"
-keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
+keywords: "now, halaman now, syahrul"
 image: "/media/default-banners/0.jpg"
-currently: "Hardening Nouride v0.8"
+currently: "Menyiapkan halosyahrul.com"
 ---
 
-Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now) and [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now). Karena mereka semua, saya terinspirasi membuat dan menambahkan konten baru di halaman ini untuk mendeskripsikan tentang ***lagi sibuk apa sekarang?***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang hal itu.
+{/* TODO: tulis apa yang sedang kamu fokuskan sekarang. Idenya dari https://nownownow.com. */}
+Ini halaman *now* saya: hal yang sedang saya fokuskan saat ini.
 
-> Jika kamu mempunyai situsmu sendiri, mungkin kamu harus membuatnya juga.
-
-## 🏡 Tempat Tinggal
-Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak September, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
-
-## 💼 Karir
-Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/search?q=apa+itu+software+engineer) di sebuah [perusahaan AI](https://www.google.com/search?q=apa+itu+perusahaan+AI).
-
-## ☕️ Aktivitas
-- Mengelola dan bereksperimen dengan infrastruktur homelab mandiri (Kubernetes K3s & Standalone LXC di Proxmox VE).
-- Mempelajari arsitektur sistem, jaringan, dan otomatisasi *Infrastructure as Code (IaC)* menggunakan Terraform.
-- Eksplorasi & belajar teknologi baru, termasuk AI, Web3/Blockchain, dan hal-hal teknologi lainnya dari internet.
-- Main media sosial, gaming, ngoding, dengerin musik, baca, dan nulis blog buat hiburan.
-- Menghabiskan waktu berkualitas bareng orang-orang terdekat setiap akhir pekan.
-
-
-## 📘 Buku yang dibaca
-- [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Friend & David Heinemeier Hansson
-- [Psychology of Money](https://www.google.com/search?q=psychology+of+money+by+morgan+housel) dari Morgan Housel
-- [Atomic Habits](https://www.google.com/search?q=atomic+habits+by+james+clear) dari James Clear
-- [Rahasia bersikap tenang dalam kondisi apapun](https://www.google.com/search?q=rahasia+bersikap+tenang+dalam+kondisi+apapun+sabrina+ara) dari Sabrina Ara
-
-## 🎧 Musik yang didengar
-Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya dimana saya membuat *playlist* untuk musik terbaru yang saya temukan ataupun musik lama yang ingin saya dengarkan berulang-ulang.
-
-## 💡 Teknologi yang digunakan
-- Ekosistem Murni JavaScript/TypeScript
-- React Web/Native/NextJS, Vue/NuxtJS
-- DevOps & Infra: Proxmox VE, Kubernetes (K3s), Terraform, Traefik, Cloudflare Tunnels, Docker
-- Dart, Flutter
-- Golang, GORM, Protocol Buffer
-- Jest, React Testing Library
-- Storybook
-- Bot, Automation, Task Runner, Data Collection
-> *Dan saya bisa terbuka untuk mempelajari Tech Stack lain jika dibutuhkan.*
-
-## 🛠 Beberapa Software yang digunakan sehari-hari
-- OS: MacOS
-- Code Editor: Visual Studio Code, Trae
-- AI Tool: ChatGPT, Gemini CLI, OpenClaw (AI Agent)
-- Database GUI: DBEaver, PhpMyAdmin dan Robo 3T
-- Browser: Google Chrome, Brave dan Safari
-- Lain-lain: Linear/Clickup, Postman, Spotify
-
-*Terakhir diperbarui: Juni, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+## 💻 Membangun
+- Website ini, [halosyahrul.com](https://github.com/syahrularifuddin/halosyahrul.com).

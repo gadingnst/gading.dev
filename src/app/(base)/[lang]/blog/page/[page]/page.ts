@@ -19,8 +19,8 @@ export const generateMetadata = withGenerateMetadata<{ page: string; lang: I18nL
       slug: `/blog/page/${page}`,
       title: `Blog (Page ${page})`,
       description: content.desc,
-      keywords: 'gadings writing, technical writing, blog gading, gading blog',
-      tags: ['blog', 'writing', 'technical writing', 'gadings'],
+      keywords: 'syahrul blog, technical writing, halo syahrul',
+      tags: ['blog', 'writing', 'technical writing'],
       date: '2022-06-01'
     }
   });

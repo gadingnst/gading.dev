@@ -12,7 +12,8 @@ export interface Options {
  */
 function cloudinary(path: string, opts?: Options): string {
   const { scale, placeholder = false } = opts || {};
-  const isOnMedia = path.startsWith('/media/');
+  // no Cloudinary account configured: serve the file from /public as is
+  const isOnMedia = !!CLOUDINARY_CLOUD_NAME && path.startsWith('/media/');
   if (isOnMedia) {
     const gifHandler = path.endsWith('.gif') ? ',pg_2,' : ',';
     const placeholderHandler = placeholder ? `e_blur:250${gifHandler}` : '';

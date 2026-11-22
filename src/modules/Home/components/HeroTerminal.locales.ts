@@ -58,8 +58,8 @@ const withHeroTerminalLocales = createContentLocales({
     id: 'No such file or directory'
   },
   sudo: {
-    en: 'gading is not in the sudoers file. This incident will be reported (to the cat).',
-    id: 'gading is not in the sudoers file. Insiden ini akan dilaporkan (ke kucing).'
+    en: 'syahrul is not in the sudoers file. This incident will be reported.',
+    id: 'syahrul is not in the sudoers file. Insiden ini akan dilaporkan.'
   },
   notFound: {
     en: 'command not found: {cmd}, try help',

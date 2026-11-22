@@ -298,35 +298,6 @@ body {
   outline-offset: 4px;
 }
 
-/*
- * The cat of the portrait peeks out from behind the frame's right edge, briefly
- * and rarely: the chat loop on the Nouride card is the page's ambient motion.
- * Cropped from the same illustration, so there is no extra asset.
- */
-.hero-cat-peek {
-  position: absolute;
-  z-index: 0;
-  top: 46%;
-  right: 6px;
-  width: 64px;
-  height: 58px;
-  border-radius: 999px 999px 14px 14px;
-  background-image: url('/media/authors/gading-illustrated.png');
-  background-size: 243px 260px;
-  background-position: -174px -92px;
-  box-shadow: var(--gd-shadow);
-  opacity: 0;
-}
-@keyframes hero-cat-peek {
-  0%, 88%, 100% { transform: translateX(0) rotate(0deg); opacity: 0; }
-  90% { opacity: 1; }
-  92%, 97% { transform: translateX(46px) rotate(8deg); opacity: 1; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero-cat-peek { animation: hero-cat-peek 16s ease-in-out 6s infinite; }
-  .hero-portrait-wrap:hover .hero-cat-peek { animation-duration: 1.6s; animation-iteration-count: 1; animation-delay: 0s; }
-}
-
 /* mood pill: the new emoji pops in once */
 @keyframes hero-mood-pop {
   from { transform: scale(0.4) rotate(-20deg); }
@@ -374,5 +345,4 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-portrait { transition: none; transform: none !important; }
-  .hero-cat-peek { display: none; }
 }

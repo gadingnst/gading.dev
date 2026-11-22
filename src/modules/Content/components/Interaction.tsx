@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { PropsWithChildren, ReactNode, Suspense } from 'react';
 
+import { DISQUS_SHORTNAME } from '@/configs/sites';
 import { ContentMeta } from '@/modules/Content/services/content-parser';
 
 interface ContentInteractionProps {
@@ -16,10 +17,6 @@ interface ContentSuspenseProps {
 }
 
 const ContentShare = dynamic(() => import('@/modules/Content/components/Share'), {
-  ssr: false
-});
-
-const ContentSupport = dynamic(() => import('@/modules/Content/components/Support'), {
   ssr: false
 });
 
@@ -51,12 +48,11 @@ function ContentInteraction(props: ContentInteractionProps) {
       <ContentSuspense fallback="Loading Share...">
         <ContentShare path={path} meta={meta} />
       </ContentSuspense>
-      <ContentSuspense fallback="Loading Support...">
-        <ContentSupport />
-      </ContentSuspense>
-      <ContentSuspense fallback="Loading Disqus...">
-        <ContentDisqus path={path} title={meta.title} identifier={identifier} />
-      </ContentSuspense>
+      {!!DISQUS_SHORTNAME && (
+        <ContentSuspense fallback="Loading Disqus...">
+          <ContentDisqus path={path} title={meta.title} identifier={identifier} />
+        </ContentSuspense>
+      )}
     </div>
   );
 }

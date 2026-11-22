@@ -1,12 +1,10 @@
-export const AUTHOR_NAME = 'Gading Nasution.';
-export const AUTHOR_FULLNAME = 'Sutan Gading Fadhillah Nasution';
-export const AUTHOR_EMAIL = 'contact@gading.dev';
+export const AUTHOR_NAME = 'Syahrul Arifuddin';
+export const AUTHOR_FULLNAME = 'Syahrul Arifuddin';
+/** TODO: a public contact address; left empty, the Contact button is hidden */
+export const AUTHOR_EMAIL = '';
 
-/** social media */
-// export const AUTHOR_FACEBOOK = 'gadingnstn';
-// export const AUTHOR_INSTAGRAM = 'gadingnst';
-export const AUTHOR_GITHUB = 'gadingnst';
-export const AUTHOR_LINKEDIN = 'gadingnst';
-export const AUTHOR_STEAM = 'gadingnst';
-export const AUTHOR_TWITTER = 'gading_coder';
-export const AUTHOR_THREADS = 'gadingnst';
+/** social media handles; an empty one is hidden from the site */
+export const AUTHOR_GITHUB = 'syahrularifuddin';
+export const AUTHOR_LINKEDIN = '';
+export const AUTHOR_TWITTER = '';
+export const AUTHOR_THREADS = '';

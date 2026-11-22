@@ -40,7 +40,7 @@ interface LockupProps {
   domainColor?: string;
 }
 
-/** Avatar with "Gading's Hideout" over "gading.dev": the brand mark on every image */
+/** Avatar with SITE_NAME over SITE_DOMAIN: the brand mark on every image */
 export function Lockup(props: LockupProps) {
   const { size, avatar, nameSize, domainSize, pill = false, nameColor = OG_COLORS.content, domainColor = OG_COLORS.amber } = props;
   const gap = Math.round(size * 0.24);

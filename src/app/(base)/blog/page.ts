@@ -16,8 +16,8 @@ export const generateMetadata = withGenerateMetadata(async() => {
       slug: '/blog',
       title: 'Blog',
       description: content.desc,
-      keywords: 'gadings writing, technical writing, blog gading, gading blog',
-      tags: ['blog', 'writing', 'technical writing', 'gadings'],
+      keywords: 'syahrul blog, technical writing, halo syahrul',
+      tags: ['blog', 'writing', 'technical writing'],
       date: '2022-06-01'
     }
   });

@@ -11,8 +11,8 @@ export const generateMetadata = withGenerateMetadata(async() => {
   return metadataBuilder({
     meta: {
       slug: '/resume',
-      title: 'Gading\'s Resume',
-      description: 'Gading\'s Resume',
+      title: 'Resume',
+      description: 'Resume of Syahrul Arifuddin',
       date: dt().format('YYYY-MM-DD')
     }
   });
