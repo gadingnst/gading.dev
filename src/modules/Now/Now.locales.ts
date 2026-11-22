@@ -6,8 +6,8 @@ const nowLocales = createContentLocales({
     id: 'Sekarang'
   },
   metaDescription: {
-    en: 'What I\'m doing right now - Current activities, projects, and interests of Gading.',
-    id: 'Apa yang sedang saya lakukan sekarang - Aktivitas, proyek, dan minat Gading saat ini.'
+    en: 'What I\'m doing right now - Current activities, projects, and interests of Syahrul.',
+    id: 'Apa yang sedang saya lakukan sekarang - Aktivitas, proyek, dan minat Syahrul saat ini.'
   },
   backToHome: {
     en: 'Back to Home',

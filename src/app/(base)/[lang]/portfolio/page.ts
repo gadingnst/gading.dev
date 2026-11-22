@@ -19,8 +19,8 @@ export const generateMetadata = withGenerateMetadata<{ lang: I18nLocales }>(asyn
       slug: '/portfolio',
       title: content.title,
       description: content.desc,
-      keywords: 'gading portfolio, nouride, nouverse technologies, homelab, nouclip, swr-global-state',
-      tags: ['portfolio', 'nouride', 'nouverse'],
+      keywords: 'syahrul portfolio, projects',
+      tags: ['portfolio'],
       date: '2026-11-13'
     }
   });

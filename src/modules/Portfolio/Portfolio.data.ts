@@ -7,7 +7,7 @@ export type Localized = Record<I18nLocales, string>;
 export type ProjectTone = 'brand' | 'teal' | 'rose' | 'lilac';
 
 export interface ProjectLink {
-  /** text of the link, e.g. `nouride.com` */
+  /** text of the link, e.g. `example.com` */
   label: Localized;
   /**
    * `external` opens in a new tab as is. `internal` is a path without language
@@ -48,247 +48,30 @@ export interface Project {
  * Client work goes here too once it can be named.
  */
 export const PROJECTS: Project[] = [
+  // TODO: add your own projects; the first `home: true` entry is the big Home card.
   {
-    id: 'nouride',
+    id: 'halosyahrul',
     tone: 'brand',
-    tag: 'nouride',
+    tag: 'halosyahrul.com',
     title: {
-      en: 'AI agents that live on your box.',
-      id: 'Agen AI yang tinggal di server sendiri.'
+      en: 'This website.',
+      id: 'Website ini.'
     },
     summary: {
-      en: 'A multi-agent daemon I build and run every day. Agents with their own memory, skills and tools, reachable over **Telegram, WhatsApp and Discord**. They ask before changing anything.',
-      id: 'Daemon multi-agent yang saya bangun dan pakai setiap hari. Agen dengan memori, skill, dan tool sendiri, bisa dihubungi lewat **Telegram, WhatsApp, dan Discord**. Mereka bertanya dulu sebelum mengubah apa pun.'
+      en: 'My personal site and blog, built with **Next.js** and deployed with Docker and GitHub Actions to my own VPS.',
+      id: 'Situs pribadi dan blog saya, dibangun dengan **Next.js** dan di-deploy dengan Docker dan GitHub Actions ke VPS sendiri.'
     },
-    chips: ['self-hosted', 'multi-agent', 'Telegram · WhatsApp · Discord'],
+    chips: ['Next.js', 'Docker', 'GitHub Actions'],
     link: {
-      label: { en: 'nouride.com ↗', id: 'nouride.com ↗' },
-      target: { type: 'external', href: 'https://nouride.com' }
-    },
-    home: true,
-    chat: [
-      {
-        user: { en: 'check the homelab disk, please', id: 'cek disk homelab dong' },
-        agentName: 'nouva',
-        agent: {
-          en: 'LXC 105 at 81%, mostly old PDF jobs. Clean them up?',
-          id: 'LXC 105 di 81%, kebanyakan sisa job PDF lama. Dibersihkan?'
-        },
-        time: '00:12'
-      },
-      {
-        user: { en: 'deploy the blog, the PR is merged', id: 'deploy blog dong, PR-nya udah merge' },
-        agentName: 'nouva',
-        agent: {
-          en: 'Build passed, deployed. 3 posts changed, cache purged.',
-          id: 'Build lolos, sudah deploy. 3 post berubah, cache sudah di-purge.'
-        },
-        time: '09:41'
-      },
-      {
-        user: { en: 'remind me to renew the domain', id: 'ingetin perpanjang domain ya' },
-        agentName: 'nouva',
-        agent: {
-          en: 'Set for Friday 09:00. It expires in 12 days.',
-          id: 'Sudah, Jumat jam 09:00. Expired 12 hari lagi.'
-        },
-        time: '21:07'
-      }
-    ]
-  },
-  {
-    id: 'nouclip',
-    tone: 'rose',
-    tag: 'nouclip',
-    title: {
-      en: 'Video to shorts, from the terminal.',
-      id: 'Video jadi shorts, dari terminal.'
-    },
-    summary: {
-      en: 'A CLI that cuts videos into vertical clips: reframing, word-by-word subtitles, silence trimming and music ducking. **FFmpeg** does the cutting and **Whisper** the transcripts; nouclip wires them together so an agent can drive it.',
-      id: 'CLI untuk memotong video jadi klip vertikal: reframe, subtitle per kata, potong jeda diam, dan ducking musik. **FFmpeg** yang memotong dan **Whisper** yang mentranskripsi; nouclip merangkai keduanya supaya bisa dijalankan oleh agen.'
-    },
-    chips: ['CLI', 'FFmpeg', 'Whisper', 'Bun'],
-    link: {
-      label: { en: 'github.com/nouverse/nouclip ↗', id: 'github.com/nouverse/nouclip ↗' },
-      target: { type: 'external', href: 'https://github.com/nouverse/nouclip' }
+      label: { en: 'github.com/syahrularifuddin/halosyahrul.com ↗', id: 'github.com/syahrularifuddin/halosyahrul.com ↗' },
+      target: { type: 'external', href: 'https://github.com/syahrularifuddin/halosyahrul.com' }
     },
     home: true
-  },
-  {
-    id: 'swr-global-state',
-    tone: 'teal',
-    tag: 'swr-global-state',
-    title: {
-      en: 'Global state that feels like useState.',
-      id: 'Global state yang terasa seperti useState.'
-    },
-    summary: {
-      en: 'A small React library for sharing state between components with a hook that reads like useState, built on **SWR**. Open source and on npm.',
-      id: 'Library React kecil untuk berbagi state antar komponen lewat hook yang dipakai seperti useState, dibangun di atas **SWR**. Open source dan ada di npm.'
-    },
-    chips: ['React', 'SWR', 'npm'],
-    link: {
-      label: { en: 'github.com/gadingnst/swr-global-state ↗', id: 'github.com/gadingnst/swr-global-state ↗' },
-      target: { type: 'external', href: 'https://github.com/gadingnst/swr-global-state' }
-    },
-    home: true
-  },
-  {
-    id: 'nouverse',
-    tone: 'teal',
-    tag: 'nouverse',
-    title: {
-      en: 'Nouverse Technologies',
-      id: 'Nouverse Technologies'
-    },
-    summary: {
-      en: 'My engineering company in Palembang. Hosted Nouride agents and automation workflows, plus consulting and custom software.',
-      id: 'Perusahaan engineering saya di Palembang. Agen Nouride hosted dan workflow otomasi, plus konsultasi dan software custom.'
-    },
-    link: {
-      label: { en: 'nouverse.com ↗', id: 'nouverse.com ↗' },
-      target: { type: 'external', href: 'https://nouverse.com' }
-    }
-  },
-  {
-    id: 'homelab',
-    tone: 'lilac',
-    tag: 'homelab',
-    title: {
-      en: 'Homelab',
-      id: 'Homelab'
-    },
-    summary: {
-      en: 'Proxmox with K3s for the stateless things and LXC for the stateful ones. Mostly here so I have something to break, and write about afterwards.',
-      id: 'Proxmox dengan K3s untuk yang stateless dan LXC untuk yang stateful. Sebagian besar ada supaya saya punya sesuatu untuk dirusak, lalu ditulis setelahnya.'
-    },
-    chips: ['Proxmox', 'K3s', 'LXC'],
-    link: {
-      label: { en: 'How I built it →', id: 'Cara saya membangunnya →' },
-      target: {
-        type: 'internal',
-        path: {
-          en: '/blog/homelab-architecture-k8s-lxc-proxmox',
-          id: '/blog/arsitektur-homelab-k8s-lxc-proxmox'
-        }
-      }
-    }
   }
 ];
 
-/** Professional work: products only, no company grouping */
-export const WORK: Project[] = [
-  {
-    id: 'agp',
-    location: { en: 'Singapore', id: 'Singapura' },
-    tone: 'teal',
-    tag: 'agp',
-    title: { en: 'AGP Group', id: 'AGP Group' },
-    summary: {
-      en: 'Internal tools and products for AGP Group, including a KYC compliance portal. I also work as their **AI consultant**, scoping and building AI into the tools their teams use.',
-      id: 'Internal tools dan produk untuk AGP Group, termasuk portal KYC compliance. Saya juga jadi **AI consultant**, merancang dan membangun AI ke dalam tools yang dipakai tim mereka.'
-    },
-    chips: ['Next.js', 'Azure', 'AI'],
-    link: {
-      label: { en: 'agpgroup.com ↗', id: 'agpgroup.com ↗' },
-      target: { type: 'external', href: 'https://agpgroup.com' }
-    }
-  },
-  {
-    id: 'codi',
-    location: { en: 'United States', id: 'Amerika Serikat' },
-    tone: 'rose',
-    tag: 'codi',
-    title: { en: 'Codi', id: 'Codi' },
-    summary: {
-      en: 'An AI assistant used by school students in the US. I built backend APIs, its memory and knowledge base, and guardrails that filter what goes in and out with **Model Armor**.',
-      id: 'Asisten AI yang dipakai siswa sekolah di Amerika. Saya membangun backend API, memory dan knowledge base-nya, serta guardrails yang memfilter input dan output dengan **Model Armor**.'
-    },
-    chips: ['RAG', 'Model Armor', 'GCP'],
-    link: {
-      label: { en: 'coaifounder.com ↗', id: 'coaifounder.com ↗' },
-      target: { type: 'external', href: 'https://coaifounder.com' }
-    }
-  },
-  {
-    id: 'simplexity',
-    location: { en: 'United States', id: 'Amerika Serikat' },
-    tone: 'lilac',
-    tag: 'simplexity',
-    title: { en: 'Simplexity Legal', id: 'Simplexity Legal' },
-    summary: {
-      en: 'AI document analysis for medical-legal cases. I added end-to-end tracing with **OpenTelemetry**, cut report generation from 35 to 9 minutes, and handled the SRE work.',
-      id: 'Analisis dokumen medical-legal berbasis AI. Saya memasang tracing end-to-end dengan **OpenTelemetry**, memangkas waktu generate report dari 35 ke 9 menit, dan mengurus kerjaan SRE.'
-    },
-    chips: ['OpenTelemetry', 'GCP', 'SRE'],
-    link: {
-      label: { en: 'simplexitylegal.com ↗', id: 'simplexitylegal.com ↗' },
-      target: { type: 'external', href: 'https://simplexitylegal.com' }
-    }
-  },
-  {
-    id: 'laindiemovie',
-    location: { en: 'Indonesia', id: 'Indonesia' },
-    tone: 'brand',
-    tag: 'lazone',
-    title: { en: 'La Indie Movie', id: 'La Indie Movie' },
-    summary: {
-      en: 'Ticketing for a film-making competition, built end to end: database, API, frontend, and **Midtrans** payments with idempotent webhooks, so a retried payment never books twice.',
-      id: 'Ticketing untuk kompetisi film, dibangun end-to-end: database, API, frontend, dan pembayaran **Midtrans** dengan webhook idempotent, jadi pembayaran yang di-retry tidak tercatat dua kali.'
-    },
-    chips: ['Midtrans', 'PostgreSQL', 'API'],
-    link: {
-      label: { en: 'laindiemovie.lazone.id ↗', id: 'laindiemovie.lazone.id ↗' },
-      target: { type: 'external', href: 'https://laindiemovie.lazone.id' }
-    }
-  },
-  {
-    id: 'heypico',
-    location: { en: 'Singapore', id: 'Singapura' },
-    tone: 'teal',
-    tag: 'heypico',
-    title: { en: 'HeyPico', id: 'HeyPico' },
-    summary: {
-      en: 'A personal AI assistant on web, Android and iOS. I built its **GraphRAG** memory on Neo4j, the MCP integrations and Stripe payments, then shipped it through App Store review.',
-      id: 'Asisten AI personal di web, Android, dan iOS. Saya membangun memory **GraphRAG** di Neo4j, integrasi MCP, dan pembayaran Stripe, lalu merilisnya sampai lolos review App Store.'
-    },
-    chips: ['Neo4j', 'MCP', 'Stripe'],
-    link: {
-      label: { en: 'heypico.ai ↗', id: 'heypico.ai ↗' },
-      target: { type: 'external', href: 'https://heypico.ai' }
-    }
-  },
-  {
-    id: 'avatara',
-    location: { en: 'Indonesia', id: 'Indonesia' },
-    tone: 'rose',
-    tag: 'avatara',
-    title: { en: 'Avatara Labs', id: 'Avatara Labs' },
-    summary: {
-      en: 'Generative AI products and Web3 wallets. I led frontend across four AI products, built a **RAG**-based researcher dashboard, and shipped custodial wallets with a Web3 provider SDK.',
-      id: 'Produk generative AI dan wallet Web3. Saya memimpin frontend di empat produk AI, membangun dashboard researcher berbasis **RAG**, dan merilis wallet custodial beserta Web3 provider SDK.'
-    },
-    chips: ['React', 'Next.js', 'Web3'],
-    link: {
-      label: { en: 'avataralabs.ai ↗', id: 'avataralabs.ai ↗' },
-      target: { type: 'external', href: 'https://avataralabs.ai' }
-    }
-  },
-  {
-    id: 'orami',
-    location: { en: 'Indonesia', id: 'Indonesia' },
-    tone: 'lilac',
-    tag: 'orami',
-    title: { en: 'Orami', id: 'Orami' },
-    summary: {
-      en: 'E-commerce for Indonesian families, part of SIRCLO. I built a shared component library in **Storybook**, drove the TypeScript migration, and shipped group buying and the seller dashboard.',
-      id: 'E-commerce untuk keluarga Indonesia, bagian dari SIRCLO. Saya membangun component library bersama di **Storybook**, memimpin migrasi ke TypeScript, dan merilis group buying serta seller dashboard.'
-    },
-    chips: ['React', 'TypeScript', 'Storybook'],
-    link: {
-      label: { en: 'orami.co.id ↗', id: 'orami.co.id ↗' },
-      target: { type: 'external', href: 'https://orami.co.id' }
-    }
-  }
-];
+/**
+ * Professional work: products only, no company grouping.
+ * TODO: add work you can name; while empty, the section is hidden.
+ */
+export const WORK: Project[] = [];

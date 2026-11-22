@@ -19,6 +19,7 @@ import { dasherize } from '@/packages/utils/helpers/string';
 const socialLinks = [
   {
     name: 'GitHub',
+    handle: AUTHOR_GITHUB,
     href: `https://github.com/${AUTHOR_GITHUB}`,
     icon: IconGithub
   },
@@ -30,16 +31,19 @@ const socialLinks = [
   }, */
   {
     name: 'LinkedIn',
+    handle: AUTHOR_LINKEDIN,
     href: `https://linkedin.com/in/${AUTHOR_LINKEDIN}`,
     icon: IconLinkedin
   },
   {
     name: 'Twitter',
+    handle: AUTHOR_TWITTER,
     href: `https://x.com/${AUTHOR_TWITTER}`,
     icon: IconTwitter
   },
   {
     name: 'Threads',
+    handle: AUTHOR_THREADS,
     href: `https://threads.net/@${AUTHOR_THREADS}`,
     icon: IconThreads
   }
@@ -54,7 +58,7 @@ const socialLinks = [
 function SocialLinks() {
   return (
     <div className="flex justify-center gap-x-3">
-      {socialLinks.map((social) => (
+      {socialLinks.filter((social) => social.handle).map((social) => (
         <Link
           key={social.name}
           href={social.href}

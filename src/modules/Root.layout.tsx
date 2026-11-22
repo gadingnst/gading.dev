@@ -73,7 +73,7 @@ async function RootLayout({ children, ...props }: PropsWithChildren<NextPageProp
       <body className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased relative min-h-screen overflow-x-hidden`}>
         {children}
         {!IS_DEV && <ServiceWorkerRegister />}
-        {!IS_DEV && (
+        {!IS_DEV && !!ANALYTICS_ID && (
           <Script data-website-id={ANALYTICS_ID} defer src="https://cloud.umami.is/script.js" />
         )}
       </body>

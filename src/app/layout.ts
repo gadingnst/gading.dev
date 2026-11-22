@@ -3,12 +3,12 @@ import '@/designs/styles/globals.css';
 import type { Viewport } from 'next';
 
 import { AUTHOR_NAME } from '@/configs/author';
-import { GOOGLE_VERIFICATION_ID, SITE_NAME } from '@/configs/sites';
+import { GOOGLE_VERIFICATION_ID, PRODUCTION_URL, SITE_NAME } from '@/configs/sites';
 import RootLayout from '@/modules/Root.layout';
 import { withMetadata } from '@/packages/utils/metadata/metadata';
 
 export const metadata = withMetadata({
-  metadataBase: new URL('https://gading.dev'),
+  metadataBase: new URL(PRODUCTION_URL),
   title: `${AUTHOR_NAME} | ${SITE_NAME}`,
   applicationName: SITE_NAME,
   appleWebApp: {
@@ -29,7 +29,7 @@ export const metadata = withMetadata({
     }
   },
   verification: {
-    google: GOOGLE_VERIFICATION_ID
+    google: GOOGLE_VERIFICATION_ID || undefined
   }
 });
 

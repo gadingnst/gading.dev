@@ -11,7 +11,7 @@ jobs:
     name: Performance Report
     runs-on: ubuntu-latest
     env:
-      HOST: https://gading.dev
+      HOST: https://halosyahrul.com
       PSURL: https://pgsi.nouverse.com
       PSRDESKTOP: desktop
       PSRMOBILE: mobile

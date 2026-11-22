@@ -39,7 +39,7 @@ async function PortfolioPage(props: NextPageProps) {
           </div>
         </section>
 
-        <section>
+        {WORK.length > 0 && (<section>
           <h2 className="font-display text-2xl font-bold tracking-tight md:text-[32px]">{content.workTitle}</h2>
           <p className="mt-1.5 text-muted">{content.workDesc}</p>
 
@@ -48,7 +48,7 @@ async function PortfolioPage(props: NextPageProps) {
               <ProjectCard key={project.id} project={project} lang={lang} />
             ))}
           </div>
-        </section>
+        </section>)}
       </div>
     </div>
   );

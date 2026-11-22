@@ -1,21 +1,22 @@
 import createContentLocales from '@/packages/libs/I18n/locales';
 
+// TODO: placeholder copy; rewrite greeting, headline, lead and statusPlace in your own words.
 const withHomeLocales = createContentLocales({
   greeting: {
-    en: 'hey, I\'m Gading 👋',
-    id: 'hey, I\'m Gading 👋'
+    en: 'halo, I\'m Syahrul 👋',
+    id: 'halo, saya Syahrul 👋'
   },
   headlineStart: {
-    en: 'I build systems, then write about ',
-    id: 'I build systems, then write about '
+    en: 'Building things, and writing down ',
+    id: 'Membangun sesuatu, lalu mencatat '
   },
   headlineAccent: {
-    en: 'what broke.',
-    id: 'what broke.'
+    en: 'what I learn.',
+    id: 'yang saya pelajari.'
   },
   lead: {
-    en: 'Software engineer from Palembang. I built [Nouride](https://nouride.com), founded [Nouverse](https://nouverse.com), and work at an AI company. I tinker with my homelab, and it breaks more often than not because I can\'t leave it alone.',
-    id: 'Software engineer dari Palembang. Bikin [Nouride](https://nouride.com), bangun [Nouverse](https://nouverse.com), dan kerja di AI company. Suka ngoprek homelab, tapi lebih sering rusak gara-gara ngulik sendiri.'
+    en: 'Welcome to my corner of the internet: the projects I work on, notes, and things I\'m learning along the way.',
+    id: 'Selamat datang di sudut kecil saya di internet: proyek yang saya kerjakan, catatan, dan hal yang sedang saya pelajari.'
   },
   seeWork: {
     en: 'See my work',
@@ -26,8 +27,8 @@ const withHomeLocales = createContentLocales({
     id: 'Baca blog'
   },
   portraitAlt: {
-    en: 'Illustrated portrait of Gading with a cat in a cap next to him',
-    id: 'Ilustrasi Gading dengan seekor kucing bertopi di sampingnya'
+    en: 'Avatar with the initials SA',
+    id: 'Avatar dengan inisial SA'
   },
   currentlyLabel: {
     en: 'Currently:',
@@ -42,8 +43,8 @@ const withHomeLocales = createContentLocales({
     id: 'Ganti mood'
   },
   statusPlace: {
-    en: 'Palembang, WIB',
-    id: 'Palembang, WIB'
+    en: 'Indonesia, WIB',
+    id: 'Indonesia, WIB'
   },
   doodle: {
     en: 'it\'s me, hi!',

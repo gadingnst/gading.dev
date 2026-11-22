@@ -2,7 +2,7 @@
 
 import { Briefcase, FileText, Mail } from 'lucide-react';
 
-import { AUTHOR_GITHUB, AUTHOR_LINKEDIN, AUTHOR_NAME } from '@/configs/author';
+import { AUTHOR_EMAIL, AUTHOR_GITHUB, AUTHOR_LINKEDIN, AUTHOR_NAME } from '@/configs/author';
 import IconGithub from '@/designs/icons/logo/github.svg';
 import cn from '@/designs/utils/cn';
 import Image from '@/packages/components/base/Displays/Image';
@@ -26,7 +26,7 @@ const LeftDesc = ({ className }: { className?: string }) => (
     >
       Portfolio
     </ButtonLink>
-    <ButtonLink
+    {!!AUTHOR_LINKEDIN && <ButtonLink
       href={`https://linkedin.com/in/${AUTHOR_LINKEDIN}`}
       className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-primary shadow-primary flex items-center gap-x-2"
       icon={<Briefcase size={16} />}
@@ -35,7 +35,7 @@ const LeftDesc = ({ className }: { className?: string }) => (
       data-umami-event="about_careers"
     >
       Careers
-    </ButtonLink>
+    </ButtonLink>}
   </div>
 );
 
@@ -56,8 +56,8 @@ const RightDesc = ({ className }: { className?: string }) => (
     >
       Resume
     </ButtonLink>
-    <ButtonLink
-      href="mailto:contact@gading.dev"
+    {!!AUTHOR_EMAIL && <ButtonLink
+      href={`mailto:${AUTHOR_EMAIL}`}
       className="ml-4 p-3 rounded-lg text-white hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg bg-accent shadow-accent flex items-center gap-x-2"
       icon={<Mail size={16} />}
       target="_blank"
@@ -65,7 +65,7 @@ const RightDesc = ({ className }: { className?: string }) => (
       data-umami-event="about_contact"
     >
       Contact
-    </ButtonLink>
+    </ButtonLink>}
   </div>
 );
 
@@ -78,8 +78,8 @@ function ProfileInfo() {
         <LeftDesc className="hidden md:flex" />
         <div className="-mt-4 flex flex-col flex-1 items-center justify-center">
           <Image
-            className="h-[180px]! w-[180px]! rounded-full object-cover object-[50%_25%] cursor-grab active:cursor-grabbing"
-            src="/media/authors/gading-illustrated.png"
+            className="h-[180px]! w-[180px]! rounded-full object-cover cursor-grab active:cursor-grabbing"
+            src="/media/authors/avatar.png"
             alt={AUTHOR_NAME}
             width={180}
             height={180}
@@ -97,9 +97,9 @@ function ProfileInfo() {
                 'hover:cursor-pointer hover:underline underline-offset-4 text-primary'
               )}
             >
-              Gading
+              Syahrul
             </span>{' '}
-            Nasution
+            Arifuddin
           </h3>
         </div>
         <RightDesc className="hidden md:flex" />

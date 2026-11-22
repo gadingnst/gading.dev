@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Gading's Hideout",
-  "short_name": "Gading's Hideout",
-  "description": "Personal website and blog of Gading Nasution.",
+  "name": "Halo Syahrul",
+  "short_name": "Halo Syahrul",
+  "description": "Personal website and blog of Syahrul Arifuddin.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

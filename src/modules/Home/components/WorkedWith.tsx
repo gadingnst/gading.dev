@@ -42,6 +42,7 @@ function Item({ company, hidden }: { company: WorkedWithCompany; hidden?: boolea
 /** "Worked with": logos and names only, scrolling slowly; static when motion is reduced */
 function WorkedWith({ lang }: Props) {
   const content = withHomeLocales(lang);
+  if (!WORKED_WITH.length) return null;
 
   return (
     <section className="mb-[88px] border-y border-base-content/10 py-8">

@@ -10,7 +10,7 @@ const LOGOUT_LINES = [
 ];
 
 /**
- * `gading@palembang:~$ exit` in the footer, as a button: prints a logout line,
+ * `syahrul@halosyahrul:~$ exit` in the footer, as a button: prints a logout line,
  * then takes the reader back to the top of the page.
  */
 function FooterExit() {
@@ -33,7 +33,7 @@ function FooterExit() {
 
   return (
     <span className="mt-1.5 block font-mono text-[13px]">
-      <span>gading@palembang:~$ </span>
+      <span>syahrul@halosyahrul:~$ </span>
       <button
         type="button"
         onClick={onExit}

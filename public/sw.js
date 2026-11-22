@@ -1,5 +1,5 @@
 /**
- * Minimal, hand-written service worker for gading.dev.
+ * Minimal, hand-written service worker for halosyahrul.com.
  *
  * - Network first for every same-origin GET: when online the reader always
  *   gets what the server sends, never a cached copy.
@@ -10,7 +10,7 @@
  * Bump CACHE_VERSION to drop every old cache on the next activate.
  */
 const CACHE_VERSION = 'v1';
-const CACHE_PREFIX = 'gading-';
+const CACHE_PREFIX = 'halosyahrul-';
 const CACHE_NAME = `${CACHE_PREFIX}pages-${CACHE_VERSION}`;
 const OFFLINE_URL = '/offline.html';
 

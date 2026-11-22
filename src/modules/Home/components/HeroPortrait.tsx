@@ -24,7 +24,6 @@ const MAX_TILT = 4;
 /**
  * The hero portrait: leans a little toward a mouse pointer, and a click (or
  * the mood pill) walks through the moods that `cat mood.txt` prints too.
- * The cat peeks out from behind the frame now and then, CSS only.
  */
 function HeroPortrait({ lang, alt, moodLabel, moodHint, pillClassName, pillSmallClassName }: Props) {
   const { mood, nextMood } = useMood();
@@ -81,8 +80,6 @@ function HeroPortrait({ lang, alt, moodLabel, moodHint, pillClassName, pillSmall
   return (
     <>
       <div className="hero-portrait-wrap relative">
-        {/* the cat, peeking from behind the right edge of the frame */}
-        <span aria-hidden className="hero-cat-peek" />
         <button
           ref={frameRef}
           type="button"
@@ -91,12 +88,12 @@ function HeroPortrait({ lang, alt, moodLabel, moodHint, pillClassName, pillSmall
           className="hero-portrait relative z-[1] block h-[260px] w-[230px] cursor-pointer overflow-hidden rounded-[160px_160px_28px_28px] border-[6px] border-card bg-gradient-to-b from-brand-soft to-lilac-soft shadow-soft sm:h-[340px] sm:w-[300px] dark:border-[#2A231D]"
         >
           <Image
-            src="/media/authors/gading-illustrated.png"
+            src="/media/authors/avatar.png"
             alt={alt}
             fill
             priority
             sizes="(min-width: 640px) 300px, 230px"
-            className="object-cover object-[50%_30%]"
+            className="object-cover"
           />
         </button>
       </div>
