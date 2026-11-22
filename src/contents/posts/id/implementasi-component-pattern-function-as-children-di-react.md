@@ -1,7 +1,7 @@
 ---
 title: 'Implementasi component pattern "Function as children" di React'
 slug: {
-  en: null,
+  en: 'implementing-function-as-children-component-pattern-in-react',
   id: 'implementasi-component-pattern-function-as-children-di-react'
 }
 date: 2020-03-28
