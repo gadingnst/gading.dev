@@ -5,7 +5,7 @@ slug: {
   id: "gmail-alias-domain-sendiri-spf-dmarc"
 }
 date: 2025-05-11
-description: "Panduan praktis kirim email dari alamat domain sendiri via Gmail tanpa nyangkut di spam—pakai SPF & DMARC biar legit."
+description: "Panduan praktis kirim email dari alamat domain sendiri via Gmail tanpa nyangkut di spam, pakai SPF & DMARC biar legit."
 keywords: "gmail alias, smtp gmail, spf, dmarc, email domain, forwarding, dns, app password, gading.dev"
 tags: ["email", "dev tools", "security"]
 image: "/media/blog/gmail-alias-setup/alias-flow.png"
@@ -67,14 +67,14 @@ Di sini gw jelasin langkah demi langkah: mulai dari setup alias di Gmail, bikin 
 
 ## 3. Tambah SPF & DMARC di DNS Domain
 
-Agar Gmail dianggap sah kirim dari domain `gading.dev`, kita harus buktiin ke server lain (kayak Gmail, Outlook, dll) lewat SPF dan DMARC.
+Biar Gmail dianggap sah kirim dari domain `gading.dev`, kita harus buktiin ke server lain (kayak Gmail, Outlook, dll) lewat SPF dan DMARC.
 
-Ini dilakukan via **DNS records** domain lu.
+Caranya lewat **DNS records** domain lu.
 
 ### 3.1 Tambah SPF Record
 
 1. Masuk ke panel DNS domain (`gading.dev`)
-2. Tambahkan record:
+2. Tambahin record:
 
    - **Type**: `TXT`
    - **Name**: `@`
@@ -83,11 +83,11 @@ Ini dilakukan via **DNS records** domain lu.
      v=spf1 include:_spf.google.com ~all
      ```
 
-> ⚠️ Kalau udah ada record SPF, **gabungin** aja — domain cuma boleh punya **1 SPF record**.
+> ⚠️ Kalau udah ada record SPF, **gabungin** aja, domain cuma boleh punya **1 SPF record**.
 
 ### 3.2 Tambah DMARC Record
 
-1. Tambahkan record lagi:
+1. Tambahin record lagi:
 
    - **Type**: `TXT`
    - **Name**: `_dmarc`
@@ -131,9 +131,9 @@ Ini dilakukan via **DNS records** domain lu.
 
 ---
 
-## Penutup
+## Hasilnya
 
-Kalau udah ngikutin ini semua, lu bisa dengan santai ngirim email dari `xxx@gading.dev` lewat Gmail, tanpa takut ditolak server penerima.
+Kalau udah ngikutin ini semua, lu bisa santai ngirim email dari `xxx@gading.dev` lewat Gmail, tanpa takut ditolak server penerima.
 
 Gak nyangkut spam, gak di-flag spoofing, dan tetep nikmatin UI Gmail.
 
