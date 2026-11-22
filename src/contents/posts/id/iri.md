@@ -1,7 +1,7 @@
 ---
 title: 'IRI'
 slug: {
-  en: null,
+  en: 'envy',
   id: 'iri'
 }
 date: 2020-04-22
