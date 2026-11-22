@@ -26,7 +26,7 @@ const SAMPLE_CODE = `export const generateStaticParams = generateBlogPaginationP
 export const dynamic = 'force-static';`;
 
 function Source({ path, label }: { path: string; label: string }) {
-  return <div className="mt-3 font-mono text-xs text-muted">{label}: {path}</div>;
+  return <div className="mt-3 font-mono text-xs text-muted [overflow-wrap:anywhere]">{label}: {path}</div>;
 }
 
 function Stage({ children }: PropsWithChildren) {
