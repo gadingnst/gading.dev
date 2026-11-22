@@ -1,0 +1,88 @@
+# Push to main: build the Docker image, push it to GHCR, then SSH to the VPS
+# and restart the stack.
+#
+# Runner: GitHub-hosted by default. To run on your own runner (InstaBox),
+# register it on this repo and set the repo variable RUNNER=self-hosted.
+#
+# Required repo secrets:
+#   VPS_HOST         — VPS public IP (SumoPod: 43.157.226.68)
+#   VPS_USER         — SSH user (SumoPod: ubuntu)
+#   VPS_SSH_KEY      — private deploy key (its public half is in the VPS's ~/.ssh/authorized_keys)
+# Optional:
+#   VPS_PORT         — SSH port (default 22)
+#   VPS_TARGET_PATH  — deploy dir (default /opt/halosyahrul)
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: deploy-production
+
+jobs:
+  image:
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: repo
+        run: echo "name=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ steps.repo.outputs.name }}:latest
+            ghcr.io/${{ steps.repo.outputs.name }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: image
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy compose file and Caddyfile to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: deploy/compose.yaml,deploy/Caddyfile
+          target: ${{ secrets.VPS_TARGET_PATH || '/opt/halosyahrul' }}
+          strip_components: 1
+      - name: Roll out
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script_stop: true
+          envs: DEPLOY_DIR,GHCR_USER,GHCR_TOKEN
+          # Pull with the job token (works for a private GHCR package) in a
+          # throwaway DOCKER_CONFIG, so no registry login is left on the VPS.
+          script: |
+            cd "$DEPLOY_DIR"
+            PULL_CONFIG=$(mktemp -d)
+            echo "$GHCR_TOKEN" | DOCKER_CONFIG="$PULL_CONFIG" docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            DOCKER_CONFIG="$PULL_CONFIG" docker compose pull
+            rm -rf "$PULL_CONFIG"
+            docker compose up -d --remove-orphans
+            docker image prune -f
+        env:
+          DEPLOY_DIR: ${{ secrets.VPS_TARGET_PATH || '/opt/halosyahrul' }}
+          GHCR_USER: ${{ github.actor }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,10 @@
+# {$DOMAIN} comes from .env on the VPS via the compose environment.
+# Caddy gets and renews the Let's Encrypt cert for it automatically.
+{$DOMAIN} {
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}

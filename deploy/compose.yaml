@@ -1,0 +1,47 @@
+# Production stack. CI copies this file and the Caddyfile to the VPS deploy
+# dir and runs `docker compose up -d` (see .github/workflows/deploy.yml).
+# DOMAIN comes from .env in the deploy dir on the VPS (never in git).
+services:
+  web:
+    image: ghcr.io/syahrularifuddin/halosyahrul.com:latest
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Only public surface: 80/443. Caddy gets and renews Let's Encrypt certs.
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp" # HTTP/3
+    environment:
+      DOMAIN: ${DOMAIN:?DOMAIN missing, set it in .env next to compose.yaml}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data # TLS certs survive redeploys
+      - caddy_config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+    restart: unless-stopped
+    logging: *logging
+
+volumes:
+  caddy_data:
+  caddy_config:
