@@ -1,7 +1,7 @@
 ---
 title: 'IT FESTIVAL bersama IT POLSRI'
 slug: {
-  en: null,
+  en: 'it-fest-with-it-polsri',
   id: 'it-fest-bersama-it-polsri'
 }
 date: 2018-11-22
