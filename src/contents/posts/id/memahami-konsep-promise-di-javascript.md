@@ -1,7 +1,7 @@
 ---
 title: 'Memahami lebih dalam konsep Promise di JavaScript'
 slug: {
-  en: null,
+  en: 'understanding-promises-in-javascript',
   id: 'memahami-konsep-promise-di-javascript'
 }
 date: 2020-02-08
