@@ -13,7 +13,7 @@ image: "/media/blog/building-graphrag-neo4j-graphitti/banner.png"
 
 Traditional RAG (Retrieval-Augmented Generation) has served us well, but as we move towards truly autonomous AI agents, the "stateless" nature of basic vector search is becoming a bottleneck. 
 
-If you've been following my recent experiments with **Nouva**, you know I've been pushing the boundaries of what a personal AI assistant can do. The secret sauce? Moving beyond simple document retrieval into a structured, evolving memory graph.
+If you've been following my recent experiments with **Nouva**, you know I've been pushing the boundaries of what a personal AI assistant can do. The key? Moving beyond simple document retrieval into a structured, evolving memory graph.
 
 ### The Problem with Basic RAG
 
@@ -25,7 +25,7 @@ Basic RAG is like a librarian who can find any book you ask for but forgets who 
 
 ### Enter Model Context Protocol (MCP)
 
-The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is a game-changer. It provides a standardized way for AI models to connect to external data sources and tools.
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) changes a lot here. It provides a standardized way for AI models to connect to external data sources and tools.
 
 Instead of hard-coding integrations, MCP allows us to create a plug-and-play ecosystem where an agent can:
 - Query a knowledge graph or a specialized database.
@@ -40,7 +40,7 @@ To solve the memory problem, I've been using **GraphRAG** powered by **Graphiti*
 
 When the agent learns something new, it doesn't just store a string of text; it creates nodes and edges. For example: `[Gading] -> (LIKES) -> [Clean Code]`.
 
-This structure allows for:
+With this structure, the agent gets:
 - **Relational Reasoning**: The agent can traverse the graph to find connections you didn't explicitly mention.
 - **Temporal Awareness**: Understanding when events happened and how they relate chronologically.
 - **Dynamic Updates**: Real-time memory injection without re-indexing the entire corpus.
@@ -49,10 +49,10 @@ This structure allows for:
 
 We are shifting from "AI as a tool" to "AI as a partner." A partner needs to remember your preferences, your infrastructure (like my Proxmox setup), and even your family's needs (like reminders for Kak Rina).
 
-By combining **MCP** for tool execution and **GraphRAG** (via **Graphiti**) for structured long-term memory, we are building agents that don't just answer questions—they anticipate needs and execute complex workflows autonomously.
+By combining **MCP** for tool execution and **GraphRAG** (via **Graphiti**) for structured long-term memory, we are building agents that don't just answer questions; they anticipate needs and execute complex workflows autonomously.
 
-### Closing Thoughts
+### So
 
-If you're still just building "Chat with your PDF" apps, it's time to level up. The future belongs to agents that can think, remember, and act.
+If you're still just building "Chat with your PDF" apps, it's time to level up. Going forward, the useful agents are the ones that can think, remember, and act.
 
 Stay tuned as I dive deeper into the technical implementation of this stack in the coming weeks.
