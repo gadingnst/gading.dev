@@ -29,6 +29,17 @@ const colorGroups = [
     ]
   },
   {
+    name: 'Soft',
+    colors: [
+      { name: 'card', className: 'bg-card', textColorClassName: 'text-base-content' },
+      { name: 'brand-soft', className: 'bg-brand-soft', textColorClassName: 'text-base-content' },
+      { name: 'teal-soft', className: 'bg-teal-soft', textColorClassName: 'text-teal' },
+      { name: 'rose-soft', className: 'bg-rose-soft', textColorClassName: 'text-rose' },
+      { name: 'lilac-soft', className: 'bg-lilac-soft', textColorClassName: 'text-lilac' },
+      { name: 'terminal', className: 'bg-terminal', textColorClassName: 'text-[#F3ECE2]' }
+    ]
+  },
+  {
     name: 'State',
     colors: [
       { name: 'info', className: 'bg-info', textColorClassName: 'text-info-content' },
@@ -41,10 +52,10 @@ const colorGroups = [
 
 function ColorList() {
   return (
-    <div className="mt-12 space-y-8">
+    <div className="space-y-8">
       {colorGroups.map(group => (
         <div key={group.name}>
-          <h2 className="text-2xl font-bold tracking-tight text-base-content">{group.name}</h2>
+          <h3 className="font-display text-xl font-bold tracking-tight text-base-content">{group.name}</h3>
           <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
             {group.colors.map(color => (
               <ColorCard key={color.name} {...color} />
