@@ -1,7 +1,7 @@
 ---
 title: 'Prestasi ≠ Manfaat'
 slug: {
-  en: null,
+  en: 'achievement-is-not-benefit',
   id: 'prestasi-tidak-sama-dengan-manfaat'
 }
 date: 2020-09-22
