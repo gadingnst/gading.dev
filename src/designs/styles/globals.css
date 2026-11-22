@@ -220,6 +220,10 @@
   --font-hand: var(--font-caveat), cursive;
 }
 
+/* Height of the sticky Header (py + tallest pill): banners pull up by this to sit behind it */
+:root { --header-h: 70px; }
+@media (min-width: 48rem) { :root { --header-h: 90px; } }
+
 body {
   font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
 }

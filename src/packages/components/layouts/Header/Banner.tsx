@@ -37,11 +37,15 @@ function Banner(props: PropsWithChildren<Props>) {
     return cloudinary(bgImage, { scale: 0.75 });
   }, [bgImage, isDefaultBanner]);
 
+  const visibleHeight = typeof height === 'number' ? `${height}px` : height;
+
   return (
+    // the Header is sticky and transparent: pull the banner up behind it so it starts at the very top
     <div
       className={cn([
         'relative overflow-hidden soft-gradient'
       ])}
+      style={{ marginTop: 'calc(-1 * var(--header-h))' }}
     >
       {/* Subtle grid pattern overlay for default banners */}
       {isDefaultBanner && (
@@ -64,7 +68,10 @@ function Banner(props: PropsWithChildren<Props>) {
             isDefaultBanner ? 'bg-transparent' : 'bg-black/35'
           ])}
         />
-        <div className={cn(['relative z-10', containerClassName])} style={{ height }}>
+        <div
+          className={cn(['relative z-10', containerClassName])}
+          style={{ height: `calc(${visibleHeight} + var(--header-h))`, paddingTop: 'var(--header-h)' }}
+        >
           {children}
         </div>
       </Parallax>
