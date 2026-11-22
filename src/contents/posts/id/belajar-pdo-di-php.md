@@ -1,7 +1,7 @@
 ---
 title: "Belajar PDO di PHP"
 slug: {
-	en: null,
+	en: "learning-pdo-in-php",
 	id: "belajar-pdo-di-php"
 }
 date: 2018-10-26

@@ -1,7 +1,7 @@
 ---
 title: 'Masa Depan'
 slug: {
-  en: null,
+  en: 'the-future',
   id: 'masa-depan'
 }
 date: 2019-05-17
