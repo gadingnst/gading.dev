@@ -11,13 +11,13 @@ tags: ["agent-memory", "ai", "infrastructure", "rag", "nouverse"]
 image: "/media/blog/the-graphrag-trap/banner.png"
 ---
 
-If you've been following the AI space lately, you've probably seen the hype around **GraphRAG**. The promise is seductive: by mapping your data into a structured knowledge graph, your AI can "reason" across complex relationships that a standard vector search would miss.
+If you've been following the AI space lately, you've probably seen the hype around **GraphRAG**. The pitch sounds great: by mapping your data into a structured knowledge graph, your AI can "reason" across complex relationships that a standard vector search would miss.
 
 In my previous post, [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti), I shared how I went all-in on setting up **Neo4j**, integrating **Graphitti**, and building a complex extraction pipeline for **Nouva**, my personal AI assistant. 
 
 **Today, I uninstalled it all.**
 
-Here is why GraphRAG is a trap for 90% of use cases—especially for personal assistants—and why a simpler "RAG + Memory" stack is actually superior.
+Here is why GraphRAG is a trap for 90% of use cases (especially for personal assistants), and why a simpler "RAG + Memory" stack actually works better.
 
 ### The Allure of the Knowledge Graph
 
@@ -33,7 +33,7 @@ For a personal assistant, the goal is to *reduce* friction, not add a part-time 
 
 ### 2. The "Multi-User" vs. "Personal" Paradox
 
-This is the biggest insight I gained: **GraphRAG is a multi-tenant tool being sold as a personal one.**
+This is the part that hit hardest: **GraphRAG is a multi-tenant tool being sold as a personal one.**
 
 If you are building an assistant for an entire corporation where 1,000 employees are sharing data, a Knowledge Graph is essential to navigate the complex web of projects, departments, and cross-functional relationships. 
 
@@ -52,7 +52,7 @@ I found myself waiting for minutes just for Nouva to "remember" a simple convers
 Earlier today at Nouverse, we decided to pivot. We replaced the Neo4j/Graphitti stack with a hybrid approach:
 
 1.  **Semantic RAG (via AnythingLLM):** For the big library of technical docs and archives. Vector search is fast, cheap, and "good enough" for 99% of retrieval tasks.
-2.  **Structured Working Memory:** We use curated Markdown files (like `MEMORY.md`) to store the "conscious" context—who I am, what my current projects are, and my family's preferences.
+2.  **Structured Working Memory:** We use curated Markdown files (like `MEMORY.md`) to store the "conscious" context: who I am, what my current projects are, and my family's preferences.
 
 ### The Result
 
@@ -63,7 +63,7 @@ If you're building an AI for yourself or a small team, ask yourself: *Do I reall
 Probably not. Keep it simple. Use RAG for knowledge, and a simple file-based memory for context.
 
 ### Related Blogs
-Before getting hit by the harsh reality in this post, here was the start of my experiments when I was still optimistic about GraphRAG:
+Before running into the reality in this post, here was the start of my experiments when I was still optimistic about GraphRAG:
 * [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti)
 
 ---
