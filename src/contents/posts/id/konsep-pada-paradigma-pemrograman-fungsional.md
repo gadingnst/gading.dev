@@ -1,7 +1,7 @@
 ---
 title: 'Konsep dan teknik yang harus diketahui pada paradigma pemrograman fungsional'
 slug: {
-  en: null,
+  en: 'concepts-in-the-functional-programming-paradigm',
   id: 'konsep-pada-paradigma-pemrograman-fungsional'
 }
 date: 2020-01-18
