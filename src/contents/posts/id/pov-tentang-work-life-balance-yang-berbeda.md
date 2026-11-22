@@ -1,7 +1,7 @@
 ---
 title: 'POV tentang Work Life Balance yang berbeda'
 slug: {
-  en: null,
+  en: 'a-different-pov-on-work-life-balance',
   id: 'pov-tentang-work-life-balance-yang-berbeda'
 }
 date: 2022-03-06
