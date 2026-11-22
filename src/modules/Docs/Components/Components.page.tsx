@@ -8,6 +8,7 @@ import { getBlogList } from '@/modules/Content/services/content-parser';
 import withComponentsLocales from '@/modules/Docs/Components/Components.locales';
 import DocsSection from '@/modules/Docs/components/DocsSection';
 import DocsShell from '@/modules/Docs/components/DocsShell';
+import { highlight, languageClass } from '@/modules/Docs/components/highlight';
 import { generateDocsPathsDefault, generateDocsPathsWithLang } from '@/modules/Docs/Docs.shared';
 import HeroTerminal from '@/modules/Home/components/HeroTerminal';
 import PostCard from '@/modules/Home/components/PostCard';
@@ -106,8 +107,8 @@ async function ComponentsPage(props: NextPageProps<{ lang: I18nLocales }>) {
 
       <DocsSection id="code" title={content.codeTitle} description={content.codeDesc}>
         <div className="parser prose prose-sm w-full max-w-3xl sm:prose-base">
-          <ContentCodeBlock>
-            <code className="code-highlight">{SAMPLE_CODE}</code>
+          <ContentCodeBlock className={languageClass('ts')}>
+            <code className={`code-highlight ${languageClass('ts')}`} style={{ display: 'block' }}>{highlight(SAMPLE_CODE, 'ts')}</code>
           </ContentCodeBlock>
         </div>
         <Source label={content.sourceLabel} path="src/modules/Content/components/ContentCodeBlock.tsx" />

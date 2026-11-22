@@ -74,9 +74,10 @@ async function OverviewPage(props: NextPageProps<{ lang: I18nLocales }>) {
             className="mx-auto h-auto w-full max-w-[520px] rounded-[20px] shadow-soft md:max-w-none"
           />
         </picture>
-        <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-5">
           <CodeSnippet
             file="src/modules/Content/services/content-parser.ts"
+            lang="ts"
             code={`export async function getAllBlogPaths() {
   const paths = await Promise.all(Object.keys(I18n).map(getAllBlogMeta));
   return paths.flat(1).map(({ meta, locale }) => ({
@@ -87,6 +88,7 @@ async function OverviewPage(props: NextPageProps<{ lang: I18nLocales }>) {
           />
           <CodeSnippet
             file="src/app/(base)/[lang]/blog/[slug]/page.ts"
+            lang="ts"
             code={`export const dynamic = 'force-static';
 
 export const dynamicParams = false;

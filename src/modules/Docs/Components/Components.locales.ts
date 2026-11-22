@@ -78,8 +78,8 @@ const withComponentsLocales = createContentLocales({
     id: 'Code block'
   },
   codeDesc: {
-    en: 'ContentCodeBlock wraps every pre in a post and adds the copy button (hover to see it). In posts the code is highlighted by Prism at build time; here it is plain.',
-    id: 'ContentCodeBlock membungkus setiap pre di post dan nambahin tombol copy (hover buat lihat). Di post, code di-highlight Prism waktu build; di sini polos.'
+    en: 'ContentCodeBlock wraps every pre in a post and adds the copy button (hover to see it). In posts the code is highlighted by Prism at build time; here the same Prism tokens are rendered on the server, so the colours match.',
+    id: 'ContentCodeBlock membungkus setiap pre di post dan nambahin tombol copy (hover buat lihat). Di post, code di-highlight Prism waktu build; di sini token Prism yang sama di-render di server, jadi warnanya sama.'
   },
   terminalTitle: {
     en: 'Hero terminal',

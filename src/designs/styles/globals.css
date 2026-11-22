@@ -271,6 +271,23 @@ body {
   scrollbar-color: #4A3F37 transparent;
 }
 
+/* docs code snippets: the same thin terminal scrollbar, no track */
+.docs-code-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #4A3F37 transparent;
+}
+.docs-code-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.docs-code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.docs-code-scroll::-webkit-scrollbar-thumb {
+  background-color: #4A3F37;
+  border-radius: 9999px;
+}
+
 /* hero portrait: eases back after the cursor tilt */
 .hero-portrait {
   transition: transform 0.35s ease-out;

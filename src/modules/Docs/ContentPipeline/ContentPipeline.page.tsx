@@ -84,20 +84,20 @@ async function ContentPipelinePage(props: NextPageProps<{ lang: I18nLocales }>) 
     <DocsShell lang={lang} active="pipeline" title={content.title} description={content.description}>
       <DocsSection id="slugs" title={content.slugsTitle} description={content.slugsDesc}>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          <CodeSnippet file={`src/contents/posts/en/${EXAMPLE_SLUG.en}.mdx`} code={SNIPPETS.frontmatter} />
-          <CodeSnippet file="src/modules/Content/services/content-parser.ts (getBlogMeta)" code={SNIPPETS.slugOriginal} />
+          <CodeSnippet file={`src/contents/posts/en/${EXAMPLE_SLUG.en}.mdx`} code={SNIPPETS.frontmatter} lang="markdown" />
+          <CodeSnippet file="src/modules/Content/services/content-parser.ts (getBlogMeta)" code={SNIPPETS.slugOriginal} lang="ts" />
         </div>
       </DocsSection>
 
       <DocsSection id="pagination" title={content.paginationTitle} description={content.paginationDesc}>
-        <CodeSnippet file="src/modules/Blog/BlogListPagination.page.tsx" code={SNIPPETS.pagination} />
+        <CodeSnippet file="src/modules/Blog/BlogListPagination.page.tsx" code={SNIPPETS.pagination} lang="tsx" />
         <p className="mt-4 font-mono text-sm text-muted">
           {lang}: {posts.length} posts / {BLOG_PAGINATION_LIMIT} = {pageCount} {pageCount === 1 ? 'page' : 'pages'}
         </p>
       </DocsSection>
 
       <DocsSection id="og" title={content.ogTitle} description={content.ogDesc}>
-        <CodeSnippet file="src/app/(base)/[lang]/blog/[slug]/og.png/route.tsx" code={SNIPPETS.og} />
+        <CodeSnippet file="src/app/(base)/[lang]/blog/[slug]/og.png/route.tsx" code={SNIPPETS.og} lang="tsx" />
         <p className="mt-6 text-sm text-muted">{content.ogLive}</p>
         <a href={ogSrc} target="_blank" rel="noopener noreferrer" className="mt-3 block max-w-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -114,7 +114,7 @@ async function ContentPipelinePage(props: NextPageProps<{ lang: I18nLocales }>) 
       </DocsSection>
 
       <DocsSection id="share" title={content.shareTitle} description={content.shareDesc}>
-        <CodeSnippet file="src/modules/Blog/og/PostOgImage.tsx (renderPostShareImage)" code={SNIPPETS.share} />
+        <CodeSnippet file="src/modules/Blog/og/PostOgImage.tsx (renderPostShareImage)" code={SNIPPETS.share} lang="tsx" />
         <ul className="mt-6 grid grid-cols-3 items-end gap-3 sm:gap-5 max-w-2xl">
           {SHARE_FORMATS.map((format) => {
             const src = `/${lang}/blog/${EXAMPLE_SLUG[lang]}/share/${format}.jpg`;
@@ -140,15 +140,15 @@ async function ContentPipelinePage(props: NextPageProps<{ lang: I18nLocales }>) 
       </DocsSection>
 
       <DocsSection id="series" title={content.seriesTitle} description={content.seriesDesc}>
-        <CodeSnippet file="src/modules/Content/services/content-parser.ts" code={SNIPPETS.series} />
+        <CodeSnippet file="src/modules/Content/services/content-parser.ts" code={SNIPPETS.series} lang="ts" />
       </DocsSection>
 
       <DocsSection id="toc" title={content.tocTitle} description={content.tocDesc}>
-        <CodeSnippet file="src/modules/Blog/services/toc.ts" code={SNIPPETS.toc} />
+        <CodeSnippet file="src/modules/Blog/services/toc.ts" code={SNIPPETS.toc} lang="ts" />
       </DocsSection>
 
       <DocsSection id="sitemap" title={content.sitemapTitle} description={content.sitemapDesc}>
-        <CodeSnippet file="src/app/sitemap.ts" code={SNIPPETS.sitemap} />
+        <CodeSnippet file="src/app/sitemap.ts" code={SNIPPETS.sitemap} lang="ts" />
       </DocsSection>
 
       <DocsSection id="workflows" title={content.workflowsTitle} description={content.workflowsDesc}>
