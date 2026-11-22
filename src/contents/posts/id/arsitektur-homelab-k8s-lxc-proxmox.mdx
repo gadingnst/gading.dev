@@ -11,56 +11,56 @@ tags: ["infrastructure", "homelab", "kubernetes", "proxmox", "devops"]
 image: "/media/default-banners/8.jpg"
 ---
 
-Setelah beberapa waktu lalu gue sempat bahas [kenapa homelab itu penting](/id/blog/kenapa-homelab-penting), kali ini gue mau bedah lebih dalam soal **bagaimana gue membangun arsitektur homelab terbaru** dari level fisik (*bare metal*) sampai bisa diakses secara aman dari internet publik.
+Beberapa waktu lalu gw sempet bahas [kenapa homelab itu penting](/id/blog/kenapa-homelab-penting). Kali ini gw mau cerita lebih detail soal **gimana gw bangun arsitektur homelab yang sekarang**, dari level fisik (*bare metal*) sampai bisa diakses dengan aman dari internet publik.
 
-Banyak orang yang ketika mulai homelab langsung hajar semua dideploy di dalam Kubernetes (K8s), atau sebaliknya, semuanya pakai Docker Compose lepasan di VM/LXC terpisah. Di sini, gue memilih pendekatan jalan tengah: menggabungkan kekuatan orkestrasi **Kubernetes (K3s)** untuk aplikasi *stateless* dan performa *native* **Standalone LXC** untuk layanan *stateful* (seperti database dan storage), semuanya berjalan di atas satu hypervisor fisik **Proxmox VE**.
+Banyak orang yang baru mulai homelab langsung hajar deploy semuanya di Kubernetes (K8s), atau kebalikannya, semuanya pake Docker Compose lepasan di VM/LXC terpisah. Gw ambil jalan tengah: orkestrasi **Kubernetes (K3s)** buat aplikasi *stateless*, dan performa *native* **Standalone LXC** buat layanan *stateful* (kayak database dan storage), semuanya jalan di atas satu hypervisor fisik **Proxmox VE**.
 
 ---
 
-## 🛠️ Kenapa Memilih Proxmox VE?
+## 🛠️ Kenapa Proxmox VE?
 
-Sebagai fondasi paling bawah (*bare metal*), gue menginstall **Proxmox VE**. Kenapa gak langsung install OS Linux biasa (seperti Ubuntu/Debian) lalu pasang Docker?
+Buat fondasi paling bawah (*bare metal*), gw install **Proxmox VE**. Kenapa gak langsung install OS Linux biasa (kayak Ubuntu/Debian) terus pasang Docker?
 
-1. **Virtualisasi Type-1 (Native Performance)**: Proxmox berjalan langsung di atas hardware tanpa overhead OS desktop.
-2. **Fleksibilitas VM vs LXC**: Gue bisa membuat Virtual Machine (VM) untuk OS penuh yang butuh isolasi kernel (seperti node K8s), sekaligus membuat Linux Containers (LXC) yang super ringan dan hemat RAM untuk service sederhana (seperti database).
-3. **Backup & Snapshot Terintegrasi**: Sebelum melakukan eksperimen aneh-aneh yang berpotensi merusak sistem, tinggal pencet tombol *Snapshot*. Jika error, tinggal *Rollback* dalam hitungan detik.
-4. **Manajemen Resource yang Presisi**: Gue bisa memantau dan membatasi CPU, RAM, dan I/O disk untuk masing-masing container agar tidak saling memakan resource satu sama lain.
+1. **Virtualisasi Type-1 (Native Performance)**: Proxmox jalan langsung di atas hardware, tanpa overhead OS desktop.
+2. **Fleksibilitas VM vs LXC**: Gw bisa bikin Virtual Machine (VM) buat OS penuh yang butuh isolasi kernel (kayak node K8s), sekaligus bikin Linux Containers (LXC) yang ringan banget dan hemat RAM buat service sederhana (kayak database).
+3. **Backup & Snapshot Terintegrasi**: Sebelum eksperimen aneh-aneh yang bisa ngerusak sistem, tinggal pencet tombol *Snapshot*. Kalau error, tinggal *Rollback* dalam hitungan detik.
+4. **Manajemen Resource yang Presisi**: Gw bisa mantau dan ngebatesin CPU, RAM, dan I/O disk tiap container biar gak saling rebutan resource.
 
 ---
 
 ## ☸️ Kenapa Pakai Kubernetes? Bukannya Overkill?
 
-Jawabannya singkat: **Ya, untuk skala homelab pribadi, Kubernetes itu sangat overkill.** 
+Jawaban singkatnya: **Iya, buat skala homelab pribadi, Kubernetes itu overkill banget.** 
 
-Mengelola cluster K8s butuh resource RAM tambahan untuk control plane, konfigurasi networking yang rumit, dan kurva belajar yang cukup curam. Di sini, gue sama sekali gak ngejar fitur High Availability (HA) atau *failover* canggih lainnya untuk sekadar homelab. 
+Ngelola cluster K8s butuh RAM tambahan buat control plane, konfigurasi networking yang ribet, dan kurva belajar yang lumayan curam. Gw juga sama sekali gak ngejar High Availability (HA) atau *failover* canggih lainnya buat sekadar homelab. 
 
-Ada dua alasan utama kenapa gue tetap nekat pakai Kubernetes:
+Ada dua alasan kenapa gw tetep nekat pake Kubernetes:
 
-1. **Dynamic Client Provisioning (Multi-Tenancy)**: Gue sedang membangun platform SaaS/multi-tenant di mana setiap kali ada client baru mendaftaran diri, sistem harus secara otomatis:
-   * Membuat instance aplikasi baru yang terisolasi secara resource dan network.
-   * Menyiapkan database baru beserta user-nya.
-   * Mengatur routing subdomain (SSL/TLS) secara otomatis.
+1. **Dynamic Client Provisioning (Multi-Tenancy)**: Gw lagi bangun platform SaaS/multi-tenant, di mana tiap ada client baru daftar, sistem harus otomatis:
+   * Bikin instance aplikasi baru yang terisolasi secara resource dan network.
+   * Nyiapin database baru sekalian user-nya.
+   * Ngatur routing subdomain (SSL/TLS) otomatis.
    
-   Jika menggunakan Docker Compose lepasan, backend gue harus melakukan SSH manual ke server, menulis file compose dinamis, lalu menjalankan perintah shell. Ini sangat tidak aman dan rawan error (*race condition*). Dengan Kubernetes, backend gue cukup menembak **Kube API** secara deklaratif: *"Tolong buatkan Namespace baru, buat Deployment ini, dan pasang IngressRoute ini."* Kubernetes yang akan menangani sisanya. K8s bukan sekadar alat *deploy*, tapi adalah *system engine* untuk otomatisasi infrastruktur gue.
+   Kalau pake Docker Compose lepasan, backend gw harus SSH manual ke server, nulis file compose dinamis, terus jalanin perintah shell. Ini gak aman dan rawan error (*race condition*). Dengan Kubernetes, backend gw cukup nembak **Kube API** secara deklaratif: *"Tolong buatin Namespace baru, buat Deployment ini, dan pasang IngressRoute ini."* Sisanya Kubernetes yang urus. Buat gw, K8s bukan sekadar alat *deploy*, tapi *system engine* buat otomatisasi infrastruktur.
 
-2. **Hands-on Learning (Belajar Praktis)**: Membaca dokumentasi Kubernetes itu satu hal, tapi mengelolanya langsung di atas mesin fisik (*bare metal*) adalah hal yang sama sekali berbeda. Homelab ini adalah tempat bermain gue untuk mempraktekkan langsung konsep-konsep *cloud-native* secara riil—mulai dari menangani *networking*, *storage provisioning*, *secrets management*, hingga *debugging* kegagalan pod di tingkat OS. Ini adalah cara terbaik untuk belajar dan memahami *pain points* yang biasa dihadapi oleh tim DevOps di dunia nyata, bukan sekadar teori di atas kertas.
+2. **Hands-on Learning (Belajar Praktis)**: Baca dokumentasi Kubernetes itu satu hal, ngelolanya langsung di mesin fisik (*bare metal*) itu beda cerita. Homelab ini tempat main gw buat praktekin konsep *cloud-native* beneran: mulai dari *networking*, *storage provisioning*, *secrets management*, sampai *debugging* pod yang gagal di level OS. Ini cara paling enak buat belajar dan ngerasain *pain points* yang biasa dihadepin tim DevOps di dunia nyata, bukan cuma teori di atas kertas.
 
 ---
 
 ## 🚀 Kenapa K3s, Bukan K8s Standar (Kubeadm)?
 
-Meskipun butuh Kubernetes, gue tidak menggunakan distribusi K8s standar (seperti *kubeadm*). Di lingkungan homelab di mana resource RAM sangat berharga, **K3s (oleh Rancher)** adalah penyelamat.
+Walaupun butuh Kubernetes, gw gak pake distribusi K8s standar (kayak *kubeadm*). Di homelab yang RAM-nya berharga banget, **K3s (dari Rancher)** jauh lebih masuk akal.
 
-1. **Sangat Ringan**: K3s dikemas dalam satu file binary berukuran kecil dan hanya memakan RAM sekitar 512MB per node (dibandingkan K8s standar yang bisa memakan RAM bergiga-giga hanya untuk control plane).
-2. **Resource-Efficient**: K3s membuang semua provider cloud bawaan (seperti AWS/GCP integrations) yang gak berguna di homelab kita, serta mengganti database internal etcd dengan SQLite (atau Postgres eksternal) yang jauh lebih ringan.
-3. **Kompatibilitas 100%**: Meskipun ringan, K3s tetap mempertahankan kompatibilitas penuh dengan API Kubernetes standar. Semua manifest YAML Kube biasa bisa langsung jalan di sini.
-4. **Bawaan Traefik & Local Storage**: K3s langsung menyertakan Traefik sebagai Ingress Controller bawaan dan Local Path Provisioner untuk storage, jadi kita gak perlu install manual dari nol.
+1. **Ringan Banget**: K3s dikemas jadi satu file binary kecil dan cuma makan RAM sekitar 512MB per node (bandingin sama K8s standar yang bisa makan RAM bergiga-giga cuma buat control plane).
+2. **Resource-Efficient**: K3s ngebuang semua provider cloud bawaan (kayak integrasi AWS/GCP) yang gak kepake di homelab, dan ngeganti database internal etcd pake SQLite (atau Postgres eksternal) yang jauh lebih ringan.
+3. **Kompatibilitas 100%**: Walaupun ringan, K3s tetep kompatibel penuh sama API Kubernetes standar. Semua manifest YAML Kube biasa bisa langsung jalan.
+4. **Bawaan Traefik & Local Storage**: K3s udah bawa Traefik sebagai Ingress Controller bawaan dan Local Path Provisioner buat storage, jadi gak perlu install manual dari nol.
 
 ---
 
 ## 🗺️ Peta Topologi Arsitektur
 
-Berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke pod aplikasi di dalam cluster, serta bagaimana komponen di luar cluster saling terhubung:
+Ini gambaran gimana traffic ngalir dari internet luar sampai ke pod aplikasi di dalam cluster, dan gimana komponen di luar cluster saling nyambung:
 
 ![Peta Topologi Arsitektur Homelab](/media/blog/homelab-architecture-k8s-lxc-proxmox/topology.svg)
 
@@ -68,31 +68,31 @@ Berikut adalah gambaran bagaimana traffic mengalir dari internet luar sampai ke 
 
 ## 🌐 Alur Trafik: Dari Internet ke Pod Aplikasi (Public Access)
 
-Bagaimana sebuah request dari browser user di internet luar bisa sampai ke aplikasi kita di dalam cluster Kube tanpa kita harus membuka port (port forwarding) di router ISP?
+Gimana caranya request dari browser user di internet bisa sampai ke aplikasi di dalam cluster Kube tanpa harus buka port (port forwarding) di router ISP?
 
-Berikut adalah jalurnya:
+Ini jalurnya:
 
 1. **Cloudflare Edge (DNS & SSL)**
-   User mengakses `app.mycloud.dev`. Request ini pertama kali diterima oleh server Cloudflare terdekat. Cloudflare menangani SSL/TLS handshake secara otomatis di edge mereka.
+   User buka `app.mycloud.dev`. Request ini pertama kali diterima server Cloudflare terdekat. Cloudflare ngurus SSL/TLS handshake otomatis di edge mereka.
 2. **Cloudflare Tunnel (`cloudflared`)**
-   Di dalam cluster Kubernetes, kita menjalankan deployment **Cloudflare Tunnel (`cloudflared`)** sebagai Pod. Pod ini membuat koneksi outbound aman (tunnel) ke Cloudflare Edge. Karena koneksinya outbound, kita gak perlu buka port masuk di firewall lokal.
+   Di dalam cluster Kubernetes, gw jalanin deployment **Cloudflare Tunnel (`cloudflared`)** sebagai Pod. Pod ini bikin koneksi outbound yang aman (tunnel) ke Cloudflare Edge. Karena koneksinya outbound, gak perlu buka port masuk di firewall lokal.
 3. **Traefik Ingress Controller**
-   Begitu request melewati tunnel, Cloudflare meneruskannya ke Pod `cloudflared` kita. Pod ini kemudian melempar trafik tersebut ke internal Service milik **Traefik Ingress Controller** (yang bertindak sebagai reverse proxy utama di dalam cluster).
+   Begitu request lewat tunnel, Cloudflare nerusin ke Pod `cloudflared`. Pod ini terus ngelempar trafiknya ke internal Service punya **Traefik Ingress Controller** (yang jadi reverse proxy utama di dalam cluster).
 4. **Ingress Routing**
-   Traefik membaca konfigurasi `Ingress` atau `IngressRoute` yang terdaftar. Dia mencocokkan rule: *"Jika host adalah `app.mycloud.dev`, arahkan trafik ke Service `core-backend-service` di port `9000`"*.
+   Traefik baca konfigurasi `Ingress` atau `IngressRoute` yang terdaftar, terus nyocokin rule: *"Kalau host-nya `app.mycloud.dev`, arahin trafik ke Service `core-backend-service` di port `9000`"*.
 5. **Kube Service & Pod**
-   Trafik akhirnya sampai ke Pod aplikasi target secara aman dan dengan latensi minimal.
+   Trafiknya akhirnya sampai ke Pod aplikasi tujuan dengan aman dan latensi minimal.
 
 ---
 
 ## 🔀 Komunikasi Keluar Cluster: Mengakses Standalone LXC
 
-Salah satu tantangan arsitektur ini adalah **bagaimana pod di dalam Kubernetes bisa mengakses database atau service staging yang berada di luar cluster K8s (pada LXC standalone)?**
+Salah satu tantangan arsitektur ini: **gimana pod di dalam Kubernetes bisa ngakses database atau service staging yang ada di luar cluster K8s (di LXC standalone)?**
 
-Di Kubernetes, ada fitur bawaan yang sangat bersih untuk mengatasi ini tanpa perlu melakukan hardcode IP fisik di dalam kode aplikasi kita:
+Kubernetes punya fitur bawaan yang rapi buat ini, tanpa perlu hardcode IP fisik di kode aplikasi:
 
 ### 1. K8s Service Tanpa Selector
-Biasanya, Service di K8s mendistribusikan trafik ke Pod berdasarkan label selector. Tapi, kita bisa membuat Service **tanpa selector**:
+Biasanya Service di K8s ngebagi trafik ke Pod berdasarkan label selector. Tapi lu bisa bikin Service **tanpa selector**:
 
 ```yaml
 apiVersion: v1
@@ -108,7 +108,7 @@ spec:
 ```
 
 ### 2. K8s Endpoints Manual
-Karena Service di atas tidak memiliki selector, Kube tidak akan membuat endpoint secara otomatis. Kita harus mendefinisikan endpoint-nya secara manual untuk mengarah ke IP fisik LXC standalone (misalnya `db-cluster` di IP `192.168.1.103`):
+Karena Service di atas gak punya selector, Kube gak bakal bikin endpoint otomatis. Endpoint-nya harus didefinisiin manual biar ngarah ke IP fisik LXC standalone (misalnya `db-cluster` di IP `192.168.1.103`):
 
 ```yaml
 apiVersion: v1
@@ -123,38 +123,38 @@ subsets:
       - port: 5432
 ```
 
-Dengan cara ini, aplikasi kita di dalam cluster Kube cukup menembak host internal `db-cluster-svc.default.svc.cluster.local:5432`. Jika suatu hari IP database fisik kita berubah, kita hanya perlu mengupdate file konfigurasi `Endpoints` ini saja tanpa perlu menyentuh kode aplikasi.
+Dengan cara ini, aplikasi di dalam cluster Kube cukup nembak host internal `db-cluster-svc.default.svc.cluster.local:5432`. Kalau suatu hari IP database fisiknya berubah, tinggal update file konfigurasi `Endpoints` ini aja, kode aplikasi gak perlu disentuh.
 
 ---
 
 ## ⚙️ Dynamic Provisioning: Otomatisasi Client Pod
 
-Untuk kebutuhan SaaS atau aplikasi multi-tenant, kita perlu membuat instance aplikasi baru secara dinamis ketika ada client baru yang mendaftar. Dengan arsitektur ini, alurnya menjadi sangat elegan:
+Buat SaaS atau aplikasi multi-tenant, instance aplikasi baru harus dibikin dinamis tiap ada client baru daftar. Dengan arsitektur ini, alurnya jadi rapi banget:
 
 1. **Request Langganan**
-   User mendaftar dan backend kita (`core-backend`) menerima request tersebut.
+   User daftar, dan backend (`core-backend`) nerima request-nya.
 2. **Database Provisioning**
-   Backend menghubungi `db-host` secara terprogram untuk membuat database dan user terisolasi khusus untuk client tersebut:
+   Backend ngehubungin `db-host` lewat kode buat bikin database dan user terisolasi khusus buat client itu:
    * **Database Name**: `pod_db_<product_name>_<workspace_id>` (e.g., `pod_db_service_clientx`)
    * **Database User**: `pod_user_<product_name>_<workspace_id>` (e.g., `pod_user_service_clientx`)
 3. **K8s API Call**
-   Backend menghubungi Kubernetes API Server via internal domain **`k8s-api.mycloud.dev`** untuk membuat resource baru:
-   * Membuat **Namespace** terisolasi: `client-pod-<product_name>-<workspace_id>` (e.g., `client-pod-service-clientx`).
-   * Membuat **Secret** berisi kredensial database unik milik client tersebut.
-   * Membuat **Deployment**, **Service**, dan **IngressRoute (Traefik)** khusus untuk meroute subdomain client (`clientx.mycloud.dev`).
+   Backend ngehubungin Kubernetes API Server lewat internal domain **`k8s-api.mycloud.dev`** buat bikin resource baru:
+   * Bikin **Namespace** terisolasi: `client-pod-<product_name>-<workspace_id>` (e.g., `client-pod-service-clientx`).
+   * Bikin **Secret** yang isinya kredensial database unik punya client itu.
+   * Bikin **Deployment**, **Service**, dan **IngressRoute (Traefik)** khusus buat nge-route subdomain client (`clientx.mycloud.dev`).
 
 ### Kenapa Dipisah Per Namespace?
-Dengan memisahkan setiap instance client ke namespace-nya masing-masing:
-* **Isolasi Keamanan Ketat**: Client A tidak akan bisa mengintip atau mengakses resource milik Client B secara internal.
-* **Resource Quota**: Kita bisa membatasi penggunaan CPU/RAM per client secara tegas menggunakan Kube `ResourceQuota`.
-* **Deprovisioning yang Bersih**: Jika client berhenti berlangganan, backend cukup menghapus namespace tersebut. Kubernetes akan otomatis membersihkan seluruh resource di dalamnya tanpa ada sisa file sampah di server.
+Kalau tiap instance client dipisah ke namespace-nya masing-masing:
+* **Isolasi Keamanan Ketat**: Client A gak bakal bisa ngintip atau ngakses resource punya Client B secara internal.
+* **Resource Quota**: Pemakaian CPU/RAM per client bisa dibatesin tegas pake Kube `ResourceQuota`.
+* **Deprovisioning yang Bersih**: Kalau client berhenti langganan, backend cukup hapus namespace-nya. Kubernetes otomatis bersihin semua resource di dalamnya tanpa nyisain file sampah di server.
 
 ---
 
-## 💡 Kesimpulan
+## 💡 Hasilnya
 
-Memisahkan tanggung jawab antara **Kubernetes** (untuk aplikasi dinamis dan stateless) dan **LXC Standalone** (untuk database dan storage) terbukti memberikan kestabilan yang luar biasa pada homelab. 
+Misahin tanggung jawab antara **Kubernetes** (buat aplikasi dinamis dan stateless) dan **LXC Standalone** (buat database dan storage) bikin homelab gw jauh lebih stabil. 
 
-Kita mendapatkan semua keuntungan orkestrasi modern dari Kubernetes (seperti auto-healing, easy scaling, dan dynamic provisioning via API), tanpa mengorbankan performa read-write database disk yang biasanya lambat jika dijalankan di dalam storage virtual Kubernetes.
+Gw dapet keuntungan orkestrasi dari Kubernetes (auto-healing, scaling yang gampang, dynamic provisioning via API), tanpa ngorbanin performa read-write disk database, yang biasanya lambat kalau dijalanin di storage virtual Kubernetes.
 
-Semua infrastruktur ini didefinisikan menggunakan **Terraform** untuk sisi Proxmox-nya, sehingga jika server mati, kita bisa melakukan *re-provisioning* seluruh homelab ini dalam hitungan menit!
+Semua infrastruktur ini didefinisiin pake **Terraform** buat sisi Proxmox-nya, jadi kalau server mati, seluruh homelab ini bisa di-*re-provision* dalam hitungan menit.

@@ -13,88 +13,88 @@ image: "/media/blog/optimasi-performa-database/banner.png"
 
 Ada satu mitos klasik di kalangan developer: *"Kalau aplikasi lu lemot, naikin aja spek servernya."*
 
-Di tempat kerja sebelumnya, gue kebetulan jadi developer yang ngurus semuanya secara end-to-end, dari frontend sampai deployment server di awal. Jadi ya, urusan database dan infra juga jatuhnya ke tangan gue.
+Di tempat kerja sebelumnya, gw kebetulan jadi developer yang ngurus semuanya secara end-to-end, dari frontend sampai deployment server di awal. Jadi ya, urusan database dan infra juga jatuhnya ke tangan gw.
 
-Gue juga dulu sempat tergoda pake cara instan ini. Pas database PostgreSQL di sana mulai ngos-ngosan karena dihajar request dari berbagai pod Kubernetes dan workflow automasi, reaksi pertama gue adalah buka dashboard cloud, lalu naikin core CPU dari 2 jadi 4, dan RAM dari 2GB jadi 4GB.
+Gw juga dulu sempet kegoda pake cara instan ini. Pas database PostgreSQL di sana mulai ngos-ngosan karena dihajar request dari berbagai pod Kubernetes dan workflow automasi, reaksi pertama gw adalah buka dashboard cloud, terus naikin core CPU dari 2 jadi 4, dan RAM dari 2GB jadi 4GB.
 
-Hasilnya? Aplikasi tetep aja lemot, bahkan sesekali dapet error `FATAL: too many clients already`. Sementara itu, CPU usage di database malah adem ayem di bawah 10%. Di situlah gue sadar kalau gue baru aja melakukan *over-provisioning* bodoh untuk menutupi kelemahan arsitektur database gue sendiri.
+Hasilnya? Aplikasi tetep aja lemot, bahkan sesekali dapet error `FATAL: too many clients already`. Sementara itu, CPU usage di database malah adem ayem di bawah 10%. Di situ gw sadar kalau gw baru aja ngelakuin *over-provisioning* bodoh buat nutupin kelemahan arsitektur database gw sendiri.
 
-Optimasi database itu bukan soal seberapa gede RAM server lu, tapi seberapa efisien engine database lu bekerja di balik layar. Berikut adalah beberapa \"bekas luka\" dan pelajaran mahal yang gue dapet dari ngoprek performa database di production tempat gue kerja sebelumnya.
+Optimasi database itu bukan soal seberapa gede RAM server lu, tapi seberapa efisien engine database lu kerja di balik layar. Ini beberapa "bekas luka" dan pelajaran mahal yang gw dapet dari ngoprek performa database di production tempat gw kerja sebelumnya.
 
 ---
 
 ### 1. Drama Connection Pooling (Ketika Kubernetes Menyerang Postgres)
 
-Ini kesalahan arsitektur paling pertama yang bikin gue **facepalm**. Di cluster Kubernetes kantor, gue pake Drizzle ORM untuk beberapa microservices. Secara default, setiap kali pod aplikasi lu jalan, Drizzle bakal nge-spawn connection pool sendiri (biasanya default 10-20 koneksi per instance).
+Ini kesalahan arsitektur pertama yang bikin gw **facepalm**. Di cluster Kubernetes kantor, gw pake Drizzle ORM buat beberapa microservices. Secara default, setiap kali pod aplikasi lu jalan, Drizzle bakal nge-spawn connection pool sendiri (biasanya default 10-20 koneksi per instance).
 
-Begitu trafik naik dan Kubernetes mulai nge-scale pod aplikasi gue dari 2 replika jadi 10 replika, database PostgreSQL langsung tewas karena kehabisan slot koneksi (`connection limit exceeded`).
+Begitu trafik naik dan Kubernetes mulai nge-scale pod aplikasi gw dari 2 replika jadi 10 replika, database PostgreSQL langsung tewas karena kehabisan slot koneksi (`connection limit exceeded`).
 
 #### Solusi Setengah Matang: Naikin `max_connections`
-Reaksi bodoh kedua gue adalah menaikkan `max_connections` di Postgres config dari 100 ke 500. Jangan lakukan ini! Setiap koneksi aktif di Postgres itu memakan proses backend fisik (forking process) di OS yang memakan RAM sekitar 10MB per koneksi. Begitu ada 300+ koneksi aktif, database lu bakal sibuk ngurusin *context switching* antar proses dibanding nge-run query itu sendiri.
+Reaksi bodoh kedua gw: naikin `max_connections` di Postgres config dari 100 ke 500. Jangan lakuin ini! Tiap koneksi aktif di Postgres itu makan satu proses backend fisik (forking process) di OS, yang makan RAM sekitar 10MB per koneksi. Begitu ada 300+ koneksi aktif, database lu bakal lebih sibuk ngurusin *context switching* antar proses daripada nge-run query-nya sendiri.
 
 #### Solusi Asli: Pasang PgBouncer (Tapi Gak Seindah Tutorial Medium)
-Akhirnya gue deploy **PgBouncer** sebagai perantara (connection pooler) di depan Postgres. PgBouncer bakal nge-keep beberapa koneksi hangat (*warm connections*) ke database, dan aplikasi kita cuma perlu ngomong ke PgBouncer.
+Akhirnya gw deploy **PgBouncer** sebagai perantara (connection pooler) di depan Postgres. PgBouncer bakal nge-keep beberapa koneksi hangat (*warm connections*) ke database, dan aplikasi cukup ngomong ke PgBouncer.
 
 Tapi setup PgBouncer ini ada jebakannya:
-*   **Transaction Mode vs Session Mode**: PgBouncer punya beberapa mode. Awalnya gue pasang *Transaction Mode* karena paling hemat koneksi. Eh, ternyata migrasi skema Drizzle gue langsung rusak karena Drizzle butuh *Session Mode* (yang nge-lock koneksi per sesi untuk fitur temporary tables/ad-hoc commands).
-*   **Solusi Akhirnya**: Gue terpaksa bikin dua port di PgBouncer. Satu port pake *Session Mode* khusus buat proses migrasi/deploy, dan satu port lagi pake *Transaction Mode* untuk trafik API harian. Ribet di awal, tapi penggunaan memori database langsung turun **40%** dan gak pernah ada lagi error kehabisan koneksi.
+*   **Transaction Mode vs Session Mode**: PgBouncer punya beberapa mode. Awalnya gw pasang *Transaction Mode* karena paling hemat koneksi. Eh, ternyata migrasi skema Drizzle gw langsung rusak karena Drizzle butuh *Session Mode* (yang nge-lock koneksi per sesi buat fitur temporary tables/ad-hoc commands).
+*   **Solusi Akhirnya**: Gw terpaksa bikin dua port di PgBouncer. Satu port pake *Session Mode* khusus buat proses migrasi/deploy, dan satu port lagi pake *Transaction Mode* buat trafik API harian. Ribet di awal, tapi penggunaan memori database langsung turun **40%** dan gak pernah ada lagi error kehabisan koneksi.
 
 ---
 
 ### 2. Indexing: Dari Tanpa Index Sampai Overkill (Write Tax)
 
-Semua orang tahu kalau query `SELECT` lambat, solusinya tinggal kasih index. Tapi gue pernah **sok pintar** karena terlalu rajin pasang index.
+Semua orang tahu kalau query `SELECT` lambat, solusinya tinggal kasih index. Tapi gw pernah **sok pintar** karena terlalu rajin pasang index.
 
-Di satu tabel log transaksi yang datanya masuk ribuan baris per hari, gue dengan songongnya masang index B-Tree di hampir semua kolom yang sering gue filter (`status`, `created_at`, `user_id`, `amount`, `gateway`).
+Di satu tabel log transaksi yang datanya masuk ribuan baris per hari, gw dengan songongnya masang index B-Tree di hampir semua kolom yang sering gw filter (`status`, `created_at`, `user_id`, `amount`, `gateway`).
 
 #### Akibatnya: Bulk Insert Tewas
 Query baca emang jadi instan (di bawah 5ms). Tapi pas sistem mulai nge-run workflow bulk insert ribuan data transaksi sekaligus, CPU server database langsung spikes 100% dan proses insert-nya jadi lambat banget kayak siput.
 
-Kenapa? Karena **Write Tax** (biaya operasi tulis). Setiap kali ada baris data baru masuk, Postgres harus memperbarui struktur pohon B-Tree untuk *semua* index yang gue buat tadi.
+Kenapa? Karena **Write Tax** (biaya operasi tulis). Tiap ada baris data baru masuk, Postgres harus update struktur pohon B-Tree buat *semua* index yang gw bikin tadi.
 
 #### Pelajaran Mahal:
-*   **Drop Index Sampah**: Jalankan query audit untuk nyari index yang gak pernah kesentuh sama query planner tapi tetep diupdate tiap kali write. Gue nemu ada 3 index mubazir yang langsung gue drop.
-*   **Gunakan EXPLAIN ANALYZE**: Jangan asal tebak. Selalu jalankan `EXPLAIN ANALYZE SELECT ...` sebelum bikin index. Cari tahu apakah query planner beneran pake index itu (`Index Scan`) atau malah tetep ngelakuin `Seq Scan` (Sequential Scan) karena datanya terlalu sedikit atau kardinalitas kolomnya rendah.
+*   **Drop Index Sampah**: Jalanin query audit buat nyari index yang gak pernah kesentuh sama query planner tapi tetep diupdate tiap kali write. Gw nemu ada 3 index mubazir yang langsung gw drop.
+*   **Pake EXPLAIN ANALYZE**: Jangan asal tebak. Selalu jalanin `EXPLAIN ANALYZE SELECT ...` sebelum bikin index. Cari tahu apakah query planner beneran pake index itu (`Index Scan`) atau malah tetep ngelakuin `Seq Scan` (Sequential Scan) karena datanya terlalu sedikit atau kardinalitas kolomnya rendah.
 
 ---
 
 ### 3. Antipattern SQL yang Sering Bikin Lemot
 
-Selain urusan infra, cara kita nulis query juga sering bikin database nangis. Ini dua antipattern yang paling sering gue temuin (dan gue perbaiki):
+Selain urusan infra, cara kita nulis query juga sering bikin database nangis. Ini dua antipattern yang paling sering gw temuin (dan gw perbaiki):
 
 #### 1. Penyakit `SELECT *`
-Dulu gue males nulis nama kolom satu-satu, jadi di kode ORM atau query raw gue sering pake `SELECT *`. Di production, ini bahaya banget.
-*   Kalau tabel lu punya kolom tipe data besar (seperti JSONB atau TEXT panjang), Postgres terpaksa harus ngebaca data tersebut dari penyimpanan TOAST (penyimpanan luar tabel), yang bikin proses I/O disk jadi bengkak.
+Dulu gw males nulis nama kolom satu-satu, jadi di kode ORM atau query raw gw sering pake `SELECT *`. Di production, ini bahaya banget.
+*   Kalau tabel lu punya kolom tipe data besar (kayak JSONB atau TEXT panjang), Postgres terpaksa ngebaca data itu dari penyimpanan TOAST (penyimpanan luar tabel), yang bikin proses I/O disk jadi bengkak.
 *   `SELECT *` juga bikin query planner gak bisa ngelakuin *Index-Only Scan* (mengambil data langsung dari index tanpa perlu baca baris tabel aslinya).
 
 #### 2. Masalah N+1 Query
-Ini penyakit bawaan ORM modern. Lu mau nampilin daftar 50 transaksi beserta data usernya. Kalau lu gak pake *Eager Loading* atau *Join*, ORM lu bakal nge-run 1 query buat ambil transaksi, lalu nge-run 50 query tambahan secara berurutan buat nyari user dari masing-masing transaksi tersebut. Database lu bakal capek ngelayanin bolak-balik koneksi jaringan yang gak perlu.
+Ini penyakit bawaan ORM modern. Lu mau nampilin daftar 50 transaksi beserta data usernya. Kalau lu gak pake *Eager Loading* atau *Join*, ORM lu bakal nge-run 1 query buat ambil transaksi, terus nge-run 50 query tambahan berurutan buat nyari user dari tiap transaksi itu. Database lu bakal capek ngelayanin bolak-balik koneksi jaringan yang gak perlu.
 
 ---
 
-### 4. Caching: Penyelamat Database (Tapi Awas Data Basi)
+### 4. Caching: Ngurangin Beban Database (Tapi Awas Data Basi)
 
-Query database paling cepat adalah query yang gak pernah lu jalankan. Di tempat gue kerja sebelumnya, gue pasang **Redis** sebagai caching layer di depan database untuk data yang sering dibaca tapi jarang berubah (seperti daftar produk atau konfigurasi sistem).
+Query database paling cepet itu query yang gak pernah lu jalanin. Di tempat gw kerja sebelumnya, gw pasang **Redis** sebagai caching layer di depan database buat data yang sering dibaca tapi jarang berubah (kayak daftar produk atau konfigurasi sistem).
 
-Gue pake pola **Cache-Aside**: aplikasi cek Redis -> kalau ada (Cache Hit) langsung balikin -> kalau gak ada (Cache Miss) query ke database -> simpan ke Redis -> balikin ke user.
+Gw pake pola **Cache-Aside**: aplikasi cek Redis -> kalau ada (Cache Hit) langsung balikin -> kalau gak ada (Cache Miss) query ke database -> simpan ke Redis -> balikin ke user.
 
 #### Tragedi Saldo Basi (Cache Invalidation Failure)
-Tapi caching ini ada jebakan mautnya: *Cache Invalidation*. Gue pernah lupa nge-set TTL (Time-To-Live) dan gak nge-clear cache Redis pas ada transaksi baru yang mengubah saldo user.
+Tapi caching ini ada jebakannya: *Cache Invalidation*. Gw pernah lupa nge-set TTL (Time-To-Live) dan gak nge-clear cache Redis pas ada transaksi baru yang ngubah saldo user.
 
 Alhasil, user udah bayar via Midtrans dan saldo di Postgres udah nambah, tapi di dashboard mereka saldonya tetep nol karena aplikasi masih ngebaca data lama dari Redis. User langsung panik dan komplain ke CS.
 
-**Pelajaran:** Selalu pasang TTL yang masuk akal (jangan pernah set cache tanpa batas waktu kecuali lu bener-bener tahu cara nge-clear-nya), dan pastikan lu nge-run perintah `DEL` atau update cache di Redis di dalam transaksi yang sama saat data di database berubah.
+**Pelajaran:** Selalu pasang TTL yang masuk akal (jangan pernah set cache tanpa batas waktu kecuali lu bener-bener tahu cara nge-clear-nya), dan pastiin lu nge-run perintah `DEL` atau update cache di Redis di dalam transaksi yang sama saat data di database berubah.
 
 ---
 
 ### Checklist Cepat Sebelum Naik ke Production
 
-Biar lu gak perlu ngalamin drama server crash jam 3 pagi kayak gue, ini checklist optimasi database yang wajib lu lakuin:
+Biar lu gak perlu ngalamin drama server crash jam 3 pagi kayak gw, ini checklist optimasi database yang wajib lu lakuin:
 
 1.  [ ] **Audit Koneksi**: Pake PgBouncer atau sejenisnya kalau aplikasi lu jalan di serverless/K8s dengan banyak replika.
-2.  [ ] **Cek Index**: Jangan asal pasang index. Pastikan index cuma ada di kolom foreign key atau kolom filter dengan kardinalitas tinggi.
-3.  [ ] **Profil Query**: Cari query yang execution time-nya di atas 100ms pake tool monitoring (atau query log Postgres) lalu bedah pake `EXPLAIN ANALYZE`.
+2.  [ ] **Cek Index**: Jangan asal pasang index. Pastiin index cuma ada di kolom foreign key atau kolom filter dengan kardinalitas tinggi.
+3.  [ ] **Profil Query**: Cari query yang execution time-nya di atas 100ms pake tool monitoring (atau query log Postgres) terus bedah pake `EXPLAIN ANALYZE`.
 4.  [ ] **Batasi Kolom**: Buang semua `SELECT *` di query production lu.
-5.  [ ] **Strategi Cache**: Pasang Redis untuk query agregasi berat, tapi pastikan logika invalidasi cachenya udah dites dengan bener biar gak dapet data basi.
+5.  [ ] **Strategi Cache**: Pasang Redis buat query agregasi berat, tapi pastiin logika invalidasi cachenya udah dites dengan bener biar gak dapet data basi.
 
 Database itu jantung dari aplikasi lu. Rawat dia dengan query yang efisien dan arsitektur koneksi yang rapi, bukan dengan asal naikin kapasitas RAM di dashboard cloud provider lu. wkwk
