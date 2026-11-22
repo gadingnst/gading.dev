@@ -11,140 +11,140 @@ tags: ["architecture", "software-engineering", "devops", "opinion"]
 image: "/media/blog/adobe-acrobat-irony-unix-philosophy-building-software/banner.jpg"
 ---
 
-Beberapa hari lalu pas lagi scrolling linimasa X, mata gue tertuju ke satu tweet singkat tapi nusuk dari [@Trish0x2A](https://x.com/trish0x2a/status/2103759408316752027?s=46):
+Beberapa hari lalu pas lagi scrolling timeline X, gw nemu satu tweet pendek tapi nusuk dari [@Trish0x2A](https://x.com/trish0x2a/status/2103759408316752027?s=46):
 
 > *"It's honestly embarrassing that Chrome accidentally became the best PDF viewer while Adobe spent decades making Acrobat slower and more bloated."*
 
 ![Tweet dari @Trish0x2A soal Chrome vs Adobe Acrobat](/media/blog/adobe-acrobat-irony-unix-philosophy-building-software/tweet-trish.jpg)
 
-Gue langsung ketawa getir pas baca ini. Kenapa? Karena ini bukan cuma soal Adobe, tapi soal penyakit menahun yang menjangkiti hampir semua software komersial di industri kita: **kutukan feature creep**.
+Gw ketawa getir bacanya. Soalnya ini bukan cuma soal Adobe. Ini penyakit lama yang nyangkut di hampir semua software komersial di industri kita, namanya feature creep.
 
-Pikirin ironinya: Adobe itu perusahaan yang **menemukan format PDF** pada tahun 1993. Mereka yang nulis standarnya, mereka yang punya ekosistemnya. Tapi hari ini, kalau lu cuma mau baca PDF struk belanjaan atau dokumen dua halaman, buka Adobe Acrobat rasanya kayak mau nerbangin roket ke Mars. 
+Coba pikirin ironinya. Adobe itu yang nemuin format PDF, tahun 1993. Mereka yang nulis standarnya, mereka juga yang punya ekosistemnya. Tapi sekarang, kalau lu cuma mau baca PDF struk belanja atau dokumen dua halaman, buka Adobe Acrobat rasanya kayak mau nerbangin roket ke Mars.
 
-Laptop mendadak panas, loading screen muter, puluhan background process ikutan jalan (mulai dari Adobe Creative Cloud, Core Sync, IPC Broker, Genuine Service, sampai crash reporter). Belum lagi lu bakal disapa pop-up tawaran langganan cloud storage, e-signature workflow, dan belakangan ini: tombol AI Assistant buat ngerangkum PDF. 
+Laptop mendadak panas, loading screen muter, puluhan background process ikut jalan (Adobe Creative Cloud, Core Sync, IPC Broker, Genuine Service, sampai crash reporter). Belum lagi lu disapa pop-up tawaran langganan cloud storage, e-signature workflow, dan belakangan ini tombol AI Assistant buat ngerangkum PDF.
 
-Padahal lu cuma butuh satu hal sederhana: **baca dokumen**.
+Padahal yang lu butuhin cuma satu: baca dokumen.
 
-Lalu datanglah Google Chrome. Developer Chromium awalnya cuma butuh komponen kecil biar browser bisa ngerender PDF langsung di tab tanpa perlu download file dulu ke desktop. Gak banyak gaya: render halaman, scroll atas-bawah, zoom in/out, tombol print. Selesai. Hasilnya? Tanpa sengaja, Chrome jadi default PDF viewer favorit miliaran manusia di bumi karena kebuka dalam hitungan 0.1 detik.
+Terus dateng Google Chrome. Developer Chromium awalnya cuma butuh komponen kecil biar browser bisa render PDF langsung di tab, tanpa harus download file-nya dulu ke desktop. Nggak banyak gaya: render halaman, scroll atas-bawah, zoom in/out, tombol print. Udah. Ujung-ujungnya, tanpa sengaja, Chrome jadi PDF viewer favorit miliaran orang, karena kebuka dalam hitungan 0.1 detik.
 
-Di titik ini, kita harus berhenti sejenak dan nanya: *Kenapa software yang awalnya bagus hampir selalu berakhir jadi bloatware yang nyusahin?*
-
----
-
-## Anatomi Penyakit: Kenapa Software Selalu Gemuk?
-
-Developer yang bikin software bloated itu bukan karena ***skill issue***. Masalahnya bukan di kemampuan koding, tapi di insentif sistemik.
-
-1. **Jebakan "Value-Add" Setiap Kuartal**  
-   Perusahaan teknologi dituntut terus tumbuh. Tim produk dituntut punya pencapaian baru di review kuartalan. Kalau lu bilang ke manajemen, *"Kuartal ini tim kami gak nambah fitur apa-apa, kami cuma bikin core engine 15% lebih stabil dan hemat memori,"* lu bakal dianggap santai-santai. Tapi kalau lu bilang, *"Kami baru rilis integrasi cloud storage, digital signature, dan AI copilot di dalam PDF reader,"* lu dapet tepuk tangan. Fitur baru = tanda ada kerjaan.
-
-2. **Takut Terlihat "Terlalu Sederhana"**  
-   Ada persepsi aneh bahwa software berbayar harus keliatan kompleks biar kerasa harganya. Kalau cuma ada satu jendela putih polos buat baca teks, user (terutama level enterprise procurement) bakal nanya: *"Ngapain bayar mahal kalau tampilannya cuma begini?"* Akhirnya tombol-tombol baru dipaksakan masuk.
-
-3. **Gagal Bedain Core Feature vs Peripheral Plugin**  
-   Semua fitur dijejalkan ke dalam satu binary utama. Fitur edit teks, kompresi gambar, form submission, OCR, cloud sync, telemetry, hingga AI copilot—semuanya jalan barengan di process space yang sama.
-
-Hasil akhirnya adalah monster monolitik yang lambat, rakus RAM, dan rapuh.
+Nah, dari sini pertanyaannya: kenapa software yang awalnya bagus hampir selalu berakhir jadi bloatware yang nyusahin?
 
 ---
 
-## Obat Penawar dari Tahun 1970-an: Filosofi Unix
+## Kenapa sih software makin lama makin gemuk?
 
-Jauh sebelum kita ribut-ribut soal microservices atau container, Doug McIlroy dan Ken Thompson di Bell Labs udah ngerumusin aturan main yang sampai sekarang belum ada tandingannya:
+Developer yang bikin software bloated itu bukan kena ***skill issue***. Kemampuan ngodingnya nggak ada masalah. Yang bermasalah insentifnya.
+
+1. **Tiap kuartal harus ada "value-add"**  
+   Perusahaan teknologi dituntut tumbuh terus. Tim produk dituntut punya pencapaian baru tiap review kuartalan. Kalau lu bilang ke manajemen, *"Kuartal ini tim kami gak nambah fitur apa-apa, kami cuma bikin core engine 15% lebih stabil dan hemat memori,"* lu bakal dianggap santai-santai. Tapi kalau lu bilang, *"Kami baru rilis integrasi cloud storage, digital signature, dan AI copilot di dalam PDF reader,"* lu dapet tepuk tangan. Fitur baru dianggap tanda ada kerjaan.
+
+2. **Takut kelihatan "terlalu simpel"**  
+   Ada anggapan aneh kalau software berbayar harus kelihatan kompleks biar kerasa mahal. Kalau isinya cuma satu jendela putih polos buat baca teks, user (apalagi bagian procurement di enterprise) bakal nanya: *"Ngapain bayar mahal kalau tampilannya cuma begini?"* Akhirnya tombol-tombol baru dipaksa masuk.
+
+3. **Nggak bisa bedain core feature sama plugin pinggiran**  
+   Semua fitur dijejelin ke satu binary utama. Edit teks, kompresi gambar, form submission, OCR, cloud sync, telemetry, sampai AI copilot, semuanya jalan bareng di process space yang sama.
+
+Hasilnya monster monolitik yang lambat, rakus RAM, dan rapuh.
+
+---
+
+## Obatnya udah ada dari tahun 1970-an: filosofi Unix
+
+Jauh sebelum orang ribut soal microservices atau container, Doug McIlroy dan Ken Thompson di Bell Labs udah ngerumusin aturan main yang sampai sekarang belum ada tandingannya:
 
 > 1. *Make each program do one thing well.* Untuk ngerjain tugas baru, lebih baik bikin program baru daripada nambahin fitur rumit ke program lama.  
 > 2. *Expect the output of every program to become the input to another, as yet unknown, program.*  
 > 3. *Write programs to handle text streams, because that is a universal interface.*
 
-Tapi hati-hati, filosofi Unix ini sering disalahartikan. 
+Tapi hati-hati, filosofi ini sering disalahartiin.
 
-Banyak yang ngira filosofi ini nyuruh kita bikin program kecil tanpa fitur, atau malah blunder ke ekstrem sebaliknya: mecah semua fungsi jadi puluhan *microservices* terpisah dan multi-process yang bikin latency bengkak, network hop ruwet, dan debugging setengah mati. Bukan itu maksudnya.
+Banyak yang ngira maksudnya bikin program kecil tanpa fitur. Ada juga yang blunder ke ekstrem sebaliknya: semua fungsi dipecah jadi puluhan *microservices* dan multi-process, latency-nya bengkak, network hop-nya ruwet, debugging-nya setengah mati. Bukan itu maksudnya.
 
-Bikin aplikasi yang modular itu **gak harus microservices**, dan gak harus dipecah jadi proses OS terpisah. Di dalam satu monolith atau satu binary sekalipun, modularitas sejati itu soal **isolasi tanggung jawab dan batasan antarmuka (interface boundaries) yang tegas**. 
+Aplikasi modular itu nggak harus microservices, dan nggak harus dipecah jadi proses OS terpisah. Di dalam satu monolith atau satu binary pun, modular itu soal tanggung jawab yang terisolasi dan batas antarmuka (interface boundaries) yang tegas.
 
-Kalau tugas intinya membaca dokumen, jaga rendering pipeline itu tetap bersih dan hening. Jangan biarin urusan cloud sync, signature, atau analitik ikut campur di loop utama. Kalau suatu fitur sifatnya peripheral, jadikan dia plugin opsional atau perkakas terpisah.
+Kalau tugas intinya baca dokumen, rendering pipeline-nya dijaga tetap bersih dan hening. Urusan cloud sync, signature, atau analitik jangan dibiarin ikut campur di loop utama. Kalau fiturnya cuma pinggiran, jadiin plugin opsional atau tool terpisah.
 
 ---
 
-## Terjebak di Ilusi "Scalable Multi-Tenant"
+## Kejebak ilusi "scalable multi-tenant"
 
-Ini bagian yang paling sering bikin engineer terjebak dan mabok teori: **konsep multi-tenant**.
+Di bagian ini engineer paling sering kejebak dan mabok teori: konsep multi-tenant.
 
-Di kepala kebanyakan orang, kalau denger kata "scalable" dan "multi-tenant" untuk level bisnis atau enterprise, bayangannya langsung satu aplikasi raksasa yang menampung ribuan tenant di dalam satu database bersama. Semua klien dipaksa hidup di tabel yang sama, dipisahkan oleh kolom `tenant_id`, lalu ditambal dengan *Row-Level Security* (RLS) yang rumitnya minta ampun.
+Di kepala kebanyakan orang, denger kata "scalable" dan "multi-tenant" buat level bisnis atau enterprise, bayangannya langsung satu aplikasi raksasa yang nampung ribuan tenant di satu database bareng. Semua klien dipaksa tinggal di tabel yang sama, dibedain pake kolom `tenant_id`, terus ditambal pake *Row-Level Security* (RLS) yang rumitnya minta ampun.
 
-Begitu traffic naik, apa yang terjadi?
-- **Lock Contention:** Query dari satu tenant yang lagi ngejalanin laporan berat bakal bikin tenant lain ikutan lemot.
-- **Blast Radius Mengerikan:** Kalau ada satu bug fatal atau database corrupt, seluruh klien di satu perusahaan langsung tumbang barengan.
-- **Compliance & Privacy Nightmare:** Tim audit dan security bakal terus curiga karena data finansial atau rahasia divisi legal hidup berdampingan di disk yang sama dengan divisi lain.
+Begitu traffic naik, kejadiannya gini:
+- **Lock contention:** query dari satu tenant yang lagi jalanin laporan berat bikin tenant lain ikut lemot.
+- **Blast radius ngeri:** sekali ada bug fatal atau database corrupt, semua klien di satu perusahaan tumbang bareng.
+- **Compliance dan privacy jadi mimpi buruk:** tim audit dan security bakal curiga terus, soalnya data finansial atau rahasia divisi legal hidup di disk yang sama dengan divisi lain.
 
-Padahal, **scalable dan multi-tenant itu gak harus satu aplikasi raksasa yang menelan semuanya.**
+Padahal scalable dan multi-tenant itu nggak harus satu aplikasi raksasa yang nelen semuanya.
 
-Dalam kacamata filosofi Unix dan arsitektur *Shared-Nothing*, **real multi-tenant yang paling aman dan kokoh justru adalah instance terpisah**.
+Kalau pake kacamata filosofi Unix dan arsitektur *Shared-Nothing*, multi-tenant yang paling aman dan kokoh justru instance terpisah.
 
-Kalau ada 20 tim di sebuah perusahaan, daripada pusing bikin sistem multi-tenant monolith yang rumit di dalam aplikasi, cukup **spin up 20 instance mandiri**. Satu tim = satu instance container terpisah.
+Misalnya ada 20 tim di satu perusahaan. Daripada pusing bikin sistem multi-tenant monolith yang rumit di dalam aplikasi, cukup spin up 20 instance mandiri. Satu tim, satu instance container.
 
 - Datanya terisolasi total di level storage (beda file, beda volume).
-- Blast radius-nya nol: kalau tim A nge-crash instance mereka, tim B bahkan gak ngerasain ada gangguan.
-- Resource dialokasikan langsung lewat cgroups/container OS, bukan lewat algoritma rate limiter aplikasi yang rawan bocor.
+- Blast radius-nya nol: kalau tim A bikin instance-nya crash, tim B nggak ngerasa ada gangguan apa-apa.
+- Resource dibagi langsung lewat cgroups/container OS, bukan lewat algoritma rate limiter di aplikasi yang rawan bocor.
 
-Kalau nanti perusahaan butuh manajemen terpusat untuk mengelola 20 atau 100 instance tersebut, **solusinya bukan memasukkan logic multi-tenant ke dalam core engine**, melainkan membangun **layer aplikasi tipis di atasnya (Fleet Control Plane / Orchestrator)**. 
+Kalau nanti perusahaannya butuh manajemen terpusat buat ngurus 20 atau 100 instance tadi, logic multi-tenant tetap nggak usah dimasukin ke core engine. Bikin aja layer aplikasi tipis di atasnya (Fleet Control Plane / Orchestrator).
 
-Layer atas inilah yang bertugas melakukan provisioning instance, distribusi konfigurasi massal, dan penarikan audit log terpusat. Core aplikasinya sendiri tetap bersih, ringan, dan setia pada satu tugas.
+Layer atas ini yang ngurus provisioning instance, distribusi konfigurasi massal, sama narik audit log ke satu tempat. Core aplikasinya sendiri tetap bersih, ringan, dan fokus di satu tugas.
 
 ---
 
-## Skala Enterprise Lewat Pola "Fleet", Bukan Monolith Gemuk
+## Skala enterprise pake pola "fleet", bukan monolith gemuk
 
-Pola horizontal fleet ini bukan sekadar teori warkop. Software infrastruktur paling teruji di dunia semuanya mempraktikkan hal ini:
+Pola horizontal fleet ini bukan teori warkop doang. Software infrastruktur yang paling teruji di dunia semuanya pake cara ini.
 
 ### 1. Docker Engine vs Kubernetes
-Docker Engine gak pernah berusaha menjadi sistem distributed cluster yang rumit. Docker Engine fokus pada satu hal: jadi container runtime di satu host lokal. Build image, run container, expose port. Selesai.
+Docker Engine nggak pernah nyoba jadi sistem distributed cluster yang rumit. Fokusnya satu: jadi container runtime di satu host lokal. Build image, run container, expose port. Udah.
 
-Ketika industri butuh skala ribuan server, solusinya bukan membuat Docker Engine menjadi raksasa monolitik, melainkan membangun layer orkestrator terpisah di atasnya: **Kubernetes**. Docker tetap ramping di tiap worker node, urusan scheduling dipegang kontrol plane atasnya.
+Pas industri butuh skala ribuan server, Docker Engine nggak dibikin jadi raksasa monolitik. Yang dibangun malah layer orkestrator terpisah di atasnya, yaitu **Kubernetes**. Docker tetap ramping di tiap worker node, urusan scheduling dipegang control plane di atasnya.
 
 ### 2. Prometheus vs Thanos / Cortex
-Prometheus didesain sengaja sebagai single-node Time Series Database (TSDB). Gak ada clustering bawaan, gak ada distributed storage bawaan. Desain ini bikin Prometheus sangat tangguh: saat jaringan cluster lagi rontok, dia tetap bisa scraping metrik di node lokal tanpa bergantung ke server lain.
+Prometheus sengaja didesain sebagai single-node Time Series Database (TSDB). Nggak ada clustering bawaan, nggak ada distributed storage bawaan. Gara-gara desain ini Prometheus tangguh banget: pas jaringan cluster lagi rontok, dia tetap bisa scraping metrik di node lokal tanpa nunggu server lain.
 
-Ketika enterprise butuh retensi tahunan dan query global lintas cluster, apakah Prometheus dirombak jadi distributed DB? Enggak. Prometheus-nya tetap single-node, lalu dipasang **Thanos** atau **Cortex** di atasnya sebagai layer federasi.
+Terus pas enterprise butuh retensi tahunan dan query global lintas cluster, Prometheus dirombak jadi distributed DB? Nggak. Prometheus-nya tetap single-node, terus dipasang **Thanos** atau **Cortex** di atasnya sebagai layer federasi.
 
 ### 3. Grafana Agent vs Grafana Cloud
-Grafana Agent cuma fokus ngumpulin telemetri di host lokal dan forward datanya. Dia gak peduli soal render visualisasi dashboard atau bikin alert engine. Batasannya sangat tegas.
+Grafana Agent cuma ngumpulin telemetri di host lokal terus nge-forward datanya. Dia nggak ngurusin render dashboard atau bikin alert engine. Batasnya tegas banget.
 
 ---
 
-## Bagaimana Kami Menerapkannya di Nouride
+## Gimana kami nerapin ini di Nouride
 
-Waktu gue merancang [Nouride](https://nouride.com) (engine multi-agent AI daemon yang jalan di homelab dan server kami), godaan buat bikin dia jadi *"All-in-One Multi-Tenant Enterprise AI Platform"* itu selalu ada.
+Waktu gw ngerancang [Nouride](https://nouride.com) (engine multi-agent AI daemon yang jalan di homelab dan server kami), godaan buat bikin dia jadi *"All-in-One Multi-Tenant Enterprise AI Platform"* itu selalu ada.
 
-Bisa aja gue pasang Postgres cluster, tambahin vector database eksternal macam Qdrant atau Milvus, bikin tabel multi-tenant dengan puluhan relasi rumit, dan jual dengan narasi "enterprise ready".
+Bisa aja gw pasang Postgres cluster, nambahin vector database eksternal kayak Qdrant atau Milvus, bikin tabel multi-tenant dengan puluhan relasi rumit, terus jual pake narasi "enterprise ready".
 
-**Tapi gue tolak semua itu di otak gue. Kami milih jalan Unix:**
+Tapi semua itu udah gw tolak dari awal, di kepala gw sendiri. Kami milih jalan Unix:
 
-- **Engine Tetap Kecil, Hening, dan Berdaulat (Sovereign):**  
-  Nouride didesain sebagai single binary daemon. Database utamanya adalah embedded SQLite lokal (`nouride.db`), bukan server database terpisah. Total konsumsi memorinya cuma **~107 MB RAM** saat menjalankan 6 agent dan 10 gateway (Telegram, Discord, WhatsApp) sekaligus—bahkan baseline-nya kalau lu cuma menjalankan 1–2 agent di satu gateway aktif cuma makan sekitar **70-an MB**.
-- **Pencarian Semantik Bersifat Pluggable:**  
-  Pencarian semantik via Ollama (`bge-m3`) sifatnya opsional (*pluggable*), **bukan hard dependency** yang wajib ada di dalam core Nouride. Kalau user gak butuh semantic search atau jalan di mesin minim resource tanpa GPU, engine tetap jalan ngebut menggunakan pencarian keyword SQLite FTS native tanpa dipaksa nanggung beban embedding model.
-- **Multi-Tenant via Fleet, Bukan Monolith:**  
-  Kalau ada kebutuhan enterprise dengan multi-team, kami gak memasukkan logic tenant ke dalam engine Nouride. Pendekatan kami: spin up satu container Nouride per tim. Tim DevOps punya instance sendiri dengan akses command terminal (`exec`), tim Legal punya instance sendiri yang terkunci tanpa akses shell.
-- **Orkestrasi di Layer Atas:**  
-  Kebutuhan enterprise untuk memanage puluhan instance akan diserahkan ke project terpisah: **Fleet Control Plane**. Dashboard manajemen di level atas inilah yang mengurus provisioning, push config massal, dan log audit, tanpa pernah mengotori kesederhanaan core engine Nouride.
+- **Engine-nya tetap kecil, hening, dan berdaulat (sovereign).**  
+  Nouride didesain sebagai single binary daemon. Database utamanya embedded SQLite lokal (`nouride.db`), bukan server database terpisah. Total memorinya cuma **~107 MB RAM** pas jalanin 6 agent dan 10 gateway (Telegram, Discord, WhatsApp) sekaligus. Kalau lu cuma jalanin 1–2 agent di satu gateway aktif, baseline-nya sekitar **70-an MB**.
+- **Semantic search-nya pluggable.**  
+  Pencarian semantik via Ollama (`bge-m3`) sifatnya opsional (*pluggable*), bukan hard dependency yang wajib ada di core Nouride. Kalau user nggak butuh semantic search, atau jalan di mesin pas-pasan tanpa GPU, engine-nya tetap ngebut pake pencarian keyword SQLite FTS native, tanpa dipaksa nanggung beban embedding model.
+- **Multi-tenant lewat fleet, bukan monolith.**  
+  Kalau ada kebutuhan enterprise dengan banyak tim, logic tenant nggak kami masukin ke engine Nouride. Caranya: spin up satu container Nouride per tim. Tim DevOps punya instance sendiri dengan akses command terminal (`exec`), tim Legal punya instance sendiri yang dikunci tanpa akses shell.
+- **Orkestrasinya di layer atas.**  
+  Buat enterprise yang perlu ngurus puluhan instance, kerjaannya dikasih ke project terpisah: **Fleet Control Plane**. Dashboard manajemen di level atas ini yang ngurus provisioning, push config massal, dan log audit, tanpa pernah ngotorin kesederhanaan core engine Nouride.
 
 ---
 
-## Disiplin Bilang "Nggak" (Terutama di Dunia Open Source)
+## Disiplin bilang "nggak" (apalagi di open source)
 
-Bikin software itu gampang di awal. Yang paling susah adalah menjaga software tersebut gak berubah jadi rongsokan lambat setelah berumur beberapa tahun.
+Bikin software itu gampang di awal. Yang paling susah itu ngejaga software-nya biar nggak berubah jadi rongsokan lambat setelah umurnya beberapa tahun.
 
-Meskipun saat ini [Nouride](https://nouride.com) belum open source (mungkin ke depannya iya), gue meyakini prinsip ini berlaku universal—dan penyakit ini biasanya makin parah di ekosistem **Open Source**.
+Sekarang [Nouride](https://nouride.com) memang belum open source (mungkin ke depannya iya), tapi gw yakin prinsip ini berlaku di mana aja. Dan penyakit ini biasanya makin parah di ekosistem open source.
 
-Berapa banyak project open source yang awalnya lahir sebagai tool yang lean, elegan, dicintai banyak orang karena kencang dan simpel, tapi dua tahun kemudian berubah jadi bloatware yang bikin frustrasi?
+Coba itung, berapa banyak project open source yang lahir sebagai tool yang lean dan elegan, disukain banyak orang karena kenceng dan simpel, terus dua tahun kemudian berubah jadi bloatware yang bikin frustrasi?
 
-Penyebabnya hampir selalu sama: **maintainer yang gak tega bilang "nggak"**. 
+Penyebabnya hampir selalu sama: maintainer-nya nggak tega bilang "nggak".
 
-Setiap ada feature request masuk, diterima. Setiap ada pull request dari user yang pengen software itu ngerjain use-case niche mereka, di-merge. Sedikit demi sedikit, baris kode bertambah, dependensi makin menggurita, surface area bug melebar, dan akhirnya esensi awal software tersebut lenyap ditelan kompromi.
+Tiap ada feature request masuk, diterima. Tiap ada pull request dari user yang pengen software itu ngerjain use-case niche mereka, di-merge. Pelan-pelan baris kodenya nambah, dependency-nya makin menggurita, surface area bug-nya melebar, sampai akhirnya esensi awal software itu ilang ketelen kompromi.
 
-Setiap kali ada ide fitur atau pull request baru yang mampir, pertanyaan pertama yang harus diajukan seorang engineer bukan *"Bisa gak kita gabungin ini?"*, melainkan:
+Jadi tiap ada ide fitur atau pull request baru yang mampir, pertanyaan pertama buat engineer-nya bukan *"Bisa gak kita gabungin ini?"*, tapi:
 
 > *"Apakah fitur ini merusak esensi utama dari alasan kenapa software ini diciptakan?"*
 
-Adobe Acrobat mungkin udah terlalu jauh tersesat di rimba feature creep dan tuntutan monetisasi korporat. Tapi buat software yang kita bangun hari ini—baik closed source maupun open source—kita selalu punya kendali: mau ikut-ikutan jadi monster yang lambat, atau berani menolak apa yang gak perlu demi menjaga software kita tetap tajam, hening, dan tuntas ngerjain tugas intinya.
+Adobe Acrobat mungkin udah kejauhan nyasar di rimba feature creep dan tuntutan monetisasi korporat. Tapi buat software yang kita bangun sekarang, closed source atau open source, kendalinya tetap di kita: mau ikut-ikutan jadi monster yang lambat, atau berani nolak yang nggak perlu biar software-nya tetap tajam, hening, dan beres ngerjain tugas intinya.

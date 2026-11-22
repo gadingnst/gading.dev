@@ -12,41 +12,41 @@ image: "/media/blog/membangun-agent-memory-bebas-vendor/banner.png"
 series: { id: "agent-memory", title: "Building Agent Memory", part: 2 }
 ---
 
-In my previous post, [How I Build Agent Memory Free from Vendor Lock-in](/blog/how-i-handle-agent-memory-for-personal-ai-assistant), I proudly showed off my Two-Tier Hybrid RAG + NAS Markdown memory scheme for my AI assistant, **Nouva**. When I first deployed it, it felt like a dream. Simple, portable, and not overkill.
+In my previous post, [How I Build Agent Memory Free from Vendor Lock-in](/blog/how-i-handle-agent-memory-for-personal-ai-assistant), I showed off the Two-Tier Hybrid RAG + NAS Markdown setup I built for my AI assistant, **Nouva**. When I first deployed it, it felt great. Simple, portable, not overkill.
 
-But as we all know in software engineering, no solution is "done and perfect forever" on the first try. After running this setup for a few weeks, I bumped into three frustrating issues:
+But this is software engineering, and nothing is "done once and perfect forever". After a few weeks of running it, I hit reality again. Three new problems had me scratching my head:
 
-1.  **Index Bloating:** The flat `MEMORY_INDEX.md` file grew way too fast. Because it accumulated daily topic lists from the beginning of time, it got heavier by the day. As a result, the AnythingLLM RAG started struggling, and semantic search accuracy degraded due to excessive noise.
-2.  **Vector Dilution:** Semantic scores from the vector database were often too close to differentiate between dates. The AI easily confused a serious server architecture discussion from last week with a casual chat on a different day, just because of some random overlapping keywords.
-3.  **Infinite Graph Traversal:** When trying to follow threaded chats (`continue_of` / `related_dates`), without a boundary, the script could pull dozens of markdown files from the NAS at once. It was painfully slow.
+1.  **Index bloat:** the flat `MEMORY_INDEX.md` grew too fast. It held a cumulative list of daily topics since the beginning of time, so it got heavier every day. AnythingLLM's RAG started struggling, and semantic search accuracy dropped because of all the noise.
+2.  **Vector dilution:** semantic scores from the vector database were often too close between dates. The AI would mix up a serious server architecture discussion from last week with a casual chat on another day, just because of a keyword that happened to overlap.
+3.  **Unbounded graph traversal:** when I tried linking threaded chats (`continue_of` / `related_dates`), without a limit it could pull dozens of markdown files from the NAS at once. Painfully slow!
 
-So yesterday, I decided to pull off a major refactor of Nouva's memory system. The solution? **Two-Tier Hierarchical Summary & Hybrid Scoring**.
+So yesterday I decided to do a big refactor of Nouva's memory system. The fix: **Two-Tier Hierarchical Summary & Hybrid Scoring**.
 
 ---
 
-### Architecture Comparison: Before vs. After
+### The architecture, before vs after
 
-To make it easier to visualize, here is a comparison of Nouva's memory system flow before and after this refactoring:
+To make it easier to picture, here's Nouva's memory flow before and after the rework.
 
-#### 1. Previous Architecture
-In the initial architecture, semantic search directly targeted the flat `MEMORY_INDEX.md` which grew indefinitely, then fetched raw transcripts from the NAS without any re-ranking.
+#### 1. Before
+In the original setup, semantic search went straight to the flat, ever-growing `MEMORY_INDEX.md`, then fetched raw transcripts from the NAS with no re-ranking.
 
 ![Architecture Before](/media/blog/membangun-agent-memory-bebas-vendor/architecture-before.png)
 
-#### 2. New Architecture
-In the new architecture, we introduce a **Hybrid Scoring** layer (Semantic + Importance + Recency) to filter candidate dates before fetching raw transcripts from the NAS. The synchronization process is also enhanced with a **Reconciliation Pass** and **Daily Summary Generation** to keep everything tidy and indexed.
+#### 2. After
+In the new setup, a **Hybrid Scoring** layer (Semantic + Importance + Recency) filters candidate dates before anything is fetched from the NAS. The sync process also gets a **Reconciliation Pass** and **Daily Summary Generation**, so the data stays tidy and properly indexed.
 
 ![Architecture After](/media/blog/membangun-agent-memory-bebas-vendor/architecture-after.png)
 
-Let's break down the key updates one by one.
+Now the changes, one at a time.
 
 ---
 
-### 1. Fighting Bloat with Daily Summary & YAML Frontmatter
+### 1. Fighting bloat with daily summaries & YAML frontmatter
 
-Previously, we relied on raw daily notes as the sole memory source in RAG. Now, before those daily notes are archived to the NAS, the `auto-sync.py` script calls an LLM to generate a new file: `memory/summaries/YYYY-MM-DD.summary.md`.
+Before, raw daily notes were the only memory data in RAG. Now, before those notes are archived to the NAS, the `auto-sync.py` script calls an LLM to generate a new file: `memory/summaries/YYYY-MM-DD.summary.md`.
 
-This summary file is super clean and features a structured YAML frontmatter:
+The summary file is very clean and comes with structured YAML frontmatter:
 
 ```yaml
 ---
@@ -67,51 +67,51 @@ uncategorized:
 - Discussed K3s cluster worker nodes setup with Freedy.
 ```
 
-*   **Controlled Vocabulary:** The `projects` and `technologies` fields must match a pre-defined list in `memory_config.json`. The `libraries` category (like React, Next.js, LangChain) has now been merged directly into `technologies` to keep metadata compact. If a new term appears (like a library or technology `Pydantic` which isn't registered yet), the LLM places it under `uncategorized` to keep the main vocabulary clean.
+*   **Controlled vocabulary:** the `projects` and `technologies` fields have to match a fixed list in `memory_config.json`. The `libraries` category (React, Next.js, LangChain and so on) is now merged into `technologies` to keep the metadata compact. If a new term shows up (like a library or technology such as `Pydantic` that isn't registered yet), the LLM puts it under the nested `uncategorized` object so the main vocabulary stays clean.
 
-    You might wonder, *"Why hardcode the controlled vocabulary and scoring weights in a static `memory_config.json` file?"* The answer is simple: because this memory system is purely for my personal use. At a personal scale, a static configuration that is re-read per invocation is more than enough, highly secure, and avoids adding the unnecessary complexity of a dynamic database layer or a hot-reloaded service.
-*   **Idempotency & Reconciliation:** I added a `reconcile_missing_summaries()` pass. If the LLM proxy timeouts or crashes mid-sync, the next cron job automatically scans for missing summaries and regenerates them. No more silent data loss.
+    You might ask, *"Why hardcode the controlled vocabulary and weights in `memory_config.json`?"* Simple: so far this memory system is only for my personal use. At personal scale, a static config re-read on every run (per invocation) is more than enough, safe, and doesn't need a dynamic database layer or an annoying hot-reload service.
+*   **Idempotency & reconciliation:** I added a `reconcile_missing_summaries()` step. If the LLM proxy timed out or errored halfway yesterday, the next cron run scans for missing summaries and regenerates them. No more *silent data loss*.
 
 ---
 
-### 2. Hybrid Scoring: Balancing Semantics, Importance, and Recency
+### 2. Hybrid scoring: balancing semantics, importance and time
 
-Relying solely on RAG semantic scores means old, highly important architectural decisions get buried under newer, less important daily chats. Conversely, fresh casual banter often bubbles up to the top.
+If you rely only on RAG's semantic score, important old data gets buried under unimportant new data. And fresh casual chat often floats to the top.
 
-To fix this, I implemented a custom **Hybrid Scoring** formula in `query-memory.py`:
+To fix that, I put a **Hybrid Scoring** formula in `query-memory.py`:
 
 $$\text{Final Score} = (w_{\text{semantic}} \times S_{\text{semantic}}) + (w_{\text{importance}} \times S_{\text{importance}}) + (w_{\text{recency}} \times e^{-c \times \text{days}})$$
 
-The weights are tuned in `memory_config.json`:
-*   **Semantic (50%):** The raw similarity score from the AnythingLLM vector database.
-*   **Importance (30%):** A scale of 1-10 from the YAML metadata (architectural migrations get an 8-10, casual chat gets a 1-3).
-*   **Recency Decay (20%):** Exponential time decay. Newer notes naturally get a boost.
+The weights live in `memory_config.json`:
+*   **Semantic (50%):** the raw similarity score from AnythingLLM's vector database.
+*   **Importance (30%):** a 1-10 scale from the YAML metadata (architecture migration notes get 8-10, waifu chat gets 1-3).
+*   **Recency decay (20%):** exponential time decay. Newer notes score higher automatically.
 
-With this math, a critical system design discussion from 3 months ago (high importance) won't lose to a skincare reminder from last night (low importance).
-
----
-
-### 3. Keep it Simple: Replacing BFS Traversal with Programmatic 1-Hop Expansion
-
-Initially, when designing this system, I wrote a complex graph traversal algorithm using **Breadth-First Search (BFS)** with a strict depth limit (`max_depth = 2`) to automatically crawl and pull threaded daily notes.
-
-However, after testing it in production, I realized this recursive BFS traversal was slow and highly prone to **date hallucination** by the LLM (the LLM frequently hallucinated past dates that didn't actually have logs).
-
-Ultimately, I refactored this approach to make it much simpler and deterministic:
-1. **Programmatic Topic Detection (Sync-time):** During the daily sync process, our Python script automatically scans the new summary's metadata and matches it against keywords in the local `MEMORY_INDEX.md` file. The top 2 most relevant dates are injected into the YAML metadata as `related_dates`. This has *zero* LLM token cost and guarantees 100% valid dates.
-2. **1-Hop Expansion (Retrieval-time):** When the AI agent queries memory (`query-memory.py`), we no longer run a recursive BFS traversal. We simply take the candidate dates from the Semantic RAG and perform a **1-hop expansion** to their `related_dates`, decaying their semantic score by 30% (`score * 0.7`).
-
-Additionally, we designed the output of `query-memory.py` to be highly efficient using a **Lazy Loading** approach. Instead of dumping long, token-heavy raw chat transcripts, the script now only returns clean summaries from the relevant `.summary.md` files, accompanied by a dynamic `Path` to the raw transcripts subfolder on the NAS (`daily_sessions/YYYY-MM-DD/`) and `Links` to associated entities. The LLM can then read raw transcripts on-demand only when specific conversational details are required.
-
-With this approach, we still get the benefits of document relationships (topic clusters), but the code remains lightweight, fast, and free from complex traversal bugs. *Keep it simple!*
+With this, an important discussion from 3 months ago (high importance) won't lose to last night's skincare reminder (low importance).
 
 ---
 
-### 4. Obsidian Vault Compatibility (A Beautiful Side Effect)
+### 3. Keep it simple: BFS traversal replaced by programmatic 1-hop expansion
 
-Because our file naming convention (`YYYY-MM-DD.md`) and the new summary files use standard YAML headers, I got a wonderful bonus: **the `memory/` folder can be mounted directly as an Obsidian vault!**
+When I first designed this, I wrote a complex graph traversal using **Breadth-First Search (BFS)** with a depth limit (`max_depth = 2`) to follow links between dates. The idea was for the assistant to pull in connected chat history automatically.
 
-I just added a quick instruction to the summary generator prompt to append wikilinks at the bottom of the markdown body:
+After trying it, I found the recursive BFS traversal was slow and prone to **date hallucination** from the LLM (it often guessed past dates that had no logs at all).
+
+So I reworked it into something much simpler and deterministic:
+1. **Topic detection at sync time (programmatic):** during the daily sync, the Python script scans the new summary's metadata and matches it against keywords in the local `MEMORY_INDEX.md`. The top 2 most relevant dates go into the YAML `related_dates`. That costs *zero* LLM tokens, and the dates are guaranteed 100% valid.
+2. **1-hop expansion at retrieval:** when the assistant searches memory (`query-memory.py`), there's no recursive BFS anymore. It takes the candidate dates from semantic RAG and does a **1-hop** expansion to their `related_dates`, cutting their semantic score by 30% (`score * 0.7`).
+
+I also made the output of `query-memory.py` as lean as possible with **Lazy Loading**. Instead of dumping long, token-hungry raw transcripts, the script now returns only clean summaries from the relevant `.summary.md` files, plus a dynamic `Path` to the raw transcript subfolder on the NAS (`daily_sessions/YYYY-MM-DD/`) and `Links` to related entities. The LLM reads raw transcripts *on demand*, only when it needs specific details from a conversation.
+
+This keeps the benefit of relationships between documents (a topic graph), while the code stays light, fast and free of messy traversal bugs. *Keep it simple!*
+
+---
+
+### 4. Bonus: it works as an Obsidian vault
+
+Because the file naming (`YYYY-MM-DD.md`) and the new summaries use standard YAML frontmatter, I got a bonus I didn't expect: **the `memory/` folder can be mounted directly as an Obsidian vault!**
+
+I only added one line to the summary generator prompt to append wikilinks at the bottom of the markdown body:
 
 ```markdown
 ---
@@ -124,33 +124,33 @@ I just added a quick instruction to the summary generator prompt to append wikil
 **🔗 Links:** [[Gading]] · [[Nouverse Core]]
 ```
 
-When opened in Obsidian on my laptop, I instantly get **Graph View**, **Backlinks**, and a **Calendar Heatmap** out-of-the-box, without writing a single line of visualization code. The RAG benefits from clean metadata, and I get a gorgeous UI to browse Nouva's memory history.
+Mounted in Obsidian on my laptop, I get **Graph View**, **Backlinks** and a **Calendar Heatmap** for free, without writing a single line of visualization code. RAG is happy with clean metadata, and I'm happy browsing Nouva's chat history as a nice-looking graph.
 
-However, to keep the graph clean and prevent it from turning into a chaotic spiderweb, I applied a few extra rules:
-1. **No Related Dates Wikilinks:** The relationships between dates (`related_dates`) are intentionally **not** rendered as visual wikilinks in the markdown body. They are kept only in the YAML frontmatter to be read programmatically by the AI. This keeps the graph free from confusing criss-crossing lines between dates.
-2. **Timeline Spine:** Each daily note automatically links to the previous day's note (e.g., `« [[2026-07-05]] | Timeline Spine`). This forms a straight chronological line (a spine) from left to right in the graph.
-3. **Parent Link:** Raw session transcripts automatically link to their parent daily note. This forces chat sessions to orbit neatly around their corresponding date node instead of floating around as orphans.
+To keep the graph tidy instead of a tangled *spiderweb*, I added a few rules:
+1. **No wikilinks for related dates:** relationships between dates (`related_dates`) are deliberately **not** rendered as visual wikilinks in the body. They stay in the YAML frontmatter for the AI to read programmatically. That keeps the graph free of confusing lines criss-crossing between dates.
+2. **Timeline spine:** every daily note links to the previous day's note (e.g. `« [[2026-07-05]] | Timeline Spine`). That forms one straight chronological line (a spine) from left to right in the graph.
+3. **Parent link:** raw chat transcripts link to their parent daily note, so sessions orbit neatly around their date node instead of floating alone as *orphans*.
 
-Here is a preview of Nouva's memory graph view generated automatically in Obsidian:
+Here's Nouva's memory graph view, generated automatically in Obsidian:
 
 ![Obsidian Graph View](/media/blog/membangun-agent-memory-bebas-vendor/obsidian-graph.jpg)
 
 ---
 
-### Backfill & Migrating Historical Data
+### Backfill and migrating old data
 
-The final piece of the puzzle is historical data already archived on the NAS. To align it, I wrote a one-time migration script (`backfill-nas-memories.py`) that:
+The last problem was the old data already archived to the NAS before this scheme existed. To bring it in line, I wrote a one-off migration script (`backfill-nas-memories.py`) that:
 1.  Scans and reads old daily notes from the NAS.
-2.  Generates the new `.summary.md` files via the LLM incrementally (with a `time.sleep(2)` delay to avoid hammering the LLM).
-3.  Saves the summary files in the local `memory/summaries/` directory (their footprint is tiny, so they stay local).
-4.  Syncs all new summaries to AnythingLLM.
+2.  Generates new `.summary.md` files through the LLM in small steps (with a `time.sleep(2)` pause so the LLM doesn't choke).
+3.  Saves the summaries in the local `memory/summaries/` folder (they're tiny, so they don't weigh on local disk).
+4.  Syncs all the new summaries to AnythingLLM.
 
-So, do I finally need an expensive, complex external memory stack? The answer remains **no**. I can still "hack" my way through using local markdown files, a few Python scripts, and simple hybrid scoring math to fit my real needs without wasting LLM tokens or depending on third-party vendors.
+So do I finally need a fancy, paid external memory stack? Still **no**. I can still get by with local markdown files, a few Python scripts and simple hybrid scoring math tuned to what I actually need, without burning LLM tokens or depending on a third-party vendor.
 
-This refactoring proves that with a well-structured markdown folder, YAML headers, a bit of hybrid scoring math, and standard markdown tools like Obsidian, you can build a smart, lightning-fast, and 100% self-owned AI Agent memory system.
+What this refactor showed me is that a tidy markdown folder, YAML frontmatter, a bit of hybrid scoring math and a standard markdown tool like Obsidian are enough to build an AI agent memory system that's smart, fast and 100% yours.
 
-### Related Blogs
-This memory architecture didn't happen overnight. It is the evolution of several experiments and failures before it:
-1. [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti) (The initial phase of trying GraphRAG)
-2. [The GraphRAG Trap: Why I Uninstalled Neo4j for My Personal Assistant](/blog/the-graphrag-trap) (The decision to uninstall due to overkill)
-3. [How I Build Agent Memory Free from Vendor Lock-in](/blog/how-i-handle-agent-memory-for-personal-ai-assistant) (Initial solution using flat RAG + NAS)
+### Related posts
+This memory architecture didn't appear overnight. It grew out of several earlier experiments and failures:
+1. [Building GraphRAG for Autonomous Agents with Neo4J and Graphitti](/blog/building-graphrag-neo4j-graphitti) (where I started with GraphRAG)
+2. [The GraphRAG Trap: Why I Uninstalled Neo4j for My Personal Assistant](/blog/the-graphrag-trap) (the decision to uninstall it as overkill)
+3. [How I Build Agent Memory Free from Vendor Lock-in](/blog/how-i-handle-agent-memory-for-personal-ai-assistant) (the first version with flat RAG + NAS)
