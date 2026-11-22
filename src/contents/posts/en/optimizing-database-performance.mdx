@@ -17,7 +17,7 @@ At my previous company, I happened to be the developer who managed everything en
 
 I was tempted by this shortcut too. When my PostgreSQL database at that company started choking under the load of Kubernetes pods and automation workflows, my first reaction was to open the cloud dashboard, click on the resources, and double the CPU cores from 2 to 4, and RAM from 2GB to 4GB.
 
-The result? The app was still slow, and occasionally threw `FATAL: too many clients already` errors. Meanwhile, the database CPU usage was sitting comfortably under 10%. That was the exact moment I realized I had just performed a foolish *over-provisioning* workaround to mask a flawed database architecture.
+The result? The app was still slow, and occasionally threw `FATAL: too many clients already` errors. Meanwhile, the database CPU usage was sitting comfortably under 10%. That's when I realized I had just done some dumb *over-provisioning* to cover up the weaknesses of my own database architecture.
 
 Database optimization isn't about how much RAM you throw at the server; it's about how efficiently your database engine runs under the hood. Here are some of the "engineering scars" and expensive lessons I gathered from tuning database performance in the production environments of my previous company.
 
@@ -33,7 +33,7 @@ As traffic grew and Kubernetes scaled my application pods from 2 replicas to 10,
 My second mistake was simply raising `max_connections` in Postgres config from 100 to 500. Do not do this. Every active connection in Postgres spawns a physical backend process (forked process) in the OS, consuming around 10MB of RAM per connection. With 300+ active connections, your database will spend more time handling CPU *context switching* between processes than executing the actual queries.
 
 #### The Real Fix: Setting Up PgBouncer (Not as Simple as Medium Tutorials)
-Eventually, I deployed **PgBouncer** as a connection pooler in front of Postgres. PgBouncer keeps a pool of warm connections to the database, and our application only talks to PgBouncer.
+Eventually, I deployed **PgBouncer** as a connection pooler in front of Postgres. PgBouncer keeps a pool of warm connections to the database, and the application only talks to PgBouncer.
 
 However, setting up PgBouncer has its own traps:
 *   **Transaction Mode vs. Session Mode**: PgBouncer supports different pooling modes. Initially, I configured *Transaction Mode* because it's the most connection-efficient. However, my Drizzle schema migrations immediately broke because Drizzle requires *Session Mode* (which locks a connection per session to support temporary tables and ad-hoc commands).
@@ -48,7 +48,7 @@ Everyone knows that if a `SELECT` query is slow, you should throw an index at it
 On a transaction log table that ingests thousands of rows daily, I confidently created B-Tree indexes on almost every column I filtered (`status`, `created_at`, `user_id`, `amount`, `gateway`).
 
 #### The Consequence: Bulk Inserts Choked
-Read queries became blazingly fast (under 5ms). However, when the system started running workflows that bulk-inserted thousands of transaction records at once, the database server CPU spiked to 100% and the insert rate slowed to a crawl.
+Read queries did become near-instant (under 5ms). However, when the system started running workflows that bulk-inserted thousands of transaction records at once, the database server CPU spiked to 100% and the insert rate slowed to a crawl.
 
 Why? The **Write Tax**. Every time a new row is inserted, Postgres has to update the B-Tree structure for *every single index* I created.
 
@@ -58,9 +58,9 @@ Why? The **Write Tax**. Every time a new row is inserted, Postgres has to update
 
 ---
 
-### 3. SQL Antipatterns That Make Your DB Cry
+### 3. SQL Antipatterns That Slow Things Down
 
-Beyond infrastructure, how we write queries often makes the database suffer. Here are two antipatterns I regularly find (and fix):
+Beyond infrastructure, the way queries get written often makes the database suffer. Here are two antipatterns I regularly find (and fix):
 
 #### 1. The `SELECT *` Disease
 I used to be lazy and write `SELECT *` in raw queries or ORM models to avoid writing column names one by one. In production, this is dangerous.
@@ -72,18 +72,18 @@ This is a common issue with modern ORMs. You want to fetch a list of 50 transact
 
 ---
 
-### 4. Caching: The Database's Shield (Watch Out for Stale Data)
+### 4. Caching: Taking Load Off the Database (Watch Out for Stale Data)
 
 The fastest database query is the one you never make. At my previous company, I set up **Redis** as a caching layer in front of the database for data that is frequently read but rarely changed (like product catalogs or system configurations).
 
 I implemented the **Cache-Aside** pattern: the app checks Redis -> if found (Cache Hit), return immediately -> if not found (Cache Miss), query the database -> write to Redis -> return to user.
 
 #### The Stale Balance Tragedy (Cache Invalidation Failure)
-But caching has a major pitfall: *Cache Invalidation*. I once forgot to set a TTL (Time-To-Live) and failed to clear the Redis cache when a new transaction occurred that updated the user's balance.
+But caching has a trap: *Cache Invalidation*. I once forgot to set a TTL (Time-To-Live) and failed to clear the Redis cache when a new transaction occurred that updated the user's balance.
 
 The result? The user paid via Midtrans, and their balance was updated in Postgres, but their dashboard still showed zero because the application was reading stale data from Redis. The user panicked and complained to customer support.
 
-**Lesson:** Always set a realistic TTL (never cache indefinitely unless you have a robust cache invalidation pipeline), and make sure you run a `DEL` command or update the Redis cache in the same database transaction where the data changes.
+**Lesson:** Always set a realistic TTL (never cache without an expiry unless you really know how you'll clear it), and make sure you run a `DEL` command or update the Redis cache in the same database transaction where the data changes.
 
 ---
 
