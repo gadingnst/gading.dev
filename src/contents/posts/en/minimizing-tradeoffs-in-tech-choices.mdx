@@ -11,66 +11,66 @@ tags: ["architecture", "engineering", "philosophy", "devops"]
 image: "/media/blog/minimizing-tradeoffs-in-tech-choices/banner.jpg"
 ---
 
-When I first started writing software seriously, I was easily seduced by whatever was buzzing on my timeline. A new framework claimed to be "100x faster than Node"? I immediately wanted to rewrite our backend. A post showed a pristine Clean Architecture with fifteen nested folders? I felt my code was amateurish if I did not copy the exact same pattern.
+When I first started writing software seriously, anything trending on my timeline could pull me in. A new framework claiming to be "100x faster than Node" made me want to rewrite everything. A post showing a layered architecture with neat box diagrams made me feel my code was amateur if I didn't copy the same structure.
 
-Then production reality hit.
+Then production happened.
 
-After getting woken up at 2 AM for stalled services, tracing through eight empty interface layers just to find a single database query, and waiting on sluggish compiler passes for a one-line fix, my priorities shifted.
+I got woken up at 2 AM by stalled services. I clicked through eight layers of empty interfaces to find one SQL query. I waited on long builds to fix a one-line typo. After enough of that, the way I pick tools changed completely.
 
-My rule for choosing tools is straightforward: pick the technology with the lowest total trade-offs for the specific problem at hand, rather than the one sitting at an extreme end of the spectrum.
+My rule now is simple: pick the technology with the lowest total trade-offs for the specific problem at hand, rather than the one sitting at an extreme end of the spectrum.
 
 ---
 
-### Three Common Traps
+### Three traps that keep causing trouble
 
 In practice, tech stack decisions often get pulled into one of these three corners:
 
-#### 1. Obsessing Over Maximum Performance
+#### 1. Going overboard on performance
 The intention is good: chasing tiny binaries and sub-10MB RAM usage by writing everything in Rust or C++.
 
-This is not about being anti-Rust or hating low-level languages. Rust, C++, or Zig are unmatched when used for their intended purpose: building core runtime engines, database storage engines, video/audio codecs, or OS drivers. But for regular business applications, automations, or day-to-day backends, the development trade-off and cognitive overhead are rarely worth it.
+I'm not anti-Rust, and I don't hate low-level languages. Rust, C++ and Zig are great where they belong: building core runtime engines, database storage engines, video/audio codecs, or OS drivers. But for regular business applications, automations, or day-to-day backends, the development time and mental overhead are rarely worth it.
 
-Adding a field to a JSON payload takes longer because you have to satisfy strict compile-time checks. Compilation and build passes slow down. Energy that should go toward solving product problems is spent managing language ceremonies.
+Adding a field to a JSON payload takes longer because you have to satisfy strict compile-time checks. Builds are slow. Energy that should go into product logic goes into the language's rituals instead.
 
-#### 2. Chasing Trends
-This happens when architecture is driven by whatever is popular on social media this month.
+#### 2. Following the trend
+This shows up in projects whose architecture is whatever is popular this month.
 
 Before reaching a hundred active users, data storage is already split across five systems: a relational database, a dedicated vector store, a document store, a cache layer, and a time-series database. Everything runs on a multi-node Kubernetes cluster.
 
-It looks impressive on paper. In operations, it is a maintenance headache. A brief network partition on a homelab node means spending hours resolving synchronization mismatches. When a request fails midway, finding where it dropped requires navigating an entangled web of services.
+It looks impressive on paper. Running it is a headache. One network partition or dropped connection in the homelab and you spend hours making sure the databases still agree with each other. When a request fails halfway, finding where it broke turns into detective work.
 
-#### 3. Over-Abstracting from Textbooks
-This is the habit of wrapping simple operations in excessive abstraction layers just to satisfy Clean Architecture rules word-for-word.
+#### 3. Following the textbook too literally
+This is the habit of wrapping simple operations in excessive abstraction layers to follow Clean Architecture word for word.
 
 To fetch a user record by ID, the request has to travel through a Controller, Presenter, UseCaseInterface, UseCaseImpl, RepositoryInterface, RepositoryImpl, DTO, and Mapper.
 
-The code looks neat in theory, but reading it is exhausting. Debugging means clicking through multiple empty interface files that only pass parameters forward. Error stack traces grow long and noisy without providing actionable context.
+It's neat in theory and hard to navigate. Debugging means clicking through interface files that only pass parameters to the next file. Stack traces get long and full of wrappers that add no new information.
 
 ---
 
-### Pragmatic Middle Grounds
+### Finding a sensible middle
 
-Having experienced the fallout from those patterns, I lean toward choices that deliver sufficient efficiency without operational complexity.
+After getting stuck in those patterns a few times, I now pick options that are efficient enough without adding operational complexity.
 
-A few recent stack choices illustrate this:
+Some decisions from my recent projects, including the agent runtime I've been building:
 
 #### TypeScript on Bun
-* Instead of forcing Rust onto application layers where rapid iteration matters, or using standard Python where startup is slow and idle memory easily exceeds 400MB.
-* The base Bun runtime footprint is already compact (a single lightweight binary with idle memory in the tens of megabytes).
-* When paired with dependency discipline—writing code with minimal third-party packages—the performance and resource efficiency feel remarkably close to compiled software, while retaining instant feedback loops and the breadth of the TypeScript ecosystem.
+* I don't force Rust onto apps that need fast iteration. I also skip plain Python, where startup is slow and idle memory easily goes past 400MB.
+* Bun itself is already light: one compact binary, idle memory in the tens of megabytes.
+* The key is dependency discipline. Build on Bun with as few third-party packages as possible, and performance and resource use feel close to a compiled app. You keep instant feedback loops and the TypeScript ecosystem.
 
 #### PostgreSQL with pgvector
-* Instead of running a standalone vector database that requires separate backup procedures, monitoring, and networking in my homelab.
-* A single PostgreSQL instance handles relational tables, structured analytical queries, and semantic search for agent retrieval via pgvector. Maintenance is simple and operational reliability has decades of track record.
+* I don't run a separate vector database that needs its own backups, monitoring and port in my homelab.
+* A single PostgreSQL instance handles relational tables, structured analytical queries, and semantic search for agent retrieval via pgvector. There's little to maintain, and Postgres has decades of track record.
 
-#### Direct and Minimal Architecture
+#### Direct, just-enough architecture
 * Dependency isolation is applied only at boundaries where lock-in risk is real (such as filesystem access or network wrappers).
-* The rest of the codebase consists of standard async TypeScript functions that do their job directly. Boundaries are enforced with CI lint rules rather than dozens of hollow interfaces.
+* The rest is plain async TypeScript functions that do their job directly. Boundaries are enforced with CI lint rules rather than dozens of hollow interfaces.
 
 ---
 
-### The Takeaway
+### So
 
-The longer you run systems that have to stay up continuously, the more you appreciate simplicity.
+The longer I run systems that have to stay up, the more I value simple ones.
 
-Low-level languages have their rightful place powering engines under the hood. But for the applications built on top of them, good code is software that meets the requirement, remains straightforward for someone else (or your future self) to modify, and rarely wakes you up in the middle of the night.
+Low-level languages still have their place, powering the engines underneath. For the apps on top, good code to me is code that does what's needed, is easy for someone else (or you, a few months later) to change, and rarely wakes you up at night.
