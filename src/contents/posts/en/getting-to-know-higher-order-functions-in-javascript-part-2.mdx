@@ -1,0 +1,387 @@
+---
+title: 'Getting to know higher-order functions in JavaScript part 2'
+slug: {
+  en: 'getting-to-know-higher-order-functions-in-javascript-part-2',
+  id: 'mengenal-higher-order-function-di-javascript-part-2'
+}
+date: 2019-11-16
+description: 'Using higher-order functions can shorten our code and change our point of view and programming style.'
+keywords: 'functional, higher-order function, fungsi, javascript, array, tutorial, sort, find, findIndex'
+tags: ['javascript', 'functional', 'higherorderfunction']
+image: '/media/default-banners/3.jpg'
+series: { id: "higher-order-function", title: "Getting to Know Higher-Order Functions", part: 2 }
+---
+
+As promised, the **higher-order function** series in JavaScript gets a sequel. This time we'll play around with `find()`, `findIndex()`, and `sort()`. Sorry first for taking so long to update, because of one thing or another that doesn't need explaining, basically I just didn't have time haha 😆. Okay, no more small talk, it doesn't matter anyway.. Let's jump right in.
+
+> Note: If you haven't read part 1, please read it first [here](/blog/getting-to-know-higher-order-functions-in-javascript).
+
+---
+
+#### Array.find()
+The `find()` method searches for a value in an *array*. Now here's the difference between `find()` and `filter()`. With ***filter***, which we used before, the program keeps searching until the last *index* of the *array*. So ***filter*** collects the values it finds into a new *array*. With ***find***, on the other hand, the search stops as soon as the program gets one value. Still confused? Basically, if you're familiar with SQL, think of using the ***find*** method as adding a `LIMIT 1` to the query, while ***filter*** has no limit.
+
+Using `find()` is actually exactly the same as `filter()`: its parameter is a *callback* function with *value* and *index* arguments. To see the difference between ***find*** and ***filter***, let's try the following case:
+
+```js
+const students = [
+  {
+    id: 1,
+    name: 'Sutan',
+    major: 'Computer Engineering'
+  },
+  {
+    id: 2,
+    name: 'Rina',
+    major: 'Computer Engineering'
+  },
+  {
+    id: 3,
+    name: 'Alexander',
+    major: 'Management'
+  },
+  {
+    id: 4,
+    name: 'Alexandra',
+    major: 'Accounting'
+  }
+]
+
+const filtering = students.filter(student =>
+  student.name.toLowerCase().includes('alex')
+)
+
+const finding = students.find(student =>
+  student.name.toLowerCase().includes('alex')
+)
+
+console.log(filtering)
+console.log(finding)
+```
+<State
+  initial={{
+    case: function() {
+      const users = [
+        {
+          id: 1,
+          name: 'Sutan',
+          major: 'Computer Engineering'
+        },
+        {
+          id: 2,
+          name: 'Rina',
+          major: 'Computer Engineering'
+        },
+        {
+          id: 3,
+          name: 'Alexander',
+          major: 'Management'
+        },
+        {
+          id: 4,
+          name: 'Alexandra',
+          major: 'Accounting'
+        }
+      ];
+      const filtering = users.filter(user => user.name.toLowerCase().includes('alex'));
+      const finding = users.find(user => user.name.toLowerCase().includes('alex'));
+      document.getElementById('filter').textContent = 'Filter result: ' + JSON.stringify(filtering, null, 2);
+      document.getElementById('find').textContent = 'Find result: ' + JSON.stringify(finding, null, 2);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="filter">Filter result: ...</p>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="find">Find result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+From the example above, `filter()` produces a new *array of objects*, *Alexander* and *Alexandra*, while `find()` produces only one *object*, *Alexander*. Why is that? Both conditions we set look for a name containing the word *'alex'*. It happens because `find()` stops searching once it gets one matching value, while `filter()` keeps searching to the end of the *array* even after it finds a match. So ***find*** is usually used to look up *single-data* by a unique parameter, like an *id*, *email*, *username* etc., while ***filter*** is used to look up *multi-data* by a non-unique parameter.
+
+Another example case: say we want to check whether a product is on a ***whitelist***. Let's assume we have the following ***whitelist*** data:
+
+```js
+const whiteList = [
+  {
+    id: 1,
+    name: 'Sepatu'
+  },
+  {
+    id: 2,
+    name: 'Sandal'
+  },
+  {
+    id: 3,
+    name: 'Indomie'
+  },
+  {
+    id: 4,
+    name: 'Telor Bebek'
+  },
+  {
+    id: 5,
+    name: 'Aqua'
+  }
+]
+
+const isInWhiteList = productId => whiteList.find(item => item.id === productId)
+console.log(isInWhiteList(5))
+console.log(isInWhiteList(9))
+```
+<State
+  initial={{
+    case: function() {
+      const whiteList = [
+        {
+          id: 1,
+          name: 'Sepatu'
+        },
+        {
+          id: 2,
+          name: 'Sandal'
+        },
+        {
+          id: 3,
+          name: 'Indomie'
+        },
+        {
+          id: 4,
+          name: 'Telor Bebek'
+        },
+        {
+          id: 5,
+          name: 'Aqua'
+        }
+      ];
+      const isInWhiteList = productId => whiteList.find(item => item.id === productId);
+      document.getElementById('whitelist1').textContent = 'First result: ' + JSON.stringify(isInWhiteList(5), null, 2);
+      document.getElementById('whitelist2').textContent = 'Second result: ' + JSON.stringify(isInWhiteList(9), null, 2);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="whitelist1">First result: ...</p>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="whitelist2">Second result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+From that example, we know the product with id **9** isn't on the ***whitelist***. From the result we can conclude that when `find()` can't find what it's searching for, it *returns* `undefined`. So it's really useful inside an *if-else* statement to check whether the data we're looking for exists or not.
+
+---
+
+#### Array.findIndex()
+`findIndex()` is just like `find()`, but the difference is in what it *returns*: ***find*** *returns* the **value**, while ***findIndex*** *returns* the **index**. To see the difference more clearly, let's try an example like this with the ***whitelist*** data above:
+
+```js
+const find = whiteList.find(item => item.id === 4)
+const findIndex = whiteList.findIndex(item => item.id === 4)
+
+console.log(find)
+console.log(findIndex)
+```
+<State
+  initial={{
+    case: function() {
+      const whiteList = [
+        {
+          id: 1,
+          name: 'Sepatu'
+        },
+        {
+          id: 2,
+          name: 'Sandal'
+        },
+        {
+          id: 3,
+          name: 'Indomie'
+        },
+        {
+          id: 4,
+          name: 'Telor Bebek'
+        },
+        {
+          id: 5,
+          name: 'Aqua'
+        }
+      ];
+      const find = whiteList.find(item => item.id === 4);
+      const findIndex = whiteList.findIndex(item => item.id === 4);
+      document
+        .getElementById('case3-find')
+        .textContent =
+          'Find result: ' + JSON.stringify(find, null, 2);
+      document
+        .getElementById('case3-findIndex')
+        .textContent =
+          'findIndex result: ' + JSON.stringify(findIndex, null, 2);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="case3-find">Find result: ...</p>
+        <p style={{ whiteSpace: 'pre', fontWeight: 'bold' }} id="case3-findIndex">findIndex result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+As we can see in the result above, `find()` produces an *object*, while `findIndex` only produces a number, the *index* of that data. Wait, why is the result 3? It's the 4th item, isn't it? **Remember, *arrays* start at 0 😠**.
+
+---
+
+#### Array.sort()
+Now we get to `sort()`. ***sort*** is one of the ***higher-order functions*** in JavaScript that sorts an *array*. Its parameter is a *comparer* *callback* function whose arguments are the values to *compare*; the value *variables* are usually named `a` and `b`. Without a *callback* parameter, `sort()` can only sort strings `A-Z`. See the example below:
+
+```js
+let fruits = ['Mango', 'Apple', 'Banana', 'Orange', 'Grape']
+fruits = fruits.sort()
+
+console.log(fruits)
+```
+<State
+  initial={{
+    case: function() {
+      let fruits = ['Mango', 'Apple', 'Banana', 'Orange', 'Grape'];
+      fruits = fruits.sort();
+      document
+        .getElementById('case4-result')
+        .textContent =
+          'Sorted result: ' + JSON.stringify(fruits);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ fontWeight: 'bold' }} id="case4-result">Sorted result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+The result above is correct: the fruit names are sorted `A-Z`.
+So what about numbers? Can we sort them from smallest to largest? Let's try again.
+
+```js
+let amounts = [1000, 100, 200, 10000, 6000, 800, 200000]
+amounts = amounts.sort()
+
+console.log(amounts)
+```
+<State
+  initial={{
+    case: function() {
+      let amounts = [1000, 100, 200, 10000, 6000, 200000];
+      amounts = amounts.sort();
+      document
+        .getElementById('case5-result')
+        .textContent =
+          'Sorted result: ' + JSON.stringify(amounts);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ fontWeight: 'bold' }} id="case5-result">Sorted result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+"Wait, wait, why is the result like that? **1000** and **10000** come before **200** 😕". Well, that's just how it is, because by *default* `sort()` only sorts *string* values when there's no *comparer* *callback* parameter. So it automatically *converts* those numbers to *strings* first before sorting. No wonder the order ends up like that, because as *strings*, even **100000000** is smaller than **2** 😆.
+
+Let's test it like this:
+
+```js
+amounts = amounts.sort((a, b) => a > b ? 1 : -1)
+
+console.log(amounts)
+```
+<State
+  initial={{
+    case: function() {
+      let amounts = [1000, 100, 200, 10000, 6000, 200000];
+      amounts = amounts.sort((a, b) => a > b ? 1 : -1);
+      document
+        .getElementById('case6-result')
+        .textContent =
+          'Sorted result: ' + JSON.stringify(amounts);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ fontWeight: 'bold' }} id="case6-result">Sorted result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+"Oh yeah, now the result is right, sorted from the smallest number to the largest. But hold on, what does that even mean? Makes no sense 😕". Okay, let's take it apart and see what it actually does inside, lol.
+
+```js
+amounts = amounts.sort((a, b) => {
+  console.log(`Log: a(${a}) > b(${b}) ? ${a > b ? 1 : -1}`)
+  return a > b ? 1 : -1
+})
+
+console.log('Sorted result:', amounts)
+```
+<State
+  initial={{
+    case: function() {
+      let amounts = [1000, 100, 200, 10000, 6000, 200000];
+      const log = document.getElementById('case7-log');
+      log.textContent = '';
+      amounts = amounts.sort((a, b) => {
+        document.getElementById('case7-log').innerHTML += `Log: a(${a}) > b(${b}) ? ${a > b ? 1 : -1}<br />`;
+        return a > b ? 1 : -1;
+      });
+      document.getElementById('case7-result').textContent = 'Sorted result: ' + JSON.stringify(amounts);
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.case}>See Result</Button>
+        <p style={{ fontWeight: 'bold' }}>Before sorting: [1000,100,200,10000,6000,200000]</p>
+        <p style={{ fontWeight: 'bold' }} id="case7-log">...</p>
+        <p style={{ fontWeight: 'bold' }} id="case7-result">Sorted result: ...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+For a short explanation, just think of `a` and `b` as the values being compared. If the *return* is `1`, we put `a` on the right, after `b`. If the *return* is `-1`, we put `a` on the left, before `b`. And.. that's what the real sorted order looks like, not like what we tried earlier with `1000 < 200` 😠.
+
+---
+
+#### Wrapping up
+So the benefit of using ***higher-order functions*** is that we don't have to rack our brains over the algorithm anymore, and we don't need *loops* anymore when dealing with *arrays*. We just put in the conditions we want to *return*. Let JavaScript do the rest 😆. Even so, we should at least know a bit about what actually happens in the process, so we know what we need to *return*.
+
+Take sorting, for example: there are actually lots of sorting algorithms, *bubble*, *quick*, *insertion*, *selection* etc. And btw, I don't guarantee that using ***higher-order functions*** gets us the *best performance*, but at least compared to writing our own algorithm that ends up slower anyway, better to use ***higher-order functions***, lol. What we're looking at here isn't performance either, but practicality, usually called *best practice*. You can see that none of the code we wrote from start to finish is long or long-winded; it's all short and easy to read and explain.
+
+---
+
+JavaScript is one of the high-level programming languages that follows the ***functional (simple, practical and cool)*** school, unlike its big brother Java, which follows the ***object oriented (strict, strong and tough)*** school. <del>Eh btw, JavaScript and Java have nothing to do with each other hahaha</del>. And as *functional* kids, we have to understand and master ***higher-order functions***, right? No point calling yourself a *functional* kid if you still use *loops* to deal with *arrays*, hahaha 😆😆.
+
+Okay cool, I think that's it for now. I hope what I wrote here is useful to everyone reading. That's all from me, see you again. Don't forget to share 😊
