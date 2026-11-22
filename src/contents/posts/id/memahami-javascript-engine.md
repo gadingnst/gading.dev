@@ -11,36 +11,36 @@ tags: ["javascript", "engineering"]
 image: "/media/blog/understanding-javascript-engine/js-banner.png"
 ---
 
-JavaScript semakin populer, banyak tim yang memanfaatkannhya di berbagai bidang, seperti *front-end*, *back-end*, aplikasi *hybrid*, perangkat *embedded* dan masih banyak lagi. Dalam artikel ini, kita akan menggali JavaScript lebih dalam dan bagaimana cara kerjanya.
+JavaScript makin populer, dan banyak tim yang make dia di macem-macem tempat: *front-end*, *back-end*, aplikasi *hybrid*, perangkat *embedded*, dan masih banyak lagi. Di artikel ini gw mau ngulik JavaScript lebih dalem, gimana sebenernya dia jalan.
 
 ### Overview
-Hampir semua orang telah mendengar konsep *V8 Engine*, dan juga banyak orang tahu bahwa JavaScript adalah bahasa *single-threaded* atau menggunakan *callback queue*.
+Hampir semua orang udah pernah denger soal *V8 Engine*, dan banyak juga yang tau kalau JavaScript itu bahasa *single-threaded* atau pake *callback queue*.
 
-Di postingan ini, kita akan go through ke semua konsep itu dengan detail, dan menjelaskan bagaimana program JavaScript berjalan. Dengan mengetahui detail tersebut, kita bisa menulis program dengan baik, memanfaatkan API yang di-*provide* untuk sebuah aplikasi *non-blocking*
+Di postingan ini kita bakal go through semua konsep itu satu-satu, dan ngejelasin gimana program JavaScript jalan. Kalau udah paham detailnya, lu bisa nulis program yang lebih bener dan manfaatin API yang di-*provide* buat bikin aplikasi yang *non-blocking*.
 
-Jika kamu baru di JavaScript, tulisan ini dapat membantu untuk memahami kenapa JavaScript begitu "aneh" jika dibandingkan dengan bahasa lain. Dan jika kamu adalah JavaScript Developer yang berpengalaman, semoga tulisan ini bisa memberi *insight* baru dalam bagaimana JavaScript Runtime yang kamu pakai sehari-hari bekerja.
+Kalau lu baru di JavaScript, tulisan ini bisa bantu lu paham kenapa JavaScript kerasa "aneh" dibanding bahasa lain. Kalau lu udah lama jadi JavaScript Developer, semoga tulisan ini ngasih *insight* baru soal gimana JavaScript Runtime yang lu pake tiap hari itu kerja.
 
-Pada artikel ini, kita akan membahas cara kerja internal JavaScript di *run-time environment* dan browser. Ini akan menjadi gambaran *walk-through* dari semua komponen inti yang terlibat dalam eksekusi kode JavaScript. Kita akan membahas komponen-komponen berikut:
+Di artikel ini kita bahas cara kerja internal JavaScript di *run-time environment* dan browser. Anggep aja ini *walk-through* singkat dari semua komponen inti yang kepake waktu kode JavaScript dieksekusi. Komponen yang bakal kita bahas:
 
 - *JavaScript Engine*
 - *JavaScript Runtime Environment* atau JRE
 - *Callstack*
 - *Concurrency* dan *Event Loop*
 
-Mari kita mulai dari ***JavaScript Engine***.
+Kita mulai dari ***JavaScript Engine*** dulu.
 
 ---
 
 #### Javascript Engine
-Seperti yang mungkin kamu dengar sebelumnya, JavaScript adalah bahasa pemrograman *interpreted*. Artinya, source-codenya tidak di-*compile* ke kode biner untuk dieksekusi.
+Mungkin lu udah pernah denger kalau JavaScript itu bahasa pemrograman *interpreted*. Artinya source code-nya nggak di-*compile* ke kode biner dulu sebelum dieksekusi.
 
-Bagaimana komputer bisa memahami perintah yang ditulis dengan teks skrip mentah?
+Terus gimana komputer bisa ngerti perintah yang ditulis sebagai teks skrip mentah?
 
-Itulah apa yang dilakukan dengan ***JavaScript Engine***. *JavaScript Engine* simplenya adalah program komputer yang mengeksekusi kode JavaScript. *JavaScript Engine* sudah menjadi bawaan di kebanyakan browser modern sekarang. Ketika file JavaScript diload di browser, *JavaScript Engine* akan mengeksekusi setiap baris kode dari atas ke bawah. *JavaScript Engine* akan memparsing kode setiap baris, mengkonversikan kode tersebut ke dalam kode mesin dan mengeksekusinya.
+Nah, itu kerjaannya ***JavaScript Engine***. Simpelnya, *JavaScript Engine* itu program komputer yang ngeksekusi kode JavaScript. Kebanyakan browser modern sekarang udah bawa *JavaScript Engine* sendiri. Waktu file JavaScript di-load di browser, *JavaScript Engine* bakal ngeksekusi tiap baris kode dari atas ke bawah. Tiap baris di-parsing, dikonversi ke kode mesin, terus dieksekusi.
 
 ![JS Engine](/media/blog/understanding-javascript-engine/js-engine.png)
 
-Setiap browser mempunyai *JavaScript Engine* miliknya sendiri, tapi yang *JS Engine* paling dikenal adalah ***Google V8***. *V8 Engine* dipersembahkan oleh *Google Chrome*, dan juga digunakan oleh *JavaScript Runtime* seperti *Node.js* yang kita kenal. Beberapa *JS Engine* dalam setiap browser modern bisa kita lihat dalam tabel di bawah ini:
+Tiap browser punya *JavaScript Engine* sendiri, tapi *JS Engine* yang paling dikenal itu ***Google V8***. *V8 Engine* dipake di *Google Chrome*, dan juga dipake sama *JavaScript Runtime* kayak *Node.js* yang kita kenal. Beberapa *JS Engine* di browser modern bisa lu liat di tabel ini:
 
 JS Engine             | Browser
 --------------------- | -------------------
@@ -52,20 +52,20 @@ Chakra                | Microsoft Edge Browser
 ---
 
 #### Browser Engine
-*Browser Engine* terdiri atas dua komponen utama:
-- *Memory Heap* — di sinilah alokasi memori terjadi.
-- *Callstack* — di sinilah *stack frame* saat kode dijalankan. Anggaplah setiap baris kode itu adalah *stack* (tumpukan).
+*Browser Engine* punya dua komponen utama:
+- *Memory Heap*: tempat alokasi memori terjadi.
+- *Callstack*: tempat *stack frame* waktu kode dijalanin. Anggep aja tiap baris kode itu *stack* (tumpukan).
 
 ![Heap dan Callstack](/media/blog/understanding-javascript-engine/heap-callstack.png)
 
-Setiap mesin JavaScript pasti berisi *callstack* dan *heap*. *Callstack* bisa dianggap seperti suatu kontainer yang akan dijadikan tempat utk mengeksekusi kode. Kemudian *heap* adalah kumpulan memori tidak terstruktur yang menyimpan semua objek yang dibutuhkan aplikasi kita.
+Tiap mesin JavaScript pasti punya *callstack* dan *heap*. *Callstack* bisa dianggep kayak kontainer, tempat kode dieksekusi. Sedangkan *heap* itu kumpulan memori nggak terstruktur yang nyimpen semua objek yang dibutuhin aplikasi kita.
 
 ---
 
 #### Runtime
-Sejauh kita berdiskusi tentang *JavaScript Engine*, tapi *JS Engine* tidak berjalan secara terisolasi. *JS Engine* berjalan di dalam lingkungan yang disebut *JavaScript Runtime Environment* (atau biasa disingkat dengan JRE) bersama dengan banyak komponen lainnya. JRE bertanggung jawab untuk membuat JavaScript berjalan secara asinkron. Inilah alasan JavaScript dapat menambahkan *Event Listener* dan membuat *HTTP request* secara asinkron.
+Dari tadi kita ngomongin *JavaScript Engine*, tapi *JS Engine* itu nggak jalan sendirian. Dia jalan di dalem lingkungan yang namanya *JavaScript Runtime Environment* (biasa disingkat JRE), bareng banyak komponen lain. JRE inilah yang bikin JavaScript bisa jalan secara asinkron. Gara-gara JRE, JavaScript bisa nambahin *Event Listener* dan bikin *HTTP request* secara asinkron.
 
-JRE seperti kontainer yang terdiri dari beberapa komponen:
+JRE itu kayak kontainer yang isinya beberapa komponen:
 - *JS Engine*
 - *Web API*
 - *Callback Queue* atau *Message Queue*
@@ -74,16 +74,16 @@ JRE seperti kontainer yang terdiri dari beberapa komponen:
 
 ![Mekanisme JS Runtime](/media/blog/understanding-javascript-engine/runtime-mechanics.png)
 
-Disini kita dapat melihat *Event Loop* dan *Callback Queue* yang sering dibicarakan oleh orang-orang.
+Di sini kita bisa liat *Event Loop* dan *Callback Queue* yang sering diomongin orang-orang.
 
 ---
 
 #### Callstack
-JavaScript adalah bahasa pemrograman *single-threaded*, yang artinya dia mempunyai *Callstack* tunggal. Oleh karena itu, dia hanya dapat melakukan satu hal pada satu waktu.
+JavaScript itu bahasa pemrograman *single-threaded*, artinya dia cuma punya satu *Callstack*. Makanya dia cuma bisa ngerjain satu hal dalam satu waktu.
 
-*Callstack* adalah struktur data yang pada dasarnya merekam "di dalam proses apa kita sedang berada". Misal, jika kita masuk ke suatu fungsi, kita meletakkannya di atas tumpukan atau *stack*. Jika kita me-*return* suatu fungsi, kita keluar dari bagian atas *stack*.
+*Callstack* itu struktur data yang pada dasarnya nyatet "kita lagi ada di proses mana". Misal kita masuk ke suatu fungsi, fungsi itu ditaruh di atas tumpukan atau *stack*. Kalau fungsi itu di-*return*, dia keluar dari bagian atas *stack*.
 
-Mari kita melihat contoh potongan kode berikut:
+Coba liat potongan kode ini:
 ```js
 function multiply(x, y) {
   return x * y;
@@ -97,25 +97,25 @@ function printSquare(x) {
 printSquare(5);
 ```
 
-Ketika *JS Engine* mulai mengeksekusi kode tersebut, *Callstack* akan kosong, Setelah itu, langkah-langkahnya adalah seperti pada gambar di bawah ini:
+Waktu *JS Engine* mulai ngeksekusi kode di atas, *Callstack* masih kosong. Abis itu langkah-langkahnya kayak di gambar ini:
 
 ![Langkah-langkah Callstack](/media/blog/understanding-javascript-engine/callstack-steps.png)
 
-Setiap entri yang berada di dalam *Callstack* disebut *Stack Frame*
+Tiap entri di dalem *Callstack* disebut *Stack Frame*.
 
-Menjalankan kode dalam *single-thread* dapat sangat mudah, kareka kita tidak harus berurusan dengan skenario rumit seperti di lingkungan *multi-threaded*, seperti *deadlocks*, dsb.
+Jalanin kode di *single-thread* itu bisa gampang banget, karena kita nggak perlu ngurusin skenario ribet yang ada di lingkungan *multi-threaded*, kayak *deadlocks* dan sejenisnya.
 
-Akan tetapi, menjalankan *single-thread* juga cukup mempunyai limitasi.
+Tapi jalan di *single-thread* juga ada batasannya.
 
 ---
 
 #### Concurrency & Event Loop
-Apa yang terjadi ketika kamu memiliki panggilan fungsi dalam *Callstack* yang membutuhkan banyak waktu untuk diproses? Misal, bayangkan kamu ingin melakukan transformasi gambar yang kompleks dengan JavaScript di browser.
+Apa yang terjadi kalau ada panggilan fungsi di *Callstack* yang butuh waktu lama buat diproses? Misal, bayangin lu mau ngelakuin transformasi gambar yang kompleks pake JavaScript di browser.
 
-Kamu mungkin bertanya, kenapa hal ini menjadi masalah? Masalahnya adalah meskipun *Callstack* memiliki fungsi untuk dijalankan, browser sebenarnya tidak dapat melakukan suatu tugas yang lain, karena dia akan memblokir sebuah tugas selanjutnya sebelum tugas yang sedang dalam proses dieksekusi belum selesai. Ini berarti bahwa browser tidak dapat merender, dan tidak dapat menjalan kode lain, dia akan *stuck*. Dan ini akan menimbulkan masalah jika kamu menginginkan UI yang berjalan secara lancar atau *smooth* di aplikasimu.
+Mungkin lu nanya, emang masalahnya di mana? Masalahnya, selama *Callstack* masih punya fungsi yang harus dijalanin, browser nggak bisa ngerjain hal lain, karena tugas berikutnya keblokir sampai tugas yang lagi jalan selesai. Browser nggak bisa render, nggak bisa jalanin kode lain, dia *stuck*. Ini jadi masalah kalau lu pengen UI aplikasi lu jalan lancar atau *smooth*.
 
-Dan itu bukan satu-satunya masalah. Setelah browser kamu mulai memproses begitu banyak tugas dalam *Callstack*, browser mungkin berhenti merespon untuk waktu yang cukup lama. Dan sebagian besar browser akan mengambil tindakan dengan memunculkan tampilan *error*, atau menanyakan apakah kamu ingin menghentikan laman web. Kamu mungkin pernah mengalami hal ini.
+Dan itu bukan satu-satunya masalah. Begitu browser mulai ngeproses banyak banget tugas di *Callstack*, browser bisa berhenti ngerespon dalam waktu yang cukup lama. Kebanyakan browser bakal nampilin *error*, atau nanya apakah lu mau ngehentiin laman web-nya. Mungkin lu pernah ngalamin ini.
 
 ---
 
-Untuk pembahasan tentang ***Concurrency dan Event Loop***, mungkin akan kita bahas di artikel berikutnya. Stay Tuned ya!
+Soal ***Concurrency dan Event Loop***, kayaknya bakal gw bahas di artikel berikutnya. Stay tuned ya!

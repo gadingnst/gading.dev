@@ -11,36 +11,36 @@ tags: ["javascript", "engineering"]
 image: "/media/blog/understanding-javascript-engine/js-banner.png"
 ---
 
-As JavaScript is getting more and more popular, teams are leveraging its support on many levels in their stack — *front-end*, *back-end*, *hybrid* apps, *embedded* devices and much more. This article is meant to be aimed at digging deeper into JavaScript and how it really works.
+JavaScript keeps getting more popular, and teams use it all over their stack: *front-end*, *back-end*, *hybrid* apps, *embedded* devices and more. In this article I want to dig deeper into JavaScript and how it actually runs.
 
 ### Overview
-Almost everyone has already heard of the *V8 Engine* as a concept, and most people know that JavaScript is *single-threaded* or that it is using a *callback queue*.
+Almost everyone has heard of the *V8 Engine*, and most people know that JavaScript is *single-threaded* or that it uses a *callback queue*.
 
-In this post, we’ll go through all these concepts in detail and explain how JavaScript actually runs. By knowing these details, you’ll be able to write better, *non-blocking* apps that are properly leveraging the provided APIs.
+In this post we'll go through these concepts one by one and explain how a JavaScript program runs. Once you know the details, you can write better *non-blocking* apps that use the provided APIs properly.
 
-If you’re relatively new to JavaScript, this blog post will help you understand why JavaScript is so "weird" compared to other languages. And if you’re an experienced JavaScript developer, hopefully, it will give you some fresh insights on how the JavaScript Runtime you’re using every day actually works.
+If you're new to JavaScript, this post should help you see why JavaScript feels so "weird" compared to other languages. If you've been writing JavaScript for a while, I hope it gives you something new about how the JavaScript Runtime you use every day works.
 
-In this article, we will discuss the internal working of JavaScript in the *run-time environment* and the browser. This will be an overview walk-through of all the core components that are involved in the execution of JavaScript code. We will discuss the following components:
+We'll look at how JavaScript works internally in the *run-time environment* and the browser. Think of it as a short walk-through of the core components involved in running JavaScript code. The components:
 
 - *JavaScript Engine*
 - *JavaScript Runtime Environment*
 - *The Callstack*
 - *Concurrency* and *Event Loop*
 
-Let’s begin with the ***JavaScript engine***.
+We'll start with the ***JavaScript engine***.
 
 ---
 
 #### Javascript Engine
-As you may heard before, JavaScript is an *interpreted* programming language. It means that source code isn’t *compiled* into binary code prior to execution.
+You may have heard that JavaScript is an *interpreted* programming language. That means the source code isn't *compiled* into binary code before it runs.
 
-How your computer can understand what to do with a plain text script?
+So how does your computer know what to do with a plain text script?
 
-That’s the job for a JavaScript engine. JavaScript engine is simply a computer program that execute JavaScript code. JavaScript engines are inbuilt in all the modern browsers today. When the JavaScript file is loaded in the browser, JavaScript engine will execute each line of the file from top to bottom (to simplify the explanation we are avoiding *hoisting* in JS). JavaScript engine will parse the code line by line, convert it into machine code and then execute it.
+That's the JavaScript engine's job. A JavaScript engine is a computer program that executes JavaScript code. Most modern browsers ship with one built in. When a JavaScript file is loaded in the browser, the engine executes each line of the file from top to bottom (to keep this simple I'm leaving out *hoisting* in JS). It parses the code line by line, converts it into machine code and then executes it.
 
 ![JS Engine](/media/blog/understanding-javascript-engine/js-engine.png)
 
-Every browser has its own JavaScript engine, but the most well known engine is *Google’s V8*. The V8 engine powers Google Chrome but also Node.js which is that JavaScript Runtime. Some *JS Engine* in every modern browser we can see in the table below:
+Every browser has its own JavaScript engine, but the best known one is *Google's V8*. V8 runs in Google Chrome, and it's also the engine behind Node.js, the JavaScript Runtime. Here are the *JS Engines* in the major modern browsers:
 
 JS Engine             | Browser
 --------------------- | -------------------
@@ -52,20 +52,20 @@ Chakra                | Microsoft Edge Browser
 ---
 
 #### Browser engines
-The Engine consists of two main components:
-- *Memory Heap* — this is where the memory allocation happens.
-- *Callstack* — this is where your stack frames are as your code executes.
+The engine has two main components:
+- *Memory Heap*: where memory allocation happens.
+- *Callstack*: where your stack frames live as your code executes.
 
 ![Heap & Callstack](/media/blog/understanding-javascript-engine/heap-callstack.png)
 
-Any JavaScript engine always contains a *callstack* and a *heap*. The *callstack* is where our code is actually executed. Then the *heap* is an unstructured memory pool which stores all the objects that our application needs.
+Every JavaScript engine has a *callstack* and a *heap*. The *callstack* is where our code actually runs. The *heap* is an unstructured pool of memory that stores all the objects our application needs.
 
 ---
 
 #### The Runtime
-So far we have discussed JavaScript engine, but the JavaScript engine doesn’t run in isolation. It runs inside an environment called *JavaScript Runtime Environment* along with many other components. JRE is responsible for making JavaScript asynchronous. It is the reason JavaScript is able to add event listeners and make *HTTP* requests asynchronously.
+So far we've talked about the JavaScript engine, but the engine doesn't run on its own. It runs inside an environment called the *JavaScript Runtime Environment* (JRE), along with a bunch of other components. The JRE is what makes JavaScript asynchronous. It's why JavaScript can add event listeners and make *HTTP* requests asynchronously.
 
-JRE is just like a container which consists of the following components:
+The JRE is like a container holding these components:
 - JS Engine
 - Web API
 - Callback Queue or message queue
@@ -74,16 +74,16 @@ JRE is just like a container which consists of the following components:
 
 ![JS Runtime Mechanics](/media/blog/understanding-javascript-engine/runtime-mechanics.png)
 
-And then, we have the so popular event loop and the *callback queue*.
+Here you can see the event loop and the *callback queue* people talk about so much.
 
 ---
 
 #### The Callstack
-JavaScript is a *single-threaded* programming language , which means it has a single *callstack*. Therefore it can do one thing at a time.
+JavaScript is a *single-threaded* programming language, which means it has a single *callstack*. So it can only do one thing at a time.
 
-The *callstack* is a data structure which records basically where in the program we are. If we step into a function, we put it on the top of the stack. If we return from a function, we pop off the top of the stack. That’s all the stack can do.
+The *callstack* is a data structure that basically records where in the program we are. Step into a function and it goes on top of the stack. Return from a function and it gets popped off the top. That's all the stack does.
 
-Let’s see an example. Take a look at the following code:
+Here's an example:
 ```js
 function multiply(x, y) {
   return x * y;
@@ -97,28 +97,28 @@ function printSquare(x) {
 printSquare(5);
 ```
 
-When the engine starts executing this code, the *callstack* will be empty. Afterwards, the steps will be the following:
+When the engine starts running this code, the *callstack* is empty. After that, the steps look like this:
 
 ![Callstack Steps](/media/blog/understanding-javascript-engine/callstack-steps.png)
 
 Each entry in the *callstack* is called a *Stack Frame*.
 
-Running code on a single thread can be quite easy since you don’t have to deal with complicated scenarios that are arising in *multi-threaded* environments — for example, deadlocks.
+Running code on a single thread can be pretty easy, since you don't have to deal with the messy scenarios that come up in *multi-threaded* environments, like deadlocks.
 
-But running on a single thread is quite limiting as well. Since JavaScript has a single *callstack*.
+But a single thread has its limits too, since JavaScript only has one *callstack*.
 
 ---
 
 #### Concurrency & the Event Loop
-What happens when you have function calls in the *callstack* that take a huge amount of time in order to be processed? For example, imagine that you want to do some complex image transformation with JavaScript in the browser.
+What happens when a function call in the *callstack* takes a long time to process? Say you want to do a complex image transformation with JavaScript in the browser.
 
-You may ask — why is this even a problem? The problem is that while the *callstack* has functions to execute, the browser can’t actually do anything else — it’s getting blocked. This means that the browser can’t render, it can’t run any other code, it’s just stuck. And this creates problems if you want nice fluid UIs in your app.
+Why is that a problem? Because while the *callstack* has functions to execute, the browser can't do anything else. It's blocked. It can't render, it can't run any other code, it's just stuck. That's a problem if you want a smooth UI in your app.
 
-And that’s not the only problem. Once your browser starts processing so many tasks in the *callstack*, it may stop being responsive for quite a long time. And most browsers take action by raising an error, asking you whether you want to terminate the web page.
+And that's not the only problem. Once your browser is processing a lot of tasks in the *callstack*, it can stop responding for quite a while. Most browsers then show an error asking whether you want to close the page. You've probably seen this.
 
 ---
 
-About ***Concurrency and Event Loop***, maybe we will discuss it in the next article. Stay Tuned!
+I'll probably cover ***Concurrency and Event Loop*** in the next article. Stay tuned!
 
 ---
 
