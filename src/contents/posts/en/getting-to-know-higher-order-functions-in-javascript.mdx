@@ -1,0 +1,387 @@
+---
+title: 'Getting to know higher-order functions in JavaScript'
+slug: {
+  en: 'getting-to-know-higher-order-functions-in-javascript',
+  id: 'mengenal-higher-order-function-di-javascript'
+}
+date: 2019-08-19
+description: 'Getting to know higher-order functions in JavaScript, such as: map(), filter() and reduce()'
+keywords: 'functional, higher-order function, fungsi, javascript, array, map, filter, reduce, tutorial'
+tags: ['javascript', 'functional', 'higherorderfunction']
+image: '/media/default-banners/7.jpg'
+series: { id: "higher-order-function", title: "Getting to Know Higher-Order Functions", part: 1 }
+---
+
+If you're learning JavaScript, you'll run into the term *higher-order function*. It may sound complicated at first, but it's actually easy once you study it and understand it. What makes JavaScript suitable for functional programming is that it has *higher-order functions*. *Higher-Order functions* are actually *common* in JavaScript; if you've programmed in JavaScript before, you may have used them without realizing it.
+
+### Getting to Know Higher-Order Functions
+A *Higher-Order function* is a function that operates on other functions, either by taking them as arguments or by returning them. Simply put, a *higher-order function* is a function that takes a function as an argument or returns a function as its *output*.
+
+In this piece, we'll cover a few *higher-order functions*: `map()`, `filter()` and `reduce()`.
+
+#### Array.map()
+`Array.map()` is one of the built-in *higher-order function* methods. It creates a new *array* by calling the provided *callback* function on every element in the *array*. The `map()` method takes each value returned by the *callback* function, then builds a new array from those new values.
+
+![Array.map() illustration](/media/blog/mengenal-higher-order-function-di-javascript/map.gif)
+
+To make it clearer, let's practice. Say we have an *array* of *numbers* holding birth years. We want to make a new *array* that calculates ages from those birth years and the current year.
+
+**Using a traditional *for-loop***
+```js
+const tahunLahir = [1998, 1999, 2000, 2001, 2002]
+const umur = []
+
+for (let i = 0; i < tahunLahir.length; i++) {
+  umur.push(new Date().getFullYear() - tahunLahir[i])
+}
+
+alert(umur) // result: [21,20,19,18,17]
+```
+<State
+  initial={{
+    withoutMap: function() {
+      let tahunLahir = [1998, 1999, 2000, 2001, 2002]
+      const umur = []
+      for (let i = 0; i < tahunLahir.length; i++) {
+        umur.push(new Date().getFullYear() - tahunLahir[i])
+      }
+      alert(umur)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button className="bg-accent-1 rounded-8" onClick={state.withoutMap}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+**Using *Array.map()***
+```js
+const tahunLahir = [1998, 1999, 2000, 2001, 2002]
+const umur = tahunLahir.map(tahun => new Date().getFullYear() - tahun)
+
+alert(umur) // result: [21,20,19,18,17]
+```
+<State
+  initial={{
+    withMap: function() {
+      let tahunLahir = [1998, 1999, 2000, 2001, 2002]
+      const umur = tahunLahir.map(tahun => new Date().getFullYear() - tahun)
+      alert(umur)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button onClick={state.withMap}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+You can see the code is shorter when we use `Array.map()`. The *callback* function `tahun => new Date().getFullYear() - tahun` is called on every member of the array in the **tahunLahir** (birth year) *variable*
+
+### Array.filter()
+
+`Array.filter()` is one of the built-in *higher-order function* methods. It creates a new *array* by running a *callback* function on every member, *filtering* the values in the existing *array*. The arguments of the `filter()` *callback* are: *value*, *index*.
+
+![Array.filter() illustration](/media/blog/mengenal-higher-order-function-di-javascript/filter.gif)
+
+To make it clearer, let's see it in action. Say we have an *array* of *objects* with name (nama) and age (umur) properties. We want to make an *array* holding only the people aged 18 or older.
+
+**Using a traditional *for-loop* with an *if* statement**
+```js
+const orang = [
+  { nama: 'Sutan', umur: 16 },
+  { nama: 'Joni', umur: 18 },
+  { nama: 'Mark', umur: 27 },
+  { nama: 'Back', umur: 14 },
+  { nama: 'Toni', umur: 24},
+]
+
+const orangDiizinkan = []
+
+for (let i = 0; i < orang.length; i++) {
+  if (orang[i].umur >= 18) {
+    orangDiizinkan.push(orang[i].nama);
+  }
+}
+
+alert(orangDiizinkan) // ['Joni','Mark','Toni']
+```
+<State
+  initial={{
+    withoutFilter: function() {
+      let orang = [
+        { nama: 'Sutan', umur: 16 },
+        { nama: 'Joni', umur: 18 },
+        { nama: 'Mark', umur: 27 },
+        { nama: 'Back', umur: 14 },
+        { nama: 'Toni', umur: 24},
+      ]
+      const orangDiizinkan = []
+      for (let i = 0; i < orang.length; i++) {
+        if (orang[i].umur >= 18) {
+          orangDiizinkan.push(orang[i].nama);
+        }
+      }
+      alert(orangDiizinkan)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button onClick={state.withoutFilter}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+**Using *Array.filter()* and *Array.map()***
+```js
+let orang = [
+  { nama: 'Sutan', umur: 16 },
+  { nama: 'Joni', umur: 18 },
+  { nama: 'Mark', umur: 27 },
+  { nama: 'Back', umur: 14 },
+  { nama: 'Toni', umur: 24},
+]
+
+orang = orang.filter(orang => orang.umur >= 18)
+alert(orang.map(orang => orang.nama)) // ['Joni','Mark','Toni']
+```
+<State
+  initial={{
+    withFilter: function() {
+      let orang = [
+        { nama: 'Sutan', umur: 16 },
+        { nama: 'Joni', umur: 18 },
+        { nama: 'Mark', umur: 27 },
+        { nama: 'Back', umur: 14 },
+        { nama: 'Toni', umur: 24},
+      ]
+      orang = orang.filter(orang => orang.umur >= 18)
+      alert(orang.map(orang => orang.nama))
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button onClick={state.withFilter}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+### Array.reduce()
+
+`Array.reduce()` is one of the built-in *higher-order function* methods. It runs a *callback* function on every member of the *array* it's called on and produces a *single output*. The `reduce()` method takes 2 parameters: the *callback* function and an *initialValue* (*optional but recommended*). The *callback* function gets 4 arguments: *accumulator*, *currentValue*, *currentIndex* (optional), *sourceArray* (optional).
+
+If no *initialValue* is provided, the *accumulator* will be the first element in the *array* and the *currentValue* will be the second element in the *array*.
+
+![Array.reduce() illustration](/media/blog/mengenal-higher-order-function-di-javascript/reduce.gif)
+
+The explanation of `reduce()` does sound a bit complicated. For a simple example, say we have data like this (a shopping cart, keranjang):
+
+```js
+const keranjang = [
+  {
+    produk: 'Indomie Mie Goreng',
+    harga: 2500
+  },
+  {
+    produk: 'Aqua Gelas',
+    harga: 500
+  },
+  {
+    produk: 'Sepatu Sport',
+    harga: 75000
+  }
+]
+```
+
+Then we want to add up the total price from the price (harga) property in that cart data.
+
+**Using a traditional *for-loop***
+```js
+let totalHarga = 0
+for (let i = 0; i < keranjang.length; i++) {
+  totalHarga += keranjang[i].harga
+}
+alert('Rp.' + totalHarga) // Result: Rp.78000
+```
+<State
+  initial={{
+    withoutReduce: function() {
+      let keranjang = [
+        {
+          produk: 'Indomie Mie Goreng',
+          harga: 2500
+        },
+        {
+          produk: 'Aqua Gelas',
+          harga: 500
+        },
+        {
+          produk: 'Sepatu Sport',
+          harga: 75000
+        }
+      ]
+      let totalHarga = 0
+      for (let i = 0; i < keranjang.length; i++) {
+        totalHarga += keranjang[i].harga
+      }
+      alert('Rp.' + totalHarga)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button onClick={state.withoutReduce}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+**Using *Array.reduce()***
+```js
+const totalHarga = keranjang.reduce((acc, cur) => acc + cur.harga, 0)
+alert('Rp.' + totalHarga) // Result: Rp.78000
+```
+<State
+  initial={{
+    withReduce: function() {
+      let keranjang = [
+        {
+          produk: 'Indomie Mie Goreng',
+          harga: 2500
+        },
+        {
+          produk: 'Aqua Gelas',
+          harga: 500
+        },
+        {
+          produk: 'Sepatu Sport',
+          harga: 75000
+        }
+      ]
+      const totalHarga = keranjang.reduce((acc, cur) => acc + cur.harga, 0)
+      alert('Rp.' + totalHarga)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <Button onClick={state.withReduce}>See result</Button>
+    )}
+  </State.Observe>
+</State>
+
+### So, what's the advantage?
+You might be wondering what the advantage of using *higher-order functions* is over the usual traditional *for-loop*. Well, with *higher-order functions*, we can do *chaining*. *Chaining* is a programming technique that uses the *return* of one function as the argument for the next function. Still not clear? Let's look at an example. Say we have data like this.
+
+```js
+const siswa = [
+  {
+    nama: 'Sutan Gading',
+    nilaiTugas: 70,
+    nilaiUts: 80,
+    nilaiUas: 74
+  },
+  {
+    nama: 'Alex',
+    nilaiTugas: 30,
+    nilaiUts: 40,
+    nilaiUas: 97
+  },
+  {
+    nama: 'Si Muning',
+    nilaiTugas: 25,
+    nilaiUts: 40,
+    nilaiUas: 75
+  },
+  {
+    nama: 'Toni Stark',
+    nilaiTugas: 60,
+    nilaiUts: 70,
+    nilaiUas: 94
+  },
+  {
+    nama: 'Jay Boy',
+    nilaiTugas: 40,
+    nilaiUts: 50,
+    nilaiUas: 54
+  }
+]
+```
+
+From that data, we want the average final score of all the students who passed (*Note: a student passes with a final score greater than or equal to 60*), using *chaining* with *higher-order functions*. The solution looks roughly like this:
+
+```js
+const siswaLulus = siswa.map(item => ({
+  nama: item.nama,
+  nilaiAkhir: (item.nilaiTugas * 0.2) + (item.nilaiUts * 0.3) + (item.nilaiUas * 0.5)
+})).filter(item => item.nilaiAkhir >= 60)
+
+const rataNilaiLulus = siswaLulus.reduce((acc, cur) => acc + cur.nilaiAkhir, 0) / siswaLulus.length
+
+document.writeln('Students who passed: ', JSON.stringify(siswaLulus, null, 2))
+document.write('Average score of students who passed: ', Number(rataNilaiLulus).toFixed(2))
+```
+<State
+  initial={{
+    kasus: function() {
+      const siswa = [
+        {
+          nama: 'Sutan Gading',
+          nilaiTugas: 70,
+          nilaiUts: 80,
+          nilaiUas: 74
+        },
+        {
+          nama: 'Alex',
+          nilaiTugas: 30,
+          nilaiUts: 40,
+          nilaiUas: 97
+        },
+        {
+          nama: 'Si Muning',
+          nilaiTugas: 25,
+          nilaiUts: 40,
+          nilaiUas: 75
+        },
+        {
+          nama: 'Toni Stark',
+          nilaiTugas: 60,
+          nilaiUts: 70,
+          nilaiUas: 94
+        },
+        {
+          nama: 'Jay Boy',
+          nilaiTugas: 40,
+          nilaiUts: 50,
+          nilaiUas: 54
+        }
+      ]
+      const siswaLulus = siswa.map(item => ({
+        nama: item.nama,
+        nilaiAkhir: (item.nilaiTugas * 0.2) + (item.nilaiUts * 0.3) + (item.nilaiUas * 0.5)
+      })).filter(item => item.nilaiAkhir >= 60)
+      const rataNilaiLulus = siswaLulus.reduce((acc, cur) => acc + cur.nilaiAkhir, 0) / siswaLulus.length
+      document.getElementById('siswa').textContent = 'Students who passed: ' + JSON.stringify(siswaLulus, null, 2)
+      document.getElementById('ratanilai').textContent = 'Average score of students who passed: ' + Number(rataNilaiLulus).toFixed(2)
+    }
+  }}
+>
+  <State.Observe>
+    {({ state }) => (
+      <>
+        <Button onClick={state.kasus}>See result</Button>
+        <p style={{ whiteSpace: 'pre' }} id="siswa">...</p>
+        <p id="ratanilai">...</p>
+      </>
+    )}
+  </State.Observe>
+</State>
+
+How's that? Simple and short, right? It would probably be longer and more long-winded if we solved the problem above with the usual traditional *for-loop*. So *higher-order functions* are here to make solving problems easier and shorter.
+
+### Conclusion
+By now we know what a *higher-order function* is. In short, a *higher-order function* is a function that can take a function as an argument and can even return a function. A *Higher-Order function* is just like a regular function with the extra ability to take and return other functions with defined arguments and output. There are actually more built-in *Higher-Order functions* in JavaScript, like `find()`, `sort()` and others. And we can even write our own *higher-order functions*! Hmm, maybe we'll cover that another time. Don't forget to share 😄
