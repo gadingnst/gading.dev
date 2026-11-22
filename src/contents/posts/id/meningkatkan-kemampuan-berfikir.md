@@ -1,7 +1,7 @@
 ---
 title: 'Meningkatkan Kemampuan Berfikir dan Problem Solving'
 slug: {
-  en: null,
+  en: 'improving-thinking-skills',
   id: 'meningkatkan-kemampuan-berfikir'
 }
 date: 2021-04-21
