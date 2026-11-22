@@ -11,48 +11,48 @@ tags: ["agent-memory", "ai", "rag", "mcp", "graphrag"]
 image: "/media/blog/building-graphrag-neo4j-graphitti/banner.png"
 ---
 
-RAG (Retrieval-Augmented Generation) tradisional udah ngebantu kita banyak hal, tapi seiring berjalannya waktu menuju agen AI yang bener-bener otonom, sifat "lupa ingatan" (stateless) dari vector search mulai jadi hambatan.
+RAG (Retrieval-Augmented Generation) tradisional udah ngebantu kita banyak hal, tapi begitu kita mulai ngejar agen AI yang bener-bener otonom, sifat "lupa ingatan" (stateless) dari vector search mulai jadi hambatan.
 
-Kalau lu ngikutin eksperimen terbaru gue bareng **Nouva**, lu pasti tau gue lagi nyoba nembus batas kemampuan asisten AI personal. Rahasianya? Pindah dari sekadar ambil dokumen ke arah graf memori yang terstruktur dan terus berkembang.
+Kalau lu ngikutin eksperimen terbaru gw bareng **Nouva**, lu pasti tau gw lagi nyoba nembus batas kemampuan asisten AI personal. Kuncinya? Pindah dari sekadar ambil dokumen ke graf memori yang terstruktur dan terus berkembang.
 
 ### Masalah dengan RAG Biasa
 
 RAG biasa itu kayak pustakawan yang jago nyari buku apa pun yang lu minta, tapi langsung lupa siapa lu begitu lu keluar dari perpustakaan. Oke banget buat nyari fakta, tapi ampas buat *contextual continuity*.
 
 1. **Fragmentasi Konteks**: Vector database jago nyari potongan teks yang mirip, tapi sering kehilangan "gambaran besar" atau hubungan antar entitas.
-2. **Pengetahuan Statis**: Update index vector itu biasanya proses batch, jadi susah buat agen buat belajar secara *real-time*.
+2. **Pengetahuan Statis**: Update index vector itu biasanya proses batch, jadi agen susah belajar secara *real-time*.
 3. **Gak Punya Agency**: RAG biasa itu reaktif. Dia gak tau *gimana* cara pakai informasi yang dia temuin buat ngerjain tugas yang kompleks.
 
 ### Mengenal Model Context Protocol (MCP)
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) itu bener-bener pengubah permainan (*game-changer*). Protokol ini nyediain cara standar buat model AI terhubung ke sumber data eksternal dan tools.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) ngubah banyak hal. Protokol ini nyediain cara standar buat model AI terhubung ke sumber data eksternal dan tools.
 
 Daripada kita bikin integrasi manual satu-satu (hard-coding), MCP bikin ekosistem yang plug-and-play di mana agen bisa:
 - Query knowledge graph atau database khusus.
 - Baca file system lokal.
 - Interaksi sama platform komunikasi (kayak Slack) atau API khusus lainnya.
 
-Ini ngerubah AI dari sekadar chatbot jadi seorang **operator**.
+Ini ngubah AI dari sekadar chatbot jadi **operator**.
 
 ### GraphRAG: Graf Memori yang "Hidup" (via Graphiti)
 
-Buat nyelesein masalah memori, gue pakai **GraphRAG** yang didukung oleh **Graphiti**. Beda sama vector store yang datar, GraphRAG ngebangun graf pengetahuan dinamis (yang didukung oleh graph database kayak **Neo4j**) yang berevolusi tiap kali agen berinteraksi.
+Buat nyelesein masalah memori, gw pakai **GraphRAG** yang didukung oleh **Graphiti**. Beda sama vector store yang datar, GraphRAG ngebangun graf pengetahuan dinamis (yang didukung oleh graph database kayak **Neo4j**) yang berevolusi tiap kali agen berinteraksi.
 
 Pas agen belajar hal baru, dia gak cuma nyimpen teks; dia bikin "node" dan "edge". Contohnya: `[Gading] -> (SUKA) -> [Clean Code]`.
 
-Struktur ini memungkinkan:
+Dengan struktur ini, agen bisa:
 - **Relational Reasoning**: Agen bisa nelusuri graf buat nemuin koneksi yang gak lu sebutin secara eksplisit.
 - **Temporal Awareness**: Ngerti kapan suatu kejadian terjadi dan hubungannya secara kronologis.
 - **Dynamic Updates**: Suntikan memori real-time tanpa harus re-index seluruh data.
 
 ### Kenapa Ini Penting di 2026?
 
-Kita lagi geser dari "AI sebagai alat" ke "AI sebagai partner". Seorang partner butuh inget preferensi lu, infrastruktur lu (kayak setup Proxmox gue), sampai kebutuhan keluarga (kayak reminder buat Kak Rina).
+Kita lagi geser dari "AI sebagai alat" ke "AI sebagai partner". Partner itu harus inget preferensi lu, infrastruktur lu (kayak setup Proxmox gw), sampai kebutuhan keluarga (kayak reminder buat Kak Rina).
 
-Dengan gabungin **MCP** buat eksekusi tools dan **GraphRAG** (via **Graphiti**) buat memori jangka panjang terstruktur, kita lagi bangun agen yang gak cuma jawab pertanyaan—tapi mengantisipasi kebutuhan dan jalanin workflow kompleks secara otonom.
+Dengan gabungin **MCP** buat eksekusi tools dan **GraphRAG** (via **Graphiti**) buat memori jangka panjang terstruktur, kita lagi bangun agen yang gak cuma jawab pertanyaan, tapi juga bisa nebak kebutuhan duluan dan jalanin workflow kompleks secara otonom.
 
-### Penutup
+### Jadi gini
 
-Kalau lu masih cuma bikin aplikasi "Chat with your PDF", udah saatnya naik kelas. Masa depan itu milik agen yang bisa mikir, inget, dan bertindak.
+Kalau lu masih cuma bikin aplikasi "Chat with your PDF", udah waktunya naik kelas. Ke depannya, yang kepake itu agen yang bisa mikir, inget, dan bertindak.
 
-Pantau terus karena gue bakal bahas lebih dalem soal implementasi teknis stack ini di minggu-minggu depan.
+Pantau terus, gw bakal bahas lebih dalem soal implementasi teknis stack ini di minggu-minggu depan.

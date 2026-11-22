@@ -5,13 +5,13 @@ slug: {
   id: "gmail-alias-domain-sendiri-spf-dmarc"
 }
 date: 2025-05-11
-description: "A complete guide to sending emails from a custom domain alias in Gmail using proper SPF and DMARC setup."
+description: "A practical guide to sending emails from a custom domain alias in Gmail using proper SPF and DMARC setup."
 keywords: "gmail alias, smtp gmail, spf, dmarc, email forwarding, dns records, send mail as, app password, email authentication"
 tags: ["email", "infrastructure", "security"]
 image: "/media/blog/gmail-alias-setup/alias-flow.png"
 ---
 
-Using a **Gmail alias with a custom domain** (e.g., `xxx@gading.dev`) allows you to send professional-looking emails through Gmail while maintaining your brand identity. However, without proper **SPF** and **DMARC** configuration, your emails might get **rejected** or flagged as **spoofed** by recipient servers such as Gmail or Outlook.
+Using a **Gmail alias with a custom domain** (e.g., `xxx@gading.dev`) lets you send email from your own domain through Gmail. However, without proper **SPF** and **DMARC** configuration, your emails might get **rejected** or flagged as **spoofed** by recipient servers such as Gmail or Outlook.
 
 This guide walks you through how to set up a Gmail alias, generate an App Password, configure DNS records for **SPF** and **DMARC**, and test everything to ensure reliable email delivery.
 
@@ -125,9 +125,9 @@ To allow Gmail to send emails on behalf of your domain, and to pass authenticati
 
 ---
 
-## Conclusion
+## Where it lands
 
-By correctly adding a Gmail alias, generating an App Password, and setting SPF and DMARC records in your domain’s DNS, you can send emails as `xxx@gading.dev` directly from Gmail—securely and reliably. Always monitor your email deliverability and update your policies accordingly.
+By correctly adding a Gmail alias, generating an App Password, and setting SPF and DMARC records in your domain’s DNS, you can send emails as `xxx@gading.dev` directly from Gmail without getting rejected. Always monitor your email deliverability and update your policies accordingly.
 
 ![Success email result](/media/blog/gmail-alias-setup/success.png)
 
