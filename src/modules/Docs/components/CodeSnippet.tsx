@@ -15,7 +15,7 @@ function CodeSnippet({ file, code }: Props) {
         {file}
       </figcaption>
       <pre style={{ background: 'transparent', borderRadius: 0 }} className="m-0 overflow-x-auto px-4 py-4 font-mono text-[12.5px] leading-[1.7] text-[#F3ECE2]">
-        <code>{code.trim()}</code>
+        <code className="code-highlight">{code.trim()}</code>
       </pre>
     </figure>
   );

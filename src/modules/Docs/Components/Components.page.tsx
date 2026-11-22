@@ -107,7 +107,7 @@ async function ComponentsPage(props: NextPageProps<{ lang: I18nLocales }>) {
       <DocsSection id="code" title={content.codeTitle} description={content.codeDesc}>
         <div className="parser prose prose-sm w-full max-w-3xl sm:prose-base">
           <ContentCodeBlock>
-            <code>{SAMPLE_CODE}</code>
+            <code className="code-highlight">{SAMPLE_CODE}</code>
           </ContentCodeBlock>
         </div>
         <Source label={content.sourceLabel} path="src/modules/Content/components/ContentCodeBlock.tsx" />
