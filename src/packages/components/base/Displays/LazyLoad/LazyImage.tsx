@@ -124,6 +124,18 @@ function LazyImage({
   }, [onLoad, afterLoad]);
 
   /**
+   * An image that finished loading before hydration never fires onLoad,
+   * so check the element once on mount.
+   */
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth > 0) {
+      handleImageLoad();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /**
    * Handle image load error
    */
   const handleImageError: ReactEventHandler<HTMLImageElement> = useCallback((_ev) => {
