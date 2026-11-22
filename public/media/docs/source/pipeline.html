@@ -1,0 +1,153 @@
+<!doctype html>
+<!--
+  Source of /media/docs/pipeline-wide.png and /media/docs/pipeline-tall.png.
+  Render: open with ?layout=wide (1920x1080) or ?layout=tall (1080x2280) and screenshot #canvas.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'JBM'; src: url('../../../../src/assets/og/JetBrainsMono-500.ttf'); font-weight: 500; }
+  @font-face { font-family: 'SG'; src: url('../../../../src/assets/og/SpaceGrotesk-700.ttf'); font-weight: 700; }
+  html, body { margin: 0; background: #17130F; }
+  #canvas { position: relative; overflow: hidden; background: #17130F; }
+  #canvas::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(to right, rgba(243,236,226,0.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  #canvas::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 45% 40% at 80% 25%, rgba(232,165,90,0.13), transparent 70%),
+      radial-gradient(ellipse 40% 35% at 15% 85%, rgba(168,156,240,0.07), transparent 70%);
+  }
+  svg { position: relative; z-index: 1; display: block; }
+  text { font-family: 'JBM', monospace; }
+  .h { font-family: 'SG', sans-serif; }
+</style>
+</head>
+<body>
+<div id="canvas"><svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<script>
+const C = { amber: '#E8A55A', amberDeep: '#C9822E', teal: '#5CC7B8', lilac: '#A89CF0', rose: '#E98A8F', ink: '#F3ECE2', muted: '#A89C8E', base: '#17130F' };
+const layout = new URLSearchParams(location.search).get('layout') || 'wide';
+const svg = document.getElementById('svg');
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+}
+function line(pts, color, opts = {}) {
+  // pts: [[x,y],...]; consecutive points that change both x and y are drawn as a smooth S curve
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length; i++) {
+    const [x0, y0] = pts[i - 1]; const [x1, y1] = pts[i];
+    if (x0 !== x1 && y0 !== y1) {
+      if (opts.vertical) { const my = (y0 + y1) / 2; d += ` C${x0},${my} ${x1},${my} ${x1},${y1}`; }
+      else { const mx = (x0 + x1) / 2; d += ` C${mx},${y0} ${mx},${y1} ${x1},${y1}`; }
+    } else d += ` L${x1},${y1}`;
+  }
+  el('path', { d, fill: 'none', stroke: color, 'stroke-width': opts.w || 6, 'stroke-linecap': 'round', 'stroke-dasharray': opts.dash || 'none', opacity: opts.op || 1 });
+}
+function node(x, y, color, r = 14, filled = false) {
+  el('circle', { cx: x, cy: y, r, fill: filled ? color : C.base, stroke: color, 'stroke-width': 6 });
+}
+function label(x, y, lines, anchor = 'start') {
+  // lines: [text, size, color, cls]
+  let dy = 0;
+  for (const [t, size, color, cls] of lines) {
+    el('text', { x, y: y + dy, 'font-size': size, fill: color, 'text-anchor': anchor, class: cls || '' }, t);
+    dy += size * 1.35;
+  }
+}
+function tag(x, y, t, color, size) {
+  el('text', { x, y, 'font-size': size, fill: color, opacity: 0.85 }, t);
+}
+
+if (layout === 'wide') {
+  const W = 1920, H = 1080;
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  document.getElementById('canvas').style.cssText = `width:${W}px;height:${H}px`;
+  tag(80, 80, 'posts  >  build  >  static files', C.muted, 22);
+  const Y = 380; const xs = [150, 450, 750, 1050];
+  line([[70, Y], [1050, Y]], C.amberDeep);
+  const main = [
+    ['posts/{en,id}/*.mdx', 'slug {en, id}, series'],
+    ['getAllBlogPaths()', 'one path per file'],
+    ['generateStaticParams', 'force-static'],
+    ['next build --webpack', 'bundleMDX + rehype']
+  ];
+  main.forEach(([t, s], i) => {
+    node(xs[i], Y, C.amber, 16, i === 3);
+    if (i % 2 === 0) label(xs[i], Y - 84, [[t, 24, C.ink], [s, 20, C.muted]], 'middle');
+    else label(xs[i], Y + 62, [[t, 24, C.ink], [s, 20, C.muted]], 'middle');
+  });
+  line([[1050, Y], [1200, Y]], C.amberDeep);
+  // outputs
+  const outs = [
+    [180, '/[lang]/blog/[slug]', 'the post page, per language'],
+    [310, '.../og.png', '1200x630 link card (satori)'],
+    [440, '.../share/{9x16,4x5,1x1}.jpg', 'story, feed, square (sharp)'],
+    [570, '/blog/page/[page]', '10 posts per page'],
+    [700, '/sitemap.xml', 'home, about, now, portfolio, blog']
+  ];
+  outs.forEach(([y, t, s]) => {
+    line([[1200, Y], [1360, y], [1380, y]], C.teal, { w: 5 });
+    node(1380, y, C.teal, 13);
+    label(1420, y - 4, [[t, 26, C.ink], [s, 20, C.muted]]);
+  });
+  // media lane
+  const MY = 880;
+  line([[70, MY], [1380, MY]], C.lilac, { w: 5 });
+  [[150, 'public/media/**', 'banners, diagrams'], [750, 'cloudinary.yml', 'run by hand on main']].forEach(([x, t, s]) => {
+    node(x, MY, C.lilac, 13);
+    label(x, MY - 40, [[t, 24, C.ink]], 'middle');
+    label(x, MY + 56, [[s, 20, C.muted]], 'middle');
+  });
+  node(1380, MY, C.lilac, 13, true);
+  label(1420, MY - 4, [['res.cloudinary.com', 26, C.ink], ['banner images in production', 20, C.muted]]);
+} else {
+  const W = 1080, H = 2380;
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  document.getElementById('canvas').style.cssText = `width:${W}px;height:${H}px`;
+  tag(90, 100, 'posts  >  build  >  static files', C.muted, 30);
+  const X = 130; const ys = [240, 450, 660, 870];
+  line([[X, 170], [X, 870]], C.amberDeep, { vertical: true, w: 7 });
+  const main = [
+    ['posts/{en,id}/*.mdx', 'slug {en, id}, series'],
+    ['getAllBlogPaths()', 'one path per file'],
+    ['generateStaticParams', 'force-static'],
+    ['next build --webpack', 'bundleMDX + rehype']
+  ];
+  main.forEach(([t, s], i) => {
+    node(X, ys[i], C.amber, 20, i === 3);
+    label(200, ys[i] + 2, [[t, 40, C.ink], [s, 32, C.muted]]);
+  });
+  const OX = 260; const outs = [
+    [1060, '/[lang]/blog/[slug]', 'post page, per language'],
+    [1230, '.../og.png', '1200x630 card (satori)'],
+    [1400, '.../share/*.jpg', '9x16, 4x5, 1x1 (sharp)'],
+    [1570, '/blog/page/[page]', '10 posts per page'],
+    [1740, '/sitemap.xml', 'pages and posts']
+  ];
+  line([[X, 870], [X, 1650]], C.teal, { vertical: true, w: 6 });
+  outs.forEach(([y, t, s]) => {
+    line([[X, y - 110], [OX, y]], C.teal, { vertical: true, w: 6 });
+    node(OX, y, C.teal, 17);
+    label(OX + 60, y + 2, [[t, 40, C.ink], [s, 32, C.muted]]);
+  });
+  // media lane
+  const ys2 = [1960, 2130, 2300];
+  line([[X, 1900], [X, 2300]], C.lilac, { vertical: true, w: 6 });
+  [['public/media/**', 'banners, diagrams'], ['cloudinary.yml', 'run by hand on main'], ['res.cloudinary.com', 'banners in production']].forEach(([t, s], i) => {
+    node(X, ys2[i], C.lilac, 17, i === 2);
+    label(200, ys2[i] - 2, [[t, 40, C.ink], [s, 30, C.muted]]);
+  });
+}
+</script>
+</body>
+</html>

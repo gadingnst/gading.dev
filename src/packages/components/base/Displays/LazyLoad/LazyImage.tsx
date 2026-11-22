@@ -98,8 +98,9 @@ function LazyImage({
   scrollPosition,
    
   isScrollTracking,
+  ref: externalRef,
   ...imgProps
-}: LazyImageProps) {
+}: LazyImageProps & { ref?: React.Ref<HTMLImageElement> }) {
   const [state, setState] = useState<LazyLoadState>({
     isInView: false,
     isLoaded: false,
@@ -108,6 +109,11 @@ function LazyImage({
   });
 
   const imgRef = useRef<HTMLImageElement>(null);
+  const setImgRef = useCallback((node: HTMLImageElement | null) => {
+    imgRef.current = node;
+    if (typeof externalRef === 'function') externalRef(node);
+    else if (externalRef) (externalRef as React.RefObject<HTMLImageElement | null>).current = node;
+  }, [externalRef]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const scrollListenerRef = useRef<(() => void) | null>(null);
@@ -122,6 +128,18 @@ function LazyImage({
     }
     onLoad?.();
   }, [onLoad, afterLoad]);
+
+  /**
+   * An image that finished loading before hydration never fires onLoad,
+   * so check the element once on mount.
+   */
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth > 0) {
+      handleImageLoad();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * Handle image load error
@@ -280,7 +298,6 @@ function LazyImage({
   const renderImage = () => {
     return (
       <img
-        ref={imgRef}
         src={src}
         alt={alt}
         width={width}
@@ -301,6 +318,7 @@ function LazyImage({
           ...style
         }}
         {...imgProps}
+        ref={setImgRef}
       />
     );
   };

@@ -33,8 +33,8 @@ function Footer() {
               Analytic
             </Link>
             <span className="mx-1 inline-block">&bull;</span>
-            <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="/docs/colors">
-              Color System
+            <Link size="inherit" className="inline-block text-primary" href="/docs">
+              Docs
             </Link>
             <span className="mx-1 inline-block">&bull;</span>
             <a target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href={`${BASE_URL}/rss/feed.xml`}>
