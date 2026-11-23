@@ -6,7 +6,7 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/default-banners/1.jpg"
 ---
 
-I'm a ***Software Engineer*** with 6+ years of experience. I started on the frontend with ***TypeScript*** and ***React***, and these days I work across the whole stack: products end to end, AI agents, and the servers they run on.
+I'm a ***Software Engineer*** with 6+ years of experience. I started on the frontend with ***TypeScript*** and ***React***, and these days I work as a full-spectrum engineer: products end to end, AI agents, and the servers they run on.
 
 Most of my time now goes into [Nouride](https://nouride.com), a self-hosted multi-agent daemon I build under Nouverse Technologies and use every day, and into the homelab it runs on (Proxmox, K3s, Terraform). I care about clean, modular code and good *DX (Developer Experience)*.
 

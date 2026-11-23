@@ -51,7 +51,7 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 ## 🛠 Beberapa Software yang digunakan sehari-hari
 - OS: MacOS
 - Code Editor: Zed (untuk baca kode)
-- AI Tool: Claude Code CLI, ChatGPT, Gemini CLI, Nouride (AI Agent)
+- AI Tool: Claude Code CLI, Nouride (AI Agent)
 - Browser: Google Chrome, Brave dan Safari
 - Lain-lain: Linear/Clickup, Postman, Spotify
 

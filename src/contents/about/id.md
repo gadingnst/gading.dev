@@ -6,7 +6,7 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/default-banners/1.jpg"
 ---
 
-Saya seorang ***Software Engineer*** dengan pengalaman lebih dari 6 tahun. Saya mulai dari frontend dengan ***TypeScript*** dan ***React***, dan sekarang bekerja di seluruh stack: produk dari ujung ke ujung, AI agent, sampai server tempat semuanya berjalan.
+Saya seorang ***Software Engineer*** dengan pengalaman lebih dari 6 tahun. Saya mulai dari frontend dengan ***TypeScript*** dan ***React***, dan sekarang bekerja sebagai full-spectrum engineer: produk dari ujung ke ujung, AI agent, sampai server tempat semuanya berjalan.
 
 Sekarang sebagian besar waktu saya habis untuk [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bangun di bawah Nouverse Technologies dan saya pakai setiap hari, beserta homelab tempatnya berjalan (Proxmox, K3s, Terraform). Saya peduli dengan kode yang bersih, modular, dan *DX (Developer Experience)* yang baik.
 

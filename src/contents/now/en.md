@@ -50,7 +50,7 @@ You can check my [Spotify profile](https://open.spotify.com/user/rdnb62xxj8ga5ve
 ## 🛠 Some Software that I use in daily
 - Operating System: MacOS
 - Code Editor: Zed (for reading code)
-- AI Tools: Claude Code CLI, ChatGPT, Gemini CLI, Nouride (AI Agent)
+- AI Tools: Claude Code CLI, Nouride (AI Agent)
 - Browsers: Google Chrome, Brave and Safari
 - Others: Linear/Clickup, Postman, Spotify
 
