@@ -6,8 +6,8 @@ const withPortfolioLocales = createContentLocales({
     id: 'Portfolio'
   },
   desc: {
-    en: 'Products I build and run, and the homelab they sit on.',
-    id: 'Produk yang saya bangun dan jalanin, plus homelab tempat semuanya jalan.'
+    en: 'Work I\'ve done, products I build and run, and the homelab they sit on.',
+    id: 'Pekerjaan yang saya kerjain, produk yang saya bangun dan jalanin, plus homelab tempat semuanya jalan.'
   },
   buildingTitle: {
     en: 'Things I\'m building',
