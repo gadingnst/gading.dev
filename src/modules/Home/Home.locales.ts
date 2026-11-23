@@ -71,7 +71,7 @@ const withHomeLocales = createContentLocales({
   },
   writingDesc: {
     en: 'Notes from things that worked, and more from things that didn\'t.',
-    id: 'Catatan dari hal yang berhasil, dan lebih banyak dari yang tidak.'
+    id: 'Catatan dari hal yang berhasil, dan beberapa cerita gagal.'
   },
   allPosts: {
     en: 'All posts →',

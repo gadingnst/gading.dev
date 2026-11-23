@@ -6,13 +6,13 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/default-banners/1.jpg"
 ---
 
-Saya ***Software Engineer*** dengan pengalaman 6 tahun lebih. Awalnya di frontend pakai ***TypeScript*** dan ***React***, sekarang lebih ke full-spectrum engineer: bangun produk dari ujung ke ujung, AI agent, sampai server tempat semuanya jalan.
+Saya ***Software Engineer*** dengan pengalaman 6 tahun lebih. Awalnya di frontend pakai ***TypeScript*** dan ***React***, sekarang lebih ke full-spectrum engineer: bangun produk end to end, AI agent, sampai server tempat semuanya jalan.
 
-Waktu saya sekarang paling banyak habis buat [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bangun di bawah Nouverse Technologies dan saya pakai tiap hari, plus homelab tempat dia jalan (Proxmox, K3s, Terraform). Saya suka kode yang bersih, modular, dan *DX* yang enak.
+Waktu saya sekarang paling banyak habis buat [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bikin under Nouverse Technologies dan saya pakai tiap hari, plus homelab tempat dia jalan (Proxmox, K3s, Terraform). Saya suka kode yang bersih, modular, dan *DX* yang enak.
 
-Saya juga udah bikin beberapa proyek sampingan dan *open-source* di [GitHub](https://github.com/gadingnst). Semoga ada yang kepake buat developer lain di luar sana.
+Saya juga udah bikin beberapa proyek sampingan dan *open-source* di [GitHub](https://github.com/gadingnst). Semoga ada yang kepake buat orang lain di luar sana.
 
-#### Cara menyebut namaku
+#### Cara menyebut nama saya
 Sebelum kenal lebih jauh, pastiin dulu nyebut nama saya dengan bener:
 
 ✅ ***Benar***:
@@ -29,7 +29,7 @@ Sebelum kenal lebih jauh, pastiin dulu nyebut nama saya dengan bener:
 - Fadilah *(kurang `H` dan satu `L`)*
 
 #### Cerita di balik “Gading”
-Saya percaya belajar itu seumur hidup. Komunitas, open source, mentor, rekan kerja, dan teman-teman banyak ngebentuk cara saya kerja. Dari situ saya jadi suka berbagi lewat dokumentasi, blog, talk, open source, dan konten edukatif buat sesama developer.
+Saya percaya belajar itu seumur hidup. Komunitas, open source, mentor, rekan kerja, dan teman-teman banyak ngebentuk cara saya kerja. Dari situ lah saya jadi suka berbagi lewat dokumentasi, blog, talk, open source, dan konten buat orang lain atau sesama developer.
 
 #### Mau tau saya ngapain?
 Langsung cek halaman [Now](/now), siapa tau pertanyaan kamu udah kejawab di situ.

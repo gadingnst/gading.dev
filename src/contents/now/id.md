@@ -12,18 +12,18 @@ Halaman ini isinya apa yang lagi saya kerjain sekarang, jadi kamu nggak perlu na
 > Punya situs sendiri? Bikin juga, gih.
 
 ## 🏡 Tempat Tinggal
-Di Palembang, kampung halaman saya. Saya balik ke sini September 2020 pas COVID, dan sejak itu kerja *remote* terus. Lebih banyak waktu bareng keluarga, nggak perlu commute.
+Di Palembang, kampung halaman saya. Saya balik ke sini September 2020 pas COVID, dan sejak itu kerja *remote* terus sampai sekarang. Jadinya saya punya lebih banyak waktu bareng keluarga, dan nggak perlu commute (setidaknya untuk saat ini).
 
 ## 💼 Karir
 Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/search?q=apa+itu+software+engineer) di sebuah [perusahaan AI](https://www.google.com/search?q=apa+itu+perusahaan+AI).
 
 ## ☕️ Aktivitas
-- Bangun dan hardening [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya pakai tiap hari.
-- Ngurus homelab sendiri (K3s dan LXC biasa di Proxmox VE), lebih banyak buat eksperimen dan ngerusak sesuatu.
+- Bikin dan hardening [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya pakai tiap hari.
+- Ngurus homelab sendiri (K3s dan LXC biasa di Proxmox VE), lebih banyak buat eksperimen dan ngulik sesuatu.
 - Belajar arsitektur sistem, networking, dan Terraform.
 - Ngulik teknologi baru yang lewat: AI, Web3, dan lain-lain.
-- Main sosmed, game, ngoding, dengerin musik, baca, dan nulis blog buat seneng-seneng.
-- Akhir pekan buat orang-orang terdekat.
+- Main sosmed, game, ngoding, dengerin musik, baca, dan nulis blog buat have fun.
+- Weekend buat orang-orang terdekat.
 
 ## 📘 Lagi dibaca
 - [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Fried & David Heinemeier Hansson
@@ -49,7 +49,7 @@ Cek [Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya, ada
 
 ## 🛠 Tools sehari-hari
 - OS: macOS
-- Code editor: Zed (cuma buat baca kode)
+- Code editor: Zed (saat ini cuma kepake buat baca kode atau markdown wkwk)
 - AI: Claude Code CLI, Nouride
 - Browser: Google Chrome, Brave dan Safari
 - Lain-lain: Linear/ClickUp, Postman, Spotify

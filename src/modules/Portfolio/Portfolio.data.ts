@@ -57,8 +57,8 @@ export const PROJECTS: Project[] = [
       id: 'Agen AI yang tinggal di server sendiri.'
     },
     summary: {
-      en: 'A multi-agent daemon I build and run every day. Agents with their own memory, skills and tools, reachable over **Telegram, WhatsApp and Discord**. They ask before changing anything.',
-      id: 'Daemon multi-agent yang saya bangun dan pakai setiap hari. Agen dengan memori, skill, dan tool sendiri, bisa dihubungi lewat **Telegram, WhatsApp, dan Discord**. Mereka nanya dulu sebelum ngubah apa pun.'
+      en: 'A multi-agent daemon I build and run every day. Agents with their own memory, skills and tools, reachable over **Telegram, WhatsApp and Discord**. These days they do most of my work.',
+      id: 'Daemon multi-agent yang saya bikin dan pakai setiap hari. Agen dengan memori, skill, dan tool sendiri, bisa dihubungi lewat **Telegram, WhatsApp, dan Discord**. Sekarang mereka yang ngerjain sebagian besar pekerjaan saya.'
     },
     chips: ['self-hosted', 'multi-agent', 'Telegram · WhatsApp · Discord'],
     link: {
@@ -105,8 +105,8 @@ export const PROJECTS: Project[] = [
       id: 'Video jadi shorts, dari terminal.'
     },
     summary: {
-      en: 'A CLI that cuts videos into vertical clips: reframing, word-by-word subtitles, silence trimming and music ducking. **FFmpeg** does the cutting and **Whisper** the transcripts; nouclip wires them together so an agent can drive it.',
-      id: 'CLI untuk memotong video jadi klip vertikal: reframe, subtitle per kata, potong jeda diam, dan ducking musik. **FFmpeg** yang memotong dan **Whisper** yang mentranskripsi; nouclip merangkai keduanya supaya bisa dijalankan oleh agen.'
+      en: 'A CLI and agentic tool that cuts videos into vertical clips: reframing, word-by-word subtitles, silence trimming and music ducking. Built for AI agents to drive, so the output stays consistent run after run. **FFmpeg** does the cutting and **Whisper** the transcripts.',
+      id: 'CLI dan agentic tooling buat motong video jadi klip vertikal: reframe, subtitle per kata, potong jeda diam, dan ducking musik. Dibikin biar gampang dipakai AI agent, jadi hasilnya konsisten tiap kali jalan. **FFmpeg** yang motong dan **Whisper** yang transkripsi.'
     },
     chips: ['CLI', 'FFmpeg', 'Whisper', 'Bun'],
     link: {
