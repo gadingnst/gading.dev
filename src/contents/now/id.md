@@ -1,6 +1,6 @@
 ---
 title: "Now"
-date: 2026-06-28
+date: 2026-11-23
 description: "Lagi sibuk apa sekarang?"
 keywords: "now, gading's activities, now page, gading now page, gading, gading sedang apa, halaman aktivitas"
 image: "/media/default-banners/0.jpg"
@@ -18,6 +18,7 @@ Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak
 Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/search?q=apa+itu+software+engineer) di sebuah [perusahaan AI](https://www.google.com/search?q=apa+itu+perusahaan+AI).
 
 ## ☕️ Aktivitas
+- Membangun dan melakukan hardening [Nouride](https://nouride.com), daemon multi-agent self-hosted, dan memakainya setiap hari.
 - Mengelola dan bereksperimen dengan infrastruktur homelab mandiri (Kubernetes K3s & Standalone LXC di Proxmox VE).
 - Mempelajari arsitektur sistem, jaringan, dan otomatisasi *Infrastructure as Code (IaC)* menggunakan Terraform.
 - Eksplorasi & belajar teknologi baru, termasuk AI, Web3/Blockchain, dan hal-hal teknologi lainnya dari internet.
@@ -26,7 +27,7 @@ Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/s
 
 
 ## 📘 Buku yang dibaca
-- [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Friend & David Heinemeier Hansson
+- [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Fried & David Heinemeier Hansson
 - [Psychology of Money](https://www.google.com/search?q=psychology+of+money+by+morgan+housel) dari Morgan Housel
 - [Atomic Habits](https://www.google.com/search?q=atomic+habits+by+james+clear) dari James Clear
 - [Rahasia bersikap tenang dalam kondisi apapun](https://www.google.com/search?q=rahasia+bersikap+tenang+dalam+kondisi+apapun+sabrina+ara) dari Sabrina Ara
@@ -35,22 +36,23 @@ Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/s
 Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya dimana saya membuat *playlist* untuk musik terbaru yang saya temukan ataupun musik lama yang ingin saya dengarkan berulang-ulang.
 
 ## 💡 Teknologi yang digunakan
-- Ekosistem Murni JavaScript/TypeScript
-- React Web/Native/NextJS, Vue/NuxtJS
-- DevOps & Infra: Proxmox VE, Kubernetes (K3s), Terraform, Traefik, Cloudflare Tunnels, Docker
-- Dart, Flutter
-- Golang, GORM, Protocol Buffer
-- Jest, React Testing Library
-- Storybook
+- Bahasa: TypeScript/JavaScript, Python, Go, Dart
+- Frontend & Mobile: React, Next.js, TanStack, SWR, React Native, Vue/Nuxt, Flutter
+- Backend & Data: Node.js, PostgreSQL, Redis, GORM, Protocol Buffers
+- AI: LLM agent, RAG/GraphRAG, sistem multi-agent self-hosted
+- Cloud: GCP, Azure, Cloudflare
+- DevOps & Infra: Docker, Proxmox VE, Kubernetes (K3s), Terraform, Traefik, Nginx, Cloudflare Tunnels
+- Web3: ethers.js, wagmi
+- IoT & Embedded: Arduino, ESP32, Raspberry Pi
+- Testing: Jest, React Testing Library
 - Bot, Automation, Task Runner, Data Collection
 > *Dan saya bisa terbuka untuk mempelajari Tech Stack lain jika dibutuhkan.*
 
 ## 🛠 Beberapa Software yang digunakan sehari-hari
 - OS: MacOS
-- Code Editor: Visual Studio Code, Trae
-- AI Tool: ChatGPT, Gemini CLI, OpenClaw (AI Agent)
-- Database GUI: DBEaver, PhpMyAdmin dan Robo 3T
+- Code Editor: Zed (untuk baca kode)
+- AI Tool: Claude Code CLI, ChatGPT, Gemini CLI, Nouride (AI Agent)
 - Browser: Google Chrome, Brave dan Safari
 - Lain-lain: Linear/Clickup, Postman, Spotify
 
-*Terakhir diperbarui: Juni, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+*Terakhir diperbarui: November, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

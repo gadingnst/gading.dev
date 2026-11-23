@@ -1,16 +1,16 @@
 ---
 title: "About"
 date: 2022-06-01
-description: "Exploring AI, Web3, and cutting-edge tech while crafting clean, scalable frontends."
+description: "Building Nouride, a self-hosted multi-agent daemon, and the homelab it runs on."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, about gading, who is gading, bio gading, about gading"
 image: "/media/default-banners/1.jpg"
 ---
 
-I'm a ***Software Engineer*** with over 5 years of experience, mainly working with ***TypeScript*** and ***React***.
+I'm a ***Software Engineer*** with 6+ years of experience. I started on the frontend with ***TypeScript*** and ***React***, and these days I work across the whole stack: products end to end, AI agents, and the servers they run on.
 
-I'm passionate about exploring emerging technologies like ***AI***, ***Web3***, and ***blockchain***, diving into devops automation (*Infrastructure as Code*), while also diving deep into modern mobile & web tech with a strong focus on *DX (Developer Experience)*, performance, and staying ahead of the curve.
+Most of my time now goes into [Nouride](https://nouride.com), a self-hosted multi-agent daemon I build under Nouverse Technologies and use every day, and into the homelab it runs on (Proxmox, K3s, Terraform). I care about clean, modular code and good *DX (Developer Experience)*.
 
-I’m a fast learner and a team player. I’ve built several side and *open-source* projects on [GitHub](https://github.com/gadingnst), which may have helped fellow devs out there.
+I've also built a bunch of side and *open-source* projects on [GitHub](https://github.com/gadingnst), and some of them may have helped fellow devs out there.
 
 #### Spelling my name
 Before you get to know me, make sure you pronounce my name right:
@@ -29,15 +29,15 @@ Before you get to know me, make sure you pronounce my name right:
 - Fadilah *(missing `H` and one `L`)*
 
 #### The story behind "Gading"
-I’m a lifelong learner. Communities, open source, mentors, and friends all helped shape me. I love sharing knowledge too — through OSS, docs, and blog posts. That’s how I realized I enjoy technical writing and teaching dev stuff.
+I’m a lifelong learner. Communities, open source, mentors, and friends all helped shape me. I love sharing knowledge too, through OSS, docs, talks and blog posts. That’s how I realized I enjoy technical writing and teaching dev stuff.
 
 #### Curious about what I'm up to?
-Check out my [Now](/now) page — it might already answer your questions.
+Check out my [Now](/now) page. It might already answer your questions.
 
 ---
 
 #### About this website
-This site is built with *JAMStack* using *Next.js*. You can peek the source-code [here](https://github.com/gadingnst/gading.dev). It’s fully static, written in Markdown, no DB attached. If you're into this stuff, do some research on JAMStack — it's a whole ecosystem, not just Next.js.
+This site is built with *Next.js* and exported as a fully static site. Everything is written in Markdown/MDX, with no database. The source code is on [GitHub](https://github.com/gadingnst/gading.dev), and the [Docs](/docs) page walks through how it's put together.
 
 I care a lot about performance and SEO, so I’m showcasing a live website performance report on this page. Shoutout to [Ankur Parihar](https://github.com/ankurparihar) for [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights)!
 

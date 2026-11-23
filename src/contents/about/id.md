@@ -1,16 +1,16 @@
 ---
 title: "About"
 date: 2022-06-01
-description: "Mengeksplorasi AI, Web3, dan teknologi mutakhir sambil membangun frontend yang bersih dan skalabel."
+description: "Membangun Nouride, daemon multi-agent self-hosted, beserta homelab tempatnya berjalan."
 keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading fadhillah nasution, sutan, sutanlab, gading.dev, gading dev, who is gading, biodata gading, tentang gading"
 image: "/media/default-banners/1.jpg"
 ---
 
-Saya adalah seorang ***Software Engineer*** dengan pengalaman lebih dari 5 tahun, dan banyak bekerja menggunakan ***TypeScript*** dan ***React***.
+Saya seorang ***Software Engineer*** dengan pengalaman lebih dari 6 tahun. Saya mulai dari frontend dengan ***TypeScript*** dan ***React***, dan sekarang bekerja di seluruh stack: produk dari ujung ke ujung, AI agent, sampai server tempat semuanya berjalan.
 
-Saya antusias mengeksplorasi teknologi yang sedang naik daun seperti ***AI***, ***Web3***, dan ***blockchain***, mendalami otomatisasi infrastruktur (*DevOps & Infrastructure as Code*), sambil terus mendalami teknologi web & mobile modern dengan fokus pada *Developer Experience (DX)*, performa, dan selalu mengikuti perkembangan terbaru.
+Sekarang sebagian besar waktu saya habis untuk [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bangun di bawah Nouverse Technologies dan saya pakai setiap hari, beserta homelab tempatnya berjalan (Proxmox, K3s, Terraform). Saya peduli dengan kode yang bersih, modular, dan *DX (Developer Experience)* yang baik.
 
-Saya cepat belajar, senang bekerja sama dalam tim, dan juga telah membuat beberapa proyek sampingan serta *open-source* yang bisa dilihat di [GitHub](https://github.com/gadingnst) (mungkin sudah bermanfaat buat developer lain di luar sana).
+Saya juga sudah membuat beberapa proyek sampingan dan *open-source* di [GitHub](https://github.com/gadingnst), dan semoga sebagian di antaranya bermanfaat buat developer lain di luar sana.
 
 #### Cara menyebut namaku
 Sebelum mengenal seseorang lebih jauh, hal pertama yang harus diketahui adalah cara menyebut namanya dengan benar.
@@ -37,9 +37,9 @@ Langsung cek ke halaman [Now](/now), siapa tau pertanyaan kamu udah kejawab di s
 ---
 
 #### Tentang situs ini
-Website ini saya bangun pakai teknologi *JAMStack* dengan *Next.js*. Kode sumbernya bisa dicek [di sini](https://github.com/gadingnst/gading.dev). Semua konten ditulis pakai *Markdown*, tanpa database. Kalau kamu pengin bikin kayak gini juga, saya saranin mulai kenalan dulu sama ekosistem *JAMStack* — banyak banget tools & framework yang bisa kamu pakai, nggak terbatas cuma *Next.js* doang.
+Website ini dibangun dengan *Next.js* dan di-export sebagai situs statis. Semua konten ditulis pakai *Markdown/MDX*, tanpa database. Kode sumbernya ada [di GitHub](https://github.com/gadingnst/gading.dev), dan halaman [Docs](/docs) menjelaskan cara situs ini disusun.
 
-Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan performa situs ini di halaman ini dan bakal selalu diperbarui. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights) — tool yang otomatis generate laporan performa ini.
+Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan performa situs ini di halaman ini dan bakal selalu diperbarui. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights), tool yang otomatis generate laporan performa ini.
 
 <div className="max-w-[720px] flex flex-col gap-0 mx-auto">
   ![Laporan *Performance* (Desktop)](/media/web-reports/pagespeed/desktop.svg)
