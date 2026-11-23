@@ -15,7 +15,7 @@ const withPortfolioLocales = createContentLocales({
   },
   buildingDesc: {
     en: 'Products and side quests, in roughly that order.',
-    id: 'Produk dan side quest, kurang lebih urutannya gitu.'
+    id: 'Produk dan side quest, kurang lebih begitu.'
   },
   workTitle: {
     en: 'Work',
@@ -23,7 +23,7 @@ const withPortfolioLocales = createContentLocales({
   },
   workDesc: {
     en: 'Stuff I built for the companies I\'ve worked with.',
-    id: 'Yang saya bangun buat perusahaan tempat saya kerja.'
+    id: 'Pekerjaan yang saya kerjain buat perusahaan tempat saya kerja.'
   },
   talksTitle: {
     en: 'Talks',

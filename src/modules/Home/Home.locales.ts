@@ -15,7 +15,7 @@ const withHomeLocales = createContentLocales({
   },
   lead: {
     en: 'Software engineer from Palembang. I built [Nouride](https://nouride.com), founded [Nouverse](https://nouverse.com), and work at an AI company. I tinker with my homelab, and it breaks more often than not because I can\'t leave it alone.',
-    id: 'Software engineer dari Palembang. Bikin [Nouride](https://nouride.com), bangun [Nouverse](https://nouverse.com), dan kerja di AI company. Suka ngoprek homelab, tapi lebih sering rusak gara-gara ngulik sendiri.'
+    id: 'Software engineer dari Palembang. Bikin [Nouride](https://nouride.com), bangun [Nouverse](https://nouverse.com), dan kerja di AI company. Suka ngoprek homelab, tapi lebih sering ngebreak gara-gara ngulik sendiri.'
   },
   seeWork: {
     en: 'See my work',
@@ -55,7 +55,7 @@ const withHomeLocales = createContentLocales({
   },
   buildingDesc: {
     en: 'Products and side quests, in roughly that order.',
-    id: 'Produk dan proyek sampingan, kurang lebih berurutan begitu.'
+    id: 'Produk dan side quest, kurang lebih begitu.'
   },
   fullPortfolio: {
     en: 'Full portfolio →',
@@ -70,8 +70,8 @@ const withHomeLocales = createContentLocales({
     id: 'fresh scars'
   },
   writingDesc: {
-    en: 'Notes from things that worked, and more from things that didn\'t.',
-    id: 'Catatan dari hal yang berhasil, dan beberapa cerita gagal.'
+    en: 'Notes from things that worked, and a few that didn\'t.',
+    id: 'Catatan dari hal yang berhasil, dan beberapa yang gagal.'
   },
   allPosts: {
     en: 'All posts →',
