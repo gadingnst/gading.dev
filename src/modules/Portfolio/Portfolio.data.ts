@@ -292,3 +292,20 @@ export const WORK: Project[] = [
     }
   }
 ];
+
+export interface Talk {
+  year: number;
+  /** who hosted it */
+  event: string;
+  title: string;
+}
+
+/** Talks and classes I gave, newest first. */
+export const TALKS: Talk[] = [
+  { year: 2024, event: 'Palembang Digital', title: 'Cyber Attack on PDNS' },
+  { year: 2023, event: 'Palembang Digital', title: 'How companies use Git to build software' },
+  { year: 2023, event: 'Glints Expert Class', title: 'Leveraging AI for seamless development' },
+  { year: 2022, event: 'Sumsel Startup Founders', title: 'Kickstart your Web3 Projects' },
+  { year: 2021, event: 'Glints Expert Class', title: 'Frontend Developer Starter-Pack' },
+  { year: 2020, event: 'Pijar Academy', title: 'Git Workflow Best Practice' }
+];

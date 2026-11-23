@@ -24,6 +24,14 @@ const withPortfolioLocales = createContentLocales({
   workDesc: {
     en: 'Products I built for the companies I\'ve worked with.',
     id: 'Produk yang saya bangun untuk perusahaan tempat saya bekerja.'
+  },
+  talksTitle: {
+    en: 'Talks',
+    id: 'Talks'
+  },
+  talksDesc: {
+    en: 'Sessions I gave at communities and classes.',
+    id: 'Sesi yang pernah saya bawakan di komunitas dan kelas.'
   }
 });
 
