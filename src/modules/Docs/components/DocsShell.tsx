@@ -32,7 +32,7 @@ function DocsShell({ lang, active, title, description, children }: PropsWithChil
           <p className="mt-4 text-base text-muted md:text-lg">{description}</p>
         </header>
 
-        <nav aria-label={labels.navLabel} className="-mx-5 mt-8 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+        <nav aria-label={labels.navLabel} className="docs-tabs-scroll -mx-5 mt-8 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           <ul className="flex w-max gap-2 pb-1">
             {DOCS_PAGES.map((page) => {
               const isActive = page.key === active;

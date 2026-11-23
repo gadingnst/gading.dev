@@ -376,3 +376,11 @@ body {
   .hero-portrait { transition: none; transform: none !important; }
   .hero-cat-peek { display: none; }
 }
+
+/* docs tabs: swipe sideways, no visible scrollbar */
+.docs-tabs-scroll {
+  scrollbar-width: none;
+}
+.docs-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
