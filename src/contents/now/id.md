@@ -7,35 +7,34 @@ image: "/media/default-banners/0.jpg"
 currently: "Hardening Nouride v0.8"
 ---
 
-Pertama-tama, saya berterima kasih kepada [Derek Sivers](https://sive.rs/now) and [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now). Karena mereka semua, saya terinspirasi membuat dan menambahkan konten baru di halaman ini untuk mendeskripsikan tentang ***lagi sibuk apa sekarang?***. Jadi, mungkin kamu tak perlu bertanya-tanya lagi tentang hal itu.
+Halaman ini isinya apa yang lagi saya kerjain sekarang, jadi kamu nggak perlu nanya lagi. Idenya dari [Derek Sivers](https://sive.rs/now) dan [Afrijal Dzuhri](https://afrijaldzuhri.wordpress.com/now).
 
-> Jika kamu mempunyai situsmu sendiri, mungkin kamu harus membuatnya juga.
+> Punya situs sendiri? Bikin juga, gih.
 
 ## 🏡 Tempat Tinggal
-Saya kembali ke kampung halaman, di Palembang, dan bekerja secara *remote* sejak September, 2020 karena situasi ***COVID-19***. Dan saya masih bekerja secara *remote* sampai sekarang, karena perusahaan tempat saya bekerja mengeluarkan kebijakan bekerja secara ***remote-first***. Namun demikian, saya akan menikmati setiap momen bersama keluarga saya karena itu.
+Di Palembang, kampung halaman saya. Saya balik ke sini September 2020 pas COVID, dan sejak itu kerja *remote* terus. Lebih banyak waktu bareng keluarga, nggak perlu commute.
 
 ## 💼 Karir
 Bekerja penuh waktu sebagai seorang [Software Engineer](https://www.google.com/search?q=apa+itu+software+engineer) di sebuah [perusahaan AI](https://www.google.com/search?q=apa+itu+perusahaan+AI).
 
 ## ☕️ Aktivitas
-- Membangun dan melakukan hardening [Nouride](https://nouride.com), daemon multi-agent self-hosted, dan memakainya setiap hari.
-- Mengelola dan bereksperimen dengan infrastruktur homelab mandiri (Kubernetes K3s & Standalone LXC di Proxmox VE).
-- Mempelajari arsitektur sistem, jaringan, dan otomatisasi *Infrastructure as Code (IaC)* menggunakan Terraform.
-- Eksplorasi & belajar teknologi baru, termasuk AI, Web3/Blockchain, dan hal-hal teknologi lainnya dari internet.
-- Main media sosial, gaming, ngoding, dengerin musik, baca, dan nulis blog buat hiburan.
-- Menghabiskan waktu berkualitas bareng orang-orang terdekat setiap akhir pekan.
+- Bangun dan hardening [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya pakai tiap hari.
+- Ngurus homelab sendiri (K3s dan LXC biasa di Proxmox VE), lebih banyak buat eksperimen dan ngerusak sesuatu.
+- Belajar arsitektur sistem, networking, dan Terraform.
+- Ngulik teknologi baru yang lewat: AI, Web3, dan lain-lain.
+- Main sosmed, game, ngoding, dengerin musik, baca, dan nulis blog buat seneng-seneng.
+- Akhir pekan buat orang-orang terdekat.
 
-
-## 📘 Buku yang dibaca
+## 📘 Lagi dibaca
 - [Remote](https://www.google.com/search?q=remote+by+jason+fried) dari Jason Fried & David Heinemeier Hansson
 - [Psychology of Money](https://www.google.com/search?q=psychology+of+money+by+morgan+housel) dari Morgan Housel
 - [Atomic Habits](https://www.google.com/search?q=atomic+habits+by+james+clear) dari James Clear
 - [Rahasia bersikap tenang dalam kondisi apapun](https://www.google.com/search?q=rahasia+bersikap+tenang+dalam+kondisi+apapun+sabrina+ara) dari Sabrina Ara
 
-## 🎧 Musik yang didengar
-Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya dimana saya membuat *playlist* untuk musik terbaru yang saya temukan ataupun musik lama yang ingin saya dengarkan berulang-ulang.
+## 🎧 Lagi diputer
+Cek [Spotify](https://open.spotify.com/user/rdnb62xxj8ga5vevgq1h6cypz) saya, ada playlist buat lagu baru yang saya temuin dan lagu lama yang saya puter terus.
 
-## 💡 Teknologi yang digunakan
+## 💡 Stack
 - Bahasa: TypeScript/JavaScript, Python, Go, Dart
 - Frontend & Mobile: React, Next.js, TanStack, SWR, React Native, Vue/Nuxt, Flutter
 - Backend & Data: Node.js, PostgreSQL, Redis, GORM, Protocol Buffers
@@ -45,14 +44,14 @@ Kamu bisa lihat-lihat [Profil Spotify](https://open.spotify.com/user/rdnb62xxj8g
 - Web3: ethers.js, wagmi
 - IoT & Embedded: Arduino, ESP32, Raspberry Pi
 - Testing: Jest, React Testing Library
-- Bot, Automation, Task Runner, Data Collection
-> *Dan saya bisa terbuka untuk mempelajari Tech Stack lain jika dibutuhkan.*
+- Bot, automation, task runner, data collection
+> *Kalau kerjaannya butuh stack lain, tinggal dipelajari.*
 
-## 🛠 Beberapa Software yang digunakan sehari-hari
-- OS: MacOS
-- Code Editor: Zed (untuk baca kode)
-- AI Tool: Claude Code CLI, Nouride (AI Agent)
+## 🛠 Tools sehari-hari
+- OS: macOS
+- Code editor: Zed (cuma buat baca kode)
+- AI: Claude Code CLI, Nouride
 - Browser: Google Chrome, Brave dan Safari
-- Lain-lain: Linear/Clickup, Postman, Spotify
+- Lain-lain: Linear/ClickUp, Postman, Spotify
 
-*Terakhir diperbarui: November, 2026. Palembang, Sumatera Selatan. Indonesia. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*
+*Terakhir diperbarui November 2026, dari Palembang, Sumatera Selatan. [Riwayat](https://github.com/gadingnst/gading.dev/commits/main/src/contents/now/id.md)*

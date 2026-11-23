@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
     },
     summary: {
       en: 'A multi-agent daemon I build and run every day. Agents with their own memory, skills and tools, reachable over **Telegram, WhatsApp and Discord**. They ask before changing anything.',
-      id: 'Daemon multi-agent yang saya bangun dan pakai setiap hari. Agen dengan memori, skill, dan tool sendiri, bisa dihubungi lewat **Telegram, WhatsApp, dan Discord**. Mereka bertanya dulu sebelum mengubah apa pun.'
+      id: 'Daemon multi-agent yang saya bangun dan pakai setiap hari. Agen dengan memori, skill, dan tool sendiri, bisa dihubungi lewat **Telegram, WhatsApp, dan Discord**. Mereka nanya dulu sebelum ngubah apa pun.'
     },
     chips: ['self-hosted', 'multi-agent', 'Telegram · WhatsApp · Discord'],
     link: {
@@ -161,7 +161,7 @@ export const PROJECTS: Project[] = [
     },
     summary: {
       en: 'Proxmox with K3s for the stateless things and LXC for the stateful ones. Mostly here so I have something to break, and write about afterwards.',
-      id: 'Proxmox dengan K3s untuk yang stateless dan LXC untuk yang stateful. Sebagian besar ada supaya saya punya sesuatu untuk dirusak, lalu ditulis setelahnya.'
+      id: 'Proxmox dengan K3s untuk yang stateless dan LXC untuk yang stateful. Sebagian besar ada biar saya punya sesuatu buat dirusak, terus ditulis jadi blog.'
     },
     chips: ['Proxmox', 'K3s', 'LXC'],
     link: {

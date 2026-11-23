@@ -6,14 +6,14 @@ keywords: "gading's hideout, gading homepage, gading, sutan gading, sutan gading
 image: "/media/default-banners/1.jpg"
 ---
 
-Saya seorang ***Software Engineer*** dengan pengalaman lebih dari 6 tahun. Saya mulai dari frontend dengan ***TypeScript*** dan ***React***, dan sekarang bekerja sebagai full-spectrum engineer: produk dari ujung ke ujung, AI agent, sampai server tempat semuanya berjalan.
+Saya ***Software Engineer*** dengan pengalaman 6 tahun lebih. Awalnya di frontend pakai ***TypeScript*** dan ***React***, sekarang lebih ke full-spectrum engineer: bangun produk dari ujung ke ujung, AI agent, sampai server tempat semuanya jalan.
 
-Sekarang sebagian besar waktu saya habis untuk [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bangun di bawah Nouverse Technologies dan saya pakai setiap hari, beserta homelab tempatnya berjalan (Proxmox, K3s, Terraform). Saya peduli dengan kode yang bersih, modular, dan *DX (Developer Experience)* yang baik.
+Waktu saya sekarang paling banyak habis buat [Nouride](https://nouride.com), daemon multi-agent self-hosted yang saya bangun di bawah Nouverse Technologies dan saya pakai tiap hari, plus homelab tempat dia jalan (Proxmox, K3s, Terraform). Saya suka kode yang bersih, modular, dan *DX* yang enak.
 
-Saya juga sudah membuat beberapa proyek sampingan dan *open-source* di [GitHub](https://github.com/gadingnst), dan semoga sebagian di antaranya bermanfaat buat developer lain di luar sana.
+Saya juga udah bikin beberapa proyek sampingan dan *open-source* di [GitHub](https://github.com/gadingnst). Semoga ada yang kepake buat developer lain di luar sana.
 
 #### Cara menyebut namaku
-Sebelum mengenal seseorang lebih jauh, hal pertama yang harus diketahui adalah cara menyebut namanya dengan benar.
+Sebelum kenal lebih jauh, pastiin dulu nyebut nama saya dengan bener:
 
 ✅ ***Benar***:
 - Sutan
@@ -29,17 +29,17 @@ Sebelum mengenal seseorang lebih jauh, hal pertama yang harus diketahui adalah c
 - Fadilah *(kurang `H` dan satu `L`)*
 
 #### Cerita di balik “Gading”
-Saya percaya kalau belajar itu seumur hidup. Komunitas online, proyek open source, mentor, rekan kerja, dan teman-teman semuanya berperan besar dalam perjalanan saya. Dari situ juga saya mulai suka berbagi: nulis dokumentasi, bikin blog, open source, dan konten edukatif buat sesama developer.
+Saya percaya belajar itu seumur hidup. Komunitas, open source, mentor, rekan kerja, dan teman-teman banyak ngebentuk cara saya kerja. Dari situ saya jadi suka berbagi lewat dokumentasi, blog, talk, open source, dan konten edukatif buat sesama developer.
 
 #### Mau tau saya ngapain?
-Langsung cek ke halaman [Now](/now), siapa tau pertanyaan kamu udah kejawab di situ.
+Langsung cek halaman [Now](/now), siapa tau pertanyaan kamu udah kejawab di situ.
 
 ---
 
 #### Tentang situs ini
-Website ini dibangun dengan *Next.js* dan di-export sebagai situs statis. Semua konten ditulis pakai *Markdown/MDX*, tanpa database. Kode sumbernya ada [di GitHub](https://github.com/gadingnst/gading.dev), dan halaman [Docs](/docs) menjelaskan cara situs ini disusun.
+Website ini dibangun pakai *Next.js* dan di-export jadi situs statis. Semua konten ditulis pakai *Markdown/MDX*, tanpa database. Kode sumbernya ada [di GitHub](https://github.com/gadingnst/gading.dev), dan halaman [Docs](/docs) ngejelasin gimana situs ini disusun.
 
-Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan performa situs ini di halaman ini dan bakal selalu diperbarui. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights), tool yang otomatis generate laporan performa ini.
+Saya lumayan peduli sama *performance* dan *SEO*, jadi halaman ini nampilin laporan performa situs yang selalu update. Thanks banget buat [Ankur Parihar](https://github.com/ankurparihar) yang bikin [Readme Pagespeed Insight](https://github.com/ankurparihar/readme-pagespeed-insights), tool yang generate laporan ini.
 
 <div className="max-w-[720px] flex flex-col gap-0 mx-auto">
   ![Laporan *Performance* (Desktop)](/media/web-reports/pagespeed/desktop.svg)
@@ -49,5 +49,5 @@ Saya lumayan peduli sama *performance* dan *SEO*, jadi saya tampilkan laporan pe
 ---
 
 <div className="text-center italic">
-  Salam hangat, **Gading Nasution**.
+  Salam, **Gading**.
 </div>

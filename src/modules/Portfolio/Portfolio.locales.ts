@@ -7,7 +7,7 @@ const withPortfolioLocales = createContentLocales({
   },
   desc: {
     en: 'Products I build and run, and the homelab they sit on.',
-    id: 'Produk yang saya bangun dan jalankan, beserta homelab tempat semuanya berjalan.'
+    id: 'Produk yang saya bangun dan jalanin, plus homelab tempat semuanya jalan.'
   },
   buildingTitle: {
     en: 'Things I\'m building',
@@ -15,23 +15,23 @@ const withPortfolioLocales = createContentLocales({
   },
   buildingDesc: {
     en: 'Products and side quests, in roughly that order.',
-    id: 'Produk dan proyek sampingan, kurang lebih berurutan begitu.'
+    id: 'Produk dan side quest, kurang lebih urutannya gitu.'
   },
   workTitle: {
-    en: 'Professional work',
-    id: 'Proyek profesional'
+    en: 'Work',
+    id: 'Kerjaan'
   },
   workDesc: {
-    en: 'Products I built for the companies I\'ve worked with.',
-    id: 'Produk yang saya bangun untuk perusahaan tempat saya bekerja.'
+    en: 'Stuff I built for the companies I\'ve worked with.',
+    id: 'Yang saya bangun buat perusahaan tempat saya kerja.'
   },
   talksTitle: {
     en: 'Talks',
     id: 'Talks'
   },
   talksDesc: {
-    en: 'Sessions I gave at communities and classes.',
-    id: 'Sesi yang pernah saya bawakan di komunitas dan kelas.'
+    en: 'Things I\'ve talked about at communities and classes.',
+    id: 'Topik yang pernah saya bawain di komunitas dan kelas.'
   }
 });
 
