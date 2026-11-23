@@ -29,13 +29,6 @@ function Footer() {
             {AUTHOR_NAME}
           </Link>
           <div className="mt-2">
-            <span className="inline-block">Based on</span>{' '}
-            <Link size="inherit" target="_blank" rel="noopener noreferrer" className="inline-block text-primary" href="https://github.com/gadingnst/gading.dev">
-              gading.dev
-            </Link>{' '}
-            <span className="inline-block">by Gading Nasution</span>
-          </div>
-          <div className="mt-2">
             <Link size="inherit" className="inline-block text-primary" href="/docs">
               Docs
             </Link>

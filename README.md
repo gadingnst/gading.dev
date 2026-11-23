@@ -1,8 +1,6 @@
-# 👨‍💻 Gading's Hideout
-[![Lighthouse](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/lighthouse.yml)
-[![Cloudinary](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml/badge.svg?event=workflow_dispatch)](https://github.com/gadingnst/gading.dev/actions/workflows/cloudinary.yml)
+# 👨‍💻 Halo Syahrul
 
-> My Personal Homepage & Blog site with NextJS : https://gading.dev
+> My personal homepage & blog site with Next.js : https://halosyahrul.com
 
 ## Prerequisites
 - [NodeJS](https://nodejs.org/en/download/)
@@ -41,15 +39,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [Vitor Britto](https://github.com/vitorbritto/forcefiles/blob/f0e32299138348247bd2f6ccb3dd51683fa761fd/scripts/initpost.sh) (Inspired me to to reproduce his `./initpost` script)
 - [Marina Aisa](https://marinaaisa.com) (Inspired me to create I18n content)
 - [Ankur Parihar](https://github.com/ankurparihar/readme-pagespeed-insights) (Inspired me to use his repo to generate Pagespeed insight periodically)
-- [Myself](https://github.com/gadingnst/swr-global-state) (Have created a zero-setup global state management library for this repository)
-
-## Support Me
-### Global
-- [Ko-Fi](https://ko-fi.com/gadingnst)
-### Indonesia
-- [Trakteer](https://trakteer.id/gadingnst)
-- [Karyakarsa](https://karyakarsa.com/gadingnst)
 
 * * *
 
-Copyright © 2022 by Gading Nasution
+Copyright © 2026 by Syahrul Arifuddin
